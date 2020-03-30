@@ -68,7 +68,11 @@ class Bsdl():
     
     def is_urjtag_part(self) -> bool:
         """returns True if part exists in urjtag's database, otherwise returns False"""
-        with open(f"{self.urjtag_db_dir + self.manufacturer_name.lower()}", 'r'):
+        with open(self.urjtag_db_dir + self.manufacturer_name.lower(), 'r') as urjtag_parts_fd:
+            urjtag_parts = urjtag_parts_fd.read()
+        return True if self.entity_name in urjtag_parts else False
+            
+            
 
 # new bsdl file    
 bsdl = Bsdl("example.bsdl")
