@@ -1,10 +1,7 @@
-# UrJTAG has a database to keep track of known JTAG devices.
-# The database is a folder tree, accompanied with directory description files (ddf).
-# Folder tree's structure: MANUFACTURERS -> PARTS -> STEPPINGS
-# eq: STMicroelectronics -> stm32l152 -> 0 (revision)
+# Urjtag's database is built of 3 levels - Manufacturer, Part Number, Stepping.
 # Each level needs a ddf. ddfs follow the structure:
-# relevant_chunk_of_idcode      folder_name     display_name 
-# eq (MANUFACTURERS ddf): 00100000      stm     STMicroelectronics
+# relevant_chunk_of_idcode\tfolder_name\tdisplay_name 
+# eq: 00100000\tstm\tSTMicroelectronics
 
 # SYNOPSIS: injector.py <src>
 # src - folder with bsdl files in it
@@ -16,10 +13,12 @@
 # the part will be named according to entity definition name / file's name.
 # stepping of part will be added only if it is clearly stated in file (not XXXX)
 import re
+import os
+import subprocess
 
 class Bsdl():
-    urjtag_db_dir = "/usr/local/share/urjtag"
-    urjtag_manufacturers_dir = f"{urjtag_db_dir}/MANUFACTURERS"
+    urjtag_dir = "./urjtag_database"
+    urjtag_manufacturers_dir = f"{urjtag_dir}/MANUFACTURERS"
     jedec_manufacturers_dir = "manufacturers"
 
     def __init__(self, bsdl_directory: str):
@@ -32,6 +31,7 @@ class Bsdl():
         self._extract_idcode()
         self._extract_entity_name()
         self._extract_manufacturer_name()
+        self._define_urjtag_directories()
 
     def _extract_idcode(self):
         """extract and define the entity's idcode""" 
@@ -43,63 +43,94 @@ class Bsdl():
     def _extract_entity_name(self):
         """extract and define the entity's name"""
         entity_declaration = re.search("entity .* is", self.content)
-        self.entity_name = entity_declaration.group().split()[1]
+        self.entity_name = entity_declaration.group().split()[1].lower()
     
     def _extract_manufacturer_name(self):
         """extract and define the manufacturer name"""
-        if self.is_urjtag_manufacturer():
+        if self._is_urjtag_manufacturer():
             with open(self.urjtag_manufacturers_dir, 'r') as urjtag_manufacturers_fd:
                urjtag_manufacturers = urjtag_manufacturers_fd.readlines() 
             for manufacturer in urjtag_manufacturers:
                 if self.manufacturer_id in manufacturer:
-                    self.manufacturer_name = manufacturer.split('\t')[1]
+                    self.manufacturer_name = manufacturer.split('\t')[1].lower()
         else:
             with open(self.jedec_manufacturers_dir ,'r') as jedec_manufacturers_fd:
                 jedec_manufacturers = jedec_manufacturers_fd.readlines()
             for manufacturer in jedec_manufacturers:
                 if self.manufacturer_id in manufacturer:
-                    self.manufacturer_name = manufacturer.strip().split()[-1]
+                    self.manufacturer_name = manufacturer.strip().split()[-1].lower()
+   
+    def _define_urjtag_directories(self):
+        self.manufacturer_dir = f"{self.urjtag_dir}/{self.manufacturer_name}"
+        self.part_dir = f"{self.manufacturer_dir}/{self.entity_name}"
+        self.parts_f = f"{self.manufacturer_dir}/PARTS"
+        self.steppings_f = f"{self.part_dir}/STEPPINGS"
 
-    def is_urjtag_manufacturer(self) -> bool:
-        """returns True if manufacturer exists in urjtag's database, otherwise returns False"""
+    def _add_urjtag_manufacturer(self):
+        """add Bsdl.manufacturer_id to urjtag's manufacturer ddf, and creates the manufacturer's folder"""
+        # update MANUFACTURERS ddf
+        with open(self.urjtag_manufacturers_dir, 'a') as urjtag_manufacturers_fd:
+            urjtag_manufacturers_fd.write(f"{self.manufacturer_id}\t{self.manufacturer_name}\t{self.manufacturer_name.capitalize()}\n")    
+
+        # create manufacturer folder and PARTS file
+        os.mkdir(self.manufacturer_dir)
+        with open(self.parts_f, 'w') as urjtag_parts_fd:
+           urjtag_parts_fd.write("# PARTS file created by bsdl-injector.py\n")
+
+    def _add_urjtag_part(self):
+        """add Bsdl.entity_name to urjtag's part ddf, and creates the part's folder"""
+        # update PARTS ddf
+        with open(self.parts_f, 'a') as urjtag_parts_fd:
+            urjtag_parts_fd.write(f"{self.part_number}\t{self.entity_name}\t{self.entity_name.upper()}\n")
+
+        # create part folder and STEPPINGS file
+        os.mkdir(self.part_dir)
+        with open(self.steppings_f, 'a') as urjtag_steppings_fd:
+            urjtag_steppings_fd.write("# STEPPINGS file created by bsdl-injector.py\n")    
+
+    def _add_urjtag_stepping(self):
+        """add part stepping to urjtag's stepping ddf"""
+        # update STEPPINGS ddf
+        # if self.version_number is "XXXX", generate all options
+        # if self.version_number is "0001", actually use it in steppings file
+        # if self.version_number is a combination of dont_cares and specific
+        # digits, generate all options except for ones that don't match 
+        pass
+
+    def _is_urjtag_manufacturer(self) -> bool:
+        """returns True if manufacturer_id exists in urjtag's database, otherwise returns False"""
         with open(self.urjtag_manufacturers_dir, 'r') as urjtag_manufacturers_fd:
             urjtag_manufacturers = urjtag_manufacturers_fd.read()
         return True if self.manufacturer_id in urjtag_manufacturers else False 
     
-    def is_urjtag_part(self) -> bool:
+    def _is_urjtag_part(self) -> bool:
         """returns True if part exists in urjtag's database, otherwise returns False"""
-        with open(self.urjtag_db_dir + self.manufacturer_name.lower(), 'r') as urjtag_parts_fd:
+        with open(self.parts_f, 'r') as urjtag_parts_fd:
             urjtag_parts = urjtag_parts_fd.read()
         return True if self.entity_name in urjtag_parts else False
-            
-            
 
-# new bsdl file    
-bsdl = Bsdl("example.bsdl")
+    def _is_urjtag_stepping(self):
+        """returns True if part's stepping exists in urjtag's database, otherwise returns False"""
+        pass
+    
+    def _is_valid(self):
+        """returns True if bsdl format is valid, otherwise returns False"""
+        try:
+            subprocess.run(["bsdl2jtag", self.directory, "/dev/null"], check=True)
+            return True
+        except subprocess.CalledProcessError:
+            return False
+            
+    def add_to_urjtag(self):
+        """add bsdl to urjtag database""" 
+        pass
+
+# new bsdl file
+bsdl = Bsdl("./test_bsdls/example.bsdl")
 print(bsdl.idcode)
 print(bsdl.version_number)
 print(bsdl.part_number)
 print(bsdl.manufacturer_id)
+print(bsdl.entity_name)
 print(bsdl.manufacturer_name)
-
-"""
-manufacturer = "00000100000" # 11-bit
-part = "0110010000010100" # 16-bit
-stepping = "0000" # 4-bit
-
-with open("/usr/local/share/urjtag/MANUFACTURERS") as manufacturers_file:
-    manufacturers = manufacturers_file.read()
-with open(f"/usr/local/share/urjtag/{manufacturer}/PARTS") as parts_file:
-    parts = parts_file.read()
-with open(f"/usr/local/share/urjtag/{manufacturer}/{part}/STEPPINGS") as steppings_file:
-    steppings = steppings_file.read()
-
-if manufacturer in manufacturers:
-    print(f"manufacturer: {manufacturer} already exists")
-
-if part in parts:
-    print(f"part: {part} already exists")
-
-if stepping in steppings:
-    print(f"stepping: {stepping} already exists")
-"""
+print(bsdl._is_valid())
