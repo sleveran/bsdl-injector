@@ -1,0 +1,683 @@
+-- C:\Documents and Settings\nguyend\workspace_backup\BSDL\src\Work/9_0_0_17_rel9/9_0_0_17_rel9_bsdl/common/AGL015V2_QN68.bsd
+-- FAMILY:	IGLOO
+-- DEVICE:	AGL015V2
+-- PACKAGE:	68 QFN
+-- DESIGNER VERSION: 9.0.0.17
+--         Include all package pins in the BSDL files including:
+--         (SARno37877)
+--                - For ProAsic and ProAsicPlus
+--                  VPP, VPN, AVDD, AGND and NC (No connects)
+--                - For ProAsic3/E
+--                  NC (No connects)
+
+
+-- This BSDL file reflects the pre-programming JTAG
+-- behavior. To reflect the post-programming JTAG
+-- behavior, edit this file as described below:
+
+-- If the I/O is unused or configured as an output,
+-- the input boundary scan cell becomes internal only.
+-- The input buffer is turned off, and you can not
+-- transfer data from the I/O pad into the input scan
+-- cell. For example:
+-- IO(1) is an output, the BSDL entry would be modified
+-- from:
+-- " 0 (BC_1, IO(1), input,    X),           "&
+-- " 1 (BC_1, IO(1), output3,  X,  2, 0, Z), "&
+-- " 2 (BC_1, *,     control,  0),           "&
+-- to:
+-- " 0 (BC_1, *,     internal, X),           "&
+-- " 1 (BC_1, IO(1), output3,  X,  2, 0, Z), "&
+-- " 2 (BC_1, *,     control,  0),           "&
+-- No modification is necessary when the I/O is
+-- configured as an input.
+
+
+entity AGL015V2qn68 is
+    generic (PHYSICAL_PIN_MAP : string := "qn68");
+    port(
+        GND         :linkage bit_vector (0 to 3   );
+        LLA0R1AL006 :inout bit;
+        LLB0R1AL005 :inout bit;
+        LLC0R1AL007 :inout bit;
+        LRA0R0AR009 :inout bit;
+        LRB0R0AR008 :inout bit;
+        LRC0R0AR010 :inout bit;
+        R0AR002     :inout bit;
+        R0AR005     :inout bit;
+        R0AR011     :inout bit;
+        R0AT009     :inout bit;
+        R0AT013     :inout bit;
+        R0AT017     :inout bit;
+        R0AT021     :inout bit;
+        R0AT025     :inout bit;
+        R0AT029     :inout bit;
+        R0AT033     :inout bit;
+        R0AT037     :inout bit;
+        R0AT039     :inout bit;
+        R0AT043     :inout bit;
+        R0AT047     :inout bit;
+        R0AT051     :inout bit;
+        R0AT053     :inout bit;
+        R0AT057     :inout bit;
+        R0AT059     :inout bit;
+        R0AT063     :inout bit;
+        R0AT065     :inout bit;
+        R0AT067     :inout bit;
+        R1AB005     :inout bit;
+        R1AB007     :inout bit;
+        R1AB009     :inout bit;
+        R1AB011     :inout bit;
+        R1AB013     :inout bit;
+        R1AB017     :inout bit;
+        R1AB021     :inout bit;
+        R1AB025     :inout bit;
+        R1AB029     :inout bit;
+        R1AB033     :inout bit;
+        R1AB035     :inout bit;
+        R1AB037     :inout bit;
+        R1AB051     :inout bit;
+        R1AB055     :inout bit;
+        R1AB059     :inout bit;
+        R1AB063     :inout bit;
+        R1AL001     :inout bit;
+        R1AL002     :inout bit;
+        R1AL010     :inout bit;
+        R1AL012     :inout bit;
+        R1AT003     :inout bit;
+        R1AT007     :inout bit;
+        TCK         :in bit;
+        TDI         :in bit;
+        TDO         :out bit;
+        TMS         :in bit;
+        TRST        :in bit;
+        VCC         :linkage bit_vector (0 to 3   );
+        VCCIB0      :linkage bit_vector (0 to 1   );
+        VCCIB1      :linkage bit_vector (0 to 1   );
+        VJTAG       :linkage bit;
+        VPUMP       :linkage bit
+    );
+
+    use STD_1149_1_1994.all;
+
+    attribute COMPONENT_CONFORMANCE of AGL015V2qn68: entity is
+        "STD_1149_1_1993";
+
+    attribute PIN_MAP of AGL015V2qn68 : entity is PHYSICAL_PIN_MAP;
+    constant qn68 : PIN_MAP_STRING:=
+        "GND       :(25,   45,    60,    9),    "&
+        "LLA0R1AL006:6,     "&
+        "LLB0R1AL005:7,     "&
+        "LLC0R1AL007:5,     "&
+        "LRA0R0AR009:42,    "&
+        "LRB0R0AR008:41,    "&
+        "LRC0R0AR010:43,    "&
+        "R0AR002   :39,    "&
+        "R0AR005   :40,    "&
+        "R0AR011   :47,    "&
+        "R0AT009   :68,    "&
+        "R0AT013   :67,    "&
+        "R0AT017   :66,    "&
+        "R0AT021   :65,    "&
+        "R0AT025   :64,    "&
+        "R0AT029   :63,    "&
+        "R0AT033   :62,    "&
+        "R0AT037   :58,    "&
+        "R0AT039   :57,    "&
+        "R0AT043   :56,    "&
+        "R0AT047   :55,    "&
+        "R0AT051   :54,    "&
+        "R0AT053   :53,    "&
+        "R0AT057   :52,    "&
+        "R0AT059   :51,    "&
+        "R0AT063   :50,    "&
+        "R0AT065   :49,    "&
+        "R0AT067   :48,    "&
+        "R1AB005   :13,    "&
+        "R1AB007   :14,    "&
+        "R1AB009   :15,    "&
+        "R1AB011   :16,    "&
+        "R1AB013   :17,    "&
+        "R1AB017   :18,    "&
+        "R1AB021   :19,    "&
+        "R1AB025   :20,    "&
+        "R1AB029   :21,    "&
+        "R1AB033   :22,    "&
+        "R1AB035   :23,    "&
+        "R1AB037   :27,    "&
+        "R1AB051   :28,    "&
+        "R1AB055   :29,    "&
+        "R1AB059   :30,    "&
+        "R1AB063   :31,    "&
+        "R1AL001   :12,    "&
+        "R1AL002   :11,    "&
+        "R1AL010   :4,     "&
+        "R1AL012   :3,     "&
+        "R1AT003   :2,     "&
+        "R1AT007   :1,     "&
+        "TCK       :32,    "&
+        "TDI       :33,    "&
+        "TDO       :36,    "&
+        "TMS       :34,    "&
+        "TRST      :37,    "&
+        "VCC       :(24,   46,    61,    8),    "&
+        "VCCIB0    :(44,   59),   "&
+        "VCCIB1    :(10,   26),   "&
+        "VJTAG     :38,    "&
+        "VPUMP     :35     ";
+
+    attribute TAP_SCAN_IN of TDI              : signal is true;
+    attribute TAP_SCAN_MODE of TMS            : signal is true;
+    attribute TAP_SCAN_OUT of TDO             : signal is true;
+    attribute TAP_SCAN_RESET of TRST          : signal is true;
+    attribute TAP_SCAN_CLOCK of TCK           :
+        signal is ( 2.00e+007, BOTH);
+
+    attribute INSTRUCTION_LENGTH of AGL015V2qn68 : entity is    8;
+    attribute INSTRUCTION_OPCODE of AGL015V2qn68 : entity is 
+                    "BYPASS (11111111), "&
+                    "IDCODE (00001111), "&
+                    "EXTEST (00000000), "&
+                    "SAMPLE (00000001), "&
+                    "HIGHZ (00000111), "&
+                    "CLAMP (00000101), "&
+                    "INTEST (00000110), "&
+                    "USERCODE (00001110) ";
+    attribute INSTRUCTION_CAPTURE of AGL015V2qn68 : entity is "XXXXXX01";
+
+
+    attribute IDCODE_REGISTER of AGL015V2qn68 : entity is
+                    "XXXXX100100100000001000111001111";
+    attribute USERCODE_REGISTER of AGL015V2qn68 : entity is
+                    "00000000000000000000000000000000";
+
+    attribute REGISTER_ACCESS of AGL015V2qn68 : entity is
+                    "BOUNDARY(EXTEST, SAMPLE, INTEST), "&
+                    "BYPASS(BYPASS, HIGHZ, CLAMP), "&
+                    "DEVICE_ID(IDCODE)";
+    attribute BOUNDARY_LENGTH of AGL015V2qn68 : entity is  288;
+    attribute BOUNDARY_REGISTER of AGL015V2qn68 : entity is 
+
+-- num   cell      port       function   safe   [ccell disval rslt]
+
+--BSR Pad not Bonded. Scan Cell     0
+"     0	(BC_1, *,internal,   X), "&
+"     1	(BC_1, *,internal,   X), "&
+"     2	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     1
+"     3	(BC_1, *,internal,   X), "&
+"     4	(BC_1, *,internal,   X), "&
+"     5	(BC_1, *,internal,   X), "&
+
+--BSR  31    R1AB063. Scan Cell     2
+"     6	(BC_1, R1AB063,	output3,   X,     7, 0, Z), "&
+"     7	(BC_1, *,	control, 0), "&
+"     8	(BC_1, R1AB063,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     3
+"     9	(BC_1, *,internal,   X), "&
+"    10	(BC_1, *,internal,   X), "&
+"    11	(BC_1, *,internal,   X), "&
+
+--BSR  30    R1AB059. Scan Cell     4
+"    12	(BC_1, R1AB059,	output3,   X,    13, 0, Z), "&
+"    13	(BC_1, *,	control, 0), "&
+"    14	(BC_1, R1AB059,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     5
+"    15	(BC_1, *,internal,   X), "&
+"    16	(BC_1, *,internal,   X), "&
+"    17	(BC_1, *,internal,   X), "&
+
+--BSR  29    R1AB055. Scan Cell     6
+"    18	(BC_1, R1AB055,	output3,   X,    19, 0, Z), "&
+"    19	(BC_1, *,	control, 0), "&
+"    20	(BC_1, R1AB055,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     7
+"    21	(BC_1, *,internal,   X), "&
+"    22	(BC_1, *,internal,   X), "&
+"    23	(BC_1, *,internal,   X), "&
+
+--BSR  28    R1AB051. Scan Cell     8
+"    24	(BC_1, R1AB051,	output3,   X,    25, 0, Z), "&
+"    25	(BC_1, *,	control, 0), "&
+"    26	(BC_1, R1AB051,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     9
+"    27	(BC_1, *,internal,   X), "&
+"    28	(BC_1, *,internal,   X), "&
+"    29	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    10
+"    30	(BC_1, *,internal,   X), "&
+"    31	(BC_1, *,internal,   X), "&
+"    32	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    11
+"    33	(BC_1, *,internal,   X), "&
+"    34	(BC_1, *,internal,   X), "&
+"    35	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    12
+"    36	(BC_1, *,internal,   X), "&
+"    37	(BC_1, *,internal,   X), "&
+"    38	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    13
+"    39	(BC_1, *,internal,   X), "&
+"    40	(BC_1, *,internal,   X), "&
+"    41	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    14
+"    42	(BC_1, *,internal,   X), "&
+"    43	(BC_1, *,internal,   X), "&
+"    44	(BC_1, *,internal,   X), "&
+
+--BSR  27    R1AB037. Scan Cell    15
+"    45	(BC_1, R1AB037,	output3,   X,    46, 0, Z), "&
+"    46	(BC_1, *,	control, 0), "&
+"    47	(BC_1, R1AB037,	input,   X), "&
+
+--BSR  23    R1AB035. Scan Cell    16
+"    48	(BC_1, R1AB035,	output3,   X,    49, 0, Z), "&
+"    49	(BC_1, *,	control, 0), "&
+"    50	(BC_1, R1AB035,	input,   X), "&
+
+--BSR  22    R1AB033. Scan Cell    17
+"    51	(BC_1, R1AB033,	output3,   X,    52, 0, Z), "&
+"    52	(BC_1, *,	control, 0), "&
+"    53	(BC_1, R1AB033,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    18
+"    54	(BC_1, *,internal,   X), "&
+"    55	(BC_1, *,internal,   X), "&
+"    56	(BC_1, *,internal,   X), "&
+
+--BSR  21    R1AB029. Scan Cell    19
+"    57	(BC_1, R1AB029,	output3,   X,    58, 0, Z), "&
+"    58	(BC_1, *,	control, 0), "&
+"    59	(BC_1, R1AB029,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    20
+"    60	(BC_1, *,internal,   X), "&
+"    61	(BC_1, *,internal,   X), "&
+"    62	(BC_1, *,internal,   X), "&
+
+--BSR  20    R1AB025. Scan Cell    21
+"    63	(BC_1, R1AB025,	output3,   X,    64, 0, Z), "&
+"    64	(BC_1, *,	control, 0), "&
+"    65	(BC_1, R1AB025,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    22
+"    66	(BC_1, *,internal,   X), "&
+"    67	(BC_1, *,internal,   X), "&
+"    68	(BC_1, *,internal,   X), "&
+
+--BSR  19    R1AB021. Scan Cell    23
+"    69	(BC_1, R1AB021,	output3,   X,    70, 0, Z), "&
+"    70	(BC_1, *,	control, 0), "&
+"    71	(BC_1, R1AB021,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    24
+"    72	(BC_1, *,internal,   X), "&
+"    73	(BC_1, *,internal,   X), "&
+"    74	(BC_1, *,internal,   X), "&
+
+--BSR  18    R1AB017. Scan Cell    25
+"    75	(BC_1, R1AB017,	output3,   X,    76, 0, Z), "&
+"    76	(BC_1, *,	control, 0), "&
+"    77	(BC_1, R1AB017,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    26
+"    78	(BC_1, *,internal,   X), "&
+"    79	(BC_1, *,internal,   X), "&
+"    80	(BC_1, *,internal,   X), "&
+
+--BSR  17    R1AB013. Scan Cell    27
+"    81	(BC_1, R1AB013,	output3,   X,    82, 0, Z), "&
+"    82	(BC_1, *,	control, 0), "&
+"    83	(BC_1, R1AB013,	input,   X), "&
+
+--BSR  16    R1AB011. Scan Cell    28
+"    84	(BC_1, R1AB011,	output3,   X,    85, 0, Z), "&
+"    85	(BC_1, *,	control, 0), "&
+"    86	(BC_1, R1AB011,	input,   X), "&
+
+--BSR  15    R1AB009. Scan Cell    29
+"    87	(BC_1, R1AB009,	output3,   X,    88, 0, Z), "&
+"    88	(BC_1, *,	control, 0), "&
+"    89	(BC_1, R1AB009,	input,   X), "&
+
+--BSR  14    R1AB007. Scan Cell    30
+"    90	(BC_1, R1AB007,	output3,   X,    91, 0, Z), "&
+"    91	(BC_1, *,	control, 0), "&
+"    92	(BC_1, R1AB007,	input,   X), "&
+
+--BSR  13    R1AB005. Scan Cell    31
+"    93	(BC_1, R1AB005,	output3,   X,    94, 0, Z), "&
+"    94	(BC_1, *,	control, 0), "&
+"    95	(BC_1, R1AB005,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    32
+"    96	(BC_1, *,internal,   X), "&
+"    97	(BC_1, *,internal,   X), "&
+"    98	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    33
+"    99	(BC_1, *,internal,   X), "&
+"   100	(BC_1, *,internal,   X), "&
+"   101	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    34
+"   102	(BC_1, *,internal,   X), "&
+"   103	(BC_1, *,internal,   X), "&
+"   104	(BC_1, *,internal,   X), "&
+
+--BSR  12    R1AL001. Scan Cell    35
+"   105	(BC_1, R1AL001,	output3,   X,   106, 0, Z), "&
+"   106	(BC_1, *,	control, 0), "&
+"   107	(BC_1, R1AL001,	input,   X), "&
+
+--BSR  11    R1AL002. Scan Cell    36
+"   108	(BC_1, R1AL002,	output3,   X,   109, 0, Z), "&
+"   109	(BC_1, *,	control, 0), "&
+"   110	(BC_1, R1AL002,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    37
+"   111	(BC_1, *,internal,   X), "&
+"   112	(BC_1, *,internal,   X), "&
+"   113	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    38
+"   114	(BC_1, *,internal,   X), "&
+"   115	(BC_1, *,internal,   X), "&
+"   116	(BC_1, *,internal,   X), "&
+
+--BSR  7    LLB0R1AL005. Scan Cell    39
+"   117	(BC_1, LLB0R1AL005,	output3,   X,   118, 0, Z), "&
+"   118	(BC_1, *,	control, 0), "&
+"   119	(BC_1, LLB0R1AL005,	input,   X), "&
+
+--BSR  6    LLA0R1AL006. Scan Cell    40
+"   120	(BC_1, LLA0R1AL006,	output3,   X,   121, 0, Z), "&
+"   121	(BC_1, *,	control, 0), "&
+"   122	(BC_1, LLA0R1AL006,	input,   X), "&
+
+--BSR  5    LLC0R1AL007. Scan Cell    41
+"   123	(BC_1, LLC0R1AL007,	output3,   X,   124, 0, Z), "&
+"   124	(BC_1, *,	control, 0), "&
+"   125	(BC_1, LLC0R1AL007,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    42
+"   126	(BC_1, *,internal,   X), "&
+"   127	(BC_1, *,internal,   X), "&
+"   128	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    43
+"   129	(BC_1, *,internal,   X), "&
+"   130	(BC_1, *,internal,   X), "&
+"   131	(BC_1, *,internal,   X), "&
+
+--BSR  4    R1AL010. Scan Cell    44
+"   132	(BC_1, R1AL010,	output3,   X,   133, 0, Z), "&
+"   133	(BC_1, *,	control, 0), "&
+"   134	(BC_1, R1AL010,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    45
+"   135	(BC_1, *,internal,   X), "&
+"   136	(BC_1, *,internal,   X), "&
+"   137	(BC_1, *,internal,   X), "&
+
+--BSR  3    R1AL012. Scan Cell    46
+"   138	(BC_1, R1AL012,	output3,   X,   139, 0, Z), "&
+"   139	(BC_1, *,	control, 0), "&
+"   140	(BC_1, R1AL012,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    47
+"   141	(BC_1, *,internal,   X), "&
+"   142	(BC_1, *,internal,   X), "&
+"   143	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    48
+"   144	(BC_1, *,internal,   X), "&
+"   145	(BC_1, *,internal,   X), "&
+"   146	(BC_1, *,internal,   X), "&
+
+--BSR  2    R1AT003. Scan Cell    49
+"   147	(BC_1, R1AT003,	output3,   X,   148, 0, Z), "&
+"   148	(BC_1, *,	control, 0), "&
+"   149	(BC_1, R1AT003,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    50
+"   150	(BC_1, *,internal,   X), "&
+"   151	(BC_1, *,internal,   X), "&
+"   152	(BC_1, *,internal,   X), "&
+
+--BSR  1    R1AT007. Scan Cell    51
+"   153	(BC_1, R1AT007,	output3,   X,   154, 0, Z), "&
+"   154	(BC_1, *,	control, 0), "&
+"   155	(BC_1, R1AT007,	input,   X), "&
+
+--BSR  68    R0AT009. Scan Cell    52
+"   156	(BC_1, R0AT009,	output3,   X,   157, 0, Z), "&
+"   157	(BC_1, *,	control, 0), "&
+"   158	(BC_1, R0AT009,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    53
+"   159	(BC_1, *,internal,   X), "&
+"   160	(BC_1, *,internal,   X), "&
+"   161	(BC_1, *,internal,   X), "&
+
+--BSR  67    R0AT013. Scan Cell    54
+"   162	(BC_1, R0AT013,	output3,   X,   163, 0, Z), "&
+"   163	(BC_1, *,	control, 0), "&
+"   164	(BC_1, R0AT013,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    55
+"   165	(BC_1, *,internal,   X), "&
+"   166	(BC_1, *,internal,   X), "&
+"   167	(BC_1, *,internal,   X), "&
+
+--BSR  66    R0AT017. Scan Cell    56
+"   168	(BC_1, R0AT017,	output3,   X,   169, 0, Z), "&
+"   169	(BC_1, *,	control, 0), "&
+"   170	(BC_1, R0AT017,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    57
+"   171	(BC_1, *,internal,   X), "&
+"   172	(BC_1, *,internal,   X), "&
+"   173	(BC_1, *,internal,   X), "&
+
+--BSR  65    R0AT021. Scan Cell    58
+"   174	(BC_1, R0AT021,	output3,   X,   175, 0, Z), "&
+"   175	(BC_1, *,	control, 0), "&
+"   176	(BC_1, R0AT021,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    59
+"   177	(BC_1, *,internal,   X), "&
+"   178	(BC_1, *,internal,   X), "&
+"   179	(BC_1, *,internal,   X), "&
+
+--BSR  64    R0AT025. Scan Cell    60
+"   180	(BC_1, R0AT025,	output3,   X,   181, 0, Z), "&
+"   181	(BC_1, *,	control, 0), "&
+"   182	(BC_1, R0AT025,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    61
+"   183	(BC_1, *,internal,   X), "&
+"   184	(BC_1, *,internal,   X), "&
+"   185	(BC_1, *,internal,   X), "&
+
+--BSR  63    R0AT029. Scan Cell    62
+"   186	(BC_1, R0AT029,	output3,   X,   187, 0, Z), "&
+"   187	(BC_1, *,	control, 0), "&
+"   188	(BC_1, R0AT029,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    63
+"   189	(BC_1, *,internal,   X), "&
+"   190	(BC_1, *,internal,   X), "&
+"   191	(BC_1, *,internal,   X), "&
+
+--BSR  62    R0AT033. Scan Cell    64
+"   192	(BC_1, R0AT033,	output3,   X,   193, 0, Z), "&
+"   193	(BC_1, *,	control, 0), "&
+"   194	(BC_1, R0AT033,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    65
+"   195	(BC_1, *,internal,   X), "&
+"   196	(BC_1, *,internal,   X), "&
+"   197	(BC_1, *,internal,   X), "&
+
+--BSR  58    R0AT037. Scan Cell    66
+"   198	(BC_1, R0AT037,	output3,   X,   199, 0, Z), "&
+"   199	(BC_1, *,	control, 0), "&
+"   200	(BC_1, R0AT037,	input,   X), "&
+
+--BSR  57    R0AT039. Scan Cell    67
+"   201	(BC_1, R0AT039,	output3,   X,   202, 0, Z), "&
+"   202	(BC_1, *,	control, 0), "&
+"   203	(BC_1, R0AT039,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    68
+"   204	(BC_1, *,internal,   X), "&
+"   205	(BC_1, *,internal,   X), "&
+"   206	(BC_1, *,internal,   X), "&
+
+--BSR  56    R0AT043. Scan Cell    69
+"   207	(BC_1, R0AT043,	output3,   X,   208, 0, Z), "&
+"   208	(BC_1, *,	control, 0), "&
+"   209	(BC_1, R0AT043,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    70
+"   210	(BC_1, *,internal,   X), "&
+"   211	(BC_1, *,internal,   X), "&
+"   212	(BC_1, *,internal,   X), "&
+
+--BSR  55    R0AT047. Scan Cell    71
+"   213	(BC_1, R0AT047,	output3,   X,   214, 0, Z), "&
+"   214	(BC_1, *,	control, 0), "&
+"   215	(BC_1, R0AT047,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    72
+"   216	(BC_1, *,internal,   X), "&
+"   217	(BC_1, *,internal,   X), "&
+"   218	(BC_1, *,internal,   X), "&
+
+--BSR  54    R0AT051. Scan Cell    73
+"   219	(BC_1, R0AT051,	output3,   X,   220, 0, Z), "&
+"   220	(BC_1, *,	control, 0), "&
+"   221	(BC_1, R0AT051,	input,   X), "&
+
+--BSR  53    R0AT053. Scan Cell    74
+"   222	(BC_1, R0AT053,	output3,   X,   223, 0, Z), "&
+"   223	(BC_1, *,	control, 0), "&
+"   224	(BC_1, R0AT053,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    75
+"   225	(BC_1, *,internal,   X), "&
+"   226	(BC_1, *,internal,   X), "&
+"   227	(BC_1, *,internal,   X), "&
+
+--BSR  52    R0AT057. Scan Cell    76
+"   228	(BC_1, R0AT057,	output3,   X,   229, 0, Z), "&
+"   229	(BC_1, *,	control, 0), "&
+"   230	(BC_1, R0AT057,	input,   X), "&
+
+--BSR  51    R0AT059. Scan Cell    77
+"   231	(BC_1, R0AT059,	output3,   X,   232, 0, Z), "&
+"   232	(BC_1, *,	control, 0), "&
+"   233	(BC_1, R0AT059,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    78
+"   234	(BC_1, *,internal,   X), "&
+"   235	(BC_1, *,internal,   X), "&
+"   236	(BC_1, *,internal,   X), "&
+
+--BSR  50    R0AT063. Scan Cell    79
+"   237	(BC_1, R0AT063,	output3,   X,   238, 0, Z), "&
+"   238	(BC_1, *,	control, 0), "&
+"   239	(BC_1, R0AT063,	input,   X), "&
+
+--BSR  49    R0AT065. Scan Cell    80
+"   240	(BC_1, R0AT065,	output3,   X,   241, 0, Z), "&
+"   241	(BC_1, *,	control, 0), "&
+"   242	(BC_1, R0AT065,	input,   X), "&
+
+--BSR  48    R0AT067. Scan Cell    81
+"   243	(BC_1, R0AT067,	output3,   X,   244, 0, Z), "&
+"   244	(BC_1, *,	control, 0), "&
+"   245	(BC_1, R0AT067,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    82
+"   246	(BC_1, *,internal,   X), "&
+"   247	(BC_1, *,internal,   X), "&
+"   248	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    83
+"   249	(BC_1, *,internal,   X), "&
+"   250	(BC_1, *,internal,   X), "&
+"   251	(BC_1, *,internal,   X), "&
+
+--BSR  47    R0AR011. Scan Cell    84
+"   252	(BC_1, R0AR011,	output3,   X,   253, 0, Z), "&
+"   253	(BC_1, *,	control, 0), "&
+"   254	(BC_1, R0AR011,	input,   X), "&
+
+--BSR  43    LRC0R0AR010. Scan Cell    85
+"   255	(BC_1, LRC0R0AR010,	output3,   X,   256, 0, Z), "&
+"   256	(BC_1, *,	control, 0), "&
+"   257	(BC_1, LRC0R0AR010,	input,   X), "&
+
+--BSR  42    LRA0R0AR009. Scan Cell    86
+"   258	(BC_1, LRA0R0AR009,	output3,   X,   259, 0, Z), "&
+"   259	(BC_1, *,	control, 0), "&
+"   260	(BC_1, LRA0R0AR009,	input,   X), "&
+
+--BSR  41    LRB0R0AR008. Scan Cell    87
+"   261	(BC_1, LRB0R0AR008,	output3,   X,   262, 0, Z), "&
+"   262	(BC_1, *,	control, 0), "&
+"   263	(BC_1, LRB0R0AR008,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    88
+"   264	(BC_1, *,internal,   X), "&
+"   265	(BC_1, *,internal,   X), "&
+"   266	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    89
+"   267	(BC_1, *,internal,   X), "&
+"   268	(BC_1, *,internal,   X), "&
+"   269	(BC_1, *,internal,   X), "&
+
+--BSR  40    R0AR005. Scan Cell    90
+"   270	(BC_1, R0AR005,	output3,   X,   271, 0, Z), "&
+"   271	(BC_1, *,	control, 0), "&
+"   272	(BC_1, R0AR005,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    91
+"   273	(BC_1, *,internal,   X), "&
+"   274	(BC_1, *,internal,   X), "&
+"   275	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    92
+"   276	(BC_1, *,internal,   X), "&
+"   277	(BC_1, *,internal,   X), "&
+"   278	(BC_1, *,internal,   X), "&
+
+--BSR  39    R0AR002. Scan Cell    93
+"   279	(BC_1, R0AR002,	output3,   X,   280, 0, Z), "&
+"   280	(BC_1, *,	control, 0), "&
+"   281	(BC_1, R0AR002,	input,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    94
+"   282	(BC_1, *,internal,   X), "&
+"   283	(BC_1, *,internal,   X), "&
+"   284	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    95
+"   285	(BC_1, *,internal,   X), "&
+"   286	(BC_1, *,internal,   X), "&
+"   287	(BC_1, *,internal,   X) ";
+
+end AGL015V2qn68;

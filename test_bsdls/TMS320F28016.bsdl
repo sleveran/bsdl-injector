@@ -1,0 +1,399 @@
+------------------------------------------------------------------------
+-- File Type      : BSDL Description for Top-Level Entity TMS320F28016--
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+-- TI TMS320F280X 32-bit 100-pin Fixed-Point DSP with Boundary Scan   --
+------------------------------------------------------------------------
+--  Supported Devices: TMS320F28016                                   --
+------------------------------------------------------------------------
+--  Created by    : Texas Instruments Incorporated                    --
+--  Documentation : TMS320F28x Users Guide                            --
+--  BSDL Revision : 1.2                                               --
+--  Date          : 07 Jun 2005                                       --
+--  BSDL status   : TMS                                               --
+--                                                                    --
+--     Rev 1.2 07 Jun 2005.  Made the following changes               --
+--       1) XRSn cannot be tested with Boundary scan.                 --
+--       2) Added XRSn as compliance pin                              --
+--                                                                    --
+------------------------------------------------------------------------
+--  Created by    : Texas Instruments Incorporated                    --
+--  Documentation : TMS320F28x Users Guide                            --
+--  BSDL Revision : 1.1                                               --
+--  Date          : 27 May 2005                                       --
+--  BSDL status   : TMS                                               --
+--                                                                    --
+--     Rev 1.1 27 May 2005.  Made the following changes               --
+--       1) Removed port VDD1AGND and VSSA2AGND                       --
+--       2) Changed PIN_MAP_STRING VDD1AGND to VSS1AGND               --
+--       3) Changed X1/XCLKIN to XCLKIN, X1 in the header comments    --
+--  
+--  Initialization Requirements for Boundary Scan Test
+--  --------------------------------------------------
+--
+--  The F280x DSPs use the JTAG port for boundary scan tests, emulation
+--  capability and factory test purposes.  To use boundary scan test,
+--  the following pin configuration must be used:
+--
+--      EMU1    = 0
+--      EMU0    = 1
+--      TRSTN   = 0 -> 1 ( transitioning to a 1 will latch the device into
+--                         boundary scan mode )
+--
+--  TRSTN is a reset to the JTAG state machine (active low), hence it has
+--  to be pulled high before any JTAG scans are made. 
+--
+--  F280x Devices have two taps - one for the CPU and one for boundary scan.
+--  The boundary scan IR size is 3 bits.
+--
+--  Device Pins not testable by Boundary Scan
+--  ------------------------------------------
+--  The following pins cannot be tested through boundary scan:
+--  EMU0, EMU1, XCLKIN, X1, X2, TEST1, TEST2, and all the analog pins
+--
+--
+--                          IMPORTANT NOTICE                        
+--  Texas Instruments Incorporated (TI) reserves the right to make 
+--  changes to its products or to discontinue any semiconductor 
+--  product or service without notice, and advises its customers to 
+--  obtain the latest version of the relevant information to 
+--  verify, before placing orders, that the information being 
+--  relied on is current.                                  
+--  TI warrants performance of its semiconductor products and 
+--  related software to the specifications applicable at the time 
+--  of sale in accordance with TI's standard warranty. Testing and 
+--  other quality control techniques are utilized to the extent TI 
+--  deems necessary to support this warranty. Specific testing of 
+--  all parameters of each device is not necessarily performed, 
+--  except those mandated by government requirements. 
+--                                                   
+--  Certain applications using semiconductor devices may involve 
+--  potential risks of death, personal injury, or severe property 
+--  or environmental damage ("Critical Applications").    
+--
+--    TI SEMICONDUCTOR PRODUCTS ARE NOT DESIGNED, INTENDED, 
+--    AUTHORIZED, OR WARRANTED TO BE SUITABLE FOR USE IN 
+--    LIFE-SUPPORT APPLICATIONS, DEVICES OR SYSTEMS OR OTHER 
+--    CRITICAL APPLICATIONS.                    
+--
+--  Inclusion of TI products in such applications is understood 
+--  to be fully at the risk of the customer.  Use of TI products 
+--  in such applications requires the written approval of an 
+--  appropriate TI officer. Questions concerning potential risk 
+--  applications should be directed to TI through a local SC sales 
+--  office.                                                 
+--  In order to minimize risks associated with the customer's 
+--  applications, adequate design and operating safeguards should 
+--  be provided by the       
+--  customer to minimize inherent or procedural hazards.     
+--
+--  TI assumes no liability for applications assistance, customer 
+--  product design, software performance, or infringement of 
+--  patents or services described herein.  Nor does TI warrant or 
+--  represent that any license, either express or implied, is 
+--  granted under any patent right, copyright, mask work right, or 
+--  other intellectual property right of TI covering or relating 
+--  to any combination, machine, or process in which such 
+--  semiconductor products or services might be or are used.
+--            Copyright (c) 2000, Texas Instruments Incorporated 
+------------------------------------------------------------------------
+
+ entity TMS320F28016 is 
+
+    generic(PHYSICAL_PIN_MAP : string := "LQFP"); 
+
+    port (
+              VSS                  : linkage           bit_vector(10 downto 0);
+              VDD                  : linkage           bit_vector(5 downto 0);
+              VDDIO                : linkage           bit_vector(3 downto 0);
+              VDD1A18              : linkage           bit;
+              VSS1AGND             : linkage           bit;
+              VSSA2                : linkage           bit;
+              VDDA2                : linkage           bit;
+              VSSAIO               : linkage           bit;
+              VDDAIO               : linkage           bit;
+              VSS2AGND             : linkage           bit;
+              VDD2A18              : linkage           bit;
+              VDD3VFL              : linkage           bit;
+              ADCINA               : linkage           bit_vector(7 downto 0);
+              ADCINB               : linkage           bit_vector(7 downto 0);
+              ADCLO                : linkage           bit;
+              ADCREFIN             : linkage           bit;
+              ADCREFM              : linkage           bit;
+              ADCREFP              : linkage           bit;
+              ADCRESEXT            : linkage           bit;
+              GPIO34               : inout             bit;
+              GPIO33               : inout             bit;
+              GPIO32               : inout             bit;
+              GPIO31               : inout             bit;
+              GPIO30               : inout             bit;
+              GPIO29               : inout             bit;
+              GPIO28               : inout             bit;
+              GPIO27               : inout             bit;
+              GPIO26               : inout             bit;
+              GPIO25               : inout             bit;
+              GPIO24               : inout             bit;
+              GPIO23               : inout             bit;
+              GPIO22               : inout             bit;
+              GPIO21               : inout             bit;
+              GPIO20               : inout             bit;
+              GPIO19               : inout             bit;
+              GPIO18               : inout             bit;
+              GPIO17               : inout             bit;
+              GPIO16               : inout             bit;
+              GPIO15               : inout             bit;
+              GPIO14               : inout             bit;
+              GPIO13               : inout             bit;
+              GPIO12               : inout             bit;
+              GPIO11               : inout             bit;
+              GPIO10               : inout             bit;
+              GPIO9                : inout             bit;
+              GPIO8                : inout             bit;
+              GPIO7                : inout             bit;
+              GPIO6                : inout             bit;
+              GPIO5                : inout             bit;
+              GPIO4                : inout             bit;
+              GPIO3                : inout             bit;
+              GPIO2                : inout             bit;
+              GPIO1                : inout             bit;
+              GPIO0                : inout             bit;
+              X1                   : linkage           bit;
+              X2                   : linkage           bit;
+              XCLKIN               : linkage           bit;
+              XCLKOUT              : inout             bit;
+              XRSn                 : in                bit;
+              TDI                  : in                bit;
+              TMS                  : in                bit;
+              TCK                  : in                bit;
+              TDO                  : out               bit;
+              TRSTn                : in                bit;
+              EMU0                 : in                bit;
+              EMU1                 : in                bit;
+              TEST1                : linkage           bit;
+              TEST2                : linkage           bit
+         ); 
+
+    use STD_1149_1_1994.all; -- Get IEEE 1149.1-1994 attributes and definitions 
+
+    attribute COMPONENT_CONFORMANCE of TMS320F28016 : entity is "STD_1149_1_1993";
+
+    attribute PIN_MAP of TMS320F28016 : entity is PHYSICAL_PIN_MAP; 
+
+    constant LQFP : PIN_MAP_STRING := 
+       "ADCINA: (16,17,18,19,20,21,22,23)," & 
+       "ADCINB: (34,33,32,31,30,29,28,27)," & 
+       "ADCLO: 24," & 
+       "ADCREFIN: 35," & 
+       "ADCREFM: 36," & 
+       "ADCREFP: 37," & 
+       "ADCRESEXT: 38," & 
+       "VSS: (2,11,41,49,55,62,69,77,87,89,94)," &
+       "VDD: (10,42,59,68,93,85)," &
+       "VDDIO: (3,46,65,82)," & 
+       "VDD1A18: 12," & 
+       "VSS1AGND: 13," &
+       "VSSA2: 14," &
+       "VDDA2: 15," &
+       "VSSAIO: 25," &
+       "VDDAIO: 26," &
+       "VSS2AGND: 39," &
+       "VDD2A18: 40," &
+       "VDD3VFL:96," &
+       "GPIO34: 43," & 
+       "GPIO33: 5," & 
+       "GPIO32: 100," & 
+       "GPIO31: 7," & 
+       "GPIO30: 6," & 
+       "GPIO29: 4," & 
+       "GPIO28: 92," & 
+       "GPIO27: 79," & 
+       "GPIO26: 99," & 
+       "GPIO25: 91," & 
+       "GPIO24: 83," & 
+       "GPIO23: 72," & 
+       "GPIO22: 71," & 
+       "GPIO21: 67," & 
+       "GPIO20: 63," & 
+       "GPIO19: 57," & 
+       "GPIO18: 54," & 
+       "GPIO17: 52," & 
+       "GPIO16: 50," & 
+       "GPIO15: 9," & 
+       "GPIO14: 8," & 
+       "GPIO13: 95," & 
+       "GPIO12: 1," & 
+       "GPIO11: 70," & 
+       "GPIO10: 64," & 
+       "GPIO9: 61," & 
+       "GPIO8: 60," & 
+       "GPIO7: 58," & 
+       "GPIO6: 56," & 
+       "GPIO5: 53," & 
+       "GPIO4: 51," & 
+       "GPIO3: 48," & 
+       "GPIO2: 45," & 
+       "GPIO1: 44," & 
+       "GPIO0: 47," & 
+       "X1: 88," & 
+       "X2: 86," & 
+       "XCLKIN: 90," & 
+       "XCLKOUT: 66," & 
+       "XRSn: 78," & 
+       "TDI: 73," & 
+       "TMS: 74," & 
+       "TCK: 75," & 
+       "TDO: 76," & 
+       "TRSTn: 84," & 
+       "EMU0: 80," & 
+       "EMU1: 81," & 
+       "TEST1: 97," & 
+       "TEST2: 98";
+
+    attribute TAP_SCAN_IN of TDI : signal is true; 
+    attribute TAP_SCAN_MODE of TMS : signal is true; 
+    attribute TAP_SCAN_OUT of TDO : signal is true; 
+    attribute TAP_SCAN_CLOCK of TCK : signal is (20.0e6, BOTH); 
+    attribute TAP_SCAN_RESET of TRSTn : signal is true; 
+
+    attribute COMPLIANCE_PATTERNS of TMS320F28016 : entity is "(EMU1,EMU0,XRSn)(011)";
+
+    attribute INSTRUCTION_LENGTH of TMS320F28016 : entity is 3;
+    attribute INSTRUCTION_OPCODE of TMS320F28016 : entity is 
+        "extest (000),"  & 
+        "bypass (111),"  & 
+        "sample (001),"  & 
+        "idcode (100)";
+
+    attribute INSTRUCTION_CAPTURE of TMS320F28016 : entity is "001";
+    attribute IDCODE_REGISTER of TMS320F28016 : entity is 
+        "0001"  &                -- Version Number 
+        "1011011001010001"  &    -- Part Number 
+        "00000010111"  &         -- Manufacturer ID 
+        "1";                     -- Required by IEEE Std. 1149.1-1990 
+
+    attribute REGISTER_ACCESS of TMS320F28016 : entity is 
+        "BOUNDARY (extest, sample), " & 
+        "DEVICE_ID (idcode), " & 
+        "BYPASS (bypass)"; 
+
+    attribute BOUNDARY_LENGTH of TMS320F28016 : entity is 114;
+    attribute BOUNDARY_REGISTER of TMS320F28016 : entity is 
+      --- num            cell                 port      function   safe  [ccell  disval  rslt]
+       "0    (           bc_4,             XCLKOUT,        input,     X)," & 
+       "1    (           bc_1,             XCLKOUT,      output3,     X,      2,      1,    Z)," & 
+       "2    (           bc_1,                   *,      control,     1)," & 
+       "3    (           bc_1,                   *,     internal,     X)," & 
+       "4    (           bc_4,                   *,     internal,     X)," & 
+       "5    (           bc_1,                   *,     internal,     1)," & 
+       "6    (           bc_4,               GPIO0,        input,     X)," & 
+       "7    (           bc_1,               GPIO0,      output3,     X,      8,      1,    Z)," & 
+       "8    (           bc_1,                   *,      control,     1)," & 
+       "9    (           bc_4,               GPIO1,        input,     X)," & 
+       "10   (           bc_1,               GPIO1,      output3,     X,     11,      1,    Z)," & 
+       "11   (           bc_1,                   *,      control,     1)," & 
+       "12   (           bc_4,               GPIO2,        input,     X)," & 
+       "13   (           bc_1,               GPIO2,      output3,     X,     14,      1,    Z)," & 
+       "14   (           bc_1,                   *,      control,     1)," & 
+       "15   (           bc_4,               GPIO3,        input,     X)," & 
+       "16   (           bc_1,               GPIO3,      output3,     X,     17,      1,    Z)," & 
+       "17   (           bc_1,                   *,      control,     1)," & 
+       "18   (           bc_4,               GPIO4,        input,     X)," & 
+       "19   (           bc_1,               GPIO4,      output3,     X,     20,      1,    Z)," & 
+       "20   (           bc_1,                   *,      control,     1)," & 
+       "21   (           bc_4,               GPIO5,        input,     X)," & 
+       "22   (           bc_1,               GPIO5,      output3,     X,     23,      1,    Z)," & 
+       "23   (           bc_1,                   *,      control,     1)," & 
+       "24   (           bc_4,               GPIO6,        input,     X)," & 
+       "25   (           bc_1,               GPIO6,      output3,     X,     26,      1,    Z)," & 
+       "26   (           bc_1,                   *,      control,     1)," & 
+       "27   (           bc_4,               GPIO7,        input,     X)," & 
+       "28   (           bc_1,               GPIO7,      output3,     X,     29,      1,    Z)," & 
+       "29   (           bc_1,                   *,      control,     1)," & 
+       "30   (           bc_4,               GPIO8,        input,     X)," & 
+       "31   (           bc_1,               GPIO8,      output3,     X,     32,      1,    Z)," & 
+       "32   (           bc_1,                   *,      control,     1)," & 
+       "33   (           bc_4,               GPIO9,        input,     X)," & 
+       "34   (           bc_1,               GPIO9,      output3,     X,     35,      1,    Z)," & 
+       "35   (           bc_1,                   *,      control,     1)," & 
+       "36   (           bc_4,              GPIO10,        input,     X)," & 
+       "37   (           bc_1,              GPIO10,      output3,     X,     38,      1,    Z)," & 
+       "38   (           bc_1,                   *,      control,     1)," & 
+       "39   (           bc_4,              GPIO11,        input,     X)," & 
+       "40   (           bc_1,              GPIO11,      output3,     X,     41,      1,    Z)," & 
+       "41   (           bc_1,                   *,      control,     1)," & 
+       "42   (           bc_4,              GPIO12,        input,     X)," & 
+       "43   (           bc_1,              GPIO12,      output3,     X,     44,      1,    Z)," & 
+       "44   (           bc_1,                   *,      control,     1)," & 
+       "45   (           bc_4,              GPIO13,        input,     X)," & 
+       "46   (           bc_1,              GPIO13,      output3,     X,     47,      1,    Z)," & 
+       "47   (           bc_1,                   *,      control,     1)," & 
+       "48   (           bc_4,              GPIO14,        input,     X)," & 
+       "49   (           bc_1,              GPIO14,      output3,     X,     50,      1,    Z)," & 
+       "50   (           bc_1,                   *,      control,     1)," & 
+       "51   (           bc_4,              GPIO15,        input,     X)," & 
+       "52   (           bc_1,              GPIO15,      output3,     X,     53,      1,    Z)," & 
+       "53   (           bc_1,                   *,      control,     1)," & 
+       "54   (           bc_4,              GPIO16,        input,     X)," & 
+       "55   (           bc_1,              GPIO16,      output3,     X,     56,      1,    Z)," & 
+       "56   (           bc_1,                   *,      control,     1)," & 
+       "57   (           bc_4,              GPIO17,        input,     X)," & 
+       "58   (           bc_1,              GPIO17,      output3,     X,     59,      1,    Z)," & 
+       "59   (           bc_1,                   *,      control,     1)," & 
+       "60   (           bc_4,              GPIO18,        input,     X)," & 
+       "61   (           bc_1,              GPIO18,      output3,     X,     62,      1,    Z)," & 
+       "62   (           bc_1,                   *,      control,     1)," & 
+       "63   (           bc_4,              GPIO19,        input,     X)," & 
+       "64   (           bc_1,              GPIO19,      output3,     X,     65,      1,    Z)," & 
+       "65   (           bc_1,                   *,      control,     1)," & 
+       "66   (           bc_4,              GPIO20,        input,     X)," & 
+       "67   (           bc_1,              GPIO20,      output3,     X,     68,      1,    Z)," & 
+       "68   (           bc_1,                   *,      control,     1)," & 
+       "69   (           bc_4,              GPIO21,        input,     X)," & 
+       "70   (           bc_1,              GPIO21,      output3,     X,     71,      1,    Z)," & 
+       "71   (           bc_1,                   *,      control,     1)," & 
+       "72   (           bc_4,              GPIO22,        input,     X)," & 
+       "73   (           bc_1,              GPIO22,      output3,     X,     74,      1,    Z)," & 
+       "74   (           bc_1,                   *,      control,     1)," & 
+       "75   (           bc_4,              GPIO23,        input,     X)," & 
+       "76   (           bc_1,              GPIO23,      output3,     X,     77,      1,    Z)," & 
+       "77   (           bc_1,                   *,      control,     1)," & 
+       "78   (           bc_4,              GPIO24,        input,     X)," & 
+       "79   (           bc_1,              GPIO24,      output3,     X,     80,      1,    Z)," & 
+       "80   (           bc_1,                   *,      control,     1)," & 
+       "81   (           bc_4,              GPIO25,        input,     X)," & 
+       "82   (           bc_1,              GPIO25,      output3,     X,     83,      1,    Z)," & 
+       "83   (           bc_1,                   *,      control,     1)," & 
+       "84   (           bc_4,              GPIO26,        input,     X)," & 
+       "85   (           bc_1,              GPIO26,      output3,     X,     86,      1,    Z)," & 
+       "86   (           bc_1,                   *,      control,     1)," & 
+       "87   (           bc_4,              GPIO27,        input,     X)," & 
+       "88   (           bc_1,              GPIO27,      output3,     X,     89,      1,    Z)," & 
+       "89   (           bc_1,                   *,      control,     1)," & 
+       "90   (           bc_4,              GPIO28,        input,     X)," & 
+       "91   (           bc_1,              GPIO28,      output3,     X,     92,      1,    Z)," & 
+       "92   (           bc_1,                   *,      control,     1)," & 
+       "93   (           bc_4,              GPIO29,        input,     X)," & 
+       "94   (           bc_1,              GPIO29,      output3,     X,     95,      1,    Z)," & 
+       "95   (           bc_1,                   *,      control,     1)," & 
+       "96   (           bc_4,              GPIO30,        input,     X)," & 
+       "97   (           bc_1,              GPIO30,      output3,     X,     98,      1,    Z)," & 
+       "98   (           bc_1,                   *,      control,     1)," & 
+       "99   (           bc_4,              GPIO31,        input,     X)," & 
+       "100  (           bc_1,              GPIO31,      output3,     X,    101,      1,    Z)," & 
+       "101  (           bc_1,                   *,      control,     1)," & 
+       "102  (           bc_4,              GPIO32,        input,     X)," & 
+       "103  (           bc_1,              GPIO32,      output3,     X,    104,      1,    Z)," & 
+       "104  (           bc_1,                   *,      control,     1)," & 
+       "105  (           bc_4,              GPIO33,        input,     X)," & 
+       "106  (           bc_1,              GPIO33,      output3,     X,    107,      1,    Z)," & 
+       "107  (           bc_1,                   *,      control,     1)," & 
+       "108  (           bc_4,              GPIO34,        input,     X)," & 
+       "109  (           bc_1,              GPIO34,      output3,     X,    110,      1,    Z)," & 
+       "110  (           bc_1,                   *,      control,     1)," & 
+       "111  (           bc_4,                   *,      internal,     X)," & 
+       "112  (           bc_1,                   *,      internal,     X)," & 
+       "113  (           bc_1,                   *,      internal,     1)";
+
+ end TMS320F28016;
+
+        

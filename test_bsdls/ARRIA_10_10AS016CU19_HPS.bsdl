@@ -1,0 +1,128 @@
+-- Copyright (C) 1991-2015 Altera Corporation
+--
+-- BSDL Version : 1.00
+-- Device       : 10AS016CU19_HPS
+-- 
+--
+-- ***********************************************************************************
+-- *                                  IMPORTANT NOTICE                               *
+-- ***********************************************************************************
+--
+-- Your use of Altera Corporation's design tools, logic functions and
+-- other software and tools, and its AMPP partner logic functions,
+-- and any output files from any of the foregoing (including
+-- device programming or simulation files), and any associated documentation or
+-- information are expressly subject to the terms and conditions of
+-- the Altera Program License Subscription Agreement, the Altera Quartus II
+-- License Agreement,the Altera MegaCore Function License Agreement, or other applicable
+-- license agreement, including, without limitation, that your use is for
+-- the sole purpose of programming logic devices manufactured by Altera
+-- and sold by Altera or its authorized distributors.  Please
+-- refer to the applicable agreement for further details.
+--
+-- This file works before and after device configuration.
+-- 
+-- ***This file is for FPGA with HPS only.***
+--
+--
+-- ***********************************************************************************
+-- *                            ENTITY DEFINITION WITH PORTS                         *
+-- ***********************************************************************************
+
+entity ARRIA_10_10AS016CU19_HPS is
+generic (PHYSICAL_PIN_MAP : string := "UFBGA484");
+
+port (
+--JTAG Ports
+	TMS       , TRST      , TCK       , TDI       : in bit; 
+	TDO       : out bit
+);
+
+use STD_1149_1_2001.all;
+attribute COMPONENT_CONFORMANCE of ARRIA_10_10AS016CU19_HPS :
+entity is "STD_1149_1_2001";
+
+-- ***********************************************************************************
+-- *                                    PIN MAPPING                                  *
+-- ***********************************************************************************
+
+attribute PIN_MAP of ARRIA_10_10AS016CU19_HPS : entity is PHYSICAL_PIN_MAP;
+constant UFBGA484 : PIN_MAP_STRING :=
+--JTAG ports
+	"TDO       : M5   , TMS       : L3   , TRST      : L4   , TCK       : P5   , "&
+	"TDI       : M4     ";
+
+-- ***********************************************************************************
+-- *                              IEEE 1149.1 TAP PORTS                              *
+-- ***********************************************************************************
+
+attribute TAP_SCAN_IN of TDI     : signal is true;
+attribute TAP_SCAN_MODE of TMS   : signal is true;
+attribute TAP_SCAN_OUT of TDO    : signal is true;
+attribute TAP_SCAN_CLOCK of TCK  : signal is (10.00e6,BOTH);
+attribute TAP_SCAN_RESET of TRST : signal is true;
+
+-- ***********************************************************************************
+-- *                          INSTRUCTIONS AND REGISTER ACCESS                       *
+-- ***********************************************************************************
+
+
+attribute INSTRUCTION_LENGTH of ARRIA_10_10AS016CU19_HPS : entity is 4;
+attribute INSTRUCTION_OPCODE of ARRIA_10_10AS016CU19_HPS : entity is
+                           
+-- IEEE Std.1149.1
+  "ABORT				(1000), "&
+  "DPACC				(1010), "&
+  "APACC				(1011), "&
+  "IDCODE				(1110), "&
+  "BYPASS				(1111), "&
+  "EXTEST				(0000), "&	-- WARNING: UNIMPLEMENTED, DO NOT USE
+  "SAMPLE				(0001), "&	-- WARNING: UNIMPLEMENTED, DO NOT USE
+  "PRELOAD				(0001)  ";	-- WARNING: UNIMPLEMENTED, DO NOT USE
+	
+attribute INSTRUCTION_CAPTURE of ARRIA_10_10AS016CU19_HPS : entity is "xx01";
+
+attribute INSTRUCTION_PRIVATE of ARRIA_10_10AS016CU19_HPS : entity is
+  "ABORT,"&				-- ARM Debug Access Port Instructions
+  "DPACC,"&				-- ARM Debug Access Port Instructions
+  "APACC";				-- ARM Debug Access Port Instructions
+
+
+attribute IDCODE_REGISTER of ARRIA_10_10AS016CU19_HPS : entity is
+  "0100"&               --4-bit Version
+  "1011101000000000"&   --16-bit Part Number (hex BA00)
+  "01000111011"&        --11-bit Manufacturer's Identity
+  "1";                  --Mandatory LSB
+
+attribute REGISTER_ACCESS of ARRIA_10_10AS016CU19_HPS : entity is
+  "BYPASS				(BYPASS)," &
+  "DEVICE_ID		    		(IDCODE)" ;
+
+
+
+-- ***********************************************************************************
+-- *                           BOUNDARY SCAN CELL INFORMATION                        *
+-- ***********************************************************************************
+
+attribute BOUNDARY_LENGTH of ARRIA_10_10AS016CU19_HPS : entity is 1;
+attribute BOUNDARY_REGISTER of ARRIA_10_10AS016CU19_HPS : entity is
+  "0 (BC_0, *, internal,X)";
+
+-- ***********************************************************************************
+-- *                                   DESIGN WARNING                                *
+-- ***********************************************************************************
+
+attribute DESIGN_WARNING of ARRIA_10_10AS016CU19_HPS : entity is
+"Although the ARRIA_10_10AS016CU19_HPS device contains circuitry to support the"&
+"TAP controller, this device does not offer Boundary Scan Cells to"&
+"support the EXTEST and SAMPLE/PRELOAD instructions.  When the"&
+"instruction register is updated with these instructions, the"&
+"bypass register is selected.";  
+
+end ARRIA_10_10AS016CU19_HPS;
+
+-- *********************************************************************
+-- *                            REVISION HISTORY                       *
+-- *********************************************************************
+--    Revision        Date       	Description                      
+--    1.00           07/22/2015 	Initial release

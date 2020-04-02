@@ -1,0 +1,491 @@
+---------------------------------------------------------------------------
+--                                                                     	 --
+--                         IMPORTANT NOTICE                            	 --
+--                                                                     	 --
+--                                                                     	 --
+-- Software License Agreement                                          	 --
+--												 --
+-- Copyright © 2010 Microchip Technology Inc.  All rights reserved.	 --
+-- Microchip licenses to you the right to use, modify, copy and 		 --
+-- distribute Software only when embedded on a Microchip microcontroller --
+-- or digital signal controller, which is integrated into your product	 --
+-- or third party product (pursuant to the sublicense terms in the	 --
+-- accompanying license agreement).  
+
+-- You should refer to the license agreement accompanying this Software	 --
+-- for additional information regarding your rights and obligations.	 --
+
+-- SOFTWARE AND DOCUMENTATION ARE PROVIDED “AS IS” WITHOUT WARRANTY OF	 --
+-- ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION,	 --
+-- ANY WARRANTY OF MERCHANTABILITY, TITLE, NON-INFRINGEMENT AND FITNESS	 --
+-- FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL MICROCHIP OR ITS 		 --
+-- LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT, NEGLIGENCE, STRICT	 --
+-- LIABILITY, CONTRIBUTION, BREACH OF WARRANTY, OR OTHER LEGAL		 --
+-- EQUITABLE THEORY ANY DIRECT OR INDIRECT DAMAGES OR EXPENSES INCLUDING --
+-- BUT NOT LIMITED TO ANY INCIDENTAL, SPECIAL, INDIRECT, PUNITIVE OR	 --
+-- CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, COST OF PROCUREMENT --
+-- OF SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD	 --
+-- PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER	 --
+-- SIMILAR COSTS.										 --
+--                                                                     	 --
+---------------------------------------------------------------------------
+
+-- BSDL file
+
+-- File Name:     
+-- File Revision: Revision: 1.0 
+-- Date created:  Date: Tuesday, June 1, 2010 
+-- Support:       stephen.cowden@microchip.com
+
+-- Device:        PIC24FJ128DA106
+-- Silicon Rev:   N/A
+-- Package:       64 pin TQFP 
+
+-- Notes:
+-- 	1. The behavior of the Oscillator Boundary Scan cells are dependant
+--    on the Oscillator Fuse settings, and therefore caution must be used
+--    when controlling the the BSC's on RC12(OSCI) and RC15(OSCO).
+
+-- ************************************************************************
+-- *                             PORT DEFINITIONS                         *
+-- ************************************************************************
+
+entity PIC24FJ128DA106 is
+  generic (PHYSICAL_PIN_MAP : string := "TQFP64");
+
+port (
+ TCK		: in      bit ; 
+ TDI		: in      bit ; 
+ TDO		: out     bit ; 
+ TMS		: in      bit ; 
+ AVDD		: linkage bit ;
+ AVSS		: linkage bit ;
+ MCLR		: inout   bit ;
+ RB0		: inout   bit ;
+ RB1		: inout   bit ;
+ RB2     	: inout   bit ;
+ RB3     	: inout   bit ;
+ RB4     	: inout   bit ;
+ RB5     	: inout   bit ;
+ RB6     	: inout   bit ;
+ RB7     	: inout   bit ;
+ RB8     	: inout   bit ;
+ RB9     	: inout   bit ;
+ RB14   	: inout   bit ;
+ RB15    	: inout   bit ;
+ RC12    	: inout   bit ;
+ RC13    	: inout   bit ;
+ RC14    	: inout   bit ;
+ RC15    	: inout   bit ;
+ RD0     	: inout   bit ;
+ RD1     	: inout   bit ;
+ RD2     	: inout   bit ;
+ RD3     	: inout   bit ;
+ RD4     	: inout   bit ;
+ RD5     	: inout   bit ;
+ RD6     	: inout   bit ;
+ RD7     	: inout   bit ;
+ RD8     	: inout   bit ;
+ RD9     	: inout   bit ;
+ RD10    	: inout   bit ;
+ RD11    	: inout   bit ;
+ RE0     	: inout   bit ;
+ RE1     	: inout   bit ;
+ RE2     	: inout   bit ;
+ RE3     	: inout   bit ;
+ RE4     	: inout   bit ;
+ RE5     	: inout   bit ;
+ RE6     	: inout   bit ;
+ RE7     	: inout   bit ;
+ RF0     	: inout   bit ;
+ RF1     	: inout   bit ;
+ RF3     	: inout   bit ;
+ RF4     	: inout   bit ;
+ RF5     	: inout   bit ;
+ RF7     	: inout   bit ;
+ RG2     	: inout   bit ;
+ RG3     	: inout   bit ;
+ RG6     	: inout   bit ;
+ RG7     	: inout   bit ;
+ RG8     	: inout   bit ;
+ RG9     	: inout   bit ;
+ VUSB    	: linkage bit ;
+ VDD1    	: linkage bit ;
+ VDD2    	: linkage bit ;
+ VDD3    	: linkage bit ;
+ VDDCORE 	: linkage bit ;
+ ENVREG    	: linkage bit ;
+ VSS1    	: linkage bit ;
+ VSS2    	: linkage bit ;
+ VSS3    	: linkage bit 
+
+);
+
+use STD_1149_1_2001.all;
+
+attribute COMPONENT_CONFORMANCE of PIC24FJ128DA106 : entity is "STD_1149_1_2001";
+
+-- *********************************************************************
+-- *                             PIN MAPPING                           *
+-- *********************************************************************
+
+attribute PIN_MAP of PIC24FJ128DA106 : entity is PHYSICAL_PIN_MAP;
+
+constant TQFP64 : PIN_MAP_STRING :=
+--I/O Pins
+" RE5:		1	,"&
+" RE6:		2	,"&
+" RE7:		3	,"&
+" RG6:		4	,"&
+" RG7:		5	,"&
+" RG8:		6	,"&
+" MCLR:		7	,"&
+" RG9:		8	,"&
+" VSS1:		9	,"&
+" VDD1:		10	,"&
+" RB5:		11	,"&
+" RB4:		12	,"&
+" RB3:		13	,"&
+" RB2:		14	,"&
+" RB1:		15	,"&
+" RB0:		16	,"&
+" RB6:		17	,"&
+" RB7:		18	,"&
+" AVDD:		19	,"&
+" AVSS:		20	,"&
+" RB8:		21	,"&
+" RB9:		22	,"&
+" TMS:		23	,"&
+" TDO:		24	,"&
+" VSS2:		25	,"&
+" VDD2:		26	,"&
+" TCK:		27	,"&
+" TDI:		28	,"&
+" RB14:		29	,"&
+" RB15:		30	,"&
+" RF4:		31	,"&
+" RF5:		32	,"&
+" RF3:		33	,"&
+" RF7:		34	,"&
+" VUSB:		35	,"&
+" RG3:		36	,"&
+" RG2:		37	,"&
+" VDD3:		38	,"&
+" RC12:		39	,"&
+" RC15:		40	,"&
+" VSS3:		41	,"&
+" RD8:		42	,"&
+" RD9:		43	,"&
+" RD10:		44	,"&
+" RD11:		45	,"&
+" RD0:		46	,"&
+" RC13:		47	,"&
+" RC14:		48	,"&
+" RD1:		49	,"&
+" RD2:		50	,"&
+" RD3:		51	,"&
+" RD4:		52	,"&
+" RD5:		53	,"&
+" RD6:		54	,"&
+" RD7:		55	,"&
+" VDDCORE:		56	,"&
+" ENVREG:		57	,"&
+" RF0:		58	,"&
+" RF1:		59	,"&
+" RE0:		60	,"&
+" RE1:		61	,"&
+" RE2:		62	,"&
+" RE3:		63	,"&
+" RE4:		64	";
+
+-- *********************************************************************
+-- *                       IEEE 1149.1 TAP PORTS                       *
+-- *********************************************************************
+
+attribute TAP_SCAN_IN of TDI     : signal is true;
+attribute TAP_SCAN_MODE of TMS   : signal is true;
+attribute TAP_SCAN_OUT of TDO    : signal is true;
+attribute TAP_SCAN_CLOCK of TCK  : signal is (10.00e6,BOTH);
+
+-- *********************************************************************
+-- *                   INSTRUCTIONS AND REGISTER ACCESS                *
+-- *********************************************************************
+
+attribute INSTRUCTION_LENGTH of PIC24FJ128DA106 : entity is 4;
+
+attribute INSTRUCTION_OPCODE of PIC24FJ128DA106 : entity is
+  "BYPASS            (1111), "&
+  "EXTEST            (0011), "&
+  "SAMPLE            (0001), "&
+  "PRELOAD           (0001), "&
+  "IDCODE            (0010), "&
+  "MCHP_CMD          (1000)," &
+  "MCHP_SCAN 	   (0111)," &
+  "HIGHZ             (0100)";
+
+attribute INSTRUCTION_CAPTURE of PIC24FJ128DA106 : entity is "0001";
+
+attribute IDCODE_REGISTER of PIC24FJ128DA106 : entity is
+ "XXXX"             &     -- Version - With a MASK on device revision
+ "0100000100001001" &     -- Part number 
+ "00000101001"      &     -- Manufacturer ID = 11'h029
+ "1";                     -- Required by IEEE std 1149.1-2001 
+ 
+attribute REGISTER_ACCESS of PIC24FJ128DA106 : entity is
+"BOUNDARY (PRELOAD,SAMPLE,EXTEST),"&
+"BYPASS (BYPASS,HIGHZ),"&
+"MCHP_CMD[4] (MCHP_CMD,MCHP_SCAN),"&
+"DEVICE_ID (IDCODE)";
+
+-- *********************************************************************
+-- *                    BOUNDARY SCAN CELL INFORMATION                 *
+-- *********************************************************************
+
+attribute BOUNDARY_LENGTH of PIC24FJ128DA106 : entity is 147;
+attribute BOUNDARY_REGISTER of PIC24FJ128DA106 : entity is
+--BSC group 0 for I/O pin 64
+" 0 ( BC_1 , RE4, input, X)," &
+" 1 ( BC_1 , *,  control, 0)," &
+" 2 ( BC_1 , RE4, output3, X, 1, 0, Z)," &
+
+--BSC group 1 for I/O pin 63
+" 3 ( BC_1 , RE3, input, X)," &
+" 4 ( BC_1 , *,  control, 0)," &
+" 5 ( BC_1 , RE3, output3, X, 4, 0, Z)," &
+
+--BSC group 2 for I/O pin 62
+" 6 ( BC_1 , RE2, input, X)," &
+" 7 ( BC_1 , *,  control, 0)," &
+" 8 ( BC_1 , RE2, output3, X, 7, 0, Z)," &
+
+--BSC group 3 for I/O pin 61
+" 9  ( BC_1 , RE1, input, X)," &
+" 10 ( BC_1 , *,  control, 0)," &
+" 11 ( BC_1 , RE1, output3, X, 10, 0, Z)," &
+
+--BSC group 4 for I/O pin 60
+" 12 ( BC_1 , RE0, input, X)," &
+" 13 ( BC_1 , *,  control, 0)," &
+" 14 ( BC_1 , RE0, output3, X, 13, 0, Z)," &
+
+--BSC group 5 for I/O pin 59
+" 15 ( BC_1 , RF1, input, X)," &
+" 16 ( BC_1 , *,  control, 0)," &
+" 17 ( BC_1 , RF1, output3, X, 16, 0, Z)," &
+
+--BSC group 6 for I/O pin 58
+" 18 ( BC_1 , RF0, input, X)," &
+" 19 ( BC_1 , *,  control, 0)," &
+" 20 ( BC_1 , RF0, output3, X, 19, 0, Z)," &
+
+--BSC group 7 for I/O pin 55
+" 21 ( BC_1 , RD7, input, X)," &
+" 22 ( BC_1 , *,  control, 0)," &
+" 23 ( BC_1 , RD7, output3, X, 22, 0, Z)," &
+
+--BSC group 8 for I/O pin 54
+" 24 ( BC_1 , RD6, input, X)," &
+" 25 ( BC_1 , *,  control, 0)," &
+" 26 ( BC_1 , RD6, output3, X, 25, 0, Z)," &
+
+--BSC group 9 for I/O pin 53
+" 27 ( BC_1 , RD5, input, X), " &
+" 28 ( BC_1 , *,  control, 0)," &
+" 29 ( BC_1 , RD5, output3, X, 28, 0, Z)," &
+
+--BSC group 10 for I/O pin 52
+" 30 ( BC_1 , RD4, input, X)," &
+" 31 ( BC_1 , *,  control, 0)," &
+" 32 ( BC_1 , RD4, output3, X, 31, 0, Z)," &
+
+--BSC group 11 for I/O pin 51
+" 33 ( BC_1 , RD3, input, X)," &
+" 34 ( BC_1 , *,  control, 0)," &
+" 35 ( BC_1 , RD3, output3, X, 34, 0, Z)," &
+
+--BSC group 12 for I/O pin 50
+" 36 ( BC_1 , RD2, input, X)," &
+" 37 ( BC_1 , *,  control, 0)," &
+" 38 ( BC_1 , RD2, output3, X, 37, 0, Z)," &
+
+--BSC group 13 for I/O pin 49
+" 39 ( BC_1 , RD1, input, X)," &
+" 40 ( BC_1 , *,  control, 0)," &
+" 41 ( BC_1 , RD1, output3, X, 40, 0, Z)," &
+
+--BSC group 14 for I/O pin 48
+" 42 ( BC_1 , RC14, input, X)," &
+" 43 ( BC_1 , *,  control, 0)," &
+" 44 ( BC_1 , RC14, output3, X, 43, 0, Z)," &
+
+--BSC group 15 for I/O pin 47
+" 45 ( BC_1 , RC13, input, X)," &
+" 46 ( BC_1 , *,  control, 0)," &
+" 47 ( BC_1 , RC13, output3, X, 46, 0, Z)," &
+
+--BSC group 16 for I/O pin 46
+" 48 ( BC_1 , RD0, input, X)," &
+" 49 ( BC_1 , *,  control, 0)," &
+" 50 ( BC_1 , RD0, output3, X, 49, 0, Z)," &
+
+--BSC group 17 for I/O pin 45
+" 51 ( BC_1 , RD11, input, X)," &
+" 52 ( BC_1 , *,  control, 0)," &
+" 53 ( BC_1 , RD11, output3, X, 52, 0, Z)," &
+
+--BSC group 18 for I/O pin 44
+" 54 ( BC_1 , RD10, input, X), " &
+" 55 ( BC_1 , *,  control, 0)," &
+" 56 ( BC_1 , RD10, output3, X, 55, 0, Z)," &
+
+--BSC group 19 for I/O pin 43
+" 57 ( BC_1 , RD9, input, X)," &
+" 58 ( BC_1 , *,  control, 0)," &
+" 59 ( BC_1 , RD9, output3, X, 58, 0, Z)," &
+
+--BSC group 20 for I/O pin 42
+" 60 ( BC_1 , RD8, input, X)," &
+" 61 ( BC_1 , *,  control, 0)," &
+" 62 ( BC_1 , RD8, output3, X, 61, 0, Z)," &
+
+--BSC group 21 for I/O pin 40
+" 63 ( BC_1 , RC15, input, X)," &
+" 64 ( BC_1 , *,  control, 0)," &
+" 65 ( BC_1 , RC15, output3, X, 64, 0, Z)," &
+
+--BSC group 22 for I/O pin 39
+" 66 ( BC_1 , RC12, input, X)," &
+" 67 ( BC_1 , *,  control, 0)," &
+" 68 ( BC_1 , RC12, output3, X, 67, 0, Z)," &
+
+--BSC group 23 for I/O pin 37
+" 69 ( BC_1 , RG2, input, X)," &
+" 70 ( BC_1 , *,  control, 0)," &
+" 71 ( BC_1 , RG2, output3, X, 70, 0, Z)," &
+
+--BSC group 24 for I/O pin 36
+" 72 ( BC_1 , RG3, input, X)," &
+" 73 ( BC_1 , *,  control, 0)," &
+" 74 ( BC_1 , RG3, output3, X, 73, 0, Z)," &
+
+--BSC group 25 for I/O pin 34
+" 75 ( BC_1 , RF7, input, X)," &
+" 76 ( BC_1 , *,  control, 0)," &
+" 77 ( BC_1 , RF7, output3, X, 76, 0, Z)," &
+
+--BSC group 26 for I/O pin 33
+" 78 ( BC_1 , RF3, input, X)," &
+" 79 ( BC_1 , *,  control, 0)," &
+" 80 ( BC_1 , RF3, output3, X, 79, 0, Z)," &
+
+--BSC group 27 for I/O pin 32
+" 81 ( BC_1 , RF5, input, X)," &
+" 82 ( BC_1 , *,  control, 0)," &
+" 83 ( BC_1 , RF5, output3, X, 82, 0, Z)," &
+
+--BSC group 28 for I/O pin 31
+" 84 ( BC_1 , RF4, input, X)," &
+" 85 ( BC_1 , *,  control, 0)," &
+" 86 ( BC_1 , RF4, output3, X, 85, 0, Z)," &
+
+--BSC group 29 for I/O pin 30
+" 87 ( BC_1 , RB15, input, X)," &
+" 88 ( BC_1 , *,  control, 0)," &
+" 89 ( BC_1 , RB15, output3, X, 88, 0, Z)," &
+
+--BSC group 30 for I/O pin 29
+" 90 ( BC_1 , RB14, input, X)," &
+" 91 ( BC_1 , *,  control, 0)," &
+" 92 ( BC_1 , RB14, output3, X, 91, 0, Z)," &
+
+--BSC group 35 for I/O pin 22
+" 93 ( BC_1 , RB9, input, X)," &
+" 94 ( BC_1 , *,  control, 0)," &
+" 95 ( BC_1 , RB9, output3, X, 94, 0, Z)," &
+
+--BSC group 37 for I/O pin 21
+" 96 ( BC_1 , RB8, input, X)," &
+" 97 ( BC_1 , *,  control, 0)," &
+" 98 ( BC_1 , RB8, output3, X, 97, 0, Z)," &
+
+--BSC group 38 for I/O pin 18
+" 99  ( BC_1 , RB7, input, X)," &
+" 100 ( BC_1 , *,  control, 0)," &
+" 101 ( BC_1 , RB7, output3, X, 100, 0, Z)," &
+
+--BSC group 39 for I/O pin 17
+" 102 ( BC_1 , RB6, input, X), " &
+" 103 ( BC_1 , *,  control, 0)," &
+" 104 ( BC_1 , RB6, output3, X, 103, 0, Z)," &
+
+--BSC group 40 for I/O pin 16
+" 105 ( BC_1 , RB0, input, X)," &
+" 106 ( BC_1 , *,  control, 0)," &
+" 107 ( BC_1 , RB0, output3, X, 106, 0, Z)," &
+
+--BSC group 41 for I/O pin 15
+" 108 ( BC_1 , RB1, input, X)," &
+" 109 ( BC_1 , *,  control, 0)," &
+" 110 ( BC_1 , RB1, output3, X, 109, 0, Z)," &
+
+--BSC group 42 for I/O pin 14
+" 111 ( BC_1 , RB2, input, X)," &
+" 112 ( BC_1 , *,  control, 0)," &
+" 113 ( BC_1 , RB2, output3, X, 112, 0, Z)," &
+
+--BSC group 43 for I/O pin 13
+" 114 ( BC_1 , RB3, input, X)," &
+" 115 ( BC_1 , *,  control, 0)," &
+" 116 ( BC_1 , RB3, output3, X, 115, 0, Z)," &
+
+--BSC group 44 for I/O pin 12
+" 117 ( BC_1 , RB4, input, X)," &
+" 118 ( BC_1 , *,  control, 0)," &
+" 119 ( BC_1 , RB4, output3, X, 118, 0, Z)," &
+
+--BSC group 45 for I/O pin 11
+" 120 ( BC_1 , RB5, input, X)," &
+" 121 ( BC_1 , *,  control, 0)," &
+" 122 ( BC_1 , RB5, output3, X, 121, 0, Z)," &
+
+--BSC group 46 for I/O pin 8
+" 123 ( BC_1 , RG9, input, X)," &
+" 124 ( BC_1 , *,  control, 0)," &
+" 125 ( BC_1 , RG9, output3, X, 124, 0, Z)," &
+
+--BSC group 47 for I/O pin 7
+" 126 ( BC_1 , MCLR, input, X)," &
+" 127 ( BC_1 , *,  control, 0)," &
+" 128 ( BC_1 , MCLR, output3, X, 127, 0, Z)," &
+
+--BSC group 48 for I/O pin 6
+" 129 ( BC_1 , RG8, input, X)," &
+" 130 ( BC_1 , *,  control, 0)," &
+" 131 ( BC_1 , RG8, output3, X, 130, 0, Z)," &
+
+--BSC group 49 for I/O pin 5
+" 132 ( BC_1 , RG7, input, X)," &
+" 133 ( BC_1 , *,  control, 0)," &
+" 134 ( BC_1 , RG7, output3, X, 133, 0, Z)," &
+
+--BSC group 50 for I/O pin 4
+" 135 ( BC_1 , RG6, input, X)," &
+" 136 ( BC_1 , *,  control, 0)," &
+" 137 ( BC_1 , RG6, output3, X, 136, 0, Z)," &
+
+--BSC group 51 for I/O pin 3
+" 138 ( BC_1 , RE7, input, X)," &
+" 139 ( BC_1 , *,  control, 0)," &
+" 140 ( BC_1 , RE7, output3, X, 139, 0, Z)," &
+
+--BSC group 52 for I/O pin 4
+" 141 ( BC_1 , RE6, input, X)," &
+" 142 ( BC_1 , *,  control, 0)," &
+" 143 ( BC_1 , RE6, output3, X, 142, 0, Z)," &
+
+--BSC group 53 for I/O pin 1
+" 144 ( BC_1 , RE5, input, X)," &
+" 145 ( BC_1 , *,  control, 0)," &
+" 146 ( BC_1 , RE5, output3, X, 145, 0, Z) ";
+--
+end PIC24FJ128DA106;
