@@ -128,7 +128,10 @@ class Bsdl():
     def _is_valid(self) -> bool:
         """raise subprocess.CalledProcessError if bsdl file is invalid"""
         subprocess.run(["bsdl2jtag", self.directory, "/dev/null"], check=True)
-            
+       
+    def _copy_bsdl(self):
+        subprocess.run(["cp", self.directory, f"{self.part_dir}/{self.entity_name}"], check=True)    
+
     def add_to_urjtag(self):
         """add bsdl to urjtag database"""
         if not self._is_urjtag_manufacturer():
@@ -136,9 +139,11 @@ class Bsdl():
         if not self._is_urjtag_part():
             self._add_urjtag_part()
         self._add_urjtag_stepping()
+        self._copy_bsdl()
         with open(self.injector_log_f, 'a') as log:
             log.write(f"{self.directory}, added successfully\n")
-        
+       
+
 
 # new bsdl file
 bsdl = Bsdl("./test_bsdls/example.bsdl")
