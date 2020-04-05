@@ -20,30 +20,36 @@ class Bsdl():
     urjtag_dir = "./urjtag_database"
     urjtag_manufacturers_dir = f"{urjtag_dir}/MANUFACTURERS"
     jedec_manufacturers_dir = "manufacturers"
+    injector_log_f = "./injector.log"
 
     def __init__(self, bsdl_directory: str):
-        self.directory = bsdl_directory
-        self.idcode = ''
-        self.entity_name = ''    
+        try:
+            self.directory = bsdl_directory
+            self._is_valid()
+            self.idcode = ''
+            self.entity_name = ''    
+            with open(self.directory, 'r') as bsdl_fd:
+                self.content = bsdl_fd.read()
+            self._extract_idcode()
+            self._extract_entity_name()
+            self._extract_manufacturer_name()
+            self._define_urjtag_directories()
 
-        with open(self.directory, 'r') as bsdl_fd:
-            self.content = bsdl_fd.read()
-        self._extract_idcode()
-        self._extract_entity_name()
-        self._extract_manufacturer_name()
-        self._define_urjtag_directories()
+        except subprocess.CalledProcessError:
+            with open(self.injector_log_f, 'a') as log:
+                log.write(f"{self.directory}, invalid bsdl file\n")
 
     def _extract_idcode(self):
         """extract and define the entity's idcode""" 
         idcode_re = re.compile("attribute IDCODE_REGISTER .* \"1\";", re.DOTALL)
-        self.idcode = re.search(idcode_re, self.content).group().split("\n")
+        self.idcode = re.search(idcode_re, self.content)[0].split("\n")
         self.version_number, self.part_number, self.manufacturer_id = [field.split('\"')[1] for field in self.idcode[1:4]]
-        self.idcode = self.version_number + self.part_number + self.manufacturer_id
+        self.idcode = self.version_number.upper() + self.part_number + self.manufacturer_id
     
     def _extract_entity_name(self):
         """extract and define the entity's name"""
         entity_declaration = re.search("entity .* is", self.content)
-        self.entity_name = entity_declaration.group().split()[1].lower()
+        self.entity_name = entity_declaration[0].split()[1].lower()
     
     def _extract_manufacturer_name(self):
         """extract and define the manufacturer name"""
@@ -87,15 +93,19 @@ class Bsdl():
         os.mkdir(self.part_dir)
         with open(self.steppings_f, 'a') as urjtag_steppings_fd:
             urjtag_steppings_fd.write("# STEPPINGS file created by bsdl-injector.py\n")    
-
+    
     def _add_urjtag_stepping(self):
         """add part stepping to urjtag's stepping ddf"""
-        # update STEPPINGS ddf
-        # if self.version_number is "XXXX", generate all options
-        # if self.version_number is "0001", actually use it in steppings file
-        # if self.version_number is a combination of dont_cares and specific
-        # digits, generate all options except for ones that don't match 
-        pass
+        with open(self.steppings_f, 'a') as steppings_fd: 
+            if not 'X' in self.version_number and self._is_urjtag_stepping(self.version_number):
+                steppings_fd.write(f"{self.version_number}\t{self.entity_name}\t{self.version_number:}\n")
+
+            else:
+                steppings_re = re.compile(self.version_number.replace("X", "[0-1]{1}")) # 'x' can be matched by 1 or 0
+                for stepping in range(0, 16):     
+                    if re.match(steppings_re, f"{stepping:04b}") and not self._is_urjtag_stepping(f"{stepping:04b}"):
+                        steppings_fd.write(f"{stepping:04b}\t{self.entity_name}\t{stepping:04b}\n")
+
 
     def _is_urjtag_manufacturer(self) -> bool:
         """returns True if manufacturer_id exists in urjtag's database, otherwise returns False"""
@@ -109,28 +119,27 @@ class Bsdl():
             urjtag_parts = urjtag_parts_fd.read()
         return True if self.entity_name in urjtag_parts else False
 
-    def _is_urjtag_stepping(self):
+    def _is_urjtag_stepping(self, stepping) -> bool:
         """returns True if part's stepping exists in urjtag's database, otherwise returns False"""
-        pass
-    
-    def _is_valid(self):
-        """returns True if bsdl format is valid, otherwise returns False"""
-        try:
-            subprocess.run(["bsdl2jtag", self.directory, "/dev/null"], check=True)
-            return True
-        except subprocess.CalledProcessError:
-            return False
+        with open(self.steppings_f, 'r') as urjtag_steppings_fd:
+            urjtag_steppings = urjtag_steppings_fd.read()
+        return True if stepping in urjtag_steppings else False
+
+    def _is_valid(self) -> bool:
+        """raise subprocess.CalledProcessError if bsdl file is invalid"""
+        subprocess.run(["bsdl2jtag", self.directory, "/dev/null"], check=True)
             
     def add_to_urjtag(self):
-        """add bsdl to urjtag database""" 
-        pass
+        """add bsdl to urjtag database"""
+        if not self._is_urjtag_manufacturer():
+            self._add_urjtag_manufacturer()
+        if not self._is_urjtag_part():
+            self._add_urjtag_part()
+        self._add_urjtag_stepping()
+        with open(self.injector_log_f, 'a') as log:
+            log.write(f"{self.directory}, added successfully\n")
+        
 
 # new bsdl file
 bsdl = Bsdl("./test_bsdls/example.bsdl")
-print(bsdl.idcode)
-print(bsdl.version_number)
-print(bsdl.part_number)
-print(bsdl.manufacturer_id)
-print(bsdl.entity_name)
-print(bsdl.manufacturer_name)
-print(bsdl._is_valid())
+bsdl.add_to_urjtag()
