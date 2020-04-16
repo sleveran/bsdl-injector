@@ -98,11 +98,10 @@ class Bsdl():
         with open(self.urjtag_steppings_f, 'a') as urjtag_steppings_fd:
             urjtag_steppings_fd.write("# STEPPINGS file created by bsdl-injector.py\n")    
     
-    def _add_urjtag_stepping(self, steppings):
+    def _add_urjtag_stepping(self, stepping: str):
         """add part stepping to urjtag's stepping ddf"""
-        for stepping in steppings:
-            with open(self.urjtag_steppings_f, 'a') as steppings_fd: 
-                steppings_fd.write(f"{stepping}\t{self.part_name}\t{stepping}\n")
+        with open(self.urjtag_steppings_f, 'a') as steppings_fd: 
+            steppings_fd.write(f"{stepping}\t{self.part_name}\t{stepping}\n")
 
     def _is_urjtag_manufacturer(self) -> bool:
         """returns True if manufacturer_id exists in urjtag's database, otherwise returns False"""
@@ -116,11 +115,8 @@ class Bsdl():
             urjtag_parts = urjtag_parts_fd.read()
         return True if self.part_name in urjtag_parts else False
 
-    def _is_urjtag_stepping(self, stepping = None) -> bool:
+    def _is_urjtag_stepping(self, stepping: str) -> bool:
         """returns True if part's stepping exists in urjtag's database, otherwise returns False"""
-        if stepping is None:
-            stepping = self.version_number
-
         with open(self.urjtag_steppings_f, 'r') as urjtag_steppings_fd:
             urjtag_steppings = urjtag_steppings_fd.read()
         return True if stepping in urjtag_steppings else False
@@ -134,7 +130,7 @@ class Bsdl():
 
     def _generate_steppings(self) -> list:
         steppings = []
-        if self.version_number.isdigit() and not self._is_urjtag_stepping():
+        if self.version_number.isdigit():
             steppings.append(self.version_number)
 
         else:
@@ -142,17 +138,23 @@ class Bsdl():
             steppings_re = re.compile(self.version_number.replace("X", "[0-1]{1}"))
             for stepping in range(0, combination_count):
                 stepping = f"{stepping:04b}"
-                if re.match(steppings_re, stepping) and not self._is_urjtag_stepping(stepping):
+                if re.match(steppings_re, stepping):
                     steppings.append(stepping)
         return steppings
 
     def add_to_urjtag(self):
         """add bsdl to urjtag database"""
+        # add manufacturer if needed
         if not self._is_urjtag_manufacturer():
             self._add_urjtag_manufacturer()
+        # add part if needed
         if not self._is_urjtag_part():
             self._add_urjtag_part()
-        self._add_urjtag_stepping(self._generate_steppings())
+        # add all steppings that match bsdl pattern eq:"XX11"
+        steppings = [stepping for stepping in self._generate_steppings() if not self._is_urjtag_stepping(stepping)]
+        for stepping in steppings:
+            self._add_urjtag_stepping(stepping)
+        # copy bsdl to urjtag's database
         self._copy()
         print(f"{self.path}, added successfully\n")
 
