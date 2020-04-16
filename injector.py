@@ -17,20 +17,19 @@ class Bsdl():
 
             # initialize bsdl attributes
             self.idcode = ''
-            self.part_name = ''    
+            self.part_name = ''     
             self.manufacturer_name = ''
 
             with open(self.path, 'r') as bsdl_fd:
                 self.content = bsdl_fd.read()
-
             self._extract_idcode()
 
             self._extract_manufacturer_name()
-            self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}"
+            self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
             self.urjtag_parts_f = f"{self.manufacturer_path}/PARTS"
 
             self._extract_part_name()
-            self.part_path = f"{self.manufacturer_path}/{self.part_name}"
+            self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
             self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
             
         except subprocess.CalledProcessError:
@@ -41,7 +40,7 @@ class Bsdl():
         idcode_re = re.compile("attribute IDCODE_REGISTER .* \"1\";", re.DOTALL)
         self.idcode = re.search(idcode_re, self.content)[0].split("\n")
         self.version_number, self.part_number, self.manufacturer_id = [field.split('\"')[1] for field in self.idcode[1:4]]
-        self.idcode = self.version_number.upper() + self.part_number + self.manufacturer_id
+        self.idcode = self.version_number + self.part_number + self.manufacturer_id
     
     def _extract_part_name(self):
         """extract and define the part's name"""
@@ -126,16 +125,18 @@ class Bsdl():
         subprocess.run(["bsdl2jtag", self.path, "/dev/null"], check=True)
 
     def _copy(self):
+        """copy bsdl file to urjtag's database"""
         subprocess.run(["cp", self.path, f"{self.part_path}/{self.part_name}"], check=True)    
 
     def _generate_steppings(self) -> list:
+        """return a list of steppings that match bsdl file's version_number pattern"""
         steppings = []
         if self.version_number.isdigit():
             steppings.append(self.version_number)
 
         else:
             combination_count = 2**len(self.version_number)
-            steppings_re = re.compile(self.version_number.replace("X", "[0-1]{1}"))
+            steppings_re = re.compile(re.sub(r"[^0-1]", "[0-1]{1}", self.version_number))   # compile regex to detect anything that's not '0' or '1' in version_number
             for stepping in range(0, combination_count):
                 stepping = f"{stepping:04b}"
                 if re.match(steppings_re, stepping):
@@ -143,7 +144,7 @@ class Bsdl():
         return steppings
 
     def add_to_urjtag(self):
-        """add bsdl to urjtag database"""
+        """add bsdl to urjtag database. creates the necessary files and folders to do so"""
         # add manufacturer if needed
         if not self._is_urjtag_manufacturer():
             self._add_urjtag_manufacturer()
@@ -164,7 +165,7 @@ if __name__ == '__main__':
         if len(sys.argv > 3): # destination folder, urjtag's database 
             dst = sys.argv[2] 
         else:
-            dst = "/usr/local/share/urjtag" # default urjtag database path
+            dst = "/usr/local/share/urjtag/" # default urjtag database path
 
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)]
         for bsdl_file in bsdl_files:
