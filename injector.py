@@ -38,7 +38,7 @@ class Bsdl():
 
     def _extract_idcode(self):
         """extract idcode from bsdl file""" 
-        idcode_re = re.compile("attribute IDCODE_REGISTER.*\"1\";", re.DOTALL)
+        idcode_re = re.compile("attribute IDCODE_REGISTER.*\"1\".*;", re.DOTALL)
         self.idcode = re.search(idcode_re, self.content)[0].split("\n")
         self.version_number, self.part_number, self.manufacturer_id = [field.split('\"')[1] for field in self.idcode[1:4]]
         self.idcode = self.version_number + self.part_number + self.manufacturer_id
@@ -183,4 +183,4 @@ if __name__ == '__main__':
         print("Usage: python3 injector.py <src> <dst>\n")
 
     except PermissionError:
-        print("injector.py needs sufficient r/w permissions to perform operations on urjtag's database")
+        print("PermissionError: injector.py missing sufficient r/w permissions to perform operations on urjtag's database\n")
