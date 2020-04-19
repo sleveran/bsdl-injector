@@ -121,7 +121,7 @@ class Bsdl():
         """returns True if part exists in urjtag's database, otherwise returns False"""
         with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
             urjtag_parts = urjtag_parts_fd.read()
-        return True if self.part_name in urjtag_parts else False
+        return True if self.part_number in urjtag_parts else False
 
     def _is_urjtag_stepping(self, stepping: str) -> bool:
         """returns True if part's stepping exists in urjtag's database, otherwise returns False"""
@@ -181,3 +181,6 @@ if __name__ == '__main__':
 
     except (IndexError, FileNotFoundError):
         print("Usage: python3 injector.py <src> <dst>\n")
+
+    except PermissionError:
+        print("injector.py needs sufficient r/w permissions to perform operations on urjtag's database")
