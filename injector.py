@@ -36,14 +36,14 @@ class Bsdl():
             print(f"invalid bsdl file ({self.path})\n")
 
     def _extract_idcode(self):
-        """extract and define the entity's idcode""" 
+        """extract idcode from bsdl file""" 
         idcode_re = re.compile("attribute IDCODE_REGISTER .* \"1\";", re.DOTALL)
         self.idcode = re.search(idcode_re, self.content)[0].split("\n")
         self.version_number, self.part_number, self.manufacturer_id = [field.split('\"')[1] for field in self.idcode[1:4]]
         self.idcode = self.version_number + self.part_number + self.manufacturer_id
     
     def _extract_part_name(self):
-        """extract and define the part's name"""
+        """extract entity's name from bsdl file"""
         # extract part name used in urjtag's database if it already exists
         if self._is_urjtag_part():
             with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
@@ -58,7 +58,7 @@ class Bsdl():
             self.part_name = entity_declaration[0].split()[1].lower()
     
     def _extract_manufacturer_name(self):
-        """extract and define the manufacturer name"""
+        """extract manufacturer name from urjtag's database or JEP106"""
         # extract manufacturer name used in urjtag's database if it already exists
         if self._is_urjtag_manufacturer():
             with open(self.urjtag_manufacturers_f, 'r') as urjtag_manufacturers_fd:
@@ -75,8 +75,16 @@ class Bsdl():
                 if self.manufacturer_id in manufacturer:
                     self.manufacturer_name = manufacturer.strip().split()[-1].lower()
 
+    def _is_valid(self) -> bool:
+        """raise subprocess.CalledProcessError if bsdl file is invalid"""
+        subprocess.run(["bsdl2jtag", self.path, "/dev/null"], check=True)
+
+    def _copy(self):
+        """copy bsdl file to urjtag's database"""
+        subprocess.run(["cp", self.path, f"{self.part_path}/{self.part_name}"], check=True)    
+
     def _add_urjtag_manufacturer(self):
-        """add Bsdl.manufacturer_id to urjtag's manufacturer ddf, and creates the manufacturer's folder"""
+        """update urjtag's MANUFACTURERS ddf. create manufacturer folder and PARTS file."""
         # update MANUFACTURERS ddf
         with open(self.urjtag_manufacturers_f, 'a') as urjtag_manufacturers_fd:
             urjtag_manufacturers_fd.write(f"{self.manufacturer_id}\t{self.manufacturer_name}\t{self.manufacturer_name.capitalize()}\n")    
@@ -87,7 +95,7 @@ class Bsdl():
            urjtag_parts_fd.write("# PARTS file created by bsdl-injector.py\n")
 
     def _add_urjtag_part(self):
-        """add Bsdl.part_name to urjtag's part ddf, and creates the part's folder"""
+        """update urjtag's PARTS ddf. create part folder and STEPPINGS file."""
         # update PARTS ddf
         with open(self.urjtag_parts_f, 'a') as urjtag_parts_fd:
             urjtag_parts_fd.write(f"{self.part_number}\t{self.part_name}\t{self.part_name.upper()}\n")
@@ -98,7 +106,7 @@ class Bsdl():
             urjtag_steppings_fd.write("# STEPPINGS file created by bsdl-injector.py\n")    
     
     def _add_urjtag_stepping(self, stepping: str):
-        """add part stepping to urjtag's stepping ddf"""
+        """add stepping to urjtag's stepping ddf"""
         with open(self.urjtag_steppings_f, 'a') as steppings_fd: 
             steppings_fd.write(f"{stepping}\t{self.part_name}\t{stepping}\n")
 
@@ -120,26 +128,19 @@ class Bsdl():
             urjtag_steppings = urjtag_steppings_fd.read()
         return True if stepping in urjtag_steppings else False
 
-    def _is_valid(self) -> bool:
-        """raise subprocess.CalledProcessError if bsdl file is invalid"""
-        subprocess.run(["bsdl2jtag", self.path, "/dev/null"], check=True)
-
-    def _copy(self):
-        """copy bsdl file to urjtag's database"""
-        subprocess.run(["cp", self.path, f"{self.part_path}/{self.part_name}"], check=True)    
-
     def _generate_steppings(self) -> list:
-        """return a list of steppings that match bsdl file's version_number pattern"""
+        """return a list of steppings that match bsdl's version_number pattern"""
         steppings = []
+        # if version_number is digits only, no need for pattern matching.
         if self.version_number.isdigit():
             steppings.append(self.version_number)
 
         else:
-            combination_count = 2**len(self.version_number)
+            combination_count = 2 ** len(self.version_number)
             steppings_re = re.compile(re.sub(r"[^0-1]", "[0-1]{1}", self.version_number))   # compile regex to detect anything that's not '0' or '1' in version_number
             for stepping in range(0, combination_count):
-                stepping = f"{stepping:04b}"
-                if re.match(steppings_re, stepping):
+                stepping = f"{stepping:04b}" # convert int to binary representing str eq: 1 --> 0001
+                if re.match(steppings_re, stepping): 
                     steppings.append(stepping)
         return steppings
 
@@ -155,9 +156,11 @@ class Bsdl():
         steppings = [stepping for stepping in self._generate_steppings() if not self._is_urjtag_stepping(stepping)]
         for stepping in steppings:
             self._add_urjtag_stepping(stepping)
-        # copy bsdl to urjtag's database
-        self._copy()
-        print(f"{self.path}, added successfully\n")
+        # copy bsdl to urjtag's database only if there are new steppings to add.
+        # if no new steppings are found, the bsdl_file is probably already in urjtag's database.
+        if steppings != []:
+            self._copy()
+            print(f"{self.path}, added successfully\n")
 
 if __name__ == '__main__':
     try:
