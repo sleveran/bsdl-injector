@@ -168,8 +168,9 @@ if __name__ == '__main__':
         dst = "/usr/local/share/urjtag/" # default urjtag database path
         if len(sys.argv > 3): # destination folder, urjtag's database 
             dst = sys.argv[2] 
-
-        bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)]
+        
+        bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] # create list of absolute paths to each file in src directory
+        # add all bsdl file in src to urjtag's database
         for bsdl_file in bsdl_files:
             bsdl = Bsdl(bsdl_file, dst)
             bsdl.add_to_urjtag()
