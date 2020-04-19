@@ -166,7 +166,7 @@ if __name__ == '__main__':
     try:
         src = sys.argv[1] # directory which contains bsdl files
         dst = "/usr/local/share/urjtag/" # default urjtag database path
-        if len(sys.argv > 3): # destination folder, urjtag's database 
+        if len(sys.argv) > 3: # destination folder, urjtag's database 
             dst = sys.argv[2] 
         
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] # create list of absolute paths to each file in src directory
