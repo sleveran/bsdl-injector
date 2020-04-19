@@ -11,6 +11,7 @@ class Bsdl():
         self.urjtag_manufacturers_f = f"{self.dst}/MANUFACTURERS"
         self.jedec_manufacturers_path = "./manufacturers"
 
+
         # check bsdl integrity
         self._is_valid()    
 
@@ -19,8 +20,11 @@ class Bsdl():
         self.part_name = ''     
         self.manufacturer_name = ''
 
+        # read and save bsdl content
         with open(self.path, 'r') as bsdl_fd:
             self.content = bsdl_fd.read()
+
+        # extract bsdl information
         self._extract_idcode()
 
         self._extract_manufacturer_name()
@@ -173,7 +177,7 @@ if __name__ == '__main__':
                 bsdl = Bsdl(bsdl_file, dst)
                 bsdl.add_to_urjtag()
             except subprocess.CalledProcessError:
-                print(f"invalid bsdl file ({bsdl.path})\n")
+                print(f"invalid bsdl file ({bsdl_file})\n")
 
     except (IndexError, FileNotFoundError):
         print("Usage: python3 injector.py <src> <dst>\n")
