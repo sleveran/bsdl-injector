@@ -38,7 +38,7 @@ class Bsdl():
 
     def _extract_idcode(self):
         """extract idcode from bsdl file""" 
-        idcode_re = re.compile("attribute IDCODE_REGISTER .* \"1\";", re.DOTALL)
+        idcode_re = re.compile("attribute IDCODE_REGISTER.*\"1\";", re.DOTALL)
         self.idcode = re.search(idcode_re, self.content)[0].split("\n")
         self.version_number, self.part_number, self.manufacturer_id = [field.split('\"')[1] for field in self.idcode[1:4]]
         self.idcode = self.version_number + self.part_number + self.manufacturer_id
