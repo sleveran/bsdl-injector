@@ -5,35 +5,32 @@ import sys
 
 class Bsdl():
     def __init__(self, path: str, dst: str):
-        try:
-            # path definitions
-            self.path = path
-            self.dst = dst
-            self.urjtag_manufacturers_f = f"{self.dst}/MANUFACTURERS"
-            self.jedec_manufacturers_path = "./manufacturers"
+        # path definitions
+        self.path = path
+        self.dst = dst
+        self.urjtag_manufacturers_f = f"{self.dst}/MANUFACTURERS"
+        self.jedec_manufacturers_path = "./manufacturers"
 
-            # check bsdl integrity
-            self._is_valid()    
+        # check bsdl integrity
+        self._is_valid()    
 
-            # initialize bsdl attributes
-            self.idcode = ''
-            self.part_name = ''     
-            self.manufacturer_name = ''
+        # initialize bsdl attributes
+        self.idcode = ''
+        self.part_name = ''     
+        self.manufacturer_name = ''
 
-            with open(self.path, 'r') as bsdl_fd:
-                self.content = bsdl_fd.read()
-            self._extract_idcode()
+        with open(self.path, 'r') as bsdl_fd:
+            self.content = bsdl_fd.read()
+        self._extract_idcode()
 
-            self._extract_manufacturer_name()
-            self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
-            self.urjtag_parts_f = f"{self.manufacturer_path}/PARTS"
+        self._extract_manufacturer_name()
+        self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
+        self.urjtag_parts_f = f"{self.manufacturer_path}/PARTS"
 
-            self._extract_part_name()
-            self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
-            self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
-            
-        except subprocess.CalledProcessError:
-            print(f"invalid bsdl file ({self.path})\n")
+        self._extract_part_name()
+        self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
+        self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
+
 
     def _extract_idcode(self):
         """extract idcode from bsdl file""" 
@@ -172,8 +169,11 @@ if __name__ == '__main__':
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] # create list of absolute paths to each file in src directory
         # add all bsdl file in src to urjtag's database
         for bsdl_file in bsdl_files:
-            bsdl = Bsdl(bsdl_file, dst)
-            bsdl.add_to_urjtag()
+            try:
+                bsdl = Bsdl(bsdl_file, dst)
+                bsdl.add_to_urjtag()
+            except subprocess.CalledProcessError:
+                print(f"invalid bsdl file ({bsdl.path})\n")
 
     except (IndexError, FileNotFoundError):
         print("Usage: python3 injector.py <src> <dst>\n")
