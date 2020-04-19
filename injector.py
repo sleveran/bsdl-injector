@@ -38,7 +38,7 @@ class Bsdl():
 
     def _extract_idcode(self):
         """extract idcode from bsdl file""" 
-        idcode_re = re.compile("attribute IDCODE_REGISTER.*\"1\".*;", re.DOTALL)
+        idcode_re = re.compile("attribute IDCODE_REGISTER.*;", re.DOTALL)
         self.idcode = re.search(idcode_re, self.content)[0].split("\n")
         self.version_number, self.part_number, self.manufacturer_id = [field.split('\"')[1] for field in self.idcode[1:4]]
         self.idcode = self.version_number + self.part_number + self.manufacturer_id
@@ -78,7 +78,7 @@ class Bsdl():
 
     def _is_valid(self) -> bool:
         """raise subprocess.CalledProcessError if bsdl file is invalid"""
-        subprocess.run(["bsdl2jtag", self.path, "/dev/null"], check=True)
+        subprocess.run(["bsdl2jtag", self.path, "/dev/null"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
 
     def _copy(self):
         """copy bsdl file to urjtag's database"""
@@ -168,12 +168,13 @@ if __name__ == '__main__':
         src = sys.argv[1] # directory which contains bsdl files
         dst = "/usr/local/share/urjtag/" # default urjtag database path
         if len(sys.argv) > 3: # destination folder, urjtag's database 
-            dst = sys.argv[2] 
+            dst = sys.argv[2]
         # create list of absolute paths to each file in src directory
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] 
         # add all bsdl files in src to urjtag's database
         for bsdl_file in bsdl_files:
             try:
+                print(f"adding {bsdl_file}")
                 bsdl = Bsdl(bsdl_file, dst)
                 bsdl.add_to_urjtag()
             except subprocess.CalledProcessError:
