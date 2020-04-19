@@ -159,7 +159,7 @@ class Bsdl():
             self._add_urjtag_stepping(stepping)
         # copy bsdl to urjtag's database only if there are new steppings to add.
         # if no new steppings are found, the bsdl_file is probably already in urjtag's database.
-        if steppings != []:
+        if steppings != None:
             self._copy()
             print(f"{self.path}, added successfully\n")
 
@@ -169,9 +169,9 @@ if __name__ == '__main__':
         dst = "/usr/local/share/urjtag/" # default urjtag database path
         if len(sys.argv) > 3: # destination folder, urjtag's database 
             dst = sys.argv[2] 
-        
-        bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] # create list of absolute paths to each file in src directory
-        # add all bsdl file in src to urjtag's database
+        # create list of absolute paths to each file in src directory
+        bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] 
+        # add all bsdl files in src to urjtag's database
         for bsdl_file in bsdl_files:
             try:
                 bsdl = Bsdl(bsdl_file, dst)
