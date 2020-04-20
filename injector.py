@@ -11,7 +11,6 @@ class Bsdl():
         self.urjtag_manufacturers_f = f"{self.dst}/MANUFACTURERS"
         self.jedec_manufacturers_path = "./manufacturers"
 
-
         # check bsdl integrity
         self._is_valid()    
 
@@ -34,7 +33,6 @@ class Bsdl():
         self._extract_part_name()
         self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
         self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
-
 
     def _extract_idcode(self):
         """extract idcode from bsdl file""" 
@@ -167,7 +165,7 @@ if __name__ == '__main__':
     try:
         src = sys.argv[1] # directory which contains bsdl files
         dst = "/usr/local/share/urjtag/" # default urjtag database path
-        if len(sys.argv) > 3: # destination folder, urjtag's database 
+        if len(sys.argv) >= 3: # destination folder, urjtag's database 
             dst = sys.argv[2]
         # create list of absolute paths to each file in src directory
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] 
