@@ -20,7 +20,8 @@ class Bsdl():
         self.manufacturer_name = ''
 
         # read and save bsdl content
-        with open(self.path, 'r') as bsdl_fd:
+        # decoding errors are ignored since a few companies put special encoded characters into the their bsdls, utf-8 works for most part.
+        with open(self.path, 'r', errors='ignore') as bsdl_fd:
             self.content = bsdl_fd.read()
 
         # get bsdl information
@@ -34,29 +35,6 @@ class Bsdl():
         self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
         self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
 
-    def _get_idcode(self):
-        """get idcode from bsdl file""" 
-        idcode_re = re.compile("attribute IDCODE_REGISTER.*;", re.DOTALL)
-        idcode_declaration = re.search(idcode_re, self.content)[0]
-        idcode_fragments = re.findall("\".*\"", idcode_declaration)
-        self.idcode = ''.join(idcode_fragments).replace('\"', '')
-        self.version_number, self.part_number, self.manufacturer_id = self.idcode[0:4], self.idcode[4:20], self.idcode[20:31]
-    
-    def _get_part_name(self):
-        """get entity's name from bsdl file"""
-        # get part name used in urjtag's database if it already exists
-        if self._is_urjtag_part():
-            with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
-                urjtag_parts = urjtag_parts_fd.readlines()
-            for part in urjtag_parts:
-                if self.part_number in part:
-                    self.part_name = part.split('\t')[1].lower()
-
-        # get part_name from bsdl's entity name 
-        else:
-            entity_declaration = re.search("entity .* is", self.content)
-            self.part_name = entity_declaration[0].split()[1].lower()
-    
     def _get_manufacturer_name(self):
         """get manufacturer name from urjtag's database or JEP106"""
         # get manufacturer name used in urjtag's database if it already exists
@@ -75,6 +53,29 @@ class Bsdl():
                 if self.manufacturer_id in manufacturer:
                     self.manufacturer_name = manufacturer.strip().split()[-1].lower()
 
+    def _get_part_name(self):
+        """get entity's name from bsdl file"""
+        # get part name used in urjtag's database if it already exists
+        if self._is_urjtag_part():
+            with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
+                urjtag_parts = urjtag_parts_fd.readlines()
+            for part in urjtag_parts:
+                if self.part_number in part:
+                    self.part_name = part.split('\t')[1].lower()
+                    
+        # get part_name from bsdl's entity name 
+        else:
+            entity_declaration = re.search("entity .* is", self.content)
+            self.part_name = entity_declaration[0].split()[1].lower()
+
+    def _get_idcode(self):
+        """get idcode from bsdl file"""
+        idcode_re = re.compile("attribute IDCODE_REGISTER.*;", re.DOTALL)
+        idcode_declaration = re.search(idcode_re, self.content)[0]
+        idcode_fragments = re.findall("\".*\"", idcode_declaration)
+        self.idcode = ''.join(idcode_fragments).replace('\"', '')
+        self.version_number, self.part_number, self.manufacturer_id = self.idcode[0:4], self.idcode[4:20], self.idcode[20:31]
+
     def _is_valid(self) -> bool:
         """raise subprocess.CalledProcessError if bsdl file is invalid"""
         subprocess.run(["bsdl2jtag", self.path, "/dev/null"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
@@ -91,8 +92,8 @@ class Bsdl():
 
         # create manufacturer folder and PARTS file
         os.mkdir(self.manufacturer_path)
-        with open(self.urjtag_parts_f, 'w') as urjtag_parts_fd:
-           urjtag_parts_fd.write("# PARTS file created by bsdl-injector.py\n")
+        with open(self.urjtag_parts_f, 'a') as urjtag_parts_fd:
+           urjtag_parts_fd.write("# added by injector.py\n")
 
     def _add_urjtag_part(self):
         """update urjtag's PARTS ddf. create part folder and STEPPINGS file."""
@@ -103,7 +104,7 @@ class Bsdl():
         # create part folder and STEPPINGS file
         os.mkdir(self.part_path)
         with open(self.urjtag_steppings_f, 'a') as urjtag_steppings_fd:
-            urjtag_steppings_fd.write("# STEPPINGS file created by bsdl-injector.py\n")    
+            urjtag_steppings_fd.write("# added by injector.py\n")    
     
     def _add_urjtag_stepping(self, stepping: str):
         """add stepping to urjtag's stepping ddf"""
@@ -111,22 +112,48 @@ class Bsdl():
             steppings_fd.write(f"{stepping}\t{self.part_name}\t{stepping}\n")
 
     def _is_urjtag_manufacturer(self) -> bool:
-        """returns True if manufacturer_id exists in urjtag's database, otherwise returns False"""
-        with open(self.urjtag_manufacturers_f, 'r') as urjtag_manufacturers_fd:
-            urjtag_manufacturers = urjtag_manufacturers_fd.read()
-        return True if self.manufacturer_id in urjtag_manufacturers else False 
+        """
+        returns True if manufacturer_id exists in urjtag's database, otherwise returns False
+        False return value could mean one of two things :
+            manufacturer_id is not in urjtag's database
+            MANUFACTURERS file not found (FileNotFoundError)
+        """
+        try:
+            with open(self.urjtag_manufacturers_f, 'r') as urjtag_manufacturers_fd:
+                urjtag_manufacturers = urjtag_manufacturers_fd.read()
+            return True if self.manufacturer_id in urjtag_manufacturers else False 
+        except FileNotFoundError:
+            return False
+
     
     def _is_urjtag_part(self) -> bool:
-        """returns True if part exists in urjtag's database, otherwise returns False"""
-        with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
-            urjtag_parts = urjtag_parts_fd.read()
-        return True if self.part_number in urjtag_parts else False
+        """
+        returns True if part exists in urjtag's database, otherwise returns False
+        False return value could mean one of two things :
+            part_number is not in urjtag's database
+            PARTS file not found (FileNotFoundError)
+        """
+        try:
+            with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
+                urjtag_parts = urjtag_parts_fd.read()
+            return True if self.part_number in urjtag_parts else False
+        except FileNotFoundError:
+            return False
 
     def _is_urjtag_stepping(self, stepping: str) -> bool:
-        """returns True if part's stepping exists in urjtag's database, otherwise returns False"""
-        with open(self.urjtag_steppings_f, 'r') as urjtag_steppings_fd:
-            urjtag_steppings = urjtag_steppings_fd.read()
-        return True if stepping in urjtag_steppings else False
+        """
+        returns True if part's stepping exists in urjtag's database, otherwise returns False.
+        False return value could mean one of two things :
+            stepping is not in urjtag's database
+            STEPPINGS file not found (FileNotFoundError)
+        """
+        try:
+            with open(self.urjtag_steppings_f, 'r') as urjtag_steppings_fd:
+                urjtag_steppings = urjtag_steppings_fd.read()
+            return True if stepping in urjtag_steppings else False
+        except FileNotFoundError:
+            return False
+
 
     def _generate_steppings(self) -> list:
         """return a list of steppings that match bsdl's version_number pattern"""
@@ -160,7 +187,7 @@ class Bsdl():
         # if no new steppings are found, the bsdl_file is probably already in urjtag's database.
         if steppings != None:
             self._copy()
-            print(f"{self.path}, added successfully\n")
+            print(f"Successfully added {self.path}\n")
 
 if __name__ == '__main__':
     try:
@@ -176,8 +203,12 @@ if __name__ == '__main__':
                 print(f"adding {bsdl_file}")
                 bsdl = Bsdl(bsdl_file, dst)
                 bsdl.add_to_urjtag()
+                
             except subprocess.CalledProcessError:
-                print(f"invalid bsdl file ({bsdl_file})\n")
+                print(f"Failed adding {bsdl_file}, corrupt/invalid bsdl file\n")
+
+            except TypeError:
+                print(f"No IDCODE in bsdl {bsdl_file}")
 
     except (IndexError, FileNotFoundError):
         print("Usage: python3 injector.py <src> <dst>\n")
