@@ -24,6 +24,8 @@ class Bsdl():
         with open(self.path, 'r', errors='ignore') as bsdl_fd:
             self.content = bsdl_fd.read()
 
+        self._clean_invalid_manufacturers()
+
         # get bsdl information
         self._get_idcode()
 
@@ -75,7 +77,7 @@ class Bsdl():
         idcode_fragments = re.findall("\".*\"", idcode_declaration)
         self.idcode = ''.join(idcode_fragments).replace('\"', '')
         self.version_number, self.part_number, self.manufacturer_id = self.idcode[0:4], self.idcode[4:20], self.idcode[20:31]
-
+    
     def _is_valid(self) -> bool:
         """raise subprocess.CalledProcessError if bsdl file is invalid"""
         subprocess.run(["bsdl2jtag", self.path, "/dev/null"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
@@ -83,6 +85,10 @@ class Bsdl():
     def _copy(self):
         """copy bsdl file to urjtag's database"""
         subprocess.run(["cp", self.path, f"{self.part_path}/{self.part_name}"], check=True)    
+
+    def _clean_urjtag_manufacturers(self):
+        """remove manufacturers described in ddf, but have no corresponding folder"""
+
 
     def _add_urjtag_manufacturer(self):
         """update urjtag's MANUFACTURERS ddf. create manufacturer folder and PARTS file."""
@@ -112,48 +118,22 @@ class Bsdl():
             steppings_fd.write(f"{stepping}\t{self.part_name}\t{stepping}\n")
 
     def _is_urjtag_manufacturer(self) -> bool:
-        """
-        returns True if manufacturer_id exists in urjtag's database, otherwise returns False
-        False return value could mean one of two things :
-            manufacturer_id is not in urjtag's database
-            MANUFACTURERS file not found (FileNotFoundError)
-        """
-        try:
-            with open(self.urjtag_manufacturers_f, 'r') as urjtag_manufacturers_fd:
-                urjtag_manufacturers = urjtag_manufacturers_fd.read()
-            return True if self.manufacturer_id in urjtag_manufacturers else False 
-        except FileNotFoundError:
-            return False
-
+        """returns True if manufacturer_id exists in urjtag's database, otherwise returns False"""
+        with open(self.urjtag_manufacturers_f, 'r') as urjtag_manufacturers_fd:
+            urjtag_manufacturers = urjtag_manufacturers_fd.read()
+        return True if self.manufacturer_id in urjtag_manufacturers else False 
     
     def _is_urjtag_part(self) -> bool:
-        """
-        returns True if part exists in urjtag's database, otherwise returns False
-        False return value could mean one of two things :
-            part_number is not in urjtag's database
-            PARTS file not found (FileNotFoundError)
-        """
-        try:
-            with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
-                urjtag_parts = urjtag_parts_fd.read()
-            return True if self.part_number in urjtag_parts else False
-        except FileNotFoundError:
-            return False
+        """returns True if part exists in urjtag's database, otherwise returns False"""
+        with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
+            urjtag_parts = urjtag_parts_fd.read()
+        return True if self.part_number in urjtag_parts else False
 
     def _is_urjtag_stepping(self, stepping: str) -> bool:
-        """
-        returns True if part's stepping exists in urjtag's database, otherwise returns False.
-        False return value could mean one of two things :
-            stepping is not in urjtag's database
-            STEPPINGS file not found (FileNotFoundError)
-        """
-        try:
-            with open(self.urjtag_steppings_f, 'r') as urjtag_steppings_fd:
-                urjtag_steppings = urjtag_steppings_fd.read()
-            return True if stepping in urjtag_steppings else False
-        except FileNotFoundError:
-            return False
-
+        """returns True if part's stepping exists in urjtag's database, otherwise returns False."""
+        with open(self.urjtag_steppings_f, 'r') as urjtag_steppings_fd:
+            urjtag_steppings = urjtag_steppings_fd.read()
+        return True if stepping in urjtag_steppings else False
 
     def _generate_steppings(self) -> list:
         """return a list of steppings that match bsdl's version_number pattern"""
@@ -169,7 +149,7 @@ class Bsdl():
                 stepping = f"{stepping:04b}" # convert int to binary representing str eq: 1 --> 0001
                 if re.match(steppings_re, stepping): 
                     steppings.append(stepping)
-        return steppings
+        return steppings        
 
     def add_to_urjtag(self):
         """add bsdl to urjtag database. creates the necessary files and folders to do so"""
@@ -195,20 +175,22 @@ if __name__ == '__main__':
         dst = "/usr/local/share/urjtag/" # default urjtag database path
         if len(sys.argv) >= 3: # destination folder, urjtag's database 
             dst = sys.argv[2]
+
         # create list of absolute paths to each file in src directory
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] 
+
         # add all bsdl files in src to urjtag's database
         for bsdl_file in bsdl_files:
             try:
                 print(f"adding {bsdl_file}")
                 bsdl = Bsdl(bsdl_file, dst)
                 bsdl.add_to_urjtag()
-                
+
             except subprocess.CalledProcessError:
                 print(f"Failed adding {bsdl_file}, corrupt/invalid bsdl file\n")
 
             except TypeError:
-                print(f"No IDCODE in bsdl {bsdl_file}")
+                print(f"No IDCODE in bsdl {bsdl_file}\n")
 
     except (IndexError, FileNotFoundError):
         print("Usage: python3 injector.py <src> <dst>\n")
