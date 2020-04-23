@@ -3,6 +3,59 @@ import os
 import subprocess
 import sys
 
+class Ddf():
+    """This class represents urjtag's directory-description-files"""
+    def __init__(self, path: str):
+        self.path = path
+        with open(self.path, 'r') as fd:
+            self.content = fd.readlines()
+
+        self.directory = '/'.join(list(filter(None, self.path.split('/')))[:-1])
+        self.directory_list = os.listdir(self.directory)
+        self.comments = self._get_comments()
+        self.definitions = self._get_definitions()
+        self.folders = self._get_folders()
+        self.invalid_folders = self._get_invalid_folders()
+
+    def _get_comments(self):
+        """
+        Get comment lines from urjtag ddf files. 
+        Comment lines are those that start with '#'.
+        :param lines: list of text lines - content of urjtag ddf file read with readlines()
+        :return: list of comment lines
+        """
+        return [line for line in self.content if self._is_comment(line)]
+        
+    def _get_definitions(self):
+        """
+        Get definition lines from urjtag ddf files. 
+        definition lines are those that follow the regex pattern .*\t.*\t.*
+        :param lines: list of text lines - content of urjtag ddf file read with readlines()
+        :return: list of comment lines
+        """
+        return [line for line in self.content if self._is_definition(line)]
+
+    @staticmethod
+    def _is_comment(line: str) -> bool:
+        """receives a text line, returns True if line starts with '#', otherwise returns False"""
+        return True if line.startswith('#') else False
+
+    @staticmethod
+    def _is_definition(line: str) -> bool:
+        """receives a text line, returns True if line follows the regex pattern .*\t.*\t.*"""
+        return True if re.search(".*\t.*\t.*", line) else False
+
+    def _get_folders(self) -> list:
+        """returns all folder names in ddf"""
+        return [line.split('\t')[1].strip() for line in self.definitions]
+    
+    def _get_invalid_folders(self):
+        return [folder for folder in self.folders if folder not in self.directory_list]
+
+    def clean(self):
+        """Clean ddf file, remove definition lines that have no corresponding folders"""
+        for line in self.content
+
 class Bsdl():
     def __init__(self, path: str, dst: str):
         # path definitions
@@ -24,7 +77,7 @@ class Bsdl():
         with open(self.path, 'r', errors='ignore') as bsdl_fd:
             self.content = bsdl_fd.read()
 
-        self._clean_invalid_manufacturers()
+        self._clean_urjtag_manufacturers()
 
         # get bsdl information
         self._get_idcode()
@@ -86,15 +139,11 @@ class Bsdl():
         """copy bsdl file to urjtag's database"""
         subprocess.run(["cp", self.path, f"{self.part_path}/{self.part_name}"], check=True)    
 
-    def _clean_urjtag_manufacturers(self):
-        """remove manufacturers described in ddf, but have no corresponding folder"""
-
-
     def _add_urjtag_manufacturer(self):
         """update urjtag's MANUFACTURERS ddf. create manufacturer folder and PARTS file."""
         # update MANUFACTURERS ddf
         with open(self.urjtag_manufacturers_f, 'a') as urjtag_manufacturers_fd:
-            urjtag_manufacturers_fd.write(f"{self.manufacturer_id}\t{self.manufacturer_name}\t{self.manufacturer_name.capitalize()}\n")    
+            urjtag_manufacturers_fd.write(f"{self.manufacturer_id}\t{self.manufacturer_name}\t\t{self.manufacturer_name.capitalize()}\n")    
 
         # create manufacturer folder and PARTS file
         os.mkdir(self.manufacturer_path)
@@ -105,7 +154,7 @@ class Bsdl():
         """update urjtag's PARTS ddf. create part folder and STEPPINGS file."""
         # update PARTS ddf
         with open(self.urjtag_parts_f, 'a') as urjtag_parts_fd:
-            urjtag_parts_fd.write(f"{self.part_number}\t{self.part_name}\t{self.part_name.upper()}\n")
+            urjtag_parts_fd.write(f"{self.part_number}\t{self.part_name}\t\t{self.part_name.upper()}\n")
 
         # create part folder and STEPPINGS file
         os.mkdir(self.part_path)
@@ -115,7 +164,7 @@ class Bsdl():
     def _add_urjtag_stepping(self, stepping: str):
         """add stepping to urjtag's stepping ddf"""
         with open(self.urjtag_steppings_f, 'a') as steppings_fd: 
-            steppings_fd.write(f"{stepping}\t{self.part_name}\t{stepping}\n")
+            steppings_fd.write(f"{stepping}\t{self.part_name}\t\t{stepping}\n")
 
     def _is_urjtag_manufacturer(self) -> bool:
         """returns True if manufacturer_id exists in urjtag's database, otherwise returns False"""
@@ -184,7 +233,7 @@ if __name__ == '__main__':
             try:
                 print(f"adding {bsdl_file}")
                 bsdl = Bsdl(bsdl_file, dst)
-                bsdl.add_to_urjtag()
+                # bsdl.add_to_urjtag()
 
             except subprocess.CalledProcessError:
                 print(f"Failed adding {bsdl_file}, corrupt/invalid bsdl file\n")
