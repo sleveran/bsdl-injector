@@ -125,7 +125,7 @@ class Bsdl():
 
     def _get_idcode(self):
         """get idcode from bsdl file"""
-        idcode_re = re.compile("attribute IDCODE_REGISTER.*;", re.DOTALL)
+        idcode_re = re.compile("attribute IDCODE_REGISTER.*?;", re.DOTALL)
         idcode_declaration = re.search(idcode_re, self.content)[0]
         idcode_fragments = re.findall("\".*\"", idcode_declaration)
         self.idcode = ''.join(idcode_fragments).replace('\"', '')
