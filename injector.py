@@ -19,8 +19,7 @@ class Ddf():
 
     def _get_comments(self):
         """
-        Get comment lines from urjtag ddf files. 
-        Comment lines are those that start with '#'.
+        Get comment lines from urjtag ddfs. 
         :param lines: list of text lines - content of urjtag ddf file read with readlines()
         :return: list of comment lines
         """
@@ -28,10 +27,9 @@ class Ddf():
         
     def _get_definitions(self):
         """
-        Get definition lines from urjtag ddf files. 
-        definition lines are those that follow the regex pattern .*\t.*\t.*
+        Get definition lines from urjtag ddfs. 
         :param lines: list of text lines - content of urjtag ddf file read with readlines()
-        :return: list of comment lines
+        :return: list of definition lines
         """
         return [line for line in self.content if self._is_definition(line)]
 
@@ -50,11 +48,15 @@ class Ddf():
         return [line.split('\t')[1].strip() for line in self.definitions]
     
     def _get_invalid_folders(self):
+        """returns folders mentioned in urjtag's ddf, but have no corresponding folder"""
         return [folder for folder in self.folders if folder not in self.directory_list]
 
     def clean(self):
         """Clean ddf file, remove definition lines that have no corresponding folders"""
-        for line in self.content
+        clean_ddf_content = [line for line in self.definitions if not line.split('\t')[1].strip() in self.invalid_folders]
+        for line in clean_ddf_content:
+            with open(self.path, 'w') as ddf:
+                ddf.writelines(self.comments + clean_ddf_content)
 
 class Bsdl():
     def __init__(self, path: str, dst: str):
@@ -76,8 +78,6 @@ class Bsdl():
         # decoding errors are ignored since a few companies put special encoded characters into the their bsdls, utf-8 works for most part.
         with open(self.path, 'r', errors='ignore') as bsdl_fd:
             self.content = bsdl_fd.read()
-
-        self._clean_urjtag_manufacturers()
 
         # get bsdl information
         self._get_idcode()
@@ -227,7 +227,8 @@ if __name__ == '__main__':
 
         # create list of absolute paths to each file in src directory
         bsdl_files = [src + bsdl_file for bsdl_file in os.listdir(src)] 
-
+        manufacturers = Ddf('./urjtag_database/MANUFACTURERS')
+        manufacturers.clean()
         # add all bsdl files in src to urjtag's database
         for bsdl_file in bsdl_files:
             try:
