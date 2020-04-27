@@ -69,11 +69,6 @@ class Bsdl():
         # check bsdl integrity
         self._is_valid()    
 
-        # initialize bsdl attributes
-        self.idcode = ''
-        self.part_name = ''     
-        self.manufacturer_name = ''
-
         # read and save bsdl content
         # decoding errors are ignored since a few companies put special encoded characters into the their bsdls, utf-8 works for most part.
         with open(self.path, 'r', errors='ignore') as bsdl_fd:
