@@ -89,7 +89,7 @@ class Bsdl():
         self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
         self.urjtag_parts_f = f"{self.manufacturer_path}/PARTS"
 
-        self._get_part_name()
+        self.part_name = self._get_part_name()
         self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
         self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
 
@@ -110,7 +110,7 @@ class Bsdl():
             manufacturer = manufacturer[len(self.manufacturer_id):].strip().lower()
         return manufacturer
 
-    def _get_part_name(self):
+    def _get_part_name(self) -> str:
         """get entity's name from bsdl file"""
         # get part name used in urjtag's database if it already exists
         if self._is_urjtag_part():
@@ -118,12 +118,13 @@ class Bsdl():
                 urjtag_parts = urjtag_parts_fd.readlines()
             for part in urjtag_parts:
                 if self.part_number in part:
-                    self.part_name = part.split('\t')[1].lower()
+                    part_name = part.split('\t')[1].lower()
                     
         # get part_name from bsdl's entity name 
         else:
             entity_declaration = re.search("entity .* is", self.content)
-            self.part_name = entity_declaration[0].split()[1].lower()
+            part_name = entity_declaration[0].split()[1].lower()
+        return part_name
 
     def _get_idcode(self) -> str:
         """get idcode from bsdl file"""
