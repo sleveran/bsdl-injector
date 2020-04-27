@@ -72,7 +72,7 @@ class Bsdl():
         # read and save bsdl content
         # decoding errors are ignored since a few companies put special encoded characters into the their bsdls, utf-8 works for most part.
         with open(self.path, 'r', errors='ignore') as bsdl_fd:
-            self.content = bsdl_fd.read()
+            self.content = bsdl_fd.read().lower()
 
         # get bsdl information
         self.idcode = self._extract_idcode()
@@ -108,7 +108,7 @@ class Bsdl():
     def _extract_part_name(self) -> str:
         """get entity's name from bsdl file"""
         # get part name used in urjtag's database if it already exists
-        if self._is_urjtag_part():
+        if self._is_urjtag_manufacturer() and self._is_urjtag_part():
             with open(self.urjtag_parts_f, 'r') as urjtag_parts_fd:
                 urjtag_parts = urjtag_parts_fd.readlines()
             for part in urjtag_parts:
@@ -123,7 +123,7 @@ class Bsdl():
 
     def _extract_idcode(self) -> str:
         """get idcode from bsdl file"""
-        idcode_re = re.compile("attribute IDCODE_REGISTER.*?;", re.DOTALL)
+        idcode_re = re.compile("attribute idcode_register.*?;", re.DOTALL)
         idcode_declaration = re.search(idcode_re, self.content).group()
         idcode_fragments = re.findall("\".*\"", idcode_declaration)
         idcode_fragments = [idcode_fragment.replace('\"', '') for idcode_fragment in idcode_fragments]
@@ -238,7 +238,7 @@ if __name__ == '__main__':
             except subprocess.CalledProcessError:
                 print(f"Failed adding {bsdl_file}, corrupt/invalid bsdl file\n")
 
-            except TypeError:
+            except AttributeError:
                 print(f"No IDCODE in bsdl {bsdl_file}\n")
 
     except (IndexError, FileNotFoundError):
