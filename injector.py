@@ -82,7 +82,7 @@ class Bsdl():
         # get bsdl information
         self._get_idcode()
 
-        self._get_manufacturer_name()
+        self.manufacturer_name = self._get_manufacturer_name()
         self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
         self.urjtag_parts_f = f"{self.manufacturer_path}/PARTS"
 
@@ -90,23 +90,22 @@ class Bsdl():
         self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
         self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
 
-    def _get_manufacturer_name(self):
+    def _get_manufacturer_name(self) -> str:
         """get manufacturer name from urjtag's database or JEP106"""
         # get manufacturer name used in urjtag's database if it already exists
         if self._is_urjtag_manufacturer():
             with open(self.urjtag_manufacturers_f, 'r') as urjtag_manufacturers_fd:
-               urjtag_manufacturers = urjtag_manufacturers_fd.readlines() 
-            for manufacturer in urjtag_manufacturers:
-                if self.manufacturer_id in manufacturer:
-                    self.manufacturer_name = manufacturer.split('\t')[1].lower()
+               urjtag_manufacturers = urjtag_manufacturers_fd.read() 
+            manufacturer = re.search(f".*{self.manufacturer_id}.*", urjtag_manufacturers).group()
+            manufacturer = manufacturer.split('\t')[1]
 
         # get manufacturer name from jedec's jep106, in case urjtag's database doesn't have it
         else:
             with open(self.jedec_manufacturers_path ,'r') as jedec_manufacturers_fd:
-                jedec_manufacturers = jedec_manufacturers_fd.readlines()
-            for manufacturer in jedec_manufacturers:
-                if self.manufacturer_id in manufacturer:
-                    self.manufacturer_name = manufacturer.strip().split()[-1].lower()
+                jedec_manufacturers = jedec_manufacturers_fd.read()
+            manufacturer = re.search(f".*{self.manufacturer_id}.*", jedec_manufacturers).group()
+            manufacturer = manufacturer[len(self.manufacturer_id):].strip().lower()
+        return manufacturer
 
     def _get_part_name(self):
         """get entity's name from bsdl file"""
