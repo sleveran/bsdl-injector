@@ -80,20 +80,20 @@ class Bsdl():
             self.content = bsdl_fd.read()
 
         # get bsdl information
-        self.idcode = self._get_idcode()
+        self.idcode = self._extract_idcode()
         self.version_number = self.idcode[0:4]
         self.part_number = self.idcode[4:20]
         self.manufacturer_id = self.idcode[20:31]
 
-        self.manufacturer_name = self._get_manufacturer_name()
+        self.manufacturer_name = self._extract_manufacturer_name()
         self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
         self.urjtag_parts_f = f"{self.manufacturer_path}/PARTS"
 
-        self.part_name = self._get_part_name()
+        self.part_name = self._extract_part_name()
         self.part_path = f"{self.manufacturer_path}/{self.part_name}/"
         self.urjtag_steppings_f = f"{self.part_path}/STEPPINGS"
 
-    def _get_manufacturer_name(self) -> str:
+    def _extract_manufacturer_name(self) -> str:
         """get manufacturer name from urjtag's database or JEP106"""
         # get manufacturer name used in urjtag's database if it already exists
         if self._is_urjtag_manufacturer():
@@ -110,7 +110,7 @@ class Bsdl():
             manufacturer = manufacturer[len(self.manufacturer_id):].strip().lower()
         return manufacturer
 
-    def _get_part_name(self) -> str:
+    def _extract_part_name(self) -> str:
         """get entity's name from bsdl file"""
         # get part name used in urjtag's database if it already exists
         if self._is_urjtag_part():
@@ -126,7 +126,7 @@ class Bsdl():
             part_name = entity_declaration[0].split()[1].lower()
         return part_name
 
-    def _get_idcode(self) -> str:
+    def _extract_idcode(self) -> str:
         """get idcode from bsdl file"""
         idcode_re = re.compile("attribute IDCODE_REGISTER.*?;", re.DOTALL)
         idcode_declaration = re.search(idcode_re, self.content).group()
