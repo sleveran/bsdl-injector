@@ -216,6 +216,8 @@ class Bsdl():
         if steppings != None:
             self._copy()
             print(f"Successfully added {self.path}\n")
+        else:
+            print(f"Seems like {self.path} already exists in urjtag's database")
 
 if __name__ == '__main__':
     try:
@@ -233,13 +235,13 @@ if __name__ == '__main__':
             try:
                 print(f"adding {bsdl_file}")
                 bsdl = Bsdl(bsdl_file, dst)
-                # bsdl.add_to_urjtag()
+                bsdl.add_to_urjtag()
 
             except subprocess.CalledProcessError:
                 print(f"Failed adding {bsdl_file}, corrupt/invalid bsdl file\n")
 
             except AttributeError:
-                print(f"No IDCODE in bsdl {bsdl_file}\n")
+                print(f"Failed adding {bsdl_file}, No IDCODE in bsdl\n")
 
     except (IndexError, FileNotFoundError):
         print("Usage: python3 injector.py <src> <dst>\n")
