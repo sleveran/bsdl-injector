@@ -80,7 +80,10 @@ class Bsdl():
             self.content = bsdl_fd.read()
 
         # get bsdl information
-        self._get_idcode()
+        self.idcode = self._get_idcode()
+        self.version_number = self.idcode[0:4]
+        self.part_number = self.idcode[4:20]
+        self.manufacturer_id = self.idcode[20:31]
 
         self.manufacturer_name = self._get_manufacturer_name()
         self.manufacturer_path = f"{self.dst}/{self.manufacturer_name}/"
@@ -122,14 +125,15 @@ class Bsdl():
             entity_declaration = re.search("entity .* is", self.content)
             self.part_name = entity_declaration[0].split()[1].lower()
 
-    def _get_idcode(self):
+    def _get_idcode(self) -> str:
         """get idcode from bsdl file"""
         idcode_re = re.compile("attribute IDCODE_REGISTER.*?;", re.DOTALL)
-        idcode_declaration = re.search(idcode_re, self.content)[0]
+        idcode_declaration = re.search(idcode_re, self.content).group()
         idcode_fragments = re.findall("\".*\"", idcode_declaration)
-        self.idcode = ''.join(idcode_fragments).replace('\"', '')
-        self.version_number, self.part_number, self.manufacturer_id = self.idcode[0:4], self.idcode[4:20], self.idcode[20:31]
-    
+        idcode_fragments = [idcode_fragment.replace('\"', '') for idcode_fragment in idcode_fragments]
+        idcode = ''.join(idcode_fragments)
+        return idcode
+
     def _is_valid(self) -> bool:
         """raise subprocess.CalledProcessError if bsdl file is invalid"""
         subprocess.run(["bsdl2jtag", self.path, "/dev/null"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
