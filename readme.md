@@ -3,12 +3,12 @@ bsdl-injector is a tool used to automatically add new bsdl files to urjtag's dat
 To add your new bsdl files, all you need to do is run "injector.py <src> <dst>" where src is a directory that contains your bsdl files, and dst should be your urjtag's main database folder which also defaults to "/usr/local/share/urjtag".
 
 # bsdl integrity check
-Each file in the <src> directory will then be tested using bsdl2jtag. If the file passes bsdl2jtag's test, it is considered a valid bsdl file and will be added to urjtag's database specified with <dst>. In case an invalid bsdl file is caught by bsdl2jtag, a subprocess.CalledProcessError exception will be caught. injector.py will print the bsdl file's path to notify the user which file(s) didn't pass the test and therefore won't be added to the database.
+Each file in the <src> directory will be tested using bsdl2jtag. If the file passes bsdl2jtag's test, it is considered a valid bsdl file and will be added to urjtag's database specified with <dst>. In case an invalid bsdl file is caught by bsdl2jtag, a subprocess.CalledProcessError exception will be caught. injector.py will print the bsdl file's path to notify the user which file(s) didn't pass the test and therefore won't be added to the database.
 
 # bsdl attributes
 injector.py will use the following methods to extract the respective bsdl attributes:
             -Bsdl._extract_idcode()              -Bsdl.idcode
-            -Bsdl._extract_part_name()         -Bsdl.part_name
+            -Bsdl._extract_part_name()           -Bsdl.part_name
             -Bsdl._extract_manufacturer_name()   -Bsdl.manufacturer_name
 
 # adding manufacturers (JEDEC's JEP106)
