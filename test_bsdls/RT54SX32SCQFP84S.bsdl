@@ -1,0 +1,1436 @@
+-- C:\Documents and Settings\nguyend\workspace_backup\BSDL\src\Work/9_0_0_17_rel9/9_0_0_17_rel9_bsdl/common/RT54SX32S_CQ84.bsd
+-- FAMILY:	54SXA
+-- DEVICE:	RT54SX32S
+-- PACKAGE:	84 CQFP
+-- DESIGNER VERSION: 9.0.0.17
+-- RESTRICT JTAG:	1
+-- RESTRICT TRST:	1
+-- 
+
+-- This is a preliminary BSDL file which has not been verified.
+-- This BSDL file reflects the pre-programming JTAG
+-- behavior. To reflect the post-programming JTAG
+-- behavior, edit this file as described below:
+
+-- If the I/O is unused or configured as an output,
+-- the input boundary scan cell becomes internal only.
+-- The input buffer is turned off, and you can not
+-- transfer data from the I/O pad into the input scan
+-- cell. For example:
+-- IO(1) is an output, the BSDL entry would be modified
+-- from:
+-- " 0 (BC_1, IO(1), input,    X),           "&
+-- " 1 (BC_1, IO(1), output3,  X,  2, 0, Z), "&
+-- " 2 (BC_1, *,     control,  0),           "&
+-- to:
+-- " 0 (BC_1, *,     internal, X),           "&
+-- " 1 (BC_1, IO(1), output3,  X,  2, 0, Z), "&
+-- " 2 (BC_1, *,     control,  0),           "&
+-- No modification is necessary when the I/O is
+-- configured as an input.
+
+entity RT54SX32Scqfp84s is
+    generic (PHYSICAL_PIN_MAP : string := "cqfp84s");
+    port(
+        CLKA        :in bit;
+        CLKB        :in bit;
+        GND         :linkage bit_vector (0 to 8   );
+        HCLK        :in bit;
+        IO_1        :out bit;
+        IO_2        :out bit;
+        IO_4        :out bit;
+        IO_7        :out bit;
+        IO_8        :out bit;
+        IO_9        :out bit;
+        IO_10       :out bit;
+        IO_12       :out bit;
+        IO_13       :out bit;
+        IO_14       :out bit;
+        IO_17       :out bit;
+        IO_19       :out bit;
+        IO_20       :out bit;
+        IO_21       :out bit;
+        IO_22       :out bit;
+        IO_23       :out bit;
+        IO_24       :out bit;
+        IO_25       :out bit;
+        IO_28       :out bit;
+        IO_29       :out bit;
+        IO_30       :out bit;
+        IO_31       :out bit;
+        IO_32       :out bit;
+        IO_34       :out bit;
+        IO_35       :out bit;
+        IO_38       :out bit;
+        IO_40       :out bit;
+        IO_41       :out bit;
+        IO_42       :out bit;
+        IO_43       :out bit;
+        IO_44       :out bit;
+        IO_45       :out bit;
+        IO_49       :out bit;
+        IO_50       :out bit;
+        IO_51       :out bit;
+        IO_52       :out bit;
+        IO_53       :out bit;
+        IO_54       :out bit;
+        IO_55       :out bit;
+        IO_56       :out bit;
+        IO_59       :out bit;
+        IO_62       :out bit;
+        IO_63       :out bit;
+        IO_64       :out bit;
+        IO_65       :out bit;
+        IO_66       :out bit;
+        IO_67       :out bit;
+        IO_70       :out bit;
+        IO_71       :out bit;
+        IO_74       :out bit;
+        IO_75       :out bit;
+        IO_76       :out bit;
+        IO_77       :out bit;
+        IO_80       :out bit;
+        IO_81       :out bit;
+        IO_84       :out bit;
+        TCK         :in bit;
+        TDI         :in bit;
+        TDO         :out bit;
+        TMS         :in bit;
+        TRST        :in bit;
+        VCC         :linkage bit_vector (0 to 10  )
+    );
+
+    use STD_1149_1_1990.all;
+
+    attribute PIN_MAP of RT54SX32Scqfp84s : entity is PHYSICAL_PIN_MAP;
+    constant cqfp84s : PIN_MAP_STRING:=
+        "CLKA      :72,    "&
+        "CLKB      :73,    "&
+        "GND       :(16,   26,    37,    48,    58,    6,     61,    "&
+                   "69,    78),   "&
+        "HCLK      :33,    "&
+        "IO_1      :1,     "&
+        "IO_2      :2,     "&
+        "IO_4      :4,     "&
+        "IO_7      :7,     "&
+        "IO_8      :8,     "&
+        "IO_9      :9,     "&
+        "IO_10     :10,    "&
+        "IO_12     :12,    "&
+        "IO_13     :13,    "&
+        "IO_14     :14,    "&
+        "IO_17     :17,    "&
+        "IO_19     :19,    "&
+        "IO_20     :20,    "&
+        "IO_21     :21,    "&
+        "IO_22     :22,    "&
+        "IO_23     :23,    "&
+        "IO_24     :24,    "&
+        "IO_25     :25,    "&
+        "IO_28     :28,    "&
+        "IO_29     :29,    "&
+        "IO_30     :30,    "&
+        "IO_31     :31,    "&
+        "IO_32     :32,    "&
+        "IO_34     :34,    "&
+        "IO_35     :35,    "&
+        "IO_38     :38,    "&
+        "IO_40     :40,    "&
+        "IO_41     :41,    "&
+        "IO_42     :42,    "&
+        "IO_43     :43,    "&
+        "IO_44     :44,    "&
+        "IO_45     :45,    "&
+        "IO_49     :49,    "&
+        "IO_50     :50,    "&
+        "IO_51     :51,    "&
+        "IO_52     :52,    "&
+        "IO_53     :53,    "&
+        "IO_54     :54,    "&
+        "IO_55     :55,    "&
+        "IO_56     :56,    "&
+        "IO_59     :59,    "&
+        "IO_62     :62,    "&
+        "IO_63     :63,    "&
+        "IO_64     :64,    "&
+        "IO_65     :65,    "&
+        "IO_66     :66,    "&
+        "IO_67     :67,    "&
+        "IO_70     :70,    "&
+        "IO_71     :71,    "&
+        "IO_74     :74,    "&
+        "IO_75     :75,    "&
+        "IO_76     :76,    "&
+        "IO_77     :77,    "&
+        "IO_80     :80,    "&
+        "IO_81     :81,    "&
+        "IO_84     :84,    "&
+        "TCK       :82,    "&
+        "TDI       :83,    "&
+        "TDO       :39,    "&
+        "TMS       :3,     "&
+        "TRST      :11,    "&
+        "VCC       :(15,   18,    27,    36,    46,    47,    5,     "&
+                   "57,    60,    68,    79)    ";
+
+    attribute TAP_SCAN_IN of TDI              : signal is true;
+    attribute TAP_SCAN_MODE of TMS            : signal is true;
+    attribute TAP_SCAN_OUT of TDO             : signal is true;
+    attribute TAP_SCAN_RESET of TRST          : signal is true;
+    attribute TAP_SCAN_CLOCK of TCK           :
+        signal is ( 1.00e+007, BOTH);
+
+    attribute INSTRUCTION_LENGTH of RT54SX32Scqfp84s : entity is    5;
+    attribute INSTRUCTION_OPCODE of RT54SX32Scqfp84s : entity is 
+                    "EXTEST (00000), "&
+                    "SAMPLE (00001), "&
+                    "INTEST (00010), "&
+                    "USERCODE (00011), "&
+                    "IDCODE (00100), "&
+                    "HIGHZ (01110), "&
+                    "CLAMP (01111), "&
+                    "PROBE (10000), "&
+                    "BYPASS (11111) ";
+    attribute INSTRUCTION_CAPTURE of RT54SX32Scqfp84s : entity is "XXX01";
+    attribute INSTRUCTION_DISABLE of RT54SX32Scqfp84s : entity is 
+                    "HIGHZ";
+    attribute INSTRUCTION_GUARD of RT54SX32Scqfp84s : entity is 
+                    "CLAMP";
+    attribute INSTRUCTION_PRIVATE of RT54SX32Scqfp84s : entity is
+                    "PROBE";
+
+
+    attribute IDCODE_REGISTER of RT54SX32Scqfp84s : entity is
+                    "XXXX"&   --  Version
+                    "XXXXXXXXXXXXXXXX"&   --  Device
+                    "00000101111"&   --  Manufacturer
+                    "1";   --  Required
+                    
+    attribute USERCODE_REGISTER of RT54SX32Scqfp84s : entity is
+                    "00000000000000000000000000000000";
+
+    attribute REGISTER_ACCESS of RT54SX32Scqfp84s : entity is
+                    "BYPASS(HIGHZ, CLAMP)";
+    attribute BOUNDARY_CELLS of RT54SX32Scqfp84s : entity is "BC_1";
+    attribute BOUNDARY_LENGTH of RT54SX32Scqfp84s : entity is  729;
+    attribute BOUNDARY_REGISTER of RT54SX32Scqfp84s : entity is 
+
+-- num   cell      port       function   safe   [ccell disval rslt]
+
+--BSR  IO_23    23
+"     0	(BC_1, *,internal,   X), "&
+"     1	(BC_1, IO_23,	output3,   X,     2, 0, Z), "&
+"     2	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"     3	(BC_1, *,internal,   X), "&
+"     4	(BC_1, *,internal,   X), "&
+"     5	(BC_1, *,internal,   X), "&
+
+--BSR  IO_22    22
+"     6	(BC_1, *,internal,   X), "&
+"     7	(BC_1, IO_22,	output3,   X,     8, 0, Z), "&
+"     8	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"     9	(BC_1, *,internal,   X), "&
+"    10	(BC_1, *,internal,   X), "&
+"    11	(BC_1, *,internal,   X), "&
+
+--BSR  IO_21    21
+"    12	(BC_1, *,internal,   X), "&
+"    13	(BC_1, IO_21,	output3,   X,    14, 0, Z), "&
+"    14	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    15	(BC_1, *,internal,   X), "&
+"    16	(BC_1, *,internal,   X), "&
+"    17	(BC_1, *,internal,   X), "&
+
+--BSR  IO_20    20
+"    18	(BC_1, *,internal,   X), "&
+"    19	(BC_1, IO_20,	output3,   X,    20, 0, Z), "&
+"    20	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    21	(BC_1, *,internal,   X), "&
+"    22	(BC_1, *,internal,   X), "&
+"    23	(BC_1, *,internal,   X), "&
+
+--BSR  IO_19    19
+"    24	(BC_1, *,internal,   X), "&
+"    25	(BC_1, IO_19,	output3,   X,    26, 0, Z), "&
+"    26	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    27	(BC_1, *,internal,   X), "&
+"    28	(BC_1, *,internal,   X), "&
+"    29	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    30	(BC_1, *,internal,   X), "&
+"    31	(BC_1, *,internal,   X), "&
+"    32	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    33	(BC_1, *,internal,   X), "&
+"    34	(BC_1, *,internal,   X), "&
+"    35	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    36	(BC_1, *,internal,   X), "&
+"    37	(BC_1, *,internal,   X), "&
+"    38	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    39	(BC_1, *,internal,   X), "&
+"    40	(BC_1, *,internal,   X), "&
+"    41	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    42	(BC_1, *,internal,   X), "&
+"    43	(BC_1, *,internal,   X), "&
+"    44	(BC_1, *,internal,   X), "&
+
+--BSR  IO_17    17
+"    45	(BC_1, *,internal,   X), "&
+"    46	(BC_1, IO_17,	output3,   X,    47, 0, Z), "&
+"    47	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    48	(BC_1, *,internal,   X), "&
+"    49	(BC_1, *,internal,   X), "&
+"    50	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    51	(BC_1, *,internal,   X), "&
+"    52	(BC_1, *,internal,   X), "&
+"    53	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    54	(BC_1, *,internal,   X), "&
+"    55	(BC_1, *,internal,   X), "&
+"    56	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    57	(BC_1, *,internal,   X), "&
+"    58	(BC_1, *,internal,   X), "&
+"    59	(BC_1, *,internal,   X), "&
+
+--BSR  IO_14    14
+"    60	(BC_1, *,internal,   X), "&
+"    61	(BC_1, IO_14,	output3,   X,    62, 0, Z), "&
+"    62	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    63	(BC_1, *,internal,   X), "&
+"    64	(BC_1, *,internal,   X), "&
+"    65	(BC_1, *,internal,   X), "&
+
+--BSR  IO_13    13
+"    66	(BC_1, *,internal,   X), "&
+"    67	(BC_1, IO_13,	output3,   X,    68, 0, Z), "&
+"    68	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    69	(BC_1, *,internal,   X), "&
+"    70	(BC_1, *,internal,   X), "&
+"    71	(BC_1, *,internal,   X), "&
+
+--BSR  IO_12    12
+"    72	(BC_1, *,internal,   X), "&
+"    73	(BC_1, IO_12,	output3,   X,    74, 0, Z), "&
+"    74	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"    75	(BC_1, *,internal,   X), "&
+"    76	(BC_1, *,internal,   X), "&
+"    77	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    78	(BC_1, *,internal,   X), "&
+"    79	(BC_1, *,internal,   X), "&
+"    80	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    81	(BC_1, *,internal,   X), "&
+"    82	(BC_1, *,internal,   X), "&
+"    83	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    84	(BC_1, *,internal,   X), "&
+"    85	(BC_1, *,internal,   X), "&
+"    86	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    87	(BC_1, *,internal,   X), "&
+"    88	(BC_1, *,internal,   X), "&
+"    89	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    90	(BC_1, *,internal,   X), "&
+"    91	(BC_1, *,internal,   X), "&
+"    92	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    93	(BC_1, *,internal,   X), "&
+"    94	(BC_1, *,internal,   X), "&
+"    95	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"    96	(BC_1, *,internal,   X), "&
+"    97	(BC_1, *,internal,   X), "&
+"    98	(BC_1, *,internal,   X), "&
+
+--BSR  IO_10    10
+"    99	(BC_1, *,internal,   X), "&
+"   100	(BC_1, IO_10,	output3,   X,   101, 0, Z), "&
+"   101	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   102	(BC_1, *,internal,   X), "&
+"   103	(BC_1, *,internal,   X), "&
+"   104	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   105	(BC_1, *,internal,   X), "&
+"   106	(BC_1, *,internal,   X), "&
+"   107	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   108	(BC_1, *,internal,   X), "&
+"   109	(BC_1, *,internal,   X), "&
+"   110	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   111	(BC_1, *,internal,   X), "&
+"   112	(BC_1, *,internal,   X), "&
+"   113	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   114	(BC_1, *,internal,   X), "&
+"   115	(BC_1, *,internal,   X), "&
+"   116	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   117	(BC_1, *,internal,   X), "&
+"   118	(BC_1, *,internal,   X), "&
+"   119	(BC_1, *,internal,   X), "&
+
+--BSR  IO_9    9
+"   120	(BC_1, *,internal,   X), "&
+"   121	(BC_1, IO_9,	output3,   X,   122, 0, Z), "&
+"   122	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   123	(BC_1, *,internal,   X), "&
+"   124	(BC_1, *,internal,   X), "&
+"   125	(BC_1, *,internal,   X), "&
+
+--BSR  IO_8    8
+"   126	(BC_1, *,internal,   X), "&
+"   127	(BC_1, IO_8,	output3,   X,   128, 0, Z), "&
+"   128	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   129	(BC_1, *,internal,   X), "&
+"   130	(BC_1, *,internal,   X), "&
+"   131	(BC_1, *,internal,   X), "&
+
+--BSR  IO_7    7
+"   132	(BC_1, *,internal,   X), "&
+"   133	(BC_1, IO_7,	output3,   X,   134, 0, Z), "&
+"   134	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   135	(BC_1, *,internal,   X), "&
+"   136	(BC_1, *,internal,   X), "&
+"   137	(BC_1, *,internal,   X), "&
+
+--BSR  IO_4    4
+"   138	(BC_1, *,internal,   X), "&
+"   139	(BC_1, IO_4,	output3,   X,   140, 0, Z), "&
+"   140	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   141	(BC_1, *,internal,   X), "&
+"   142	(BC_1, *,internal,   X), "&
+"   143	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   144	(BC_1, *,internal,   X), "&
+"   145	(BC_1, *,internal,   X), "&
+"   146	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   147	(BC_1, *,internal,   X), "&
+"   148	(BC_1, *,internal,   X), "&
+"   149	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   150	(BC_1, *,internal,   X), "&
+"   151	(BC_1, *,internal,   X), "&
+"   152	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   153	(BC_1, *,internal,   X), "&
+"   154	(BC_1, *,internal,   X), "&
+"   155	(BC_1, *,internal,   X), "&
+
+--BSR  IO_2    2
+"   156	(BC_1, *,internal,   X), "&
+"   157	(BC_1, IO_2,	output3,   X,   158, 0, Z), "&
+"   158	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   159	(BC_1, *,internal,   X), "&
+"   160	(BC_1, *,internal,   X), "&
+"   161	(BC_1, *,internal,   X), "&
+
+--BSR  IO_1    1
+"   162	(BC_1, *,internal,   X), "&
+"   163	(BC_1, IO_1,	output3,   X,   164, 0, Z), "&
+"   164	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   165	(BC_1, *,internal,   X), "&
+"   166	(BC_1, *,internal,   X), "&
+"   167	(BC_1, *,internal,   X), "&
+
+--BSR  IO_84    84
+"   168	(BC_1, *,internal,   X), "&
+"   169	(BC_1, IO_84,	output3,   X,   170, 0, Z), "&
+"   170	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   171	(BC_1, *,internal,   X), "&
+"   172	(BC_1, *,internal,   X), "&
+"   173	(BC_1, *,internal,   X), "&
+
+--BSR  IO_81    81
+"   174	(BC_1, *,internal,   X), "&
+"   175	(BC_1, IO_81,	output3,   X,   176, 0, Z), "&
+"   176	(BC_1, *,	control, 0), "&
+
+--BSR  IO_80    80
+"   177	(BC_1, *,internal,   X), "&
+"   178	(BC_1, IO_80,	output3,   X,   179, 0, Z), "&
+"   179	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   180	(BC_1, *,internal,   X), "&
+"   181	(BC_1, *,internal,   X), "&
+"   182	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   183	(BC_1, *,internal,   X), "&
+"   184	(BC_1, *,internal,   X), "&
+"   185	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   186	(BC_1, *,internal,   X), "&
+"   187	(BC_1, *,internal,   X), "&
+"   188	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   189	(BC_1, *,internal,   X), "&
+"   190	(BC_1, *,internal,   X), "&
+"   191	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   192	(BC_1, *,internal,   X), "&
+"   193	(BC_1, *,internal,   X), "&
+"   194	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   195	(BC_1, *,internal,   X), "&
+"   196	(BC_1, *,internal,   X), "&
+"   197	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   198	(BC_1, *,internal,   X), "&
+"   199	(BC_1, *,internal,   X), "&
+"   200	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   201	(BC_1, *,internal,   X), "&
+"   202	(BC_1, *,internal,   X), "&
+"   203	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   204	(BC_1, *,internal,   X), "&
+"   205	(BC_1, *,internal,   X), "&
+"   206	(BC_1, *,internal,   X), "&
+
+--BSR  IO_77    77
+"   207	(BC_1, *,internal,   X), "&
+"   208	(BC_1, IO_77,	output3,   X,   209, 0, Z), "&
+"   209	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   210	(BC_1, *,internal,   X), "&
+"   211	(BC_1, *,internal,   X), "&
+"   212	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   213	(BC_1, *,internal,   X), "&
+"   214	(BC_1, *,internal,   X), "&
+"   215	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   216	(BC_1, *,internal,   X), "&
+"   217	(BC_1, *,internal,   X), "&
+"   218	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   219	(BC_1, *,internal,   X), "&
+"   220	(BC_1, *,internal,   X), "&
+"   221	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   222	(BC_1, *,internal,   X), "&
+"   223	(BC_1, *,internal,   X), "&
+"   224	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   225	(BC_1, *,internal,   X), "&
+"   226	(BC_1, *,internal,   X), "&
+"   227	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   228	(BC_1, *,internal,   X), "&
+"   229	(BC_1, *,internal,   X), "&
+"   230	(BC_1, *,internal,   X), "&
+
+--BSR  IO_76    76
+"   231	(BC_1, *,internal,   X), "&
+"   232	(BC_1, IO_76,	output3,   X,   233, 0, Z), "&
+"   233	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   234	(BC_1, *,internal,   X), "&
+"   235	(BC_1, *,internal,   X), "&
+"   236	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   237	(BC_1, *,internal,   X), "&
+"   238	(BC_1, *,internal,   X), "&
+"   239	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   240	(BC_1, *,internal,   X), "&
+"   241	(BC_1, *,internal,   X), "&
+"   242	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   243	(BC_1, *,internal,   X), "&
+"   244	(BC_1, *,internal,   X), "&
+"   245	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   246	(BC_1, *,internal,   X), "&
+"   247	(BC_1, *,internal,   X), "&
+"   248	(BC_1, *,internal,   X), "&
+
+--BSR  IO_75    75
+"   249	(BC_1, *,internal,   X), "&
+"   250	(BC_1, IO_75,	output3,   X,   251, 0, Z), "&
+"   251	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   252	(BC_1, *,internal,   X), "&
+"   253	(BC_1, *,internal,   X), "&
+"   254	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   255	(BC_1, *,internal,   X), "&
+"   256	(BC_1, *,internal,   X), "&
+"   257	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   258	(BC_1, *,internal,   X), "&
+"   259	(BC_1, *,internal,   X), "&
+"   260	(BC_1, *,internal,   X), "&
+
+--BSR  IO_74    74
+"   261	(BC_1, *,internal,   X), "&
+"   262	(BC_1, IO_74,	output3,   X,   263, 0, Z), "&
+"   263	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   264	(BC_1, *,internal,   X), "&
+"   265	(BC_1, *,internal,   X), "&
+"   266	(BC_1, *,internal,   X), "&
+
+--BSR  CLKB    73
+"   267	(BC_1, CLKB,	input,   X), "&
+--BSR  CLKA    72
+"   268	(BC_1, CLKA,	input,   X), "&
+--BSR NC
+"   269	(BC_1, *,internal,   X), "&
+"   270	(BC_1, *,internal,   X), "&
+"   271	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   272	(BC_1, *,internal,   X), "&
+"   273	(BC_1, *,internal,   X), "&
+"   274	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   275	(BC_1, *,internal,   X), "&
+"   276	(BC_1, *,internal,   X), "&
+"   277	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   278	(BC_1, *,internal,   X), "&
+"   279	(BC_1, *,internal,   X), "&
+"   280	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   281	(BC_1, *,internal,   X), "&
+"   282	(BC_1, *,internal,   X), "&
+"   283	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   284	(BC_1, *,internal,   X), "&
+"   285	(BC_1, *,internal,   X), "&
+"   286	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   287	(BC_1, *,internal,   X), "&
+"   288	(BC_1, *,internal,   X), "&
+"   289	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   290	(BC_1, *,internal,   X), "&
+"   291	(BC_1, *,internal,   X), "&
+"   292	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   293	(BC_1, *,internal,   X), "&
+"   294	(BC_1, *,internal,   X), "&
+"   295	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   296	(BC_1, *,internal,   X), "&
+"   297	(BC_1, *,internal,   X), "&
+"   298	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   299	(BC_1, *,internal,   X), "&
+"   300	(BC_1, *,internal,   X), "&
+"   301	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   302	(BC_1, *,internal,   X), "&
+"   303	(BC_1, *,internal,   X), "&
+"   304	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   305	(BC_1, *,internal,   X), "&
+"   306	(BC_1, *,internal,   X), "&
+"   307	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   308	(BC_1, *,internal,   X), "&
+"   309	(BC_1, *,internal,   X), "&
+"   310	(BC_1, *,internal,   X), "&
+
+--BSR  IO_71    71
+"   311	(BC_1, *,internal,   X), "&
+"   312	(BC_1, IO_71,	output3,   X,   313, 0, Z), "&
+"   313	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   314	(BC_1, *,internal,   X), "&
+"   315	(BC_1, *,internal,   X), "&
+"   316	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   317	(BC_1, *,internal,   X), "&
+"   318	(BC_1, *,internal,   X), "&
+"   319	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   320	(BC_1, *,internal,   X), "&
+"   321	(BC_1, *,internal,   X), "&
+"   322	(BC_1, *,internal,   X), "&
+
+--BSR  IO_70    70
+"   323	(BC_1, *,internal,   X), "&
+"   324	(BC_1, IO_70,	output3,   X,   325, 0, Z), "&
+"   325	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   326	(BC_1, *,internal,   X), "&
+"   327	(BC_1, *,internal,   X), "&
+"   328	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   329	(BC_1, *,internal,   X), "&
+"   330	(BC_1, *,internal,   X), "&
+"   331	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   332	(BC_1, *,internal,   X), "&
+"   333	(BC_1, *,internal,   X), "&
+"   334	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   335	(BC_1, *,internal,   X), "&
+"   336	(BC_1, *,internal,   X), "&
+"   337	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   338	(BC_1, *,internal,   X), "&
+"   339	(BC_1, *,internal,   X), "&
+"   340	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   341	(BC_1, *,internal,   X), "&
+"   342	(BC_1, *,internal,   X), "&
+"   343	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   344	(BC_1, *,internal,   X), "&
+"   345	(BC_1, *,internal,   X), "&
+"   346	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   347	(BC_1, *,internal,   X), "&
+"   348	(BC_1, *,internal,   X), "&
+"   349	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   350	(BC_1, *,internal,   X), "&
+"   351	(BC_1, *,internal,   X), "&
+"   352	(BC_1, *,internal,   X), "&
+
+--BSR  IO_67    67
+"   353	(BC_1, *,internal,   X), "&
+"   354	(BC_1, IO_67,	output3,   X,   355, 0, Z), "&
+"   355	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   356	(BC_1, *,internal,   X), "&
+"   357	(BC_1, *,internal,   X), "&
+"   358	(BC_1, *,internal,   X), "&
+
+--BSR  IO_66    66
+"   359	(BC_1, *,internal,   X), "&
+"   360	(BC_1, IO_66,	output3,   X,   361, 0, Z), "&
+"   361	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   362	(BC_1, *,internal,   X), "&
+"   363	(BC_1, *,internal,   X), "&
+"   364	(BC_1, *,internal,   X), "&
+
+--BSR  IO_65    65
+"   365	(BC_1, *,internal,   X), "&
+"   366	(BC_1, IO_65,	output3,   X,   367, 0, Z), "&
+"   367	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   368	(BC_1, *,internal,   X), "&
+"   369	(BC_1, *,internal,   X), "&
+"   370	(BC_1, *,internal,   X), "&
+
+--BSR  IO_64    64
+"   371	(BC_1, *,internal,   X), "&
+"   372	(BC_1, IO_64,	output3,   X,   373, 0, Z), "&
+"   373	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   374	(BC_1, *,internal,   X), "&
+"   375	(BC_1, *,internal,   X), "&
+"   376	(BC_1, *,internal,   X), "&
+
+--BSR  IO_63    63
+"   377	(BC_1, *,internal,   X), "&
+"   378	(BC_1, IO_63,	output3,   X,   379, 0, Z), "&
+"   379	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   380	(BC_1, *,internal,   X), "&
+"   381	(BC_1, *,internal,   X), "&
+"   382	(BC_1, *,internal,   X), "&
+
+--BSR  IO_62    62
+"   383	(BC_1, *,internal,   X), "&
+"   384	(BC_1, IO_62,	output3,   X,   385, 0, Z), "&
+"   385	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   386	(BC_1, *,internal,   X), "&
+"   387	(BC_1, *,internal,   X), "&
+"   388	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   389	(BC_1, *,internal,   X), "&
+"   390	(BC_1, *,internal,   X), "&
+"   391	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   392	(BC_1, *,internal,   X), "&
+"   393	(BC_1, *,internal,   X), "&
+"   394	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   395	(BC_1, *,internal,   X), "&
+"   396	(BC_1, *,internal,   X), "&
+"   397	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   398	(BC_1, *,internal,   X), "&
+"   399	(BC_1, *,internal,   X), "&
+"   400	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   401	(BC_1, *,internal,   X), "&
+"   402	(BC_1, *,internal,   X), "&
+"   403	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   404	(BC_1, *,internal,   X), "&
+"   405	(BC_1, *,internal,   X), "&
+"   406	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   407	(BC_1, *,internal,   X), "&
+"   408	(BC_1, *,internal,   X), "&
+"   409	(BC_1, *,internal,   X), "&
+
+--BSR  IO_59    59
+"   410	(BC_1, *,internal,   X), "&
+"   411	(BC_1, IO_59,	output3,   X,   412, 0, Z), "&
+"   412	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   413	(BC_1, *,internal,   X), "&
+"   414	(BC_1, *,internal,   X), "&
+"   415	(BC_1, *,internal,   X), "&
+
+--BSR  IO_56    56
+"   416	(BC_1, *,internal,   X), "&
+"   417	(BC_1, IO_56,	output3,   X,   418, 0, Z), "&
+"   418	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   419	(BC_1, *,internal,   X), "&
+"   420	(BC_1, *,internal,   X), "&
+"   421	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   422	(BC_1, *,internal,   X), "&
+"   423	(BC_1, *,internal,   X), "&
+"   424	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   425	(BC_1, *,internal,   X), "&
+"   426	(BC_1, *,internal,   X), "&
+"   427	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   428	(BC_1, *,internal,   X), "&
+"   429	(BC_1, *,internal,   X), "&
+"   430	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   431	(BC_1, *,internal,   X), "&
+"   432	(BC_1, *,internal,   X), "&
+"   433	(BC_1, *,internal,   X), "&
+
+--BSR  IO_55    55
+"   434	(BC_1, *,internal,   X), "&
+"   435	(BC_1, IO_55,	output3,   X,   436, 0, Z), "&
+"   436	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   437	(BC_1, *,internal,   X), "&
+"   438	(BC_1, *,internal,   X), "&
+"   439	(BC_1, *,internal,   X), "&
+
+--BSR  IO_54    54
+"   440	(BC_1, *,internal,   X), "&
+"   441	(BC_1, IO_54,	output3,   X,   442, 0, Z), "&
+"   442	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   443	(BC_1, *,internal,   X), "&
+"   444	(BC_1, *,internal,   X), "&
+"   445	(BC_1, *,internal,   X), "&
+
+--BSR  IO_53    53
+"   446	(BC_1, *,internal,   X), "&
+"   447	(BC_1, IO_53,	output3,   X,   448, 0, Z), "&
+"   448	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   449	(BC_1, *,internal,   X), "&
+"   450	(BC_1, *,internal,   X), "&
+"   451	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   452	(BC_1, *,internal,   X), "&
+"   453	(BC_1, *,internal,   X), "&
+"   454	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   455	(BC_1, *,internal,   X), "&
+"   456	(BC_1, *,internal,   X), "&
+"   457	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   458	(BC_1, *,internal,   X), "&
+"   459	(BC_1, *,internal,   X), "&
+"   460	(BC_1, *,internal,   X), "&
+
+--BSR  IO_52    52
+"   461	(BC_1, *,internal,   X), "&
+"   462	(BC_1, IO_52,	output3,   X,   463, 0, Z), "&
+"   463	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   464	(BC_1, *,internal,   X), "&
+"   465	(BC_1, *,internal,   X), "&
+"   466	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   467	(BC_1, *,internal,   X), "&
+"   468	(BC_1, *,internal,   X), "&
+"   469	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   470	(BC_1, *,internal,   X), "&
+"   471	(BC_1, *,internal,   X), "&
+"   472	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   473	(BC_1, *,internal,   X), "&
+"   474	(BC_1, *,internal,   X), "&
+"   475	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   476	(BC_1, *,internal,   X), "&
+"   477	(BC_1, *,internal,   X), "&
+"   478	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   479	(BC_1, *,internal,   X), "&
+"   480	(BC_1, *,internal,   X), "&
+"   481	(BC_1, *,internal,   X), "&
+
+--BSR  IO_51    51
+"   482	(BC_1, *,internal,   X), "&
+"   483	(BC_1, IO_51,	output3,   X,   484, 0, Z), "&
+"   484	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   485	(BC_1, *,internal,   X), "&
+"   486	(BC_1, *,internal,   X), "&
+"   487	(BC_1, *,internal,   X), "&
+
+--BSR  IO_50    50
+"   488	(BC_1, *,internal,   X), "&
+"   489	(BC_1, IO_50,	output3,   X,   490, 0, Z), "&
+"   490	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   491	(BC_1, *,internal,   X), "&
+"   492	(BC_1, *,internal,   X), "&
+"   493	(BC_1, *,internal,   X), "&
+
+--BSR  IO_49    49
+"   494	(BC_1, *,internal,   X), "&
+"   495	(BC_1, IO_49,	output3,   X,   496, 0, Z), "&
+"   496	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   497	(BC_1, *,internal,   X), "&
+"   498	(BC_1, *,internal,   X), "&
+"   499	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   500	(BC_1, *,internal,   X), "&
+"   501	(BC_1, *,internal,   X), "&
+"   502	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   503	(BC_1, *,internal,   X), "&
+"   504	(BC_1, *,internal,   X), "&
+"   505	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   506	(BC_1, *,internal,   X), "&
+"   507	(BC_1, *,internal,   X), "&
+"   508	(BC_1, *,internal,   X), "&
+
+--BSR  IO_45    45
+"   509	(BC_1, *,internal,   X), "&
+"   510	(BC_1, IO_45,	output3,   X,   511, 0, Z), "&
+"   511	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   512	(BC_1, *,internal,   X), "&
+"   513	(BC_1, *,internal,   X), "&
+"   514	(BC_1, *,internal,   X), "&
+
+--BSR  IO_44    44
+"   515	(BC_1, *,internal,   X), "&
+"   516	(BC_1, IO_44,	output3,   X,   517, 0, Z), "&
+"   517	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   518	(BC_1, *,internal,   X), "&
+"   519	(BC_1, *,internal,   X), "&
+"   520	(BC_1, *,internal,   X), "&
+
+--BSR  IO_43    43
+"   521	(BC_1, *,internal,   X), "&
+"   522	(BC_1, IO_43,	output3,   X,   523, 0, Z), "&
+"   523	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   524	(BC_1, *,internal,   X), "&
+"   525	(BC_1, *,internal,   X), "&
+"   526	(BC_1, *,internal,   X), "&
+
+--BSR  IO_42    42
+"   527	(BC_1, *,internal,   X), "&
+"   528	(BC_1, IO_42,	output3,   X,   529, 0, Z), "&
+"   529	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   530	(BC_1, *,internal,   X), "&
+"   531	(BC_1, *,internal,   X), "&
+"   532	(BC_1, *,internal,   X), "&
+
+--BSR  IO_41    41
+"   533	(BC_1, *,internal,   X), "&
+"   534	(BC_1, IO_41,	output3,   X,   535, 0, Z), "&
+"   535	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   536	(BC_1, *,internal,   X), "&
+"   537	(BC_1, *,internal,   X), "&
+"   538	(BC_1, *,internal,   X), "&
+
+--BSR  IO_40    40
+"   539	(BC_1, *,internal,   X), "&
+"   540	(BC_1, IO_40,	output3,   X,   541, 0, Z), "&
+"   541	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   542	(BC_1, *,internal,   X), "&
+"   543	(BC_1, *,internal,   X), "&
+"   544	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   545	(BC_1, *,internal,   X), "&
+"   546	(BC_1, *,internal,   X), "&
+"   547	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   548	(BC_1, *,internal,   X), "&
+"   549	(BC_1, *,internal,   X), "&
+"   550	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   551	(BC_1, *,internal,   X), "&
+"   552	(BC_1, *,internal,   X), "&
+"   553	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   554	(BC_1, *,internal,   X), "&
+"   555	(BC_1, *,internal,   X), "&
+"   556	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   557	(BC_1, *,internal,   X), "&
+"   558	(BC_1, *,internal,   X), "&
+"   559	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   560	(BC_1, *,internal,   X), "&
+"   561	(BC_1, *,internal,   X), "&
+"   562	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   563	(BC_1, *,internal,   X), "&
+"   564	(BC_1, *,internal,   X), "&
+"   565	(BC_1, *,internal,   X), "&
+
+--BSR  IO_38    38
+"   566	(BC_1, *,internal,   X), "&
+"   567	(BC_1, IO_38,	output3,   X,   568, 0, Z), "&
+"   568	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   569	(BC_1, *,internal,   X), "&
+"   570	(BC_1, *,internal,   X), "&
+"   571	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   572	(BC_1, *,internal,   X), "&
+"   573	(BC_1, *,internal,   X), "&
+"   574	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   575	(BC_1, *,internal,   X), "&
+"   576	(BC_1, *,internal,   X), "&
+"   577	(BC_1, *,internal,   X), "&
+
+--BSR  IO_35    35
+"   578	(BC_1, *,internal,   X), "&
+"   579	(BC_1, IO_35,	output3,   X,   580, 0, Z), "&
+"   580	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   581	(BC_1, *,internal,   X), "&
+"   582	(BC_1, *,internal,   X), "&
+"   583	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   584	(BC_1, *,internal,   X), "&
+"   585	(BC_1, *,internal,   X), "&
+"   586	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   587	(BC_1, *,internal,   X), "&
+"   588	(BC_1, *,internal,   X), "&
+"   589	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   590	(BC_1, *,internal,   X), "&
+"   591	(BC_1, *,internal,   X), "&
+"   592	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   593	(BC_1, *,internal,   X), "&
+"   594	(BC_1, *,internal,   X), "&
+"   595	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   596	(BC_1, *,internal,   X), "&
+"   597	(BC_1, *,internal,   X), "&
+"   598	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   599	(BC_1, *,internal,   X), "&
+"   600	(BC_1, *,internal,   X), "&
+"   601	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   602	(BC_1, *,internal,   X), "&
+"   603	(BC_1, *,internal,   X), "&
+"   604	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   605	(BC_1, *,internal,   X), "&
+"   606	(BC_1, *,internal,   X), "&
+"   607	(BC_1, *,internal,   X), "&
+
+--BSR  IO_34    34
+"   608	(BC_1, *,internal,   X), "&
+"   609	(BC_1, IO_34,	output3,   X,   610, 0, Z), "&
+"   610	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   611	(BC_1, *,internal,   X), "&
+"   612	(BC_1, *,internal,   X), "&
+"   613	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   614	(BC_1, *,internal,   X), "&
+"   615	(BC_1, *,internal,   X), "&
+"   616	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   617	(BC_1, *,internal,   X), "&
+"   618	(BC_1, *,internal,   X), "&
+"   619	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   620	(BC_1, *,internal,   X), "&
+"   621	(BC_1, *,internal,   X), "&
+"   622	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   623	(BC_1, *,internal,   X), "&
+"   624	(BC_1, *,internal,   X), "&
+"   625	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   626	(BC_1, *,internal,   X), "&
+"   627	(BC_1, *,internal,   X), "&
+"   628	(BC_1, *,internal,   X), "&
+
+--BSR  HCLK    33
+"   629	(BC_1, HCLK,	input,   X), "&
+--BSR NC
+"   630	(BC_1, *,internal,   X), "&
+"   631	(BC_1, *,internal,   X), "&
+"   632	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   633	(BC_1, *,internal,   X), "&
+"   634	(BC_1, *,internal,   X), "&
+"   635	(BC_1, *,internal,   X), "&
+
+--BSR  IO_32    32
+"   636	(BC_1, *,internal,   X), "&
+"   637	(BC_1, IO_32,	output3,   X,   638, 0, Z), "&
+"   638	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   639	(BC_1, *,internal,   X), "&
+"   640	(BC_1, *,internal,   X), "&
+"   641	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   642	(BC_1, *,internal,   X), "&
+"   643	(BC_1, *,internal,   X), "&
+"   644	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   645	(BC_1, *,internal,   X), "&
+"   646	(BC_1, *,internal,   X), "&
+"   647	(BC_1, *,internal,   X), "&
+
+--BSR  IO_31    31
+"   648	(BC_1, *,internal,   X), "&
+"   649	(BC_1, IO_31,	output3,   X,   650, 0, Z), "&
+"   650	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   651	(BC_1, *,internal,   X), "&
+"   652	(BC_1, *,internal,   X), "&
+"   653	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   654	(BC_1, *,internal,   X), "&
+"   655	(BC_1, *,internal,   X), "&
+"   656	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   657	(BC_1, *,internal,   X), "&
+"   658	(BC_1, *,internal,   X), "&
+"   659	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   660	(BC_1, *,internal,   X), "&
+"   661	(BC_1, *,internal,   X), "&
+"   662	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   663	(BC_1, *,internal,   X), "&
+"   664	(BC_1, *,internal,   X), "&
+"   665	(BC_1, *,internal,   X), "&
+
+--BSR  IO_30    30
+"   666	(BC_1, *,internal,   X), "&
+"   667	(BC_1, IO_30,	output3,   X,   668, 0, Z), "&
+"   668	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   669	(BC_1, *,internal,   X), "&
+"   670	(BC_1, *,internal,   X), "&
+"   671	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   672	(BC_1, *,internal,   X), "&
+"   673	(BC_1, *,internal,   X), "&
+"   674	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   675	(BC_1, *,internal,   X), "&
+"   676	(BC_1, *,internal,   X), "&
+"   677	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   678	(BC_1, *,internal,   X), "&
+"   679	(BC_1, *,internal,   X), "&
+"   680	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   681	(BC_1, *,internal,   X), "&
+"   682	(BC_1, *,internal,   X), "&
+"   683	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   684	(BC_1, *,internal,   X), "&
+"   685	(BC_1, *,internal,   X), "&
+"   686	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   687	(BC_1, *,internal,   X), "&
+"   688	(BC_1, *,internal,   X), "&
+"   689	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   690	(BC_1, *,internal,   X), "&
+"   691	(BC_1, *,internal,   X), "&
+"   692	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   693	(BC_1, *,internal,   X), "&
+"   694	(BC_1, *,internal,   X), "&
+"   695	(BC_1, *,internal,   X), "&
+
+--BSR  IO_29    29
+"   696	(BC_1, *,internal,   X), "&
+"   697	(BC_1, IO_29,	output3,   X,   698, 0, Z), "&
+"   698	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   699	(BC_1, *,internal,   X), "&
+"   700	(BC_1, *,internal,   X), "&
+"   701	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   702	(BC_1, *,internal,   X), "&
+"   703	(BC_1, *,internal,   X), "&
+"   704	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   705	(BC_1, *,internal,   X), "&
+"   706	(BC_1, *,internal,   X), "&
+"   707	(BC_1, *,internal,   X), "&
+
+--BSR  IO_28    28
+"   708	(BC_1, *,internal,   X), "&
+"   709	(BC_1, IO_28,	output3,   X,   710, 0, Z), "&
+"   710	(BC_1, *,	control, 0), "&
+
+--BSR NC
+"   711	(BC_1, *,internal,   X), "&
+"   712	(BC_1, *,internal,   X), "&
+"   713	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   714	(BC_1, *,internal,   X), "&
+"   715	(BC_1, *,internal,   X), "&
+"   716	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   717	(BC_1, *,internal,   X), "&
+"   718	(BC_1, *,internal,   X), "&
+"   719	(BC_1, *,internal,   X), "&
+
+--BSR NC
+"   720	(BC_1, *,internal,   X), "&
+"   721	(BC_1, *,internal,   X), "&
+"   722	(BC_1, *,internal,   X), "&
+
+--BSR  IO_25    25
+"   723	(BC_1, *,internal,   X), "&
+"   724	(BC_1, IO_25,	output3,   X,   725, 0, Z), "&
+"   725	(BC_1, *,	control, 0), "&
+
+--BSR  IO_24    24
+"   726	(BC_1, *,internal,   X), "&
+"   727	(BC_1, IO_24,	output3,   X,   728, 0, Z), "&
+"   728	(BC_1, *,	control, 0) ";
+
+end RT54SX32Scqfp84s;

@@ -1,0 +1,194 @@
+-- *****************************************************************************
+
+--   BSDL file for design top_90124
+
+--   Created by Synopsys Version Y-2006.06-SP5-1 (Mar 08, 2007)
+
+--   Designer: Digital Power DWs
+--   Company:  Texas Instruments
+
+--   Date: Tue Aug 26 10:49:46 2008
+
+-- *****************************************************************************
+--   This BSDL file can be used to program the UCD90124 Digital Sequencer.  The
+--   UCD90124 has a standard JTAG port but does not support Boundary Scan.
+--   In order to program the UCD90124, JTAG must first be enabled.  This can be
+--   done by running the device at I2C address 126 or by shorting the address
+--   pins on the device.  Please see the device data sheet for more details.
+-- *****************************************************************************
+
+ entity top_90124 is
+   
+-- This section identifies the default device package selected.
+   
+   generic (PHYSICAL_PIN_MAP: string:= "QFN64");
+   
+-- This section declares all the ports in the design.
+   
+   port ( 
+          TCK       : IN       bit;
+          TDI       : IN       bit;
+          TDO       : OUT      bit;
+          TMS       : IN       bit;
+          nTRST     : IN       bit;
+          RESET_N   : linkage  bit;
+	  TRCK      : linkage  bit;
+          ALERT     : linkage  bit;
+          CONTROLX  : linkage  bit;
+	  GPIO1     : linkage  bit;
+	  GPIO2     : linkage  bit;
+	  GPIO3     : linkage  bit;
+	  GPIO4     : linkage  bit;
+          SCL       : linkage  bit;
+          SDA       : linkage  bit;
+          FPWM1     : linkage  bit;
+          FPWM2     : linkage  bit;
+          FPWM3     : linkage  bit;
+          FPWM4     : linkage  bit;
+          FPWM5     : linkage  bit;
+	  FPWM6     : linkage  bit;
+	  FPWM7     : linkage  bit;
+	  FPWM8     : linkage  bit;
+ 	  GPIO13    : linkage  bit;
+	  GPIO14    : linkage  bit;
+	  GPIO15    : linkage  bit;
+	  PWM1      : linkage  bit;
+	  PWM2      : linkage  bit;
+ 	  GPIO16    : linkage  bit;
+	  GPIO17    : linkage  bit;
+  	  GPIO18    : linkage  bit;
+   	  PWM3      : linkage  bit;
+	  PWM4      : linkage  bit);
+   
+   use STD_1149_1_2001.all;
+   
+   attribute COMPONENT_CONFORMANCE of top_90124: entity is "STD_1149_1_2001";
+   
+   attribute PIN_MAP of top_90124: entity is PHYSICAL_PIN_MAP;
+   
+-- This section specifies the pin map for each port. This information is 
+-- extracted from the port-to-pin map file that was read in using the 
+-- "read_pin_map" command.
+   
+     constant QFN64: PIN_MAP_STRING := 
+	"RESET_N : P9," &
+	"TRCK : P10," &
+	"GPIO1 : P11," &
+	"GPIO2 : P12," &
+	"GPIO3 : P13," &
+	"GPIO4 : P14," &
+	"SCL : P15," &
+	"SDA : P16," &
+	"FPWM1 : P17," &
+	"FPWM2 : P18," &
+	"FPWM3 : P19," &
+	"FPWM4 : P20," &
+	"FPWM5 : P21," &
+	"FPWM6 : P22," &
+	"FPWM7 : P23," &
+	"FPWM8 : P24," &
+	"GPIO13 : P25," &
+	"ALERT : P27," &
+	"CONTROLX : P28," &
+	"GPIO14 : P29," &
+	"GPIO15 : P30," &
+	"PWM1 : P31," &
+	"PWM2 : P32," &
+	"GPIO16 : P33," &
+	"GPIO17 : P34," &
+	"GPIO18 : P35," &
+	"TCK : P36," &
+	"TDO : P37," &
+	"TDI : P38," &
+	"TMS : P39," &
+	"nTRST : P40," &
+	"PWM4 : P41," &
+	"PWM3 : P42";
+ 
+-- This section specifies the TAP ports. For the TAP TCK port, the parameters in 
+-- the brackets are:
+--        First Field : Maximum  TCK frequency.
+--        Second Field: Allowable states TCK may be stopped in.
+   
+   attribute TAP_SCAN_CLOCK of TCK  : signal is (10.0e6, BOTH);
+   attribute TAP_SCAN_IN    of TDI  : signal is true;
+   attribute TAP_SCAN_MODE  of TMS  : signal is true;
+   attribute TAP_SCAN_OUT   of TDO  : signal is true;
+   attribute TAP_SCAN_RESET of nTRST: signal is true;
+   
+-- Specifies the number of bits in the instruction register.
+   
+   attribute INSTRUCTION_LENGTH of top_90124: entity is 4;
+   
+-- Specifies the boundary-scan instructions implemented in the design and their 
+-- opcodes.
+   
+   attribute INSTRUCTION_OPCODE of top_90124: entity is 
+     "BYPASS  (1111)," &
+     "INTEST  (1100)," &
+     "EXTEST  (0000)," &
+     "SAMPLE  (0010)," &
+     "PRELOAD (0010)," &     
+     "IDCODE  (1110)";
+   
+-- Specifies the bit pattern that is loaded into the instruction register when 
+-- the TAP controller passes through the Capture-IR state. The standard mandates 
+-- that the two LSBs must be "01". The remaining bits are design specific.
+   
+   attribute INSTRUCTION_CAPTURE of top_90124: entity is "0001";
+   
+-- Specifies the bit pattern that is loaded into the DEVICE_ID register during 
+-- the IDCODE instruction when the TAP controller passes through the Capture-DR 
+-- state.
+   
+   attribute IDCODE_REGISTER of top_90124: entity is 
+     "0100" &                  
+ -- 4-bit version number
+     "1111000111110000" &      
+ -- 16-bit part number
+     "11110000111" &           
+ -- 11-bit identity of the manufacturer
+     "1";                      
+ -- Required by IEEE Std 1149.1
+   
+-- This section specifies the test data register placed between TDI and TDO for 
+-- each implemented instruction.
+   
+   attribute REGISTER_ACCESS of top_90124: entity is 
+        "BYPASS    (BYPASS)," &
+        "BOUNDARY  (INTEST)," &
+        "BOUNDARY  (EXTEST)," &
+        "DEVICE_ID (IDCODE)";
+   
+-- Specifies the length of the boundary scan register.
+   
+   attribute BOUNDARY_LENGTH of top_90124: entity is 1;
+   
+-- The following list specifies the characteristics of each cell in the boundary 
+-- scan register from TDI to TDO. The following is a description of the label 
+-- fields:
+--      num     : Is the cell number.
+--      cell    : Is the cell type as defined by the standard.
+--      port    : Is the design port name. Control cells do not have a port 
+--                name.
+--      function: Is the function of the cell as defined by the standard. Is one 
+--                of input, output2, output3, bidir, control or controlr.
+--      safe    : Specifies the value that the BSR cell should be loaded with 
+--                for safe operation when the software might otherwise choose a 
+--                random value.
+--      ccell   : The control cell number. Specifies the control cell that 
+--                drives the output enable for this port.
+--      disval  : Specifies the value that is loaded into the control cell to 
+--                disable the output enable for the corresponding port.
+--      rslt    : Resulting state. Shows the state of the driver when it is 
+--                disabled.
+   
+   attribute BOUNDARY_REGISTER of top_90124: entity is 
+--     
+--    num   cell   port       function      safe  [ccell  disval  rslt]
+--     
+     "0    (BC_2,  *,         internal,     X)                         ";
+ 
+ end top_90124;
+
+--

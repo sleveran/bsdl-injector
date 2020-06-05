@@ -1,0 +1,1098 @@
+
+--------------------------------------------------------------------------------
+--
+-- File Type: BSDL description for top level entity MT90502AG
+-- Date Created: Wed Dec  8 18:14:52 1999
+-- Tool Version: BSDArchitect v8.6_4.5  Wed Jun  2 01:14:34 PDT 1999
+--
+--------------------------------------------------------------------------------
+
+
+entity MT90502AG is
+
+  generic(PHYSICAL_PIN_MAP : string := "BGA_PACKAGE");
+
+port   ( rxc_clk : inout bit;
+         txc_clk : inout bit;
+         rxb_clk : inout bit;
+         txb_clk : inout bit;
+         rxa_clk : inout bit;
+         txa_clk : inout bit;
+         ct_mc : inout bit;
+         ct_netref2 : inout bit;
+         ct_netref1 : inout bit;
+         ct_frame_b : inout bit;
+         ct_frame_a : inout bit;
+         ct_c8_b : inout bit;
+         ct_c8_a : inout bit;
+         cpu_rdy_ndtack : inout bit;
+         cpu_cs : inout bit;
+         cpu_a_das : inout bit;
+         rxb_led : inout bit;
+         txb_led : inout bit;
+         rxa_led : inout bit;
+         txa_led : inout bit;
+         rxc_enb : out bit;
+         txc_enb : out bit;
+         txc_soc : out bit;
+         txc_prty : out bit;
+         rxb_enb : out bit;
+         txb_enb : out bit;
+         txb_soc : out bit;
+         txb_prty : out bit;
+         rxa_enb : out bit;
+         txa_enb : out bit;
+         txa_soc : out bit;
+         txa_prty : out bit;
+         frcomp : out bit;
+         c4 : out bit;
+         c2 : out bit;
+         c16n : out bit;
+         c16p : out bit;
+         sclkx2 : out bit;
+         sclk : out bit;
+         memb_we : out bit;
+         memb_ras : out bit;
+         memb_cas : out bit;
+         memb_rw : out bit;
+         mema_we : out bit;
+         mema_ras : out bit;
+         mema_cas : out bit;
+         mema_rw : out bit;
+         crpll_clk_o : out bit;
+         memb_bws_1 : out bit;
+         memb_bws_0 : out bit;
+         memb_cs_1 : out bit;
+         memb_cs_0 : out bit;
+         mema_p_1 : inout bit;
+         mema_p_0 : inout bit;
+         txa_d7 : out bit;
+         txa_d6 : out bit;
+         txa_d5 : out bit;
+         txa_d4 : out bit;
+         txa_d3 : out bit;
+         txa_d2 : out bit;
+         txa_d1 : out bit;
+         txa_d0 : out bit;
+         interrupt2 : out bit;
+         interrupt1 : out bit;
+         cpu_d15 : inout bit;
+         cpu_d14 : inout bit;
+         cpu_d13 : inout bit;
+         cpu_d12 : inout bit;
+         cpu_d11 : inout bit;
+         cpu_d10 : inout bit;
+         cpu_d9 : inout bit;
+         cpu_d8 : inout bit;
+         cpu_d7 : inout bit;
+         cpu_d6 : inout bit;
+         cpu_d5 : inout bit;
+         cpu_d4 : inout bit;
+         cpu_d3 : inout bit;
+         cpu_d2 : inout bit;
+         cpu_d1 : inout bit;
+         cpu_d0 : inout bit;
+         memb_d15 : inout bit;
+         memb_d14 : inout bit;
+         memb_d13 : inout bit;
+         memb_d12 : inout bit;
+         memb_d11 : inout bit;
+         memb_d10 : inout bit;
+         memb_d9 : inout bit;
+         memb_d8 : inout bit;
+         memb_d7 : inout bit;
+         memb_d6 : inout bit;
+         memb_d5 : inout bit;
+         memb_d4 : inout bit;
+         memb_d3 : inout bit;
+         memb_d2 : inout bit;
+         memb_d1 : inout bit;
+         memb_d0 : inout bit;
+         mema_a18 : out bit;
+         mema_a17 : out bit;
+         mema_a16 : out bit;
+         mema_a15 : out bit;
+         mema_a14 : out bit;
+         mema_a13 : out bit;
+         mema_a12 : out bit;
+         mema_a11 : out bit;
+         mema_a10 : out bit;
+         mema_a9 : out bit;
+         mema_a8 : out bit;
+         mema_a7 : out bit;
+         mema_a6 : out bit;
+         mema_a5 : out bit;
+         mema_a4 : out bit;
+         mema_a3 : out bit;
+         mema_a2 : out bit;
+         mema_a1 : out bit;
+         mema_a0 : out bit;
+         gpio_7 : inout bit;
+         gpio_6 : inout bit;
+         gpio_5 : inout bit;
+         gpio_4 : inout bit;
+         gpio_3 : inout bit;
+         gpio_2 : inout bit;
+         gpio_1 : inout bit;
+         gpio_0 : inout bit;
+         txc_d7 : out bit;
+         txc_d6 : out bit;
+         txc_d5 : out bit;
+         txc_d4 : out bit;
+         txc_d3 : out bit;
+         txc_d2 : out bit;
+         txc_d1 : out bit;
+         txc_d0 : out bit;
+         txb_d7 : out bit;
+         txb_d6 : out bit;
+         txb_d5 : out bit;
+         txb_d4 : out bit;
+         txb_d3 : out bit;
+         txb_d2 : out bit;
+         txb_d1 : out bit;
+         txb_d0 : out bit;
+         ct_d31 : inout bit;
+         ct_d30 : inout bit;
+         ct_d29 : inout bit;
+         ct_d28 : inout bit;
+         ct_d27 : inout bit;
+         ct_d26 : inout bit;
+         ct_d25 : inout bit;
+         ct_d24 : inout bit;
+         ct_d23 : inout bit;
+         ct_d22 : inout bit;
+         ct_d21 : inout bit;
+         ct_d20 : inout bit;
+         ct_d19 : inout bit;
+         ct_d18 : inout bit;
+         ct_d17 : inout bit;
+         ct_d16 : inout bit;
+         ct_d15 : inout bit;
+         ct_d14 : inout bit;
+         ct_d13 : inout bit;
+         ct_d12 : inout bit;
+         ct_d11 : inout bit;
+         ct_d10 : inout bit;
+         ct_d9 : inout bit;
+         ct_d8 : inout bit;
+         ct_d7 : inout bit;
+         ct_d6 : inout bit;
+         ct_d5 : inout bit;
+         ct_d4 : inout bit;
+         ct_d3 : inout bit;
+         ct_d2 : inout bit;
+         ct_d1 : inout bit;
+         ct_d0 : inout bit;
+         memb_p_1 : inout bit;
+         memb_p_0 : inout bit;
+         mema_bws_1 : out bit;
+         mema_bws_0 : out bit;
+         memb_a18 : out bit;
+         memb_a17 : out bit;
+         memb_a16 : out bit;
+         memb_a15 : out bit;
+         memb_a14 : out bit;
+         memb_a13 : out bit;
+         memb_a12 : out bit;
+         memb_a11 : out bit;
+         memb_a10 : out bit;
+         memb_a9 : out bit;
+         memb_a8 : out bit;
+         memb_a7 : out bit;
+         memb_a6 : out bit;
+         memb_a5 : out bit;
+         memb_a4 : out bit;
+         memb_a3 : out bit;
+         memb_a2 : out bit;
+         memb_a1 : out bit;
+         memb_a0 : out bit;
+         mema_d15 : inout bit;
+         mema_d14 : inout bit;
+         mema_d13 : inout bit;
+         mema_d12 : inout bit;
+         mema_d11 : inout bit;
+         mema_d10 : inout bit;
+         mema_d9 : inout bit;
+         mema_d8 : inout bit;
+         mema_d7 : inout bit;
+         mema_d6 : inout bit;
+         mema_d5 : inout bit;
+         mema_d4 : inout bit;
+         mema_d3 : inout bit;
+         mema_d2 : inout bit;
+         mema_d1 : inout bit;
+         mema_d0 : inout bit;
+         mema_cs_1 : out bit;
+         mema_cs_0 : out bit;
+         cpu_mode_0 : in bit;
+         rxc_clav : in bit;
+         rxc_soc : in bit;
+         rxc_prty : in bit;
+         txc_clav : in bit;
+         rxb_clav : in bit;
+         rxb_soc : in bit;
+         rxb_prty : in bit;
+         txb_clav : in bit;
+         rxa_clav : in bit;
+         rxa_soc : in bit;
+         rxa_prty : in bit;
+         txa_clav : in bit;
+         cpu_ale : in bit;
+         cpu_rdds : in bit;
+         cpu_wr_rw : in bit;
+         rxb_alarm : in bit;
+         rxa_alarm : in bit;
+         mem_clk_i : in bit;
+         crpll_clk_i : in bit;
+         pll_clk : in bit;
+         nreset : in bit;
+         mclk_src : in bit;
+         rxa_d7 : in bit;
+         rxa_d6 : in bit;
+         rxa_d5 : in bit;
+         rxa_d4 : in bit;
+         rxa_d3 : in bit;
+         rxa_d2 : in bit;
+         rxa_d1 : in bit;
+         rxa_d0 : in bit;
+         cpu_a_14 : in bit;
+         cpu_a_13 : in bit;
+         cpu_a_12 : in bit;
+         cpu_a_11 : in bit;
+         cpu_a_10 : in bit;
+         cpu_a_9 : in bit;
+         cpu_a_8 : in bit;
+         cpu_a_7 : in bit;
+         cpu_a_6 : in bit;
+         cpu_a_5 : in bit;
+         cpu_a_4 : in bit;
+         cpu_a_3 : in bit;
+         cpu_a_2 : in bit;
+         cpu_a_1 : in bit;
+         cpu_a_0 : in bit;
+         rxb_d7 : in bit;
+         rxb_d6 : in bit;
+         rxb_d5 : in bit;
+         rxb_d4 : in bit;
+         rxb_d3 : in bit;
+         rxb_d2 : in bit;
+         rxb_d1 : in bit;
+         rxb_d0 : in bit;
+         rxc_d7 : in bit;
+         rxc_d6 : in bit;
+         rxc_d5 : in bit;
+         rxc_d4 : in bit;
+         rxc_d3 : in bit;
+         rxc_d2 : in bit;
+         rxc_d1 : in bit;
+         rxc_d0 : in bit;
+         cpu_mode_3 : in bit;
+         cpu_mode_2 : in bit;
+         cpu_mode_1 : in bit;
+         tms : in bit;
+         tck : in bit;
+         tdi : in bit;
+         tdo : out bit;
+         trst : in bit;
+         dis_compress : in bit;
+         dis_sss : in bit;
+         dis_type1 : in bit;
+         dis_type0 : in bit;
+         dis_capacity1 : in bit;
+         dis_capacity0 : in bit;
+         vdd : linkage bit_vector (47 downto 0);
+         vss : linkage bit_vector (75 downto 0);
+         nc : linkage bit_vector (43 downto 0)
+
+);
+
+  use STD_1149_1_1994.all;
+
+  attribute COMPONENT_CONFORMANCE of MT90502AG : entity is
+        "STD_1149_1_1993";
+
+  attribute PIN_MAP of MT90502AG : entity is PHYSICAL_PIN_MAP;
+  constant BGA_PACKAGE : PIN_MAP_STRING :=
+    "rxc_clk:L1," &
+    "txc_clk:J4," &
+    "rxb_clk:E4," &
+    "txb_clk:D5," &
+    "rxa_clk:A9," &
+    "txa_clk:D12," &
+    "ct_mc:D18," &
+    "ct_netref2:A16," &
+    "ct_netref1:A17," &
+    "ct_frame_b:B22," &
+    "ct_frame_a:A24," &
+    "ct_c8_b:A21," &
+    "ct_c8_a:A22," &
+    "cpu_rdy_ndtack:U2," &
+    "cpu_cs:U3," &
+    "cpu_a_das:T4," &
+    "rxb_led:C17," &
+    "txb_led:D17," &
+    "rxa_led:A19," &
+    "txa_led:C21," &
+    "rxc_enb:L2," &
+    "txc_enb:G1," &
+    "txc_soc:D2," &
+    "txc_prty:D1," &
+    "rxb_enb:D3," &
+    "txb_enb:A6," &
+    "txb_soc:D8," &
+    "txb_prty:C8," &
+    "rxa_enb:B9," &
+    "txa_enb:A13," &
+    "txa_soc:D14," &
+    "txa_prty:D15," &
+    "frcomp:B21," &
+    "c4:C19," &
+    "c2:D20," &
+    "c16n:A18," &
+    "c16p:C18," &
+    "sclkx2:C20," &
+    "sclk:B20," &
+    "memb_we:AF21," &
+    "memb_ras:AD20," &
+    "memb_cas:AC20," &
+    "memb_rw:Y25," &
+    "mema_we:AF12," &
+    "mema_ras:AD12," &
+    "mema_cas:AE12," &
+    "mema_rw:AE5," &
+    "crpll_clk_o:AC5," &
+    "memb_bws_1:W24," &
+    "memb_bws_0:Y26," &
+    "memb_cs_1:W25," &
+    "memb_cs_0:W26," &
+    "mema_p_1:AD11," &
+    "mema_p_0:AF7," &
+    "txa_d7:C15," &
+    "txa_d6:B15," &
+    "txa_d5:A15," &
+    "txa_d4:C14," &
+    "txa_d3:B14," &
+    "txa_d2:A14," &
+    "txa_d1:D13," &
+    "txa_d0:C13," &
+    "interrupt2:AC1," &
+    "interrupt1:AC2," &
+    "cpu_d15:T3," &
+    "cpu_d14:R1," &
+    "cpu_d13:R2," &
+    "cpu_d12:R3," &
+    "cpu_d11:R4," &
+    "cpu_d10:P1," &
+    "cpu_d9:P2," &
+    "cpu_d8:P3," &
+    "cpu_d7:P4," &
+    "cpu_d6:N1," &
+    "cpu_d5:N2," &
+    "cpu_d4:N3," &
+    "cpu_d3:N4," &
+    "cpu_d2:M1," &
+    "cpu_d1:M2," &
+    "cpu_d0:M3," &
+    "memb_d15:AE22," &
+    "memb_d14:AD22," &
+    "memb_d13:AF24," &
+    "memb_d12:AE24," &
+    "memb_d11:AD25," &
+    "memb_d10:AC25," &
+    "memb_d9:AB24," &
+    "memb_d8:AB26," &
+    "memb_d7:AB25," &
+    "memb_d6:AC26," &
+    "memb_d5:AD26," &
+    "memb_d4:AE26," &
+    "memb_d3:AE23," &
+    "memb_d2:AF23," &
+    "memb_d1:AD21," &
+    "memb_d0:AE21," &
+    "mema_a18:AD6," &
+    "mema_a17:AE6," &
+    "mema_a16:AF6," &
+    "mema_a15:AD5," &
+    "mema_a14:AF3," &
+    "mema_a13:AC12," &
+    "mema_a12:AE13," &
+    "mema_a11:AF13," &
+    "mema_a10:AF14," &
+    "mema_a9:AD13," &
+    "mema_a8:AE14," &
+    "mema_a7:AC14," &
+    "mema_a6:AE15," &
+    "mema_a5:AC15," &
+    "mema_a4:AE16," &
+    "mema_a3:AF16," &
+    "mema_a2:AD15," &
+    "mema_a1:AF15," &
+    "mema_a0:AD14," &
+    "gpio_7:AF26," &
+    "gpio_6:AC24," &
+    "gpio_5:AB23," &
+    "gpio_4:AA23," &
+    "gpio_3:T24," &
+    "gpio_2:R26," &
+    "gpio_1:N23," &
+    "gpio_0:M23," &
+    "txc_d7:E3," &
+    "txc_d6:E2," &
+    "txc_d5:E1," &
+    "txc_d4:F3," &
+    "txc_d3:F2," &
+    "txc_d2:F1," &
+    "txc_d1:G4," &
+    "txc_d0:G3," &
+    "txb_d7:B8," &
+    "txb_d6:A8," &
+    "txb_d5:D7," &
+    "txb_d4:C7," &
+    "txb_d3:B7," &
+    "txb_d2:A7," &
+    "txb_d1:D6," &
+    "txb_d0:C6," &
+    "ct_d31:C25," &
+    "ct_d30:D25," &
+    "ct_d29:E26," &
+    "ct_d28:E25," &
+    "ct_d27:E24," &
+    "ct_d26:F26," &
+    "ct_d25:F24," &
+    "ct_d24:G26," &
+    "ct_d23:G25," &
+    "ct_d22:G24," &
+    "ct_d21:G23," &
+    "ct_d20:H24," &
+    "ct_d19:J26," &
+    "ct_d18:J25," &
+    "ct_d17:K26," &
+    "ct_d16:K24," &
+    "ct_d15:L23," &
+    "ct_d14:L24," &
+    "ct_d13:M25," &
+    "ct_d12:M24," &
+    "ct_d11:N25," &
+    "ct_d10:P24," &
+    "ct_d9:P23," &
+    "ct_d8:R24," &
+    "ct_d7:R25," &
+    "ct_d6:T26," &
+    "ct_d5:U23," &
+    "ct_d4:U26," &
+    "ct_d3:V23," &
+    "ct_d2:V24," &
+    "ct_d1:V26," &
+    "ct_d0:W23," &
+    "memb_p_1:AF22," &
+    "memb_p_0:AA24," &
+    "mema_bws_1:AE4," &
+    "mema_bws_0:AF5," &
+    "memb_a18:AA25," &
+    "memb_a17:AA26," &
+    "memb_a16:Y23," &
+    "memb_a15:Y24," &
+    "memb_a14:AC21," &
+    "memb_a13:AE20," &
+    "memb_a12:AC19," &
+    "memb_a11:AF20," &
+    "memb_a10:AE19," &
+    "memb_a9:AD19," &
+    "memb_a8:AF19," &
+    "memb_a7:AE18," &
+    "memb_a6:AC17," &
+    "memb_a5:AE17," &
+    "memb_a4:AD16," &
+    "memb_a3:AF17," &
+    "memb_a2:AD17," &
+    "memb_a1:AF18," &
+    "memb_a0:AD18," &
+    "mema_d15:AF11," &
+    "mema_d14:AD10," &
+    "mema_d13:AF10," &
+    "mema_d12:AD9," &
+    "mema_d11:AF9," &
+    "mema_d10:AE8," &
+    "mema_d9:AC7," &
+    "mema_d8:AE7," &
+    "mema_d7:AD7," &
+    "mema_d6:AF8," &
+    "mema_d5:AD8," &
+    "mema_d4:AE9," &
+    "mema_d3:AC9," &
+    "mema_d2:AE10," &
+    "mema_d1:AC10," &
+    "mema_d0:AE11," &
+    "mema_cs_1:AF4," &
+    "mema_cs_0:AE3," &
+    "cpu_mode_0:J23," &
+    "rxc_clav:L3," &
+    "rxc_soc:H3," &
+    "rxc_prty:H2," &
+    "txc_clav:G2," &
+    "rxb_clav:C1," &
+    "rxb_soc:A4," &
+    "rxb_prty:B4," &
+    "txb_clav:B6," &
+    "rxa_clav:C9," &
+    "rxa_soc:C12," &
+    "rxa_prty:B12," &
+    "txa_clav:B13," &
+    "cpu_ale:U4," &
+    "cpu_rdds:T1," &
+    "cpu_wr_rw:T2," &
+    "rxb_alarm:B17," &
+    "rxa_alarm:D21," &
+    "mem_clk_i:AF2," &
+    "crpll_clk_i:AF1," &
+    "pll_clk:AB2," &
+    "nreset:AA1," &
+    "mclk_src:AC3," &
+    "rxa_d7:A12," &
+    "rxa_d6:C11," &
+    "rxa_d5:B11," &
+    "rxa_d4:A11," &
+    "rxa_d3:D10," &
+    "rxa_d2:C10," &
+    "rxa_d1:B10," &
+    "rxa_d0:A10," &
+    "cpu_a_14:AA3," &
+    "cpu_a_13:AA4," &
+    "cpu_a_12:Y1," &
+    "cpu_a_11:Y2," &
+    "cpu_a_10:Y3," &
+    "cpu_a_9:Y4," &
+    "cpu_a_8:W1," &
+    "cpu_a_7:W2," &
+    "cpu_a_6:W3," &
+    "cpu_a_5:W4," &
+    "cpu_a_4:V1," &
+    "cpu_a_3:V2," &
+    "cpu_a_2:V3," &
+    "cpu_a_1:V4," &
+    "cpu_a_0:U1," &
+    "rxb_d7:A3," &
+    "rxb_d6:B3," &
+    "rxb_d5:B2," &
+    "rxb_d4:A2," &
+    "rxb_d3:D4," &
+    "rxb_d2:A1," &
+    "rxb_d1:B1," &
+    "rxb_d0:C2," &
+    "rxc_d7:H1," &
+    "rxc_d6:J3," &
+    "rxc_d5:J2," &
+    "rxc_d4:J1," &
+    "rxc_d3:K4," &
+    "rxc_d2:K3," &
+    "rxc_d1:K2," &
+    "rxc_d0:K1," &
+    "cpu_mode_3:F25," &
+    "cpu_mode_2:F23," &
+    "cpu_mode_1:J24," &
+    "tms:C23," &
+    "tck:D22," &
+    "tdi:A25," &
+    "tdo:A23," &
+    "trst:A26," &
+    "dis_compress:M4," &
+    "dis_sss:L4," &
+    "dis_type1:F4," &
+    "dis_type0:H4," &
+    "dis_capacity1:D11," &
+    "dis_capacity0:D9," &
+    "vdd: (C3,C24,D23,E7,E8,E11,E12,E15,E16,E19,E20,G5,G22," &
+          "H5,H22,L5,L22,M5,M22,R5,R22,T5,T22,W5,W22,Y5,Y22," &
+          "AB7,AB8,AB11,AB12,AB15,AB16,AB19,AB20,AC4,AC23,AD3," &
+          "AD24,B25,D24,H26,L26,P25,U24,A5,AB3,AE2), " &
+    "vss: (E5,E6,E9,E10,E13,E14,E17,E18,E21,E22,F5,F22,J5,J22," &
+          "K5,K22,L11,L12,L13,L14,L15,L16,M11,M12,M13,M14,M15,M16," &
+          "N5,N11,N12,N13,N14,N15,N16,N22,P5,P11,P12,P13,P14,P15,P16," &
+          "P22,R11,R12,R13,R14,R15,R16,T11,T12,T13,T14,T15,T16,U5," &
+          "U22,V5,V22,AA5,AA22,AB5,AB6,AB9,AB10,AB13,AB14,AB17,AB18," &
+          "AB21,AB22,AF25,B5,AB1,AE1), " &
+    "nc:  (A20,B18,B19,B23,B24,B26,C22,C26,D16,D19,D26,E23,H23,H25,K23," &
+          "K25,L25,M26,N24,N26,P26,R23,T23,T25,U25,V25,AC13,AC16,AC18," &
+          "AC22,AD23,AE25,AD4,C16,AC6,B16,AC11,AC8,AB4,AD2,C4,AA2,AD1,C5)"; 
+  
+
+  attribute TAP_SCAN_IN of TDI : signal is true;
+  attribute TAP_SCAN_MODE of TMS : signal is true;
+  attribute TAP_SCAN_OUT of TDO : signal is true;
+  attribute TAP_SCAN_CLOCK of TCK : signal is (20.0e6,BOTH);
+  attribute TAP_SCAN_RESET of TRST : signal is true;
+
+  attribute INSTRUCTION_LENGTH of MT90502AG : entity is 4;
+  attribute INSTRUCTION_OPCODE of MT90502AG : entity is
+    "idcode (1010)," &
+    "extest (0000)," &
+    "sample (0001)," &
+    "bypass (1111)," &
+    "runbist4 (1000)," &
+    "runbist3 (0101)," &
+    "runbist2 (0100)," &
+    "runbist1 (0011)";
+
+  attribute INSTRUCTION_CAPTURE of MT90502AG : entity is "0001";
+
+  attribute IDCODE_REGISTER of MT90502AG : entity is
+        "0000" &                -- version
+        "0110110000001011" &    -- part number
+        "00000110111" &         -- manufacturer id
+        "1";
+
+  attribute REGISTER_ACCESS of MT90502AG : entity is
+    "boundary (extest, sample)," &
+    "bypass (bypass)," &
+    "device_id (idcode)," &
+    "bist_reg4[4] (runbist4)," &
+    "bist_reg3[4] (runbist3)," &
+    "bist_reg2[4] (runbist2)," &
+    "bist_reg1[4] (runbist1)";
+
+  attribute BOUNDARY_LENGTH of MT90502AG : entity is 440;
+
+  attribute BOUNDARY_REGISTER of MT90502AG : entity is
+-- num    cell                  function safe   ccell   disval rslt
+    "0   (BC_7, ct_frame_a    , bidir  , X,         1,  1,     Z)," &
+    "1   (BC_2,          *    , control, 1)," &
+    "2   (BC_7, ct_c8_a    , bidir  , X,         3,  1,     Z)," &
+    "3   (BC_2,          *    , control, 1)," &
+    "4   (BC_7, ct_c8_b    , bidir  , X,         5,  1,     Z)," &
+    "5   (BC_2,          *    , control, 1)," &
+    "6   (BC_7, ct_frame_b    , bidir  , X,         7,  1,     Z)," &
+    "7   (BC_2,          *    , control, 1)," &
+    "8   (BC_1, frcomp    , output3, X,         9,  1,     Z)," &
+    "9   (BC_5,          *    , control, 1)," &
+    "10  (BC_7, txa_led    , bidir  , X,        11,  1,     Z)," &
+    "11  (BC_2,          *    , control, 1)," &
+    "12  (BC_2, rxa_alarm    , input  , X)," &
+    "13  (BC_1,   sclk    , output3, X,        14,  1,     Z)," &
+    "14  (BC_5,          *    , control, 1)," &
+    "15  (BC_1, sclkx2    , output3, X,        16,  1,     Z)," &
+    "16  (BC_5,          *    , control, 1)," &
+    "17  (BC_1,     c2    , output3, X,        18,  1,     Z)," &
+    "18  (BC_5,          *    , control, 1)," &
+    "19  (BC_7, rxa_led    , bidir  , X,        20,  1,     Z)," &
+    "20  (BC_2,          *    , control, 1)," &
+    "21  (BC_1,     c4    , output3, X,        22,  1,     Z)," &
+    "22  (BC_5,          *    , control, 1)," &
+    "23  (BC_1,   c16n    , output3, X,        24,  1,     Z)," &
+    "24  (BC_5,          *    , control, 1)," &
+    "25  (BC_1,   c16p    , output3, X,        26,  1,     Z)," &
+    "26  (BC_5,          *    , control, 1)," &
+    "27  (BC_7,  ct_mc    , bidir  , X,        28,  1,     Z)," &
+    "28  (BC_2,          *    , control, 1)," &
+    "29  (BC_7, ct_netref1    , bidir  , X,        30,  1,     Z)," &
+    "30  (BC_2,          *    , control, 1)," &
+    "31  (BC_2, rxb_alarm    , input  , X)," &
+    "32  (BC_7, rxb_led    , bidir  , X,        33,  1,     Z)," &
+    "33  (BC_2,          *    , control, 1)," &
+    "34  (BC_7, txb_led    , bidir  , X,        35,  1,     Z)," &
+    "35  (BC_2,          *    , control, 1)," &
+    "36  (BC_7, ct_netref2    , bidir  , X,        37,  1,     Z)," &
+    "37  (BC_2,          *    , control, 1)," &
+    "38  (BC_1, txa_d5    , output3, X,        39,  1,     Z)," &
+    "39  (BC_5,          *    , control, 1)," &
+    "40  (BC_1, txa_d6    , output3, X,        41,  1,     Z)," &
+    "41  (BC_5,          *    , control, 1)," &
+    "42  (BC_1, txa_prty    , output3, X,        43,  1,     Z)," &
+    "43  (BC_5,          *    , control, 1)," &
+    "44  (BC_1, txa_d7    , output3, X,        45,  1,     Z)," &
+    "45  (BC_5,          *    , control, 1)," &
+    "46  (BC_1, txa_soc    , output3, X,        47,  1,     Z)," &
+    "47  (BC_5,          *    , control, 1)," &
+    "48  (BC_1, txa_d2    , output3, X,        49,  1,     Z)," &
+    "49  (BC_5,          *    , control, 1)," &
+    "50  (BC_1, txa_d3    , output3, X,        51,  1,     Z)," &
+    "51  (BC_5,          *    , control, 1)," &
+    "52  (BC_1, txa_d4    , output3, X,        53,  1,     Z)," &
+    "53  (BC_5,          *    , control, 1)," &
+    "54  (BC_1, txa_d0    , output3, X,        55,  1,     Z)," &
+    "55  (BC_5,          *    , control, 1)," &
+    "56  (BC_2, txa_clav    , input  , X)," &
+    "57  (BC_1, txa_enb    , output3, X,        58,  1,     Z)," &
+    "58  (BC_5,          *    , control, 1)," &
+    "59  (BC_1, txa_d1    , output3, X,        60,  1,     Z)," &
+    "60  (BC_5,          *    , control, 1)," &
+    "61  (BC_7, txa_clk    , bidir  , X,        62,  1,     Z)," &
+    "62  (BC_2,          *    , control, 1)," &
+    "63  (BC_2, rxa_soc    , input  , X)," &
+    "64  (BC_2, rxa_prty    , input  , X)," &
+    "65  (BC_2, rxa_d7    , input  , X)," &
+    "66  (BC_2, rxa_d6    , input  , X)," &
+    "67  (BC_2, rxa_d5    , input  , X)," &
+    "68  (BC_2, rxa_d4    , input  , X)," &
+    "69  (BC_2, dis_capacity1    , input  , X)," &
+    "70  (BC_2, rxa_d3    , input  , X)," &
+    "71  (BC_2, rxa_d2    , input  , X)," &
+    "72  (BC_2, rxa_d1    , input  , X)," &
+    "73  (BC_2, rxa_d0    , input  , X)," &
+    "74  (BC_2, dis_capacity0    , input  , X)," &
+    "75  (BC_2, rxa_clav    , input  , X)," &
+    "76  (BC_1, rxa_enb    , output3, X,        77,  1,     Z)," &
+    "77  (BC_5,          *    , control, 1)," &
+    "78  (BC_7, rxa_clk    , bidir  , X,        79,  1,     Z)," &
+    "79  (BC_2,          *    , control, 1)," &
+    "80  (BC_1, txb_soc    , output3, X,        81,  1,     Z)," &
+    "81  (BC_5,          *    , control, 1)," &
+    "82  (BC_1, txb_prty    , output3, X,        83,  1,     Z)," &
+    "83  (BC_5,          *    , control, 1)," &
+    "84  (BC_1, txb_d7    , output3, X,        85,  1,     Z)," &
+    "85  (BC_5,          *    , control, 1)," &
+    "86  (BC_1, txb_d6    , output3, X,        87,  1,     Z)," &
+    "87  (BC_5,          *    , control, 1)," &
+    "88  (BC_1, txb_d5    , output3, X,        89,  1,     Z)," &
+    "89  (BC_5,          *    , control, 1)," &
+    "90  (BC_1, txb_d4    , output3, X,        91,  1,     Z)," &
+    "91  (BC_5,          *    , control, 1)," &
+    "92  (BC_1, txb_d3    , output3, X,        93,  1,     Z)," &
+    "93  (BC_5,          *    , control, 1)," &
+    "94  (BC_1, txb_d2    , output3, X,        95,  1,     Z)," &
+    "95  (BC_5,          *    , control, 1)," &
+    "96  (BC_1, txb_d1    , output3, X,        97,  1,     Z)," &
+    "97  (BC_5,          *    , control, 1)," &
+    "98  (BC_1, txb_d0    , output3, X,        99,  1,     Z)," &
+    "99  (BC_5,          *    , control, 1)," &
+    "100 (BC_2, txb_clav    , input  , X)," &
+    "101 (BC_7, txb_clk    , bidir  , X,       102,  1,     Z)," &
+    "102 (BC_2,          *    , control, 1)," &
+    "103 (BC_1, txb_enb    , output3, X,       104,  1,     Z)," &
+    "104 (BC_5,          *    , control, 1)," &
+    "105 (BC_2, rxb_soc    , input  , X)," &
+    "106 (BC_2, rxb_prty    , input  , X)," &
+    "107 (BC_2, rxb_d7    , input  , X)," &
+    "108 (BC_2, rxb_d6    , input  , X)," &
+    "109 (BC_2, rxb_d5    , input  , X)," &
+    "110 (BC_2, rxb_d4    , input  , X)," &
+    "111 (BC_2, rxb_d3    , input  , X)," &
+    "112 (BC_2, rxb_d2    , input  , X)," &
+    "113 (BC_2, rxb_d1    , input  , X)," &
+    "114 (BC_2, rxb_d0    , input  , X)," &
+    "115 (BC_2, rxb_clav    , input  , X)," &
+    "116 (BC_1, txc_soc    , output3, X,       117,  1,     Z)," &
+    "117 (BC_5,          *    , control, 1)," &
+    "118 (BC_1, txc_prty    , output3, X,       119,  1,     Z)," &
+    "119 (BC_5,          *    , control, 1)," &
+    "120 (BC_1, rxb_enb    , output3, X,       121,  1,     Z)," &
+    "121 (BC_5,          *    , control, 1)," &
+    "122 (BC_1, txc_d5    , output3, X,       123,  1,     Z)," &
+    "123 (BC_5,          *    , control, 1)," &
+    "124 (BC_1, txc_d6    , output3, X,       125,  1,     Z)," &
+    "125 (BC_5,          *    , control, 1)," &
+    "126 (BC_1, txc_d7    , output3, X,       127,  1,     Z)," &
+    "127 (BC_5,          *    , control, 1)," &
+    "128 (BC_1, txc_d2    , output3, X,       129,  1,     Z)," &
+    "129 (BC_5,          *    , control, 1)," &
+    "130 (BC_7, rxb_clk    , bidir  , X,       131,  1,     Z)," &
+    "131 (BC_2,          *    , control, 1)," &
+    "132 (BC_1, txc_d3    , output3, X,       133,  1,     Z)," &
+    "133 (BC_5,          *    , control, 1)," &
+    "134 (BC_1, txc_d4    , output3, X,       135,  1,     Z)," &
+    "135 (BC_5,          *    , control, 1)," &
+    "136 (BC_2, dis_type1    , input  , X)," &
+    "137 (BC_1, txc_enb    , output3, X,       138,  1,     Z)," &
+    "138 (BC_5,          *    , control, 1)," &
+    "139 (BC_2, txc_clav    , input  , X)," &
+    "140 (BC_1, txc_d0    , output3, X,       141,  1,     Z)," &
+    "141 (BC_5,          *    , control, 1)," &
+    "142 (BC_1, txc_d1    , output3, X,       143,  1,     Z)," &
+    "143 (BC_5,          *    , control, 1)," &
+    "144 (BC_2, rxc_prty    , input  , X)," &
+    "145 (BC_2, rxc_d7    , input  , X)," &
+    "146 (BC_2, rxc_soc    , input  , X)," &
+    "147 (BC_2, dis_type0    , input  , X)," &
+    "148 (BC_2, rxc_d4    , input  , X)," &
+    "149 (BC_2, rxc_d5    , input  , X)," &
+    "150 (BC_2, rxc_d6    , input  , X)," &
+    "151 (BC_7, txc_clk    , bidir  , X,       152,  1,     Z)," &
+    "152 (BC_2,          *    , control, 1)," &
+    "153 (BC_2, rxc_d0    , input  , X)," &
+    "154 (BC_2, rxc_d1    , input  , X)," &
+    "155 (BC_2, rxc_d2    , input  , X)," &
+    "156 (BC_2, rxc_d3    , input  , X)," &
+    "157 (BC_2, dis_sss    , input  , X)," &
+    "158 (BC_7, rxc_clk    , bidir  , X,       159,  1,     Z)," &
+    "159 (BC_2,          *    , control, 1)," &
+    "160 (BC_1, rxc_enb    , output3, X,       161,  1,     Z)," &
+    "161 (BC_5,          *    , control, 1)," &
+    "162 (BC_2, rxc_clav    , input  , X)," &
+    "163 (BC_7, cpu_d2    , bidir  , X,       164,  1,     Z)," &
+    "164 (BC_2,          *    , control, 1)," &
+    "165 (BC_7, cpu_d1    , bidir  , X,       166,  1,     Z)," &
+    "166 (BC_2,          *    , control, 1)," &
+    "167 (BC_7, cpu_d0    , bidir  , X,       168,  1,     Z)," &
+    "168 (BC_2,          *    , control, 1)," &
+    "169 (BC_2, dis_compress    , input  , X)," &
+    "170 (BC_7, cpu_d3    , bidir  , X,       171,  1,     Z)," &
+    "171 (BC_2,          *    , control, 1)," &
+    "172 (BC_7, cpu_d6    , bidir  , X,       173,  1,     Z)," &
+    "173 (BC_2,          *    , control, 1)," &
+    "174 (BC_7, cpu_d5    , bidir  , X,       175,  1,     Z)," &
+    "175 (BC_2,          *    , control, 1)," &
+    "176 (BC_7, cpu_d4    , bidir  , X,       177,  1,     Z)," &
+    "177 (BC_2,          *    , control, 1)," &
+    "178 (BC_7, cpu_d8    , bidir  , X,       179,  1,     Z)," &
+    "179 (BC_2,          *    , control, 1)," &
+    "180 (BC_7, cpu_d9    , bidir  , X,       181,  1,     Z)," &
+    "181 (BC_2,          *    , control, 1)," &
+    "182 (BC_7, cpu_d10    , bidir  , X,       183,  1,     Z)," &
+    "183 (BC_2,          *    , control, 1)," &
+    "184 (BC_7, cpu_d7    , bidir  , X,       185,  1,     Z)," &
+    "185 (BC_2,          *    , control, 1)," &
+    "186 (BC_7, cpu_d11    , bidir  , X,       187,  1,     Z)," &
+    "187 (BC_2,          *    , control, 1)," &
+    "188 (BC_7, cpu_d12    , bidir  , X,       189,  1,     Z)," &
+    "189 (BC_2,          *    , control, 1)," &
+    "190 (BC_7, cpu_d13    , bidir  , X,       191,  1,     Z)," &
+    "191 (BC_2,          *    , control, 1)," &
+    "192 (BC_7, cpu_d14    , bidir  , X,       193,  1,     Z)," &
+    "193 (BC_2,          *    , control, 1)," &
+    "194 (BC_7, cpu_d15    , bidir  , X,       195,  1,     Z)," &
+    "195 (BC_2,          *    , control, 1)," &
+    "196 (BC_2, cpu_wr_rw    , input  , X)," &
+    "197 (BC_2, cpu_rdds    , input  , X)," &
+    "198 (BC_7, cpu_a_das    , bidir  , X,       199,  1,     Z)," &
+    "199 (BC_2,          *    , control, 1)," &
+    "200 (BC_2, cpu_ale    , input  , X)," &
+    "201 (BC_7, cpu_cs    , bidir  , X,       202,  1,     Z)," &
+    "202 (BC_2,          *    , control, 1)," &
+    "203 (BC_7, cpu_rdy_ndtack    , bidir  , X,       204,  1,     Z)," &
+    "204 (BC_2,          *    , control, 1)," &
+    "205 (BC_2, cpu_a_0    , input  , X)," &
+    "206 (BC_2, cpu_a_1    , input  , X)," &
+    "207 (BC_2, cpu_a_2    , input  , X)," &
+    "208 (BC_2, cpu_a_3    , input  , X)," &
+    "209 (BC_2, cpu_a_4    , input  , X)," &
+    "210 (BC_2, cpu_a_5    , input  , X)," &
+    "211 (BC_2, cpu_a_6    , input  , X)," &
+    "212 (BC_2, cpu_a_7    , input  , X)," &
+    "213 (BC_2, cpu_a_8    , input  , X)," &
+    "214 (BC_2, cpu_a_9    , input  , X)," &
+    "215 (BC_2, cpu_a_10    , input  , X)," &
+    "216 (BC_2, cpu_a_12    , input  , X)," &
+    "217 (BC_2, cpu_a_11    , input  , X)," &
+    "218 (BC_2, cpu_a_13    , input  , X)," &
+    "219 (BC_2, cpu_a_14    , input  , X)," &
+    "220 (BC_2,  nreset    , input  , X)," &
+    "221 (BC_4, pll_clk    , input  , X)," &
+    "222 (BC_4,   mclk_src    , input  , X)," &
+    "223 (BC_1, interrupt2    , output3, X,       224,  1,     Z)," &
+    "224 (BC_5,          *    , control, 1)," &
+    "225 (BC_1, interrupt1    , output3, X,       226,  1,     Z)," &
+    "226 (BC_5,          *    , control, 1)," &
+    "227 (BC_4, crpll_clk_i    , input  , X)," &
+    "228 (BC_4, mem_clk_i    , input  , X)," &
+    "229 (BC_1, mema_cs_0    , output2, X)," &
+    "230 (BC_1, mema_a14    , output2, X)," &
+    "231 (BC_1, mema_bws_1    , output2, X)," &
+    "232 (BC_1, mema_cs_1    , output2, X)," &
+    "233 (BC_1, mema_bws_0    , output2, X)," &
+    "234 (BC_1, mema_rw    , output2, X)," &
+    "235 (BC_1, mema_a15    , output2, X)," &
+    "236 (BC_1, mema_a16    , output2, X)," &
+    "237 (BC_1, crpll_clk_o    , output2, X)," &
+    "238 (BC_1, mema_a17    , output2, X)," &
+    "239 (BC_1, mema_a18    , output2, X)," &
+    "240 (BC_7, mema_p_0    , bidir  , X,       241,  1,     Z)," &
+    "241 (BC_2,          *    , control, 1)," &
+    "242 (BC_7, mema_d8    , bidir  , X,       243,  1,     Z)," &
+    "243 (BC_2,          *    , control, 1)," &
+    "244 (BC_7, mema_d7    , bidir  , X,       245,  1,     Z)," &
+    "245 (BC_2,          *    , control, 1)," &
+    "246 (BC_7, mema_d9    , bidir  , X,       247,  1,     Z)," &
+    "247 (BC_2,          *    , control, 1)," &
+    "248 (BC_7, mema_d6    , bidir  , X,       249,  1,     Z)," &
+    "249 (BC_2,          *    , control, 1)," &
+    "250 (BC_7, mema_d10    , bidir  , X,       251,  1,     Z)," &
+    "251 (BC_2,          *    , control, 1)," &
+    "252 (BC_7, mema_d5    , bidir  , X,       253,  1,     Z)," &
+    "253 (BC_2,          *    , control, 1)," &
+    "254 (BC_7, mema_d11    , bidir  , X,       255,  1,     Z)," &
+    "255 (BC_2,          *    , control, 1)," &
+    "256 (BC_7, mema_d4    , bidir  , X,       257,  1,     Z)," &
+    "257 (BC_2,          *    , control, 1)," &
+    "258 (BC_7, mema_d12    , bidir  , X,       259,  1,     Z)," &
+    "259 (BC_2,          *    , control, 1)," &
+    "260 (BC_7, mema_d3    , bidir  , X,       261,  1,     Z)," &
+    "261 (BC_2,          *    , control, 1)," &
+    "262 (BC_7, mema_d13    , bidir  , X,       263,  1,     Z)," &
+    "263 (BC_2,          *    , control, 1)," &
+    "264 (BC_7, mema_d2    , bidir  , X,       265,  1,     Z)," &
+    "265 (BC_2,          *    , control, 1)," &
+    "266 (BC_7, mema_d14    , bidir  , X,       267,  1,     Z)," &
+    "267 (BC_2,          *    , control, 1)," &
+    "268 (BC_7, mema_d1    , bidir  , X,       269,  1,     Z)," &
+    "269 (BC_2,          *    , control, 1)," &
+    "270 (BC_7, mema_d15    , bidir  , X,       271,  1,     Z)," &
+    "271 (BC_2,          *    , control, 1)," &
+    "272 (BC_7, mema_d0    , bidir  , X,       273,  1,     Z)," &
+    "273 (BC_2,          *    , control, 1)," &
+    "274 (BC_7, mema_p_1    , bidir  , X,       275,  1,     Z)," &
+    "275 (BC_2,          *    , control, 1)," &
+    "276 (BC_1, mema_we    , output2, X)," &
+    "277 (BC_1, mema_cas    , output2, X)," &
+    "278 (BC_1, mema_a13    , output2, X)," &
+    "279 (BC_1, mema_ras    , output2, X)," &
+    "280 (BC_1, mema_a11    , output2, X)," &
+    "281 (BC_1, mema_a12    , output2, X)," &
+    "282 (BC_1, mema_a9    , output2, X)," &
+    "283 (BC_1, mema_a0    , output2, X)," &
+    "284 (BC_1, mema_a8    , output2, X)," &
+    "285 (BC_1, mema_a10    , output2, X)," &
+    "286 (BC_1, mema_a7    , output2, X)," &
+    "287 (BC_1, mema_a5    , output2, X)," &
+    "288 (BC_1, mema_a2    , output2, X)," &
+    "289 (BC_1, mema_a6    , output2, X)," &
+    "290 (BC_1, mema_a1    , output2, X)," &
+    "291 (BC_1, memb_a4    , output2, X)," &
+    "292 (BC_1, mema_a4    , output2, X)," &
+    "293 (BC_1, mema_a3    , output2, X)," &
+    "294 (BC_1, memb_a6    , output2, X)," &
+    "295 (BC_1, memb_a2    , output2, X)," &
+    "296 (BC_1, memb_a5    , output2, X)," &
+    "297 (BC_1, memb_a3    , output2, X)," &
+    "298 (BC_1, memb_a0    , output2, X)," &
+    "299 (BC_1, memb_a7    , output2, X)," &
+    "300 (BC_1, memb_a1    , output2, X)," &
+    "301 (BC_1, memb_a12    , output2, X)," &
+    "302 (BC_1, memb_a9    , output2, X)," &
+    "303 (BC_1, memb_a10    , output2, X)," &
+    "304 (BC_1, memb_a8    , output2, X)," &
+    "305 (BC_1, memb_cas    , output2, X)," &
+    "306 (BC_1, memb_ras    , output2, X)," &
+    "307 (BC_1, memb_a11    , output2, X)," &
+    "308 (BC_1, memb_a13    , output2, X)," &
+    "309 (BC_1, memb_a14    , output2, X)," &
+    "310 (BC_7, memb_d1    , bidir  , X,       311,  1,     Z)," &
+    "311 (BC_2,          *    , control, 1)," &
+    "312 (BC_7, memb_d0    , bidir  , X,       313,  1,     Z)," &
+    "313 (BC_2,          *    , control, 1)," &
+    "314 (BC_1, memb_we    , output2, X)," &
+    "315 (BC_7, memb_d14    , bidir  , X,       316,  1,     Z)," &
+    "316 (BC_2,          *    , control, 1)," &
+    "317 (BC_7, memb_d15    , bidir  , X,       318,  1,     Z)," &
+    "318 (BC_2,          *    , control, 1)," &
+    "319 (BC_7, memb_p_1    , bidir  , X,       320,  1,     Z)," &
+    "320 (BC_2,          *    , control, 1)," &
+    "321 (BC_7, memb_d2    , bidir  , X,       322,  1,     Z)," &
+    "322 (BC_2,          *    , control, 1)," &
+    "323 (BC_7, memb_d3    , bidir  , X,       324,  1,     Z)," &
+    "324 (BC_2,          *    , control, 1)," &
+    "325 (BC_7, memb_d13    , bidir  , X,       326,  1,     Z)," &
+    "326 (BC_2,          *    , control, 1)," &
+    "327 (BC_7, memb_d12    , bidir  , X,       328,  1,     Z)," &
+    "328 (BC_2,          *    , control, 1)," &
+    "329 (BC_7, gpio_7    , bidir  , X,       330,  1,     Z)," &
+    "330 (BC_2,          *    , control, 1)," &
+    "331 (BC_7, memb_d4    , bidir  , X,       332,  1,     Z)," &
+    "332 (BC_2,          *    , control, 1)," &
+    "333 (BC_7, memb_d11    , bidir  , X,       334,  1,     Z)," &
+    "334 (BC_2,          *    , control, 1)," &
+    "335 (BC_7, memb_d5    , bidir  , X,       336,  1,     Z)," &
+    "336 (BC_2,          *    , control, 1)," &
+    "337 (BC_7, memb_d10    , bidir  , X,       338,  1,     Z)," &
+    "338 (BC_2,          *    , control, 1)," &
+    "339 (BC_7, memb_d6    , bidir  , X,       340,  1,     Z)," &
+    "340 (BC_2,          *    , control, 1)," &
+    "341 (BC_7, gpio_6    , bidir  , X,       342,  1,     Z)," &
+    "342 (BC_2,          *    , control, 1)," &
+    "343 (BC_7, memb_d8    , bidir  , X,       344,  1,     Z)," &
+    "344 (BC_2,          *    , control, 1)," &
+    "345 (BC_7, memb_d7    , bidir  , X,       346,  1,     Z)," &
+    "346 (BC_2,          *    , control, 1)," &
+    "347 (BC_7, memb_d9    , bidir  , X,       348,  1,     Z)," &
+    "348 (BC_2,          *    , control, 1)," &
+    "349 (BC_7, gpio_5    , bidir  , X,       350,  1,     Z)," &
+    "350 (BC_2,          *    , control, 1)," &
+    "351 (BC_1, memb_a17    , output2, X)," &
+    "352 (BC_7, memb_p_0    , bidir  , X,       353,  1,     Z)," &
+    "353 (BC_2,          *    , control, 1)," &
+    "354 (BC_1, memb_a18    , output2, X)," &
+    "355 (BC_7, gpio_4    , bidir  , X,       356,  1,     Z)," &
+    "356 (BC_2,          *    , control, 1)," &
+    "357 (BC_1, memb_bws_0    , output2, X)," &
+    "358 (BC_1, memb_rw    , output2, X)," &
+    "359 (BC_1, memb_a15    , output2, X)," &
+    "360 (BC_1, memb_a16    , output2, X)," &
+    "361 (BC_1, memb_cs_0    , output2, X)," &
+    "362 (BC_1, memb_cs_1    , output2, X)," &
+    "363 (BC_1, memb_bws_1    , output2, X)," &
+    "364 (BC_7, ct_d0    , bidir  , X,       365,  1,     Z)," &
+    "365 (BC_2,          *    , control, 1)," &
+    "366 (BC_7, ct_d1    , bidir  , X,       367,  1,     Z)," &
+    "367 (BC_2,          *    , control, 1)," &
+    "368 (BC_7, ct_d2    , bidir  , X,       369,  1,     Z)," &
+    "369 (BC_2,          *    , control, 1)," &
+    "370 (BC_7, ct_d3    , bidir  , X,       371,  1,     Z)," &
+    "371 (BC_2,          *    , control, 1)," &
+    "372 (BC_7, ct_d4    , bidir  , X,       373,  1,     Z)," &
+    "373 (BC_2,          *    , control, 1)," &
+    "374 (BC_7, ct_d5    , bidir  , X,       375,  1,     Z)," &
+    "375 (BC_2,          *    , control, 1)," &
+    "376 (BC_7, ct_d6    , bidir  , X,       377,  1,     Z)," &
+    "377 (BC_2,          *    , control, 1)," &
+    "378 (BC_7, gpio_3    , bidir  , X,       379,  1,     Z)," &
+    "379 (BC_2,          *    , control, 1)," &
+    "380 (BC_7, gpio_2    , bidir  , X,       381,  1,     Z)," &
+    "381 (BC_2,          *    , control, 1)," &
+    "382 (BC_7, ct_d7    , bidir  , X,       383,  1,     Z)," &
+    "383 (BC_2,          *    , control, 1)," &
+    "384 (BC_7, ct_d8    , bidir  , X,       385,  1,     Z)," &
+    "385 (BC_2,          *    , control, 1)," &
+    "386 (BC_7, ct_d9    , bidir  , X,       387,  1,     Z)," &
+    "387 (BC_2,          *    , control, 1)," &
+    "388 (BC_7, ct_d10    , bidir  , X,       389,  1,     Z)," &
+    "389 (BC_2,          *    , control, 1)," &
+    "390 (BC_7, ct_d11    , bidir  , X,       391,  1,     Z)," &
+    "391 (BC_2,          *    , control, 1)," &
+    "392 (BC_7, gpio_1    , bidir  , X,       393,  1,     Z)," &
+    "393 (BC_2,          *    , control, 1)," &
+    "394 (BC_7, gpio_0    , bidir  , X,       395,  1,     Z)," &
+    "395 (BC_2,          *    , control, 1)," &
+    "396 (BC_7, ct_d12    , bidir  , X,       397,  1,     Z)," &
+    "397 (BC_2,          *    , control, 1)," &
+    "398 (BC_7, ct_d13    , bidir  , X,       399,  1,     Z)," &
+    "399 (BC_2,          *    , control, 1)," &
+    "400 (BC_7, ct_d14    , bidir  , X,       401,  1,     Z)," &
+    "401 (BC_2,          *    , control, 1)," &
+    "402 (BC_7, ct_d15    , bidir  , X,       403,  1,     Z)," &
+    "403 (BC_2,          *    , control, 1)," &
+    "404 (BC_7, ct_d16    , bidir  , X,       405,  1,     Z)," &
+    "405 (BC_2,          *    , control, 1)," &
+    "406 (BC_7, ct_d17    , bidir  , X,       407,  1,     Z)," &
+    "407 (BC_2,          *    , control, 1)," &
+    "408 (BC_2, cpu_mode_0    , input  , X)," &
+    "409 (BC_2, cpu_mode_1    , input  , X)," &
+    "410 (BC_7, ct_d18    , bidir  , X,       411,  1,     Z)," &
+    "411 (BC_2,          *    , control, 1)," &
+    "412 (BC_7, ct_d19    , bidir  , X,       413,  1,     Z)," &
+    "413 (BC_2,          *    , control, 1)," &
+    "414 (BC_7, ct_d20    , bidir  , X,       415,  1,     Z)," &
+    "415 (BC_2,          *    , control, 1)," &
+    "416 (BC_7, ct_d21    , bidir  , X,       417,  1,     Z)," &
+    "417 (BC_2,          *    , control, 1)," &
+    "418 (BC_7, ct_d22    , bidir  , X,       419,  1,     Z)," &
+    "419 (BC_2,          *    , control, 1)," &
+    "420 (BC_7, ct_d23    , bidir  , X,       421,  1,     Z)," &
+    "421 (BC_2,          *    , control, 1)," &
+    "422 (BC_7, ct_d24    , bidir  , X,       423,  1,     Z)," &
+    "423 (BC_2,          *    , control, 1)," &
+    "424 (BC_2, cpu_mode_2    , input  , X)," &
+    "425 (BC_7, ct_d25    , bidir  , X,       426,  1,     Z)," &
+    "426 (BC_2,          *    , control, 1)," &
+    "427 (BC_2, cpu_mode_3    , input  , X)," &
+    "428 (BC_7, ct_d26    , bidir  , X,       429,  1,     Z)," &
+    "429 (BC_2,          *    , control, 1)," &
+    "430 (BC_7, ct_d27    , bidir  , X,       431,  1,     Z)," &
+    "431 (BC_2,          *    , control, 1)," &
+    "432 (BC_7, ct_d28    , bidir  , X,       433,  1,     Z)," &
+    "433 (BC_2,          *    , control, 1)," &
+    "434 (BC_7, ct_d29    , bidir  , X,       435,  1,     Z)," &
+    "435 (BC_2,          *    , control, 1)," &
+    "436 (BC_7, ct_d30    , bidir  , X,       437,  1,     Z)," &
+    "437 (BC_2,          *    , control, 1)," &
+    "438 (BC_7, ct_d31    , bidir  , X,       439,  1,     Z)," &
+    "439 (BC_2,          *    , control, 1)";
+
+end MT90502AG;

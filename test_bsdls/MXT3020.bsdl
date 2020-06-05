@@ -1,0 +1,924 @@
+-------------------------------------------------------------------------
+---
+-- [MXT3020B BSDL File]
+-- File Type: BSDL description for top level entity core_top
+-- Date Created: Tue Jan 20 09:24:36 1998
+-- Tool Version: BSDArchitect v8.6_2.4  Fri Dec 19 09:49:08 PST 1997
+--
+-------------------------------------------------------------------------
+---
+//=======================================================================
+-- //    
+-- // RESTRICTED RIGHTS LEGEND   
+-- //    
+-- // Use, duplication, or disclosure is subject to restrictions.
+-- //   
+-- // Unpublished Work Copyright (C) 1996 Maker Communications Inc.
+-- // All Rights Reserved.   
+-- //  
+-- //This computer program is the property of Maker Communications and
+contains
+-- //its confidential trade secrets.  Use, examination, copying, transfer
+and      
+-- //disclosure to others, in whole or in part, are prohibited except with
+the 
+-- //express prior written consent of Maker Communications.         
+-- //   
+//=======================================================================
+-- //
+-- // MODULE   mxt3020b.bsdl
+-- //
+-- // Source Control Information
+-- // 
+-- // 
+-- // Last Modified on: $Date: 1997/12/04 06:59:36 $
+-- //
+//=======================================================================
+---
+--- Original file mxt3020_1114.bsd
+---
+---
+--- Result of BSDL Syntax Compile follows:
+---
+---
+------------------------------------------------------------------------
+----
+--- HP3070 BSDL COMPILER                    Thu Dec 4 06:59:36 MST 1997
+---
+--- /tmp/mxt3020.bsdl
+---
+------------------------------------------------------------------------
+----
+--- 
+--- BSDL File /tmp/mxt3020.bsdl, package MXT3020_240MQFP compiled
+--- successfully.
+--- There were 3 compile warnings.
+--- Text of warnings:
+--- Warning: No Linkage signals (e.g. power pins) found in port or pin_map
+--- Warning: Signal FN, pin 48 not connected to Boundary Register.
+--- Warning: Signal PLL_RESET, pin 51 not connected to Boundary Register.
+--- 
+--- 0 ERRORS, 3 WARNINGS, OBJECT PRODUCED
+---
+--- 4 Dec 1997 MDB 
+
+ 
+entity mxt3020 is
+     generic (PHYSICAL_PIN_MAP : string := "MXT3020_240MQFP");
+ 
+     port ( rstn                 :in         bit;
+      fsync                :in         bit;
+      p2endn               :in         bit;
+      p2rd                 :in         bit;
+      p2rq0n               :in         bit;
+      p2ai0                :in         bit;
+      p2ai1                :in         bit;
+      p2ai2                :in         bit;
+      p2ai3                :in         bit;
+      p2qbrst              :in         bit;
+      p2a20                :in         bit;
+      statsel0             :in         bit;
+      statsel1             :in         bit;
+      statcs               :in         bit;
+      statext              :in         bit;
+      fnet                 :in         bit;
+      tms                  :in         bit;
+      tck                  :in         bit;
+      trs                  :in         bit;
+      tdi                  :in         bit;
+      teste                :in         bit;
+      pll_reset            :in         bit;
+      fn                   :in         bit;
+      orclrn               :in         bit;
+      trin                 :in         bit;
+      scat_we0n            :out        bit;
+      scat_we1n            :out        bit;
+      scat_oe0n            :out        bit;
+      scat_oe1n            :out        bit;
+      scat_cen             :out        bit;
+      scat_adrs18          :out        bit;
+      scat_adrs17          :out        bit;
+      scat_adrs16          :out        bit;
+      scat_adrs15          :out        bit;
+      scat_adrs14          :out        bit; 
+      scat_adrs13          :out        bit;
+      scat_adrs12          :out        bit;
+      scat_adrs11          :out        bit;
+      scat_adrs10          :out        bit;
+      scat_adrs9           :out        bit;
+      scat_adrs8           :out        bit;
+      scat_adrs7           :out        bit;
+      scat_adrs6           :out        bit;
+      scat_adrs5           :out        bit;
+      scat_adrs4           :out        bit;
+      scat_adrs3           :out        bit;
+      scat_adrs2           :out        bit;
+      scat_adrs1           :out        bit;
+      gath_we0n            :out        bit;
+      gath_we1n            :out        bit;
+      gath_oe0n            :out        bit;
+      gath_oe1n            :out        bit;
+      gath_cen             :out        bit;
+      gath_adrs18          :out        bit;
+      gath_adrs17          :out        bit;
+      gath_adrs16          :out        bit;
+      gath_adrs15          :out        bit;
+      gath_adrs14          :out        bit;
+      gath_adrs13          :out        bit;
+      gath_adrs12          :out        bit;
+      gath_adrs11          :out        bit;
+      gath_adrs10          :out        bit;
+      gath_adrs9           :out        bit;
+      gath_adrs8           :out        bit;
+      gath_adrs7           :out        bit;
+      gath_adrs6           :out        bit;
+      gath_adrs5           :out        bit;
+      gath_adrs4           :out        bit;
+      gath_adrs3           :out        bit;
+      gath_adrs2           :out        bit;
+      gath_adrs1           :out        bit;
+      statout              :out        bit;
+      clkob                :out        bit;
+      ooln                 :out        bit;
+      tdo                  :out        bit;
+      aser0                :inout      bit;
+      aclk0                :inout      bit;
+      bsce0                :inout      bit;
+      bser0                :inout      bit;
+      bclk0                :in      bit;
+      aser1                :inout      bit;
+      aclk1                :inout      bit;
+      bsce1                :inout      bit;
+      bser1                :inout      bit;
+      bclk1                :in      bit;
+      aser2                :inout      bit;
+      aclk2                :inout      bit;
+      bsce2                :inout      bit;
+      bser2                :inout      bit;
+      bclk2                :in      bit;
+      aser3                :inout      bit;
+      aclk3                :inout      bit;
+      bsce3                :inout      bit;
+      bser3                :inout      bit;
+      bclk3                :in      bit;
+      aser4                :inout      bit;
+      aclk4                :inout      bit;
+      bsce4                :inout      bit;
+      bser4                :inout      bit;
+      bclk4                :in      bit;
+      aser5                :inout      bit;
+      aclk5                :inout      bit;
+      bsce5                :inout      bit;
+      bser5                :inout      bit;
+      bclk5                :in      bit;
+      aser6                :inout      bit;
+      aclk6                :inout      bit;
+      bsce6                :inout      bit;
+      bser6                :inout      bit;
+      bclk6                :in      bit;
+      aser7                :inout      bit;
+      aclk7                :inout      bit;
+      bsce7                :inout      bit;
+      bser7                :inout      bit;
+      bclk7                :in      bit;
+      scat_dat15           :inout      bit;
+      scat_dat14           :inout      bit;
+      scat_dat13           :inout      bit;
+      scat_dat12           :inout      bit;
+      scat_dat11           :inout      bit;
+      scat_dat10           :inout      bit;
+      scat_dat9            :inout      bit;
+      scat_dat8            :inout      bit;
+      scat_dat7            :inout      bit;
+      scat_dat6            :inout      bit;
+      scat_dat5            :inout      bit;
+      scat_dat4            :inout      bit;
+      scat_dat3            :inout      bit;
+      scat_dat2            :inout      bit;
+      scat_dat1            :inout      bit;
+      scat_dat0            :inout      bit;
+      gath_dat15           :inout      bit;
+      gath_dat14           :inout      bit;
+      gath_dat13           :inout      bit;
+      gath_dat12           :inout      bit;
+      gath_dat11           :inout      bit;
+      gath_dat10           :inout      bit;
+      gath_dat9            :inout      bit;
+      gath_dat8            :inout      bit;
+      gath_dat7            :inout      bit;
+      gath_dat6            :inout      bit;
+      gath_dat5            :inout      bit;
+      gath_dat4            :inout      bit;
+      gath_dat3            :inout      bit;
+      gath_dat2            :inout      bit;
+      gath_dat1            :inout      bit;
+      gath_dat0            :inout      bit;
+      p2asel0n             :out      bit;
+      p2trdy0n             :inout      bit;
+      p2ad0                :inout      bit;
+      p2ad1                :inout      bit;
+      p2ad2                :inout      bit;
+      p2ad3                :inout      bit;
+      p2ad4                :inout      bit;
+      p2ad5                :inout      bit;
+      p2ad6                :inout      bit;
+      p2ad7                :inout      bit;
+      p2ad8                :inout      bit;
+      p2ad9                :inout      bit;
+      p2ad10               :inout      bit;
+      p2ad11               :inout      bit;
+      p2ad12               :inout      bit;
+      p2ad13               :inout      bit;
+      p2ad14               :inout      bit;
+      p2ad15               :inout      bit
+    );
+ 
+       use STD_1149_1_1994.all;
+ 
+     attribute COMPONENT_CONFORMANCE of mxt3020 : entity is "STD_1149_1_1993";
+ 
+     attribute PIN_MAP of mxt3020 : entity is PHYSICAL_PIN_MAP;
+ 
+ 
+     constant MXT3020_240MQFP : PIN_MAP_STRING :=
+     "tdo:116," &
+     "gath_adrs8:215," &
+     "gath_adrs14:237," &
+     "scat_adrs15:101," &
+     "scat_adrs2:84," &
+     "p2asel0n:40," &
+     "gath_adrs1:226," &
+     "gath_cen:231," &
+     "scat_oe1n:95," &
+     "gath_oe0n:229," &
+     "gath_adrs6:217," &
+     "scat_adrs5:81," &
+     "gath_adrs13:239," &
+     "scat_adrs12:107," &
+     "scat_oe0n:91," &
+     "gath_adrs7:216," &
+     "gath_oe1n:230," &
+     "gath_adrs12:240," &
+     "scat_adrs13:105," &
+     "scat_adrs3:83," &
+     "scat_adrs4:82," &
+     "gath_adrs15:236," &
+     "scat_adrs14:102," &
+     "gath_adrs9:214," &
+     "scat_adrs16:100," &
+     "gath_adrs17:234," &
+     "scat_adrs1:86," &
+     "scat_cen:96," &
+     "gath_adrs2:222," &
+     "scat_adrs8:77," &
+     "scat_we0n:87," &
+     "gath_we1n:228," &
+     "scat_adrs18:97," &
+     "gath_adrs5:219," &
+     "scat_adrs6:79," &
+     "scat_adrs11:108," &
+     "gath_adrs10:2," &
+     "gath_adrs4:220," &
+     "gath_adrs18:233," &
+     "scat_adrs10:109," &
+     "scat_adrs7:78," &
+     "gath_adrs11:1," &
+     "scat_adrs17:98," &
+     "gath_adrs16:235," &
+     "scat_adrs9:76," &
+     "scat_we1n:88," &
+     "gath_we0n:227," &
+     "gath_adrs3:221," &
+     "bclk7:182," &
+     "trin:117," &
+     "bclk0:124," &
+     "bclk1:131," &
+     "tdi:115," &
+     "tck:113," &
+     "bclk6:175," &
+     "fnet:166," &
+     "fsync:160," &
+     "tms:112," &
+     "bclk4:154," &
+     "rstn:118," &
+     "bclk3:147," &
+     "bclk2:138," &
+     "trs:114," &
+     "bclk5:162," &
+     "bser3:146," &
+     "bsce3:145," &
+     "aclk4:149," &
+     "aser0:121," &
+     "aclk3:142," &
+     "aser7:179," &
+     "aclk2:133," &
+     "aser6:172," &
+     "bser4:153," &
+     "bsce4:152," &
+     "bser5:161," &
+     "bsce5:159," &
+     "bser2:137," &
+     "bsce2:136," &
+     "aclk5:156," &
+     "aser1:128," &
+     "bser0:123," &
+     "bsce0:122," &
+     "aser3:144," &
+     "aclk0:119," &
+     "aclk7:177," &
+     "aser4:151," &
+     "aclk1:126," &
+     "aser5:158," &
+     "bser7:181," &
+     "bsce7:180," &
+     "bser6:174," &
+     "bsce6:173," &
+     "aclk6:170," &
+     "bser1:130," &
+     "bsce1:129," &
+     "aser2:135," &
+     "scat_dat0:75," &
+     "scat_dat13:58," &
+     "gath_dat12:193," &
+     "scat_dat9:63," &
+     "gath_dat3:205," &
+     "gath_dat4:203," &
+     "gath_dat15:190," &
+     "scat_dat7:66," &
+     "scat_dat14:57," &
+     "gath_dat5:202," &
+     "gath_dat14:191," &
+     "scat_dat6:67," &
+     "scat_dat15:56," &
+     "scat_dat1:73," &
+     "scat_dat12:59," &
+     "gath_dat13:192," &
+     "scat_dat8:64," &
+     "gath_dat2:210," &
+     "scat_dat3:71," &
+     "scat_dat10:62," &
+     "gath_dat9:197," &
+     "gath_dat11:195," &
+     "gath_dat0:212," &
+     "gath_dat7:200," &
+     "scat_dat4:70," &
+     "gath_dat6:201," &
+     "scat_dat5:68," &
+     "scat_dat2:72," &
+     "gath_dat8:198," &
+     "scat_dat11:61," &
+     "gath_dat10:196," &
+     "gath_dat1:211," &
+     "p2ad13:29," &
+     "p2ad7:18," &
+     "p2ad0:9," &
+     "p2ad9:23," &
+     "p2ad14:30," &
+     "p2ad1:10," &
+     "p2ad8:19," &
+     "p2ad15:32," &
+     "p2ad12:28," &
+     "p2ad6:17," &
+     "p2ad10:24," &
+     "p2ad4:14," &
+     "p2trdy0n:41," &
+     "p2ad3:13," &
+     "p2ad2:11," &
+     "p2ad11:25," &
+     "p2ad5:15," &
+     "statsel0:185," &
+     "p2qbrst:42," &
+     "p2ai0:4," &
+     "p2ai1:5," &
+     "statsel1:186," &
+     "p2a20:33," &
+     "p2endn:34," &
+     "statcs:187," &
+     "p2ai3:7," &
+     "p2ai2:6," &
+     "p2rd:36," &
+     "p2rq0n:26," &
+     "statext:188," &
+     "statout:184," &
+     "clkob:52," &
+     "ooln:53," &
+     "teste:44," &
+     "pll_reset:51," &
+     "orclrn:39," &
+     "fn:48" ;
+ 
+     attribute TAP_SCAN_IN of tdi : signal is true;
+     attribute TAP_SCAN_MODE of tms : signal is true;
+     attribute TAP_SCAN_OUT of tdo : signal is true;
+ 
+ 
+ 
+     attribute TAP_SCAN_CLOCK of tck : signal is (5.0e6, BOTH);
+     attribute TAP_SCAN_RESET of trs : signal is true;
+ 
+  -- attribute COMPLIANCE_ENABLE of highz : signal is true;
+ 
+  -- attribute COMPLIANCE_PATTERNS of mxt3020 : entity is
+  --     "(highz) (0)";
+ 
+     attribute INSTRUCTION_LENGTH of mxt3020 : entity is 3;
+ 
+     attribute INSTRUCTION_OPCODE of mxt3020 : entity is
+         "BYPASS          (111)," &
+         "SAMPLE          (001)," &
+         "EXTEST          (000)," &
+         "INTSCAN         (100)," &
+         "RUNBIST         (011)," &
+         "IDCODE          (010)";
+         
+     attribute INSTRUCTION_CAPTURE of mxt3020  : entity is "001";
+     attribute INSTRUCTION_PRIVATE of mxt3020  : entity is "INTSCAN";
+ 
+     attribute IDCODE_REGISTER of mxt3020 : entity is
+         "0000" &  -- version
+         "0001010000010110" &    -- part number
+         "00000101011" &         -- manufacturer's identity
+         "1";                    -- required by 1149.1
+ 
+     attribute REGISTER_ACCESS of mxt3020 : entity is                      
+         "Bypass          (BYPASS)," &
+         "Boundary        (SAMPLE, EXTEST, RUNBIST)," &
+         "Device_ID       (IDCODE)" ;
+ 
+     attribute BOUNDARY_LENGTH of mxt3020 : entity is 280;
+ 
+     attribute BOUNDARY_REGISTER  of mxt3020 : entity is
+      --
+      -- num   cell   port                  function   safe [ccell disval rslt]
+      --
+         "0 (BC_1, *,                    control,         1)," &      
+         "1 (BC_1, *,                    control,         1)," &   
+         "2 (BC_1, statout,              output3,         X, 47, 1, Z)," & 
+         "3 (BC_1, scat_we1n,            output3,         X, 5, 1, Z)," & 
+         "4 (BC_1, scat_we0n,            output3,         X, 5, 1, Z)," & 
+         "5 (BC_1, *,                    control,         1)," &
+         "6 (BC_1, *,                    control,         1)," &        
+         "7 (BC_1, *,                    control,         1)," &        
+         "8 (BC_1, *,                    control,         1)," &        
+         "9 (BC_1, *,                    control,         1)," &        
+         "10 (BC_1, scat_oe1n ,           output3,         X, 5, 1, Z)," & 
+         "11 (BC_1, scat_oe0n,            output3,         X, 5, 1, Z)," & 
+         "12 (BC_1, scat_dat15,           output3,         X, 6, 1, Z)," &   
+         "13 (BC_1, scat_dat14,           output3,         X, 6, 1, Z)," &   
+         "14 (BC_1, scat_dat13,           output3,         X, 6, 1, Z)," &   
+         "15 (BC_1, scat_dat12,           output3,         X, 6, 1, Z)," &   
+         "16 (BC_1, scat_dat11,           output3,         X, 7, 1, Z)," &   
+         "17 (BC_1, scat_dat10,           output3,         X, 7, 1, Z)," &   
+         "18 (BC_1, scat_dat9,            output3,         X, 7, 1, Z)," &    
+         "19 (BC_1, scat_dat8,            output3,         X, 7, 1, Z)," &    
+         "20 (BC_1, scat_dat7,            output3,         X, 8, 1, Z)," &    
+         "21 (BC_1, scat_dat6,            output3,         X, 8, 1, Z)," &    
+         "22 (BC_1, scat_dat5,            output3,         X, 8, 1, Z)," &    
+         "23 (BC_1, scat_dat4,            output3,         X, 8, 1, Z)," &    
+         "24 (BC_1, scat_dat3,            output3,         X, 9, 1, Z)," &    
+         "25 (BC_1, scat_dat2,            output3,         X, 9, 1, Z)," &  
+         "26 (BC_1, scat_dat1,            output3,         X, 9, 1, Z)," &    
+         "27 (BC_1, scat_dat0,            output3,         X, 9, 1, Z)," &    
+         "28 (BC_1, scat_cen,             output3,         X, 5, 1, Z)," &
+         "29 (BC_1, scat_adrs18,          output3,         X, 5, 1, Z)," &
+    
+  
+         "30 (BC_1, scat_adrs17,          output3,         X, 5, 1, Z)," &
+    
+  
+         "31 (BC_1, scat_adrs16,          output3,         X, 5, 1, Z)," &
+    
+  
+         "32 (BC_1, scat_adrs15,          output3,         X, 5, 1, Z)," &
+    
+  
+         "33 (BC_1, scat_adrs14,          output3,         X, 5, 1, Z)," &
+    
+  
+         "34 (BC_1, scat_adrs13,          output3,         X, 5, 1, Z)," &
+    
+  
+         "35 (BC_1, scat_adrs12,          output3,         X, 5, 1, Z)," &
+    
+  
+         "36 (BC_1, scat_adrs11,          output3,         X, 5, 1, Z)," &
+    
+  
+         "37 (BC_1, scat_adrs10,          output3,         X, 5, 1, Z)," &
+    
+  
+         "38 (BC_1, scat_adrs9,           output3,         X, 5, 1, Z)," &
+    
+   
+         "39 (BC_1, scat_adrs8,           output3,         X, 5, 1, Z)," &
+    
+   
+         "40 (BC_1, scat_adrs7,           output3,         X, 5, 1, Z)," &
+    
+   
+         "41 (BC_1, scat_adrs6,           output3,         X, 5, 1, Z)," &
+    
+   
+         "42 (BC_1, scat_adrs5,           output3,         X, 5, 1, Z)," &
+    
+   
+         "43 (BC_1, scat_adrs4,           output3,         X, 5, 1, Z)," &
+    
+   
+         "44 (BC_1, scat_adrs3,           output3,         X, 5, 1, Z)," &
+    
+   
+         "45 (BC_1, scat_adrs2,           output3,         X, 5, 1, Z)," &
+    
+   
+         "46 (BC_1, scat_adrs1,           output3,         X, 5, 1, Z)," &
+    
+   
+         "47 (BC_1, *,                    control,         1)," &
+         "48 (BC_1, p2trdy0n,             output3,         X, 69, 1, Z)," &
+         "49 (BC_1, *,                    control,         1)," &          
+         "50 (BC_1, *,                    control,         1)," &          
+         "51 (BC_1, *,                    control,         1)," &          
+         "52 (BC_1, *,                    control,         1)," &          
+         "53 (BC_1, p2ad15,               output3,         X, 49, 1, Z)," &
+    
+         "54 (BC_1, p2ad14,               output3,         X, 49, 1, Z)," &
+    
+         "55 (BC_1, p2ad13,               output3,         X, 49, 1, Z)," &
+    
+         "56 (BC_1, p2ad12,               output3,         X, 49, 1, Z)," &
+    
+         "57 (BC_1, p2ad11,               output3,         X, 50, 1, Z)," &
+    
+         "58 (BC_1, p2ad10,               output3,         X, 50, 1, Z)," &
+    
+         "59 (BC_1, p2ad9,                output3,         X, 50, 1, Z)," &
+    
+  
+         "60 (BC_1, p2ad8,                output3,         X, 50, 1, Z)," &
+    
+  
+         "61 (BC_1, p2ad7,                output3,         X, 51, 1, Z)," &
+    
+  
+         "62 (BC_1, p2ad6,                output3,         X, 51, 1, Z)," &
+    
+  
+         "63 (BC_1, p2ad5,                output3,         X, 51, 1, Z)," &
+    
+  
+         "64 (BC_1, p2ad4,                output3,         X, 51, 1, Z)," &
+    
+  
+         "65 (BC_1, p2ad3,                output3,         X, 52, 1, Z)," &
+    
+  
+         "66 (BC_1, p2ad2,                output3,         X, 52, 1, Z)," &
+    
+  
+         "67 (BC_1, p2ad1,                output3,         X, 52, 1, Z)," &
+    
+  
+         "68 (BC_1, p2ad0,                output3,         X, 52, 1, Z)," &
+    
+  
+         "69 (BC_1, *,                    control,         1)," &
+         "70 (BC_1, p2asel0n,             output3,         X, 69, 1, Z)," &
+         "71 (BC_1, ooln,                 output3,         X, 47, 1, Z)," &
+         "72 (BC_1, gath_we1n,            output3,         X, 74, 1, Z)," &
+    
+     
+         "73 (BC_1, gath_we0n,            output3,         X, 74, 1, Z)," &
+    
+     
+         "74 (BC_1, *,                    control,         1)," &
+         "75 (BC_1, *,                    control,         1)," &        
+         "76 (BC_1, *,                    control,         1)," &        
+         "77 (BC_1, *,                    control,         1)," &        
+         "78 (BC_1, *,                    control,         1)," &        
+         "79 (BC_1, gath_oe1n,            output3,         X, 74, 1, Z)," &
+    
+     
+         "80 (BC_1, gath_oe0n,            output3,         X, 74, 1, Z)," &
+    
+     
+         "81 (BC_1, gath_dat15,           output3,         X, 75, 1, Z)," &   
+         "82 (BC_1, gath_dat14,           output3,         X, 75, 1, Z)," &   
+         "83 (BC_1, gath_dat13,           output3,         X, 75, 1, Z)," &   
+         "84 (BC_1, gath_dat12,           output3,         X, 76, 1, Z)," &   
+         "85 (BC_1, gath_dat11,           output3,         X, 76, 1, Z)," &   
+         "86 (BC_1, gath_dat10,           output3,         X, 76, 1, Z)," &   
+         "87 (BC_1, gath_dat9,            output3,         X, 76, 1, Z)," &
+   
+         "88 (BC_1, gath_dat8,            output3,         X, 76, 1, Z)," &
+   
+         "89 (BC_1, gath_dat7,            output3,         X, 77, 1, Z)," &
+   
+         "90 (BC_1, gath_dat6,            output3,         X, 77, 1, Z)," &
+   
+         "91 (BC_1, gath_dat5,            output3,         X, 77, 1, Z)," &
+   
+         "92 (BC_1, gath_dat4,            output3,         X, 77, 1, Z)," &
+   
+         "93 (BC_1, gath_dat3,            output3,         X, 78, 1, Z)," &
+   
+         "94 (BC_1, gath_dat2,            output3,         X, 78, 1, Z)," &
+   
+         "95 (BC_1, gath_dat1,            output3,         X, 78, 1, Z)," &
+   
+         "96 (BC_1, gath_dat0,            output3,         X, 78, 1, Z)," &
+   
+         "97 (BC_1, gath_cen,             output3,         X, 74, 1, Z)," &
+         "98 (BC_1, gath_adrs18,          output3,         X, 74, 1, Z)," &
+    
+         "99 (BC_1, gath_adrs17,          output3,         X, 74, 1, Z)," &
+    
+         "100 (BC_1, gath_adrs16,          output3,         X, 74, 1, Z)," &
+    
+  
+         "101 (BC_1, gath_adrs15,          output3,         X, 74, 1, Z)," &
+    
+  
+         "102 (BC_1, gath_adrs14,          output3,         X, 74, 1, Z)," &
+    
+  
+         "103 (BC_1, gath_adrs13,          output3,         X, 74, 1, Z)," &
+    
+  
+         "104 (BC_1, gath_adrs12,          output3,         X, 74, 1, Z)," &
+    
+  
+         "105 (BC_1, gath_adrs11,          output3,         X, 74, 1, Z)," &
+    
+  
+         "106 (BC_1, gath_adrs10,          output3,         X, 74, 1, Z)," &
+    
+  
+         "107 (BC_1, gath_adrs9,           output3,         X, 74, 1, Z)," &
+    
+   
+         "108 (BC_1, gath_adrs8,           output3,         X, 74, 1, Z)," &
+    
+   
+         "109 (BC_1, gath_adrs7,           output3,         X, 74, 1, Z)," &
+    
+   
+         "110 (BC_1, gath_adrs6,           output3,         X, 74, 1, Z)," &
+    
+   
+         "111 (BC_1, gath_adrs5,           output3,         X, 74, 1, Z)," &
+    
+   
+         "112 (BC_1, gath_adrs4,           output3,         X, 74, 1, Z)," &
+    
+   
+         "113 (BC_1, gath_adrs3,           output3,         X, 74, 1, Z)," &
+    
+   
+         "114 (BC_1, gath_adrs2,           output3,         X, 74, 1, Z)," &
+    
+   
+         "115 (BC_1, gath_adrs1,           output3,         X, 74, 1, Z)," &
+    
+   
+         "116 (BC_1, clkob,                output3,         X, 47, 1, Z)," &
+         "117 (BC_1, bser7,                output3,         X, 147, 1, Z),"
+ &   
+  
+         "118 (BC_1, bser6,                output3,         X, 148, 1, Z),"
+ &   
+  
+         "119 (BC_1, bser5,                output3,         X, 149, 1, Z),"
+ &   
+  
+         "120 (BC_1, bser4,                output3,         X, 150, 1, Z)," &
+         "121 (BC_1, bser3,                output3,         X, 151, 1, Z),"
+ &   
+  
+         "122 (BC_1, bser2,                output3,         X, 152, 1, Z),"
+ &   
+  
+         "123 (BC_1, bser1,                output3,         X, 153, 1, Z),"
+ &   
+  
+         "124 (BC_1, bser0,                output3,         X, 154, 1, Z),"
+ &   
+  
+         "125 (BC_1, bsce7,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "126 (BC_1, bsce6,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "127 (BC_1, bsce5,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "128 (BC_1, bsce4,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "129 (BC_1, bsce3,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "130 (BC_1, bsce2,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "131 (BC_1, bsce1,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "132 (BC_1, bsce0,                output3,         X, 155, 1, Z),"
+ &   
+  
+         "133 (BC_1, aser7,                output3,         X, 156, 1, Z),"
+ &   
+  
+         "134 (BC_1, aser6,                output3,         X, 157, 1, Z),"
+ &   
+  
+         "135 (BC_1, aser5,                output3,         X, 158, 1, Z),"
+ &   
+  
+         "136 (BC_1, aser4,                output3,         X, 159, 1, Z),"
+ &   
+  
+         "137 (BC_1, aser3,                output3,         X, 160, 1, Z),"
+ &   
+  
+         "138 (BC_1, aser2,                output3,         X, 161, 1, Z),"
+ &   
+  
+         "139 (BC_1, aser1,                output3,         X, 162, 1, Z),"
+ &   
+  
+         "140 (BC_1, aser0,                output3,         X, 163, 1, Z),"
+ &   
+  
+         "141 (BC_1, aclk7,                output3,         X, 166, 1, Z),"
+ &   
+  
+         "142 (BC_1, aclk6,                output3,         X, 167, 1, Z),"
+ &   
+  
+         "143 (BC_1, aclk5,                output3,         X, 168, 1, Z),"
+ &   
+  
+         "144 (BC_1, aclk4,                output3,         X, 169, 1, Z),"
+ &   
+  
+         "145 (BC_1, aclk3,                output3,         X, 170, 1, Z),"
+ &   
+  
+         "146 (BC_1, aclk0,                output3,         X, 171, 1, Z),"
+ &   
+  
+         "147 (BC_1, *,                    control,         1)," &      
+         "148 (BC_1, *,                    control,         1)," &      
+         "149 (BC_1, *,                    control,         1)," &      
+         "150 (BC_1, *,                    control,         1)," &      
+         "151 (BC_1, *,                    control,         1)," &      
+         "152 (BC_1, *,                    control,         1)," &      
+         "153 (BC_1, *,                    control,         1)," &      
+         "154 (BC_1, *,                    control,         1)," &      
+         "155 (BC_1, *,                    control,         1)," &
+         "156 (BC_1, *,                    control,         1)," &      
+         "157 (BC_1, *,                    control,         1)," &      
+         "158 (BC_1, *,                    control,         1)," &      
+         "159 (BC_1, *,                    control,         1)," &      
+         "160 (BC_1, *,                    control,         1)," &      
+         "161 (BC_1, *,                    control,         1)," &      
+         "162 (BC_1, *,                    control,         1)," &      
+         "163 (BC_1, *,                    control,         1)," &      
+         "164 (BC_1, aclk2,                output3,         X, 0, 1, Z)," &
+         "165 (BC_1, aclk1,                output3,         X, 1, 1, Z)," &
+         "166 (BC_1, *,                    control,         1)," &      
+         "167 (BC_1, *,                    control,         1)," &      
+         "168 (BC_1, *,                    control,         1)," &      
+         "169 (BC_1, *,                    control,         1)," &      
+         "170 (BC_1, *,                    control,         1)," &      
+         "171 (BC_1, *,                    control,         1)," &       
+         "172 (BC_1, trin ,               input,           X)," &
+         "173 (BC_1, teste,                input,           X)," &
+         "174 (BC_1, statsel1,             input,           X)," &           
+         "175 (BC_1, statsel0,             input,           X)," &           
+         "176 (BC_1, statext,              input,           X)," & 
+         "177 (BC_1, statcs,               input,           X)," & 
+         "178 (BC_1, scat_dat15,           input,           X)," &     
+         "179 (BC_1, scat_dat14,           input,           X)," &     
+         "180 (BC_1, scat_dat13,           input,           X)," &     
+         "181 (BC_1, scat_dat12,            input,           X)," &
+   
+         "182 (BC_1, scat_dat11,            input,           X)," &          
+         "183 (BC_1, scat_dat10,            input,           X)," &          
+         "184 (BC_1, scat_dat9,             input,           X)," &           
+         "185 (BC_1, scat_dat8,             input,           X)," &           
+         "186 (BC_1, scat_dat7,             input,           X)," &           
+         "187 (BC_1, scat_dat6,             input,           X)," &           
+         "188 (BC_1, scat_dat5,             input,           X)," &           
+         "189 (BC_1, scat_dat4,             input,           X)," &           
+         "190 (BC_1, scat_dat3,             input,           X)," &           
+         "191 (BC_1, scat_dat2,             input,           X)," &          
+         "192 (BC_1, scat_dat1,             input,           X)," &          
+         "193 (BC_1, scat_dat0,             input,           X)," &          
+         "194 (BC_1, rstn,                  input,           X)," &
+         "195 (BC_1, fnet,                  input,           X)," & 
+         "196 (BC_1, p2trdy0n,              input,           X)," &  
+         "197 (BC_1, p2rq0n ,               input,           X)," &   
+         "198 (BC_1, p2rd,                  input,           X)," &  
+         "199 (BC_1, p2endn,                input,           X)," &  
+         "200 (BC_1, p2qbrst,               input,           X)," &  
+         "201 (BC_1, p2ai3,                 input,           X)," & 
+         "202 (BC_1, p2ai2,                 input,           X)," & 
+         "203 (BC_1, p2ai1,                 input,           X)," & 
+         "204 (BC_1, p2ai0,                 input,           X)," & 
+         "205 (BC_1, p2ad15,                input,           X)," &
+         "206 (BC_1, p2ad14,                input,           X)," &
+         "207 (BC_1, p2ad13,                input,           X)," &
+         "208 (BC_1, p2ad12,                input,           X)," &
+         "209 (BC_1, p2ad11,                input,           X)," &
+         "210 (BC_1, p2ad10,                input,           X)," &
+         "211 (BC_1, p2ad9 ,                input,           X)," & 
+         "212 (BC_1, p2ad8 ,                input,           X)," & 
+         "213 (BC_1, p2ad7 ,                input,           X)," & 
+         "214 (BC_1, p2ad6 ,                input,           X)," & 
+         "215 (BC_1, p2ad5 ,                input,           X)," & 
+         "216 (BC_1, p2ad4 ,                input,           X)," & 
+         "217 (BC_1, p2ad3 ,                input,           X)," & 
+         "218 (BC_1, p2ad2 ,                input,           X)," & 
+         "219 (BC_1, p2ad1 ,                input,           X)," & 
+         "220 (BC_1, p2ad0 ,                input,           X)," & 
+         "221 (BC_1, p2a20 ,                input,           X)," &  
+         "222 (BC_1, orclrn,                input,           X)," &    
+         "223 (BC_1, gath_dat15,            input,           X)," &          
+         "224 (BC_1, gath_dat14,            input,           X)," &          
+         "225 (BC_1, gath_dat13,            input,           X)," &          
+         "226 (BC_1, gath_dat12,            input,           X)," &          
+         "227 (BC_1, gath_dat11,            input,           X)," &          
+         "228 (BC_1, gath_dat10,            input,           X)," &          
+         "229 (BC_1, gath_dat9 ,            input,           X)," &           
+         "230 (BC_1, gath_dat8 ,            input,           X)," &           
+         "231 (BC_1, gath_dat7 ,            input,           X)," &           
+         "232 (BC_1, gath_dat6 ,            input,           X)," &           
+         "233 (BC_1, gath_dat5 ,            input,           X)," &           
+         "234 (BC_1, gath_dat4 ,            input,           X)," &           
+         "235 (BC_1, gath_dat3 ,            input,           X)," &           
+         "236 (BC_1, gath_dat2 ,            input,           X)," &           
+         "237 (BC_1, gath_dat1 ,            input,           X)," &           
+         "238 (BC_1, gath_dat0 ,            input,           X)," &           
+         "239 (BC_1, fsync,                 input,           X)," &   
+         "240 (BC_1, bsce7,                 input,           X)," &          
+         "241 (BC_1, bsce6,                 input,           X)," &          
+         "242 (BC_1, bsce5,                 input,           X)," &          
+         "243 (BC_1, bsce4,                 input,           X)," &          
+         "244 (BC_1, bsce3,                 input,           X)," &          
+         "245 (BC_1, bsce2,                 input,           X)," &          
+         "246 (BC_1, bsce1,                 input,           X)," &          
+         "247 (BC_1, bsce0,                 input,           X)," &          
+         "248 (BC_1, bser7,                 input,           X)," &
+    
+         "249 (BC_1, bser6 ,                input,           X)," &
+    
+         "250 (BC_1, bser5 ,                input,           X)," &
+    
+         "251 (BC_1, bser4 ,                input,           X)," &
+    
+         "252 (BC_1, bser3 ,                input,           X)," &
+    
+         "253 (BC_1, bser2 ,                input,           X)," &
+    
+         "254 (BC_1, bser1 ,                input,           X)," &
+    
+         "255 (BC_1, bser0 ,                input,           X)," &
+    
+         "256 (BC_1, bclk7 ,                input,           X)," &         
+         "257 (BC_1, bclk6 ,                input,           X)," &       
+         "258 (BC_1, bclk5 ,                input,           X)," &       
+         "259 (BC_1, bclk4 ,                input,           X)," &    
+         "260 (BC_1, bclk3 ,                input,           X)," &      
+         "261 (BC_1, bclk2 ,                input,           X)," &     
+         "262 (BC_1, bclk1 ,                input,           X)," &     
+         "263 (BC_1, bclk0 ,                input,           X)," &     
+         "264 (BC_1, aser7,                 input,           X)," &
+    
+         "265 (BC_1, aser6,                 input,           X)," &
+    
+         "266 (BC_1, aser5,                 input,           X)," &
+    
+         "267 (BC_1, aser4,                 input,           X)," &
+    
+         "268 (BC_1, aser3,                 input,           X)," &
+    
+         "269 (BC_1, aser2,                 input,           X)," &
+    
+         "270 (BC_1, aser1,                 input,           X)," &
+    
+         "271  (BC_1, aser0,                 input,           X)," &    
+         "272  (BC_1, aclk7,                 input,           X)," &
+         "273  (BC_1, aclk6,                 input,           X)," &
+         "274  (BC_1, aclk5,                 input,           X)," &
+         "275  (BC_1, aclk4,                 input,           X)," &
+         "276  (BC_1, aclk3,                 input,           X)," & 
+         "277  (BC_1, aclk2,                 input,           X)," &  
+         "278  (BC_1, aclk1,                 input,           X)," & 
+         "279  (BC_1, aclk0,                 input,           X)" ; 
+ 
+end mxt3020;
+  

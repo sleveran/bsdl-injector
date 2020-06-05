@@ -1,0 +1,586 @@
+--------------------------------------------------------------------------------
+--
+-- File Type: BSDL for Cypress QuadPort CY7C04312BV in 272 BGA package
+-- Date Created: November 7, 2002
+--
+-- File Type: BSDL for Cypress QuadPort CY7C04312BV in 272 BGA package
+-- Updated: November 7, 2002
+--------------------------------------------------------------------------------
+
+entity CY7C04312BV133     is
+
+generic (PHYSICAL_PIN_MAP : string := "BGA_PACKAGE");
+
+        port (
+                IOP4_t  :inout  bit_vector(17 DOWNTO 0);
+                IOP3_t  :inout  bit_vector(17 DOWNTO 0);
+                IOP2_t  :inout  bit_vector(17 DOWNTO 0);
+                IOP1_t  :inout  bit_vector(17 DOWNTO 0);
+                
+                AP4_t           :inout  bit_vector(14 DOWNTO 0);
+                AP3_t           :inout  bit_vector(14 DOWNTO 0);
+                AP2_t           :inout  bit_vector(14 DOWNTO 0);
+                AP1_t           :inout  bit_vector(14 DOWNTO 0);
+                MRSTb           :in             bit;
+                INTbP4  :out            bit;
+                INTbP3  :out            bit;
+                INTbP2  :out            bit;
+                INTbP1  :out            bit;
+                CLKP4   :in             bit;
+                CLKP3   :in             bit;
+                CLKP2   :in             bit;
+                CLKP1   :in             bit;
+                LBbP4   :in             bit;
+                LBbP3   :in             bit;
+                LBbP2   :in             bit;
+                LBbP1   :in             bit;
+                UBbP4   :in             bit;
+                UBbP3   :in             bit;
+                UBbP2   :in             bit;
+                UBbP1   :in             bit;
+                CE1P4   :in             bit;
+                CE1P3   :in             bit;
+                CE1P2   :in             bit;
+                CE1P1   :in             bit;
+                CE0bP4  :in             bit;
+                CE0bP3  :in             bit;
+                CE0bP2  :in             bit;
+                CE0bP1  :in             bit;
+                OEbP4   :in             bit;
+                OEbP3   :in             bit;
+                OEbP2   :in             bit;
+                OEbP1   :in             bit;
+                RWbP4   :in             bit;
+                RWbP3   :in             bit;
+                RWbP2   :in             bit;
+                RWbP1   :in             bit;
+                CLKBIST :in             bit;
+                TDI             :in             bit;
+                TDO             :out            bit;
+                TMS             :in             bit;
+                TCK             :in             bit;
+                GND   	:linkage bit_vector (15 DOWNTO 0);
+                VDD   	:linkage bit_vector (5 DOWNTO 0);
+                VSS   	:linkage bit_vector (5 DOWNTO 0); 
+                VDD1  	:linkage bit_vector (7 DOWNTO 0); 
+                VSS1  	:linkage bit_vector (7 DOWNTO 0); 
+                VDD2  	:linkage bit_vector (7 DOWNTO 0); 
+                VSS2  	:linkage bit_vector (15 DOWNTO 0)
+                   );
+
+use STD_1149_1_1994.all;
+
+attribute COMPONENT_CONFORMANCE of CY7C04312BV133	: entity is
+        "STD_1149_1_1993";
+
+attribute PIN_MAP of CY7C04312BV133  : entity is PHYSICAL_PIN_MAP;
+  
+constant BGA_PACKAGE : PIN_MAP_STRING :=
+        "IOP4_t :       (B14,A14,C15,A13,B13,A12,B12,A11,C12," &
+                                "Y19,W18,Y18,W17,Y17,W16,Y16,W15,Y15)," &
+        "IOP3_t :       (A19,B18,A18,B17,A17,B16,A16,B15,A15," &
+                                "W14,Y14,V15,Y13,W13,Y12,W12,Y11,V12)," &
+        "IOP2_t :       (A02,B03,A03,B04,A04,B05,A05,B06,A06," &
+                                "W07,Y07,V06,Y08,W08,Y09,W09,Y10,V09)," &
+        "IOP1_t :       (B07,A07,C06,A08,B08,A09,B09,A10,C09," &
+                                "Y02,W03,Y03,W04,Y04,W05,Y05,W06,Y06)," &
+        "AP4_t  :       (C20,D18,D19,E19,E20,F18,F19," &
+                                "F20,G18,G19,H19,H20,J18,J19,K20)," &
+        "AP3_t  :       (V20,U18,U19,T19,T20,R18,R19," &
+                                "R20,P18,P19,N19,N20,M18,M19,L20)," &
+        "AP2_t  :       (V01,U03,U02,T02,T01,R03,R02," &
+                                "R01,P03,P02,N02,N01,M03,M02,L01)," &
+        "AP1_t  :       (C01,D03,D02,E02,E01,F03,F02," &
+                                "F01,G03,G02,H02,H01,J03,J02,K01)," &
+        "MRSTb  		:       W10," &
+        "INTbP4 :       K19," &
+        "INTbP3 :       L19," &
+        "INTbP2 :       L02," &
+        "INTbP1 :       K02," &
+        "CLKP4  :       K17," &
+        "CLKP3  :       M17," &
+        "CLKP2  :       M04," &
+        "CLKP1  :       K04," &
+        "LBbP4  :       A20," &
+        "LBbP3  :       Y20," &
+        "LBbP2  :       Y01," &
+        "LBbP1  :       A01," &
+        "UBbP4  :       B19," &
+        "UBbP3  :       W19," &
+        "UBbP2  :       W02," &
+        "UBbP1  :       B02," &
+        "CE1P4  :       C18," &
+        "CE1P3  :       V18," &
+        "CE1P2  :       V03," &
+        "CE1P1  :       C03," &
+        "CE0bP4 :       C17," &
+        "CE0bP3 :       V17," &
+        "CE0bP2 :       V04," &
+        "CE0bP1 :       C04," &
+        "OEbP4  :       D17," &
+        "OEbP3  :       U17," &
+        "OEbP2  :       U04," &
+        "OEbP1  :       D04," &
+        "RWbP4  :       C16," &
+        "RWbP3  :       V16," &
+        "RWbP2  :       V05," &
+        "RWbP1  :       C05," &
+        "CLKBIST        :       W11," &
+        "TDI            :       B11," &
+        "TDO            :       C11," &
+        "TMS            :       B10," &
+        "TCK            :       C10," &
+        "GND      :  (J9,J10,J11,J12,K9,K10,K11,K12," &
+                    "L9,L10,L11,L12,M9,M10,M11,M12)," &
+        "VDD  :       (D9,D12,J4,J17,U9,U12)," &
+        "VSS  :       (D10,D11,L4,L17,U10,U11)," &
+        "VDD1  :       (B1,B20,J1,J20,M1,M20,W1,W20)," &
+        "VSS1  :       (D1,D20,G1,G20,P1,P20,U1,U20)," &
+        "VDD2  :       (D5,D8,D13,D16,U5,U8,U13,U16)," &
+        "VSS2  :       (C7,C8,C13,C14,D6,D7,D14,D15," &
+                      "U6,U7,U14,U15,V7,V8,V13,V14)";
+
+attribute TAP_SCAN_IN           of      TDI : signal is true;
+
+attribute TAP_SCAN_MODE         of      TMS : signal is true;
+
+attribute TAP_SCAN_OUT          of      TDO : signal is true;
+
+attribute TAP_SCAN_CLOCK        of      TCK : signal is (10.0e6,BOTH);
+
+attribute INSTRUCTION_LENGTH    of      CY7C04312BV133: entity is 4;
+
+attribute INSTRUCTION_OPCODE    of      CY7C04312BV133: entity is
+    "EXTEST     (0000)," &
+    "SAMPLE     (0001)," &
+    "INT_SCAN   (0010)," &
+    "MCR_SCAN   (0011)," &
+--  "undef      (0100)," &
+    "CLAMP      (0101)," &
+    "HIGHZ      (0110)," &
+    "IDCODE     (0111)," &
+    "RUNBIST    (1000)," &
+--  "undef      (0101)," &
+--  "undef	    (1010)," &
+--  "undef      (1011)," &
+--  "undef      (1100)," &
+--  "undef      (1101)," &
+--  "undef      (1110)," &
+    "BYPASS     (1111)";
+
+attribute INSTRUCTION_CAPTURE   of      CY7C04312BV133: entity is "0001";
+
+attribute IDCODE_REGISTER       of      CY7C04312BV133: entity is 
+        "0001" &                        -- version
+        "1100000000000000" &     -- part number C000h 
+        "00000110100" &          -- manufacturer id 34h
+        "1";                            -- standard requirement
+
+attribute REGISTER_ACCESS       of      CY7C04312BV133: entity is 
+--    "BOUNDARY_SCAN[392] (EXTEST, SAMPLE)," & -- standard definitions
+--    "BYPASS[1]          (HIGHZ, CLAMP, BYPASS)," &
+--    "IDR[32]            (IDCODE)," &  
+    "MBIST_DEBUG[100]   (RUNBIST)," &  
+    "MBIST_CONTROL[2]   (MCR_SCAN)," & 
+    "MBIST_RESULT[25]   (INT_SCAN)";  
+
+attribute BOUNDARY_LENGTH of CY7C04312BV133: entity is 392;
+
+attribute BOUNDARY_REGISTER of CY7C04312BV133: entity is
+-- cellnum (type, port, function, safe[, ccell, disval, disrslt])
+
+    "0   (BC_2,   *,          control, 0)," &
+    "1   (BC_7,      AP4_t( 0), bidir  , X,       0,  0,     Z)," &
+    "2   (BC_2,   *,          control, 0)," &
+    "3   (BC_7,      AP4_t( 1), bidir  , X,       2,  0,     Z)," &
+    "4   (BC_2,   *,          control, 0)," &
+    "5   (BC_7,      AP4_t( 2), bidir  , X,       4,  0,     Z)," &
+    "6   (BC_2,   *,          control, 0)," &
+    "7   (BC_7,      AP4_t( 3), bidir  , X,       6,  0,     Z)," &
+    "8   (BC_2,   *,          control, 0)," &
+    "9   (BC_7,      AP4_t( 4), bidir  , X,       8,  0,     Z)," &
+    "10  (BC_2,   *,          control, 0)," &
+    "11  (BC_7,      AP4_t( 5), bidir  , X,       10,  0,     Z)," &
+    "12  (BC_2,   *,          control, 0)," &
+    "13  (BC_7,      AP4_t( 6), bidir  , X,       12,  0,     Z)," &
+    "14  (BC_2,   *,          control, 0)," &
+    "15  (BC_7,      AP4_t( 7), bidir  , X,       14,  0,     Z)," &
+    "16  (BC_2,   *,          control, 0)," &
+    "17  (BC_7,      AP4_t( 8), bidir  , X,       16,  0,     Z)," &
+    "18  (BC_2,   *,          control, 0)," &
+    "19  (BC_7,      AP4_t( 9), bidir  , X,       18,  0,     Z)," &
+    "20  (BC_2,   *,          control, 0)," &
+    "21  (BC_7,      AP4_t(10), bidir  , X,       20,  0,     Z)," &
+    "22  (BC_2,   *,          control, 0)," &
+    "23  (BC_7,      AP4_t(11), bidir  , X,       22,  0,     Z)," &
+    "24  (BC_2,   *,          control, 0)," &
+    "25  (BC_7,      AP4_t(12), bidir  , X,       24,  0,     Z)," &
+    "26  (BC_2,   *,          control, 0)," &
+    "27  (BC_7,      AP4_t(13), bidir  , X,       26,  0,     Z)," &
+    "28  (BC_2,   *,          control, 0)," &
+    "29  (BC_7,      AP4_t(14), bidir  , X,       28,  0,     Z)," &
+    "30  (BC_2,   *,          internal, 0)," &
+    "31  (BC_2,   *, 		internal, 0)," &
+    "32  (BC_2,   *,          internal, 0)," &
+    "33  (BC_1,   *,  		internal, 0)," &
+    "34  (BC_2,   *,          internal, 0)," &
+    "35  (BC_4,   *,  		internal, 1)," &
+    "36  (BC_2,   *,          internal, 0)," &
+    "37  (BC_4,   *,  		internal, 1)," &
+    "38  (BC_2,   *,          internal, 0)," &
+    "39  (BC_4,   *,  		internal, 0)," &
+    "40  (BC_2,   *,          internal, 0)," &
+    "41  (BC_4,   *,  		internal, 1)," &
+    "42  (BC_2,   *,          internal, 0)," &
+    "43  (BC_4,   *,  		internal, 1)," &
+    "44  (BC_2,   *,          internal, 0)," &
+    "45  (BC_4,   *,  		internal, 1)," &
+    "46  (BC_2,   *,          internal, 0)," &
+    "47  (BC_4,      LBbP4    , input  , X)," &
+    "48  (BC_2,   *,          internal, 0)," &
+    "49  (BC_4,      UBbP4    , input  , X)," &
+    "50  (BC_2,   *,          internal, 0)," &
+    "51  (BC_4,      OEbP4    , input  , X)," &
+    "52  (BC_2,   *,          internal, 0)," &
+    "53  (BC_4,      RWbP4    , input  , X)," &
+    "54  (BC_2,   *,          internal, 0)," &
+    "55  (BC_4,      CE1P4    , input  , X)," &
+    "56  (BC_2,   *,          internal, 0)," &
+    "57  (BC_4,     CE0bP4    , input  , X)," &
+    "58  (BC_2,   *,          control, 0)," &
+    "59  (BC_1,     INTbP4,  output3,    X,       58,  0,     Z)," &
+    "60  (BC_2,   *,          internal, 0)," &
+    "61  (BC_4,      CLKP4    , input  , X)," &
+    "62  (BC_2,   *,          control, 0)," &
+    "63  (BC_7,      AP3_t( 0), bidir  , X,       62,  0,     Z)," &
+    "64  (BC_2,   *,          control, 0)," &
+    "65  (BC_7,      AP3_t( 1), bidir  , X,       64,  0,     Z)," &
+    "66  (BC_2,   *,          control, 0)," &
+    "67  (BC_7,      AP3_t( 2), bidir  , X,       66,  0,     Z)," &
+    "68  (BC_2,   *,          control, 0)," &
+    "69  (BC_7,      AP3_t( 3), bidir  , X,       68,  0,     Z)," &
+    "70  (BC_2,   *,          control, 0)," &
+    "71  (BC_7,      AP3_t( 4), bidir  , X,       70,  0,     Z)," &
+    "72  (BC_2,   *,          control, 0)," &
+    "73  (BC_7,      AP3_t( 5), bidir  , X,       72,  0,     Z)," &
+    "74  (BC_2,   *,          control, 0)," &
+    "75  (BC_7,      AP3_t( 6), bidir  , X,       74,  0,     Z)," &
+    "76  (BC_2,   *,          control, 0)," &
+    "77  (BC_7,      AP3_t( 7), bidir  , X,       76,  0,     Z)," &
+    "78  (BC_2,   *,          control, 0)," &
+    "79  (BC_7,      AP3_t( 8), bidir  , X,       78,  0,     Z)," &
+    "80  (BC_2,   *,          control, 0)," &
+    "81  (BC_7,      AP3_t( 9), bidir  , X,       80,  0,     Z)," &
+    "82  (BC_2,   *,          control, 0)," &
+    "83  (BC_7,      AP3_t(10), bidir  , X,       82,  0,     Z)," &
+    "84  (BC_2,   *,          control, 0)," &
+    "85  (BC_7,      AP3_t(11), bidir  , X,       84,  0,     Z)," &
+    "86  (BC_2,   *,          control, 0)," &
+    "87  (BC_7,      AP3_t(12), bidir  , X,       86,  0,     Z)," &
+    "88  (BC_2,   *,          control, 0)," &
+    "89  (BC_7,      AP3_t(13), bidir  , X,       88,  0,     Z)," &
+    "90  (BC_2,   *,          control, 0)," &
+    "91  (BC_7,      AP3_t(14), bidir  , X,       90,  0,     Z)," &
+    "92  (BC_2,   *,          internal, 0)," &
+    "93  (BC_2,   *, 		internal, 0)," &
+    "94  (BC_2,   *,          internal, 0)," &
+    "95  (BC_1,   *,  		internal, 0)," &
+    "96  (BC_2,   *,          internal, 0)," &
+    "97  (BC_4,   *, 		internal, 1)," &
+    "98  (BC_2,   *,          internal, 0)," &
+    "99  (BC_4,   *, 		internal, 1)," &
+    "100 (BC_2,   *,          internal, 0)," &
+    "101 (BC_4,   *, 		internal, 0)," &
+    "102 (BC_2,   *,          internal, 0)," &
+    "103 (BC_4,   *, 		internal, 1)," &
+    "104 (BC_2,   *,          internal, 0)," &
+    "105 (BC_4,   *, 		internal, 1)," &
+    "106 (BC_2,   *,          internal, 0)," &
+    "107 (BC_4,   *, 		internal, 1)," &
+    "108 (BC_2,   *,          internal, 0)," &
+    "109 (BC_4,      LBbP3    , input  , X)," &
+    "110 (BC_2,   *,          internal, 0)," &
+    "111 (BC_4,      UBbP3    , input  , X)," &
+    "112 (BC_2,   *,          internal, 0)," &
+    "113 (BC_4,      OEbP3    , input  , X)," &
+    "114 (BC_2,   *,          internal, 0)," &
+    "115 (BC_4,      RWbP3    , input  , X)," &
+    "116 (BC_2,   *,          internal, 0)," &
+    "117 (BC_4,      CE1P3    , input  , X)," &
+    "118 (BC_2,   *,          internal, 0)," &
+    "119 (BC_4,     CE0bP3    , input  , X)," &
+    "120 (BC_2,   *,          control, 0)," &
+    "121 (BC_1,     INTbP3,  output3,    X,      120,  0,     Z)," &
+    "122 (BC_2,   *,          internal, 0)," &
+    "123 (BC_4,      CLKP3    , input  , X)," &
+    "124 (BC_2,   *,          control, 0)," &
+    "125 (BC_7,     IOP4_t( 0), bidir  , X,       124,  0,     Z)," &
+    "126 (BC_2,   *,          control, 0)," &
+    "127 (BC_7,     IOP4_t( 1), bidir  , X,       126,  0,     Z)," &
+    "128 (BC_2,   *,          control, 0)," &
+    "129 (BC_7,     IOP4_t( 2), bidir  , X,       128,  0,     Z)," &
+    "130 (BC_2,   *,          control, 0)," &
+    "131 (BC_7,     IOP4_t( 3), bidir  , X,       130,  0,     Z)," &
+    "132 (BC_2,   *,          control, 0)," &
+    "133 (BC_7,     IOP4_t( 4), bidir  , X,       132,  0,     Z)," &
+    "134 (BC_2,   *,          control, 0)," &
+    "135 (BC_7,     IOP4_t( 5), bidir  , X,       134,  0,     Z)," &
+    "136 (BC_2,   *,          control, 0)," &
+    "137 (BC_7,     IOP4_t( 6), bidir  , X,       136,  0,     Z)," &
+    "138 (BC_2,   *,          control, 0)," &
+    "139 (BC_7,     IOP4_t( 7), bidir  , X,       138,  0,     Z)," &
+    "140 (BC_2,   *,          control, 0)," &
+    "141 (BC_7,     IOP4_t( 8), bidir  , X,       140,  0,     Z)," &
+    "142 (BC_2,   *,          control, 0)," &
+    "143 (BC_7,     IOP3_t( 0), bidir  , X,       142,  0,     Z)," &
+    "144 (BC_2,   *,          control, 0)," &
+    "145 (BC_7,     IOP3_t( 1), bidir  , X,       144,  0,     Z)," &
+    "146 (BC_2,   *,          control, 0)," &
+    "147 (BC_7,     IOP3_t( 2), bidir  , X,       146,  0,     Z)," &
+    "148 (BC_2,   *,          control, 0)," &
+    "149 (BC_7,     IOP3_t( 3), bidir  , X,       148,  0,     Z)," &
+    "150 (BC_2,   *,          control, 0)," &
+    "151 (BC_7,     IOP3_t( 4), bidir  , X,       150,  0,     Z)," &
+    "152 (BC_2,   *,          control, 0)," &
+    "153 (BC_7,     IOP3_t( 5), bidir  , X,       152,  0,     Z)," &
+    "154 (BC_2,   *,          control, 0)," &
+    "155 (BC_7,     IOP3_t( 6), bidir  , X,       154,  0,     Z)," &
+    "156 (BC_2,   *,          control, 0)," &
+    "157 (BC_7,     IOP3_t( 7), bidir  , X,       156,  0,     Z)," &
+    "158 (BC_2,   *,          control, 0)," &
+    "159 (BC_7,     IOP3_t( 8), bidir  , X,       158,  0,     Z)," &
+    "160 (BC_2,   *,          control, 0)," &
+    "161 (BC_7,     IOP1_t( 0), bidir  , X,       160,  0,     Z)," &
+    "162 (BC_2,   *,          control, 0)," &
+    "163 (BC_7,     IOP1_t( 1), bidir  , X,       162,  0,     Z)," &
+    "164 (BC_2,   *,          control, 0)," &
+    "165 (BC_7,     IOP1_t( 2), bidir  , X,       164,  0,     Z)," &
+    "166 (BC_2,   *,          control, 0)," &
+    "167 (BC_7,     IOP1_t( 3), bidir  , X,       166,  0,     Z)," &
+    "168 (BC_2,   *,          control, 0)," &
+    "169 (BC_7,     IOP1_t( 4), bidir  , X,       168,  0,     Z)," &
+    "170 (BC_2,   *,          control, 0)," &
+    "171 (BC_7,     IOP1_t( 5), bidir  , X,       170,  0,     Z)," &
+    "172 (BC_2,   *,          control, 0)," &
+    "173 (BC_7,     IOP1_t( 6), bidir  , X,       172,  0,     Z)," &
+    "174 (BC_2,   *,          control, 0)," &
+    "175 (BC_7,     IOP1_t( 7), bidir  , X,       174,  0,     Z)," &
+    "176 (BC_2,   *,          control, 0)," &
+    "177 (BC_7,     IOP1_t( 8), bidir  , X,       176,  0,     Z)," &
+    "178 (BC_2,   *,          control, 0)," &
+    "179 (BC_7,     IOP2_t( 0), bidir  , X,       178,  0,     Z)," &
+    "180 (BC_2,   *,          control, 0)," &
+    "181 (BC_7,     IOP2_t( 1), bidir  , X,       180,  0,     Z)," &
+    "182 (BC_2,   *,          control, 0)," &
+    "183 (BC_7,     IOP2_t( 2), bidir  , X,       182,  0,     Z)," &
+    "184 (BC_2,   *,          control, 0)," &
+    "185 (BC_7,     IOP2_t( 3), bidir  , X,       184,  0,     Z)," &
+    "186 (BC_2,   *,          control, 0)," &
+    "187 (BC_7,     IOP2_t( 4), bidir  , X,       186,  0,     Z)," &
+    "188 (BC_2,   *,          control, 0)," &
+    "189 (BC_7,     IOP2_t( 5), bidir  , X,       188,  0,     Z)," &
+    "190 (BC_2,   *,          control, 0)," &
+    "191 (BC_7,     IOP2_t( 6), bidir  , X,       190,  0,     Z)," &
+    "192 (BC_2,   *,          control, 0)," &
+    "193 (BC_7,     IOP2_t( 7), bidir  , X,       192,  0,     Z)," &
+    "194 (BC_2,   *,          control, 0)," &
+    "195 (BC_7,     IOP2_t( 8), bidir  , X,       194,  0,     Z)," &
+    "196 (BC_2,   *,          control, 0)," &
+    "197 (BC_7,      AP2_t( 0), bidir  , X,       196,  0,     Z)," &
+    "198 (BC_2,   *,          control, 0)," &
+    "199 (BC_7,      AP2_t( 1), bidir  , X,       198,  0,     Z)," &
+    "200 (BC_2,   *,          control, 0)," &
+    "201 (BC_7,      AP2_t( 2), bidir  , X,       200,  0,     Z)," &
+    "202 (BC_2,   *,          control, 0)," &
+    "203 (BC_7,      AP2_t( 3), bidir  , X,       202,  0,     Z)," &
+    "204 (BC_2,   *,          control, 0)," &
+    "205 (BC_7,      AP2_t( 4), bidir  , X,       204,  0,     Z)," &
+    "206 (BC_2,   *,          control, 0)," &
+    "207 (BC_7,      AP2_t( 5), bidir  , X,       206,  0,     Z)," &
+    "208 (BC_2,   *,          control, 0)," &
+    "209 (BC_7,      AP2_t( 6), bidir  , X,       208,  0,     Z)," &
+    "210 (BC_2,   *,          control, 0)," &
+    "211 (BC_7,      AP2_t( 7), bidir  , X,       210,  0,     Z)," &
+    "212 (BC_2,   *,          control, 0)," &
+    "213 (BC_7,      AP2_t( 8), bidir  , X,       212,  0,     Z)," &
+    "214 (BC_2,   *,          control, 0)," &
+    "215 (BC_7,      AP2_t( 9), bidir  , X,       214,  0,     Z)," &
+    "216 (BC_2,   *,          control, 0)," &
+    "217 (BC_7,      AP2_t(10), bidir  , X,       216,  0,     Z)," &
+    "218 (BC_2,   *,          control, 0)," &
+    "219 (BC_7,      AP2_t(11), bidir  , X,       218,  0,     Z)," &
+    "220 (BC_2,   *,          control, 0)," &
+    "221 (BC_7,      AP2_t(12), bidir  , X,       220,  0,     Z)," &
+    "222 (BC_2,   *,          control, 0)," &
+    "223 (BC_7,      AP2_t(13), bidir  , X,       222,  0,     Z)," &
+    "224 (BC_2,   *,          control, 0)," &
+    "225 (BC_7,      AP2_t(14), bidir  , X,       224,  0,     Z)," &
+    "226 (BC_2,   *,          internal, 0)," &
+    "227 (BC_2,   *, 		internal, 0)," &
+    "228 (BC_2,   *,          internal, 0)," &
+    "229 (BC_1,   *,  		internal, 0)," &
+    "230 (BC_2,   *,          internal, 0)," &
+    "231 (BC_4,   *, 		internal, 1)," &
+    "232 (BC_2,   *,          internal, 0)," &
+    "233 (BC_4,   *, 		internal, 1)," &
+    "234 (BC_2,   *,          internal, 0)," &
+    "235 (BC_4,   *, 		internal, 0)," &
+    "236 (BC_2,   *,          internal, 0)," &
+    "237 (BC_4,   *, 		internal, 1)," &
+    "238 (BC_2,   *,          internal, 0)," &
+    "239 (BC_4,   *, 		internal, 1)," &
+    "240 (BC_2,   *,          internal, 0)," &
+    "241 (BC_4,   *, 		internal, 1)," &
+    "242 (BC_2,   *,          internal, 0)," &
+    "243 (BC_4,      LBbP2    , input  , X)," &
+    "244 (BC_2,   *,          internal, 0)," &
+    "245 (BC_4,      UBbP2    , input  , X)," &
+    "246 (BC_2,   *,          internal, 0)," &
+    "247 (BC_4,      OEbP2    , input  , X)," &
+    "248 (BC_2,   *,          internal, 0)," &
+    "249 (BC_4,      RWbP2    , input  , X)," &
+    "250 (BC_2,   *,          internal, 0)," &
+    "251 (BC_4,      CE1P2    , input  , X)," &
+    "252 (BC_2,   *,          internal, 0)," &
+    "253 (BC_4,     CE0bP2    , input  , X)," &
+    "254 (BC_2,   *,          control, 0)," &
+    "255 (BC_1,      INTbP2,  output3,    X,      254,  0,     Z)," &
+    "256 (BC_2,   *,          internal, 0)," &
+    "257 (BC_4,      CLKP2    , input  , X)," &
+    "258 (BC_2,   *,          control, 0)," &
+    "259 (BC_7,      AP1_t( 0), bidir  , X,       258,  0,     Z)," &
+    "260 (BC_2,   *,          control, 0)," &
+    "261 (BC_7,      AP1_t( 1), bidir  , X,       260,  0,     Z)," &
+    "262 (BC_2,   *,          control, 0)," &
+    "263 (BC_7,      AP1_t( 2), bidir  , X,       262,  0,     Z)," &
+    "264 (BC_2,   *,          control, 0)," &
+    "265 (BC_7,      AP1_t( 3), bidir  , X,       264,  0,     Z)," &
+    "266 (BC_2,   *,          control, 0)," &
+    "267 (BC_7,      AP1_t( 4), bidir  , X,       266,  0,     Z)," &
+    "268 (BC_2,   *,          control, 0)," &
+    "269 (BC_7,      AP1_t( 5), bidir  , X,       268,  0,     Z)," &
+    "270 (BC_2,   *,          control, 0)," &
+    "271 (BC_7,      AP1_t( 6), bidir  , X,       270,  0,     Z)," &
+    "272 (BC_2,   *,          control, 0)," &
+    "273 (BC_7,      AP1_t( 7), bidir  , X,       272,  0,     Z)," &
+    "274 (BC_2,   *,          control, 0)," &
+    "275 (BC_7,      AP1_t( 8), bidir  , X,       274,  0,     Z)," &
+    "276 (BC_2,   *,          control, 0)," &
+    "277 (BC_7,      AP1_t( 9), bidir  , X,       276,  0,     Z)," &
+    "278 (BC_2,   *,          control, 0)," &
+    "279 (BC_7,      AP1_t(10), bidir  , X,       278,  0,     Z)," &
+    "280 (BC_2,   *,          control, 0)," &
+    "281 (BC_7,      AP1_t(11), bidir  , X,       280,  0,     Z)," &
+    "282 (BC_2,   *,          control, 0)," &
+    "283 (BC_7,      AP1_t(12), bidir  , X,       282,  0,     Z)," &
+    "284 (BC_2,   *,          control, 0)," &
+    "285 (BC_7,      AP1_t(13), bidir  , X,       284,  0,     Z)," &
+    "286 (BC_2,   *,          control, 0)," &
+    "287 (BC_7,      AP1_t(14), bidir  , X,       286,  0,     Z)," &
+    "288 (BC_2,   *,          internal, 0)," &
+    "289 (BC_2,   *, 		internal, 0)," &
+    "290 (BC_2,   *,          internal, 0)," &
+    "291 (BC_1,   *,  		internal, 0)," &
+    "292 (BC_2,   *,          internal, 0)," &
+    "293 (BC_4,   *, 		internal, 1)," &
+    "294 (BC_2,   *,          internal, 0)," &
+    "295 (BC_4,   *, 		internal, 1)," &
+    "296 (BC_2,   *,          internal, 0)," &
+    "297 (BC_4,   *, 		internal, 0)," &
+    "298 (BC_2,   *,          internal, 0)," &
+    "299 (BC_4,   *, 		internal, 1)," &
+    "300 (BC_2,   *,          internal, 0)," &
+    "301 (BC_4,   *, 		internal, 1)," &
+    "302 (BC_2,   *,          internal, 0)," &
+    "303 (BC_4,   *, 		internal, 1)," &
+    "304 (BC_2,   *,          internal, 0)," &
+    "305 (BC_4,      LBbP1    , input  , X)," &
+    "306 (BC_2,   *,          internal, 0)," &
+    "307 (BC_4,      UBbP1    , input  , X)," &
+    "308 (BC_2,   *,          internal, 0)," &
+    "309 (BC_4,      OEbP1    , input  , X)," &
+    "310 (BC_2,   *,          internal, 0)," &
+    "311 (BC_4,      RWbP1    , input  , X)," &
+    "312 (BC_2,   *,          internal, 0)," &
+    "313 (BC_4,      CE1P1    , input  , X)," &
+    "314 (BC_2,   *,          internal, 0)," &
+    "315 (BC_4,     CE0bP1    , input  , X)," &
+    "316 (BC_2,   *,          control, 0)," &
+    "317 (BC_1,     INTbP1,  output3,    X,       316,  0,     Z)," &
+    "318 (BC_2,   *,          internal, 0)," &
+    "319 (BC_4,      CLKP1    , input  , X)," &
+    "320 (BC_2,   *,          control, 0)," &
+    "321 (BC_7,     IOP2_t( 9), bidir  , X,       320,  0,     Z)," &
+    "322 (BC_2,   *,          control, 0)," &
+    "323 (BC_7,     IOP2_t(10), bidir  , X,       322,  0,     Z)," &
+    "324 (BC_2,   *,          control, 0)," &
+    "325 (BC_7,     IOP2_t(11), bidir  , X,       324,  0,     Z)," &
+    "326 (BC_2,   *,          control, 0)," &
+    "327 (BC_7,     IOP2_t(12), bidir  , X,       326,  0,     Z)," &
+    "328 (BC_2,   *,          control, 0)," &
+    "329 (BC_7,     IOP2_t(13), bidir  , X,       328,  0,     Z)," &
+    "330 (BC_2,   *,          control, 0)," &
+    "331 (BC_7,     IOP2_t(14), bidir  , X,       330,  0,     Z)," &
+    "332 (BC_2,   *,          control, 0)," &
+    "333 (BC_7,     IOP2_t(15), bidir  , X,       332,  0,     Z)," &
+    "334 (BC_2,   *,          control, 0)," &
+    "335 (BC_7,     IOP2_t(16), bidir  , X,       334,  0,     Z)," &
+    "336 (BC_2,   *,          control, 0)," &
+    "337 (BC_7,     IOP2_t(17), bidir  , X,       336,  0,     Z)," &
+    "338 (BC_2,   *,          control, 0)," &
+    "339 (BC_7,     IOP1_t( 9), bidir  , X,       338,  0,     Z)," &
+    "340 (BC_2,   *,          control, 0)," &
+    "341 (BC_7,     IOP1_t(10), bidir  , X,       340,  0,     Z)," &
+    "342 (BC_2,   *,          control, 0)," &
+    "343 (BC_7,     IOP1_t(11), bidir  , X,       342,  0,     Z)," &
+    "344 (BC_2,   *,          control, 0)," &
+    "345 (BC_7,     IOP1_t(12), bidir  , X,       344,  0,     Z)," &
+    "346 (BC_2,   *,          control, 0)," &
+    "347 (BC_7,     IOP1_t(13), bidir  , X,       346,  0,     Z)," &
+    "348 (BC_2,   *,          control, 0)," &
+    "349 (BC_7,     IOP1_t(14), bidir  , X,       348,  0,     Z)," &
+    "350 (BC_2,   *,          control, 0)," &
+    "351 (BC_7,     IOP1_t(15), bidir  , X,       350,  0,     Z)," &
+    "352 (BC_2,   *,          control, 0)," &
+    "353 (BC_7,     IOP1_t(16), bidir  , X,       352,  0,     Z)," &
+    "354 (BC_2,   *,          control, 0)," &
+    "355 (BC_7,     IOP1_t(17), bidir  , X,       354,  0,     Z)," &
+    "356 (BC_2,   *,          control, 0)," &
+    "357 (BC_7,     IOP3_t( 9), bidir  , X,       356,  0,     Z)," &
+    "358 (BC_2,   *,          control, 0)," &
+    "359 (BC_7,     IOP3_t(10), bidir  , X,       358,  0,     Z)," &
+    "360 (BC_2,   *,          control, 0)," &
+    "361 (BC_7,     IOP3_t(11), bidir  , X,       360,  0,     Z)," &
+    "362 (BC_2,   *,          control, 0)," &
+    "363 (BC_7,     IOP3_t(12), bidir  , X,       362,  0,     Z)," &
+    "364 (BC_2,   *,          control, 0)," &
+    "365 (BC_7,     IOP3_t(13), bidir  , X,       364,  0,     Z)," &
+    "366 (BC_2,   *,          control, 0)," &
+    "367 (BC_7,     IOP3_t(14), bidir  , X,       366,  0,     Z)," &
+    "368 (BC_2,   *,          control, 0)," &
+    "369 (BC_7,     IOP3_t(15), bidir  , X,       368,  0,     Z)," &
+    "370 (BC_2,   *,          control, 0)," &
+    "371 (BC_7,     IOP3_t(16), bidir  , X,       370,  0,     Z)," &
+    "372 (BC_2,   *,          control, 0)," &
+    "373 (BC_7,     IOP3_t(17), bidir  , X,       372,  0,     Z)," &
+    "374 (BC_2,   *,          control, 0)," &
+    "375 (BC_7,     IOP4_t( 9), bidir  , X,       374,  0,     Z)," &
+    "376 (BC_2,   *,          control, 0)," &
+    "377 (BC_7,     IOP4_t(10), bidir  , X,       376,  0,     Z)," &
+    "378 (BC_2,   *,          control, 0)," &
+    "379 (BC_7,     IOP4_t(11), bidir  , X,       378,  0,     Z)," &
+    "380 (BC_2,   *,          control, 0)," &
+    "381 (BC_7,     IOP4_t(12), bidir  , X,       380,  0,     Z)," &
+    "382 (BC_2,   *,          control, 0)," &
+    "383 (BC_7,     IOP4_t(13), bidir  , X,       382,  0,     Z)," &
+    "384 (BC_2,   *,          control, 0)," &
+    "385 (BC_7,     IOP4_t(14), bidir  , X,       384,  0,     Z)," &
+    "386 (BC_2,   *,          control, 0)," &
+    "387 (BC_7,     IOP4_t(15), bidir  , X,       386,  0,     Z)," &
+    "388 (BC_2,   *,          control, 0)," &
+    "389 (BC_7,     IOP4_t(16), bidir  , X,       388,  0,     Z)," &
+    "390 (BC_2,   *,          control, 0)," &
+    "391 (BC_7,     IOP4_t(17), bidir  , X,       390,  0,     Z)";
+
+end CY7C04312BV133;
+

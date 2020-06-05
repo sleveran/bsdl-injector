@@ -1,0 +1,448 @@
+--******************************************************************************
+--**  Copyright (c) 2001 Cypress Semiconductor
+--**  All rights reserved.
+--**
+--**  File Name:     cyp15g0402-DXA.bsdl
+--**  Release:       1.0
+--**
+--**  Last Updated:  May 14, 2002
+--**
+--**  Function:      Quad HOTLink-II Tranceiver, BSDL file for JTAG
+--**  Part #:        CYP15G0402DXA-BGC
+--**
+--**  Notes:    IMPORTANT NOTE: Please be aware that the CYP15G0402DXA-BGC Quad
+--**            HOTLink-II Tranceiver device is not 1149.1 compliant. Therefore,
+--**            the BSDL simulation file given below is intended as an example.
+--**            Ref CYP15G0402DXA-BGC Datasheet at www.cypress.com
+--**
+--**            The incompatibility of the BSDL file is due to the fact that the
+--**            the chip reset and the JTAG reset (TRSTZn) are the same signals.
+--**
+--**            The CYP15G0402DXA-BGC has a few tri-state control signals. These
+--**            signals are SDASEL, SPDSEL, PARCTL, RFMODE etc.
+--**            The tri state is implemented in the BSDL file as follows:
+--**            Input vector : 11 => HIGH
+--**            Input vector : 10 => MID, where 1 is the MSB and 0 is the LSB.
+--**            Input vector : 00 => LOW.
+--**            (e.g for SDASEL, register #170 is LSB and 169 is MSB. )
+--**
+--**            The CYP15G0402DXB-BGC revision of this device will be 1149.1
+--**            compliant. In this case, the TRSTZn will function as the chip
+--**            reset only. The JTAG will have a power-on-reset. The changes
+--**            needed to be made to the BSDL file is to comment out the
+--**            following line.
+--**            --   attribute TAP_SCAN_RESET of TRSTZn: signal is true;
+--**            
+--**  Queries ?:     Contact DCD Applications at 408-943-2891
+--******************************************************************************
+
+ entity cyp15g0402 is
+       generic (PHYSICAL_PIN_MAP : string := "BGC_256");
+
+       port   (
+              TXPERA: out     bit;
+              TXPERB: out     bit;
+              TXPERC: out     bit;
+              TXPERD: out     bit;
+                TXDA: in      bit_vector(0 to 9);
+                TXDB: in      bit_vector(0 to 9);
+                TXDC: in      bit_vector(0 to 9);
+                TXDD: in      bit_vector(0 to 9);
+               TXOPA: in      bit;
+               TXOPB: in      bit;
+               TXOPC: in      bit;
+               TXOPD: in      bit;
+             TXRST_B: in      bit;
+             TXCKSEL: in      bit;
+              TXRATE: in      bit;
+              TXCLKA: in      bit;
+              TXCLKB: in      bit;
+              TXCLKC: in      bit;
+              TXCLKD: in      bit;
+                RXDA: out     bit_vector(0 to 9);
+                RXDB: out     bit_vector(0 to 9);
+                RXDC: out     bit_vector(0 to 9);
+                RXDD: out     bit_vector(0 to 9);
+             COMDETA: out     bit;
+             COMDETB: out     bit;
+             COMDETC: out     bit;
+             COMDETD: out     bit;
+               RXOPA: out     bit;
+               RXOPB: out     bit;
+               RXOPC: out     bit;
+               RXOPD: out     bit;
+              RXRATE: in      bit;
+            FRAMCHAR: in      bit;
+              RFMODE: in      bit;
+             RXCLKAN: out     bit;
+             RXCLKAP: inout   bit;
+             RXCLKBN: out     bit;
+             RXCLKBP: inout   bit;
+             RXCLKCN: out     bit;
+             RXCLKCP: inout   bit;
+             RXCLKDN: out     bit;
+             RXCLKDP: inout   bit;
+               RFENA: in      bit;
+               RFENB: inout   bit;
+               RFENC: inout   bit;
+               RFEND: inout   bit;
+              PARCTL: in      bit;
+             REFCLKP: in      bit;
+             REFCLKN: in      bit;
+              SPDSEL: in      bit;
+              SDASEL: in      bit;
+               OUTAP: linkage bit;
+               OUTAN: linkage bit;
+               OUTBP: linkage bit;
+               OUTBN: linkage bit;
+               OUTCP: linkage bit;
+               OUTCN: linkage bit;
+               OUTDP: linkage bit;
+               OUTDN: linkage bit;
+                INAP: linkage bit;
+                INAN: linkage bit;
+                INBP: linkage bit;
+                INBN: linkage bit;
+                INCP: linkage bit;
+                INCN: linkage bit;
+                INDP: linkage bit;
+                INDN: linkage bit;
+               LPENA: in      bit;
+               LPENB: in      bit;
+               LPENC: in      bit;
+               LPEND: in      bit;
+                OELE: in      bit;
+              BISTLE: in      bit;
+                RXLE: in      bit;
+                 BOE: in      bit_vector(0 to 7);
+              LFIA_B: out     bit;
+              LFIB_B: out     bit;
+              LFIC_B: out     bit;
+              LFID_B: out     bit;
+                 TMS: in      bit;
+                 TDI: in      bit;
+                TCLK: in      bit;
+             TXCLKOP: out     bit;
+             TXCLKON: out     bit;
+                 TDO: out     bit;
+             TRSTZ_B: in      bit;
+                 VCC: linkage bit_vector(0 to 31);
+                  NC: linkage bit_vector(0 to 21);
+                 GND: linkage bit_vector(0 to 36)
+              );
+
+       use STD_1149_1_1994.all;
+
+       attribute COMPONENT_CONFORMANCE of cyp15g0402 : entity is "STD_1149_1_1993";
+
+       attribute PIN_MAP of cyp15g0402 : entity is PHYSICAL_PIN_MAP;
+
+       constant BGC_256: PIN_MAP_STRING :=
+     "TXPERA:    Y12, " &
+     "TXPERB:    R20, " &
+     "TXPERC:    F1, " &
+     "TXPERD:    R3, " &
+       "TXDA:    (Y14,U12,W14,V14,U14,Y15,W15,V15,U15,Y17), " &
+       "TXDB:    (R18,R17,P20,P19,P18,P17,L20,M19,M18,M17), " &
+       "TXDC:    (F3,G4,J3,J4,G3,J2,L4,G1,K3,J1), " &
+       "TXDD:    (U1,U2,U3,V1,V2,W1,Y1,W2,V3,U4), " &
+      "TXOPA:    W11, " &
+      "TXOPB:    R19, " &
+      "TXOPC:    F2, " &
+      "TXOPD:    R4, " &
+    "TXRST_B:    W10, " &
+    "TXCKSEL:    G2, " &
+     "TXRATE:    C17, " &
+     "TXCLKA:    Y11, " &
+     "TXCLKB:    M20, " &
+     "TXCLKC:    L3, " &
+     "TXCLKD:    Y2, " &
+       "RXDA:    (U20,V20,V19,W20,U17,V18,W19,Y20,Y19,V17), " &
+       "RXDB:    (F18,F20,J18,G20,J20,K17,K18,J19,L17,K19), " &
+       "RXDC:    (P4,P3,P2,P1,K1,L1,M1,M2,M4,M3), " &
+       "RXDD:    (W7,V7,Y7,U7,U6,V6,W6,Y6,V4,Y3), " &
+    "COMDETA:     U19, " &
+    "COMDETB:     J17, " &
+    "COMDETC:     R1, " &
+    "COMDETD:     V9, " &
+      "RXOPA:     U18, " &
+      "RXOPB:     F19, " &
+      "RXOPC:     R2, " &
+      "RXOPD:     U9, " &
+     "RXRATE:     C18, " &
+   "FRAMCHAR:     G19, " &
+     "RFMODE:     D6, " &
+    "RXCLKAP:     Y18, " &
+    "RXCLKAN:     W18, " &
+    "RXCLKBP:     K20, " &
+    "RXCLKBN:     L19, " &
+    "RXCLKCP:     L2, " &
+    "RXCLKCN:     K2, " &
+    "RXCLKDP:     Y4, " &
+    "RXCLKDN:     W4, " &
+      "RFENA:     W12, " &
+      "RFENB:     V12, " &
+      "RFENC:     U10, " &
+      "RFEND:     V10, " &
+     "PARCTL:     C6, " &
+    "REFCLKP:     V11, " &
+    "REFCLKN:     U11, " &
+      "OUTAP:     B12, " &
+      "OUTAN:     A12, " &
+      "OUTBP:     B18, " &
+      "OUTBN:     A18, " &
+      "OUTCP:     B2, " &
+      "OUTCN:     A2, " &
+      "OUTDP:     B7, " &
+      "OUTDN:     A7, " &
+       "INAP:     B11, " &
+       "INAN:     A11, " &
+       "INBP:     B17, " &
+       "INBN:     A17, " &
+       "INCP:     B1, " &
+       "INCN:     A1, " &
+       "INDP:     B6, " &
+       "INDN:     A6, " &
+      "LPENA:     D4, " &
+      "LPENB:     C4, " &
+      "LPENC:     C3, " &
+      "LPEND:     D3, " &
+       "OELE:     G18, " &
+     "BISTLE:     F17, " &
+       "RXLE:     D18, " &
+        "BOE:     (D12,C12,D11,C11,D10,C10,D9,C9), " &
+     "LFIA_B:     W17, " &
+     "LFIB_B:     L18, " &
+     "LFIC_B:     K4, " &
+     "LFID_B:     W3, " &
+        "TDI:     C1, " &
+     "SPDSEL:     D7, " &
+     "SDASEL:     C7, " &
+       "TCLK:     D1, " &
+        "TMS:     C2, " &
+        "TDO:     C20, " &
+    "TRSTZ_B:     D2, " &
+    "TXCLKOP:     Y9, " &
+    "TXCLKON:     W9, " &
+        "VCC:     (A5,B5,C5,D5,A16,B16,C16,D16,E17,E18,E19,E20, " &
+         "         T17,T18,T19,T20,U16,V16,W16,Y16,E1,E2,E3,E4, " &
+         "                           T1,T2,T3,T4,U5,V5,W5,Y5), " &
+        "GND:     (A8,B8,C8,D8,A13,B13,C13,D13,C14,D14,C15,D15, " &
+         "        G17,H1,H2,H3,H4,H17,H18,H19,H20,N1,N2,N3,N4, " &
+         "        N17,N18,N19,N20,U8,V8,W8,Y8,U13,V13,W13,Y13), " &
+         "NC:       (A3,B3,A4,B4,A9,B9,A10,B10,A14,B14,A15,B15, " &
+         "             D17,A19,B19,C19,D19,A20,B20,D20,F4,Y10) ";
+
+       attribute TAP_SCAN_IN    of TDI : signal is true;
+       attribute TAP_SCAN_OUT   of TDO : signal is true;
+       attribute TAP_SCAN_MODE  of TMS : signal is true;
+       attribute TAP_SCAN_RESET of TRSTZ_B : signal is true;
+       attribute TAP_SCAN_CLOCK of TCLK : signal is (10.0e6, BOTH);
+
+       attribute INSTRUCTION_LENGTH of cyp15g0402 : entity is 3;
+
+       attribute INSTRUCTION_OPCODE of cyp15g0402 : entity is
+        "EXTEST       (000)," &
+        "IDCODE       (010)," &
+        "SAMPLE       (001)," &
+        "USER1        (011)," &
+        "BYPASS       (111)";
+
+       attribute INSTRUCTION_CAPTURE of cyp15g0402 : entity is "001";
+
+       attribute INSTRUCTION_PRIVATE of cyp15g0402 : entity is "USER1";
+
+       attribute IDCODE_REGISTER   of cyp15g0402 : entity is
+        "0000" &                -- 4 bit version number
+        "1100100000000001" &    -- 16 bit part number
+        "00001101001" &         -- 11-bit identity of the manufacturer
+        "1";                    -- required by IEEE standard 1149.1
+
+       attribute REGISTER_ACCESS of cyp15g0402 : entity is
+        "BOUNDARY    (EXTEST,SAMPLE)," &
+        "DEVICE_ID   (IDCODE)," &
+        "UTDR1[24]   (USER1)," &
+        "BYPASS      (BYPASS)";
+
+       attribute BOUNDARY_LENGTH of cyp15g0402 : entity is 175;
+
+       attribute BOUNDARY_REGISTER of cyp15g0402 : entity is
+
+      "174  (BC_4,  BOE(5),        input, X),                        " &
+      "173  (BC_4,  BOE(4),        input, X),                        " &
+      "172  (BC_4,  BOE(7),        input, X),                        " &
+      "171  (BC_4,  BOE(6),        input, X),                        " &
+      "170  (BC_4,  SDASEL,        input, X),                        " &
+      "169  (BC_4,  SDASEL,        input, X),                        " &
+      "168  (BC_4,  SPDSEL,        input, X),                        " &
+      "167  (BC_4,  SPDSEL,        input, X),                        " &
+      "166  (BC_4,  PARCTL,        input, X),                        " &
+      "165  (BC_4,  PARCTL,        input, X),                        " &
+      "164  (BC_4,  RFMODE,        input, X),                        " &
+      "163  (BC_4,  RFMODE,        input, X),                        " &
+      "162  (BC_4,   LPENB,        input, X),                        " &
+      "161  (BC_4,   LPENA,        input, X),                        " &
+      "160  (BC_4,   LPENC,        input, X),                        " &
+      "159  (BC_4,   LPEND,        input, X),                        " &
+      "158  (BC_1,  TXPERC,        output2,      X),                        " &
+      "157  (BC_4,  TXOPC,         input, X),                        " &
+      "156  (BC_4,  TXDC(0),       input, X),                        " &
+      "155  (BC_4,        *,           internal, X),                        " &
+      "154  (BC_4,        *,           internal, X),                        " &
+      "153  (BC_4,  TXDC(1),       input, X),                        " &
+      "152  (BC_4,  TXDC(2),       input, X),                        " &
+      "151  (BC_4,  TXDC(3),       input, X),                        " &
+      "150  (BC_4,  TXCKSEL,       input, X),                        " &
+      "149  (BC_4,  TXCKSEL,       input, X),                        " &
+      "148  (BC_4,  TXDC(4),       input, X),                        " &
+      "147  (BC_4,  TXDC(5),       input, X),                        " &
+      "146  (BC_4,  TXDC(6),       input, X),                        " &
+      "145  (BC_4,  TXDC(7),       input, X),                        " &
+      "144  (BC_1,   LFIC_B,       output2,      X),                        " &
+      "143  (BC_4,  TXDC(9),       input, X),                        " &
+      "142  (BC_4,  TXDC(8),       input, X),                        " &
+      "141  (BC_4,  TXCLKC,        input, X),                        " &
+      "140  (BC_4,  *,             internal,     X),                        " &
+      "139  (BC_1,  RXCLKCp,       output3,      X,    137,    0,      Z),  " &
+      "138  (BC_4,  RXCLKCp,       input, X),                        " &
+      "137  (BC_1,  *,             controlr,     0),                        " &
+      "136  (BC_1,  RXDC(9),       output2,      X),                        " &
+      "135  (BC_1,  RXDC(8),       output2,      X),                        " &
+      "134  (BC_1,  RXDC(7),       output2,      X),                        " &
+      "133  (BC_1,  RXDC(6),       output2,      X),                        " &
+      "132  (BC_1,  RXDC(5),       output2,      X),                        " &
+      "131  (BC_1,  RXDC(4),       output2,      X),                        " &
+      "130  (BC_1,  RXDC(3),       output2,      X),                        " &
+      "129  (BC_1,  RXDC(2),       output2,      X),                        " &
+      "128  (BC_1,  RXDC(1),       output2,      X),                        " &
+      "127  (BC_1,  RXDC(0),       output2,      X),                        " &
+      "126  (BC_1,  COMDETC,       output2,      X),                        " &
+      "125  (BC_1,  RXOPC,         output3,      X,    124,    0,      Z),  " &
+      "124  (BC_1,  *,             controlr,     0),                        " &
+      "123  (BC_1,  TXPERD,        output2,      X),                        " &
+      "122  (BC_4,  TXOPD,         input, X),                        " &
+      "121  (BC_4,  TXDD(0),       input, X),                        " &
+      "120  (BC_4,  TXDD(1),       input, X),                        " &
+      "119  (BC_4,  TXDD(2),       input, X),                        " &
+      "118  (BC_4,  TXDD(3),       input, X),                        " &
+      "117  (BC_4,  TXDD(4),       input, X),                        " &
+      "116  (BC_4,  TXDD(5),       input, X),                        " &
+      "115  (BC_4,  TXDD(6),       input, X),                        " &
+      "114  (BC_4,  TXDD(7),       input, X),                        " &
+      "113  (BC_4,  TXDD(9),       input, X),                        " &
+      "112  (BC_4,  TXDD(8),       input, X),                        " &
+      "111  (BC_4,  TXCLKD,        input, X),                        " &
+      "110  (BC_1,  LFID_B,        output2,      X),                        " &
+      "109  (BC_1,  RXDD(9),       output2,      X),                        " &
+      "108  (BC_1,  RXDD(8),       output2,      X),                        " &
+      "107  (BC_1,  RXCLKDp,       output3,      X,    105,    0,      Z),  " &
+      "106  (BC_4,  RXCLKDp,       input, X),                        " &
+      "105  (BC_1,  *,             controlr,     0),                        " &
+      "104  (BC_1,  RXDD(7),       output2,      X),                        " &
+      "103  (BC_1,  RXDD(6),       output2,      X),                        " &
+      "102  (BC_1,  RXDD(5),       output2,      X),                        " &
+      "101  (BC_1,  RXDD(4),       output2,      X),                        " &
+      "100  (BC_1,  RXDD(3),       output2,      X),                        " &
+      "99   (BC_1,  RXDD(2),       output2,      X),                        " &
+      "98   (BC_1,  RXDD(1),       output2,      X),                        " &
+      "97   (BC_1,  RXDD(0),       output2,      X),                        " &
+      "96   (BC_1,  COMDETD,       output2,      X),                        " &
+      "95   (BC_1,  RXOPD,         output3,      X,    124,    0,      Z),  " &
+      "94   (BC_1,  TXCLKOP,       output2,      X),                        " &
+      "93   (BC_1,  RFEND,         output3,      X,    91,     0,      Z),  " &
+      "92   (BC_4,  RFEND,         input, X),                        " &
+      "91   (BC_1,  *,             controlr,     0),                        " &
+      "90   (BC_4,  TXRST_B,       input, X),                        " &
+      "89   (BC_4,  REFCLKP,       input, X),                        " &
+      "88   (BC_4,  RFENA,         input, X),                        " &
+      "87   (BC_4,  RFENC,         input, X),                        " &
+      "86   (BC_1,  *,         internal, X),  " &
+      "85   (BC_4,  *,         internal, X),  " &
+      "84   (BC_1,  RFENB,         output3,      X,    91,     0,      Z),  " &
+      "83   (BC_4,  RFENB,         input, X),                        " &
+      "82   (BC_1,  TXPERA,        output2,      X),                        " &
+      "81   (BC_4,  TXOPA,         input, X),                        " &
+      "80   (BC_4,  TXCLKA,        input, X),                        " &
+      "79   (BC_4,  TXDA(0),       input, X),                        " &
+      "78   (BC_4,  TXDA(1),       input, X),                        " &
+      "77   (BC_4,  TXDA(2),       input, X),                        " &
+      "76   (BC_4,  TXDA(3),       input, X),                        " &
+      "75   (BC_4,  TXDA(4),       input, X),                        " &
+      "74   (BC_4,  TXDA(5),       input, X),                        " &
+      "73   (BC_4,  TXDA(6),       input, X),                        " &
+      "72   (BC_4,  TXDA(7),       input, X),                        " &
+      "71   (BC_4,  TXDA(8),       input, X),                        " &
+      "70   (BC_4,  TXDA(9),       input, X),                        " &
+      "69   (BC_1,  RXCLKAP,       output3,      X,    67,     0,      Z),  " &
+      "68   (BC_4,  RXCLKAP,       input, X),                        " &
+      "67   (BC_1,  *,             controlr,     0),                        " &
+      "66   (BC_1,  LFIA_B,        output2,      X),                        " &
+      "65   (BC_1,  RXDA(9),       output2,      X),                        " &
+      "64   (BC_1,  RXDA(8),       output2,      X),                        " &
+      "63   (BC_1,  RXDA(7),       output2,      X),                        " &
+      "62   (BC_1,  RXDA(6),       output2,      X),                        " &
+      "61   (BC_1,  RXDA(5),       output2,      X),                        " &
+      "60   (BC_1,  RXDA(4),       output2,      X),                        " &
+      "59   (BC_1,  RXDA(3),       output2,      X),                        " &
+      "58   (BC_1,  RXDA(2),       output2,      X),                        " &
+      "57   (BC_1,  RXOPA,         output3,      X,    124,    0,      Z),  " &
+      "56   (BC_1,  RXDA(0),       output2,      X),                        " &
+      "55   (BC_1,  RXDA(1),       output2,      X),                        " &
+      "54   (BC_1,  COMDETA,       output2,      X),                        " &
+      "53   (BC_1,  TXPERB,        output2,      X),                        " &
+      "52   (BC_4,  TXOPB,         input, X),                        " &
+      "51   (BC_4,  TXCLKB,        input, X),                        " &
+      "50   (BC_4,  TXDB(0),       input, X),                        " &
+      "49   (BC_4,  TXDB(1),       input, X),                        " &
+      "48   (BC_4,  TXDB(2),       input, X),                        " &
+      "47   (BC_4,  TXDB(3),       input, X),                        " &
+      "46   (BC_4,  TXDB(4),       input, X),                        " &
+      "45   (BC_4,  TXDB(5),       input, X),                        " &
+      "44   (BC_4,  TXDB(6),       input, X),                        " &
+      "43   (BC_4,  TXDB(7),       input, X),                        " &
+      "42   (BC_4,  TXDB(8),       input, X),                        " &
+      "41   (BC_4,  TXDB(9),       input, X),                        " &
+      "40   (BC_1,  RXCLKBP,       output3,      X,    38,     0,      Z),  " &
+      "39   (BC_4,  RXCLKBP,       input, X),                        " &
+      "38   (BC_1,  *,             controlr,     0),                        " &
+      "37   (BC_1,  LFIB_B,        output2,      X),                        " &
+      "36   (BC_1,  RXDB(9),       output2,      X),                        " &
+      "35   (BC_1,  RXDB(8),       output2,      X),                        " &
+      "34   (BC_1,  RXDB(7),       output2,      X),                        " &
+      "33   (BC_1,  RXDB(6),       output2,      X),                        " &
+      "32   (BC_1,  RXDB(5),       output2,      X),                        " &
+      "31   (BC_1,  RXDB(4),       output2,      X),                        " &
+      "30   (BC_1,  RXDB(3),       output2,      X),                        " &
+      "29   (BC_1,  RXDB(2),       output2,      X),                        " &
+      "28   (BC_1,  RXDB(1),       output2,      X),                        " &
+      "27   (BC_1,  RXDB(0),       output2,      X),                        " &
+      "26   (BC_1,  COMDETB,       output2,      X),                        " &
+      "25   (BC_1,  RXOPB,         output3,      X,    124,    0,      Z),  " &
+      "24   (BC_4,  OELE,          input, X),                        " &
+      "23   (BC_4,  *,             internal,     X),                        " &
+      "22   (BC_4,  *,             internal,     X),                        " &
+      "21   (BC_4,  BISTLE,        input, X),                        " &
+      "20   (BC_4,  FRAMCHAR,      input, X),                        " &
+      "19   (BC_4,  FRAMCHAR,      input, X),                        " &
+      "18   (BC_4,  BOE(3),        input, X),                        " &
+      "17   (BC_4,  BOE(2),        input, X),                        " &
+      "16   (BC_4,  BOE(1),        input, X),                        " &
+      "15   (BC_4,  BOE(0),        input, X),                        " &
+      "14   (BC_4,  *,             internal,     X),                        " &
+      "13   (BC_4,  *,             internal,     X),                        " &
+      "12   (BC_4,  *,             internal,     X),                        " &
+      "11   (BC_4,  *,             internal,     X),                        " &
+      "10   (BC_4,  *,             internal,     X),                        " &
+      "9    (BC_4,  *,             internal,     X),                        " &
+      "8    (BC_4,  *,             internal,     X),                        " &
+      "7    (BC_4,  *,             internal,     X),                        " &
+      "6    (BC_4,  TXRATE,        input, X),                        " &
+      "5    (BC_4,  *,                 internal, X),                        " &
+      "4    (BC_4,  RXRATE,        input, X),                        " &
+      "3    (BC_4,  RXLE,          input, X),                        " &
+      "2    (BC_4,  *,                 internal, X),                        " &
+      "1    (BC_4,  *,                 internal, X),                        " &
+      "0    (BC_4,  *,                 internal, X)                         ";
+
+ end cyp15g0402;
+

@@ -1,0 +1,298 @@
+*******************************************************************************
+-- File Name		:	DS21Q352PORT1.TXT
+-- Created by		:	Dallas Semiconductor
+-- Documentation	:	DS21Q352 series data sheets
+-- 
+--
+-- BSDL Revision	:	1.0
+--
+-- Date created	        :	10/27/2005
+-- 
+-- Device	        :	DS21Q352
+-- Package	        :	256-pin BGA
+-- 
+--			IMPORTANT NOTICE
+-- Dallas Semiconductor customers are advised to obtain the latest version of 
+-- device specifications before relying on any published information contained 
+-- herein. Dallas Semiconductor assumes no responsibility or liability arising 
+-- out of the application of any information described herein.
+--
+--
+--			IMPORTANT NOTICE ABOUT THE REVISION
+--
+-- Dallas Semiconductor customers are advised to check the revision of the  
+-- device they will be using.  All the codes for the device revisions are 
+-- herein this BSDL file.
+--
+-- The characters "/", "(", ")" and "*" have been removed from signal names for 
+-- compatibility with BSDL file format.
+-- 
+-- *******************************************************************************
+
+entity DS21Q352BGA is generic (PHYSICAL_PIN_MAP : string := "BGA_256");
+
+port (
+A8MCLK	:buffer bit;
+JTMS	:in bit;
+RCHBLK	:buffer bit;
+JTCLK	:in bit;
+JTRST	:in bit;
+RCL	:buffer bit;
+JTDI	:in bit;
+JTDO	:out bit;
+BTS	:in bit;
+LIUC	:in bit;
+A8XCLK	:buffer bit;
+TEST	:in bit;
+RTIP	:in bit;
+RRING	:in bit;
+MCLK	:in bit;
+XTALD	:buffer bit;
+INT	:out bit;
+TTIP	:buffer bit;
+TRING	:buffer bit;
+TCHBLK	:buffer bit;
+TLCLK	:buffer bit;
+TLINK	:in bit;
+CI	:in bit;
+TSYNC	:inout bit;
+TPOSI	:in bit;
+TNEGI	:in bit;
+TCLKI	:in bit;
+TCLKO	:buffer bit;
+TNEGO	:buffer bit;
+TPOSO	:buffer bit;
+TCLK	:in bit;
+TSER	:in bit;
+TSIG	:in bit;
+TESO	:buffer bit;
+TDATA	:in bit;
+TSYSCLK	:in bit;
+TSSYNC	:in bit;
+TCHCLK	:buffer bit;
+CO	:buffer bit;
+MUX	:in bit;
+D0AD0	:inout bit;
+D1AD1	:inout bit;
+D2AD2	:inout bit;
+D3AD3	:inout bit;
+D4AD4	:inout bit;
+D5AD5	:inout bit;
+D6AD6	:inout bit;
+D7AD7	:inout bit;
+A0	:in bit;
+A1	:in bit;
+A2	:in bit;
+A3	:in bit;
+A4	:in bit;
+A5	:in bit;
+A6	:in bit;
+ALEASA7 :in bit;
+RDDS 	:in bit;
+CS	:in bit;
+FMS	:in bit;
+WRRW	:in bit;
+RLINK	:buffer bit;
+RLCLK	:buffer bit;
+RCLK	:buffer bit;
+RDATA	:buffer bit;
+RPOSI	:in bit;
+RNEGI	:in bit;
+RCLKI	:in bit;
+RCLKO	:buffer bit;
+RNEGO	:buffer bit;
+RPOSO	:buffer bit;
+RCHCLK	:buffer bit;
+RSIGF	:buffer bit;
+RSIG	:buffer bit;
+RSER	:buffer bit;
+RMSYNC	:buffer bit;
+RFSYNC	:buffer bit;
+RSYNC	:inout bit;
+RLOSLOTC:buffer bit;
+RSYSCLK	:in bit;
+VDD	:linkage bit_vector(1 to 6);
+VSS	:linkage bit_vector(1 to 7)
+);
+
+use STD_1149_1_1994.all;
+
+attribute COMPONENT_CONFORMANCE of DS21Q352BGA : entity is "STD_1149_1_1993";
+
+attribute PIN_MAP of DS21Q352BGA : entity is PHYSICAL_PIN_MAP;
+
+constant BGA_256 : PIN_MAP_STRING :=
+
+"A8MCLK:M1,"&
+"JTMS:W13,"&
+"RCHBLK:M2,"&
+"JTCLK:Y15,"&
+"JTRST:V18,"&
+"RCLK:N3,"&
+"JTDI:N1,"&
+"BTS:P2,"&
+"LIUC:K2,"&
+"TEST:U16,"&
+"INT:U1,"&
+"TCHBLK:W1,"&
+"TLCLK:V3,"&
+"TLINK:W5,"&
+"CI:W6,"&
+"TSYNC:V1,"&
+"TPOSI:W3,"&
+"TNEGI:R1,"&
+"TCLKI:V6,"&
+"TCLKO:W7,"&
+"TNEGO:T3,"&
+"TPOSO:V7,"&
+"TCLK:Y9,"&
+"TSER:W9,"&
+"TSIG:W10,"&
+"TSYSCLK:W11,"&
+"TSSYNC:W12,"&
+"TCHCLK:V10,"&
+"CO:V9,"&
+"MUX:U10,"&
+"D0AD0:U11,"&
+"D1AD1:J19,"&
+"D2AD2:W15,"&
+"D3AD3:U7,"&
+"D4AD4:U9,"&
+"D5AD5:U5,"&
+"D6AD6:V4,"&
+"D7AD7:U4,"&
+"A0:U3,"&
+"A1:L17,"&
+"A2:V2,"&
+"A3:T4,"&
+"A4:V8,"&
+"A5:H4,"&
+"A6:U8,"&
+"ALEASA7:P4,"&
+"RDDS:N2,"&
+"CS:P3,"&
+"WRRW:K3,"&
+"RLINK:G2,"&
+"RLCLK:F1,"&
+"RPOSI:R4,"&
+"RNEGI:R3,"&
+"RCLKI:M4,"&
+"RCLKO:M3,"&
+"RNEGO:L3,"&
+"RPOSO:L4,"&
+"RCHCLK:J1,"&
+"RSIGF:K1,"&
+"RSIG:L2,"&
+"RSER:J2,"&
+"RMSYNC:L1,"&
+"RFSYNC:K4,"&
+"RSYNC:G1,"&
+"RLOSLOTC:H2,"&
+"RSYSCLK:H1,"&
+"VDD:(J3, N4, U2, V5, P1, W2),"&
+"VSS:(H3, J4, U6, W8, R2, T2, W4)";
+
+attribute TAP_SCAN_IN of JTDI		:signal is true;
+attribute TAP_SCAN_MODE of JTMS		:signal is true;
+attribute TAP_SCAN_OUT of JTDO		:signal is true;
+attribute TAP_SCAN_RESET of JTRST	:signal is true;
+attribute TAP_SCAN_CLOCK of JTCLK	:signal is (10.00e6,BOTH);
+
+attribute INSTRUCTION_LENGTH of DS21Q352BGA	:entity is 3;
+attribute INSTRUCTION_OPCODE of DS21Q352BGA	:entity is
+"EXTEST (000),"&
+"BYPASS (111),"&
+"SAMPLE (010),"&
+"IDCODE (001),"&
+"CLAMP (011),"&
+"HIGHZ (100)";
+
+attribute INSTRUCTION_CAPTURE of DS21Q352BGA :entity is "001";
+
+attribute IDCODE_REGISTER of DS21Q352BGA :entity is
+"0001"&			-- 4-bit Version
+"0000000000000100"&	-- 16-bit Part Number
+"00010100001"&		-- 11-bit Manufacturer's Identity
+"1";			-- Mandatory LSB
+
+attribute BOUNDARY_LENGTH of DS21Q352BGA :entity is 73;
+attribute BOUNDARY_REGISTER of DS21Q352BGA :entity is 
+
+"0	(BC_1, RCL,output2,X),"&
+"1	(BC_1, A8MCLK,output2,X),"&
+"2	(BC_1, RCHBLK,output2,X),"&
+"3	(BC_1, RSYSCLK,input,X),"&
+"4	(BC_1, RLOSLOTC,output2,X),"&
+"5	(BC_7, RSYNC,bidir,0,6,0,Z),"&
+"6	(BC_2, *,control,0),"&
+"7	(BC_1, RFSYNC,output2,X),"&
+"8	(BC_1, RMSYNC,output2,X),"&
+"9	(BC_1, RSER,output2,X),"&
+"10	(BC_1, RSIG,output2,X),"&
+"11	(BC_1, RSIGF,output2,X),"&
+"12	(BC_1, RCHCLK,output2,X),"&
+"13	(BC_1, RPOSO,output2,X),"&
+"14	(BC_1, RNEGO,output2,X),"&
+"15	(BC_1, RCLKO,output2,X),"&
+"16	(BC_1, RCLKI,input,X),"&
+"17	(BC_1, RNEGI,input,X),"&
+"18	(BC_1, RPOSI,input,X),"&
+"19	(BC_1, RDATA,output2,X),"&
+"20	(BC_1, RCLK,output2,X),"&
+"21	(BC_1, RLCLK,output2,X),"&
+"22	(BC_1, RLINK,output2,X),"&
+"23	(BC_1, WRRW,input,X),"&
+"24	(BC_1, FMS,input,X),"&
+"25	(BC_1, CS,input,X),"&
+"26	(BC_1, RDDS,input,X),"&
+"27	(BC_1, ALEASA7,input,X),"&
+"28	(BC_1, A6,input,X),"&
+"29	(BC_1, A5,input,X),"&
+"30	(BC_1, A4,input,X),"&
+"31	(BC_1, A3,input,X),"&
+"32	(BC_1, A2,input,X),"&
+"33	(BC_1, A1,input,X),"&
+"34	(BC_1, A0,input,X),"&
+"35	(BC_7, D7AD7,bidir,0,43,0,Z),"&
+"36	(BC_7, D6AD6,bidir,0,43,0,Z),"&
+"37	(BC_7, D5AD5,bidir,0,43,0,Z),"&
+"38	(BC_7, D4AD4,bidir,0,43,0,Z),"&
+"39	(BC_7, D3AD3,bidir,0,43,0,Z),"&
+"40	(BC_7, D2AD2,bidir,0,43,0,Z),"&
+"41	(BC_7, D1AD1,bidir,0,43,0,Z),"&
+"42	(BC_7, D0AD0,bidir,0,43,0,Z),"&
+"43	(BC_2, *,control,0),"&
+"44	(BC_1, MUX,input,X),"&
+"45	(BC_1, CO,output2,X),"&
+"46	(BC_1, TCHCLK,output2,X),"&
+"47	(BC_1, TSSYNC,input,X),"&
+"48	(BC_1, TSYSCLK,input,X),"&
+"49	(BC_1, TDATA,input,X),"&
+"50	(BC_1, TESO,output2,X),"&
+"51	(BC_1, TSIG,input,X),"&
+"52	(BC_1, TSER,input,X),"&
+"53	(BC_1, TCLK,input,X),"&
+"54	(BC_1, TPOSO,output2,X),"&
+"55	(BC_1, TNEGO,output2,X),"&
+"56	(BC_1, TCLKO,output2,X),"&
+"57	(BC_1, TCLKI,input,X),"&
+"58	(BC_1, TNEGI,input,X),"&
+"59	(BC_1, TPOSI,input,X),"&
+"60	(BC_7, TSYNC,bidir,0,61,0,Z),"&
+"61	(BC_2, *,control,0),"&
+"62	(BC_1, CI,input,X),"&
+"63	(BC_1, TLINK,input,X),"&
+"64	(BC_1, TLCLK,output2,X),"&
+"65	(BC_1, TCHBLK,output2,X),"&
+"66	(BC_1, INT,output2,X),"&
+"67	(BC_1, *,internal,X),"&
+"68	(BC_1, *,internal,X),"&
+"69	(BC_1, TEST,input,X),"&
+"70	(BC_1, A8XCLK,output2,X),"&
+"71	(BC_1, LIUC,input,X),"&
+"72	(BC_1, BTS,input,X)";
+
+end DS21Q352BGA;
+
+
+

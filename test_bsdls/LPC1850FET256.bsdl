@@ -1,0 +1,1215 @@
+------------------------------------------------------------------
+--
+--   Copyright (c) NXP Semiconductors 2012-2013. All rights reserved
+--
+--   File        : lpc18x0fet256_revC_20130527-v2.bsd
+--
+--   Description : BSDL file for LPC18x0FET256 (LBGA256 package)
+--                 Silicon revision C
+--                 IDCODE: 0x6284E02B
+--                 Applicable devices: LPC1850FET256
+--                                     LPC1830FET256
+--
+--   Date        : 2013/05/27
+--
+--   History     : 2013/05/27  v2  No change
+--                 2012/11/20  v1  Initial version
+--
+------------------------------------------------------------------
+
+entity LPC1850FET256 is
+
+------------------------------------------------------------------
+-- Generic Parameter
+------------------------------------------------------------------
+
+generic (PHYSICAL_PIN_MAP : string := "LBGA256");
+
+------------------------------------------------------------------
+-- Logical Port Description
+------------------------------------------------------------------
+
+port (P0_0               : inout   bit;
+      P0_1               : inout   bit;
+      P1_0               : inout   bit;
+      P1_1               : inout   bit;
+      P1_2               : inout   bit;
+      P1_3               : inout   bit;
+      P1_4               : inout   bit;
+      P1_5               : inout   bit;
+      P1_6               : inout   bit;
+      P1_7               : inout   bit;
+      P1_8               : inout   bit;
+      P1_9               : inout   bit;
+      P1_10              : inout   bit;
+      P1_11              : inout   bit;
+      P1_12              : inout   bit;
+      P1_13              : inout   bit;
+      P1_14              : inout   bit;
+      P1_15              : inout   bit;
+      P1_16              : inout   bit;
+      P1_17              : inout   bit;
+      P1_18              : inout   bit;
+      P1_19              : inout   bit;
+      P1_20              : inout   bit;
+      P2_0               : inout   bit;
+      P2_1               : inout   bit;
+      P2_2               : inout   bit;
+      P2_3               : inout   bit;
+      P2_4               : inout   bit;
+      P2_5               : inout   bit;
+      P2_6               : inout   bit;
+      P2_7               : inout   bit;
+      P2_8               : inout   bit;
+      P2_9               : inout   bit;
+      P2_10              : inout   bit;
+      P2_11              : inout   bit;
+      P2_12              : inout   bit;
+      P2_13              : inout   bit;
+      P3_0               : inout   bit;
+      P3_1               : inout   bit;
+      P3_2               : inout   bit;
+      P3_3               : inout   bit;
+      P3_4               : inout   bit;
+      P3_5               : inout   bit;
+      P3_6               : inout   bit;
+      P3_7               : inout   bit;
+      P3_8               : inout   bit;
+      P4_0               : inout   bit;
+      P4_1               : inout   bit;
+      P4_2               : inout   bit;
+      P4_3               : inout   bit;
+      P4_4               : inout   bit;
+      P4_5               : inout   bit;
+      P4_6               : inout   bit;
+      P4_7               : inout   bit;
+      P4_8               : inout   bit;
+      P4_9               : inout   bit;
+      P4_10              : inout   bit;
+      P5_0               : inout   bit;
+      P5_1               : inout   bit;
+      P5_2               : inout   bit;
+      P5_3               : inout   bit;
+      P5_4               : inout   bit;
+      P5_5               : inout   bit;
+      P5_6               : inout   bit;
+      P5_7               : inout   bit;
+      P6_0               : inout   bit;
+      P6_1               : inout   bit;
+      P6_2               : inout   bit;
+      P6_3               : inout   bit;
+      P6_4               : inout   bit;
+      P6_5               : inout   bit;
+      P6_6               : inout   bit;
+      P6_7               : inout   bit;
+      P6_8               : inout   bit;
+      P6_9               : inout   bit;
+      P6_10              : inout   bit;
+      P6_11              : inout   bit;
+      P6_12              : inout   bit;
+      P7_0               : inout   bit;
+      P7_1               : inout   bit;
+      P7_2               : inout   bit;
+      P7_3               : inout   bit;
+      P7_4               : inout   bit;
+      P7_5               : inout   bit;
+      P7_6               : inout   bit;
+      P7_7               : inout   bit;
+      P8_0               : inout   bit;
+      P8_1               : inout   bit;
+      P8_2               : inout   bit;
+      P8_3               : inout   bit;
+      P8_4               : inout   bit;
+      P8_5               : inout   bit;
+      P8_6               : inout   bit;
+      P8_7               : inout   bit;
+      P8_8               : inout   bit;
+      P9_0               : inout   bit;
+      P9_1               : inout   bit;
+      P9_2               : inout   bit;
+      P9_3               : inout   bit;
+      P9_4               : inout   bit;
+      P9_5               : inout   bit;
+      P9_6               : inout   bit;
+      PA_0               : inout   bit;
+      PA_1               : inout   bit;
+      PA_2               : inout   bit;
+      PA_3               : inout   bit;
+      PA_4               : inout   bit;
+      PB_0               : inout   bit;
+      PB_1               : inout   bit;
+      PB_2               : inout   bit;
+      PB_3               : inout   bit;
+      PB_4               : inout   bit;
+      PB_5               : inout   bit;
+      PB_6               : inout   bit;
+      PC_0               : inout   bit;
+      PC_1               : inout   bit;
+      PC_2               : inout   bit;
+      PC_3               : inout   bit;
+      PC_4               : inout   bit;
+      PC_5               : inout   bit;
+      PC_6               : inout   bit;
+      PC_7               : inout   bit;
+      PC_8               : inout   bit;
+      PC_9               : inout   bit;
+      PC_10              : inout   bit;
+      PC_11              : inout   bit;
+      PC_12              : inout   bit;
+      PC_13              : inout   bit;
+      PC_14              : inout   bit;
+      PD_0               : inout   bit;
+      PD_1               : inout   bit;
+      PD_2               : inout   bit;
+      PD_3               : inout   bit;
+      PD_4               : inout   bit;
+      PD_5               : inout   bit;
+      PD_6               : inout   bit;
+      PD_7               : inout   bit;
+      PD_8               : inout   bit;
+      PD_9               : inout   bit;
+      PD_10              : inout   bit;
+      PD_11              : inout   bit;
+      PD_12              : inout   bit;
+      PD_13              : inout   bit;
+      PD_14              : inout   bit;
+      PD_15              : inout   bit;
+      PD_16              : inout   bit;
+      PE_0               : inout   bit;
+      PE_1               : inout   bit;
+      PE_2               : inout   bit;
+      PE_3               : inout   bit;
+      PE_4               : inout   bit;
+      PE_5               : inout   bit;
+      PE_6               : inout   bit;
+      PE_7               : inout   bit;
+      PE_8               : inout   bit;
+      PE_9               : inout   bit;
+      PE_10              : inout   bit;
+      PE_11              : inout   bit;
+      PE_12              : inout   bit;
+      PE_13              : inout   bit;
+      PE_14              : inout   bit;
+      PE_15              : inout   bit;
+      PF_0               : inout   bit;
+      PF_1               : inout   bit;
+      PF_2               : inout   bit;
+      PF_3               : inout   bit;
+      PF_4               : inout   bit;
+      PF_5               : inout   bit;
+      PF_6               : inout   bit;
+      PF_7               : inout   bit;
+      PF_8               : inout   bit;
+      PF_9               : inout   bit;
+      PF_10              : inout   bit;
+      PF_11              : inout   bit;
+      CLK0               : inout   bit;
+      CLK1               : inout   bit;
+      CLK2               : inout   bit;
+      CLK3               : inout   bit;
+      DBGEN              : in      bit;
+      TCK                : in      bit;
+      TRSTN              : in      bit;
+      TMS                : in      bit;
+      TDO                : out     bit;
+      TDI                : in      bit;
+      USB_DP             : linkage bit;
+      USB_DM             : linkage bit;
+      USB_VBUS           : linkage bit;
+      USB_ID             : linkage bit;
+      USB_RREF           : linkage bit;
+      DP1                : inout   bit;
+      DM1                : inout   bit;
+      SCL                : inout   bit;
+      SDA                : inout   bit;
+      NRESET             : linkage bit;
+      WAKEUP0            : linkage bit;
+      WAKEUP1            : linkage bit;
+      WAKEUP2            : linkage bit;
+      WAKEUP3            : linkage bit;
+      ADC0               : linkage bit;
+      ADC1               : linkage bit;
+      ADC2               : linkage bit;
+      ADC3               : linkage bit;
+      ADC4               : linkage bit;
+      ADC5               : linkage bit;
+      ADC6               : linkage bit;
+      ADC7               : linkage bit;
+      ALARM              : linkage bit;
+      RTCX1              : linkage bit;
+      RTCX2              : linkage bit;
+      XTAL1              : linkage bit;
+      XTAL2              : linkage bit;
+      USB_VDDA3V3_DRIVER : linkage bit;
+      USB_VDDA3V3        : linkage bit;
+      USB_VSSA_TERM      : linkage bit;
+      USB_VSSA_REF       : linkage bit;
+      VDDA               : linkage bit;
+      VBAT               : linkage bit;
+      VDDREG_L7          : linkage bit;
+      VDDREG_L8          : linkage bit;
+      VDDREG_F9          : linkage bit;
+      VDDREG_F10         : linkage bit;
+      VPP                : linkage bit;
+      VDDIO_D7           : linkage bit;
+      VDDIO_E12          : linkage bit;
+      VDDIO_F7           : linkage bit;
+      VDDIO_F8           : linkage bit;
+      VDDIO_G10          : linkage bit;
+      VDDIO_H10          : linkage bit;
+      VDDIO_J6           : linkage bit;
+      VDDIO_J7           : linkage bit;
+      VDDIO_K7           : linkage bit;
+      VDDIO_L9           : linkage bit;
+      VDDIO_L10          : linkage bit;
+      VDDIO_N7           : linkage bit;
+      VDDIO_N13          : linkage bit;
+      VSS_G9             : linkage bit;
+      VSS_H7             : linkage bit;
+      VSS_J10            : linkage bit;
+      VSS_J11            : linkage bit;
+      VSS_K8             : linkage bit;
+      VSSIO_C4           : linkage bit;
+      VSSIO_D13          : linkage bit;
+      VSSIO_G6           : linkage bit;
+      VSSIO_G7           : linkage bit;
+      VSSIO_G8           : linkage bit;
+      VSSIO_H8           : linkage bit;
+      VSSIO_H9           : linkage bit;
+      VSSIO_J8           : linkage bit;
+      VSSIO_J9           : linkage bit;
+      VSSIO_K9           : linkage bit;
+      VSSIO_K10          : linkage bit;
+      VSSIO_M13          : linkage bit;
+      VSSIO_P7           : linkage bit;
+      VSSIO_P13          : linkage bit;
+      VSSA               : linkage bit;
+      SAMPLE_N           : linkage bit);
+
+
+------------------------------------------------------------------
+-- Standard Use Statement
+------------------------------------------------------------------
+
+use std_1149_1_2001.all;
+
+------------------------------------------------------------------
+-- Additional Use Statements
+------------------------------------------------------------------
+
+-- none
+
+------------------------------------------------------------------
+-- Component Conformance Statement
+------------------------------------------------------------------
+
+attribute COMPONENT_CONFORMANCE of LPC1850FET256 : entity is "std_1149_1_2001";
+
+------------------------------------------------------------------
+-- Device Package Pin Mapping
+------------------------------------------------------------------
+
+attribute PIN_MAP of LPC1850FET256 : entity is PHYSICAL_PIN_MAP;
+
+constant LBGA256 : PIN_MAP_STRING :=
+   "P0_0               : L3," &
+   "P0_1               : M2," &
+   "P1_0               : P2," &
+   "P1_1               : R2," &
+   "P1_2               : R3," &
+   "P1_3               : P5," &
+   "P1_4               : T3," &
+   "P1_5               : R5," &
+   "P1_6               : T4," &
+   "P1_7               : T5," &
+   "P1_8               : R7," &
+   "P1_9               : T7," &
+   "P1_10              : R8," &
+   "P1_11              : T9," &
+   "P1_12              : R9," &
+   "P1_13              : R10," &
+   "P1_14              : R11," &
+   "P1_15              : T12," &
+   "P1_16              : M7," &
+   "P1_17              : M8," &
+   "P1_18              : N12," &
+   "P1_19              : M11," &
+   "P1_20              : M10," &
+   "P2_0               : T16," &
+   "P2_1               : N15," &
+   "P2_2               : M15," &
+   "P2_3               : J12," &
+   "P2_4               : K11," &
+   "P2_5               : K14," &
+   "P2_6               : K16," &
+   "P2_7               : H14," &
+   "P2_8               : J16," &
+   "P2_9               : H16," &
+   "P2_10              : G16," &
+   "P2_11              : F16," &
+   "P2_12              : E15," &
+   "P2_13              : C16," &
+   "P3_0               : F13," &
+   "P3_1               : G11," &
+   "P3_2               : F11," &
+   "P3_3               : B14," &
+   "P3_4               : A15," &
+   "P3_5               : C12," &
+   "P3_6               : B13," &
+   "P3_7               : C11," &
+   "P3_8               : C10," &
+   "P4_0               : D5," &
+   "P4_1               : A1," &
+   "P4_2               : D3," &
+   "P4_3               : C2," &
+   "P4_4               : B1," &
+   "P4_5               : D2," &
+   "P4_6               : C1," &
+   "P4_7               : H4," &
+   "P4_8               : E2," &
+   "P4_9               : L2," &
+   "P4_10              : M3," &
+   "P5_0               : N3," &
+   "P5_1               : P3," &
+   "P5_2               : R4," &
+   "P5_3               : T8," &
+   "P5_4               : P9," &
+   "P5_5               : P10," &
+   "P5_6               : T13," &
+   "P5_7               : R12," &
+   "P6_0               : M12," &
+   "P6_1               : R15," &
+   "P6_2               : L13," &
+   "P6_3               : P15," &
+   "P6_4               : R16," &
+   "P6_5               : P16," &
+   "P6_6               : L14," &
+   "P6_7               : J13," &
+   "P6_8               : H13," &
+   "P6_9               : J15," &
+   "P6_10              : H15," &
+   "P6_11              : H12," &
+   "P6_12              : G15," &
+   "P7_0               : B16," &
+   "P7_1               : C14," &
+   "P7_2               : A16," &
+   "P7_3               : C13," &
+   "P7_4               : C8," &
+   "P7_5               : A7," &
+   "P7_6               : C7," &
+   "P7_7               : B6," &
+   "P8_0               : E5," &
+   "P8_1               : H5," &
+   "P8_2               : K4," &
+   "P8_3               : J3," &
+   "P8_4               : J2," &
+   "P8_5               : J1," &
+   "P8_6               : K3," &
+   "P8_7               : K1," &
+   "P8_8               : L1," &
+   "P9_0               : T1," &
+   "P9_1               : N6," &
+   "P9_2               : N8," &
+   "P9_3               : M6," &
+   "P9_4               : N10," &
+   "P9_5               : M9," &
+   "P9_6               : L11," &
+   "PA_0               : L12," &
+   "PA_1               : J14," &
+   "PA_2               : K15," &
+   "PA_3               : H11," &
+   "PA_4               : G13," &
+   "PB_0               : B15," &
+   "PB_1               : A14," &
+   "PB_2               : B12," &
+   "PB_3               : A13," &
+   "PB_4               : B11," &
+   "PB_5               : A12," &
+   "PB_6               : A6," &
+   "PC_0               : D4," &
+   "PC_1               : E4," &
+   "PC_2               : F6," &
+   "PC_3               : F5," &
+   "PC_4               : F4," &
+   "PC_5               : G4," &
+   "PC_6               : H6," &
+   "PC_7               : G5," &
+   "PC_8               : N4," &
+   "PC_9               : K2," &
+   "PC_10              : M5," &
+   "PC_11              : L5," &
+   "PC_12              : L6," &
+   "PC_13              : M1," &
+   "PC_14              : N1," &
+   "PD_0               : N2," &
+   "PD_1               : P1," &
+   "PD_2               : R1," &
+   "PD_3               : P4," &
+   "PD_4               : T2," &
+   "PD_5               : P6," &
+   "PD_6               : R6," &
+   "PD_7               : T6," &
+   "PD_8               : P8," &
+   "PD_9               : T11," &
+   "PD_10              : P11," &
+   "PD_11              : N9," &
+   "PD_12              : N11," &
+   "PD_13              : T14," &
+   "PD_14              : R13," &
+   "PD_15              : T15," &
+   "PD_16              : R14," &
+   "PE_0               : P14," &
+   "PE_1               : N14," &
+   "PE_2               : M14," &
+   "PE_3               : K12," &
+   "PE_4               : K13," &
+   "PE_5               : N16," &
+   "PE_6               : M16," &
+   "PE_7               : F15," &
+   "PE_8               : F14," &
+   "PE_9               : E16," &
+   "PE_10              : E14," &
+   "PE_11              : D16," &
+   "PE_12              : D15," &
+   "PE_13              : G14," &
+   "PE_14              : C15," &
+   "PE_15              : E13," &
+   "PF_0               : D12," &
+   "PF_1               : E11," &
+   "PF_2               : D11," &
+   "PF_3               : E10," &
+   "PF_4               : D10," &
+   "PF_5               : E9," &
+   "PF_6               : E7," &
+   "PF_7               : B7," &
+   "PF_8               : E6," &
+   "PF_9               : D6," &
+   "PF_10              : A3," &
+   "PF_11              : A2," &
+   "CLK0               : N5," &
+   "CLK1               : T10," &
+   "CLK2               : D14," &
+   "CLK3               : P12," &
+   "DBGEN              : L4," &
+   "TCK                : J5," &
+   "TRSTN              : M4," &
+   "TMS                : K6," &
+   "TDO                : K5," &
+   "TDI                : J4," &
+   "USB_DP             : F2," &
+   "USB_DM             : G2," &
+   "USB_VBUS           : F1," &
+   "USB_ID             : H2," &
+   "USB_RREF           : H1," &
+   "DP1                : F12," &
+   "DM1                : G12," &
+   "SCL                : L15," &
+   "SDA                : L16," &
+   "NRESET             : D9," &
+   "WAKEUP0            : A9," &
+   "WAKEUP1            : A10," &
+   "WAKEUP2            : C9," &
+   "WAKEUP3            : D8," &
+   "ADC0               : E3," &
+   "ADC1               : C3," &
+   "ADC2               : A4," &
+   "ADC3               : B5," &
+   "ADC4               : C6," &
+   "ADC5               : B3," &
+   "ADC6               : A5," &
+   "ADC7               : C5," &
+   "ALARM              : A11," &
+   "RTCX1              : A8," &
+   "RTCX2              : B8," &
+   "XTAL1              : D1," &
+   "XTAL2              : E1," &
+   "USB_VDDA3V3_DRIVER : F3," &
+   "USB_VDDA3V3        : G3," &
+   "USB_VSSA_TERM      : H3," &
+   "USB_VSSA_REF       : G1," &
+   "VDDA               : B4," &
+   "VBAT               : B10," &
+   "VDDREG_L7          : L7," &
+   "VDDREG_L8          : L8," &
+   "VDDREG_F9          : F9," &
+   "VDDREG_F10         : F10," &
+   "VPP                : E8," &
+   "VDDIO_D7           : D7," &
+   "VDDIO_E12          : E12," &
+   "VDDIO_F7           : F7," &
+   "VDDIO_F8           : F8," &
+   "VDDIO_G10          : G10," &
+   "VDDIO_H10          : H10," &
+   "VDDIO_J6           : J6," &
+   "VDDIO_J7           : J7," &
+   "VDDIO_K7           : K7," &
+   "VDDIO_L9           : L9," &
+   "VDDIO_L10          : L10," &
+   "VDDIO_N7           : N7," &
+   "VDDIO_N13          : N13," &
+   "VSS_G9             : G9," &
+   "VSS_H7             : H7," &
+   "VSS_J10            : J10," &
+   "VSS_J11            : J11," &
+   "VSS_K8             : K8," &
+   "VSSIO_C4           : C4," &
+   "VSSIO_D13          : D13," &
+   "VSSIO_G6           : G6," &
+   "VSSIO_G7           : G7," &
+   "VSSIO_G8           : G8," &
+   "VSSIO_H8           : H8," &
+   "VSSIO_H9           : H9," &
+   "VSSIO_J8           : J8," &
+   "VSSIO_J9           : J9," &
+   "VSSIO_K9           : K9," &
+   "VSSIO_K10          : K10," &
+   "VSSIO_M13          : M13," &
+   "VSSIO_P7           : P7," &
+   "VSSIO_P13          : P13," &
+   "VSSA               : B2," &
+   "SAMPLE_N           : B9";
+
+
+------------------------------------------------------------------
+-- Grouped Port Identification
+------------------------------------------------------------------
+
+-- none
+
+------------------------------------------------------------------
+-- Scan Port Identification
+------------------------------------------------------------------
+
+attribute TAP_SCAN_CLOCK       of TCK : signal is (10.0E06, BOTH);
+attribute TAP_SCAN_IN          of TDI : signal is true;
+attribute TAP_SCAN_MODE        of TMS : signal is true;
+attribute TAP_SCAN_OUT         of TDO : signal is true;
+attribute TAP_SCAN_RESET       of TRSTN : signal is true;
+
+------------------------------------------------------------------
+-- Compliance Enable Description
+------------------------------------------------------------------
+
+attribute COMPLIANCE_PATTERNS of LPC1850FET256 : entity is 
+   "(DBGEN) (0)";
+
+------------------------------------------------------------------
+-- Instruction Register Description
+------------------------------------------------------------------
+
+attribute INSTRUCTION_LENGTH of LPC1850FET256 : entity is 4;
+
+attribute INSTRUCTION_OPCODE of LPC1850FET256 : entity is 
+   "BYPASS            (1111)," &    -- 1111
+   "EXTEST            (0000)," &    -- 0000
+   "SAMPLE            (0001)," &    -- 0001
+   "PRELOAD           (0001)," &    -- 0001
+   "CLAMP             (0010)," &    -- 0010
+   "IDCODE            (0011)," &    -- 0011
+   "HIGHZ             (0100)";      -- 0100
+
+attribute INSTRUCTION_CAPTURE of LPC1850FET256 : entity is "0001";
+
+------------------------------------------------------------------
+-- Optional Register Description
+------------------------------------------------------------------
+
+attribute IDCODE_REGISTER of LPC1850FET256 : entity is 
+   "0110" &                -- version
+   "0010100001001110" &    -- part number
+   "00000010101" &         -- manufacturer
+   "1";                    -- mandatory
+
+------------------------------------------------------------------
+-- Register Access Description
+------------------------------------------------------------------
+
+attribute REGISTER_ACCESS of LPC1850FET256 : entity is
+   "BYPASS  (BYPASS)," &
+   "BOUNDARY  (EXTEST)," &
+   "BOUNDARY  (SAMPLE)," &
+   "BOUNDARY  (PRELOAD)," &
+   "BYPASS  (CLAMP)," &
+   "DEVICE_ID  (IDCODE)," &
+   "BYPASS  (HIGHZ)";
+
+------------------------------------------------------------------
+-- Boundary-Scan Register Description
+------------------------------------------------------------------
+
+attribute BOUNDARY_LENGTH of LPC1850FET256 : entity is 545;
+
+attribute BOUNDARY_REGISTER of LPC1850FET256 : entity is 
+   "544     (BC_4,   P4_0,                OBSERVE_ONLY,  X)," &
+   "543     (BC_1,   P4_0,                OUTPUT3,       X,   542,   1,   PULL0)," &
+   "542     (BC_1,   *,                   CONTROL,       X)," &
+   "541     (BC_4,   P8_0,                OBSERVE_ONLY,  X)," &
+   "540     (BC_1,   P8_0,                OUTPUT3,       X,   539,   1,   PULL0)," &
+   "539     (BC_1,   *,                   CONTROL,       X)," &
+   "538     (BC_4,   P4_1,                OBSERVE_ONLY,  X)," &
+   "537     (BC_1,   P4_1,                OUTPUT3,       X,   536,   1,   PULL0)," &
+   "536     (BC_1,   *,                   CONTROL,       X)," &
+   "535     (BC_4,   PC_0,                OBSERVE_ONLY,  X)," &
+   "534     (BC_1,   PC_0,                OUTPUT3,       X,   533,   1,   PULL0)," &
+   "533     (BC_1,   *,                   CONTROL,       X)," &
+   "532     (BC_4,   PC_1,                OBSERVE_ONLY,  X)," &
+   "531     (BC_1,   PC_1,                OUTPUT3,       X,   530,   1,   PULL0)," &
+   "530     (BC_1,   *,                   CONTROL,       X)," &
+   "529     (BC_4,   P4_3,                OBSERVE_ONLY,  X)," &
+   "528     (BC_1,   P4_3,                OUTPUT3,       X,   527,   1,   PULL0)," &
+   "527     (BC_1,   *,                   CONTROL,       X)," &
+   "526     (BC_4,   PC_3,                OBSERVE_ONLY,  X)," &
+   "525     (BC_1,   PC_3,                OUTPUT3,       X,   524,   1,   PULL0)," &
+   "524     (BC_1,   *,                   CONTROL,       X)," &
+   "523     (BC_4,   P4_2,                OBSERVE_ONLY,  X)," &
+   "522     (BC_1,   P4_2,                OUTPUT3,       X,   521,   1,   PULL0)," &
+   "521     (BC_1,   *,                   CONTROL,       X)," &
+   "520     (BC_4,   PC_2,                OBSERVE_ONLY,  X)," &
+   "519     (BC_1,   PC_2,                OUTPUT3,       X,   518,   1,   PULL0)," &
+   "518     (BC_1,   *,                   CONTROL,       X)," &
+   "517     (BC_4,   P4_4,                OBSERVE_ONLY,  X)," &
+   "516     (BC_1,   P4_4,                OUTPUT3,       X,   515,   1,   PULL0)," &
+   "515     (BC_1,   *,                   CONTROL,       X)," &
+   "514     (BC_4,   P4_5,                OBSERVE_ONLY,  X)," &
+   "513     (BC_1,   P4_5,                OUTPUT3,       X,   512,   1,   PULL0)," &
+   "512     (BC_1,   *,                   CONTROL,       X)," &
+   "511     (BC_4,   PC_4,                OBSERVE_ONLY,  X)," &
+   "510     (BC_1,   PC_4,                OUTPUT3,       X,   509,   1,   PULL0)," &
+   "509     (BC_1,   *,                   CONTROL,       X)," &
+   "508     (BC_4,   P4_6,                OBSERVE_ONLY,  X)," &
+   "507     (BC_1,   P4_6,                OUTPUT3,       X,   506,   1,   PULL0)," &
+   "506     (BC_1,   *,                   CONTROL,       X)," &
+   "505     (BC_4,   PC_5,                OBSERVE_ONLY,  X)," &
+   "504     (BC_1,   PC_5,                OUTPUT3,       X,   503,   1,   PULL0)," &
+   "503     (BC_1,   *,                   CONTROL,       X)," &
+   "502     (BC_4,   P4_7,                OBSERVE_ONLY,  X)," &
+   "501     (BC_1,   P4_7,                OUTPUT3,       X,   500,   1,   PULL0)," &
+   "500     (BC_1,   *,                   CONTROL,       X)," &
+   "499     (BC_4,   PC_6,                OBSERVE_ONLY,  X)," &
+   "498     (BC_1,   PC_6,                OUTPUT3,       X,   497,   1,   PULL0)," &
+   "497     (BC_1,   *,                   CONTROL,       X)," &
+   "496     (BC_4,   P4_8,                OBSERVE_ONLY,  X)," &
+   "495     (BC_1,   P4_8,                OUTPUT3,       X,   494,   1,   PULL0)," &
+   "494     (BC_1,   *,                   CONTROL,       X)," &
+   "493     (BC_4,   PC_7,                OBSERVE_ONLY,  X)," &
+   "492     (BC_1,   PC_7,                OUTPUT3,       X,   491,   1,   PULL0)," &
+   "491     (BC_1,   *,                   CONTROL,       X)," &
+   "490     (BC_4,   P8_1,                OBSERVE_ONLY,  X)," &
+   "489     (BC_1,   P8_1,                OUTPUT3,       X,   488,   1,   PULL0)," &
+   "488     (BC_1,   *,                   CONTROL,       X)," &
+   "487     (BC_4,   P8_2,                OBSERVE_ONLY,  X)," &
+   "486     (BC_1,   P8_2,                OUTPUT3,       X,   485,   1,   PULL0)," &
+   "485     (BC_1,   *,                   CONTROL,       X)," &
+   "484     (BC_4,   P8_3,                OBSERVE_ONLY,  X)," &
+   "483     (BC_1,   P8_3,                OUTPUT3,       X,   482,   1,   PULL0)," &
+   "482     (BC_1,   *,                   CONTROL,       X)," &
+   "481     (BC_4,   P8_4,                OBSERVE_ONLY,  X)," &
+   "480     (BC_1,   P8_4,                OUTPUT3,       X,   479,   1,   PULL0)," &
+   "479     (BC_1,   *,                   CONTROL,       X)," &
+   "478     (BC_4,   P8_5,                OBSERVE_ONLY,  X)," &
+   "477     (BC_1,   P8_5,                OUTPUT3,       X,   476,   1,   PULL0)," &
+   "476     (BC_1,   *,                   CONTROL,       X)," &
+   "475     (BC_4,   P8_6,                OBSERVE_ONLY,  X)," &
+   "474     (BC_1,   P8_6,                OUTPUT3,       X,   473,   1,   PULL0)," &
+   "473     (BC_1,   *,                   CONTROL,       X)," &
+   "472     (BC_4,   PC_8,                OBSERVE_ONLY,  X)," &
+   "471     (BC_1,   PC_8,                OUTPUT3,       X,   470,   1,   PULL0)," &
+   "470     (BC_1,   *,                   CONTROL,       X)," &
+   "469     (BC_4,   PC_9,                OBSERVE_ONLY,  X)," &
+   "468     (BC_1,   PC_9,                OUTPUT3,       X,   467,   1,   PULL0)," &
+   "467     (BC_1,   *,                   CONTROL,       X)," &
+   "466     (BC_4,   P8_7,                OBSERVE_ONLY,  X)," &
+   "465     (BC_1,   P8_7,                OUTPUT3,       X,   464,   1,   PULL0)," &
+   "464     (BC_1,   *,                   CONTROL,       X)," &
+   "463     (BC_4,   PC_10,               OBSERVE_ONLY,  X)," &
+   "462     (BC_1,   PC_10,               OUTPUT3,       X,   461,   1,   PULL0)," &
+   "461     (BC_1,   *,                   CONTROL,       X)," &
+   "460     (BC_4,   PC_11,               OBSERVE_ONLY,  X)," &
+   "459     (BC_1,   PC_11,               OUTPUT3,       X,   458,   1,   PULL0)," &
+   "458     (BC_1,   *,                   CONTROL,       X)," &
+   "457     (BC_4,   PC_12,               OBSERVE_ONLY,  X)," &
+   "456     (BC_1,   PC_12,               OUTPUT3,       X,   455,   1,   PULL0)," &
+   "455     (BC_1,   *,                   CONTROL,       X)," &
+   "454     (BC_1,   P0_0,                INPUT,         X)," &
+   "453     (BC_1,   P0_0,                OUTPUT3,       X,   452,   1,   PULL0)," &
+   "452     (BC_1,   *,                   CONTROL,       X)," &
+   "451     (BC_4,   P4_9,                OBSERVE_ONLY,  X)," &
+   "450     (BC_1,   P4_9,                OUTPUT3,       X,   449,   1,   PULL0)," &
+   "449     (BC_1,   *,                   CONTROL,       X)," &
+   "448     (BC_4,   P8_8,                OBSERVE_ONLY,  X)," &
+   "447     (BC_1,   P8_8,                OUTPUT3,       X,   446,   1,   PULL0)," &
+   "446     (BC_1,   *,                   CONTROL,       X)," &
+   "445     (BC_4,   PC_13,               OBSERVE_ONLY,  X)," &
+   "444     (BC_1,   PC_13,               OUTPUT3,       X,   443,   1,   PULL0)," &
+   "443     (BC_1,   *,                   CONTROL,       X)," &
+   "442     (BC_1,   P0_1,                INPUT,         X)," &
+   "441     (BC_1,   P0_1,                OUTPUT3,       X,   440,   1,   PULL0)," &
+   "440     (BC_1,   *,                   CONTROL,       X)," &
+   "439     (BC_4,   P4_10,               OBSERVE_ONLY,  X)," &
+   "438     (BC_1,   P4_10,               OUTPUT3,       X,   437,   1,   PULL0)," &
+   "437     (BC_1,   *,                   CONTROL,       X)," &
+   "436     (BC_4,   PC_14,               OBSERVE_ONLY,  X)," &
+   "435     (BC_1,   PC_14,               OUTPUT3,       X,   434,   1,   PULL0)," &
+   "434     (BC_1,   *,                   CONTROL,       X)," &
+   "433     (BC_4,   PD_0,                OBSERVE_ONLY,  X)," &
+   "432     (BC_1,   PD_0,                OUTPUT3,       X,   431,   1,   PULL0)," &
+   "431     (BC_1,   *,                   CONTROL,       X)," &
+   "430     (BC_4,   P5_0,                OBSERVE_ONLY,  X)," &
+   "429     (BC_1,   P5_0,                OUTPUT3,       X,   428,   1,   PULL0)," &
+   "428     (BC_1,   *,                   CONTROL,       X)," &
+   "427     (BC_4,   PD_1,                OBSERVE_ONLY,  X)," &
+   "426     (BC_1,   PD_1,                OUTPUT3,       X,   425,   1,   PULL0)," &
+   "425     (BC_1,   *,                   CONTROL,       X)," &
+   "424     (BC_1,   P1_0,                INPUT,         X)," &
+   "423     (BC_1,   P1_0,                OUTPUT3,       X,   422,   1,   PULL0)," &
+   "422     (BC_1,   *,                   CONTROL,       X)," &
+   "421     (BC_4,   PD_2,                OBSERVE_ONLY,  X)," &
+   "420     (BC_1,   PD_2,                OUTPUT3,       X,   419,   1,   PULL0)," &
+   "419     (BC_1,   *,                   CONTROL,       X)," &
+   "418     (BC_4,   P5_1,                OBSERVE_ONLY,  X)," &
+   "417     (BC_1,   P5_1,                OUTPUT3,       X,   416,   1,   PULL0)," &
+   "416     (BC_1,   *,                   CONTROL,       X)," &
+   "415     (BC_4,   P1_1,                OBSERVE_ONLY,  X)," &
+   "414     (BC_1,   P1_1,                OUTPUT3,       X,   413,   1,   PULL0)," &
+   "413     (BC_1,   *,                   CONTROL,       X)," &
+   "412     (BC_4,   P9_0,                OBSERVE_ONLY,  X)," &
+   "411     (BC_1,   P9_0,                OUTPUT3,       X,   410,   1,   PULL0)," &
+   "410     (BC_1,   *,                   CONTROL,       X)," &
+   "409     (BC_4,   PD_3,                OBSERVE_ONLY,  X)," &
+   "408     (BC_1,   PD_3,                OUTPUT3,       X,   407,   1,   PULL0)," &
+   "407     (BC_1,   *,                   CONTROL,       X)," &
+   "406     (BC_1,   P1_2,                INPUT,         X)," &
+   "405     (BC_1,   P1_2,                OUTPUT3,       X,   404,   1,   PULL0)," &
+   "404     (BC_1,   *,                   CONTROL,       X)," &
+   "403     (BC_4,   PD_4,                OBSERVE_ONLY,  X)," &
+   "402     (BC_1,   PD_4,                OUTPUT3,       X,   401,   1,   PULL0)," &
+   "401     (BC_1,   *,                   CONTROL,       X)," &
+   "400     (BC_4,   P1_3,                OBSERVE_ONLY,  X)," &
+   "399     (BC_1,   P1_3,                OUTPUT3,       X,   398,   1,   PULL0)," &
+   "398     (BC_1,   *,                   CONTROL,       X)," &
+   "397     (BC_4,   CLK0,                OBSERVE_ONLY,  X)," &
+   "396     (BC_1,   CLK0,                OUTPUT3,       X,   395,   1,   PULL0)," &
+   "395     (BC_1,   *,                   CONTROL,       X)," &
+   "394     (BC_4,   P5_2,                OBSERVE_ONLY,  X)," &
+   "393     (BC_1,   P5_2,                OUTPUT3,       X,   392,   1,   PULL0)," &
+   "392     (BC_1,   *,                   CONTROL,       X)," &
+   "391     (BC_1,   P1_4,                INPUT,         X)," &
+   "390     (BC_1,   P1_4,                OUTPUT3,       X,   389,   1,   PULL0)," &
+   "389     (BC_1,   *,                   CONTROL,       X)," &
+   "388     (BC_4,   PD_5,                OBSERVE_ONLY,  X)," &
+   "387     (BC_1,   PD_5,                OUTPUT3,       X,   386,   1,   PULL0)," &
+   "386     (BC_1,   *,                   CONTROL,       X)," &
+   "385     (BC_4,   P1_5,                OBSERVE_ONLY,  X)," &
+   "384     (BC_1,   P1_5,                OUTPUT3,       X,   383,   1,   PULL0)," &
+   "383     (BC_1,   *,                   CONTROL,       X)," &
+   "382     (BC_4,   P9_1,                OBSERVE_ONLY,  X)," &
+   "381     (BC_1,   P9_1,                OUTPUT3,       X,   380,   1,   PULL0)," &
+   "380     (BC_1,   *,                   CONTROL,       X)," &
+   "379     (BC_1,   P1_6,                INPUT,         X)," &
+   "378     (BC_1,   P1_6,                OUTPUT3,       X,   377,   1,   PULL0)," &
+   "377     (BC_1,   *,                   CONTROL,       X)," &
+   "376     (BC_4,   PD_6,                OBSERVE_ONLY,  X)," &
+   "375     (BC_1,   PD_6,                OUTPUT3,       X,   374,   1,   PULL0)," &
+   "374     (BC_1,   *,                   CONTROL,       X)," &
+   "373     (BC_4,   P1_7,                OBSERVE_ONLY,  X)," &
+   "372     (BC_1,   P1_7,                OUTPUT3,       X,   371,   1,   PULL0)," &
+   "371     (BC_1,   *,                   CONTROL,       X)," &
+   "370     (BC_4,   P9_2,                OBSERVE_ONLY,  X)," &
+   "369     (BC_1,   P9_2,                OUTPUT3,       X,   368,   1,   PULL0)," &
+   "368     (BC_1,   *,                   CONTROL,       X)," &
+   "367     (BC_1,   P1_8,                INPUT,         X)," &
+   "366     (BC_1,   P1_8,                OUTPUT3,       X,   365,   1,   PULL0)," &
+   "365     (BC_1,   *,                   CONTROL,       X)," &
+   "364     (BC_4,   PD_7,                OBSERVE_ONLY,  X)," &
+   "363     (BC_1,   PD_7,                OUTPUT3,       X,   362,   1,   PULL0)," &
+   "362     (BC_1,   *,                   CONTROL,       X)," &
+   "361     (BC_4,   P1_9,                OBSERVE_ONLY,  X)," &
+   "360     (BC_1,   P1_9,                OUTPUT3,       X,   359,   1,   PULL0)," &
+   "359     (BC_1,   *,                   CONTROL,       X)," &
+   "358     (BC_4,   PD_8,                OBSERVE_ONLY,  X)," &
+   "357     (BC_1,   PD_8,                OUTPUT3,       X,   356,   1,   PULL0)," &
+   "356     (BC_1,   *,                   CONTROL,       X)," &
+   "355     (BC_1,   P1_10,               INPUT,         X)," &
+   "354     (BC_1,   P1_10,               OUTPUT3,       X,   353,   1,   PULL0)," &
+   "353     (BC_1,   *,                   CONTROL,       X)," &
+   "352     (BC_4,   P5_3,                OBSERVE_ONLY,  X)," &
+   "351     (BC_1,   P5_3,                OUTPUT3,       X,   350,   1,   PULL0)," &
+   "350     (BC_1,   *,                   CONTROL,       X)," &
+   "349     (BC_1,   P1_11,               INPUT,         X)," &
+   "348     (BC_1,   P1_11,               OUTPUT3,       X,   347,   1,   PULL0)," &
+   "347     (BC_1,   *,                   CONTROL,       X)," &
+   "346     (BC_1,   P1_12,               INPUT,         X)," &
+   "345     (BC_1,   P1_12,               OUTPUT3,       X,   344,   1,   PULL0)," &
+   "344     (BC_1,   *,                   CONTROL,       X)," &
+   "343     (BC_4,   P9_3,                OBSERVE_ONLY,  X)," &
+   "342     (BC_1,   P9_3,                OUTPUT3,       X,   341,   1,   PULL0)," &
+   "341     (BC_1,   *,                   CONTROL,       X)," &
+   "340     (BC_4,   P5_4,                OBSERVE_ONLY,  X)," &
+   "339     (BC_1,   P5_4,                OUTPUT3,       X,   338,   1,   PULL0)," &
+   "338     (BC_1,   *,                   CONTROL,       X)," &
+   "337     (BC_4,   P5_5,                OBSERVE_ONLY,  X)," &
+   "336     (BC_1,   P5_5,                OUTPUT3,       X,   335,   1,   PULL0)," &
+   "335     (BC_1,   *,                   CONTROL,       X)," &
+   "334     (BC_1,   P1_13,               INPUT,         X)," &
+   "333     (BC_1,   P1_13,               OUTPUT3,       X,   332,   1,   PULL0)," &
+   "332     (BC_1,   *,                   CONTROL,       X)," &
+   "331     (BC_4,   PD_9,                OBSERVE_ONLY,  X)," &
+   "330     (BC_1,   PD_9,                OUTPUT3,       X,   329,   1,   PULL0)," &
+   "329     (BC_1,   *,                   CONTROL,       X)," &
+   "328     (BC_1,   P1_14,               INPUT,         X)," &
+   "327     (BC_1,   P1_14,               OUTPUT3,       X,   326,   1,   PULL0)," &
+   "326     (BC_1,   *,                   CONTROL,       X)," &
+   "325     (BC_4,   PD_10,               OBSERVE_ONLY,  X)," &
+   "324     (BC_1,   PD_10,               OUTPUT3,       X,   323,   1,   PULL0)," &
+   "323     (BC_1,   *,                   CONTROL,       X)," &
+   "322     (BC_4,   CLK1,                OBSERVE_ONLY,  X)," &
+   "321     (BC_1,   CLK1,                OUTPUT3,       X,   320,   1,   PULL0)," &
+   "320     (BC_1,   *,                   CONTROL,       X)," &
+   "319     (BC_1,   P1_15,               INPUT,         X)," &
+   "318     (BC_1,   P1_15,               OUTPUT3,       X,   317,   1,   PULL0)," &
+   "317     (BC_1,   *,                   CONTROL,       X)," &
+   "316     (BC_4,   PD_11,               OBSERVE_ONLY,  X)," &
+   "315     (BC_1,   PD_11,               OUTPUT3,       X,   314,   1,   PULL0)," &
+   "314     (BC_1,   *,                   CONTROL,       X)," &
+   "313     (BC_4,   P5_6,                OBSERVE_ONLY,  X)," &
+   "312     (BC_1,   P5_6,                OUTPUT3,       X,   311,   1,   PULL0)," &
+   "311     (BC_1,   *,                   CONTROL,       X)," &
+   "310     (BC_1,   P1_16,               INPUT,         X)," &
+   "309     (BC_1,   P1_16,               OUTPUT3,       X,   308,   1,   PULL0)," &
+   "308     (BC_1,   *,                   CONTROL,       X)," &
+   "307     (BC_4,   P5_7,                OBSERVE_ONLY,  X)," &
+   "306     (BC_1,   P5_7,                OUTPUT3,       X,   305,   1,   PULL0)," &
+   "305     (BC_1,   *,                   CONTROL,       X)," &
+   "304     (BC_4,   P9_4,                OBSERVE_ONLY,  X)," &
+   "303     (BC_1,   P9_4,                OUTPUT3,       X,   302,   1,   PULL0)," &
+   "302     (BC_1,   *,                   CONTROL,       X)," &
+   "301     (BC_1,   P1_17,               INPUT,         X)," &
+   "300     (BC_1,   P1_17,               OUTPUT3,       X,   299,   1,   PULL0)," &
+   "299     (BC_1,   *,                   CONTROL,       X)," &
+   "298     (BC_4,   PD_12,               OBSERVE_ONLY,  X)," &
+   "297     (BC_1,   PD_12,               OUTPUT3,       X,   296,   1,   PULL0)," &
+   "296     (BC_1,   *,                   CONTROL,       X)," &
+   "295     (BC_1,   P1_18,               INPUT,         X)," &
+   "294     (BC_1,   P1_18,               OUTPUT3,       X,   293,   1,   PULL0)," &
+   "293     (BC_1,   *,                   CONTROL,       X)," &
+   "292     (BC_1,   P1_19,               INPUT,         X)," &
+   "291     (BC_1,   P1_19,               OUTPUT3,       X,   290,   1,   PULL0)," &
+   "290     (BC_1,   *,                   CONTROL,       X)," &
+   "289     (BC_4,   PD_13,               OBSERVE_ONLY,  X)," &
+   "288     (BC_1,   PD_13,               OUTPUT3,       X,   287,   1,   PULL0)," &
+   "287     (BC_1,   *,                   CONTROL,       X)," &
+   "286     (BC_4,   P9_5,                OBSERVE_ONLY,  X)," &
+   "285     (BC_1,   P9_5,                OUTPUT3,       X,   284,   1,   PULL0)," &
+   "284     (BC_1,   *,                   CONTROL,       X)," &
+   "283     (BC_4,   CLK3,                OBSERVE_ONLY,  X)," &
+   "282     (BC_1,   CLK3,                OUTPUT3,       X,   281,   1,   PULL0)," &
+   "281     (BC_1,   *,                   CONTROL,       X)," &
+   "280     (BC_4,   PD_14,               OBSERVE_ONLY,  X)," &
+   "279     (BC_1,   PD_14,               OUTPUT3,       X,   278,   1,   PULL0)," &
+   "278     (BC_1,   *,                   CONTROL,       X)," &
+   "277     (BC_1,   P1_20,               INPUT,         X)," &
+   "276     (BC_1,   P1_20,               OUTPUT3,       X,   275,   1,   PULL0)," &
+   "275     (BC_1,   *,                   CONTROL,       X)," &
+   "274     (BC_4,   PD_15,               OBSERVE_ONLY,  X)," &
+   "273     (BC_1,   PD_15,               OUTPUT3,       X,   272,   1,   PULL0)," &
+   "272     (BC_1,   *,                   CONTROL,       X)," &
+   "271     (BC_4,   P9_6,                OBSERVE_ONLY,  X)," &
+   "270     (BC_1,   P9_6,                OUTPUT3,       X,   269,   1,   PULL0)," &
+   "269     (BC_1,   *,                   CONTROL,       X)," &
+   "268     (BC_4,   PD_16,               OBSERVE_ONLY,  X)," &
+   "267     (BC_1,   PD_16,               OUTPUT3,       X,   266,   1,   PULL0)," &
+   "266     (BC_1,   *,                   CONTROL,       X)," &
+   "265     (BC_4,   P6_0,                OBSERVE_ONLY,  X)," &
+   "264     (BC_1,   P6_0,                OUTPUT3,       X,   263,   1,   PULL0)," &
+   "263     (BC_1,   *,                   CONTROL,       X)," &
+   "262     (BC_4,   PE_0,                OBSERVE_ONLY,  X)," &
+   "261     (BC_1,   PE_0,                OUTPUT3,       X,   260,   1,   PULL0)," &
+   "260     (BC_1,   *,                   CONTROL,       X)," &
+   "259     (BC_4,   P6_1,                OBSERVE_ONLY,  X)," &
+   "258     (BC_1,   P6_1,                OUTPUT3,       X,   257,   1,   PULL0)," &
+   "257     (BC_1,   *,                   CONTROL,       X)," &
+   "256     (BC_1,   P2_0,                INPUT,         X)," &
+   "255     (BC_1,   P2_0,                OUTPUT3,       X,   254,   1,   PULL0)," &
+   "254     (BC_1,   *,                   CONTROL,       X)," &
+   "253     (BC_4,   P6_2,                OBSERVE_ONLY,  X)," &
+   "252     (BC_1,   P6_2,                OUTPUT3,       X,   251,   1,   PULL0)," &
+   "251     (BC_1,   *,                   CONTROL,       X)," &
+   "250     (BC_4,   PE_1,                OBSERVE_ONLY,  X)," &
+   "249     (BC_1,   PE_1,                OUTPUT3,       X,   248,   1,   PULL0)," &
+   "248     (BC_1,   *,                   CONTROL,       X)," &
+   "247     (BC_4,   P6_3,                OBSERVE_ONLY,  X)," &
+   "246     (BC_1,   P6_3,                OUTPUT3,       X,   245,   1,   PULL0)," &
+   "245     (BC_1,   *,                   CONTROL,       X)," &
+   "244     (BC_4,   P6_4,                OBSERVE_ONLY,  X)," &
+   "243     (BC_1,   P6_4,                OUTPUT3,       X,   242,   1,   PULL0)," &
+   "242     (BC_1,   *,                   CONTROL,       X)," &
+   "241     (BC_4,   PE_2,                OBSERVE_ONLY,  X)," &
+   "240     (BC_1,   PE_2,                OUTPUT3,       X,   239,   1,   PULL0)," &
+   "239     (BC_1,   *,                   CONTROL,       X)," &
+   "238     (BC_1,   P2_1,                INPUT,         X)," &
+   "237     (BC_1,   P2_1,                OUTPUT3,       X,   236,   1,   PULL0)," &
+   "236     (BC_1,   *,                   CONTROL,       X)," &
+   "235     (BC_4,   P6_5,                OBSERVE_ONLY,  X)," &
+   "234     (BC_1,   P6_5,                OUTPUT3,       X,   233,   1,   PULL0)," &
+   "233     (BC_1,   *,                   CONTROL,       X)," &
+   "232     (BC_4,   PE_3,                OBSERVE_ONLY,  X)," &
+   "231     (BC_1,   PE_3,                OUTPUT3,       X,   230,   1,   PULL0)," &
+   "230     (BC_1,   *,                   CONTROL,       X)," &
+   "229     (BC_4,   P6_6,                OBSERVE_ONLY,  X)," &
+   "228     (BC_1,   P6_6,                OUTPUT3,       X,   227,   1,   PULL0)," &
+   "227     (BC_1,   *,                   CONTROL,       X)," &
+   "226     (BC_4,   PE_4,                OBSERVE_ONLY,  X)," &
+   "225     (BC_1,   PE_4,                OUTPUT3,       X,   224,   1,   PULL0)," &
+   "224     (BC_1,   *,                   CONTROL,       X)," &
+   "223     (BC_4,   P2_2,                OBSERVE_ONLY,  X)," &
+   "222     (BC_1,   P2_2,                OUTPUT3,       X,   221,   1,   PULL0)," &
+   "221     (BC_1,   *,                   CONTROL,       X)," &
+   "220     (BC_4,   PE_5,                OBSERVE_ONLY,  X)," &
+   "219     (BC_1,   PE_5,                OUTPUT3,       X,   218,   1,   PULL0)," &
+   "218     (BC_1,   *,                   CONTROL,       X)," &
+   "217     (BC_4,   P6_7,                OBSERVE_ONLY,  X)," &
+   "216     (BC_1,   P6_7,                OUTPUT3,       X,   215,   1,   PULL0)," &
+   "215     (BC_1,   *,                   CONTROL,       X)," &
+   "214     (BC_4,   PE_6,                OBSERVE_ONLY,  X)," &
+   "213     (BC_1,   PE_6,                OUTPUT3,       X,   212,   1,   PULL0)," &
+   "212     (BC_1,   *,                   CONTROL,       X)," &
+   "211     (BC_4,   P6_8,                OBSERVE_ONLY,  X)," &
+   "210     (BC_1,   P6_8,                OUTPUT3,       X,   209,   1,   PULL0)," &
+   "209     (BC_1,   *,                   CONTROL,       X)," &
+   "208     (BC_4,   PA_0,                OBSERVE_ONLY,  X)," &
+   "207     (BC_1,   PA_0,                OUTPUT3,       X,   206,   1,   PULL0)," &
+   "206     (BC_1,   *,                   CONTROL,       X)," &
+   "205     (BC_4,   P2_3,                OBSERVE_ONLY,  X)," &
+   "204     (BC_1,   P2_3,                OUTPUT3,       X,   203,   1,   PULL0)," &
+   "203     (BC_1,   *,                   CONTROL,       X)," &
+   "202     (BC_4,   P2_4,                OBSERVE_ONLY,  X)," &
+   "201     (BC_1,   P2_4,                OUTPUT3,       X,   200,   1,   PULL0)," &
+   "200     (BC_1,   *,                   CONTROL,       X)," &
+   "199     (BC_1,   *,                   INTERNAL,      X)," &
+   "198     (BC_1,   DM1,                 INPUT,         X)," &
+   "197     (BC_1,   DP1,                 INPUT,         X)," &
+   "196     (BC_1,   DM1,                 OUTPUT3,       X,   194,   1,   PULL0)," &
+   "195     (BC_1,   DP1,                 OUTPUT3,       X,   193,   1,   PULL0)," &
+   "194     (BC_1,   *,                   CONTROL,       X)," &
+   "193     (BC_1,   *,                   CONTROL,       X)," &
+   "192     (BC_4,   P2_5,                OBSERVE_ONLY,  X)," &
+   "191     (BC_1,   P2_5,                OUTPUT3,       X,   190,   1,   PULL0)," &
+   "190     (BC_1,   *,                   CONTROL,       X)," &
+   "189     (BC_1,   SCL,                 INPUT,         X)," &
+   "188     (BC_1,   SCL,                 OUTPUT2,       1,   188,   1,   PULL1)," &
+   "187     (BC_1,   SDA,                 INPUT,         X)," &
+   "186     (BC_1,   SDA,                 OUTPUT2,       1,   186,   1,   PULL1)," &
+   "185     (BC_4,   PA_1,                OBSERVE_ONLY,  X)," &
+   "184     (BC_1,   PA_1,                OUTPUT3,       X,   183,   1,   PULL0)," &
+   "183     (BC_1,   *,                   CONTROL,       X)," &
+   "182     (BC_4,   PA_2,                OBSERVE_ONLY,  X)," &
+   "181     (BC_1,   PA_2,                OUTPUT3,       X,   180,   1,   PULL0)," &
+   "180     (BC_1,   *,                   CONTROL,       X)," &
+   "179     (BC_4,   P2_6,                OBSERVE_ONLY,  X)," &
+   "178     (BC_1,   P2_6,                OUTPUT3,       X,   177,   1,   PULL0)," &
+   "177     (BC_1,   *,                   CONTROL,       X)," &
+   "176     (BC_1,   P2_7,                INPUT,         X)," &
+   "175     (BC_1,   P2_7,                OUTPUT3,       X,   174,   1,   PULL0)," &
+   "174     (BC_1,   *,                   CONTROL,       X)," &
+   "173     (BC_4,   P6_9,                OBSERVE_ONLY,  X)," &
+   "172     (BC_1,   P6_9,                OUTPUT3,       X,   171,   1,   PULL0)," &
+   "171     (BC_1,   *,                   CONTROL,       X)," &
+   "170     (BC_1,   P2_8,                INPUT,         X)," &
+   "169     (BC_1,   P2_8,                OUTPUT3,       X,   168,   1,   PULL0)," &
+   "168     (BC_1,   *,                   CONTROL,       X)," &
+   "167     (BC_4,   CLK2,                OBSERVE_ONLY,  X)," &
+   "166     (BC_1,   CLK2,                OUTPUT3,       X,   165,   1,   PULL0)," &
+   "165     (BC_1,   *,                   CONTROL,       X)," &
+   "164     (BC_4,   P6_10,               OBSERVE_ONLY,  X)," &
+   "163     (BC_1,   P6_10,               OUTPUT3,       X,   162,   1,   PULL0)," &
+   "162     (BC_1,   *,                   CONTROL,       X)," &
+   "161     (BC_4,   P6_11,               OBSERVE_ONLY,  X)," &
+   "160     (BC_1,   P6_11,               OUTPUT3,       X,   159,   1,   PULL0)," &
+   "159     (BC_1,   *,                   CONTROL,       X)," &
+   "158     (BC_1,   P2_9,                INPUT,         X)," &
+   "157     (BC_1,   P2_9,                OUTPUT3,       X,   156,   1,   PULL0)," &
+   "156     (BC_1,   *,                   CONTROL,       X)," &
+   "155     (BC_4,   P6_12,               OBSERVE_ONLY,  X)," &
+   "154     (BC_1,   P6_12,               OUTPUT3,       X,   153,   1,   PULL0)," &
+   "153     (BC_1,   *,                   CONTROL,       X)," &
+   "152     (BC_1,   P2_10,               INPUT,         X)," &
+   "151     (BC_1,   P2_10,               OUTPUT3,       X,   150,   1,   PULL0)," &
+   "150     (BC_1,   *,                   CONTROL,       X)," &
+   "149     (BC_4,   PA_3,                OBSERVE_ONLY,  X)," &
+   "148     (BC_1,   PA_3,                OUTPUT3,       X,   147,   1,   PULL0)," &
+   "147     (BC_1,   *,                   CONTROL,       X)," &
+   "146     (BC_1,   P2_11,               INPUT,         X)," &
+   "145     (BC_1,   P2_11,               OUTPUT3,       X,   144,   1,   PULL0)," &
+   "144     (BC_1,   *,                   CONTROL,       X)," &
+   "143     (BC_4,   PE_7,                OBSERVE_ONLY,  X)," &
+   "142     (BC_1,   PE_7,                OUTPUT3,       X,   141,   1,   PULL0)," &
+   "141     (BC_1,   *,                   CONTROL,       X)," &
+   "140     (BC_4,   PE_8,                OBSERVE_ONLY,  X)," &
+   "139     (BC_1,   PE_8,                OUTPUT3,       X,   138,   1,   PULL0)," &
+   "138     (BC_1,   *,                   CONTROL,       X)," &
+   "137     (BC_4,   PA_4,                OBSERVE_ONLY,  X)," &
+   "136     (BC_1,   PA_4,                OUTPUT3,       X,   135,   1,   PULL0)," &
+   "135     (BC_1,   *,                   CONTROL,       X)," &
+   "134     (BC_4,   PE_9,                OBSERVE_ONLY,  X)," &
+   "133     (BC_1,   PE_9,                OUTPUT3,       X,   132,   1,   PULL0)," &
+   "132     (BC_1,   *,                   CONTROL,       X)," &
+   "131     (BC_1,   P2_12,               INPUT,         X)," &
+   "130     (BC_1,   P2_12,               OUTPUT3,       X,   129,   1,   PULL0)," &
+   "129     (BC_1,   *,                   CONTROL,       X)," &
+   "128     (BC_4,   PE_10,               OBSERVE_ONLY,  X)," &
+   "127     (BC_1,   PE_10,               OUTPUT3,       X,   126,   1,   PULL0)," &
+   "126     (BC_1,   *,                   CONTROL,       X)," &
+   "125     (BC_4,   PE_11,               OBSERVE_ONLY,  X)," &
+   "124     (BC_1,   PE_11,               OUTPUT3,       X,   123,   1,   PULL0)," &
+   "123     (BC_1,   *,                   CONTROL,       X)," &
+   "122     (BC_4,   PE_12,               OBSERVE_ONLY,  X)," &
+   "121     (BC_1,   PE_12,               OUTPUT3,       X,   120,   1,   PULL0)," &
+   "120     (BC_1,   *,                   CONTROL,       X)," &
+   "119     (BC_1,   P2_13,               INPUT,         X)," &
+   "118     (BC_1,   P2_13,               OUTPUT3,       X,   117,   1,   PULL0)," &
+   "117     (BC_1,   *,                   CONTROL,       X)," &
+   "116     (BC_4,   PE_13,               OBSERVE_ONLY,  X)," &
+   "115     (BC_1,   PE_13,               OUTPUT3,       X,   114,   1,   PULL0)," &
+   "114     (BC_1,   *,                   CONTROL,       X)," &
+   "113     (BC_4,   PE_14,               OBSERVE_ONLY,  X)," &
+   "112     (BC_1,   PE_14,               OUTPUT3,       X,   111,   1,   PULL0)," &
+   "111     (BC_1,   *,                   CONTROL,       X)," &
+   "110     (BC_4,   PE_15,               OBSERVE_ONLY,  X)," &
+   "109     (BC_1,   PE_15,               OUTPUT3,       X,   108,   1,   PULL0)," &
+   "108     (BC_1,   *,                   CONTROL,       X)," &
+   "107     (BC_4,   P7_0,                OBSERVE_ONLY,  X)," &
+   "106     (BC_1,   P7_0,                OUTPUT3,       X,   105,   1,   PULL0)," &
+   "105     (BC_1,   *,                   CONTROL,       X)," &
+   "104     (BC_4,   PF_0,                OBSERVE_ONLY,  X)," &
+   "103     (BC_1,   PF_0,                OUTPUT3,       X,   102,   1,   PULL0)," &
+   "102     (BC_1,   *,                   CONTROL,       X)," &
+   "101     (BC_4,   P3_0,                OBSERVE_ONLY,  X)," &
+   "100     (BC_1,   P3_0,                OUTPUT3,       X,   99,   1,   PULL0)," &
+   "99      (BC_1,   *,                   CONTROL,       X)," &
+   "98      (BC_4,   P7_1,                OBSERVE_ONLY,  X)," &
+   "97      (BC_1,   P7_1,                OUTPUT3,       X,   96,   1,   PULL0)," &
+   "96      (BC_1,   *,                   CONTROL,       X)," &
+   "95      (BC_4,   P3_1,                OBSERVE_ONLY,  X)," &
+   "94      (BC_1,   P3_1,                OUTPUT3,       X,   93,   1,   PULL0)," &
+   "93      (BC_1,   *,                   CONTROL,       X)," &
+   "92      (BC_4,   PB_0,                OBSERVE_ONLY,  X)," &
+   "91      (BC_1,   PB_0,                OUTPUT3,       X,   90,   1,   PULL0)," &
+   "90      (BC_1,   *,                   CONTROL,       X)," &
+   "89      (BC_4,   P7_2,                OBSERVE_ONLY,  X)," &
+   "88      (BC_1,   P7_2,                OUTPUT3,       X,   87,   1,   PULL0)," &
+   "87      (BC_1,   *,                   CONTROL,       X)," &
+   "86      (BC_4,   P3_2,                OBSERVE_ONLY,  X)," &
+   "85      (BC_1,   P3_2,                OUTPUT3,       X,   84,   1,   PULL0)," &
+   "84      (BC_1,   *,                   CONTROL,       X)," &
+   "83      (BC_4,   PF_1,                OBSERVE_ONLY,  X)," &
+   "82      (BC_1,   PF_1,                OUTPUT3,       X,   81,   1,   PULL0)," &
+   "81      (BC_1,   *,                   CONTROL,       X)," &
+   "80      (BC_4,   P7_3,                OBSERVE_ONLY,  X)," &
+   "79      (BC_1,   P7_3,                OUTPUT3,       X,   78,   1,   PULL0)," &
+   "78      (BC_1,   *,                   CONTROL,       X)," &
+   "77      (BC_4,   PF_2,                OBSERVE_ONLY,  X)," &
+   "76      (BC_1,   PF_2,                OUTPUT3,       X,   75,   1,   PULL0)," &
+   "75      (BC_1,   *,                   CONTROL,       X)," &
+   "74      (BC_1,   P3_3,                INPUT,         X)," &
+   "73      (BC_1,   P3_3,                OUTPUT3,       X,   72,   1,   PULL0)," &
+   "72      (BC_1,   *,                   CONTROL,       X)," &
+   "71      (BC_4,   PF_3,                OBSERVE_ONLY,  X)," &
+   "70      (BC_1,   PF_3,                OUTPUT3,       X,   69,   1,   PULL0)," &
+   "69      (BC_1,   *,                   CONTROL,       X)," &
+   "68      (BC_1,   P3_4,                INPUT,         X)," &
+   "67      (BC_1,   P3_4,                OUTPUT3,       X,   66,   1,   PULL0)," &
+   "66      (BC_1,   *,                   CONTROL,       X)," &
+   "65      (BC_4,   PF_4,                OBSERVE_ONLY,  X)," &
+   "64      (BC_1,   PF_4,                OUTPUT3,       X,   63,   1,   PULL0)," &
+   "63      (BC_1,   *,                   CONTROL,       X)," &
+   "62      (BC_1,   P3_5,                INPUT,         X)," &
+   "61      (BC_1,   P3_5,                OUTPUT3,       X,   60,   1,   PULL0)," &
+   "60      (BC_1,   *,                   CONTROL,       X)," &
+   "59      (BC_1,   P3_6,                INPUT,         X)," &
+   "58      (BC_1,   P3_6,                OUTPUT3,       X,   57,   1,   PULL0)," &
+   "57      (BC_1,   *,                   CONTROL,       X)," &
+   "56      (BC_4,   PB_1,                OBSERVE_ONLY,  X)," &
+   "55      (BC_1,   PB_1,                OUTPUT3,       X,   54,   1,   PULL0)," &
+   "54      (BC_1,   *,                   CONTROL,       X)," &
+   "53      (BC_1,   P3_7,                INPUT,         X)," &
+   "52      (BC_1,   P3_7,                OUTPUT3,       X,   51,   1,   PULL0)," &
+   "51      (BC_1,   *,                   CONTROL,       X)," &
+   "50      (BC_4,   PB_2,                OBSERVE_ONLY,  X)," &
+   "49      (BC_1,   PB_2,                OUTPUT3,       X,   48,   1,   PULL0)," &
+   "48      (BC_1,   *,                   CONTROL,       X)," &
+   "47      (BC_4,   PB_3,                OBSERVE_ONLY,  X)," &
+   "46      (BC_1,   PB_3,                OUTPUT3,       X,   45,   1,   PULL0)," &
+   "45      (BC_1,   *,                   CONTROL,       X)," &
+   "44      (BC_1,   P3_8,                INPUT,         X)," &
+   "43      (BC_1,   P3_8,                OUTPUT3,       X,   42,   1,   PULL0)," &
+   "42      (BC_1,   *,                   CONTROL,       X)," &
+   "41      (BC_4,   PB_4,                OBSERVE_ONLY,  X)," &
+   "40      (BC_1,   PB_4,                OUTPUT3,       X,   39,   1,   PULL0)," &
+   "39      (BC_1,   *,                   CONTROL,       X)," &
+   "38      (BC_4,   PB_5,                OBSERVE_ONLY,  X)," &
+   "37      (BC_1,   PB_5,                OUTPUT3,       X,   36,   1,   PULL0)," &
+   "36      (BC_1,   *,                   CONTROL,       X)," &
+   "35      (BC_4,   P7_4,                OBSERVE_ONLY,  X)," &
+   "34      (BC_1,   P7_4,                OUTPUT3,       X,   33,   1,   PULL0)," &
+   "33      (BC_1,   *,                   CONTROL,       X)," &
+   "32      (BC_4,   PF_5,                OBSERVE_ONLY,  X)," &
+   "31      (BC_1,   PF_5,                OUTPUT3,       X,   30,   1,   PULL0)," &
+   "30      (BC_1,   *,                   CONTROL,       X)," &
+   "29      (BC_4,   P7_5,                OBSERVE_ONLY,  X)," &
+   "28      (BC_1,   P7_5,                OUTPUT3,       X,   27,   1,   PULL0)," &
+   "27      (BC_1,   *,                   CONTROL,       X)," &
+   "26      (BC_4,   PF_6,                OBSERVE_ONLY,  X)," &
+   "25      (BC_1,   PF_6,                OUTPUT3,       X,   24,   1,   PULL0)," &
+   "24      (BC_1,   *,                   CONTROL,       X)," &
+   "23      (BC_4,   PF_7,                OBSERVE_ONLY,  X)," &
+   "22      (BC_1,   PF_7,                OUTPUT3,       X,   21,   1,   PULL0)," &
+   "21      (BC_1,   *,                   CONTROL,       X)," &
+   "20      (BC_4,   P7_6,                OBSERVE_ONLY,  X)," &
+   "19      (BC_1,   P7_6,                OUTPUT3,       X,   18,   1,   PULL0)," &
+   "18      (BC_1,   *,                   CONTROL,       X)," &
+   "17      (BC_4,   PB_6,                OBSERVE_ONLY,  X)," &
+   "16      (BC_1,   PB_6,                OUTPUT3,       X,   15,   1,   PULL0)," &
+   "15      (BC_1,   *,                   CONTROL,       X)," &
+   "14      (BC_4,   P7_7,                OBSERVE_ONLY,  X)," &
+   "13      (BC_1,   P7_7,                OUTPUT3,       X,   12,   1,   PULL0)," &
+   "12      (BC_1,   *,                   CONTROL,       X)," &
+   "11      (BC_4,   PF_8,                OBSERVE_ONLY,  X)," &
+   "10      (BC_1,   PF_8,                OUTPUT3,       X,   9,   1,   PULL0)," &
+   "9       (BC_1,   *,                   CONTROL,       X)," &
+   "8       (BC_4,   PF_9,                OBSERVE_ONLY,  X)," &
+   "7       (BC_1,   PF_9,                OUTPUT3,       X,   6,   1,   PULL0)," &
+   "6       (BC_1,   *,                   CONTROL,       X)," &
+   "5       (BC_4,   PF_10,               OBSERVE_ONLY,  X)," &
+   "4       (BC_1,   PF_10,               OUTPUT3,       X,   3,   1,   PULL0)," &
+   "3       (BC_1,   *,                   CONTROL,       X)," &
+   "2       (BC_4,   PF_11,               OBSERVE_ONLY,  X)," &
+   "1       (BC_1,   PF_11,               OUTPUT3,       X,   0,   1,   PULL0)," &
+   "0       (BC_1,   *,                   CONTROL,       X)";
+
+------------------------------------------------------------------
+-- Runbist Description
+------------------------------------------------------------------
+
+-- none
+
+------------------------------------------------------------------
+-- Intest Description
+------------------------------------------------------------------
+
+-- none
+
+------------------------------------------------------------------
+-- BSDL Extensions
+------------------------------------------------------------------
+
+-- none
+
+------------------------------------------------------------------
+-- Design Warning
+------------------------------------------------------------------
+
+-- none
+
+end LPC1850FET256;
+
+

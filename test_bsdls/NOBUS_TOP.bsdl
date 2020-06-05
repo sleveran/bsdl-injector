@@ -1,0 +1,843 @@
+--------------------------------------------------------------------------------
+--
+-- File Type: BSDL description for top level entity nobus_top
+-- Date Created: Wed Dec 16 10:22:07 1998
+-- Tool Version: BSDArchitect v8.6_1.12  Fri Aug 22 12:01:17 PDT 1997
+--
+--------------------------------------------------------------------------------
+
+
+entity nobus_top is
+
+  generic(PHYSICAL_PIN_MAP : string := "DIP_PACKAGE");
+
+  port ( vdd : linkage bit_vector(11 downto 0);
+	 vss : linkage bit_vector(12 downto 0);
+         ftcko_5 : inout bit;
+         ftcko_4 : inout bit;
+         ftfrsn_7 : out bit;
+         ftmfs_7 : out bit;
+         ftdat_7 : out bit;
+         frfrsn_7 : out bit;
+         ftcko_7 : inout bit;
+         ftcko_6 : inout bit;
+         ftfrsn_6 : out bit;
+         ftmfs_6 : out bit;
+         ftdat_6 : out bit;
+         frfrsn_6 : out bit;
+         ftfrsn_5 : out bit;
+         ftmfs_5 : out bit;
+         ftdat_5 : out bit;
+         frfrsn_5 : out bit;
+         ftfrsn_4 : out bit;
+         ftmfs_4 : out bit;
+         ftdat_4 : out bit;
+         frfrsn_4 : out bit;
+         ftfrsn_3 : out bit;
+         ftmfs_3 : out bit;
+         ftdat_3 : out bit;
+         frfrsn_3 : out bit;
+         ftcko_3 : inout bit;
+         ftfrsn_2 : out bit;
+         ftmfs_2 : out bit;
+         ftdat_2 : out bit;
+         frfrsn_2 : out bit;
+         ftcko_2 : inout bit;
+         ftfrsn_1 : out bit;
+         ftmfs_1 : out bit;
+         ftdat_1 : out bit;
+         frfrsn_1 : out bit;
+         ftcko_1 : inout bit;
+         ftfrsn_0 : out bit;
+         ftmfs_0 : out bit;
+         ftdat_0 : out bit;
+         frfrsn_0 : out bit;
+         ftcko_0 : inout bit;
+         rmadr_15 : out bit;
+         rmadr_14 : out bit;
+         rmadr_13 : out bit;
+         rmadr_12 : out bit;
+         rmadr_11 : out bit;
+         rmadr_10 : out bit;
+         rmadr_9 : out bit;
+         rmadr_8 : out bit;
+         rmadr_7 : out bit;
+         rmadr_6 : out bit;
+         rmadr_5 : out bit;
+         rmadr_4 : out bit;
+         rmadr_3 : out bit;
+         rmadr_2 : out bit;
+         rmadr_1 : out bit;
+         rmadr_0 : out bit;
+         unchec : out bit;
+         rmadc_n : out bit;
+         rmoe_n : out bit;
+         rmcs_n : out bit;
+         rmwr_n : out bit;
+         rmdat_32 : inout bit;
+         rmdat_31 : inout bit;
+         rmdat_30 : inout bit;
+         rmdat_29 : inout bit;
+         rmdat_28 : inout bit;
+         rmdat_27 : inout bit;
+         rmdat_26 : inout bit;
+         rmdat_25 : inout bit;
+         rmdat_24 : inout bit;
+         rmdat_23 : inout bit;
+         rmdat_22 : inout bit;
+         rmdat_21 : inout bit;
+         rmdat_20 : inout bit;
+         rmdat_19 : inout bit;
+         rmdat_18 : inout bit;
+         rmdat_17 : inout bit;
+         rmdat_16 : inout bit;
+         rmdat_15 : inout bit;
+         rmdat_14 : inout bit;
+         rmdat_13 : inout bit;
+         rmdat_12 : inout bit;
+         rmdat_11 : inout bit;
+         rmdat_10 : inout bit;
+         rmdat_9 : inout bit;
+         rmdat_8 : inout bit;
+         rmdat_7 : inout bit;
+         rmdat_6 : inout bit;
+         rmdat_5 : inout bit;
+         rmdat_4 : inout bit;
+         rmdat_3 : inout bit;
+         rmdat_2 : inout bit;
+         rmdat_1 : inout bit;
+         rmdat_0 : inout bit;
+         rmclk : out bit;
+         rxenb_n : inout bit;
+         rxprt : out bit;
+         rxdat_7 : out bit;
+         rxdat_6 : out bit;
+         rxdat_5 : out bit;
+         rxdat_4 : out bit;
+         rxdat_3 : out bit;
+         rxdat_2 : out bit;
+         rxdat_1 : out bit;
+         rxdat_0 : out bit;
+         atbtc : out bit;
+         rxcla : inout bit;
+         rxsoc : out bit;
+         txenb_n : inout bit;
+         txcla : inout bit;
+         pn2 : out bit;
+         pn1 : out bit;
+         sclk : out bit;
+         ssp : out bit;
+         sdor : out bit;
+         sdod : out bit;
+         mpir2_n : out bit;
+         mpir1_n : out bit;
+         pn0 : out bit;
+         mprdy : out bit;
+         mpdat_15 : inout bit;
+         mpdat_14 : inout bit;
+         mpdat_13 : inout bit;
+         mpdat_12 : inout bit;
+         mpdat_11 : inout bit;
+         mpdat_10 : inout bit;
+         mpdat_9 : inout bit;
+         mpdat_8 : inout bit;
+         mpdat_7 : inout bit;
+         mpdat_6 : inout bit;
+         mpdat_5 : inout bit;
+         mpdat_4 : inout bit;
+         mpdat_3 : inout bit;
+         mpdat_2 : inout bit;
+         mpdat_1 : inout bit;
+         mpdat_0 : inout bit;
+         mpcs_n : in bit;
+         rtsen_n : in bit;
+         frmfb_7 : in bit;
+         frdat_7 : in bit;
+         frclk_7 : in bit;
+         frlos_7 : in bit;
+         frmfb_6 : in bit;
+         frdat_6 : in bit;
+         frclk_6 : in bit;
+         frlos_6 : in bit;
+         frmfb_5 : in bit;
+         frdat_5 : in bit;
+         frclk_5 : in bit;
+         frlos_5 : in bit;
+         frmfb_4 : in bit;
+         frdat_4 : in bit;
+         frclk_4 : in bit;
+         frlos_4 : in bit;
+         frmfb_3 : in bit;
+         frdat_3 : in bit;
+         frclk_3 : in bit;
+         frlos_3 : in bit;
+         frmfb_2 : in bit;
+         frdat_2 : in bit;
+         frclk_2 : in bit;
+         frlos_2 : in bit;
+         frmfb_1 : in bit;
+         frdat_1 : in bit;
+         frclk_1 : in bit;
+         frlos_1 : in bit;
+         frmfb_0 : in bit;
+         frdat_0 : in bit;
+         frclk_0 : in bit;
+         frlos_0 : in bit;
+         tbus : in bit;
+         pmt : in bit;
+         rxclk : in bit;
+         txclk : in bit;
+         uttr_n : in bit;
+         txprt : in bit;
+         txdat_7 : in bit;
+         txdat_6 : in bit;
+         txdat_5 : in bit;
+         txdat_4 : in bit;
+         txdat_3 : in bit;
+         txdat_2 : in bit;
+         txdat_1 : in bit;
+         txdat_0 : in bit;
+         txsoc : in bit;
+         rxadr_4 : in bit;
+         rxadr_3 : in bit;
+         rxadr_2 : in bit;
+         rxadr_1 : in bit;
+         rxadr_0 : in bit;
+         txadr_4 : in bit;
+         txadr_3 : in bit;
+         txadr_2 : in bit;
+         txadr_1 : in bit;
+         txadr_0 : in bit;
+         tscsh : in bit;
+         tscen : in bit;
+         e1t1 : in bit;
+         clk52 : in bit;
+         sdi : in bit;
+         ecn : in bit;
+         mpadr_17 : in bit;
+         mpadr_16 : in bit;
+         mpadr_15 : in bit;
+         mpadr_14 : in bit;
+         mpadr_13 : in bit;
+         mpadr_12 : in bit;
+         mpadr_11 : in bit;
+         mpadr_10 : in bit;
+         mpadr_9 : in bit;
+         mpadr_8 : in bit;
+         mpadr_7 : in bit;
+         mpadr_6 : in bit;
+         mpadr_5 : in bit;
+         mpadr_4 : in bit;
+         mpadr_3 : in bit;
+         mpadr_2 : in bit;
+         mpadr_1 : in bit;
+         mpadr_0 : in bit;
+         reset_n : in bit;
+         clock : in bit;
+         rfclk : in bit;
+         mprd_n : in bit;
+         mpwr_n : in bit;
+         tms : in bit;
+         tck : in bit;
+         tdi : in bit;
+         tdo : out bit;
+         trst : in bit);
+
+  use STD_1149_1_1994.all;
+
+  attribute COMPONENT_CONFORMANCE of nobus_top : entity is
+	"STD_1149_1_1993";
+
+  attribute PIN_MAP of nobus_top : entity is PHYSICAL_PIN_MAP;
+  constant DIP_PACKAGE : PIN_MAP_STRING :=
+    "vdd		:(D6,D11,D15,F4,F17,K4,L17,R4,R17,U6,U10,U15),"&
+    "vss		:(A1,D4,D8,D13,D17,H4,H17,N4,N17,U4,U8,U13,U17),"&
+    "ftcko_4:B1," &
+    "ftcko_5:C2," &
+    "rtsen_n:D3," &
+    "mpcs_n:E2," &
+    "mpwr_n:E1," &
+    "mprd_n:F3," &
+    "mpdat_0:G4," &
+    "mpdat_1:F2," &
+    "mpdat_2:F1," &
+    "mpdat_3:G3," &
+    "mpdat_4:G2," &
+    "mpdat_5:G1," &
+    "mpdat_6:H3," &
+    "mpdat_7:H2," &
+    "mpdat_8:H1," &
+    "mpdat_9:J4," &
+    "mpdat_10:J3," &
+    "mpdat_11:J2," &
+    "mpdat_12:J1," &
+    "mpdat_13:K2," &
+    "mpdat_14:K3," &
+    "mpdat_15:K1," &
+    "rfclk:L1," &
+    "clock:L2," &
+    "reset_n:L3," &
+    "mprdy:L4," &
+    "pn0:M1," &
+    "mpir1_n:M2," &
+    "mpir2_n:M3," &
+    "mpadr_0:M4," &
+    "mpadr_1:N1," &
+    "mpadr_2:N2," &
+    "mpadr_3:N3," &
+    "mpadr_4:P1," &
+    "mpadr_5:P2," &
+    "mpadr_6:R1," &
+    "mpadr_7:P3," &
+    "mpadr_8:R2," &
+    "mpadr_9:T1," &
+    "mpadr_10:P4," &
+    "mpadr_11:R3," &
+    "mpadr_12:T2," &
+    "mpadr_13:U1," &
+    "mpadr_14:T3," &
+    "mpadr_15:U2," &
+    "mpadr_16:V1," &
+    "mpadr_17:T4," &
+    "ecn:U3," &
+    "clk52:V2," &
+    "e1t1:W1," & 
+    "tscen:V3," &
+    "txadr_0:W2," &
+    "txadr_1:Y1," &
+    "txadr_2:W3," &
+    "txadr_3:Y2," &
+    "txadr_4:W4," &
+    "rxadr_0:V4," &
+    "rxadr_1:U5," &
+    "rxadr_2:Y3," &
+    "rxadr_3:Y4," &
+    "rxadr_4:V5," &
+    "pn1:W5," &
+    "pn2:Y5," &
+    "txcla:V6," &
+    "txenb_n:U7," &
+    "txsoc:W6," &
+    "txdat_0:Y6," &
+    "txdat_1:V7," &
+    "txdat_2:W7," &
+    "txdat_3:Y7," &
+    "txdat_4:V8," &
+    "txdat_5:W8," &
+    "txdat_6:Y8," &
+    "txdat_7:U9," &
+    "txprt:V9," &
+    "uttr_n:W9," &
+    "txclk:Y9," &
+    "rxsoc:W10," &
+    "rxcla:V10," &
+    "atbtc:Y10," &
+    "rxdat_0:Y11," &
+    "rxdat_1:W11," &
+    "rxdat_2:V11," &
+    "rxdat_3:U11," &
+    "rxdat_4:Y12," &
+    "rxdat_5:W12," &
+    "rxdat_6:V12," &
+    "rxdat_7:U12," &
+    "rxprt:Y13," &
+    "rxenb_n:W13," &
+    "rxclk:V13," &
+    "rmclk:W14," &
+    "pmt:Y15," &
+    "rmdat_0:V14," &
+    "rmdat_1:W15," &
+    "rmdat_2:Y16," &
+    "rmdat_3:U14," &
+    "rmdat_4:V15," &
+    "rmdat_5:W16," &
+    "rmdat_6:Y17," &
+    "rmdat_7:V16," &
+    "rmdat_8:W17," &
+    "sdi:Y18," &
+    "rmdat_9:U16," &
+    "rmdat_10:V17," &
+    "rmdat_11:W18," &
+    "rmdat_12:Y19," &
+    "tbus:V18," &
+    "rmdat_13:W19," &
+    "sdod:Y20," &
+    "sdor:W20," &
+    "rmdat_14:V19," &
+    "rmdat_15:U19," &
+    "rmdat_16:U18," &
+    "ssp:T17," &
+    "rmdat_17:V20," &
+    "rmdat_18:U20," &
+    "rmdat_19:T18," &
+    "rmdat_20:T19," &
+    "sclk:T20," &
+    "rmdat_21:R18," &
+    "rmdat_22:P17," &
+    "rmdat_23:R19," &
+    "rmdat_24:R20," &
+    "rmdat_25:P18," &
+    "rmdat_26:P19," &
+    "rmdat_27:P20," &
+    "rmdat_28:N18," &
+    "rmdat_29:N19," &
+    "rmdat_30:N20," &
+    "rmdat_31:M17," &
+    "rmdat_32:M18," &
+    "rmwr_n:M19," &
+    "rmcs_n:M20," &
+    "rmoe_n:L19," &
+    "rmadc_n:L18," &
+    "unchec:L20," &
+    "rmadr_0:K20," &
+    "rmadr_1:K19," &
+    "rmadr_2:K18," &
+    "rmadr_3:K17," &
+    "rmadr_4:J20," &
+    "rmadr_5:J19," &
+    "rmadr_6:J18," &
+    "rmadr_7:J17," &
+    "rmadr_8:H20," &
+    "rmadr_9:H19," &
+    "rmadr_10:H18," &
+    "rmadr_11:G20," &
+    "rmadr_12:G19," &
+    "rmadr_13:F20," &
+    "rmadr_14:G18," &
+    "rmadr_15:F19," &
+    "frlos_0:E20," &
+    "frclk_0:G17," &
+    "frdat_0:F18," &
+    "frmfb_0:E19," &
+    "ftcko_0:D20," &
+    "frfrsn_0:E18," &
+    "ftdat_0:D19," &
+    "ftmfs_0:C20," &
+    "ftfrsn_0:E17," &
+    "frlos_1:D18," &
+    "frclk_1:C19," &
+    "frdat_1:B20," &
+    "frmfb_1:C18," &
+    "ftcko_1:A20," &
+    "frfrsn_1:A19," &
+    "ftdat_1:B18," &
+    "ftmfs_1:B17," &
+    "ftfrsn_1:C17," &
+    "frlos_2:D16," &
+    "frclk_2:A18," &
+    "frdat_2:A17," &
+    "frmfb_2:C16," &
+    "ftcko_2:B16," &
+    "frfrsn_2:A16," &
+    "ftdat_2:C15," &
+    "ftmfs_2:D14," &
+    "ftfrsn_2:B15," &
+    "frlos_3:A15," &
+    "frclk_3:C14," &
+    "frdat_3:B14," &
+    "frmfb_3:A14," &
+    "ftcko_3:C13," &
+    "frfrsn_3:B13," &
+    "ftdat_3:A13," &
+    "ftmfs_3:D12," &
+    "ftfrsn_3:C12," &
+    "frlos_4:B12," &
+    "frclk_4:A12," &
+    "frdat_4:B11," &
+    "frmfb_4:C11," &
+    "tscsh:A11," &
+    "frfrsn_4:A10," &
+    "ftdat_4:B10," &
+    "ftmfs_4:C10," &
+    "ftfrsn_4:D10," &
+    "frlos_5:A9," &
+    "frclk_5:B9," &
+    "frdat_5:C9," &
+    "frmfb_5:D9," &
+    "frfrsn_5:A8," &
+    "ftdat_5:B8," &
+    "ftmfs_5:C8," &
+    "ftfrsn_5:A7," &
+    "frlos_6:B7," &
+    "frclk_6:A6," &
+    "frdat_6:C7," &
+    "frmfb_6:B6," &
+    "frfrsn_6:A5," &
+    "ftdat_6:D7," &
+    "ftmfs_6:C6," &
+    "ftfrsn_6:B5," &
+    "frlos_7:A4," &
+    "frclk_7:C5," &
+    "frdat_7:B4," &
+    "frmfb_7:A3," &
+    "ftcko_6:D5," &
+    "ftcko_7:C4," &
+    "frfrsn_7:B3," &
+    "ftdat_7:B2," &
+    "ftmfs_7:A2," &
+    "ftfrsn_7:C3," &
+    "tms:D1," &
+    "tck:C1," &
+    "tdi:E4," &
+    "tdo:D2," &
+    "trst:E3";
+
+  attribute TAP_SCAN_IN of TDI : signal is true;
+  attribute TAP_SCAN_MODE of TMS : signal is true;
+  attribute TAP_SCAN_OUT of TDO : signal is true;
+  attribute TAP_SCAN_CLOCK of TCK : signal is (20.0e6,BOTH);
+  attribute TAP_SCAN_RESET of TRST : signal is true;
+
+  attribute INSTRUCTION_LENGTH of nobus_top : entity is 4;
+  attribute INSTRUCTION_OPCODE of nobus_top : entity is
+    "clamp (0111)," &
+    "intest (0110)," &
+    "idcode (0001)," &
+    "extest (0000)," &
+    "sample (0101)," &
+    "bypass (1111)";
+  attribute INSTRUCTION_CAPTURE of nobus_top : entity is "0001";
+
+  attribute IDCODE_REGISTER of nobus_top : entity is "01000000000001000110000010000011";
+
+  attribute BOUNDARY_LENGTH of nobus_top : entity is 335;
+
+  attribute BOUNDARY_REGISTER of nobus_top : entity is
+-- num	  cell	   port		function safe	ccell	disval rslt
+    "0   (BC_1,    ftcko_4    , output3, X,         2,  1,     Pull0)," &
+    "1   (BC_1,    ftcko_4    , input  , X)," &
+    "2   (BC_1,          *    , control, 1)," &
+    "3   (BC_1,    ftcko_5    , output3, X,         5,  1,     Pull0)," &
+    "4   (BC_1,    ftcko_5    , input  , X)," &
+    "5   (BC_1,          *    , control, 1)," &
+    "6   (BC_1,    rtsen_n    , input  , X)," &
+    "7   (BC_1,     mpcs_n    , input  , X)," &
+    "8   (BC_1,     mpwr_n    , input  , X)," &
+    "9   (BC_1,     mprd_n    , input  , X)," &
+    "10  (BC_1,    mpdat_0    , output3, X,        12,  1,     Pull1)," &
+    "11  (BC_1,    mpdat_0    , input  , X)," &
+    "12  (BC_1,          *    , control, 1)," &
+    "13  (BC_1,    mpdat_1    , output3, X,        12,  1,     Pull1)," &
+    "14  (BC_1,    mpdat_1    , input  , X)," &
+    "15  (BC_1,    mpdat_2    , output3, X,        12,  1,     Pull1)," &
+    "16  (BC_1,    mpdat_2    , input  , X)," &
+    "17  (BC_1,    mpdat_3    , output3, X,        12,  1,     Pull1)," &
+    "18  (BC_1,    mpdat_3    , input  , X)," &
+    "19  (BC_1,    mpdat_4    , output3, X,        12,  1,     Pull1)," &
+    "20  (BC_1,    mpdat_4    , input  , X)," &
+    "21  (BC_1,    mpdat_5    , output3, X,        12,  1,     Pull1)," &
+    "22  (BC_1,    mpdat_5    , input  , X)," &
+    "23  (BC_1,    mpdat_6    , output3, X,        12,  1,     Pull1)," &
+    "24  (BC_1,    mpdat_6    , input  , X)," &
+    "25  (BC_1,    mpdat_7    , output3, X,        12,  1,     Pull1)," &
+    "26  (BC_1,    mpdat_7    , input  , X)," &
+    "27  (BC_1,    mpdat_8    , output3, X,        12,  1,     Pull1)," &
+    "28  (BC_1,    mpdat_8    , input  , X)," &
+    "29  (BC_1,    mpdat_9    , output3, X,        12,  1,     Pull1)," &
+    "30  (BC_1,    mpdat_9    , input  , X)," &
+    "31  (BC_1,   mpdat_10    , output3, X,        12,  1,     Pull1)," &
+    "32  (BC_1,   mpdat_10    , input  , X)," &
+    "33  (BC_1,   mpdat_11    , output3, X,        12,  1,     Pull1)," &
+    "34  (BC_1,   mpdat_11    , input  , X)," &
+    "35  (BC_1,   mpdat_12    , output3, X,        12,  1,     Pull1)," &
+    "36  (BC_1,   mpdat_12    , input  , X)," &
+    "37  (BC_1,   mpdat_13    , output3, X,        12,  1,     Pull1)," &
+    "38  (BC_1,   mpdat_13    , input  , X)," &
+    "39  (BC_1,   mpdat_14    , output3, X,        12,  1,     Pull1)," &
+    "40  (BC_1,   mpdat_14    , input  , X)," &
+    "41  (BC_1,   mpdat_15    , output3, X,        12,  1,     Pull1)," &
+    "42  (BC_1,   mpdat_15    , input  , X)," &
+    "43  (BC_1,      rfclk    , input  , X)," &
+    "44  (BC_1,      clock    , input  , X)," &
+    "45  (BC_1,    reset_n    , input  , X)," &
+    "46  (BC_1,      mprdy    , output3, X,        47,  1,     Z)," &
+    "47  (BC_1,          *    , control, 1)," &
+    "48  (BC_1,        pn0    , output2, X)," &
+    "49  (BC_1,    mpir1_n    , output2, X)," &
+    "50  (BC_1,    mpir2_n    , output2, X)," &
+    "51  (BC_1,    mpadr_0    , input  , X)," &
+    "52  (BC_1,    mpadr_1    , input  , X)," &
+    "53  (BC_1,    mpadr_2    , input  , X)," &
+    "54  (BC_1,    mpadr_3    , input  , X)," &
+    "55  (BC_1,    mpadr_4    , input  , X)," &
+    "56  (BC_1,    mpadr_5    , input  , X)," &
+    "57  (BC_1,    mpadr_6    , input  , X)," &
+    "58  (BC_1,    mpadr_7    , input  , X)," &
+    "59  (BC_1,    mpadr_8    , input  , X)," &
+    "60  (BC_1,    mpadr_9    , input  , X)," &
+    "61  (BC_1,   mpadr_10    , input  , X)," &
+    "62  (BC_1,   mpadr_11    , input  , X)," &
+    "63  (BC_1,   mpadr_12    , input  , X)," &
+    "64  (BC_1,   mpadr_13    , input  , X)," &
+    "65  (BC_1,   mpadr_14    , input  , X)," &
+    "66  (BC_1,   mpadr_15    , input  , X)," &
+    "67  (BC_1,   mpadr_16    , input  , X)," &
+    "68  (BC_1,   mpadr_17    , input  , X)," &
+    "69  (BC_1,      ecn    , input  , X)," &
+    "70  (BC_1,      clk52    , input  , X)," &
+    "71  (BC_1,      e1t1    , input  , X)," &
+    "72  (BC_1,      tscen    , input  , X)," &
+    "73  (BC_1,    txadr_0    , input  , X)," &
+    "74  (BC_1,    txadr_1    , input  , X)," &
+    "75  (BC_1,    txadr_2    , input  , X)," &
+    "76  (BC_1,    txadr_3    , input  , X)," &
+    "77  (BC_1,    txadr_4    , input  , X)," &
+    "78  (BC_1,    rxadr_0    , input  , X)," &
+    "79  (BC_1,    rxadr_1    , input  , X)," &
+    "80  (BC_1,    rxadr_2    , input  , X)," &
+    "81  (BC_1,    rxadr_3    , input  , X)," &
+    "82  (BC_1,    rxadr_4    , input  , X)," &
+    "83  (BC_1,        pn1    , output2, X)," &
+    "84  (BC_1,        pn2    , output2, X)," &
+    "85  (BC_1,      txcla    , input  , X)," &
+    "86  (BC_1,      txcla    , output3, X,        87,  1,     Pull0)," &
+    "87  (BC_1,          *    , control, 1)," &
+    "88  (BC_1,    txenb_n    , output3, X,        90,  1,     Pull1)," &
+    "89  (BC_1,    txenb_n    , input  , X)," &
+    "90  (BC_1,          *    , control, 1)," &
+    "91  (BC_1,      txsoc    , input  , X)," &
+    "92  (BC_1,    txdat_0    , input  , X)," &
+    "93  (BC_1,    txdat_1    , input  , X)," &
+    "94  (BC_1,    txdat_2    , input  , X)," &
+    "95  (BC_1,    txdat_3    , input  , X)," &
+    "96  (BC_1,    txdat_4    , input  , X)," &
+    "97  (BC_1,    txdat_5    , input  , X)," &
+    "98  (BC_1,    txdat_6    , input  , X)," &
+    "99  (BC_1,    txdat_7    , input  , X)," &
+    "100 (BC_1,      txprt    , input  , X)," &
+    "101 (BC_1,     uttr_n    , input  , X)," &
+    "102 (BC_1,      txclk    , input  , X)," &
+    "103 (BC_1,      rxsoc    , output3, X,       104,  1,     Pull0)," &
+    "104 (BC_1,          *    , control, 1)," &
+    "105 (BC_1,      rxcla    , output3, X,       107,  1,     Pull0)," &
+    "106 (BC_1,      rxcla    , input  , X)," &
+    "107 (BC_1,          *    , control, 1)," &
+    "108 (BC_1,      atbtc    , output2, X)," &
+    "109 (BC_1,    rxdat_0    , output3, X,       110,  1,     Pull1)," &
+    "110 (BC_1,          *    , control, 1)," &
+    "111 (BC_1,    rxdat_1    , output3, X,       110,  1,     Pull1)," &
+    "112 (BC_1,    rxdat_2    , output3, X,       110,  1,     Pull1)," &
+    "113 (BC_1,    rxdat_3    , output3, X,       110,  1,     Pull1)," &
+    "114 (BC_1,    rxdat_4    , output3, X,       110,  1,     Pull1)," &
+    "115 (BC_1,    rxdat_5    , output3, X,       110,  1,     Pull1)," &
+    "116 (BC_1,    rxdat_6    , output3, X,       110,  1,     Pull1)," &
+    "117 (BC_1,    rxdat_7    , output3, X,       110,  1,     Pull1)," &
+    "118 (BC_1,      rxprt    , output3, X,       119,  1,     Pull1)," &
+    "119 (BC_1,          *    , control, 1)," &
+    "120 (BC_1,    rxenb_n    , output3, X,       122,  1,     Pull1)," &
+    "121 (BC_1,    rxenb_n    , input  , X)," &
+    "122 (BC_1,          *    , control, 1)," &
+    "123 (BC_1,      rxclk    , input  , X)," &
+    "124 (BC_1,      rmclk    , output2, X)," &
+    "125 (BC_1,        pmt    , input  , X)," &
+    "126 (BC_1,    rmdat_0    , output3, X,       128,  1,     Pull1)," &
+    "127 (BC_1,    rmdat_0    , input  , X)," &
+    "128 (BC_1,          *    , control, 1)," &
+    "129 (BC_1,    rmdat_1    , output3, X,       128,  1,     Pull1)," &
+    "130 (BC_1,    rmdat_1    , input  , X)," &
+    "131 (BC_1,    rmdat_2    , output3, X,       128,  1,     Pull1)," &
+    "132 (BC_1,    rmdat_2    , input  , X)," &
+    "133 (BC_1,    rmdat_3    , output3, X,       128,  1,     Pull1)," &
+    "134 (BC_1,    rmdat_3    , input  , X)," &
+    "135 (BC_1,    rmdat_4    , output3, X,       128,  1,     Pull1)," &
+    "136 (BC_1,    rmdat_4    , input  , X)," &
+    "137 (BC_1,    rmdat_5    , output3, X,       128,  1,     Pull1)," &
+    "138 (BC_1,    rmdat_5    , input  , X)," &
+    "139 (BC_1,    rmdat_6    , output3, X,       128,  1,     Pull1)," &
+    "140 (BC_1,    rmdat_6    , input  , X)," &
+    "141 (BC_1,    rmdat_7    , output3, X,       128,  1,     Pull1)," &
+    "142 (BC_1,    rmdat_7    , input  , X)," &
+    "143 (BC_1,    rmdat_8    , output3, X,       128,  1,     Pull1)," &
+    "144 (BC_1,    rmdat_8    , input  , X)," &
+    "145 (BC_1,        sdi    , input  , X)," &
+    "146 (BC_1,    rmdat_9    , output3, X,       128,  1,     Pull1)," &
+    "147 (BC_1,    rmdat_9    , input  , X)," &
+    "148 (BC_1,   rmdat_10    , output3, X,       128,  1,     Pull1)," &
+    "149 (BC_1,   rmdat_10    , input  , X)," &
+    "150 (BC_1,   rmdat_11    , output3, X,       128,  1,     Pull1)," &
+    "151 (BC_1,   rmdat_11    , input  , X)," &
+    "152 (BC_1,   rmdat_12    , output3, X,       128,  1,     Pull1)," &
+    "153 (BC_1,   rmdat_12    , input  , X)," &
+    "154 (BC_1,       tbus    , input  , X)," &
+    "155 (BC_1,   rmdat_13    , output3, X,       128,  1,     Pull1)," &
+    "156 (BC_1,   rmdat_13    , input  , X)," &
+    "157 (BC_1,       sdod    , output2, X)," &
+    "158 (BC_1,       sdor    , output2, X)," &
+    "159 (BC_1,   rmdat_14    , output3, X,       128,  1,     Pull1)," &
+    "160 (BC_1,   rmdat_14    , input  , X)," &
+    "161 (BC_1,   rmdat_15    , output3, X,       128,  1,     Pull1)," &
+    "162 (BC_1,   rmdat_15    , input  , X)," &
+    "163 (BC_1,   rmdat_16    , output3, X,       128,  1,     Pull1)," &
+    "164 (BC_1,   rmdat_16    , input  , X)," &
+    "165 (BC_1,        ssp    , output2, X)," &
+    "166 (BC_1,   rmdat_17    , output3, X,       128,  1,     Pull1)," &
+    "167 (BC_1,   rmdat_17    , input  , X)," &
+    "168 (BC_1,   rmdat_18    , output3, X,       128,  1,     Pull1)," &
+    "169 (BC_1,   rmdat_18    , input  , X)," &
+    "170 (BC_1,   rmdat_19    , output3, X,       128,  1,     Pull1)," &
+    "171 (BC_1,   rmdat_19    , input  , X)," &
+    "172 (BC_1,   rmdat_20    , output3, X,       128,  1,     Pull1)," &
+    "173 (BC_1,   rmdat_20    , input  , X)," &
+    "174 (BC_1,       sclk    , output2, X)," &
+    "175 (BC_1,   rmdat_21    , output3, X,       128,  1,     Pull1)," &
+    "176 (BC_1,   rmdat_21    , input  , X)," &
+    "177 (BC_1,   rmdat_22    , output3, X,       128,  1,     Pull1)," &
+    "178 (BC_1,   rmdat_22    , input  , X)," &
+    "179 (BC_1,   rmdat_23    , output3, X,       128,  1,     Pull1)," &
+    "180 (BC_1,   rmdat_23    , input  , X)," &
+    "181 (BC_1,   rmdat_24    , output3, X,       128,  1,     Pull1)," &
+    "182 (BC_1,   rmdat_24    , input  , X)," &
+    "183 (BC_1,   rmdat_25    , output3, X,       128,  1,     Pull1)," &
+    "184 (BC_1,   rmdat_25    , input  , X)," &
+    "185 (BC_1,   rmdat_26    , output3, X,       128,  1,     Pull1)," &
+    "186 (BC_1,   rmdat_26    , input  , X)," &
+    "187 (BC_1,   rmdat_27    , output3, X,       128,  1,     Pull1)," &
+    "188 (BC_1,   rmdat_27    , input  , X)," &
+    "189 (BC_1,   rmdat_28    , output3, X,       128,  1,     Pull1)," &
+    "190 (BC_1,   rmdat_28    , input  , X)," &
+    "191 (BC_1,   rmdat_29    , output3, X,       128,  1,     Pull1)," &
+    "192 (BC_1,   rmdat_29    , input  , X)," &
+    "193 (BC_1,   rmdat_30    , output3, X,       128,  1,     Pull1)," &
+    "194 (BC_1,   rmdat_30    , input  , X)," &
+    "195 (BC_1,   rmdat_31    , output3, X,       128,  1,     Pull1)," &
+    "196 (BC_1,   rmdat_31    , input  , X)," &
+    "197 (BC_1,   rmdat_32    , output3, X,       128,  1,     Pull1)," &
+    "198 (BC_1,   rmdat_32    , input  , X)," &
+    "199 (BC_1,     rmwr_n    , output2, X)," &
+    "200 (BC_1,     rmcs_n    , output2, X)," &
+    "201 (BC_1,     rmoe_n    , output2, X)," &
+    "202 (BC_1,    rmadc_n    , output2, X)," &
+    "203 (BC_1,     unchec    , output2, X)," &
+    "204 (BC_1,    rmadr_0    , output2, X)," &
+    "205 (BC_1,    rmadr_1    , output2, X)," &
+    "206 (BC_1,    rmadr_2    , output2, X)," &
+    "207 (BC_1,    rmadr_3    , output2, X)," &
+    "208 (BC_1,    rmadr_4    , output2, X)," &
+    "209 (BC_1,    rmadr_5    , output2, X)," &
+    "210 (BC_1,    rmadr_6    , output2, X)," &
+    "211 (BC_1,    rmadr_7    , output2, X)," &
+    "212 (BC_1,    rmadr_8    , output2, X)," &
+    "213 (BC_1,    rmadr_9    , output2, X)," &
+    "214 (BC_1,   rmadr_10    , output2, X)," &
+    "215 (BC_1,   rmadr_11    , output2, X)," &
+    "216 (BC_1,   rmadr_12    , output2, X)," &
+    "217 (BC_1,   rmadr_13    , output2, X)," &
+    "218 (BC_1,   rmadr_14    , output2, X)," &
+    "219 (BC_1,   rmadr_15    , output2, X)," &
+    "220 (BC_1,    frlos_0    , input  , X)," &
+    "221 (BC_1,    frclk_0    , input  , X)," &
+    "222 (BC_1,    frdat_0    , input  , X)," &
+    "223 (BC_1,    frmfb_0    , input  , X)," &
+    "224 (BC_1,    ftcko_0    , output3, X,       226,  1,     Pull0)," &
+    "225 (BC_1,    ftcko_0    , input  , X)," &
+    "226 (BC_1,          *    , control, 1)," &
+    "227 (BC_1,   frfrsn_0    , output3, X,       228,  1,     Pull1)," &
+    "228 (BC_1,          *    , control, 1)," &
+    "229 (BC_1,    ftdat_0    , output3, X,       230,  1,     Pull1)," &
+    "230 (BC_1,          *    , control, 1)," &
+    "231 (BC_1,    ftmfs_0    , output3, X,       232,  1,     Pull1)," &
+    "232 (BC_1,          *    , control, 1)," &
+    "233 (BC_1,   ftfrsn_0    , output3, X,       234,  1,     Pull1)," &
+    "234 (BC_1,          *    , control, 1)," &
+    "235 (BC_1,    frlos_1    , input  , X)," &
+    "236 (BC_1,    frclk_1    , input  , X)," &
+    "237 (BC_1,    frdat_1    , input  , X)," &
+    "238 (BC_1,    frmfb_1    , input  , X)," &
+    "239 (BC_1,    ftcko_1    , output3, X,       241,  1,     Pull0)," &
+    "240 (BC_1,    ftcko_1    , input  , X)," &
+    "241 (BC_1,          *    , control, 1)," &
+    "242 (BC_1,   frfrsn_1    , output3, X,       243,  1,     Pull1)," &
+    "243 (BC_1,          *    , control, 1)," &
+    "244 (BC_1,    ftdat_1    , output3, X,       245,  1,     Pull1)," &
+    "245 (BC_1,          *    , control, 1)," &
+    "246 (BC_1,    ftmfs_1    , output3, X,       247,  1,     Pull1)," &
+    "247 (BC_1,          *    , control, 1)," &
+    "248 (BC_1,   ftfrsn_1    , output3, X,       249,  1,     Pull1)," &
+    "249 (BC_1,          *    , control, 1)," &
+    "250 (BC_1,    frlos_2    , input  , X)," &
+    "251 (BC_1,    frclk_2    , input  , X)," &
+    "252 (BC_1,    frdat_2    , input  , X)," &
+    "253 (BC_1,    frmfb_2    , input  , X)," &
+    "254 (BC_1,    ftcko_2    , output3, X,       256,  1,     Pull0)," &
+    "255 (BC_1,    ftcko_2    , input  , X)," &
+    "256 (BC_1,          *    , control, 1)," &
+    "257 (BC_1,   frfrsn_2    , output3, X,       258,  1,     Pull1)," &
+    "258 (BC_1,          *    , control, 1)," &
+    "259 (BC_1,    ftdat_2    , output3, X,       260,  1,     Pull1)," &
+    "260 (BC_1,          *    , control, 1)," &
+    "261 (BC_1,    ftmfs_2    , output3, X,       262,  1,     Pull1)," &
+    "262 (BC_1,          *    , control, 1)," &
+    "263 (BC_1,   ftfrsn_2    , output3, X,       264,  1,     Pull1)," &
+    "264 (BC_1,          *    , control, 1)," &
+    "265 (BC_1,    frlos_3    , input  , X)," &
+    "266 (BC_1,    frclk_3    , input  , X)," &
+    "267 (BC_1,    frdat_3    , input  , X)," &
+    "268 (BC_1,    frmfb_3    , input  , X)," &
+    "269 (BC_1,    ftcko_3    , output3, X,       271,  1,     Pull0)," &
+    "270 (BC_1,    ftcko_3    , input  , X)," &
+    "271 (BC_1,          *    , control, 1)," &
+    "272 (BC_1,   frfrsn_3    , output3, X,       273,  1,     Pull1)," &
+    "273 (BC_1,          *    , control, 1)," &
+    "274 (BC_1,    ftdat_3    , output3, X,       275,  1,     Pull1)," &
+    "275 (BC_1,          *    , control, 1)," &
+    "276 (BC_1,    ftmfs_3    , output3, X,       277,  1,     Pull1)," &
+    "277 (BC_1,          *    , control, 1)," &
+    "278 (BC_1,   ftfrsn_3    , output3, X,       279,  1,     Pull1)," &
+    "279 (BC_1,          *    , control, 1)," &
+    "280 (BC_1,    frlos_4    , input  , X)," &
+    "281 (BC_1,    frclk_4    , input  , X)," &
+    "282 (BC_1,    frdat_4    , input  , X)," &
+    "283 (BC_1,    frmfb_4    , input  , X)," &
+    "284 (BC_1,      tscsh    , input  , X)," &
+    "285 (BC_1,   frfrsn_4    , output3, X,       286,  1,     Pull1)," &
+    "286 (BC_1,          *    , control, 1)," &
+    "287 (BC_1,    ftdat_4    , output3, X,       288,  1,     Pull1)," &
+    "288 (BC_1,          *    , control, 1)," &
+    "289 (BC_1,    ftmfs_4    , output3, X,       290,  1,     Pull1)," &
+    "290 (BC_1,          *    , control, 1)," &
+    "291 (BC_1,   ftfrsn_4    , output3, X,       292,  1,     Pull1)," &
+    "292 (BC_1,          *    , control, 1)," &
+    "293 (BC_1,    frlos_5    , input  , X)," &
+    "294 (BC_1,    frclk_5    , input  , X)," &
+    "295 (BC_1,    frdat_5    , input  , X)," &
+    "296 (BC_1,    frmfb_5    , input  , X)," &
+    "297 (BC_1,   frfrsn_5    , output3, X,       298,  1,     Pull1)," &
+    "298 (BC_1,          *    , control, 1)," &
+    "299 (BC_1,    ftdat_5    , output3, X,       300,  1,     Pull1)," &
+    "300 (BC_1,          *    , control, 1)," &
+    "301 (BC_1,    ftmfs_5    , output3, X,       302,  1,     Pull1)," &
+    "302 (BC_1,          *    , control, 1)," &
+    "303 (BC_1,   ftfrsn_5    , output3, X,       304,  1,     Pull1)," &
+    "304 (BC_1,          *    , control, 1)," &
+    "305 (BC_1,    frlos_6    , input  , X)," &
+    "306 (BC_1,    frclk_6    , input  , X)," &
+    "307 (BC_1,    frdat_6    , input  , X)," &
+    "308 (BC_1,    frmfb_6    , input  , X)," &
+    "309 (BC_1,   frfrsn_6    , output3, X,       310,  1,     Pull1)," &
+    "310 (BC_1,          *    , control, 1)," &
+    "311 (BC_1,    ftdat_6    , output3, X,       312,  1,     Pull1)," &
+    "312 (BC_1,          *    , control, 1)," &
+    "313 (BC_1,    ftmfs_6    , output3, X,       314,  1,     Pull1)," &
+    "314 (BC_1,          *    , control, 1)," &
+    "315 (BC_1,   ftfrsn_6    , output3, X,       316,  1,     Pull1)," &
+    "316 (BC_1,          *    , control, 1)," &
+    "317 (BC_1,    frlos_7    , input  , X)," &
+    "318 (BC_1,    frclk_7    , input  , X)," &
+    "319 (BC_1,    frdat_7    , input  , X)," &
+    "320 (BC_1,    frmfb_7    , input  , X)," &
+    "321 (BC_1,    ftcko_6    , output3, X,       323,  1,     Pull0)," &
+    "322 (BC_1,    ftcko_6    , input  , X)," &
+    "323 (BC_1,          *    , control, 1)," &
+    "324 (BC_1,    ftcko_7    , output3, X,       326,  1,     Pull0)," &
+    "325 (BC_1,    ftcko_7    , input  , X)," &
+    "326 (BC_1,          *    , control, 1)," &
+    "327 (BC_1,   frfrsn_7    , output3, X,       328,  1,     Pull1)," &
+    "328 (BC_1,          *    , control, 1)," &
+    "329 (BC_1,    ftdat_7    , output3, X,       330,  1,     Pull1)," &
+    "330 (BC_1,          *    , control, 1)," &
+    "331 (BC_1,    ftmfs_7    , output3, X,       332,  1,     Pull1)," &
+    "332 (BC_1,          *    , control, 1)," &
+    "333 (BC_1,   ftfrsn_7    , output3, X,       334,  1,     Pull1)," &
+    "334 (BC_1,          *    , control, 1)";
+
+end nobus_top;

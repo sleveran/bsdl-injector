@@ -1,0 +1,369 @@
+--------------------------------------------------------------------------------
+-- MUSIC Semiconductors MU9C4k64 RCP Boundary Scan Description Language       --
+--------------------------------------------------------------------------------
+-- Boundary Scan Description Language (IEEE 1149.1b)                          --
+--                                                                            --
+-- Device        : MUSIC MU9C4k64                                             --
+-- File Version  : D                                                          --
+-- File Name     : MU9C4K64.BSD.TXT                                           --
+-- File revised  : Mar. 07, 2002                                              --
+-- File created  : Jun. 11, 1999                                              --
+-- Package type  : TQFP                                                       --
+-- Voltage Level : 3.3V                                                       --
+--------------------------------------------------------------------------------
+-- Revision History:                                                          --
+--                                                                            --
+-- D - Converted from MUAC to new MUSIC Part Number MU9C4K64                  --
+--                                                                            --
+-- C - Increased clock from 1 MHz to tested frequency of 3.8 MHz.             --
+--                                                                            --
+-- B - BOUNDARY REGISTER numbering corrected to make the pin closest to TDO   --
+--     to be bit 0.                                                           --
+--                                                                            --
+-- A - Original version                                                       --
+--                                                                            --
+-- NOTE: Active low ports are designated with a "b" suffix.                   --
+--                                                                            --
+-- NOTE: The IEEE 1149.1 standard optional instruction CLAMP is               --
+--       supported.                                                           --
+--                                                                            --
+-- NOTE: For assistance with this file, contact your nearest MUSIC            --
+--       sales office.                                                        --
+--                                                                            --
+--------------------------------------------------------------------------------
+--                                                                            --
+--============================================================================--
+--                             IMPORTANT NOTICE                               --
+--  This information is provided on an AS IS basis and without warranty.      --
+--  IN NO EVENT SHALL MUSIC BE LIABLE FOR INCIDENTAL OR CONSEQUENTIAL         --
+--  DAMAGES ARISING FROM USE OF THIS INFORMATION. THIS DISCLAIMER OF          --
+--  WARRANTY EXTENDS TO THE USER OF THE INFORMATION, AND TO THEIR CUSTOMERS   --
+--  OR USERS OF PRODUCTS  AND IS IN LIEU OF ALL WARRANTIES WHETHER EXPRESS,   --
+--  IMPLIED, OR STATUTORY, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY    --
+--  OR FITNESS FOR PARTICULAR PURPOSE.                                        --
+--                                                                            --
+--  MUSIC does not represent or warrant that the information furnished        --
+--  hereunder is free of infringement of any third party patents,             --
+--  copyrights, trade secrets, or other intellectual property rights.         --
+--  MUSIC does not represent or warrant that the information is free of       --
+--  defect, or that it meets any particular standard, requirements or need    --
+--  of the user of the infomation or their customers.                         --
+--                                                                            --
+--  MUSIC reserves the right to change the information in this file           --
+--  without notice. The latest version of the file is available on the        --
+--  MUSIC Semiconductors web site at www.music-ic.com.                        --
+--                                                                            --
+--============================================================================--
+
+entity music_mu9c4k is
+    generic (PHYSICAL_PIN_MAP : string := "QFP");
+
+    port (
+        AC                   :in         bit_vector(0 to 11);
+        DSC                  :in         bit;
+        MMb                  :buffer     bit;
+        FIb                  :in         bit;
+        MIb                  :in         bit;
+        FFb                  :buffer     bit;
+        MFb                  :buffer     bit;
+        AA                   :out        bit_vector(0 to 11);
+        PA                   :out        bit_vector(0 to  3);
+        DQ                   :inout      bit_vector(0 to 31);
+        Eb                   :in         bit;
+        Wb                   :in         bit;
+        CS1b                 :in         bit;
+        CS2b                 :in         bit;
+        OEb                  :in         bit;
+        AVb                  :in         bit;
+        VBb                  :inout      bit;
+        RESETb               :in         bit;
+        TRSTb                :in         bit;
+        TCLKb                :in         bit;
+        TMS                  :in         bit;
+        TDI                  :in         bit;
+        TDO                  :out        bit;
+        GND                  :linkage    bit_vector(0 to 11);
+        VCC                  :linkage    bit_vector(0 to 6)
+    );
+
+    use STD_1149_1_1994.all;
+
+    attribute COMPONENT_CONFORMANCE of music_mu9c4k : entity is
+"STD_1149_1_1993";
+
+    attribute PIN_MAP of music_mu9c4k : entity is PHYSICAL_PIN_MAP;
+
+    constant QFP : PIN_MAP_STRING :=
+        "AC:(36,37,38,39,41,42,43,44,46,47,48,49)," &
+        "DSC:51," &
+        "MMb:52," &
+        "FIb:54," &
+        "MIb:55," &
+        "FFb:57," &
+        "MFb:58," &
+        "AA:(60,61,62,63,65,66,67,68,70,71,72,73)," &
+        "PA:(76,77,78,79)," &
+        "DQ:(81,82,83,84,86,87,88,89,91,92,93,94,96,97,98,99,1,2,3,4,6,7,8,9,11,12,13,14,16,17,18,19)," &
+        "Eb:21," &
+        "Wb:22," &
+        "CS1b:23," &
+        "CS2b:24," &
+        "OEb:25," &
+        "AVb:27," &
+        "VBb:28,"&
+        "RESETb:29," &
+        "TRSTb:30," &
+        "TCLKb:31," &
+        "TMS:32," &
+        "TDI:33," &
+        "TDO:34," &
+        "GND:(10,20,26,35,45,53,59,69,75,80,90,100)," &
+        "VCC:(5,15,40,56,64,85,95)";
+
+
+    attribute TAP_SCAN_IN of TDI : signal is true;
+    attribute TAP_SCAN_MODE of TMS : signal is true;
+    attribute TAP_SCAN_OUT of TDO : signal is true;
+    attribute TAP_SCAN_CLOCK of TCLKb : signal is (3.8e6, BOTH);
+    attribute TAP_SCAN_RESET of TRSTb : signal is true;
+
+    attribute INSTRUCTION_LENGTH of music_mu9c4k : entity is 3;
+
+    attribute INSTRUCTION_OPCODE of music_mu9c4k : entity is
+        "BYPASS          (111)," &
+        "SAMPLE          (110)," &
+        "EXTEST          (000)," &
+        "CLAMP           (011)," &
+        "INTEST          (101)," &
+        "IDCODE          (100)";
+
+    attribute INSTRUCTION_CAPTURE of music_mu9c4k : entity is "001";
+
+    attribute IDCODE_REGISTER of music_mu9c4k : entity is
+        "0001" &                -- version
+        "0100000000000000" &    -- part number
+        "00010011001" &         -- manufacturer's identity
+        "1";                    -- required by 1149.1
+
+    attribute REGISTER_ACCESS of music_mu9c4k : entity is
+        "Bypass          (BYPASS, CLAMP)," &
+        "Boundary        (SAMPLE, EXTEST, INTEST)," &
+        "Device_ID       (IDCODE)";
+
+    attribute BOUNDARY_LENGTH of music_mu9c4k : entity is 156;
+
+    attribute BOUNDARY_REGISTER  of music_mu9c4k : entity is
+     --
+     -- num   cell    port                function   safe 
+     --                                  [ccell disval rslt]
+     --
+        "0    (BC_1,  AC(0),              input,      X)," &
+        "1    (BC_1,  AC(1),              input,      X)," &
+        "2    (BC_1,  AC(2),              input,      X)," &
+        "3    (BC_1,  AC(3),              input,      X)," &
+        "4    (BC_1,  AC(4),              input,      X)," &
+        "5    (BC_1,  AC(5),              input,      X)," &
+        "6    (BC_1,  AC(6),              input,      X)," &
+        "7    (BC_1,  AC(7),              input,      X)," &
+        "8    (BC_1,  AC(8),              input,      X)," &
+        "9    (BC_1,  AC(9),              input,      X)," &
+        "10   (BC_1,  AC(10),             input,      X)," &
+        "11   (BC_1,  AC(11),             input,      X)," &
+
+        "12   (BC_1,  DSC,                input,      X)," &
+        "13   (BC_1,  MMb,                output2,    X)," &
+        "14   (BC_1,  FIb,                input,      X)," &
+        "15   (BC_1,  MIb,                input,      X)," &
+        "16   (BC_1,  FFb,                output2,    X)," &
+        "17   (BC_1,  MFb,                output2,    X)," &
+
+        "18   (BC_1,  *,              control,    1)," &
+        "19   (BC_1,  AA(0),              output3,    X, 18, 1, Z)," &
+
+        "20   (BC_1,  *,              control,    1)," &
+        "21   (BC_1,  AA(1),              output3,    X, 20, 1, Z)," &
+
+        "22   (BC_1,  *,              control,    1)," &
+        "23   (BC_1,  AA(2),              output3,    X, 22, 1, Z)," &
+
+        "24   (BC_1,  *,              control,    1)," &
+        "25   (BC_1,  AA(3),              output3,    X, 24, 1, Z)," &
+
+        "26   (BC_1,  *,              control,    1)," &
+        "27   (BC_1,  AA(4),              output3,    X, 26, 1, Z)," &
+
+        "28   (BC_1,  *,              control,    1)," &
+        "29   (BC_1,  AA(5),              output3,    X, 28, 1, Z)," &
+
+        "30   (BC_1,  *,              control,    1)," &
+        "31   (BC_1,  AA(6),              output3,    X, 30, 1, Z)," &
+
+        "32   (BC_1,  *,              control,    1)," &
+        "33   (BC_1,  AA(7),              output3,    X, 32, 1, Z)," &
+
+        "34   (BC_1,  *,              control,    1)," &
+        "35   (BC_1,  AA(8),              output3,    X, 34, 1, Z)," &
+
+        "36   (BC_1,  *,              control,    1)," &
+        "37   (BC_1,  AA(9),              output3,    X, 36, 1, Z)," &
+
+        "38   (BC_1,  *,             control,    1)," &
+        "39   (BC_1,  AA(10),             output3,    X, 38, 1, Z)," &
+
+        "40   (BC_1,  *,             control,    1)," &
+        "41   (BC_1,  AA(11),             output3,    X, 40, 1, Z)," &
+
+        "42   (BC_1,  *,              control,    1)," &
+        "43   (BC_1,  PA(0),              output3,    X, 42, 1, Z)," &
+
+        "44   (BC_1,  *,              control,    1)," &
+        "45   (BC_1,  PA(1),              output3,    X, 44, 1, Z)," &
+
+        "46   (BC_1,  *,              control,    1)," &
+        "47   (BC_1,  PA(2),              output3,    X, 46, 1, Z)," &
+
+        "48   (BC_1,  *,              control,    1)," &
+        "49   (BC_1,  PA(3),              output3,    X, 48, 1, Z)," &
+
+        "50   (BC_1,  *,              control,    1)," &
+        "51   (BC_1,  DQ(0),              output3,    X, 50, 1, Z)," &
+        "52   (BC_1,  DQ(0),              input,      X)," &
+
+        "53   (BC_1,  *,              control,    1)," &
+        "54   (BC_1,  DQ(1),              output3,    X, 53, 1, Z)," &
+        "55   (BC_1,  DQ(1),              input,      X)," &
+
+        "56   (BC_1,  *,              control,    1)," &
+        "57   (BC_1,  DQ(2),              output3,    X,  56, 1, Z)," &
+        "58   (BC_1,  DQ(2),              input,      X)," &
+
+        "59   (BC_1,  *,              control,    1)," &
+        "60   (BC_1,  DQ(3),              output3,    X,  59, 1, Z)," &
+        "61   (BC_1,  DQ(3),              input,      X)," &
+
+        "62   (BC_1,  *,              control,    1)," &
+        "63   (BC_1,  DQ(4),              output3,    X,  62, 1, Z)," &
+        "64   (BC_1,  DQ(4),              input,      X)," &
+
+        "65   (BC_1,  *,              control,    1)," &
+        "66   (BC_1,  DQ(5),              output3,    X,  65, 1, Z)," &
+        "67   (BC_1,  DQ(5),              input,      X)," &
+
+        "68   (BC_1,  *,              control,    1)," &
+        "69   (BC_1,  DQ(6),              output3,    X,  68, 1, Z)," &
+        "70   (BC_1,  DQ(6),              input,      X)," &
+
+        "71   (BC_1,  *,              control,    1)," &
+        "72   (BC_1,  DQ(7),              output3,    X,  71, 1, Z)," &
+        "73   (BC_1,  DQ(7),              input,      X)," &
+
+        "74   (BC_1,  *,              control,    1)," &
+        "75   (BC_1,  DQ(8),              output3,    X,  74, 1, Z)," &
+        "76   (BC_1,  DQ(8),              input,      X)," &
+
+        "77   (BC_1,  *,              control,    1)," &
+        "78   (BC_1,  DQ(9),              output3,    X,  77, 1, Z)," &
+        "79   (BC_1,  DQ(9),              input,      X)," &
+
+        "80   (BC_1,  *,             control,    1)," &
+        "81   (BC_1,  DQ(10),             output3,    X,  80, 1, Z)," &
+        "82   (BC_1,  DQ(10),             input,      X)," &
+
+        "83   (BC_1,  *,             control,    1)," &
+        "84   (BC_1,  DQ(11),             output3,    X,  83, 1, Z)," &
+        "85   (BC_1,  DQ(11),             input,      X)," &
+
+        "86   (BC_1,  *,             control,    1)," &
+        "87   (BC_1,  DQ(12),             output3,    X,  86, 1, Z)," &
+        "88   (BC_1,  DQ(12),             input,      X)," &
+
+        "89   (BC_1,  *,             control,    1)," &
+        "90   (BC_1,  DQ(13),             output3,    X,  89, 1, Z)," &
+        "91   (BC_1,  DQ(13),             input,      X)," &
+
+        "92   (BC_1,  *,             control,    1)," &
+        "93   (BC_1,  DQ(14),             output3,    X,  92, 1, Z)," &
+        "94   (BC_1,  DQ(14),             input,      X)," &
+
+        "95   (BC_1,  *,             control,    1)," &
+        "96   (BC_1,  DQ(15),             output3,    X,  95, 1, Z)," &
+        "97   (BC_1,  DQ(15),             input,      X)," &
+
+        "98   (BC_1,  *,             control,    1)," &
+        "99   (BC_1,  DQ(16),             output3,    X,  98, 1, Z)," &
+        "100  (BC_1,  DQ(16),             input,      X)," &
+
+        "101  (BC_1,  *,             control,    1)," &
+        "102  (BC_1,  DQ(17),             output3,    X,  101, 1, Z)," &
+        "103  (BC_1,  DQ(17),             input,      X)," &
+
+        "104  (BC_1,  *,             control,    1)," &
+        "105  (BC_1,  DQ(18),             output3,    X,  104, 1, Z)," &
+        "106  (BC_1,  DQ(18),             input,      X)," &
+
+        "107  (BC_1,  *,             control,    1)," &
+        "108  (BC_1,  DQ(19),             output3,    X,  107, 1, Z)," &
+        "109  (BC_1,  DQ(19),             input,      X)," &
+
+        "110  (BC_1,  *,             control,    1)," &
+        "111  (BC_1,  DQ(20),             output3,    X,  110, 1, Z)," &
+        "112  (BC_1,  DQ(20),             input,      X)," &
+
+        "113  (BC_1,  *,             control,    1)," &
+        "114  (BC_1,  DQ(21),             output3,    X,  113, 1, Z)," &
+        "115  (BC_1,  DQ(21),             input,      X)," &
+
+        "116  (BC_1,  *,             control,    1)," &
+        "117  (BC_1,  DQ(22),             output3,    X,  116, 1, Z)," &
+        "118  (BC_1,  DQ(22),             input,      X)," &
+
+        "119  (BC_1,  *,             control,    1)," &
+        "120  (BC_1,  DQ(23),             output3,    X,  119, 1, Z)," &
+        "121  (BC_1,  DQ(23),             input,      X)," &
+
+        "122  (BC_1,  *,             control,    1)," &
+        "123  (BC_1,  DQ(24),             output3,    X,  122, 1, Z)," &
+        "124  (BC_1,  DQ(24),             input,      X)," &
+
+        "125  (BC_1,  *,             control,    1)," &
+        "126  (BC_1,  DQ(25),             output3,    X,  125, 1, Z)," &
+        "127  (BC_1,  DQ(25),             input,      X)," &
+
+        "128  (BC_1,  *,             control,    1)," &
+        "129  (BC_1,  DQ(26),             output3,    X,  128, 1, Z)," &
+        "130  (BC_1,  DQ(26),             input,      X)," &
+
+        "131  (BC_1,  *,             control,    1)," &
+        "132  (BC_1,  DQ(27),             output3,    X,  131, 1, Z)," &
+        "133  (BC_1,  DQ(27),             input,      X)," &
+
+        "134  (BC_1,  *,             control,    1)," &
+        "135  (BC_1,  DQ(28),             output3,    X,  134, 1, Z)," &
+        "136  (BC_1,  DQ(28),             input,      X)," &
+
+        "137  (BC_1,  *,                  control,    1)," &
+        "138  (BC_1,  DQ(29),             output3,    X,  137, 1, Z)," &
+        "139  (BC_1,  DQ(29),             input,      X)," &
+
+        "140  (BC_1,  *,                  control,    1)," &
+        "141  (BC_1,  DQ(30),             output3,    X,  140, 1, Z)," &
+        "142  (BC_1,  DQ(30),             input,      X)," &
+
+        "143  (BC_1,  *,                  control,    1)," &
+        "144  (BC_1,  DQ(31),             output3,    X,  143, 1, Z)," &
+        "145  (BC_1,  DQ(31),             input,      X)," &
+
+        "146  (BC_1,  Eb,                 input,      X)," &
+        "147  (BC_1,  Wb,                 input,      X)," &
+        "148  (BC_1,  CS1b,               input,      X)," &
+        "149  (BC_1,  CS2b,               input,      X)," &
+        "150  (BC_1,  OEb,                input,      X)," &
+        "151  (BC_1,  AVb,                input,      X)," &
+
+        "152  (BC_1,  *,                  control,    1)," &
+        "153  (BC_1,  VBb,                output3,    X,   152, 1, Z)," &
+        "154  (BC_1,  VBb,                input,      X)," &
+
+        "155  (BC_1,  RESETb,             input,      X)";
+ 
+end music_mu9c4k;

@@ -1,0 +1,222 @@
+--------------------------------------------------------------------------------
+--      "COPYRIGHT (c) 2010 ECHELON CORPORATION ALL RIGHTS RESERVED"           -
+--------------------------------------------------------------------------------
+--
+-- Description:
+--  Boundary Scan Definition Language (BSDL) File for Neuron5000
+--
+-- ====================================================================
+-- ********************************************************************
+-- This BSDL has been validated for syntax and semantics compliance to
+-- IEEE 1149.1 using the ASSET/Agilent BSDL Validation Service.
+-- ********************************************************************
+-- ====================================================================
+
+
+entity neuron5000 is
+    generic (PHYSICAL_PIN_MAP : string := "DEFAULT_PACKAGE_NAME");
+
+    port (
+        -- Power & Ground
+        VIN3V3       : linkage  bit;                -- 3.3V supply in
+        VDD3V3       : linkage  bit_vector(1 to 5); -- 3.3V
+        AVDD3V3      : linkage  bit;                -- 3.3V analog supply in
+        VDD1V8       : linkage  bit_vector(1 to 3); -- 1.8V core supply in
+        AGND         : linkage  bit;                -- Analog ground
+        GND          : linkage  bit_vector(1 to 2); -- Digial ground
+        VDDPLL       : linkage  bit;                -- 1.8V - Special handling on the board
+        GNDPLL       : linkage  bit;
+        VOUT1V8      : linkage  bit;                -- 1.8V supply out
+
+        -- Clocks & Resets (& Service)
+        RSTn         : inout    bit;
+        SVCn         : inout    bit;
+        XIN          : linkage  bit;
+        XOUT         : linkage  bit;
+
+        -- Test
+        TDI          : in       bit;
+        TMS          : in       bit;
+        TCK          : in       bit;
+        TRSTn        : in       bit;
+        TDO          : out      bit;
+
+        -- Network
+        CP0          : inout    bit;
+        CP1          : inout    bit;
+        CP2          : inout    bit;
+        CP3          : inout    bit;
+        CP4          : inout    bit;
+
+        -- Serial Memory
+        CS0n         : inout    bit;
+        SDA_CS1n     : inout    bit;
+        SCL          : inout    bit;
+        MISO         : inout    bit;
+        MOSI         : inout    bit;
+        SCK          : inout    bit;
+
+        -- GPIO
+        IO0          : inout    bit;
+        IO1          : inout    bit;
+        IO2          : inout    bit;
+        IO3          : inout    bit;
+        IO4          : inout    bit;
+        IO5          : inout    bit;
+        IO6          : inout    bit;
+        IO7          : inout    bit;
+        IO8          : inout    bit;
+        IO9          : inout    bit;
+        IO10         : inout    bit;
+        IO11         : inout    bit;
+
+        -- no connect
+        NC           : linkage  bit);
+
+    use STD_1149_1_2001.all;
+    use LVS_BSCAN_CELLS.all;
+
+    attribute COMPONENT_CONFORMANCE of neuron5000: entity is "STD_1149_1_2001";
+
+    --Pin mappings
+
+    attribute PIN_MAP of neuron5000: entity is PHYSICAL_PIN_MAP;
+
+    constant DEFAULT_PACKAGE_NAME: PIN_MAP_STRING :=
+    "SVCn                 : 1                        , " &
+    "IO0                  : 2                        , " &
+    "IO1                  : 3                        , " &
+    "IO2                  : 4                        , " &
+    "IO3                  : 5                        , " &
+    "VDD1V8               : (6,16,44)                , " &
+    "IO4                  : 7                        , " &
+    "VDD3V3               : (8,18,30,41,42)          , " &
+    "IO5                  : 9                        , " &
+    "IO6                  : 10                       , " &
+    "IO7                  : 11                       , " &
+    "IO8                  : 12                       , " &
+    "IO9                  : 13                       , " &
+    "IO10                 : 14                       , " &
+    "IO11                 : 15                       , " &
+--   VDD1V8               : 16
+    "TRSTn                : 17                       , " &
+--   VDD3V3               : 18
+    "TCK                  : 19                       , " &
+    "TMS                  : 20                       , " &
+    "TDI                  : 21                       , " &
+    "TDO                  : 22                       , " &
+    "XIN                  : 23                       , " &
+    "XOUT                 : 24                       , " &
+    "VDDPLL               : 25                       , " &
+    "GNDPLL               : 26                       , " &
+    "VOUT1V8              : 27                       , " &
+    "RSTn                 : 28                       , " &
+    "VIN3V3               : 29                       , " &
+--   VDD3V3               : 30
+    "AVDD3V3              : 31                       , " &
+    "CP0                  : 32                       , " &
+    "AGND                 : 33                       , " &
+    "CP1                  : 34                       , " &
+    "NC                   : 35                       , " &
+    "GND                  : (36,49)                  , " &
+    "CP2                  : 37                       , " &
+    "CP3                  : 38                       , " &
+    "CP4                  : 39                       , " &
+    "CS0n                 : 40                       , " &
+--   VDD3V3               : 41
+--   VDD3V3               : 42
+    "SDA_CS1n             : 43                       , " &
+--   VDD1V8               : 44
+    "SCL                  : 45                       , " &
+    "MISO                 : 46                       , " &
+    "SCK                  : 47                       , " &
+    "MOSI                 : 48                         ";
+--   GND                  : 49                              -- ground slug on the back
+
+   attribute TAP_SCAN_RESET of TRSTn : signal is true;
+   attribute TAP_SCAN_IN    of TDI   : signal is true;
+   attribute TAP_SCAN_MODE  of TMS   : signal is true;
+   attribute TAP_SCAN_OUT   of TDO   : signal is true;
+   attribute TAP_SCAN_CLOCK of TCK   : signal is (1.0000000000000000000e+07, BOTH);
+
+   attribute INSTRUCTION_LENGTH of neuron5000: entity is 25;
+
+   attribute INSTRUCTION_OPCODE of neuron5000: entity is
+      "IDCODE       (1111111111111111111111110)," &
+      "BYPASS       (0000000000000000000000000, 1111111111111111111111111)," &
+      "EXTEST       (1111111111111111111101000)," &
+      "SAMPLE       (1111111111111111111111000)," &
+      "PRELOAD      (1111111111111111111111000)," &
+      "HIGHZ        (1111111111111111111001111)," &
+      "CLAMP        (1111111111111111111101111) " ;
+
+   attribute INSTRUCTION_CAPTURE of neuron5000: entity is "xxxxxxxxxxxxxxxxxxxxxxx01";
+
+   attribute IDCODE_REGISTER of neuron5000: entity is
+      "0001"             & -- version
+      "0011001000000000" & -- part number - neuron
+      "01100010111"      & -- manufacturer's identity
+      "1";                   -- required by 1149.1
+
+   attribute REGISTER_ACCESS of neuron5000: entity is
+      "BOUNDARY     ( SAMPLE, PRELOAD )," &
+      "BYPASS       ( HIGHZ, CLAMP, BYPASS ) " ;
+
+
+    --Boundary scan definition
+    attribute BOUNDARY_LENGTH of neuron5000: entity is 50;
+
+    attribute BOUNDARY_REGISTER of neuron5000: entity is
+    -- num  cell         port               function       safe     [ccell disval  rslt]
+    "  49   (BC_2       , *                , control      , 1   )                          ,"&
+    "  48   (LV_BC_7    , RSTn             , bidir        , X    ,   49     , 1     , Pull1),"&
+    "  47   (BC_2       , *                , control      , 1   )                          ,"&
+    "  46   (LV_BC_7    , CP0              , bidir        , X    ,   47     , 1     , Z   ),"&
+    "  45   (BC_2       , *                , control      , 1   )                          ,"&
+    "  44   (LV_BC_7    , CP1              , bidir        , X    ,   45     , 1     , Z   ),"&
+    "  43   (BC_2       , *                , control      , 1   )                          ,"&
+    "  42   (LV_BC_7    , CP2              , bidir        , X    ,   43     , 1     , Z   ),"&
+    "  41   (BC_2       , *                , control      , 1   )                          ,"&
+    "  40   (LV_BC_7    , CP3              , bidir        , X    ,   41     , 1     , Z   ),"&
+    "  39   (BC_2       , *                , control      , 1   )                          ,"&
+    "  38   (LV_BC_7    , CP4              , bidir        , X    ,   39     , 1     , Z   ),"&
+    "  37   (BC_2       , *                , control      , 1   )                          ,"&
+    "  36   (LV_BC_7    , CS0n             , bidir        , X    ,   37     , 1     , Z   ),"&
+    "  35   (BC_2       , *                , control      , 1   )                          ,"&
+    "  34   (LV_BC_7    , SDA_CS1n         , bidir        , X    ,   35     , 1     , Z   ),"&
+    "  33   (BC_2       , *                , control      , 1   )                          ,"&
+    "  32   (LV_BC_7    , SCL              , bidir        , X    ,   33     , 1     , Z   ),"&
+    "  31   (BC_2       , *                , control      , 1   )                          ,"&
+    "  30   (LV_BC_7    , MISO             , bidir        , X    ,   31     , 1     , Z   ),"&
+    "  29   (BC_2       , *                , control      , 1   )                          ,"&
+    "  28   (LV_BC_7    , SCK              , bidir        , X    ,   29     , 1     , Z   ),"&
+    "  27   (BC_2       , *                , control      , 1   )                          ,"&
+    "  26   (LV_BC_7    , MOSI             , bidir        , X    ,   27     , 1     , Z   ),"&
+    "  25   (BC_2       , *                , control      , 1   )                          ,"&
+    "  24   (LV_BC_7    , SVCn             , bidir        , X    ,   25     , 1     , Pull1),"&
+    "  23   (BC_2       , *                , control      , 1   )                          ,"&
+    "  22   (LV_BC_7    , IO0              , bidir        , X    ,   23     , 1     , Z   ),"&
+    "  21   (BC_2       , *                , control      , 1   )                          ,"&
+    "  20   (LV_BC_7    , IO1              , bidir        , X    ,   21     , 1     , Z   ),"&
+    "  19   (BC_2       , *                , control      , 1   )                          ,"&
+    "  18   (LV_BC_7    , IO2              , bidir        , X    ,   19     , 1     , Z   ),"&
+    "  17   (BC_2       , *                , control      , 1   )                          ,"&
+    "  16   (LV_BC_7    , IO3              , bidir        , X    ,   17     , 1     , Z   ),"&
+    "  15   (BC_2       , *                , control      , 1   )                          ,"&
+    "  14   (LV_BC_7    , IO4              , bidir        , X    ,   15     , 1     , Z   ),"&
+    "  13   (BC_2       , *                , control      , 1   )                          ,"&
+    "  12   (LV_BC_7    , IO5              , bidir        , X    ,   13     , 1     , Z   ),"&
+    "  11   (BC_2       , *                , control      , 1   )                          ,"&
+    "  10   (LV_BC_7    , IO6              , bidir        , X    ,   11     , 1     , Z   ),"&
+    "   9   (BC_2       , *                , control      , 1   )                          ,"&
+    "   8   (LV_BC_7    , IO7              , bidir        , X    ,    9     , 1     , Z   ),"&
+    "   7   (BC_2       , *                , control      , 1   )                          ,"&
+    "   6   (LV_BC_7    , IO8              , bidir        , X    ,    7     , 1     , Z   ),"&
+    "   5   (BC_2       , *                , control      , 1   )                          ,"&
+    "   4   (LV_BC_7    , IO9              , bidir        , X    ,    5     , 1     , Z   ),"&
+    "   3   (BC_2       , *                , control      , 1   )                          ,"&
+    "   2   (LV_BC_7    , IO10             , bidir        , X    ,    3     , 1     , Z   ),"&
+    "   1   (BC_2       , *                , control      , 1   )                          ,"&
+    "   0   (LV_BC_7    , IO11             , bidir        , X    ,    1     , 1     , Z   )";
+
+end neuron5000;

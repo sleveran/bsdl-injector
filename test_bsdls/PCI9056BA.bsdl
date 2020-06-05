@@ -1,0 +1,1273 @@
+-- =======================================================================
+--	Boundary Scan Description Language (BSDL) File
+--
+--	Product: PCI9056 (PLX Technology, Inc.)
+--	Package: 319-DIE PADS
+--
+-- =======================================================================
+--    ****************************************************************
+--    This BSDL has been validated for syntax and semantics compliance
+--	to IEEE 1149.1.  It also passed all hardware validation tests, 
+--    with the exception noted below, using the ASSET InterTech, Inc.
+--    /Ensure DFT Services' BSDL Validation process.  
+--
+--	NOTE: Silcon version BA
+--
+--    *******************EXCEPTION NOTE******************** 
+--    A test of the IDCODE Register 32 bit value will fail, if from 
+--    power-on/Test-Logic-Reset the TAP is cycled directly to Shift_DR 
+--    AND the PauseDR state is entered. 
+--    
+--
+--	Ensure DFT Services
+--	A Division of ASSET InterTech, Inc.
+--	Ph: 603-886-6060
+--    ****************************************************************
+-- =======================================================================
+--	Revision Control:
+--
+--	Version	Date		Reason for Change
+-- 	*******	********	*****************
+--	1.0		12/05/05      For Silicon rev. BA. 
+--                                    Modified for PEX8311 MCM.
+--				      Passes hardware validation tests, with the
+--                            exceptions noted above.
+--      1.1             4/6/06   Fix two syntax errors. 1) Removed comma from 
+--                               last element in PIN_MAP_STRING and 2) Changed
+--                               instruction register name to PCI9056BA.
+-- ======================================================================
+
+
+ entity PCI9056BA is
+   
+-- This section identifies the default device package selected.
+   
+   generic (PHYSICAL_PIN_MAP: string:= "PAD_319");
+   
+-- This section declares all the ports in the design.
+   
+   port ( 
+          BD_SEL_TEST     : in       bit;
+          BG_LHOLDA       : in       bit;
+          CCSn            : in       bit;
+          CPCISW          : in       bit;
+          DREQ0n          : in       bit;
+          DREQ1n          : in       bit;
+          HOSTENn         : in       bit;
+          IDDQENn         : in       bit;
+          IDSEL           : in       bit;
+          LCLK            : in       bit;
+          LINTIn          : in       bit;
+          MODE0           : in       bit;
+          MODE1           : in       bit;
+          PCLK            : in       bit;
+          PMEREQn         : in       bit;
+          PRESENT_DET     : in       bit;
+          REQ0_GNTn       : in       bit;
+          REQ1n           : in       bit;
+          REQ2n           : in       bit;
+          REQ3n           : in       bit;
+          REQ4n           : in       bit;
+          REQ5n           : in       bit;
+          REQ6n           : in       bit;
+          TCK             : in       bit;
+          TDI             : in       bit;
+          TMS             : in       bit;
+          TRSTn           : in       bit;
+          USERI_LLOCKIn   : in       bit;
+          AD0             : inout    bit;
+          AD1             : inout    bit;
+          AD10            : inout    bit;
+          AD11            : inout    bit;
+          AD12            : inout    bit;
+          AD13            : inout    bit;
+          AD14            : inout    bit;
+          AD15            : inout    bit;
+          AD16            : inout    bit;
+          AD17            : inout    bit;
+          AD18            : inout    bit;
+          AD19            : inout    bit;
+          AD2             : inout    bit;
+          AD20            : inout    bit;
+          AD21            : inout    bit;
+          AD22            : inout    bit;
+          AD23            : inout    bit;
+          AD24            : inout    bit;
+          AD25            : inout    bit;
+          AD26            : inout    bit;
+          AD27            : inout    bit;
+          AD28            : inout    bit;
+          AD29            : inout    bit;
+          AD3             : inout    bit;
+          AD30            : inout    bit;
+          AD31            : inout    bit;
+          AD4             : inout    bit;
+          AD5             : inout    bit;
+          AD6             : inout    bit;
+          AD7             : inout    bit;
+          AD8             : inout    bit;
+          AD9             : inout    bit;
+          BB_BREQI        : inout    bit;
+          BIGEND_WAITn    : inout    bit;
+          BI_BTERMn       : inout    bit;
+          BR_LHOLD        : inout    bit;
+          BURST_BLASTn    : inout    bit;
+          CBE0n           : inout    bit;
+          CBE1n           : inout    bit;
+          CBE2n           : inout    bit;
+          CBE3n           : inout    bit;
+          DEVSELn         : inout    bit;
+          DMPAF_EOTn      : inout    bit;
+          DP0             : inout    bit;
+          DP1             : inout    bit;
+          DP2             : inout    bit;
+          DP3             : inout    bit;
+          EECS            : inout    bit;
+          EEDI_DO         : inout    bit;
+          EESK            : inout    bit;
+          ENUMn           : inout    bit;
+          FRAMEn          : inout    bit;
+          HRSTn           : inout    bit;
+          INTAn           : inout    bit;
+          IRDYn           : inout    bit;
+          LA10            : inout    bit;
+          LA11            : inout    bit;
+          LA12            : inout    bit;
+          LA13            : inout    bit;
+          LA14            : inout    bit;
+          LA15            : inout    bit;
+          LA16            : inout    bit;
+          LA17            : inout    bit;
+          LA18            : inout    bit;
+          LA19            : inout    bit;
+          LA2             : inout    bit;
+          LA20            : inout    bit;
+          LA21            : inout    bit;
+          LA22            : inout    bit;
+          LA23            : inout    bit;
+          LA24            : inout    bit;
+          LA25            : inout    bit;
+          LA26            : inout    bit;
+          LA27            : inout    bit;
+          LA28            : inout    bit;
+          LA29_ALE        : inout    bit;
+          LA3             : inout    bit;
+          LA30_DENn       : inout    bit;
+          LA31_DTRn       : inout    bit;
+          LA4             : inout    bit;
+          LA5             : inout    bit;
+          LA6             : inout    bit;
+          LA7             : inout    bit;
+          LA8             : inout    bit;
+          LA9             : inout    bit;
+          LAD0            : inout    bit;
+          LAD1            : inout    bit;
+          LAD10           : inout    bit;
+          LAD11           : inout    bit;
+          LAD12           : inout    bit;
+          LAD13           : inout    bit;
+          LAD14           : inout    bit;
+          LAD15           : inout    bit;
+          LAD16           : inout    bit;
+          LAD17           : inout    bit;
+          LAD18           : inout    bit;
+          LAD19           : inout    bit;
+          LAD2            : inout    bit;
+          LAD20           : inout    bit;
+          LAD21           : inout    bit;
+          LAD22           : inout    bit;
+          LAD23           : inout    bit;
+          LAD24           : inout    bit;
+          LAD25           : inout    bit;
+          LAD26           : inout    bit;
+          LAD27           : inout    bit;
+          LAD28           : inout    bit;
+          LAD29           : inout    bit;
+          LAD3            : inout    bit;
+          LAD30           : inout    bit;
+          LAD31           : inout    bit;
+          LAD4            : inout    bit;
+          LAD5            : inout    bit;
+          LAD6            : inout    bit;
+          LAD7            : inout    bit;
+          LAD8            : inout    bit;
+          LAD9            : inout    bit;
+          LBE0_LA0        : inout    bit;
+          LBE1_LA1        : inout    bit;
+          LBE2_TSIZ1      : inout    bit;
+          LBE3_TSIZ0      : inout    bit;
+          LEDONn          : inout    bit;
+          LOCKn           : inout    bit;
+          LRESETn         : inout    bit;
+          LWRn            : inout    bit;
+          PAR             : inout    bit;
+          PERRn           : inout    bit;
+          PMEn            : inout    bit;
+          RETRY_BREQO     : inout    bit;
+          SERRn           : inout    bit;
+          STOPn           : inout    bit;
+          TA_READYn       : inout    bit;
+          TEA_LSERRn      : inout    bit;
+          TRDYn           : inout    bit;
+          TS_ADSn         : inout    bit;
+          USERO_LLOCKOn   : inout    bit;
+          WAIT_BDIPn      : inout    bit;
+          DACK0n          : out      bit;
+          DACK1n          : out      bit;
+          GNT0_REQn       : out      bit;
+          GNT1n           : out      bit;
+          GNT2n           : out      bit;
+          GNT3n           : out      bit;
+          GNT4n           : out      bit;
+          GNT5n           : out      bit;
+          GNT6n           : out      bit;
+          LINTOn          : out      bit;
+          TDO             : out      bit;
+          VDDCOREAux      : linkage  bit;
+          VDDCore         : linkage  bit_vector(0 to 5); 
+          VDDIOAux        : linkage  bit;
+          Vio             : linkage  bit_vector(0 to 7)
+   );
+   
+   use STD_1149_1_1994.all;
+   
+   attribute COMPONENT_CONFORMANCE of PCI9056BA: entity is "STD_1149_1_1993";
+   
+   attribute PIN_MAP of PCI9056BA: entity is PHYSICAL_PIN_MAP;
+   
+-- This section specifies the pin map for each port. This information
+-- is extracted from the port-to-pin map file that was read in using
+-- the "read_pin_map" command.
+   
+     constant PAD_319: PIN_MAP_STRING := 
+        "BD_SEL_TEST     : 287," &
+        "BG_LHOLDA       : 247," &
+        "CCSn            : 272," &
+        "CPCISW          : 132," &
+        "DREQ0n          : 269," &
+        "DREQ1n          : 266," &
+        "HOSTENn         : 258," &
+        "IDDQENn         : 281," &
+        "IDSEL           : 314," &
+        "LCLK            : 228," &
+        "LINTIn          : 262," &
+        "MODE0           : 244," &
+        "MODE1           : 245," &
+        "PCLK            : 42," &
+        "PMEREQn         : 282," &
+        "PRESENT_DET     : 280," &
+        "REQ0_GNTn       : 299," &
+        "REQ1n           : 54," &
+        "REQ2n           : 56," &
+        "REQ3n           : 63," &
+        "REQ4n           : 66," &
+        "REQ5n           : 125," &
+        "REQ6n           : 128," &
+        "TCK             : 290," &
+        "TDI             : 294," &
+        "TMS             : 291," &
+        "TRSTn           : 288," &
+        "USERI_LLOCKIn   : 265," &
+        "AD0             : 52," &
+        "AD1             : 50," &
+        "AD10            : 34," &
+        "AD11            : 33," &
+        "AD12            : 32," &
+        "AD13            : 30," &
+        "AD14            : 28," &
+        "AD15            : 27," &
+        "AD16            : 8," &
+        "AD17            : 7," &
+        "AD18            : 6," &
+        "AD19            : 4," &
+        "AD2             : 48," &
+        "AD20            : 3," &
+        "AD21            : 317," &
+        "AD22            : 316," &
+        "AD23            : 315," &
+        "AD24            : 311," &
+        "AD25            : 310," &
+        "AD26            : 309," &
+        "AD27            : 306," &
+        "AD28            : 304," &
+        "AD29            : 303," &
+        "AD3             : 47," &
+        "AD30            : 302," &
+        "AD31            : 300," &
+        "AD4             : 46," &
+        "AD5             : 45," &
+        "AD6             : 44," &
+        "AD7             : 40," &
+        "AD8             : 38," &
+        "AD9             : 36," &
+        "BB_BREQI        : 254," &
+        "BIGEND_WAITn    : 273," &
+        "BI_BTERMn       : 232," &
+        "BR_LHOLD        : 246," &
+        "BURST_BLASTn    : 251," &
+        "CBE0n           : 39," &
+        "CBE1n           : 26," &
+        "CBE2n           : 10," &
+        "CBE3n           : 312," &
+        "DEVSELn         : 16," &
+        "DMPAF_EOTn      : 260," &
+        "DP0             : 243," &
+        "DP1             : 242," &
+        "DP2             : 237," &
+        "DP3             : 236," &
+        "EECS            : 274," &
+        "EEDI_DO         : 277," &
+        "EESK            : 276," &
+        "ENUMn           : 129," &
+        "FRAMEn          : 11," &
+        "HRSTn           : 297," &
+        "INTAn           : 296," &
+        "IRDYn           : 12," &
+        "LA10            : 165," &
+        "LA11            : 164," &
+        "LA12            : 163," &
+        "LA13            : 158," &
+        "LA14            : 157," &
+        "LA15            : 156," &
+        "LA16            : 155," &
+        "LA17            : 153," &
+        "LA18            : 152," &
+        "LA19            : 151," &
+        "LA2             : 177," &
+        "LA20            : 149," &
+        "LA21            : 147," &
+        "LA22            : 146," &
+        "LA23            : 145," &
+        "LA24            : 144," &
+        "LA25            : 143," &
+        "LA26            : 141," &
+        "LA27            : 140," &
+        "LA28            : 139," &
+        "LA29_ALE        : 137," &
+        "LA3             : 176," &
+        "LA30_DENn       : 135," &
+        "LA31_DTRn       : 133," &
+        "LA4             : 175," &
+        "LA5             : 172," &
+        "LA6             : 170," &
+        "LA7             : 169," &
+        "LA8             : 168," &
+        "LA9             : 166," &
+        "LAD0            : 231," &
+        "LAD1            : 230," &
+        "LAD10           : 216," &
+        "LAD11           : 214," &
+        "LAD12           : 212," &
+        "LAD13           : 211," &
+        "LAD14           : 210," &
+        "LAD15           : 208," &
+        "LAD16           : 207," &
+        "LAD17           : 206," &
+        "LAD18           : 204," &
+        "LAD19           : 202," &
+        "LAD2            : 226," &
+        "LAD20           : 201," &
+        "LAD21           : 200," &
+        "LAD22           : 199," &
+        "LAD23           : 198," &
+        "LAD24           : 196," &
+        "LAD25           : 194," &
+        "LAD26           : 193," &
+        "LAD27           : 192," &
+        "LAD28           : 190," &
+        "LAD29           : 189," &
+        "LAD3            : 225," &
+        "LAD30           : 188," &
+        "LAD31           : 186," &
+        "LAD4            : 224," &
+        "LAD5            : 223," &
+        "LAD6            : 222," &
+        "LAD7            : 220," &
+        "LAD8            : 219," &
+        "LAD9            : 218," &
+        "LBE0_LA0        : 184," &
+        "LBE1_LA1        : 182," &
+        "LBE2_TSIZ1      : 181," &
+        "LBE3_TSIZ0      : 180," &
+        "LEDONn          : 131," &
+        "LOCKn           : 20," &
+        "LRESETn         : 257," &
+        "LWRn            : 178," &
+        "PAR             : 25," &
+        "PERRn           : 21," &
+        "PMEn            : 286," &
+        "RETRY_BREQO     : 252," &
+        "SERRn           : 22," &
+        "STOPn           : 18," &
+        "TA_READYn       : 235," &
+        "TEA_LSERRn      : 250," &
+        "TRDYn           : 13," &
+        "TS_ADSn         : 248," &
+        "USERO_LLOCKOn   : 264," &
+        "WAIT_BDIPn      : 256," &
+        "DACK0n          : 270," &
+        "DACK1n          : 268," &
+        "GNT0_REQn       : 298," &
+        "GNT1n           : 58," &
+        "GNT2n           : 60," &
+        "GNT3n           : 61," &
+        "GNT4n           : 64," &
+        "GNT5n           : 124," &
+        "GNT6n           : 127," &
+        "LINTOn          : 263," &
+        "TDO             : 292," &
+        "VDDCOREAux      : 284," &
+        "VDDCore         : (278, 234, 174, 62, 117, 14)," &
+        "VDDIOAux        : 285," &
+        "Vio             : (289, 5, 24, 37, 68, 101, 120, 308)";
+   
+-- This section specifies the TAP ports.
+-- For the TAP TCK port, the parameters in the brackets are:
+--        First Field : Maximum  TCK frequency.
+--        Second Field: Allowable states TCK may be stopped in.
+   
+   attribute TAP_SCAN_CLOCK of TCK  : signal is (10.0e6, BOTH);
+   attribute TAP_SCAN_IN    of TDI  : signal is true;
+   attribute TAP_SCAN_MODE  of TMS  : signal is true;
+   attribute TAP_SCAN_OUT   of TDO  : signal is true;
+   attribute TAP_SCAN_RESET of TRSTn: signal is true;
+   
+-- Specifies the compliance enable patterns for the design.
+-- It lists a set of design ports and the values that they
+-- should be set to, in order to enable compliance to IEEE
+-- Std 1149.1
+   
+   attribute COMPLIANCE_PATTERNS of PCI9056BA: entity is 
+        "(IDDQENn) (1)";
+   
+-- Specifies the number of bits in the instruction register.
+   
+   attribute INSTRUCTION_LENGTH of PCI9056BA : entity is 2;
+   
+-- Specifies the boundary-scan instructions implemented in the
+-- design and their opcodes.
+   
+   attribute INSTRUCTION_OPCODE of PCI9056BA: entity is 
+     "BYPASS (11)," &
+     "EXTEST (00)," &
+     "SAMPLE (10)," &
+     "IDCODE (01)";
+   
+-- Specifies the bit pattern that is loaded into the instruction
+-- register when the TAP controller passes through the Capture-IR
+-- state. The standard mandates that the two LSBs must be "01".
+-- The remaining bits are design specific.
+   
+   attribute INSTRUCTION_CAPTURE of PCI9056BA: entity is "01";
+   
+-- Specifies the bit pattern that is loaded into the DEVICE_ID
+-- register during the IDCODE instruction when the TAP controller
+-- passes through the Capture-DR state.
+
+   attribute IDCODE_REGISTER of PCI9056BA: entity is 
+     "0001" &                  -- 4-bit version number
+     "0010001101100000" &      -- 16-bit part number
+     "00111001101" &           -- 11-bit identity of the manufacturer
+     "1";                      -- Required by IEEE Std 1149.1
+   
+-- This section specifies the test data register placed between TDI
+-- and TDO for each implemented instruction.
+   
+   attribute REGISTER_ACCESS of PCI9056BA: entity is 
+        "BYPASS    (BYPASS)," &
+        "BOUNDARY  (EXTEST, SAMPLE)," &
+        "DEVICE_ID (IDCODE)";
+   
+-- Specifies the length of the boundary scan register.
+   
+   attribute BOUNDARY_LENGTH of PCI9056BA: entity is 381;
+   
+-- The following list specifies the characteristics of each cell
+-- in the boundary scan register from TDI to TDO.
+-- The following is a description of the label fields:
+--      num     : Is the cell number.
+--      cell    : Is the cell type as defined by the standard.
+--      port    : Is the design port name. Control cells do not
+--                have a port name.
+--      function: Is the function of the cell as defined by the
+--                standard. Is one of input, output2, output3,
+--                bidir, control or controlr.
+--      safe    : Specifies the value that the BSR cell should be
+--                loaded with for safe operation when the software
+--                might otherwise choose a random value.
+--      ccell   : The control cell number. Specifies the control
+--                cell that drives the output enable for this port.
+--      disval  : Specifies the value that is loaded into the
+--                control cell to disable the output enable for
+--                the corresponding port.
+--      rslt    : Resulting state. Shows the state of the driver
+--                when it is disabled.
+   
+   attribute BOUNDARY_REGISTER of PCI9056BA: entity is 
+--    
+--    num   cell   port         function     safe  [ccell  disval  rslt]
+--    
+     "380  (BC_4,  INTAn,           observe_only, " &
+     "X),                        " &
+     "379  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "378  (BC_1,  INTAn,           output3,      X,    379,    1,      " &
+     "Z),  " &
+     "377  (BC_4,  HRSTn,           observe_only, " &
+     "X),                        " &
+     "376  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "375  (BC_1,  HRSTn,           output3,      X,    376,    1,      " &
+     "Z),  " &
+     "374  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "373  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "372  (BC_1,  GNT0_REQn,       output3,      X,    374,    1,      " &
+     "Z),  " &
+     "371  (BC_4,  REQ0_GNTn,       observe_only, " &
+     "X),                        " &
+     "370  (BC_4,  AD31,            observe_only, " &
+     "X),                        " &
+     "369  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "368  (BC_1,  AD31,            output3,      X,    369,    1,      " &
+     "Z),  " &
+     "367  (BC_4,  AD30,            observe_only, " &
+     "X),                        " &
+     "366  (BC_1,  AD30,            output3,      X,    369,    1,      " &
+     "Z),  " &
+     "365  (BC_4,  AD29,            observe_only, " &
+     "X),                        " &
+     "364  (BC_1,  AD29,            output3,      X,    369,    1,      " &
+     "Z),  " &
+     "363  (BC_4,  AD28,            observe_only, " &
+     "X),                        " &
+     "362  (BC_1,  AD28,            output3,      X,    369,    1,      " &
+     "Z),  " &
+     "361  (BC_4,  AD27,            observe_only, " &
+     "X),                        " &
+     "360  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "359  (BC_1,  AD27,            output3,      X,    360,    1,      " &
+     "Z),  " &
+     "358  (BC_4,  AD26,            observe_only, " &
+     "X),                        " &
+     "357  (BC_1,  AD26,            output3,      X,    360,    1,      " &
+     "Z),  " &
+     "356  (BC_4,  AD25,            observe_only, " &
+     "X),                        " &
+     "355  (BC_1,  AD25,            output3,      X,    360,    1,      " &
+     "Z),  " &
+     "354  (BC_4,  AD24,            observe_only, " &
+     "X),                        " &
+     "353  (BC_1,  AD24,            output3,      X,    360,    1,      " &
+     "Z),  " &
+     "352  (BC_4,  CBE3n,           observe_only, " &
+     "X),                        " &
+     "351  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "350  (BC_1,  CBE3n,           output3,      X,    351,    1,      " &
+     "Z),  " &
+     "349  (BC_4,  IDSEL,           observe_only, " &
+     "X),                        " &
+     "348  (BC_4,  AD23,            observe_only, " &
+     "X),                        " &
+     "347  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "346  (BC_1,  AD23,            output3,      X,    347,    1,      " &
+     "Z),  " &
+     "345  (BC_4,  AD22,            observe_only, " &
+     "X),                        " &
+     "344  (BC_1,  AD22,            output3,      X,    347,    1,      " &
+     "Z),  " &
+     "343  (BC_4,  AD21,            observe_only, " &
+     "X),                        " &
+     "342  (BC_1,  AD21,            output3,      X,    347,    1,      " &
+     "Z),  " &
+     "341  (BC_4,  AD20,            observe_only, " &
+     "X),                        " &
+     "340  (BC_1,  AD20,            output3,      X,    347,    1,      " &
+     "Z),  " &
+     "339  (BC_4,  AD19,            observe_only, " &
+     "X),                        " &
+     "338  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "337  (BC_1,  AD19,            output3,      X,    338,    1,      " &
+     "Z),  " &
+     "336  (BC_4,  AD18,            observe_only, " &
+     "X),                        " &
+     "335  (BC_1,  AD18,            output3,      X,    338,    1,      " &
+     "Z),  " &
+     "334  (BC_4,  AD17,            observe_only, " &
+     "X),                        " &
+     "333  (BC_1,  AD17,            output3,      X,    338,    1,      " &
+     "Z),  " &
+     "332  (BC_4,  AD16,            observe_only, " &
+     "X),                        " &
+     "331  (BC_1,  AD16,            output3,      X,    338,    1,      " &
+     "Z),  " &
+     "330  (BC_4,  CBE2n,           observe_only, " &
+     "X),                        " &
+     "329  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "328  (BC_1,  CBE2n,           output3,      X,    329,    1,      " &
+     "Z),  " &
+     "327  (BC_4,  FRAMEn,          observe_only, " &
+     "X),                        " &
+     "326  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "325  (BC_1,  FRAMEn,          output3,      X,    326,    1,      " &
+     "Z),  " &
+     "324  (BC_4,  IRDYn,           observe_only, " &
+     "X),                        " &
+     "323  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "322  (BC_1,  IRDYn,           output3,      X,    323,    1,      " &
+     "Z),  " &
+     "321  (BC_4,  TRDYn,           observe_only, " &
+     "X),                        " &
+     "320  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "319  (BC_1,  TRDYn,           output3,      X,    320,    1,      " &
+     "Z),  " &
+     "318  (BC_4,  DEVSELn,         observe_only, " &
+     "X),                        " &
+     "317  (BC_1,  DEVSELn,         output3,      X,    320,    1,      " &
+     "Z),  " &
+     "316  (BC_4,  STOPn,           observe_only, " &
+     "X),                        " &
+     "315  (BC_1,  STOPn,           output3,      X,    320,    1,      " &
+     "Z),  " &
+     "314  (BC_4,  LOCKn,           observe_only, " &
+     "X),                        " &
+     "313  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "312  (BC_1,  LOCKn,           output3,      X,    313,    1,      " &
+     "Z),  " &
+     "311  (BC_4,  PERRn,           observe_only, " &
+     "X),                        " &
+     "310  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "309  (BC_1,  PERRn,           output3,      X,    310,    1,      " &
+     "Z),  " &
+     "308  (BC_4,  SERRn,           observe_only, " &
+     "X),                        " &
+     "307  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "306  (BC_1,  SERRn,           output3,      X,    307,    1,      " &
+     "Z),  " &
+     "305  (BC_4,  PAR,             observe_only, " &
+     "X),                        " &
+     "304  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "303  (BC_1,  PAR,             output3,      X,    304,    1,      " &
+     "Z),  " &
+     "302  (BC_4,  CBE1n,           observe_only, " &
+     "X),                        " &
+     "301  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "300  (BC_1,  CBE1n,           output3,      X,    301,    1,      " &
+     "Z),  " &
+     "299  (BC_4,  AD15,            observe_only, " &
+     "X),                        " &
+     "298  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "297  (BC_1,  AD15,            output3,      X,    298,    1,      " &
+     "Z),  " &
+     "296  (BC_4,  AD14,            observe_only, " &
+     "X),                        " &
+     "295  (BC_1,  AD14,            output3,      X,    298,    1,      " &
+     "Z),  " &
+     "294  (BC_4,  AD13,            observe_only, " &
+     "X),                        " &
+     "293  (BC_1,  AD13,            output3,      X,    298,    1,      " &
+     "Z),  " &
+     "292  (BC_4,  AD12,            observe_only, " &
+     "X),                        " &
+     "291  (BC_1,  AD12,            output3,      X,    298,    1,      " &
+     "Z),  " &
+     "290  (BC_4,  AD11,            observe_only, " &
+     "X),                        " &
+     "289  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "288  (BC_1,  AD11,            output3,      X,    289,    1,      " &
+     "Z),  " &
+     "287  (BC_4,  AD10,            observe_only, " &
+     "X),                        " &
+     "286  (BC_1,  AD10,            output3,      X,    289,    1,      " &
+     "Z),  " &
+     "285  (BC_4,  AD9,             observe_only, " &
+     "X),                        " &
+     "284  (BC_1,  AD9,             output3,      X,    289,    1,      " &
+     "Z),  " &
+     "283  (BC_4,  AD8,             observe_only, " &
+     "X),                        " &
+     "282  (BC_1,  AD8,             output3,      X,    289,    1,      " &
+     "Z),  " &
+     "281  (BC_4,  CBE0n,           observe_only, " &
+     "X),                        " &
+     "280  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "279  (BC_1,  CBE0n,           output3,      X,    280,    1,      " &
+     "Z),  " &
+     "278  (BC_4,  AD7,             observe_only, " &
+     "X),                        " &
+     "277  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "276  (BC_1,  AD7,             output3,      X,    277,    1,      " &
+     "Z),  " &
+     "275  (BC_4,  PCLK,            observe_only, " &
+     "X),                        " &
+     "274  (BC_4,  AD6,             observe_only, " &
+     "X),                        " &
+     "273  (BC_1,  AD6,             output3,      X,    277,    1,      " &
+     "Z),  " &
+     "272  (BC_4,  AD5,             observe_only, " &
+     "X),                        " &
+     "271  (BC_1,  AD5,             output3,      X,    277,    1,      " &
+     "Z),  " &
+     "270  (BC_4,  AD4,             observe_only, " &
+     "X),                        " &
+     "269  (BC_1,  AD4,             output3,      X,    277,    1,      " &
+     "Z),  " &
+     "268  (BC_4,  AD3,             observe_only, " &
+     "X),                        " &
+     "267  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "266  (BC_1,  AD3,             output3,      X,    267,    1,      " &
+     "Z),  " &
+     "265  (BC_4,  AD2,             observe_only, " &
+     "X),                        " &
+     "264  (BC_1,  AD2,             output3,      X,    267,    1,      " &
+     "Z),  " &
+     "263  (BC_4,  AD1,             observe_only, " &
+     "X),                        " &
+     "262  (BC_1,  AD1,             output3,      X,    267,    1,      " &
+     "Z),  " &
+     "261  (BC_4,  AD0,             observe_only, " &
+     "X),                        " &
+     "260  (BC_1,  AD0,             output3,      X,    267,    1,      " &
+     "Z),  " &
+     "259  (BC_4,  REQ1n,           observe_only, " &
+     "X),                        " &
+     "258  (BC_4,  REQ2n,           observe_only, " &
+     "X),                        " &
+     "257  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "256  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "255  (BC_1,  GNT1n,           output3,      X,    257,    1,      " &
+     "Z),  " &
+     "254  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "253  (BC_1,  GNT2n,           output3,      X,    257,    1,      " &
+     "Z),  " &
+     "252  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "251  (BC_1,  GNT3n,           output3,      X,    257,    1,      " &
+     "Z),  " &
+     "250  (BC_4,  REQ3n,           observe_only, " &
+     "X),                        " &
+     "249  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "248  (BC_1,  GNT4n,           output3,      X,    257,    1,      " &
+     "Z),  " &
+     "247  (BC_4,  REQ4n,           observe_only, " &
+     "X),                        " &
+     "246  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "245  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "244  (BC_1,  GNT5n,           output3,      X,    246,    1,      " &
+     "Z),  " &
+     "243  (BC_4,  REQ5n,           observe_only, " &
+     "X),                        " &
+     "242  (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "241  (BC_1,  GNT6n,           output3,      X,    246,    1,      " &
+     "Z),  " &
+     "240  (BC_4,  REQ6n,           observe_only, " &
+     "X),                        " &
+     "239  (BC_4,  ENUMn,           observe_only, " &
+     "X),                        " &
+     "238  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "237  (BC_1,  ENUMn,           output3,      X,    238,    1,      " &
+     "Z),  " &
+     "236  (BC_4,  LEDONn,          observe_only, " &
+     "X),                        " &
+     "235  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "234  (BC_1,  LEDONn,          output3,      X,    235,    1,      " &
+     "Z),  " &
+     "233  (BC_4,  CPCISW,          observe_only, " &
+     "X),                        " &
+     "232  (BC_4,  LA31_DTRn,       observe_only, " &
+     "X),                        " &
+     "231  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "230  (BC_1,  LA31_DTRn,       output3,      X,    231,    1,      " &
+     "Z),  " &
+     "229  (BC_4,  LA30_DENn,       observe_only, " &
+     "X),                        " &
+     "228  (BC_1,  LA30_DENn,       output3,      X,    231,    1,      " &
+     "Z),  " &
+     "227  (BC_4,  LA29_ALE,        observe_only, " &
+     "X),                        " &
+     "226  (BC_1,  LA29_ALE,        output3,      X,    231,    1,      " &
+     "Z),  " &
+     "225  (BC_4,  LA28,            observe_only, " &
+     "X),                        " &
+     "224  (BC_1,  LA28,            output3,      X,    231,    1,      " &
+     "Z),  " &
+     "223  (BC_4,  LA27,            observe_only, " &
+     "X),                        " &
+     "222  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "221  (BC_1,  LA27,            output3,      X,    222,    1,      " &
+     "Z),  " &
+     "220  (BC_4,  LA26,            observe_only, " &
+     "X),                        " &
+     "219  (BC_1,  LA26,            output3,      X,    222,    1,      " &
+     "Z),  " &
+     "218  (BC_4,  LA25,            observe_only, " &
+     "X),                        " &
+     "217  (BC_1,  LA25,            output3,      X,    222,    1,      " &
+     "Z),  " &
+     "216  (BC_4,  LA24,            observe_only, " &
+     "X),                        " &
+     "215  (BC_1,  LA24,            output3,      X,    222,    1,      " &
+     "Z),  " &
+     "214  (BC_4,  LA23,            observe_only, " &
+     "X),                        " &
+     "213  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "212  (BC_1,  LA23,            output3,      X,    213,    1,      " &
+     "Z),  " &
+     "211  (BC_4,  LA22,            observe_only, " &
+     "X),                        " &
+     "210  (BC_1,  LA22,            output3,      X,    213,    1,      " &
+     "Z),  " &
+     "209  (BC_4,  LA21,            observe_only, " &
+     "X),                        " &
+     "208  (BC_1,  LA21,            output3,      X,    213,    1,      " &
+     "Z),  " &
+     "207  (BC_4,  LA20,            observe_only, " &
+     "X),                        " &
+     "206  (BC_1,  LA20,            output3,      X,    213,    1,      " &
+     "Z),  " &
+     "205  (BC_4,  LA19,            observe_only, " &
+     "X),                        " &
+     "204  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "203  (BC_1,  LA19,            output3,      X,    204,    1,      " &
+     "Z),  " &
+     "202  (BC_4,  LA18,            observe_only, " &
+     "X),                        " &
+     "201  (BC_1,  LA18,            output3,      X,    204,    1,      " &
+     "Z),  " &
+     "200  (BC_4,  LA17,            observe_only, " &
+     "X),                        " &
+     "199  (BC_1,  LA17,            output3,      X,    204,    1,      " &
+     "Z),  " &
+     "198  (BC_4,  LA16,            observe_only, " &
+     "X),                        " &
+     "197  (BC_1,  LA16,            output3,      X,    204,    1,      " &
+     "Z),  " &
+     "196  (BC_4,  LA15,            observe_only, " &
+     "X),                        " &
+     "195  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "194  (BC_1,  LA15,            output3,      X,    195,    1,      " &
+     "Z),  " &
+     "193  (BC_4,  LA14,            observe_only, " &
+     "X),                        " &
+     "192  (BC_1,  LA14,            output3,      X,    195,    1,      " &
+     "Z),  " &
+     "191  (BC_4,  LA13,            observe_only, " &
+     "X),                        " &
+     "190  (BC_1,  LA13,            output3,      X,    195,    1,      " &
+     "Z),  " &
+     "189  (BC_4,  LA12,            observe_only, " &
+     "X),                        " &
+     "188  (BC_1,  LA12,            output3,      X,    195,    1,      " &
+     "Z),  " &
+     "187  (BC_4,  LA11,            observe_only, " &
+     "X),                        " &
+     "186  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "185  (BC_1,  LA11,            output3,      X,    186,    1,      " &
+     "Z),  " &
+     "184  (BC_4,  LA10,            observe_only, " &
+     "X),                        " &
+     "183  (BC_1,  LA10,            output3,      X,    186,    1,      " &
+     "Z),  " &
+     "182  (BC_4,  LA9,             observe_only, " &
+     "X),                        " &
+     "181  (BC_1,  LA9,             output3,      X,    186,    1,      " &
+     "Z),  " &
+     "180  (BC_4,  LA8,             observe_only, " &
+     "X),                        " &
+     "179  (BC_1,  LA8,             output3,      X,    186,    1,      " &
+     "Z),  " &
+     "178  (BC_4,  LA7,             observe_only, " &
+     "X),                        " &
+     "177  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "176  (BC_1,  LA7,             output3,      X,    177,    1,      " &
+     "Z),  " &
+     "175  (BC_4,  LA6,             observe_only, " &
+     "X),                        " &
+     "174  (BC_1,  LA6,             output3,      X,    177,    1,      " &
+     "Z),  " &
+     "173  (BC_4,  LA5,             observe_only, " &
+     "X),                        " &
+     "172  (BC_1,  LA5,             output3,      X,    177,    1,      " &
+     "Z),  " &
+     "171  (BC_4,  LA4,             observe_only, " &
+     "X),                        " &
+     "170  (BC_1,  LA4,             output3,      X,    177,    1,      " &
+     "Z),  " &
+     "169  (BC_4,  LA3,             observe_only, " &
+     "X),                        " &
+     "168  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "167  (BC_1,  LA3,             output3,      X,    168,    1,      " &
+     "Z),  " &
+     "166  (BC_4,  LA2,             observe_only, " &
+     "X),                        " &
+     "165  (BC_1,  LA2,             output3,      X,    168,    1,      " &
+     "Z),  " &
+     "164  (BC_4,  LWRn,            observe_only, " &
+     "X),                        " &
+     "163  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "162  (BC_1,  LWRn,            output3,      X,    163,    1,      " &
+     "Z),  " &
+     "161  (BC_4,  LBE3_TSIZ0,      observe_only, " &
+     "X),                        " &
+     "160  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "159  (BC_1,  LBE3_TSIZ0,      output3,      X,    160,    1,      " &
+     "Z),  " &
+     "158  (BC_4,  LBE2_TSIZ1,      observe_only, " &
+     "X),                        " &
+     "157  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "156  (BC_1,  LBE2_TSIZ1,      output3,      X,    157,    1,      " &
+     "Z),  " &
+     "155  (BC_4,  LBE1_LA1,        observe_only, " &
+     "X),                        " &
+     "154  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "153  (BC_1,  LBE1_LA1,        output3,      X,    154,    1,      " &
+     "Z),  " &
+     "152  (BC_4,  LBE0_LA0,        observe_only, " &
+     "X),                        " &
+     "151  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "150  (BC_1,  LBE0_LA0,        output3,      X,    151,    1,      " &
+     "Z),  " &
+     "149  (BC_4,  LAD31,           observe_only, " &
+     "X),                        " &
+     "148  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "147  (BC_1,  LAD31,           output3,      X,    148,    1,      " &
+     "Z),  " &
+     "146  (BC_4,  LAD30,           observe_only, " &
+     "X),                        " &
+     "145  (BC_1,  LAD30,           output3,      X,    148,    1,      " &
+     "Z),  " &
+     "144  (BC_4,  LAD29,           observe_only, " &
+     "X),                        " &
+     "143  (BC_1,  LAD29,           output3,      X,    148,    1,      " &
+     "Z),  " &
+     "142  (BC_4,  LAD28,           observe_only, " &
+     "X),                        " &
+     "141  (BC_1,  LAD28,           output3,      X,    148,    1,      " &
+     "Z),  " &
+     "140  (BC_4,  LAD27,           observe_only, " &
+     "X),                        " &
+     "139  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "138  (BC_1,  LAD27,           output3,      X,    139,    1,      " &
+     "Z),  " &
+     "137  (BC_4,  LAD26,           observe_only, " &
+     "X),                        " &
+     "136  (BC_1,  LAD26,           output3,      X,    139,    1,      " &
+     "Z),  " &
+     "135  (BC_4,  LAD25,           observe_only, " &
+     "X),                        " &
+     "134  (BC_1,  LAD25,           output3,      X,    139,    1,      " &
+     "Z),  " &
+     "133  (BC_4,  LAD24,           observe_only, " &
+     "X),                        " &
+     "132  (BC_1,  LAD24,           output3,      X,    139,    1,      " &
+     "Z),  " &
+     "131  (BC_4,  LAD23,           observe_only, " &
+     "X),                        " &
+     "130  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "129  (BC_1,  LAD23,           output3,      X,    130,    1,      " &
+     "Z),  " &
+     "128  (BC_4,  LAD22,           observe_only, " &
+     "X),                        " &
+     "127  (BC_1,  LAD22,           output3,      X,    130,    1,      " &
+     "Z),  " &
+     "126  (BC_4,  LAD21,           observe_only, " &
+     "X),                        " &
+     "125  (BC_1,  LAD21,           output3,      X,    130,    1,      " &
+     "Z),  " &
+     "124  (BC_4,  LAD20,           observe_only, " &
+     "X),                        " &
+     "123  (BC_1,  LAD20,           output3,      X,    130,    1,      " &
+     "Z),  " &
+     "122  (BC_4,  LAD19,           observe_only, " &
+     "X),                        " &
+     "121  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "120  (BC_1,  LAD19,           output3,      X,    121,    1,      " &
+     "Z),  " &
+     "119  (BC_4,  LAD18,           observe_only, " &
+     "X),                        " &
+     "118  (BC_1,  LAD18,           output3,      X,    121,    1,      " &
+     "Z),  " &
+     "117  (BC_4,  LAD17,           observe_only, " &
+     "X),                        " &
+     "116  (BC_1,  LAD17,           output3,      X,    121,    1,      " &
+     "Z),  " &
+     "115  (BC_4,  LAD16,           observe_only, " &
+     "X),                        " &
+     "114  (BC_1,  LAD16,           output3,      X,    121,    1,      " &
+     "Z),  " &
+     "113  (BC_4,  LAD15,           observe_only, " &
+     "X),                        " &
+     "112  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "111  (BC_1,  LAD15,           output3,      X,    112,    1,      " &
+     "Z),  " &
+     "110  (BC_4,  LAD14,           observe_only, " &
+     "X),                        " &
+     "109  (BC_1,  LAD14,           output3,      X,    112,    1,      " &
+     "Z),  " &
+     "108  (BC_4,  LAD13,           observe_only, " &
+     "X),                        " &
+     "107  (BC_1,  LAD13,           output3,      X,    112,    1,      " &
+     "Z),  " &
+     "106  (BC_4,  LAD12,           observe_only, " &
+     "X),                        " &
+     "105  (BC_1,  LAD12,           output3,      X,    112,    1,      " &
+     "Z),  " &
+     "104  (BC_4,  LAD11,           observe_only, " &
+     "X),                        " &
+     "103  (BC_2,  *,               control,      " &
+     "1),                        " &
+     "102  (BC_1,  LAD11,           output3,      X,    103,    1,      " &
+     "Z),  " &
+     "101  (BC_4,  LAD10,           observe_only, " &
+     "X),                        " &
+     "100  (BC_1,  LAD10,           output3,      X,    103,    1,      " &
+     "Z),  " &
+     "99   (BC_4,  LAD9,            observe_only, " &
+     "X),                        " &
+     "98   (BC_1,  LAD9,            output3,      X,    103,    1,      " &
+     "Z),  " &
+     "97   (BC_4,  LAD8,            observe_only, " &
+     "X),                        " &
+     "96   (BC_1,  LAD8,            output3,      X,    103,    1,      " &
+     "Z),  " &
+     "95   (BC_4,  LAD7,            observe_only, " &
+     "X),                        " &
+     "94   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "93   (BC_1,  LAD7,            output3,      X,    94,     1,      " &
+     "Z),  " &
+     "92   (BC_4,  LAD6,            observe_only, " &
+     "X),                        " &
+     "91   (BC_1,  LAD6,            output3,      X,    94,     1,      " &
+     "Z),  " &
+     "90   (BC_4,  LAD5,            observe_only, " &
+     "X),                        " &
+     "89   (BC_1,  LAD5,            output3,      X,    94,     1,      " &
+     "Z),  " &
+     "88   (BC_4,  LAD4,            observe_only, " &
+     "X),                        " &
+     "87   (BC_1,  LAD4,            output3,      X,    94,     1,      " &
+     "Z),  " &
+     "86   (BC_4,  LAD3,            observe_only, " &
+     "X),                        " &
+     "85   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "84   (BC_1,  LAD3,            output3,      X,    85,     1,      " &
+     "Z),  " &
+     "83   (BC_4,  LAD2,            observe_only, " &
+     "X),                        " &
+     "82   (BC_1,  LAD2,            output3,      X,    85,     1,      " &
+     "Z),  " &
+     "81   (BC_4,  LCLK,            observe_only, " &
+     "X),                        " &
+     "80   (BC_4,  LAD1,            observe_only, " &
+     "X),                        " &
+     "79   (BC_1,  LAD1,            output3,      X,    85,     1,      " &
+     "Z),  " &
+     "78   (BC_4,  LAD0,            observe_only, " &
+     "X),                        " &
+     "77   (BC_1,  LAD0,            output3,      X,    85,     1,      " &
+     "Z),  " &
+     "76   (BC_4,  BI_BTERMn,       observe_only, " &
+     "X),                        " &
+     "75   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "74   (BC_1,  BI_BTERMn,       output3,      X,    75,     1,      " &
+     "Z),  " &
+     "73   (BC_4,  TA_READYn,       observe_only, " &
+     "X),                        " &
+     "72   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "71   (BC_1,  TA_READYn,       output3,      X,    72,     1,      " &
+     "Z),  " &
+     "70   (BC_4,  DP3,             observe_only, " &
+     "X),                        " &
+     "69   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "68   (BC_1,  DP3,             output3,      X,    69,     1,      " &
+     "Z),  " &
+     "67   (BC_4,  DP2,             observe_only, " &
+     "X),                        " &
+     "66   (BC_1,  DP2,             output3,      X,    69,     1,      " &
+     "Z),  " &
+     "65   (BC_4,  DP1,             observe_only, " &
+     "X),                        " &
+     "64   (BC_1,  DP1,             output3,      X,    69,     1,      " &
+     "Z),  " &
+     "63   (BC_4,  DP0,             observe_only, " &
+     "X),                        " &
+     "62   (BC_1,  DP0,             output3,      X,    69,     1,      " &
+     "Z),  " &
+     "61   (BC_4,  MODE0,           observe_only, " &
+     "X),                        " &
+     "60   (BC_4,  MODE1,           observe_only, " &
+     "X),                        " &
+     "59   (BC_4,  BR_LHOLD,        observe_only, " &
+     "X),                        " &
+     "58   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "57   (BC_1,  BR_LHOLD,        output3,      X,    374,    1,      " &
+     "Z),  " &
+     "56   (BC_4,  BG_LHOLDA,       observe_only, " &
+     "X),                        " &
+     "55   (BC_4,  TS_ADSn,         observe_only, " &
+     "X),                        " &
+     "54   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "53   (BC_1,  TS_ADSn,         output3,      X,    54,     1,      " &
+     "Z),  " &
+     "52   (BC_4,  TEA_LSERRn,      observe_only, " &
+     "X),                        " &
+     "51   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "50   (BC_1,  TEA_LSERRn,      output3,      X,    51,     1,      " &
+     "Z),  " &
+     "49   (BC_4,  BURST_BLASTn,    observe_only, " &
+     "X),                        " &
+     "48   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "47   (BC_1,  BURST_BLASTn,    output3,      X,    48,     1,      " &
+     "Z),  " &
+     "46   (BC_4,  RETRY_BREQO,     observe_only, " &
+     "X),                        " &
+     "45   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "44   (BC_1,  RETRY_BREQO,     output3,      X,    45,     1,      " &
+     "Z),  " &
+     "43   (BC_4,  BB_BREQI,        observe_only, " &
+     "X),                        " &
+     "42   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "41   (BC_1,  BB_BREQI,        output3,      X,    42,     1,      " &
+     "Z),  " &
+     "40   (BC_4,  WAIT_BDIPn,      observe_only, " &
+     "X),                        " &
+     "39   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "38   (BC_1,  WAIT_BDIPn,      output3,      X,    39,     1,      " &
+     "Z),  " &
+     "37   (BC_4,  LRESETn,         observe_only, " &
+     "X),                        " &
+     "36   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "35   (BC_1,  LRESETn,         output3,      X,    36,     1,      " &
+     "Z),  " &
+     "34   (BC_4,  HOSTENn,         observe_only, " &
+     "X),                        " &
+     "33   (BC_4,  DMPAF_EOTn,      observe_only, " &
+     "X),                        " &
+     "32   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "31   (BC_1,  DMPAF_EOTn,      output3,      X,    32,     1,      " &
+     "Z),  " &
+     "30   (BC_4,  LINTIn,          observe_only, " &
+     "X),                        " &
+     "29   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "28   (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "27   (BC_1,  LINTOn,          output3,      X,    29,     1,      " &
+     "Z),  " &
+     "26   (BC_4,  USERO_LLOCKOn,   observe_only, " &
+     "X),                        " &
+     "25   (BC_1,  USERO_LLOCKOn,   output3,      X,    374,    1,      " &
+     "Z),  " &
+     "24   (BC_4,  USERI_LLOCKIn,   observe_only, " &
+     "X),                        " &
+     "23   (BC_4,  DREQ1n,          observe_only, " &
+     "X),                        " &
+     "22   (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "21   (BC_1,  DACK1n,          output3,      X,    374,    1,      " &
+     "Z),  " &
+     "20   (BC_4,  DREQ0n,          observe_only, " &
+     "X),                        " &
+     "19   (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "18   (BC_1,  DACK0n,          output3,      X,    374,    1,      " &
+     "Z),  " &
+     "17   (BC_4,  CCSn,            observe_only, " &
+     "X),                        " &
+     "16   (BC_4,  BIGEND_WAITn,    observe_only, " &
+     "X),                        " &
+     "15   (BC_2,  *,               control,      " &
+     "1),                        " &
+     "14   (BC_1,  BIGEND_WAITn,    output3,      X,    15,     1,      " &
+     "Z),  " &
+     "13   (BC_4,  EECS,            observe_only, " &
+     "X),                        " &
+     "12   (BC_1,  EECS,            output3,      X,    58,     1,      " &
+     "Z),  " &
+     "11   (BC_4,  EESK,            observe_only, " &
+     "X),                        " &
+     "10   (BC_1,  EESK,            output3,      X,    58,     1,      " &
+     "Z),  " &
+     "9    (BC_4,  EEDI_DO,         observe_only, " &
+     "X),                        " &
+     "8    (BC_2,  *,               control,      " &
+     "1),                        " &
+     "7    (BC_1,  EEDI_DO,         output3,      X,    8,      1,      " &
+     "PULL1)," &
+     "6    (BC_4,  PRESENT_DET,     observe_only, " &
+     "X),                        " &
+     "5    (BC_0,  *,               internal,     " &
+     "X),                        " &
+     "4    (BC_4,  PMEREQn,         observe_only, " &
+     "X),                        " &
+     "3    (BC_4,  PMEn,            observe_only, " &
+     "X),                        " &
+     "2    (BC_2,  *,               control,      " &
+     "1),                        " &
+     "1    (BC_1,  PMEn,            output3,      X,    2,      1,      " &
+     "Z),  " &
+     "0    (BC_4,  BD_SEL_TEST,     observe_only, " &
+     "X)                         ";
+ 
+ end PCI9056BA;

@@ -1,0 +1,654 @@
+-- BSDL for ADSP-TS101
+-- Digital Signal Processor,
+-- Package 27x27mm PBGA 
+-- Silicon Revision(s) 0.4
+--
+-- Created: 11/21/2006
+--
+--
+ 
+entity ADSP_TS101 is 
+ generic (PHYSICAL_PIN_MAP : string:="UNDEFINED");
+
+        port(   ACK:  inout   bit;
+  ADDR:    inout   bit_vector(0 to 31);
+  BM:  inout bit;
+  BUSLOCK: out bit;
+  BMS:  inout bit;
+  BOFF:  in bit;
+  BR:  inout bit_vector(0 to 7);
+  BRST:  inout bit;
+  CAS:  inout bit;
+  CTRL_IMPD: in bit_vector(0 to 2);  
+  CPA:  inout bit;
+                DATA:    inout   bit_vector(0 to 63);
+  DMAR:  in bit_vector(0 to 3);
+                DPA:  inout   bit;
+  EMU:  out bit;
+  FLAG:  inout bit_vector(0 to 3);
+  FLYBY:  out bit;
+  HBG:  inout bit;
+  HBR:  in bit;
+  HDQM:  out bit;
+  ID:  in bit_vector(0 to 2);
+  IOEN:  out bit;
+                IRQ:  in bit_vector(0 to 3);
+  L0DAT:  inout bit_vector(0 to 7);
+                L1DAT:          inout  bit_vector(0 to 7);
+                L2DAT:          inout   bit_vector(0 to 7);
+                L3DAT:          inout   bit_vector(0 to 7);
+  L0CLKOUT: buffer  bit;
+                L1CLKOUT:       buffer  bit;
+                L2CLKOUT:       buffer  bit;
+                L3CLKOUT:       buffer  bit;
+  L0CLKIN: in bit;
+                L1CLKIN:        in      bit;
+                L2CLKIN:        in      bit;
+                L3CLKIN:        in      bit;
+  L0DIR:  buffer bit;
+                L1DIR:          buffer bit;    
+                L2DIR:          inout   bit;    
+                L3DIR:          inout   bit;    
+  LCLK_P:  linkage bit;
+  LCLK_N:  linkage bit;
+  LCLKRAT: in bit_vector(0 to 2);
+                LDQM:           out     bit;
+  MS:  out bit_vector(0 to 1);
+  MSH:  out bit;
+                MSSD:           inout   bit;
+  RAS:  inout bit;
+  RD:  inout bit;
+  RESET:  in bit;
+  SCLK_P:  linkage bit;
+  SCLK_N:  linkage bit;
+  SCLKFREQ: in bit;
+  SDA10:   out bit;
+  SDCKE:   inout bit;
+  SDWE:  inout bit;
+  TCK:  in bit;
+  TDI:  in bit;
+  TDO:  out bit;
+  TMR0E:  inout bit;
+  TMS:  in bit;
+  TRST:  in bit;
+  WRL:  inout bit;
+  WRH:  inout bit;
+  NC:  linkage bit_vector(0 to 15);
+  VDD:  linkage bit_vector(0 to 87);
+  VDD_IO:  linkage bit_vector(0 to 103);
+  VSS:  linkage bit_vector(0 to 200);
+  VDD_A:  linkage bit_vector(0 to 1);
+  VSS_A:  linkage bit_vector(0 to 1);
+  DS:  in bit_vector(0 to 2);
+  VREF:  linkage bit);
+
+        use STD_1149_1_1990.all;
+ 
+        attribute PIN_MAP of ADSP_TS101: entity is PHYSICAL_PIN_MAP;
+        
+        
+ constant PBGA27_PACKAGE: PIN_MAP_STRING:=
+                "ACK:  AC15," &
+  "ADDR:   (AC17,AD17,AE17,AC18,AD18,AE18,AC19,AD19,AE19,AC20, " &
+    "AE20,AC21,AD21,AE21,AC22,AD22,AC25,AC24,AB25,AB24, " &
+    "AB23,AA25,AA24,AA23,Y25,Y24,Y23,W25,W23,V25,V24,V23)," &
+  "BM:  F23," &
+  "BUSLOCK: F24," &
+  "BMS:  D23," &
+  "BOFF:  AE15," &
+  "BR:  (AD12,AE12,AC13,AD13,AE13,AC14,AD14,AE14)," & 
+  "BRST:  M25," &
+  "CAS:  U23," &
+  "CTRL_IMPD: (C18,B19,A19)," &
+  "CPA:  AD16," &
+  "DATA: (C9,A8,B8,C8,A7,B7,C7,A6,C6,A5,B6,A4,B5,B4,A3,C5,B3, " & 
+  "A2,C4,D3,C2,C3,E2,E1,F3,F2,F1,G3,G2,G1,H3,H2,U3,U2, " &
+  "U1,V3,V2,V1,W3,W2,W1,Y3,Y2,Y1,AA3,AA2,AA1,AB3,AB2,AB1, " &
+  "AC3,AC4,AD4,AE4,AC5,AD5,AE5,AC6,AD6,AE6,AC7,AD7,AE7,AC8), " &
+  "DMAR:  (B21,C19,A21,B20)," &
+                "DPA:    AE16," &
+  "DS:  (C17,A18,B18)," &
+  "EMU:  A22," & 
+  "FLAG:  (H23,G25,G24,G23)," &
+  "FLYBY:  L25," &
+  "HBG:  AC16," &
+  "HBR:  AD15," &
+  "HDQM:  P25," &
+  "ID:  (J23,H25,H24)," & 
+  "IOEN:  M23," &
+                "IRQ:  (C24,B24,C21,B22)," & 
+  "L0DAT:  (C13,A12,B12,C12,A11,B11,C11,A10)," &
+                "L1DAT:  (M1,N3,N1,P3,P2,P1,R3,R2)," &
+                "L2DAT:  (AD8,AE8,AC9,AD9,AE9,AC10,AD10,AE10)," &
+                "L3DAT:  (H1,J3,J2,J1,K3,K2,K1,L3)," &
+  "L0CLKOUT: B10," &
+                "L1CLKOUT: R1," &
+                "L2CLKOUT: AC11," &
+                "L3CLKOUT: L2," &
+  "L0CLKIN: C10," &
+                "L1CLKIN:       T3," &
+                "L2CLKIN:       AD11," &
+                "L3CLKIN:       L1," &
+  "L0DIR:  A9," &
+                "L1DIR:         T2," &
+                "L2DIR:         AE11," &
+                "L3DIR:         M3," &
+  "LCLK_P: A14," &
+  "LCLK_N: A13," &
+  "LCLKRAT: (C22,C23,E25)," &
+  "LDQM:  R23," &
+  "MS:  (P24,P23)," & 
+  "MSH:  M24," &
+   "MSSD:  R25," &
+  "RAS:  U25," &
+  "RD:  N25," & 
+  "RESET:  A20," &  
+  "SCLK_P: B16," &
+  "SCLK_N: A16," &
+  "SCLKFREQ: E24," &
+  "SDA10:  AD20," &
+  "SDCKE:  T23," &
+  "SDWE:  T25," &
+  "TCK:  B23," &
+  "TDI:  C20," &  
+  "TDO:  B25," &  
+  "TMR0E:  F25," &
+  "TMS:  A24," & 
+  "TRST:  A23," &
+  "WRL:  N24," &
+ "WRH:  N23," &
+  "VDD:  (E10,E11,E14,E15,E18,E19,F10,F11,F12,F13,F14,F15,F16,F17, " &
+    "F18,F19,F20,F21,G20,G21,H5,H6,H20,J6,J20,K20,K21,L20,L21, " &
+    "M20,N20,P20,P21,R20,R21,T20,U20,V20,V21,W20,W21, " &
+    "Y10,Y11,Y12,Y13,Y14,Y15,Y16,Y17,Y18,Y19,Y20,AA11,AA12, " &
+	"AA15,AA16,AA19,AA20,G6,N6,E6,E7,F6,F7,F8,F9,G5,K6,L5,L6,M5,M6,P6, " &
+    "R5,R6,T5,T6,U6,V6,W5,W6,Y5,Y6,Y7,Y8,Y9,AA7,AA8)," &
+"VDD_IO: (D10,D11,D12,D13,D14,D15,D16,D17,D18,D19,D20,D21,D22, " &
+    "E12,E13,E16,E17,E20,E21,E22,F22,G22,H21,H22,J21,J22, " &
+    "K22,L22,M21,M22,N21,N22,P22,R22,T21,T22,U21,U22,V22, " &
+    "W22,Y21,Y22,AA10,AA13,AA14,AA17,AA18,AA21,AA22,AB10, " &
+    "AB11,AB12,AB13,AB14,AB15,AB16,AB17,AB18,AB19,AB20,AB21, " &
+    "AB22,D4,D5,D6,D7,D8,D9,E4,E5,E8,E9,F4,F5,G4,H4,J4,J5,K4, " &
+    "K5,L4,M4,N4,N5,P4,P5,R4,T4,U4,U5,V4,V5,W4,Y4,AA4,AA5,AA6, " &
+    "AA9,AB4,AB5,AB6,AB7,AB8,AB9)," &
+  "VSS:  (A1,A25,B1,B2,B13,B14,B17,C1,C16,C25,D1,D2,D24,D25,E3,E23, " &
+    "G10,G11,G12,G13,G14,G15,G16,G17,G18,G19,H7,H8,H9,H10,H11, " &
+    "H12,H13,H14,H15,H16,H17,H18,H19,J7,J8,J9,J10,J11,J12,J13, " &
+    "J14,J15,J16,J17,J18,J19,K10,K11,K12,K13,K14,K15,K16,K17, " &
+    "K18,K19,L8,L9,L10,L11,L12,L13,L14,L15,L16,L17,L18,L19,M10, " &
+    "M11,M12,M13,M14,M15,M16,M17,M18,M19,N9,N10,N11,N12,N13, " &
+    "N14,N15,N16,N17,N18,N19,P10,P11,P12,P13,P14,P15,P16,P17, " &
+    "P18,P19,R10,R11,R12,R13,R14,R15,R16,R17,R18,R19,T10,T11, " &
+    "T12,T13,T14,T15,T16,T17,T18,T19,U10,U11,U12,U13,U14,U15, " &
+    "U16,U17,U18,U19,V10,V11,V12,V13,V14,V15,V16,V17,V18,V19, " &
+    "W10,W11,W12,W13,W14,W15,W16,W17,W18,W19,AC1,AC2,AC23,AD1, " &
+    "AD2,AD3,AD23,AD24,AD25,AE1,AE2,AE3,AE22,AE23,AE24,AE25,T7, " &
+    "T8,T9,G7,G8,G9,N7,N8,K7,K8,K9,L7,M7,M8,M9,P7,P8,P9,R7,R8, " &
+    "R9,U7,U8,U9,V7,V8,V9,W7,W8,W9)," &
+  "VDD_A:  (A15,C15)," &
+  "VSS_A:  (B15,C14)," &
+  "NC:  (B9,J24,J25,K23,K24,K25,L23,L24,M2,N2,R24,T1,T24,U24, " &
+    "W24,AC12)," &
+  "VREF:  A17";
+
+        attribute TAP_SCAN_IN   of TDI  :       signal is true;
+        attribute TAP_SCAN_MODE of TMS  :       signal is true;
+        attribute TAP_SCAN_OUT  of TDO  :       signal is true;
+        attribute TAP_SCAN_RESET of TRST:       signal is true;
+        attribute TAP_SCAN_CLOCK of TCK :       signal is (40.0e6, BOTH);
+ 
+        attribute INSTRUCTION_LENGTH of ADSP_TS101:     entity is 5;
+ 
+        -- Unspecified opcodes assigned to Bypass.
+        attribute INSTRUCTION_OPCODE of ADSP_TS101:     entity is 
+                "BYPASS         (11111)," &
+                "EXTEST         (00000)," &
+                "SAMPLE         (10000)," &
+                "INTEST         (11000)," &
+                "IDCODE         (01110)," &
+  "MEMTEST (10010,00111,10111,01111)," &
+                "EMULATION      (01000,00100,10100,01100,11110,00001," &
+ 
+"10001,01001,11001,00101,10101,01101,11101,"&
+    "00011,10011,01011)";
+                
+        attribute INSTRUCTION_CAPTURE of ADSP_TS101: entity is 
+                "00001";
+ 
+        attribute INSTRUCTION_PRIVATE of ADSP_TS101: entity is 
+                "EMULATION," &
+  "MEMTEST";
+ 
+ attribute IDCODE_REGISTER of ADSP_TS101: entity is
+  "0101" &  -- Version
+  "0010011110000001" & -- Part number
+  "00011100101" &  -- ADI manufacturing code
+  "1";   -- Required bit
+  
+--  INSTRUCTION_USAGE has been obsoleted
+--        attribute INSTRUCTION_USAGE of ADSP_TS101: entity is
+--                "INTEST (clock CLKIN)";
+
+        attribute BOUNDARY_CELLS of ADSP_TS101:  entity is 
+                "BC_1, BC_2, BC_3, BC_4";
+-- BC_1: output, control; BC_2: input; BC_3: internal; BC_4: clock;
+ 
+        attribute BOUNDARY_LENGTH of ADSP_TS101: entity is 409;
+ 
+        attribute BOUNDARY_REGISTER of ADSP_TS101: entity is 
+        --num cell port function safe [ccell disval rslt ]
+
+" 0 ( BC_2 , IRQ(3) , input , 0 ) , " &
+" 1 ( BC_2 , IRQ(2) , input , 0 ) , " &
+" 2 ( BC_2 , IRQ(1) , input , 0 ) , " &
+" 3 ( BC_2 , IRQ(0) , input , 0 ) , " &
+" 4 ( BC_1 , * , control , 0 ) , " &
+" 5 ( BC_2 , BMS , input , 0) , " & 
+" 6 ( BC_3 , * , internal , 1 ) , " &
+" 7 ( BC_1 , BMS , output3 , 0 , 4 , 0 , Z ) , " &
+" 8 ( BC_2 , LCLKRAT(1) , input , 0 ) , " &
+" 9 ( BC_2 , LCLKRAT(0) , input , 0 ) , " &
+" 10 ( BC_2 , SCLKFREQ , input , 0 ) , " &
+" 11 ( BC_2 , LCLKRAT(2) , input , 0 ) , " &
+" 12 ( BC_2 , BM , input , 0 ) , " & 
+" 13 ( BC_1 , * , control , 1 ) , " &
+" 14 ( BC_1 , BM , output3 , 0 , 13 , 1 , Z ) , " & 
+" 15 ( BC_1 , * , control , 0 ) , " &
+" 16 ( BC_1 , BUSLOCK , output3 , 0 , 15 , 0 , Z ) , " & 
+" 17 ( BC_2 , TMR0E , input , 0 ) , " & 
+" 18 ( BC_1 , * , control , 1 ) , " &
+" 19 ( BC_1 , TMR0E , output3 , 0 , 18 , 1 , Z ) , " & 
+" 20 ( BC_2 , FLAG(3) , input , 0 ) , " &
+" 21 ( BC_1 , * , control , 0 ) , " &
+" 22 ( BC_1 , FLAG(3) , output3 , 0 , 21 , 0 , Z ) , " & 
+" 23 ( BC_2 , FLAG(2) , input , 0 ) , " &
+" 24 ( BC_1 , * , control , 0 ) , " &
+" 25 ( BC_1 , FLAG(2) , output3 , 0 , 24 , 0 , Z ) , " & 
+" 26 ( BC_2 , FLAG(1) , input , 0 ) , " &
+" 27 ( BC_1 , * , control , 0 ) , " &
+" 28 ( BC_1 , FLAG(1) , output3 , 0 , 27 , 0 , Z ) , " & 
+" 29 ( BC_2 , FLAG(0) , input , 0 ) , " &
+" 30 ( BC_1 , * , control , 0 ) , " &
+" 31 ( BC_1 , FLAG(0) , output3 , 0 , 30 , 0 , Z ) , " & 
+" 32 ( BC_2 , ID(2) , input , 0 ) , " &
+" 33 ( BC_2 , ID(1) , input , 0 ) , " &
+" 34 ( BC_2 , ID(0) , input , 0 ) , " &
+" 35 ( BC_1 , * , control , 0 ) , " &
+" 36 ( BC_1 , FLYBY , output3 , 0 , 35 , 0 , Z ) , " & 
+" 37 ( BC_1 , * , control , 0 ) , " &
+" 38 ( BC_1 , IOEN , output3 , 0 , 37 , 0 , Z ) , " & 
+" 39 ( BC_1 , * , control , 0 ) , " &
+" 40 ( BC_1 , MSH , output3 , 0 , 39 , 0 , Z ) , " & 
+" 41 ( BC_2 , BRST , input , 0 ) , " &
+" 42 ( BC_1 , * , control , 0 ) , " &
+" 43 ( BC_1 , BRST , output3 , 0 , 42 , 0 , Z ) , " & 
+" 44 ( BC_2 , WRH , input , 0 ) , " &
+" 45 ( BC_1 , * , control , 0 ) , " &
+" 46 ( BC_1 , WRH , output3 , 0 , 45 , 0 , Z ) , " & 
+" 47 ( BC_2 , WRL , input , 0 ) , " &
+" 48 ( BC_1 , * , control , 0 ) , " &
+" 49 ( BC_1 , WRL , output3 , 0 , 48 , 0 , Z ) , " & 
+" 50 ( BC_2 , RD , input , 0 ) , " &
+" 51 ( BC_1 , * , control , 0 ) , " &
+" 52 ( BC_1 , RD , output3 , 0 , 51 , 0 , Z ) , " & 
+" 53 ( BC_1 , * , control , 0 ) , " &
+" 54 ( BC_1 , MS(1) , output3 , 0 , 53 , 0 , Z ) , " & 
+" 55 ( BC_1 , * , control , 0 ) , " &
+" 56 ( BC_1 , MS(0) , output3 , 0 , 55 , 0 , Z ) , " & 
+" 57 ( BC_1 , * , control , 0 ) , " &
+" 58 ( BC_1 , HDQM , output3 , 0 , 57 , 0 , Z ) , " & 
+" 59 ( BC_1 , * , control , 0 ) , " &
+" 60 ( BC_1 , LDQM , output3 , 0 , 59 , 0 , Z ) , " & 
+" 61 ( BC_2 , MSSD , input , 0 ) , " &
+" 62 ( BC_1 , * , control , 0 ) , " &
+" 63 ( BC_1 , MSSD , output3 , 0 , 62 , 0 , Z ) , " & 
+" 64 ( BC_3 , * , internal , 1 ) , " &
+" 65 ( BC_3 , * , internal , 0 ) , " &
+" 66 ( BC_2 , SDCKE , input , 0 ) , " &
+" 67 ( BC_1 , * , control , 0 ) , " &
+" 68 ( BC_1 , SDCKE , output3 , 0 , 67 , 0 , Z ) , " & 
+" 69 ( BC_2 , SDWE , input , 0 ) , " &
+" 70 ( BC_1 , * , control , 0 ) , " &
+" 71 ( BC_1 , SDWE , output3 , 0 , 70 , 0 , Z ) , " & 
+" 72 ( BC_2 , CAS , input , 0 ) , " &
+" 73 ( BC_1 , * , control , 0 ) , " &
+" 74 ( BC_1 , CAS , output3 , 0 , 73 , 0 , Z ) , " & 
+" 75 ( BC_2 , RAS , input , 0 ) , " &
+" 76 ( BC_1 , * , control , 0 ) , " &
+" 77 ( BC_1 , RAS , output3 , 0 , 76 , 0 , Z ) , " & 
+" 78 ( BC_2 , ADDR(31) , input , 0 ) , " &
+" 79 ( BC_1 , ADDR(31) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 80 ( BC_2 , ADDR(30) , input , 0 ) , " &
+" 81 ( BC_1 , ADDR(30) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 82 ( BC_2 , ADDR(29) , input , 0 ) , " &
+" 83 ( BC_1 , ADDR(29) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 84 ( BC_2 , ADDR(28) , input , 0 ) , " &
+" 85 ( BC_1 , ADDR(28) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 86 ( BC_2 , ADDR(27) , input , 0 ) , " &
+" 87 ( BC_1 , ADDR(27) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 88 ( BC_2 , ADDR(26) , input , 0 ) , " &
+" 89 ( BC_1 , ADDR(26) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 90 ( BC_2 , ADDR(25) , input , 0 ) , " &
+" 91 ( BC_1 , ADDR(25) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 92 ( BC_2 , ADDR(24) , input , 0 ) , " &
+" 93 ( BC_1 , ADDR(24) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 94 ( BC_2 , ADDR(23) , input , 0 ) , " &
+" 95 ( BC_1 , ADDR(23) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 96 ( BC_2 , ADDR(22) , input , 0 ) , " &
+" 97 ( BC_1 , ADDR(22) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 98 ( BC_2 , ADDR(21) , input , 0 ) , " &
+" 99 ( BC_1 , ADDR(21) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 100 ( BC_2 , ADDR(20) , input , 0 ) , " &
+" 101 ( BC_1 , ADDR(20) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 102 ( BC_2 , ADDR(19) , input , 0 ) , " &
+" 103 ( BC_1 , ADDR(19) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 104 ( BC_2 , ADDR(18) , input , 0 ) , " &
+" 105 ( BC_1 , ADDR(18) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 106 ( BC_2 , ADDR(17) , input , 0 ) , " &
+" 107 ( BC_1 , ADDR(17) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 108 ( BC_2 , ADDR(16) , input , 0 ) , " &
+" 109 ( BC_1 , ADDR(16) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 110 ( BC_2 , ADDR(15) , input , 0 ) , " &
+" 111 ( BC_1 , ADDR(15) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 112 ( BC_2 , ADDR(14) , input , 0 ) , " &
+" 113 ( BC_1 , ADDR(14) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 114 ( BC_2 , ADDR(13) , input , 0 ) , " &
+" 115 ( BC_1 , ADDR(13) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 116 ( BC_2 , ADDR(12) , input , 0 ) , " &
+" 117 ( BC_1 , ADDR(12) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 118 ( BC_1 , * , control , 0 ) , " &
+" 119 ( BC_2 , ADDR(11) , input , 0 ) , " &
+" 120 ( BC_1 , ADDR(11) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 121 ( BC_2 , ADDR(10) , input , 0 ) , " &
+" 122 ( BC_1 , ADDR(10) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 123 ( BC_1 , * , control , 0 ) , " &
+" 124 ( BC_1 , SDA10 , output3 , 0 , 123 , 0 , Z ) , " & 
+" 125 ( BC_2 , ADDR(9) , input , 0 ) , " &
+" 126 ( BC_1 , ADDR(9) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 127 ( BC_2 , ADDR(8) , input , 0 ) , " &
+" 128 ( BC_1 , ADDR(8) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 129 ( BC_2 , ADDR(7) , input , 0 ) , " &
+" 130 ( BC_1 , ADDR(7) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 131 ( BC_2 , ADDR(6) , input , 0 ) , " &
+" 132 ( BC_1 , ADDR(6) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 133 ( BC_2 , ADDR(5) , input , 0 ) , " &
+" 134 ( BC_1 , ADDR(5) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 135 ( BC_2 , ADDR(4) , input , 0 ) , " &
+" 136 ( BC_1 , ADDR(4) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 137 ( BC_2 , ADDR(3) , input , 0 ) , " &
+" 138 ( BC_1 , ADDR(3) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 139 ( BC_2 , ADDR(2) , input , 0 ) , " &
+" 140 ( BC_1 , ADDR(2) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 141 ( BC_2 , ADDR(1) , input , 0 ) , " &
+" 142 ( BC_1 , ADDR(1) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 143 ( BC_2 , ADDR(0) , input , 0 ) , " &
+" 144 ( BC_1 , ADDR(0) , output3 , 0 , 118 , 0 , Z ) , " & 
+" 145 ( BC_3 , * , internal , 1 ) , " &
+" 146 ( BC_2 , DPA , input , 0 ) , " &
+" 147 ( BC_1 , DPA , output2 , 1 , 147 , 1, pull1 ) , " &  
+" 148 ( BC_3 , * , internal , 1 ) , " &
+" 149 ( BC_2 , CPA , input , 0 ) , " &
+" 150 ( BC_1 , CPA , output2 , 1 , 150 , 1, pull1 ) , " &  
+" 151 ( BC_2 , HBG , input , 0 ) , " &
+" 152 ( BC_1 , * , control , 0 ) , " &
+" 153 ( BC_1 , HBG , output3 , 0 , 152 , 0 , Z ) , " & 
+" 154 ( BC_2 , BOFF , input , 0 ) , " &
+" 155 ( BC_2 , HBR , input , 0 ) , " &
+" 156 ( BC_2 , ACK , input , 0 ) , " &
+" 157 ( BC_1 , * , control , 0 ) , " &
+" 158 ( BC_1 , ACK , output3 , 0 , 157 , 0 , Z ) , " & 
+" 159 ( BC_2 , BR(7) , input , 0 ) , " &
+" 160 ( BC_1 , * , control , 0 ) , " &
+" 161 ( BC_1 , BR(7) , output3 , 0 , 160 , 0 , Z ) , " & 
+" 162 ( BC_2 , BR(6) , input , 0 ) , " &
+" 163 ( BC_1 , * , control , 0 ) , " &
+" 164 ( BC_1 , BR(6) , output3 , 0 , 163 , 0 , Z ) , " & 
+" 165 ( BC_2 , BR(5) , input , 0 ) , " &
+" 166 ( BC_1 , * , control , 0 ) , " &
+" 167 ( BC_1 , BR(5) , output3 , 0 , 166 , 0 , Z ) , " & 
+" 168 ( BC_2 , BR(4) , input , 0 ) , " &
+" 169 ( BC_1 , * , control , 0 ) , " &
+" 170 ( BC_1 , BR(4) , output3 , 0 , 169 , 0 , Z ) , " & 
+" 171 ( BC_2 , BR(3) , input , 0 ) , " &
+" 172 ( BC_1 , * , control , 0 ) , " &
+" 173 ( BC_1 , BR(3) , output3 , 0 , 172 , 0 , Z ) , " & 
+" 174 ( BC_2 , BR(2) , input , 0 ) , " &
+" 175 ( BC_1 , * , control , 0 ) , " &
+" 176 ( BC_1 , BR(2) , output3 , 0 , 175 , 0 , Z ) , " & 
+" 177 ( BC_2 , BR(1) , input , 0 ) , " &
+" 178 ( BC_1 , * , control , 0 ) , " &
+" 179 ( BC_1 , BR(1) , output3 , 0 , 178 , 0 , Z ) , " & 
+" 180 ( BC_2 , BR(0) , input , 0 ) , " &
+" 181 ( BC_1 , * , control , 0 ) , " &
+" 182 ( BC_1 , BR(0) , output3 , 0 , 181 , 0 , Z ) , " & 
+" 183 ( BC_2 , L2DIR , input , 0 ) , " & 
+" 184 ( BC_1 , * , control , 1 ) , " &
+" 185 ( BC_1 , L2DIR , output3 , 0 , 184 , 1 , Z ) , " & 
+" 186 ( BC_2 , L2CLKIN , input , 0 ) , " &
+" 187 ( BC_1 , L2CLKOUT , output2 , 0 ) , " &
+" 188 ( BC_2 , L2DAT(7) , input , 0 ) , " &
+" 189 ( BC_1 , L2DAT(7) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 190 ( BC_2 , L2DAT(6) , input , 0 ) , " &
+" 191 ( BC_1 , L2DAT(6) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 192 ( BC_2 , L2DAT(5) , input , 0 ) , " &
+" 193 ( BC_1 , L2DAT(5) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 194 ( BC_1 , * , control , 0 ) , " &
+" 195 ( BC_2 , L2DAT(4) , input , 0 ) , " &
+" 196 ( BC_1 , L2DAT(4) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 197 ( BC_2 , L2DAT(3) , input , 0 ) , " &
+" 198 ( BC_1 , L2DAT(3) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 199 ( BC_2 , L2DAT(2) , input , 0 ) , " &
+" 200 ( BC_1 , L2DAT(2) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 201 ( BC_2 , L2DAT(1) , input , 0 ) , " &
+" 202 ( BC_1 , L2DAT(1) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 203 ( BC_2 , L2DAT(0) , input , 0 ) , " &
+" 204 ( BC_1 , L2DAT(0) , output3 , 0 , 194 , 0 , Z ) , " & 
+" 205 ( BC_2 , DATA(63) , input , 0 ) , " &
+" 206 ( BC_1 , DATA(63) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 207 ( BC_2 , DATA(62) , input , 0 ) , " &
+" 208 ( BC_1 , DATA(62) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 209 ( BC_2 , DATA(61) , input , 0 ) , " &
+" 210 ( BC_1 , DATA(61) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 211 ( BC_2 , DATA(60) , input , 0 ) , " &
+" 212 ( BC_1 , DATA(60) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 213 ( BC_2 , DATA(59) , input , 0 ) , " &
+" 214 ( BC_1 , DATA(59) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 215 ( BC_2 , DATA(58) , input , 0 ) , " &
+" 216 ( BC_1 , DATA(58) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 217 ( BC_2 , DATA(57) , input , 0 ) , " &
+" 218 ( BC_1 , DATA(57) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 219 ( BC_2 , DATA(56) , input , 0 ) , " &
+" 220 ( BC_1 , DATA(56) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 221 ( BC_2 , DATA(55) , input , 0 ) , " &
+" 222 ( BC_1 , DATA(55) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 223 ( BC_2 , DATA(54) , input , 0 ) , " &
+" 224 ( BC_1 , DATA(54) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 225 ( BC_2 , DATA(53) , input , 0 ) , " &
+" 226 ( BC_1 , DATA(53) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 227 ( BC_2 , DATA(52) , input , 0 ) , " &
+" 228 ( BC_1 , DATA(52) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 229 ( BC_2 , DATA(51) , input , 0 ) , " &
+" 230 ( BC_1 , DATA(51) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 231 ( BC_2 , DATA(50) , input , 0 ) , " &
+" 232 ( BC_1 , DATA(50) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 233 ( BC_2 , DATA(49) , input , 0 ) , " &
+" 234 ( BC_1 , DATA(49) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 235 ( BC_1 , * , control , 0 ) , " &
+" 236 ( BC_2 , DATA(48) , input , 0 ) , " &
+" 237 ( BC_1 , DATA(48) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 238 ( BC_2 , DATA(47) , input , 0 ) , " &
+" 239 ( BC_1 , DATA(47) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 240 ( BC_2 , DATA(46) , input , 0 ) , " &
+" 241 ( BC_1 , DATA(46) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 242 ( BC_2 , DATA(45) , input , 0 ) , " &
+" 243 ( BC_1 , DATA(45) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 244 ( BC_2 , DATA(44) , input , 0 ) , " &
+" 245 ( BC_1 , DATA(44) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 246 ( BC_2 , DATA(43) , input , 0 ) , " &
+" 247 ( BC_1 , DATA(43) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 248 ( BC_2 , DATA(42) , input , 0 ) , " &
+" 249 ( BC_1 , DATA(42) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 250 ( BC_2 , DATA(41) , input , 0 ) , " &
+" 251 ( BC_1 , DATA(41) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 252 ( BC_2 , DATA(40) , input , 0 ) , " &
+" 253 ( BC_1 , DATA(40) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 254 ( BC_2 , DATA(39) , input , 0 ) , " &
+" 255 ( BC_1 , DATA(39) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 256 ( BC_2 , DATA(38) , input , 0 ) , " &
+" 257 ( BC_1 , DATA(38) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 258 ( BC_2 , DATA(37) , input , 0 ) , " &
+" 259 ( BC_1 , DATA(37) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 260 ( BC_2 , DATA(36) , input , 0 ) , " &
+" 261 ( BC_1 , DATA(36) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 262 ( BC_2 , DATA(35) , input , 0 ) , " &
+" 263 ( BC_1 , DATA(35) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 264 ( BC_2 , DATA(34) , input , 0 ) , " &
+" 265 ( BC_1 , DATA(34) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 266 ( BC_2 , DATA(33) , input , 0 ) , " &
+" 267 ( BC_1 , DATA(33) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 268 ( BC_2 , DATA(32) , input , 0 ) , " &
+" 269 ( BC_1 , DATA(32) , output3 , 0 , 235 , 0 , Z ) , " & 
+" 270 ( BC_1 , L1DIR , output2 , 0 ) , " &
+" 271 ( BC_2 , L1CLKIN , input , 0 ) , " &
+" 272 ( BC_1 , L1CLKOUT , output2 , 0 ) , " &
+" 273 ( BC_2 , L1DAT(7) , input , 0 ) , " &
+" 274 ( BC_1 , L1DAT(7) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 275 ( BC_2 , L1DAT(6) , input , 0 ) , " &
+" 276 ( BC_1 , L1DAT(6) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 277 ( BC_2 , L1DAT(5) , input , 0 ) , " &
+" 278 ( BC_1 , L1DAT(5) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 279 ( BC_1 , * , control , 0 ) , " &
+" 280 ( BC_2 , L1DAT(4) , input , 0 ) , " &
+" 281 ( BC_1 , L1DAT(4) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 282 ( BC_2 , L1DAT(3) , input , 0 ) , " &
+" 283 ( BC_1 , L1DAT(3) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 284 ( BC_2 , L1DAT(2) , input , 0 ) , " &
+" 285 ( BC_1 , L1DAT(2) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 286 ( BC_2 , L1DAT(1) , input , 0 ) , " &
+" 287 ( BC_1 , L1DAT(1) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 288 ( BC_2 , L1DAT(0) , input , 0 ) , " &
+" 289 ( BC_1 , L1DAT(0) , output3 , 0 , 279 , 0 , Z ) , " & 
+" 290 ( BC_2 , L3DIR , input , 0 ) , " & 
+" 291 ( BC_1 , * , control , 1 ) , " &
+" 292 ( BC_1 , L3DIR , output3 , 0 , 291 , 1 , Z ) , " & 
+" 293 ( BC_2 , L3CLKIN , input , 0 ) , " &
+" 294 ( BC_1 , L3CLKOUT , output2 , 0 ) , " &
+" 295 ( BC_2 , L3DAT(7) , input , 0 ) , " &
+" 296 ( BC_1 , L3DAT(7) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 297 ( BC_2 , L3DAT(6) , input , 0 ) , " &
+" 298 ( BC_1 , L3DAT(6) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 299 ( BC_2 , L3DAT(5) , input , 0 ) , " &
+" 300 ( BC_1 , L3DAT(5) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 301 ( BC_2 , L3DAT(4) , input , 0 ) , " &
+" 302 ( BC_1 , L3DAT(4) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 303 ( BC_2 , L3DAT(3) , input , 0 ) , " &
+" 304 ( BC_1 , L3DAT(3) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 305 ( BC_1 , * , control , 0 ) , " &
+" 306 ( BC_2 , L3DAT(2) , input , 0 ) , " &
+" 307 ( BC_1 , L3DAT(2) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 308 ( BC_2 , L3DAT(1) , input , 0 ) , " &
+" 309 ( BC_1 , L3DAT(1) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 310 ( BC_2 , L3DAT(0) , input , 0 ) , " &
+" 311 ( BC_1 , L3DAT(0) , output3 , 0 , 305 , 0 , Z ) , " & 
+" 312 ( BC_2 , DATA(31) , input , 0 ) , " &
+" 313 ( BC_1 , DATA(31) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 314 ( BC_2 , DATA(30) , input , 0 ) , " &
+" 315 ( BC_1 , DATA(30) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 316 ( BC_2 , DATA(29) , input , 0 ) , " &
+" 317 ( BC_1 , DATA(29) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 318 ( BC_2 , DATA(28) , input , 0 ) , " &
+" 319 ( BC_1 , DATA(28) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 320 ( BC_2 , DATA(27) , input , 0 ) , " &
+" 321 ( BC_1 , DATA(27) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 322 ( BC_2 , DATA(26) , input , 0 ) , " &
+" 323 ( BC_1 , DATA(26) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 324 ( BC_2 , DATA(25) , input , 0 ) , " &
+" 325 ( BC_1 , DATA(25) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 326 ( BC_2 , DATA(24) , input , 0 ) , " &
+" 327 ( BC_1 , DATA(24) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 328 ( BC_2 , DATA(23) , input , 0 ) , " &
+" 329 ( BC_1 , DATA(23) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 330 ( BC_2 , DATA(22) , input , 0 ) , " &
+" 331 ( BC_1 , DATA(22) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 332 ( BC_2 , DATA(21) , input , 0 ) , " &
+" 333 ( BC_1 , DATA(21) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 334 ( BC_2 , DATA(20) , input , 0 ) , " &
+" 335 ( BC_1 , DATA(20) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 336 ( BC_2 , DATA(19) , input , 0 ) , " &
+" 337 ( BC_1 , DATA(19) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 338 ( BC_2 , DATA(18) , input , 0 ) , " &
+" 339 ( BC_1 , DATA(18) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 340 ( BC_2 , DATA(17) , input , 0 ) , " &
+" 341 ( BC_1 , DATA(17) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 342 ( BC_1 , * , control , 0 ) , " &
+" 343 ( BC_2 , DATA(16) , input , 0 ) , " &
+" 344 ( BC_1 , DATA(16) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 345 ( BC_2 , DATA(15) , input , 0 ) , " &
+" 346 ( BC_1 , DATA(15) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 347 ( BC_2 , DATA(14) , input , 0 ) , " &
+" 348 ( BC_1 , DATA(14) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 349 ( BC_2 , DATA(13) , input , 0 ) , " &
+" 350 ( BC_1 , DATA(13) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 351 ( BC_2 , DATA(12) , input , 0 ) , " &
+" 352 ( BC_1 , DATA(12) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 353 ( BC_2 , DATA(11) , input , 0 ) , " &
+" 354 ( BC_1 , DATA(11) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 355 ( BC_2 , DATA(10) , input , 0 ) , " &
+" 356 ( BC_1 , DATA(10) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 357 ( BC_2 , DATA(9) , input , 0 ) , " &
+" 358 ( BC_1 , DATA(9) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 359 ( BC_2 , DATA(8) , input , 0 ) , " &
+" 360 ( BC_1 , DATA(8) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 361 ( BC_2 , DATA(7) , input , 0 ) , " &
+" 362 ( BC_1 , DATA(7) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 363 ( BC_2 , DATA(6) , input , 0 ) , " &
+" 364 ( BC_1 , DATA(6) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 365 ( BC_2 , DATA(5) , input , 0 ) , " &
+" 366 ( BC_1 , DATA(5) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 367 ( BC_2 , DATA(4) , input , 0 ) , " &
+" 368 ( BC_1 , DATA(4) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 369 ( BC_2 , DATA(3) , input , 0 ) , " &
+" 370 ( BC_1 , DATA(3) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 371 ( BC_2 , DATA(2) , input , 0 ) , " &
+" 372 ( BC_1 , DATA(2) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 373 ( BC_2 , DATA(1) , input , 0 ) , " &
+" 374 ( BC_1 , DATA(1) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 375 ( BC_2 , DATA(0) , input , 0 ) , " &
+" 376 ( BC_1 , DATA(0) , output3 , 0 , 342 , 0 , Z ) , " & 
+" 377 ( BC_1 , L0DIR , output2 , 0 ) , " &
+" 378 ( BC_2 , L0CLKIN , input , 0 ) , " &
+" 379 ( BC_1 , L0CLKOUT , output2 , 0 ) , " &
+" 380 ( BC_2 , L0DAT(7) , input , 0 ) , " &
+" 381 ( BC_1 , L0DAT(7) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 382 ( BC_2 , L0DAT(6) , input , 0 ) , " &
+" 383 ( BC_1 , L0DAT(6) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 384 ( BC_2 , L0DAT(5) , input , 0 ) , " &
+" 385 ( BC_1 , L0DAT(5) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 386 ( BC_2 , L0DAT(4) , input , 0 ) , " &
+" 387 ( BC_1 , L0DAT(4) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 388 ( BC_2 , L0DAT(3) , input , 0 ) , " &
+" 389 ( BC_1 , L0DAT(3) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 390 ( BC_2 , L0DAT(2) , input , 0 ) , " &
+" 391 ( BC_1 , L0DAT(2) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 392 ( BC_1 , * , control , 0 ) , " &
+" 393 ( BC_2 , L0DAT(1) , input , 0 ) , " &
+" 394 ( BC_1 , L0DAT(1) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 395 ( BC_2 , L0DAT(0) , input , 0 ) , " &
+" 396 ( BC_1 , L0DAT(0) , output3 , 0 , 392 , 0 , Z ) , " & 
+" 397 ( BC_2 , DS(0) , input , 0 ) , " &
+" 398 ( BC_2 , DS(1) , input , 0 ) , " &
+" 399 ( BC_2 , DS(2) , input , 0 ) , " &
+" 400 ( BC_2 , CTRL_IMPD(2) , input , 0 ) , " &
+" 401 ( BC_2 , CTRL_IMPD(1) , input , 0 ) , " &
+" 402 ( BC_2 , CTRL_IMPD(0) , input , 0 ) , " &
+" 403 ( BC_2 , RESET , input , 1 ) , " &
+" 404 ( BC_2 , DMAR(3) , input , 0 ) , " &
+" 405 ( BC_2 , DMAR(2) , input , 0 ) , " &
+" 406 ( BC_2 , DMAR(1) , input , 0 ) , " &
+" 407 ( BC_2 , DMAR(0) , input , 0 ) , " &
+" 408 ( BC_1 , EMU , output2 , 1 , 408 , 1 , Weak0 )";    
+
+end ADSP_TS101;
+
+
+

@@ -1,0 +1,467 @@
+-- ***********************************************************************
+--
+--   BSDL file for design 88E1340x & 88E1322x 196-Pin TFBGA (BAM) Package 
+--   Created by Synopsys Version Y-2006.06-SP5 (Jan 19, 2007)
+--     
+--   MARVELL SEMICONDUCTOR INC
+--   Doc. No. MV-S900138-BM
+--   88E1340x & 88E1322x 196-Pin TFBGA (BAM) Package BSDL Model
+--
+--   REVISION HISTORY
+--   Rev - : Nov 7, 2008 - Initial Release
+--
+--   COMMENTS
+--   This BSDL file applies to the following parts in the 196-pin TFBGA package:
+--   - 88E1340S
+--   - 88E1340
+--	  - RCLK1, RCLK2, SCLK pins are NC (No Connect)
+--   - 88E1322
+--	  - P0_MDIP[3:0], P0_MDIN[3:0], P2_MDIP[3:0], P2_MDIN[3:0] pins are NC
+--        - Q_INP, Q_INN, Q_OUTP, Q_OUTN pins are NC
+--
+-- ***********************************************************************
+
+ entity e1340x is
+   
+-- This section identifies the default device package selected.
+   
+   generic (PHYSICAL_PIN_MAP: string:= "E1340");
+   
+-- This section declares all the ports in the design.
+   
+   port ( 
+          CLK_SEL_0 : in       bit;
+          CLK_SEL_1 : in       bit;
+          CONFIG_0  : in       bit;
+          CONFIG_1  : in       bit;
+          CONFIG_2  : in       bit;
+          CONFIG_3  : in       bit;
+          MDC       : in       bit;
+          P0_S_INN  : in       bit;
+          P0_S_INP  : in       bit;
+          P1_S_INN  : in       bit;
+          P1_S_INP  : in       bit;
+          P2_S_INN  : in       bit;
+          P2_S_INP  : in       bit;
+          P3_S_INN  : in       bit;
+          P3_S_INP  : in       bit;
+          Q_INN     : in       bit;
+          Q_INP     : in       bit;
+          RESETn    : in       bit;
+          TCK       : in       bit;
+          TDI       : in       bit;
+          TMS       : in       bit;
+          TRSTn     : in       bit;
+          MDIO      : inout    bit;
+          INTn      : out      bit;
+          P0_LED_0  : out      bit;
+          P0_LED_1  : out      bit;
+          P0_LED_2  : out      bit;
+          P0_LED_3  : out      bit;
+          P0_S_OUTN : out      bit;
+          P0_S_OUTP : out      bit;
+          P1_LED_0  : out      bit;
+          P1_LED_1  : out      bit;
+          P1_LED_2  : out      bit;
+          P1_LED_3  : out      bit;
+          P1_S_OUTN : out      bit;
+          P1_S_OUTP : out      bit;
+          P2_LED_0  : out      bit;
+          P2_LED_1  : out      bit;
+          P2_LED_2  : out      bit;
+          P2_LED_3  : out      bit;
+          P2_S_OUTN : out      bit;
+          P2_S_OUTP : out      bit;
+          P3_LED_0  : out      bit;
+          P3_LED_1  : out      bit;
+          P3_LED_2  : out      bit;
+          P3_LED_3  : out      bit;
+          P3_S_OUTN : out      bit;
+          P3_S_OUTP : out      bit;
+          Q_OUTN    : out      bit;
+          Q_OUTP    : out      bit;
+          RCLK1     : out      bit;
+          RCLK2     : out      bit;
+          TDO       : out      bit;
+          HSDACN    : linkage  bit;
+          HSDACP    : linkage  bit;
+          P0_MDIN_0 : linkage  bit;
+          P0_MDIN_1 : linkage  bit;
+          P0_MDIN_2 : linkage  bit;
+          P0_MDIN_3 : linkage  bit;
+          P0_MDIP_0 : linkage  bit;
+          P0_MDIP_1 : linkage  bit;
+          P0_MDIP_2 : linkage  bit;
+          P0_MDIP_3 : linkage  bit;
+          P1_MDIN_0 : linkage  bit;
+          P1_MDIN_1 : linkage  bit;
+          P1_MDIN_2 : linkage  bit;
+          P1_MDIN_3 : linkage  bit;
+          P1_MDIP_0 : linkage  bit;
+          P1_MDIP_1 : linkage  bit;
+          P1_MDIP_2 : linkage  bit;
+          P1_MDIP_3 : linkage  bit;
+          P2_MDIN_0 : linkage  bit;
+          P2_MDIN_1 : linkage  bit;
+          P2_MDIN_2 : linkage  bit;
+          P2_MDIN_3 : linkage  bit;
+          P2_MDIP_0 : linkage  bit;
+          P2_MDIP_1 : linkage  bit;
+          P2_MDIP_2 : linkage  bit;
+          P2_MDIP_3 : linkage  bit;
+          P3_MDIN_0 : linkage  bit;
+          P3_MDIN_1 : linkage  bit;
+          P3_MDIN_2 : linkage  bit;
+          P3_MDIN_3 : linkage  bit;
+          P3_MDIP_0 : linkage  bit;
+          P3_MDIP_1 : linkage  bit;
+          P3_MDIP_2 : linkage  bit;
+          P3_MDIP_3 : linkage  bit;
+          REF_CLKN  : linkage  bit;
+          REF_CLKP  : linkage  bit;
+          RSET      : linkage  bit;
+          SCLK      : linkage  bit;
+          TEST_0    : linkage  bit;
+          TEST_1    : linkage  bit;
+          TSTPT     : linkage  bit;
+          TSTPTF    : linkage  bit;
+          V12_EN    : linkage  bit;
+          V18_L     : linkage  bit;
+          V18_R     : linkage  bit;
+          VDDC      : linkage  bit;
+          VDDOR     : linkage  bit;
+          VSSC      : linkage  bit;
+          XTAL_IN   : linkage  bit;
+          XTAL_OUT  : linkage  bit;
+          AVDDH     : linkage  bit_vector (1 to 19);
+          VDD       : linkage  bit_vector (1 to 11);
+          VDDOL     : linkage  bit_vector (1 to 4);
+          VDDOM     : linkage  bit_vector (1 to 2);
+          VSS       : linkage  bit_vector (1 to 57)
+   );
+   
+   use STD_1149_1_2001.all;
+   use STD_1149_6_2003.all;
+   
+   attribute COMPONENT_CONFORMANCE of e1340x: entity is "STD_1149_1_2001";
+   
+   attribute PIN_MAP of e1340x: entity is PHYSICAL_PIN_MAP;
+   
+-- This section specifies the pin map for each port. This information is 
+-- extracted from the port-to-pin map file that was read in using the 
+-- "read_pin_map" command.
+   
+     constant E1340: PIN_MAP_STRING := 
+        "CLK_SEL_0 : H14," &
+        "CLK_SEL_1 : H13," &
+        "CONFIG_0  : N1," &
+        "CONFIG_1  : P1," &
+        "CONFIG_2  : K3," &
+        "CONFIG_3  : L3," &
+        "MDC       : B6," &
+        "P0_S_INN  : A1," &
+        "P0_S_INP  : B1," &
+        "P1_S_INN  : B4," &
+        "P1_S_INP  : A4," &
+        "P2_S_INN  : B11," &
+        "P2_S_INP  : A11," &
+        "P3_S_INN  : A14," &
+        "P3_S_INP  : B14," &
+        "Q_INN     : A9," &
+        "Q_INP     : B9," &
+        "RESETn    : E3," &
+        "TCK       : G12," &
+        "TDI       : G14," &
+        "TMS       : G13," &
+        "TRSTn     : E12," &
+        "MDIO      : A6," &
+        "INTn      : D2," &
+        "P0_LED_0  : D1," &
+        "P0_LED_1  : E2," &
+        "P0_LED_2  : E1," &
+        "P0_LED_3  : F2," &
+        "P0_S_OUTN : A2," &
+        "P0_S_OUTP : B2," &
+        "P1_LED_0  : F1," &
+        "P1_LED_1  : G2," &
+        "P1_LED_2  : G1," &
+        "P1_LED_3  : H1," &
+        "P1_S_OUTN : B3," &
+        "P1_S_OUTP : A3," &
+        "P2_LED_0  : H2," &
+        "P2_LED_1  : J1," &
+        "P2_LED_2  : K1," &
+        "P2_LED_3  : K2," &
+        "P2_S_OUTN : B12," &
+        "P2_S_OUTP : A12," &
+        "P3_LED_0  : L1," &
+        "P3_LED_1  : L2," &
+        "P3_LED_2  : M1," &
+        "P3_LED_3  : M2," &
+        "P3_S_OUTN : A13," &
+        "P3_S_OUTP : B13," &
+        "Q_OUTN    : B8," &
+        "Q_OUTP    : A8," &
+        "RCLK1     : E14," &
+        "RCLK2     : F14," &
+        "TDO       : D12," &
+        "HSDACN    : L13," &
+        "HSDACP    : L14," &
+        "P0_MDIN_0 : P3," &
+        "P0_MDIN_1 : P4," &
+        "P0_MDIN_2 : N5," &
+        "P0_MDIN_3 : M6," &
+        "P0_MDIP_0 : N3," &
+        "P0_MDIP_1 : N4," &
+        "P0_MDIP_2 : P5," &
+        "P0_MDIP_3 : M5," &
+        "P1_MDIN_0 : M7," &
+        "P1_MDIN_1 : P8," &
+        "P1_MDIN_2 : P7," &
+        "P1_MDIN_3 : P6," &
+        "P1_MDIP_0 : M8," &
+        "P1_MDIP_1 : N8," &
+        "P1_MDIP_2 : N7," &
+        "P1_MDIP_3 : N6," &
+        "P2_MDIN_0 : N9," &
+        "P2_MDIN_1 : N10," &
+        "P2_MDIN_2 : N11," &
+        "P2_MDIN_3 : M10," &
+        "P2_MDIP_0 : P9," &
+        "P2_MDIP_1 : P10," &
+        "P2_MDIP_2 : P11," &
+        "P2_MDIP_3 : M9," &
+        "P3_MDIN_0 : P14," &
+        "P3_MDIN_1 : M11," &
+        "P3_MDIN_2 : P13," &
+        "P3_MDIN_3 : P12," &
+        "P3_MDIP_0 : N14," &
+        "P3_MDIP_1 : M12," &
+        "P3_MDIP_2 : N13," &
+        "P3_MDIP_3 : N12," &
+        "REF_CLKN  : D14," &
+        "REF_CLKP  : D13," &
+        "RSET      : K12," &
+        "SCLK      : K14," &
+        "TEST_0    : B5," &
+        "TEST_1    : A5," &
+        "TSTPT     : K13," &
+        "TSTPTF    : C8," &
+        "V12_EN    : C7," &
+        "V18_L     : J2," &
+        "V18_R     : E13," &
+        "VDDC      : H12," &
+        "VDDOR     : F13," &
+        "VSSC      : J12," &
+        "XTAL_IN   : J13," &
+        "XTAL_OUT  : J14," &
+        "AVDDH     : (D4, E4, L4, D5, E5, L5, L6, L7, D8, L8, D9, L9, D10, " &
+        "E10, L10, D11, E11, K11, L11)," &
+        "VDD       : (F4, G4, H4, J4, E6, E7, E8, E9, F11, G11, F12)," &
+        "VDDOL     : (F3, G3, H3, J3)," &
+        "VDDOM     : (D6, D7)," &
+        "VSS       : (C1, C2, N2, P2, C3, D3, M3, C4, K4, M4, C5, F5, G5, H5" &
+        ", J5, K5, C6, F6, G6, H6, J6, K6, A7, B7, F7, G7, H7, J7, K7, F8, " &
+        "G8, H8, J8, K8, C9, F9, G9, H9, J9, K9, A10, B10, C10, F10, G10, " &
+        "H10, J10, K10, C11, H11, J11, C12, L12, C13, M13, C14, M14)";
+   
+-- This section specifies the differential IO port groupings.
+   
+   attribute PORT_GROUPING of e1340x: entity is 
+      "Differential_Voltage ( " &
+          "(P0_S_INP,P0_S_INN)," &
+          "(P1_S_INP,P1_S_INN)," &
+          "(P2_S_INP,P2_S_INN)," &
+          "(P3_S_INP,P3_S_INN)," &
+          "(Q_INP,Q_INN)," &
+          "(P0_S_OUTP,P0_S_OUTN)," &
+          "(P1_S_OUTP,P1_S_OUTN)," &
+          "(P2_S_OUTP,P2_S_OUTN)," &
+          "(P3_S_OUTP,P3_S_OUTN)," &
+          "(Q_OUTP,Q_OUTN))";
+
+-- This section specifies the TAP ports. For the TAP TCK port, the parameters in 
+-- the brackets are:
+--        First Field : Maximum  TCK frequency.
+--        Second Field: Allowable states TCK may be stopped in.
+   
+   attribute TAP_SCAN_CLOCK of TCK  : signal is (2.500000e+07, BOTH);
+   attribute TAP_SCAN_IN    of TDI  : signal is true;
+   attribute TAP_SCAN_MODE  of TMS  : signal is true;
+   attribute TAP_SCAN_OUT   of TDO  : signal is true;
+   attribute TAP_SCAN_RESET of TRSTn: signal is true;
+   
+-- Specifies the number of bits in the instruction register.
+   
+   attribute INSTRUCTION_LENGTH of e1340x: entity is 8;
+   
+-- Specifies the boundary-scan instructions implemented in the design and their 
+-- opcodes.
+   
+   attribute INSTRUCTION_OPCODE of e1340x: entity is 
+     "BYPASS       (00001111, 11111111)," &
+     "EXTEST       (00000000)," &
+     "SAMPLE       (00000001)," &
+     "PRELOAD      (00000001)," &
+     "EXTEST_PULSE (00000101)," &
+     "EXTEST_TRAIN (00000110)," &
+     "CLAMP        (00000010)," &
+     "HIGHZ        (00000011)," &
+     "IDCODE       (00000100)," &
+     "PROG_HYST    (00001000)";
+   
+-- Specifies the bit pattern that is loaded into the instruction register when 
+-- the TAP controller passes through the Capture-IR state. The standard mandates 
+-- that the two LSBs must be "01". The remaining bits are design specific.
+   
+   attribute INSTRUCTION_CAPTURE of e1340x: entity is "00000001";
+   
+-- Specifies the bit pattern that is loaded into the DEVICE_ID register during 
+-- the IDCODE instruction when the TAP controller passes through the Capture-DR 
+-- state.
+   
+   attribute IDCODE_REGISTER of e1340x: entity is 
+     "XXXX" &                  
+ -- 4-bit version number
+     "000000000010010X" &      
+ -- 16-bit part number
+     "00111101001" &           
+ -- 11-bit identity of the manufacturer
+     "1";                      
+ -- Required by IEEE Std 1149.1
+   
+-- This section specifies the test data register placed between TDI and TDO for 
+-- each implemented instruction.
+   
+   attribute REGISTER_ACCESS of e1340x: entity is 
+        "BYPASS    (BYPASS, CLAMP, HIGHZ)," &
+        "BOUNDARY  (EXTEST, SAMPLE, PRELOAD, EXTEST_PULSE, EXTEST_TRAIN)," &
+        "DEVICE_ID (IDCODE)," &
+        "PROG_HYST[3] (PROG_HYST)";
+   
+-- Specifies the length of the boundary scan register.
+   
+   attribute BOUNDARY_LENGTH of e1340x: entity is 74;
+   
+-- The following list specifies the characteristics of each cell in the boundary 
+-- scan register from TDI to TDO. The following is a description of the label 
+-- fields:
+--      num     : Is the cell number.
+--      cell    : Is the cell type as defined by the standard.
+--      port    : Is the design port name. Control cells do not have a port 
+--                name.
+--      function: Is the function of the cell as defined by the standard. Is one 
+--                of input, output2, output3, bidir, control or controlr.
+--      safe    : Specifies the value that the BSR cell should be loaded with 
+--                for safe operation when the software might otherwise choose a 
+--                random value.
+--      ccell   : The control cell number. Specifies the control cell that 
+--                drives the output enable for this port.
+--      disval  : Specifies the value that is loaded into the control cell to 
+--                disable the output enable for the corresponding port.
+--      rslt    : Resulting state. Shows the state of the driver when it is 
+--                disabled.
+   
+   attribute BOUNDARY_REGISTER of e1340x: entity is 
+--     
+--    num   cell   port       function      safe  [ccell  disval  rslt]
+--     
+     "73   (BC_4,  P0_S_INP,  observe_only, X),                        " &
+     "72   (BC_4,  P0_S_INN,  observe_only, X),                        " &
+     "71   (AC_SELU,  *,      internal,     0),                        " &
+     "70   (AC_1,  P0_S_OUTP, output3,      X,    69,     0,      Z),  " &
+     "69   (BC_1,  *,         control,      0),                        " &
+     "68   (BC_4,  P1_S_INP,  observe_only, X),                        " &
+     "67   (BC_4,  P1_S_INN,  observe_only, X),                        " &
+     "66   (AC_SELU,  *,      internal,     0),                        " &
+     "65   (AC_1,  P1_S_OUTP, output3,      X,    64,     0,      Z),  " &
+     "64   (BC_1,  *,         control,      0),                        " &
+     "63   (BC_4,  Q_INP,     observe_only, X),                        " &
+     "62   (BC_4,  Q_INN,     observe_only, X),                        " &
+     "61   (AC_SELU,  *,      internal,     0),                        " &
+     "60   (AC_1,  Q_OUTP,    output3,      X,    59,     0,      Z),  " &
+     "59   (BC_1,  *,         control,      0),                        " &
+     "58   (BC_4,  P2_S_INP,  observe_only, X),                        " &
+     "57   (BC_4,  P2_S_INN,  observe_only, X),                        " &
+     "56   (AC_SELU,  *,      internal,     0),                        " &
+     "55   (AC_1,  P2_S_OUTP, output3,      X,    54,     0,      Z),  " &
+     "54   (BC_1,  *,         control,      0),                        " &
+     "53   (BC_4,  P3_S_INP,  observe_only, X),                        " &
+     "52   (BC_4,  P3_S_INN,  observe_only, X),                        " &
+     "51   (AC_SELU,  *,      internal,     0),                        " &
+     "50   (AC_1,  P3_S_OUTP, output3,      X,    49,     0,      Z),  " &
+     "49   (BC_1,  *,         control,      0),                        " &
+     "48   (BC_1,  *,         control,      0),                        " &
+     "47   (BC_1,  INTn,      output3,      X,    48,     0,      Z),  " &
+     "46   (BC_1,  *,         control,      0),                        " &
+     "45   (BC_1,  RCLK2,     output3,      X,    46,     0,      Z),  " &
+     "44   (BC_1,  *,         control,      0),                        " &
+     "43   (BC_1,  RCLK1,     output3,      X,    44,     0,      Z),  " &
+     "42   (BC_1,  CLK_SEL_0, input,        X),                        " &
+     "41   (BC_1,  CLK_SEL_1, input,        X),                        " &
+     "40   (BC_1,  RESETn,    input,        X),                        " &
+     "39   (BC_1,  *,         control,      0),                        " &
+     "38   (BC_1,  MDIO,      output3,      X,    39,     0,      Z),  " &
+     "37   (BC_1,  MDIO,      input,        X),                        " &
+     "36   (BC_1,  MDC,       input,        X),                        " &
+     "35   (BC_1,  CONFIG_0,  input,        X),                        " &
+     "34   (BC_1,  CONFIG_1,  input,        X),                        " &
+     "33   (BC_1,  CONFIG_2,  input,        X),                        " &
+     "32   (BC_1,  CONFIG_3,  input,        X),                        " &
+     "31   (BC_1,  *,         control,      0),                        " &
+     "30   (BC_1,  P0_LED_0,  output3,      X,    31,     0,      Z),  " &
+     "29   (BC_1,  *,         control,      0),                        " &
+     "28   (BC_1,  P0_LED_1,  output3,      X,    29,     0,      Z),  " &
+     "27   (BC_1,  *,         control,      0),                        " &
+     "26   (BC_1,  P0_LED_2,  output3,      X,    27,     0,      Z),  " &
+     "25   (BC_1,  *,         control,      0),                        " &
+     "24   (BC_1,  P0_LED_3,  output3,      X,    25,     0,      Z),  " &
+     "23   (BC_1,  *,         control,      0),                        " &
+     "22   (BC_1,  P1_LED_0,  output3,      X,    23,     0,      Z),  " &
+     "21   (BC_1,  *,         control,      0),                        " &
+     "20   (BC_1,  P1_LED_1,  output3,      X,    21,     0,      Z),  " &
+     "19   (BC_1,  *,         control,      0),                        " &
+     "18   (BC_1,  P1_LED_2,  output3,      X,    19,     0,      Z),  " &
+     "17   (BC_1,  *,         control,      0),                        " &
+     "16   (BC_1,  P1_LED_3,  output3,      X,    17,     0,      Z),  " &
+     "15   (BC_1,  *,         control,      0),                        " &
+     "14   (BC_1,  P2_LED_0,  output3,      X,    15,     0,      Z),  " &
+     "13   (BC_1,  *,         control,      0),                        " &
+     "12   (BC_1,  P2_LED_1,  output3,      X,    13,     0,      Z),  " &
+     "11   (BC_1,  *,         control,      0),                        " &
+     "10   (BC_1,  P2_LED_2,  output3,      X,    11,     0,      Z),  " &
+     "9    (BC_1,  *,         control,      0),                        " &
+     "8    (BC_1,  P2_LED_3,  output3,      X,    9,      0,      Z),  " &
+     "7    (BC_1,  *,         control,      0),                        " &
+     "6    (BC_1,  P3_LED_0,  output3,      X,    7,      0,      Z),  " &
+     "5    (BC_1,  *,         control,      0),                        " &
+     "4    (BC_1,  P3_LED_1,  output3,      X,    5,      0,      Z),  " &
+     "3    (BC_1,  *,         control,      0),                        " &
+     "2    (BC_1,  P3_LED_2,  output3,      X,    3,      0,      Z),  " &
+     "1    (BC_1,  *,         control,      0),                        " &
+     "0    (BC_1,  P3_LED_3,  output3,      X,    1,      0,      Z)   ";
+
+-- Advanced I/O Description
+
+attribute AIO_COMPONENT_CONFORMANCE of e1340x : entity is
+    "STD_1149_6_2003";
+
+attribute AIO_EXTEST_Pulse_Execution of e1340x : entity is
+    "Wait_Duration TCK 16";
+
+attribute AIO_EXTEST_Train_Execution of e1340x : entity is
+    "train 16";
+
+attribute AIO_Pin_Behavior of e1340x : entity is
+    "P0_S_INP : LP_time=2.8e-8 HP_time=1.2e-7; " &
+    "P1_S_INP : LP_time=2.8e-8 HP_time=1.2e-7; " &
+    "P2_S_INP : LP_time=2.8e-8 HP_time=1.2e-7; " &
+    "P3_S_INP : LP_time=2.8e-8 HP_time=1.2e-7; " &
+    "Q_INP    : LP_time=2.8e-8 HP_time=1.2e-7; " &
+    "P0_S_OUTP : AC_Select=71; " &
+    "P1_S_OUTP : AC_Select=66; " &
+    "P2_S_OUTP : AC_Select=56; " &
+    "P3_S_OUTP : AC_Select=51; " &
+    "Q_OUTP : AC_Select=61";
+ 
+ end e1340x;

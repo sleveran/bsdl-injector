@@ -1,0 +1,214 @@
+------------------------------------------------------------------
+-- Copyright National Semiconductor Corporation 2003
+--
+-- Boundary Scan Description Language, BSDL Model for SCAN90CP02
+-- 1.5 Gbps 2x2 LVDS switch
+--
+-- National Semiconductor Customer Service Center
+-- N. America  (800) 272-9959
+-- Europe Germany p49 (0) 69 9508 6208
+-----------------------------------------------------------------
+-- 01 23 October 2003  Initial Release
+-- 02 17 March 2004 Revised Pin Map table,added reference to Apps Note 1313
+-- 04 02 Sept 2004  Added support for LQFP_PACKAGE
+--
+-- go to http://www.national.com/appinfo/scan/0,3031,665,00.html
+-- for latest revision of the BSDL
+
+entity SCAN90CP02 is
+    generic (PHYSICAL_PIN_MAP : string := "UNDEFINED");
+
+
+    port (IN_POS0   :in bit;
+          IN_NEG0   :in bit;
+          IN_POS1   :in bit;
+          IN_NEG1   :in bit;
+          OUT_POS0  :out bit;
+          OUT_NEG0  :out bit;
+          OUT_POS1  :out bit;
+          OUT_NEG1  :out bit;
+          SEL0      :in bit;
+          SEL1      :in bit;
+          EN_N0     :in bit;
+          EN_N1     :in bit;
+          PEM00     :in bit;
+          PEM01     :in bit;
+          PEM10     :in bit;
+          PEM11     :in bit;
+          GND       :linkage bit;
+          GND2      :linkage bit_vector(0 to 4);
+          VDD       :linkage bit_vector(0 to 4);
+          NC        :linkage bit_vector(0 to 1);
+          TDO       :out bit;
+          TDI       :in bit;
+          TMS       :in bit;
+          TCK       :in bit;
+          TRST      :in bit);
+
+
+     use STD_1149_1_2001.all;
+     use STD_1149_6_2003.all;
+
+     attribute COMPONENT_CONFORMANCE of SCAN90CP02 : entity is
+"STD_1149_1_2001";
+
+     attribute PIN_MAP of SCAN90CP02 : entity is PHYSICAL_PIN_MAP;
+
+
+  constant LLP_PACKAGE:PIN_MAP_STRING:=
+"PEM11:1,"&
+"PEM10:2,"&
+"PEM01:3,"&
+"PEM00:4,"&
+"SEL1:5,"&
+"SEL0:6,"&
+"EN_N0:7,"&
+"NC:(8,28),"&
+"IN_POS0:9,"&
+"IN_NEG0:10,"&
+"VDD:(11,14,16,22,25),"&
+"GND:DAP,"&
+"IN_POS1:12,"&
+"IN_NEG1:13,"&
+"EN_N1:15,"&
+"TCK:17,"&
+"TMS:18,"&
+"TDI:19,"&
+"TDO:20,"&
+"TRST:21,"&
+"OUT_NEG1:23,"&
+"OUT_POS1:24,"&
+"OUT_NEG0:26,"&
+"OUT_POS0:27";
+
+  constant LQFP_PACKAGE:PIN_MAP_STRING:=
+"PEM11:1,"&
+"PEM10:2,"&
+"PEM01:3,"&
+"PEM00:4,"&
+"SEL1:6,"&
+"SEL0:7,"&
+"EN_N0:8,"&
+"IN_POS0:9,"&
+"IN_NEG0:10,"&
+"VDD:(12,16,18,25,29),"&
+"GND:5,"&
+"GND2:(11,15,20,26,30),"&
+"IN_POS1:13,"&
+"IN_NEG1:14,"&
+"EN_N1:17,"&
+"TCK:19,"&
+"TMS:21,"&
+"TDI:22,"&
+"TDO:23,"&
+"TRST:24,"&
+"OUT_NEG1:27,"&
+"OUT_POS1:28,"&
+"OUT_NEG0:31,"&
+"OUT_POS0:32";
+
+    attribute PORT_GROUPING of SCAN90CP02 : entity is
+   "DIFFERENTIAL_VOLTAGE ((OUT_POS0, OUT_NEG0),(OUT_POS1, OUT_NEG1),"&
+                          "(IN_POS0, IN_NEG0), (IN_POS1, IN_NEG1))";
+
+    attribute TAP_SCAN_IN of TDI : signal is true;
+    attribute TAP_SCAN_MODE of TMS : signal is true;
+    attribute TAP_SCAN_OUT of TDO : signal is true;
+
+    attribute TAP_SCAN_CLOCK of TCK : signal is (25.0e6, BOTH);
+    attribute TAP_SCAN_RESET of TRST : signal is true;
+
+    attribute INSTRUCTION_LENGTH of SCAN90CP02 : entity is 8;
+
+    attribute INSTRUCTION_OPCODE of SCAN90CP02 : entity is
+
+
+       "EXTEST          (00000000),"&
+       "IDCODE          (10000001),"&
+       "PRELOAD         (10000010),"&
+       "SAMPLE          (10000010),"&
+       "HIGHZ           (10000100),"&
+       "CLAMP           (10001000),"&
+       "EXTEST_PULSE    (10010000),"&
+       "EXTEST_TRAIN    (10100000)";
+ --      "SA_PRELOAD      (00000001),"&
+ --      "SA              (00000010),"&
+ --      "SA_BYPASS       (00000100),"&
+ --      "PRE             (01000001)";
+
+
+    attribute INSTRUCTION_CAPTURE of SCAN90CP02 : entity is "XXXXXX01";
+
+    attribute IDCODE_REGISTER of SCAN90CP02 : entity is
+        "0000" &                -- version
+        "1101011000000000" &    -- part number D600
+        "00000001111" &         -- manufacturer's identity
+        "1";                    -- required by 1149.1
+
+    --attribute SA_REGISTER of SCAN90CP02 : entity is
+    --    "XXXXXXXXXX";
+    --attribute PRE_REGISTER of SCAN90CP02 : entity is
+    --    "XX";
+
+
+    attribute REGISTER_ACCESS of SCAN90CP02 : entity is
+"BOUNDARY (EXTEST, EXTEST_TRAIN, EXTEST_PULSE, SAMPLE, PRELOAD)," &
+      "DEVICE_ID    (IDCODE)," &
+      "BYPASS       (CLAMP, HIGHZ, BYPASS)" ;
+
+    --see Applications Note AN-1313";
+    --    "SA_REGISTER     (SA_PRELOAD, SA)"&
+    --    "PRE_REGISTER    (PRE)";
+
+
+    attribute BOUNDARY_LENGTH   of SCAN90CP02 : entity is 18;
+    attribute BOUNDARY_REGISTER of SCAN90CP02 : entity is
+  -- num cell   port     function   safe [ccell disval rslt]
+     -- TDO
+   "0  (BC_4, IN_NEG1  ,OBSERVE_ONLY   , X),"  &
+   "1  (BC_4, IN_POS1  ,OBSERVE_ONLY   , X),"  &
+   "2  (BC_4, IN_NEG0  ,OBSERVE_ONLY   , X),"  &
+   "3  (BC_4, IN_POS0  ,OBSERVE_ONLY   , X),"  &
+   "4  (AC_1, OUT_POS1 ,OUTPUT3        , X, 8, 0, Z),"  &
+   "5  (AC_SELU, *     ,INTERNAL       , 0),"  &
+   "6  (AC_1, OUT_POS0 ,OUTPUT3        , X, 9, 0, Z),"  &
+   "7  (AC_SELU, *     ,INTERNAL       , 0),"  &
+   "8  (BC_1, *        ,CONTROL        , 0),"  &
+   "9  (BC_1, *        ,CONTROL        , 0),"  &
+   "10 (BC_4, PEM00    ,OBSERVE_ONLY   , X),"  &
+   "11 (BC_4, PEM10    ,OBSERVE_ONLY   , X),"  &
+   "12 (BC_4, PEM01    ,OBSERVE_ONLY   , X),"  &
+   "13 (BC_4, PEM11    ,OBSERVE_ONLY   , X),"  &
+   "14 (BC_4, EN_N1    ,OBSERVE_ONLY   , X),"  &
+   "15 (BC_4, EN_N0    ,OBSERVE_ONLY   , X),"  &
+   "16 (BC_4, SEL1     ,OBSERVE_ONLY   , X),"  &
+   "17 (BC_4, SEL0     ,OBSERVE_ONLY   , X) "  ;
+
+
+     -- TDI
+
+
+     attribute DESIGN_WARNING of SCAN90CP02 : entity is
+      "Stuck At not definable in BSDL see Applications Note AN-1313;"&
+      "Note that all references to SA_PRELOAD, SA, SA_BYPASS;"&
+      "and SA_REGISTER are commented out";
+
+     attribute AIO_COMPONENT_CONFORMANCE of SCAN90CP02 : entity is
+      "STD_1149_6_2003";
+
+     attribute AIO_Pin_Behavior of SCAN90CP02 : entity is
+      "IN_POS0, IN_POS1 : LP_time=10.0e-9 HP_time=1.0e-6;"&
+      "OUT_POS1 : AC_Select=5;"&
+      "OUT_POS0 : AC_Select=7";
+
+end SCAN90CP02;
+
+
+
+
+
+
+
+
+
+

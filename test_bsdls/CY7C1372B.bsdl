@@ -1,0 +1,178 @@
+--*******************************************************************************************************
+--**  Copyright (c) 2000 Cypress Semiconductor
+--**  All rights reserved.
+--**                            
+--**  File Name:     cy7c1372b.bsdl
+--**  Release:       1.0
+--**  Last Updated:  February 12, 2002
+--**
+--**  Function:      1M x 18 Pipelined NoBL SRAM, BSDL file for JTAG
+--**  Part #:        CY7C1372B
+--**
+--**  Notes:    IMPORTANT NOTE: Please be aware that the CY7C1372B device is NOT IEEE 
+--**            1149.1 compliant.
+--**
+--**            Ref CY7C1372B Datasheet at www.cypress.com/sram/datasheets.html
+--**
+--**  Queries ?: Contact MPD Applications at 408-943-2891 or e-mail: mpd_apps@cypress.com
+--*******************************************************************************************************
+
+entity CY7C1372B is
+      generic (PHYSICAL_PIN_MAP : string := "BGA");
+
+      port  (
+		A: 		in	bit_vector(0 to 19);
+	 	ADV_b:	in	bit;
+	      BWS_A_b: 	in    bit;
+       	BWS_B_b: 	in    bit;
+ 	  	CE_b:		in	bit;
+	  	CE2:		in	bit;
+	 	CE3_b:	in	bit;
+         	CEN_b:	in	bit;
+           	CLK:		in    bit;
+	  	DP_A:		in	bit;
+	  	DP_B:		in	bit;
+        	DQ_A:		in	bit_vector(0 to 7);
+	  	DQ_B:		in	bit_vector(0 to 7);
+          	OE_b:		in	bit;
+	 	MODE:		in	bit;
+	  	WE_b: 	in	bit;
+           	TMS: 		in    bit;
+           	TDI: 		in    bit;
+           	TCK: 		in    bit;
+           	TDO: 		out   bit;    
+		ZZ:		linkage bit;
+           	VDD: 		linkage bit_vector(0 to 18);
+           	VSS: 		linkage bit_vector(0 to 33);
+         	VDDQ: 	linkage bit_vector(0 to 19);
+            NC: 		linkage bit_vector(0 to 37)
+             );
+
+	use STD_1149_1_1994.all;
+
+	attribute COMPONENT_CONFORMANCE of CY7C1372B : entity is "STD_1149_1_1993";
+
+	attribute PIN_MAP of CY7C1372B : entity is PHYSICAL_PIN_MAP;
+
+	constant  BGA:PIN_MAP_STRING:=
+	"A:		(R6,P6,A2,A9,A10,A11,B2,B9,B10,P3,P4,P8,P9,P10, " &
+			" R3,R4,R8,R9,R10,R11), " &             
+					-- Address
+	"ADV_b:	A8, " &
+	"BWS_A_b:	B5, " &
+	"BWS_B_b:	A4, " &      -- Byte Write
+	"CE_b:	A3, " &
+	"CE2:		B3, " &
+	"CE3_b:	A6, " &
+	"CEN_b:	A7, " &
+	"CLK:       B6, " &   	 -- Clock
+	"DP_A:	C11, " &
+	"DP_B:	N1, " &
+	"DQ_A:	(D11,E11,F11,G11,J10,K10,L10,M10), " &
+	"DQ_B:	(D2,E2,F2,G2,J1,K1,L1,M1), " &
+	"WE_b:	B7, " &
+	"OE_b:	B8, " &
+	"MODE:	R1, " &
+	"TMS:		R5, " &
+	"TDI:		P5, " &
+	"TCK:		R7, " &
+	"TDO:		P7, " &
+	"ZZ:		H11, "&
+	"VDD:		(D4,D8,E4,E8,F4,F8,G4,G8,H2,H4,H8, " &
+			" J4,J8,K4,K8,L4,L8,M4,M8), " &
+	"VDDQ:	(C3,C9,D3,D9,E3,E9,F3,F9,G3,G9, " &
+			" J3,J9,K3,K9,L3,L9,M3,M9,N3,N9), " &
+	"VSS:		(C4,C5,C6,C7,C8,D5,D6,D7,E5,E6,E7, " &
+			" F5,F6,F7,G5,G6,G7,H5,H6,H7,J5,J6,J7, " &
+			" K5,K6,K7,L5,L6,L7,M5,M6,M7,N4,N8), " &
+	"NC:		(A1,A5,B1,B4,B11,C1,C2,C10,D1,D10, " &
+			" E1,E10,F1,F10,G1,G10,H1,H3,H9,H10, " &
+			" J2,J11,K2,K11,L2,L11,M2,M11,N2,N5, " &
+			" N6,N7,N10,N11,P1,P2,P11,R2) ";
+
+      attribute TAP_SCAN_IN    of TDI : signal is true;
+      attribute TAP_SCAN_OUT   of TDO : signal is true;
+      attribute TAP_SCAN_MODE  of TMS : signal is true;
+      attribute TAP_SCAN_CLOCK of TCK : signal is (10.0e6, BOTH);
+
+      attribute INSTRUCTION_LENGTH of CY7C1372B : entity is 3;
+
+      attribute INSTRUCTION_OPCODE of CY7C1372B : entity is
+       "EXTEST      (000)," &
+       "IDCODE      (001)," &
+       "SAMPLE      (010)," &           -- Sample-Z
+       "SAMPLD      (100)," &           -- Sample/Preload
+       "BYPASS      (111) ";
+
+      attribute INSTRUCTION_CAPTURE of CY7C1372B: entity is "001";
+
+      attribute IDCODE_REGISTER of CY7C1372B : entity is
+       	"XXXX"		& -- Reserved for version number
+       	"01000"		& -- Defines the depth of the device
+		"00011"		& -- Defines the width of the device
+		"XXXXXX"		& -- Reserved for future use
+       	"00011100100"	& -- Manufacturer identity
+       	"1";			-- ID register Presence indicator
+
+
+      attribute REGISTER_ACCESS of CY7C1372B : entity is
+       "BOUNDARY    (EXTEST,SAMPLE,SAMPLD)," &
+       "BYPASS      (BYPASS)";
+
+      attribute BOUNDARY_LENGTH of CY7C1372B : entity is 51;
+
+      attribute BOUNDARY_REGISTER of CY7C1372B : entity is
+        "0     (BC_4, A(11),    input,    X)," &
+        "1     (BC_4, A(16),    input,    X)," &
+        "2     (BC_4, A(12),    input,    X)," &
+        "3     (BC_4, A(17),    input,    X)," &
+        "4     (BC_4, A(13),    input,    X)," &
+        "5     (BC_4, A(18),    input,    X)," &
+        "6     (BC_4, A(19),    input,    X)," &
+        "7     (BC_4, DQ_A(4),  input,    X)," &
+	  "8     (BC_4, DQ_A(5),  input,    X)," &
+        "9     (BC_4, DQ_A(6),  input,    X)," &
+        "10    (BC_4, DQ_A(7),  input,    X)," &
+        "11    (BC_4, *,        internal, X)," &
+        "12    (BC_4, DQ_A(3),  input,    X)," &
+        "13    (BC_4, DQ_A(2),  input,    X)," &
+        "14    (BC_4, DQ_A(1),  input,    X)," &
+        "15    (BC_4, DQ_A(0),  input,    X)," &
+        "16    (BC_4, DP_A,     input,    X)," &
+        "17    (BC_4, A(5),     input,    X)," &
+        "18    (BC_4, A(4),     input,    X)," &
+        "19    (BC_4, A(8),     input,    X)," &
+        "20    (BC_4, A(3),     input,    X)," &
+        "21    (BC_4, A(7),     input,    X)," &
+        "22    (BC_4, ADV_b,    input,    X)," &
+        "23    (BC_4, OE_b,     input,    X)," &
+        "24    (BC_4, CEN_b,    input,    X)," &
+        "25    (BC_4, WE_b,     input,    X)," &
+        "26    (BC_4, CLK,      input,    X)," &
+        "27    (BC_4, CE3_b,    input,    X)," &
+	  "28    (BC_4, BWS_A_b,  input,	X)," &
+	  "29    (BC_4, BWS_B_b,  input,	X)," &
+        "30    (BC_4, CE2,      input,    X)," &
+        "31    (BC_4, CE_b,     input,    X)," &
+        "32    (BC_4, A(2),     input,    X)," &
+        "33    (BC_4, A(6),     input,    X)," &
+	  "34    (BC_4, DQ_B(0),  input,    X)," &
+        "35    (BC_4, DQ_B(1),  input,    X)," &
+        "36    (BC_4, DQ_B(2),  input,    X)," &
+        "37    (BC_4, DQ_B(3),  input,    X)," &
+        "38    (BC_4, *,        internal, X)," &
+        "39    (BC_4, DQ_B(4),  input,    X)," &
+        "40    (BC_4, DQ_B(5),  input,    X)," &
+        "41    (BC_4, DQ_B(6),  input,    X)," &
+        "42    (BC_4, DQ_B(7),  input,    X)," &
+        "43    (BC_4, DP_B,     input,    X)," &
+        "44    (BC_4, MODE,     input,    X)," &
+        "45    (BC_4, A(9),     input,    X)," &
+        "46    (BC_4, A(14),    input,    X)," &
+        "47    (BC_4, A(10),    input,    X)," &
+        "48    (BC_4, A(15),    input,    X)," &
+	  "49    (BC_4, A(1),	  input,	X)," &
+	  "50    (BC_4, A(0),	  input,	X)";	
+
+end CY7C1372B;
+

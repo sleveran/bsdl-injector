@@ -1,0 +1,1216 @@
+--------------------------------------------------------------------------
+-- File Name     : MB86R12.bsdl
+-- Created by    : FUJITSU Semiconductor
+--
+-- File Revision : 1.00
+-- Date          : 2012/05/09
+-- Package       : 544pin BGA
+--
+--------------------------------------------------------------------------
+-- Note:
+--------------------------------------------------------------------------
+-- MB86R12 has two JTAG controllers which are selected by "JTAGSEL" pin.
+-- This BSDL file is used for JTAGSEL=1 only.
+--------------------------------------------------------------------------
+
+entity MB86R12 is
+
+  generic (PHYSICAL_PIN_MAP : string := "BGA544" );
+
+  port ( 
+           MEM_EA12:  inout bit; 
+           MEM_EA13:  inout bit; 
+           MEM_EA14:  inout bit; 
+           MEM_EA15:  inout bit; 
+           MEM_EA16:  inout bit; 
+           MEM_EA17:  inout bit; 
+           MEM_EA18:  inout bit; 
+           MEM_EA19:  inout bit; 
+           MEM_EA20:  inout bit; 
+           MEM_EA21:  inout bit; 
+           MEM_EA22:  inout bit; 
+           MEM_EA23:  inout bit; 
+           MEM_EA24:  inout bit; 
+           MEM_EA25:  inout bit; 
+           MEM_EA26:  inout bit; 
+           MEM_XRD:  inout bit; 
+           MEM_XWR0:  inout bit; 
+           MEM_RDY:  inout bit; 
+           MEM_ALE:  inout bit; 
+           MEM_CLK:  inout bit; 
+           MEM_CLE:  inout bit; 
+           MEM_XWR1:  inout bit; 
+           MEM_MNREX:  inout bit; 
+           MEM_MNWEX:  inout bit; 
+           MEM_XWR2:  inout bit; 
+           MEM_XWR3:  inout bit; 
+           MEM_ED16:  inout bit; 
+           MEM_ED17:  inout bit; 
+           MEM_ED18:  inout bit; 
+           MEM_ED19:  inout bit; 
+           MEM_ED20:  inout bit; 
+           MEM_ED21:  inout bit; 
+           MEM_ED22:  inout bit; 
+           MEM_ED23:  inout bit; 
+           MEM_ED24:  inout bit; 
+           MEM_ED25:  inout bit; 
+           MEM_ED26:  inout bit; 
+           MEM_ED27:  inout bit; 
+           MEM_ED28:  inout bit; 
+           MEM_ED29:  inout bit; 
+           MEM_ED30:  inout bit; 
+           MEM_ED31:  inout bit; 
+           DISP0G0:  linkage bit; 
+           DISP0G1:  linkage bit; 
+           DISP0G2:  linkage bit; 
+           DISP0G3:  linkage bit; 
+           DISP0G4:  linkage bit; 
+           DISP0G5:  linkage bit; 
+           DISP0G6:  linkage bit; 
+           DISP0G7:  linkage bit; 
+           DISP0R0:  linkage bit; 
+           DISP0R1:  linkage bit; 
+           DISP0R2:  linkage bit; 
+           DISP0R3:  linkage bit; 
+           DISP0R4:  linkage bit; 
+           DISP0R5:  linkage bit; 
+           DISP0R6:  linkage bit; 
+           DISP0R7:  linkage bit; 
+           DISP0B0:  linkage bit; 
+           DISP0B1:  linkage bit; 
+           DISP0B2:  linkage bit; 
+           DISP0B3:  linkage bit; 
+           DISP0B4:  linkage bit; 
+           DISP0B5:  linkage bit; 
+           DISP0B6:  linkage bit; 
+           DISP0B7:  linkage bit; 
+           DISP0CLKO:  linkage bit; 
+           DISP0CLKOX:  linkage bit; 
+           DISP0HSYNC:  inout bit; 
+           DISP0VSYNC:  inout bit; 
+           DISP0CSYNC:  inout bit; 
+           DISP0CLKI:  inout bit; 
+           DISP0DE:  inout bit; 
+           DISP0GV:  inout bit; 
+           USART0_SIN:  inout bit; 
+           USART0_SOUT:  inout bit; 
+           USART0_SCK:  inout bit; 
+           USART1_SOUT:  inout bit; 
+           USART1_SCK:  inout bit; 
+           USART1_SIN:  inout bit; 
+           USART2_SIN:  inout bit; 
+           USART2_SOUT:  inout bit; 
+           USART2_SCK:  inout bit; 
+           USART3_SIN:  inout bit; 
+           USART3_SOUT:  inout bit; 
+           USART3_SCK:  inout bit; 
+           USART4_SIN:  inout bit; 
+           USART4_SOUT:  inout bit; 
+           USART4_SCK:  inout bit; 
+           USART5_SIN:  inout bit; 
+           USART5_SOUT:  inout bit; 
+           USART5_SCK:  inout bit; 
+           PWM_O6:  inout bit; 
+           PWM_O7:  inout bit; 
+           PWM_O8:  inout bit; 
+           OSDCLK0:  inout bit; 
+           SD0CMD:  inout bit; 
+           SD0DAT0:  inout bit; 
+           SD0DAT1:  inout bit; 
+           SD0DAT2:  inout bit; 
+           SD0DAT3:  inout bit; 
+           ISD0CD:  inout bit; 
+           ISD0WP:  inout bit; 
+           I2S1_WS:  inout bit; 
+           I2S1_SDI:  inout bit; 
+           I2S1_SDO:  inout bit; 
+           I2S1_ECLK:  inout bit; 
+           I2S1_SCK:  inout bit; 
+           I2S0_SDI:  inout bit; 
+           I2S0_SDO:  inout bit; 
+           I2S0_ECLK:  inout bit; 
+           I2S0_SCK:  inout bit; 
+           I2S0_WS:  inout bit; 
+           DISP1VI_0:  inout bit; 
+           DISP1VI_1:  inout bit; 
+           DISP1VI_2:  inout bit; 
+           DISP1VI_3:  inout bit; 
+           DISP1VI_4:  inout bit; 
+           DISP1VI_5:  inout bit; 
+           DISP1VI_6:  inout bit; 
+           DISP1VI_7:  inout bit; 
+           DISP1CLK:  inout bit; 
+           AD_VRH0:  linkage bit; 
+           AD_VR0:  linkage bit; 
+           AD_VRL0:  linkage bit; 
+           AD_VIN0:  linkage bit; 
+           AD_VIN1:  linkage bit; 
+           AD_VRL1:  linkage bit; 
+           AD_VR1:  linkage bit; 
+           AD_VRH1:  linkage bit; 
+           CAP3CLK:  inout bit; 
+           CAP3VI_0:  inout bit; 
+           CAP3VI_1:  inout bit; 
+           CAP3VI_2:  inout bit; 
+           CAP3VI_3:  inout bit; 
+           CAP3VI_4:  inout bit; 
+           CAP3VI_5:  inout bit; 
+           CAP3VI_6:  inout bit; 
+           CAP3VI_7:  inout bit; 
+           CAP2VI_0:  inout bit; 
+           CAP2CLK:  inout bit; 
+           CAP2VI_1:  inout bit; 
+           CAP2VI_2:  inout bit; 
+           CAP2VI_3:  inout bit; 
+           CAP2VI_4:  inout bit; 
+           CAP2VI_5:  inout bit; 
+           CAP2VI_6:  inout bit; 
+           CAP2VI_7:  inout bit; 
+           CAP1CLK:  inout bit; 
+           CAP1VI_0:  inout bit; 
+           CAP1VI_1:  inout bit; 
+           CAP1VI_2:  inout bit; 
+           CAP1VI_3:  inout bit; 
+           CAP1VI_4:  inout bit; 
+           CAP1VI_5:  inout bit; 
+           CAP1VI_6:  inout bit; 
+           CAP1VI_7:  inout bit; 
+           CAP0CLK:  inout bit; 
+           CAP0R0:  inout bit; 
+           CAP0R1:  inout bit; 
+           CAP0R2:  inout bit; 
+           CAP0R3:  inout bit; 
+           CAP0R4:  inout bit; 
+           CAP0R5:  inout bit; 
+           CAP0R6:  inout bit; 
+           CAP0R7:  inout bit; 
+           CAP0G0:  inout bit; 
+           CAP0G1:  inout bit; 
+           CAP0G2:  inout bit; 
+           CAP0G3:  inout bit; 
+           CAP0G4:  inout bit; 
+           CAP0G5:  inout bit; 
+           CAP0G6:  inout bit; 
+           CAP0G7:  inout bit; 
+           CAP0B0:  inout bit; 
+           CAP0B1:  inout bit; 
+           CAP0B2:  inout bit; 
+           CAP0B3:  inout bit; 
+           CAP0B4:  inout bit; 
+           CAP0B5:  inout bit; 
+           CAP0B6:  inout bit; 
+           CAP0B7:  inout bit; 
+           CAP0VS:  inout bit; 
+           CAP0HS:  inout bit; 
+           CAP0FID:  inout bit; 
+           CAP0VAL:  inout bit; 
+           TCK:  in bit; 
+           XTRST:  in bit; 
+           XSRST:  inout bit; 
+           TDI:  in bit; 
+           TDO:  out bit; 
+           TMS:  in bit; 
+           MA0:  linkage bit; 
+           MA1:  linkage bit; 
+           MA2:  linkage bit; 
+           MA3:  linkage bit; 
+           MA4:  linkage bit; 
+           MA5:  linkage bit; 
+           MA6:  linkage bit; 
+           MA7:  linkage bit; 
+           MA8:  linkage bit; 
+           MA9:  linkage bit; 
+           MA10:  linkage bit; 
+           MA11:  linkage bit; 
+           MA12:  linkage bit; 
+           MA13:  linkage bit; 
+           MA14:  linkage bit; 
+           MBA0:  linkage bit; 
+           MBA1:  linkage bit; 
+           MBA2:  linkage bit; 
+           MXCS:  linkage bit; 
+           MCKE:  linkage bit; 
+           MXCAS:  linkage bit; 
+           MXRAS:  linkage bit; 
+           MXWE:  linkage bit; 
+           MXRESET:  linkage bit; 
+           MODT:  linkage bit; 
+           MDQ0:  linkage bit; 
+           MDQ1:  linkage bit; 
+           MDQ2:  linkage bit; 
+           MDQ3:  linkage bit; 
+           MDM0:  linkage bit; 
+           MDQS0:  linkage bit; 
+           MXDQS0:  linkage bit; 
+           MDQ4:  linkage bit; 
+           MDQ5:  linkage bit; 
+           MDQ6:  linkage bit; 
+           MDQ7:  linkage bit; 
+           MVREF0:  linkage bit; 
+           MDQ15:  linkage bit; 
+           MDQ14:  linkage bit; 
+           MDQ13:  linkage bit; 
+           MDQ12:  linkage bit; 
+           MXDQS1:  linkage bit; 
+           MDQS1:  linkage bit; 
+           MDM1:  linkage bit; 
+           MDQ11:  linkage bit; 
+           MDQ10:  linkage bit; 
+           MDQ9:  linkage bit; 
+           MDQ8:  linkage bit; 
+           MXCK:  linkage bit; 
+           MCK:  linkage bit; 
+           MVREF2:  linkage bit; 
+           MZQRES:  linkage bit; 
+           MDQ16:  linkage bit; 
+           MDQ17:  linkage bit; 
+           MDQ18:  linkage bit; 
+           MDQ19:  linkage bit; 
+           MDM2:  linkage bit; 
+           MDQS2:  linkage bit; 
+           MXDQS2:  linkage bit; 
+           MDQ20:  linkage bit; 
+           MDQ21:  linkage bit; 
+           MDQ22:  linkage bit; 
+           MDQ23:  linkage bit; 
+           MVREF1:  linkage bit; 
+           MDQ31:  linkage bit; 
+           MDQ30:  linkage bit; 
+           MDQ29:  linkage bit; 
+           MDQ28:  linkage bit; 
+           MXDQS3:  linkage bit; 
+           MDQS3:  linkage bit; 
+           MDM3:  linkage bit; 
+           MDQ27:  linkage bit; 
+           MDQ26:  linkage bit; 
+           MDQ25:  linkage bit; 
+           MDQ24:  linkage bit; 
+           TESTMODE:  in bit; 
+           MPXMODE0:  in bit; 
+           MPXMODE1:  in bit; 
+           MPXMODE2:  in bit; 
+           PSMODE:  in bit; 
+           JTAGSEL:  linkage bit; 
+           VPD:  linkage bit; 
+           XRST:  in bit; 
+           CRIPM0:  in bit; 
+           CRIPM1:  in bit; 
+           CRIPM2:  in bit; 
+           CRIPM3:  in bit; 
+           VINITHI:  in bit; 
+           CLKX0:  linkage bit; 
+           CLKX1:  linkage bit; 
+           PLLBYPASS:  in bit; 
+           INT_A0:  inout bit; 
+           INT_A1:  inout bit; 
+           INT_A2:  inout bit; 
+           SELFL:  inout bit; 
+           XTAL_XI:  linkage bit; 
+           XTAL_XO:  linkage bit; 
+           SDINRP:  linkage bit; 
+           VCM0:  linkage bit; 
+           SDINRM:  linkage bit; 
+           SDOUTRM:  linkage bit; 
+           SDOUTRP:  linkage bit; 
+           ATST:  linkage bit; 
+           VCM1:  linkage bit; 
+           SDINT2P:  linkage bit; 
+           SDINT2M:  linkage bit; 
+           SDOUTT2M:  linkage bit; 
+           SDOUTT2P:  linkage bit; 
+           SDINT1P:  linkage bit; 
+           SDINT1M:  linkage bit; 
+           SDOUTT1M:  linkage bit; 
+           SDOUTT1P:  linkage bit; 
+           SDINT0P:  linkage bit; 
+           SDINT0M:  linkage bit; 
+           SDOUTT0M:  linkage bit; 
+           SDOUTT0P:  linkage bit; 
+           INT_A4:  inout bit; 
+           INT_A5:  inout bit; 
+           INT_A6:  inout bit; 
+           INT_A7:  inout bit; 
+           I2C0_SCL:  linkage bit; 
+           I2C0_SDA:  linkage bit; 
+           I2C1_SCL:  linkage bit; 
+           I2C1_SDA:  linkage bit; 
+           MLB_DATA:  inout bit; 
+           MLB_SIG:  inout bit; 
+           MLB_CLK:  in bit; 
+           SPI0_DO:  out bit; 
+           SPI0_DI:  inout bit; 
+           SPI0_SCK:  out bit; 
+           SPI0_SS:  out bit; 
+           CAN0_TX:  inout bit; 
+           CAN0_RX:  in bit; 
+           CAN1_TX:  out bit; 
+           CAN1_RX:  in bit; 
+           MEM_ED0:  inout bit; 
+           MEM_ED1:  inout bit; 
+           MEM_ED2:  inout bit; 
+           MEM_ED3:  inout bit; 
+           MEM_ED4:  inout bit; 
+           MEM_ED5:  inout bit; 
+           MEM_ED6:  inout bit; 
+           MEM_ED7:  inout bit; 
+           MEM_ED8:  inout bit; 
+           MEM_ED9:  inout bit; 
+           MEM_ED10:  inout bit; 
+           MEM_ED11:  inout bit; 
+           MEM_ED12:  inout bit; 
+           MEM_ED13:  inout bit; 
+           MEM_ED14:  inout bit; 
+           MEM_ED15:  inout bit; 
+           MEM_XCS0:  inout bit; 
+           MEM_XCS1:  inout bit; 
+           MEM_XCS2:  inout bit; 
+           MEM_EA1:  inout bit; 
+           MEM_EA2:  inout bit; 
+           MEM_EA3:  inout bit; 
+           MEM_EA4:  inout bit; 
+           MEM_EA5:  inout bit; 
+           MEM_EA6:  inout bit; 
+           MEM_EA7:  inout bit; 
+           MEM_EA8:  inout bit; 
+           MEM_EA9:  inout bit; 
+           MEM_EA10:  inout bit; 
+           MEM_EA11:  inout bit; 
+--           VCC:  linkage bit_vector( 67 downto 0 ); 
+           VCC:  linkage bit_vector( 66 downto 0 ); 
+--           GND:  linkage bit_vector( 120 downto 0 ); 
+           GND:  linkage bit_vector( 119 downto 0 )
+  ); 
+
+  use STD_1149_1_1994.all;
+
+  attribute COMPONENT_CONFORMANCE of MB86R12 :
+    entity is "STD_1149_1_1993" ;
+
+  attribute PIN_MAP of MB86R12 :
+    entity is PHYSICAL_PIN_MAP ;
+
+  constant BGA544 :
+    PIN_MAP_STRING := 
+        "MEM_EA12:  F1," & 
+        "MEM_EA13:  G5," & 
+        "MEM_EA14:  G4," & 
+        "MEM_EA15:  G3," & 
+        "MEM_EA16:  G1," & 
+        "MEM_EA17:  H1," & 
+        "MEM_EA18:  H2," & 
+        "MEM_EA19:  H3," & 
+        "MEM_EA20:  H5," & 
+        "MEM_EA21:  H6," & 
+        "MEM_EA22:  H4," & 
+        "MEM_EA23:  J1," & 
+        "MEM_EA24:  J2," & 
+        "MEM_EA25:  J3," & 
+        "MEM_EA26:  J4," & 
+        "MEM_XRD:  J5," & 
+        "MEM_XWR0:  J6," & 
+        "MEM_RDY:  K1," & 
+        "MEM_ALE:  K3," & 
+        "MEM_CLK:  K4," & 
+        "MEM_CLE:  L1," & 
+        "MEM_XWR1:  K5," & 
+        "MEM_MNREX:  L2," & 
+        "MEM_MNWEX:  L3," & 
+        "MEM_XWR2:  M1," & 
+        "MEM_XWR3:  L4," & 
+        "MEM_ED16:  M2," & 
+        "MEM_ED17:  N1," & 
+        "MEM_ED18:  L5," & 
+        "MEM_ED19:  M3," & 
+        "MEM_ED20:  N2," & 
+        "MEM_ED21:  M4," & 
+        "MEM_ED22:  P1," & 
+        "MEM_ED23:  N3," & 
+        "MEM_ED24:  M5," & 
+        "MEM_ED25:  P2," & 
+        "MEM_ED26:  N4," & 
+        "MEM_ED27:  P3," & 
+        "MEM_ED28:  P4," & 
+        "MEM_ED29:  N5," & 
+        "MEM_ED30:  P5," & 
+        "MEM_ED31:  N6," & 
+        "DISP0G0:  R4," & 
+        "DISP0G1:  R3," & 
+        "DISP0G2:  R2," & 
+        "DISP0G3:  R1," & 
+        "DISP0G4:  T6," & 
+        "DISP0G5:  T5," & 
+        "DISP0G6:  T4," & 
+        "DISP0G7:  T3," & 
+        "DISP0R0:  T2," & 
+        "DISP0R1:  T1," & 
+        "DISP0R2:  U6," & 
+        "DISP0R3:  U5," & 
+        "DISP0R4:  U4," & 
+        "DISP0R5:  U3," & 
+        "DISP0R6:  U2," & 
+        "DISP0R7:  U1," & 
+        "DISP0B0:  V5," & 
+        "DISP0B1:  V4," & 
+        "DISP0B2:  V3," & 
+        "DISP0B3:  V2," & 
+        "DISP0B4:  W4," & 
+        "DISP0B5:  W3," & 
+        "DISP0B6:  W2," & 
+        "DISP0B7:  W1," & 
+        "DISP0CLKO:  Y1," & 
+        "DISP0CLKOX:  Y2," & 
+        "DISP0HSYNC:  W5," & 
+        "DISP0VSYNC:  Y3," & 
+        "DISP0CSYNC:  W6," & 
+        "DISP0CLKI:  AB1," & 
+        "DISP0DE:  Y4," & 
+        "DISP0GV:  AA2," & 
+        "USART0_SIN:  Y5," & 
+        "USART0_SOUT:  AA3," & 
+        "USART0_SCK:  AB2," & 
+        "USART1_SOUT:  AA4," & 
+        "USART1_SCK:  AC1," & 
+        "USART1_SIN:  AB3," & 
+        "USART2_SIN:  AA5," & 
+        "USART2_SOUT:  AC2," & 
+        "USART2_SCK:  AD1," & 
+        "USART3_SIN:  AB4," & 
+        "USART3_SOUT:  AC3," & 
+        "USART3_SCK:  AD2," & 
+        "USART4_SIN:  AE2," & 
+        "USART4_SOUT:  AF3," & 
+        "USART4_SCK:  AB5," & 
+        "USART5_SIN:  AC4," & 
+        "USART5_SOUT:  AD4," & 
+        "USART5_SCK:  AB6," & 
+        "PWM_O6:  AC5," & 
+        "PWM_O7:  AD3," & 
+        "PWM_O8:  AE4," & 
+        "OSDCLK0:  AD5," & 
+        "SD0CMD:  AC6," & 
+        "SD0DAT0:  AB7," & 
+        "SD0DAT1:  AA8," & 
+        "SD0DAT2:  AF4," & 
+        "SD0DAT3:  AE5," & 
+        "ISD0CD:  AD6," & 
+        "ISD0WP:  AC7," & 
+        "I2S1_WS:  AF5," & 
+        "I2S1_SDI:  AB8," & 
+        "I2S1_SDO:  AE6," & 
+        "I2S1_ECLK:  AD7," & 
+        "I2S1_SCK:  AF6," & 
+        "I2S0_SDI:  AC8," & 
+        "I2S0_SDO:  AE7," & 
+        "I2S0_ECLK:  AD8," & 
+        "I2S0_SCK:  AB9," & 
+        "I2S0_WS:  AF7," & 
+        "DISP1VI_0:  AE8," & 
+        "DISP1VI_1:  AC9," & 
+        "DISP1VI_2:  AD9," & 
+        "DISP1VI_3:  AF8," & 
+        "DISP1VI_4:  AB10," & 
+        "DISP1VI_5:  AE9," & 
+        "DISP1VI_6:  AC10," & 
+        "DISP1VI_7:  AD10," & 
+        "DISP1CLK:  AF9," & 
+        "AD_VRH0:  AB11," & 
+        "AD_VR0:  AE10," & 
+        "AD_VRL0:  AC11," & 
+        "AD_VIN0:  AD11," & 
+        "AD_VIN1:  AE11," & 
+        "AD_VRL1:  AB12," & 
+        "AD_VR1:  AC12," & 
+        "AD_VRH1:  AD12," & 
+        "CAP3CLK:  AF12," & 
+        "CAP3VI_0:  AE12," & 
+        "CAP3VI_1:  AF13," & 
+        "CAP3VI_2:  AB13," & 
+        "CAP3VI_3:  AC13," & 
+        "CAP3VI_4:  AD13," & 
+        "CAP3VI_5:  AE13," & 
+        "CAP3VI_6:  AF14," & 
+        "CAP3VI_7:  AE14," & 
+        "CAP2VI_0:  AD14," & 
+        "CAP2CLK:  AF15," & 
+        "CAP2VI_1:  AC14," & 
+        "CAP2VI_2:  AB14," & 
+        "CAP2VI_3:  AE15," & 
+        "CAP2VI_4:  AD15," & 
+        "CAP2VI_5:  AC15," & 
+        "CAP2VI_6:  AF16," & 
+        "CAP2VI_7:  AE16," & 
+        "CAP1CLK:  AF17," & 
+        "CAP1VI_0:  AB15," & 
+        "CAP1VI_1:  AD16," & 
+        "CAP1VI_2:  AC16," & 
+        "CAP1VI_3:  AE17," & 
+        "CAP1VI_4:  AB16," & 
+        "CAP1VI_5:  AD17," & 
+        "CAP1VI_6:  AF19," & 
+        "CAP1VI_7:  AE18," & 
+        "CAP0CLK:  AF21," & 
+        "CAP0R0:  AA16," & 
+        "CAP0R1:  AC17," & 
+        "CAP0R2:  AD18," & 
+        "CAP0R3:  AB17," & 
+        "CAP0R4:  AE19," & 
+        "CAP0R5:  AC18," & 
+        "CAP0R6:  AF20," & 
+        "CAP0R7:  AD19," & 
+        "CAP0G0:  AE20," & 
+        "CAP0G1:  AB18," & 
+        "CAP0G2:  AC19," & 
+        "CAP0G3:  AD20," & 
+        "CAP0G4:  AE21," & 
+        "CAP0G5:  AF22," & 
+        "CAP0G6:  AB19," & 
+        "CAP0G7:  AC20," & 
+        "CAP0B0:  AD21," & 
+        "CAP0B1:  AE22," & 
+        "CAP0B2:  AF23," & 
+        "CAP0B3:  AD22," & 
+        "CAP0B4:  AB20," & 
+        "CAP0B5:  AC21," & 
+        "CAP0B6:  AE23," & 
+        "CAP0B7:  AE24," & 
+        "CAP0VS:  AF24," & 
+        "CAP0HS:  AD23," & 
+        "CAP0FID:  AF25," & 
+        "CAP0VAL:  AC22," & 
+        "TCK:  AB21," & 
+        "XTRST:  AA20," & 
+        "XSRST:  AE25," & 
+        "TDI:  AD24," & 
+        "TDO:  AC23," & 
+        "TMS:  AB22," & 
+        "MA0:  AD25," & 
+        "MA1:  AE26," & 
+        "MA2:  AD26," & 
+        "MA3:  AC25," & 
+        "MA4:  AB24," & 
+        "MA5:  AA22," & 
+        "MA6:  AA23," & 
+        "MA7:  Y22," & 
+        "MA8:  AC26," & 
+        "MA9:  AB25," & 
+        "MA10:  AA24," & 
+        "MA11:  Y23," & 
+        "MA12:  AB26," & 
+        "MA13:  W22," & 
+        "MA14:  Y24," & 
+        "MBA0:  AA26," & 
+        "MBA1:  Y25," & 
+        "MBA2:  Y26," & 
+        "MXCS:  W24," & 
+        "MCKE:  V22," & 
+        "MXCAS:  W25," & 
+        "MXRAS:  V23," & 
+        "MXWE:  W26," & 
+        "MXRESET:  V26," & 
+        "MODT:  V25," & 
+        "MDQ0:  U22," & 
+        "MDQ1:  U23," & 
+        "MDQ2:  U24," & 
+        "MDQ3:  U25," & 
+        "MDM0:  T23," & 
+        "MDQS0:  T26," & 
+        "MXDQS0:  T25," & 
+        "MDQ4:  R24," & 
+        "MDQ5:  R22," & 
+        "MDQ6:  R23," & 
+        "MDQ7:  R26," & 
+        "MVREF0:  T22," & 
+        "MDQ15:  P25," & 
+        "MDQ14:  P22," & 
+        "MDQ13:  P23," & 
+        "MDQ12:  P24," & 
+        "MXDQS1:  N26," & 
+        "MDQS1:  N25," & 
+        "MDM1:  N23," & 
+        "MDQ11:  N22," & 
+        "MDQ10:  M24," & 
+        "MDQ9:  M23," & 
+        "MDQ8:  M22," & 
+        "MXCK:  L26," & 
+        "MCK:  L25," & 
+        "MVREF2:  L23," & 
+        "MZQRES:  L22," & 
+        "MDQ16:  K24," & 
+        "MDQ17:  J26," & 
+        "MDQ18:  K23," & 
+        "MDQ19:  J24," & 
+        "MDM2:  K22," & 
+        "MDQS2:  H26," & 
+        "MXDQS2:  H25," & 
+        "MDQ20:  J23," & 
+        "MDQ21:  J22," & 
+        "MDQ22:  H23," & 
+        "MDQ23:  G24," & 
+        "MVREF1:  F22," & 
+        "MDQ31:  H22," & 
+        "MDQ30:  G23," & 
+        "MDQ29:  G25," & 
+        "MDQ28:  G22," & 
+        "MXDQS3:  F26," & 
+        "MDQS3:  F25," & 
+        "MDM3:  F24," & 
+        "MDQ27:  E24," & 
+        "MDQ26:  F23," & 
+        "MDQ25:  C26," & 
+        "MDQ24:  D25," & 
+        "TESTMODE:  D24," & 
+        "MPXMODE0:  C25," & 
+        "MPXMODE1:  E22," & 
+        "MPXMODE2:  D23," & 
+        "PSMODE:  C24," & 
+        "JTAGSEL:  B25," & 
+        "VPD:  E21," & 
+        "XRST:  D22," & 
+        "CRIPM0:  C23," & 
+        "CRIPM1:  B24," & 
+        "CRIPM2:  A24," & 
+        "CRIPM3:  B23," & 
+        "VINITHI:  A23," & 
+        "CLKX0:  A21," & 
+        "CLKX1:  C21," & 
+        "PLLBYPASS:  B20," & 
+        "INT_A0:  E18," & 
+        "INT_A1:  C20," & 
+        "INT_A2:  B21," & 
+        "SELFL:  A20," & 
+        "XTAL_XI:  C18," & 
+        "XTAL_XO:  A19," & 
+        "SDINRP:  B16," & 
+        "VCM0:  A17," & 
+        "SDINRM:  A16," & 
+        "SDOUTRM:  D16," & 
+        "SDOUTRP:  E16," & 
+        "ATST:  C17," & 
+        "VCM1:  C15," & 
+        "SDINT2P:  E14," & 
+        "SDINT2M:  D14," & 
+        "SDOUTT2M:  A14," & 
+        "SDOUTT2P:  B14," & 
+        "SDINT1P:  E13," & 
+        "SDINT1M:  D13," & 
+        "SDOUTT1M:  A13," & 
+        "SDOUTT1P:  B13," & 
+        "SDINT0P:  E12," & 
+        "SDINT0M:  D12," & 
+        "SDOUTT0M:  A12," & 
+        "SDOUTT0P:  B12," & 
+        "INT_A4:  E10," & 
+        "INT_A5:  B10," & 
+        "INT_A6:  C10," & 
+        "INT_A7:  D10," & 
+        "I2C0_SCL:  A9," & 
+        "I2C0_SDA:  A8," & 
+        "I2C1_SCL:  C9," & 
+        "I2C1_SDA:  B9," & 
+        "MLB_DATA:  B8," & 
+        "MLB_SIG:  A7," & 
+        "MLB_CLK:  D9," & 
+        "SPI0_DO:  C8," & 
+        "SPI0_DI:  E9," & 
+        "SPI0_SCK:  A6," & 
+        "SPI0_SS:  A5," & 
+        "CAN0_TX:  B6," & 
+        "CAN0_RX:  B7," & 
+        "CAN1_TX:  C7," & 
+        "CAN1_RX:  D8," & 
+        "MEM_ED0:  A4," & 
+        "MEM_ED1:  B5," & 
+        "MEM_ED2:  C6," & 
+        "MEM_ED3:  D7," & 
+        "MEM_ED4:  A3," & 
+        "MEM_ED5:  E7," & 
+        "MEM_ED6:  B4," & 
+        "MEM_ED7:  C5," & 
+        "MEM_ED8:  D6," & 
+        "MEM_ED9:  B3," & 
+        "MEM_ED10:  E8," & 
+        "MEM_ED11:  C4," & 
+        "MEM_ED12:  B2," & 
+        "MEM_ED13:  D5," & 
+        "MEM_ED14:  C3," & 
+        "MEM_ED15:  E6," & 
+        "MEM_XCS0:  D4," & 
+        "MEM_XCS1:  C2," & 
+        "MEM_XCS2:  E5," & 
+        "MEM_EA1:  D3," & 
+        "MEM_EA2:  C1," & 
+        "MEM_EA3:  E4," & 
+        "MEM_EA4:  D1," & 
+        "MEM_EA5:  E3," & 
+        "MEM_EA6:  E2," & 
+        "MEM_EA7:  F5," & 
+        "MEM_EA8:  E1," & 
+        "MEM_EA9:  F4," & 
+        "MEM_EA10:  F3," & 
+        "MEM_EA11:  F2," & 
+        "VCC:  ( AF10,  A15,  A11,  M25,  K25,  E25,  B22,  B19,  B17, AC24," & 
+               "  V24,  T24,  N24,  H24,  C14,  C12,  D20,  D17,   R5,  E20," & 
+               "   G6,   K6,   M6,   V6,   Y6,  AA7,  AA9, AA11, AA13, AA15," & 
+               " AA17, AA19,  Y21,  W21,  U21,  T21,  P21,  N21,  L21,  K21," & 
+               "  H21,  G21,  F20,  F19,  F17,  F15,  F14,  F12,  F10,   F8," & 
+               "   F7,  L10,  N10,  P10,  T10,  U11,  U13,  U14,  U16,  T17," & 
+               "  P17,  N17,  L17,  K16,  K14,  K13,  K11 )," & 
+        "GND:  (   A1,   B1,   V1,  AA1,  AE1,  AF1,  AF2, AF11, AF18, AF26," & 
+               "  U26,  P26,  M26,  K26,  G26,  E26,  D26,  B26,  A26,  A25," & 
+               "  A22,  A18,  A10,   A2,   D2,   G2,   K2,  AE3, AA25,  R25," & 
+               "  J25,  B18,  B15,  B11,  L24,  C22,  C19,  C16,  C13,  C11," & 
+               " AB23,  W23,  E23,  D21,  D19,  D18,  D15,  D11,  E19,  E17," & 
+               "  E15,  E11,   F6,   L6,   R6,  AA6, AA10, AA12, AA14, AA18," & 
+               " AA21,  V21,  R21,  M21,  J21,  F21,  F18,  F16,  F13,  F11," & 
+               "   F9,  K10,  M10,  R10,  U10,  U12,  U15,  U17,  R17,  M17," & 
+               "  K17,  K15,  K12,  L11,  M11,  N11,  P11,  R11,  T11,  T12," & 
+               "  T13,  T14,  T15,  T16,  R16,  P16,  N16,  M16,  L16,  L15," & 
+               "  L14,  L13,  L12,  M12,  N12,  P12,  R12,  R13,  R14,  R15," & 
+               "  P15,  N15,  M15,  M14,  M13,  N13,  P13,  P14,  N14,   P6 )" ;
+
+  attribute TAP_SCAN_IN of TDI : signal is true ;
+  attribute TAP_SCAN_OUT of TDO : signal is true ;
+  attribute TAP_SCAN_MODE of TMS : signal is true ;
+  attribute TAP_SCAN_RESET of XTRST : signal is true ;
+  attribute TAP_SCAN_CLOCK of TCK : signal is (20.0e6, BOTH) ;
+
+  attribute INSTRUCTION_LENGTH of MB86R12 : entity is 5 ; 
+
+  attribute INSTRUCTION_OPCODE of MB86R12 : entity is
+        "BYPASS(11111) , " & 
+        "EXTEST(00000) , " & 
+        "SAMPLE(00001) , " & 
+        "IDCODE(00010) " ; 
+
+  attribute INSTRUCTION_CAPTURE of MB86R12 : entity is "XXX01" ;
+
+  attribute IDCODE_REGISTER of MB86R12 : entity is
+        "0000" &               -- Version
+        "1111000101000001" &   -- Part number
+        "00000000100" &        -- Identity of the manufacturer
+        "1" ;                  -- Required by IEEE std 1149.1-1990
+
+  attribute BOUNDARY_LENGTH of MB86R12 : entity is 417 ;
+
+  attribute BOUNDARY_REGISTER of MB86R12 : entity is
+        -- num    cell       port      func  safe [ccell disval rslt]
+         " 416 (  BC_4,  TESTMODE,OBSERVE_ONLY,  X  )," & 
+         " 415 (  BC_4,  MPXMODE0,OBSERVE_ONLY,  X  )," & 
+         " 414 (  BC_4,  MPXMODE1,OBSERVE_ONLY,  X  )," & 
+         " 413 (  BC_4,  MPXMODE2,OBSERVE_ONLY,  X  )," & 
+         " 412 (  BC_4,    PSMODE,OBSERVE_ONLY,  X  )," & 
+         " 411 (  BC_4,      XRST,OBSERVE_ONLY,  X  )," & 
+         " 410 (  BC_4,    CRIPM0,OBSERVE_ONLY,  X  )," & 
+         " 409 (  BC_4,    CRIPM1,OBSERVE_ONLY,  X  )," & 
+         " 408 (  BC_4,    CRIPM2,OBSERVE_ONLY,  X  )," & 
+         " 407 (  BC_4,    CRIPM3,OBSERVE_ONLY,  X  )," & 
+         " 406 (  BC_4,   VINITHI,OBSERVE_ONLY,  X  )," & 
+         " 405 (  BC_4, PLLBYPASS,OBSERVE_ONLY,  X  )," & 
+         " 404 (  BC_7,    INT_A0,    BIDIR,  X,   403,   1,   Z)," & 
+         " 403 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 402 (  BC_7,    INT_A1,    BIDIR,  X,   401,   1,   Z)," & 
+         " 401 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 400 (  BC_7,    INT_A2,    BIDIR,  X,   399,   1,   Z)," & 
+         " 399 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 398 (  BC_7,     SELFL,    BIDIR,  X,   397,   1,   Z)," & 
+         " 397 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 396 (  BC_7,    INT_A4,    BIDIR,  X,   395,   1,   Z)," & 
+         " 395 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 394 (  BC_7,    INT_A5,    BIDIR,  X,   393,   1,   Z)," & 
+         " 393 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 392 (  BC_7,    INT_A6,    BIDIR,  X,   391,   1,   Z)," & 
+         " 391 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 390 (  BC_7,    INT_A7,    BIDIR,  X,   389,   1,   Z)," & 
+         " 389 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 388 (  BC_7,  MLB_DATA,    BIDIR,  X,   387,   1,   Z)," & 
+         " 387 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 386 (  BC_7,   MLB_SIG,    BIDIR,  X,   385,   1,   Z)," & 
+         " 385 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 384 (  BC_4,   MLB_CLK,OBSERVE_ONLY,  X  )," & 
+         " 383 (  BC_1,   SPI0_DO,  OUTPUT2,  X  )," & 
+         " 382 (  BC_7,   SPI0_DI,    BIDIR,  X,   381,   1,   PULL1)," & 
+         " 381 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 380 (  BC_1,  SPI0_SCK,  OUTPUT2,  X  )," & 
+         " 379 (  BC_1,   SPI0_SS,  OUTPUT2,  X  )," & 
+         " 378 (  BC_7,   CAN0_TX,    BIDIR,  X,   377,   1,   PULL1)," & 
+         " 377 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 376 (  BC_4,   CAN0_RX,OBSERVE_ONLY,  X  )," & 
+         " 375 (  BC_1,   CAN1_TX,  OUTPUT2,  X  )," & 
+         " 374 (  BC_1,   CAN1_RX,    INPUT,  X  )," & 
+         " 373 (  BC_7,   MEM_ED0,    BIDIR,  X,   372,   1,   Z)," & 
+         " 372 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 371 (  BC_7,   MEM_ED1,    BIDIR,  X,   370,   1,   Z)," & 
+         " 370 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 369 (  BC_7,   MEM_ED2,    BIDIR,  X,   368,   1,   Z)," & 
+         " 368 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 367 (  BC_7,   MEM_ED3,    BIDIR,  X,   366,   1,   Z)," & 
+         " 366 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 365 (  BC_7,   MEM_ED4,    BIDIR,  X,   364,   1,   Z)," & 
+         " 364 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 363 (  BC_7,   MEM_ED5,    BIDIR,  X,   362,   1,   Z)," & 
+         " 362 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 361 (  BC_7,   MEM_ED6,    BIDIR,  X,   360,   1,   Z)," & 
+         " 360 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 359 (  BC_7,   MEM_ED7,    BIDIR,  X,   358,   1,   Z)," & 
+         " 358 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 357 (  BC_7,   MEM_ED8,    BIDIR,  X,   356,   1,   Z)," & 
+         " 356 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 355 (  BC_7,   MEM_ED9,    BIDIR,  X,   354,   1,   Z)," & 
+         " 354 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 353 (  BC_7,  MEM_ED10,    BIDIR,  X,   352,   1,   Z)," & 
+         " 352 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 351 (  BC_7,  MEM_ED11,    BIDIR,  X,   350,   1,   Z)," & 
+         " 350 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 349 (  BC_7,  MEM_ED12,    BIDIR,  X,   348,   1,   Z)," & 
+         " 348 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 347 (  BC_7,  MEM_ED13,    BIDIR,  X,   346,   1,   Z)," & 
+         " 346 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 345 (  BC_7,  MEM_ED14,    BIDIR,  X,   344,   1,   Z)," & 
+         " 344 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 343 (  BC_7,  MEM_ED15,    BIDIR,  X,   342,   1,   Z)," & 
+         " 342 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 341 (  BC_7,  MEM_XCS0,    BIDIR,  X,   340,   1,   Z)," & 
+         " 340 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 339 (  BC_7,  MEM_XCS1,    BIDIR,  X,   338,   1,   Z)," & 
+         " 338 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 337 (  BC_7,  MEM_XCS2,    BIDIR,  X,   336,   1,   Z)," & 
+         " 336 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 335 (  BC_7,   MEM_EA1,    BIDIR,  X,   334,   1,   Z)," & 
+         " 334 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 333 (  BC_7,   MEM_EA2,    BIDIR,  X,   332,   1,   Z)," & 
+         " 332 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 331 (  BC_7,   MEM_EA3,    BIDIR,  X,   330,   1,   Z)," & 
+         " 330 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 329 (  BC_7,   MEM_EA4,    BIDIR,  X,   328,   1,   Z)," & 
+         " 328 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 327 (  BC_7,   MEM_EA5,    BIDIR,  X,   326,   1,   Z)," & 
+         " 326 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 325 (  BC_7,   MEM_EA6,    BIDIR,  X,   324,   1,   Z)," & 
+         " 324 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 323 (  BC_7,   MEM_EA7,    BIDIR,  X,   322,   1,   Z)," & 
+         " 322 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 321 (  BC_7,   MEM_EA8,    BIDIR,  X,   320,   1,   Z)," & 
+         " 320 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 319 (  BC_7,   MEM_EA9,    BIDIR,  X,   318,   1,   Z)," & 
+         " 318 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 317 (  BC_7,  MEM_EA10,    BIDIR,  X,   316,   1,   Z)," & 
+         " 316 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 315 (  BC_7,  MEM_EA11,    BIDIR,  X,   314,   1,   Z)," & 
+         " 314 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 313 (  BC_7,  MEM_EA12,    BIDIR,  X,   312,   1,   Z)," & 
+         " 312 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 311 (  BC_7,  MEM_EA13,    BIDIR,  X,   310,   1,   Z)," & 
+         " 310 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 309 (  BC_7,  MEM_EA14,    BIDIR,  X,   308,   1,   Z)," & 
+         " 308 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 307 (  BC_7,  MEM_EA15,    BIDIR,  X,   306,   1,   Z)," & 
+         " 306 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 305 (  BC_7,  MEM_EA16,    BIDIR,  X,   304,   1,   Z)," & 
+         " 304 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 303 (  BC_7,  MEM_EA17,    BIDIR,  X,   302,   1,   Z)," & 
+         " 302 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 301 (  BC_7,  MEM_EA18,    BIDIR,  X,   300,   1,   Z)," & 
+         " 300 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 299 (  BC_7,  MEM_EA19,    BIDIR,  X,   298,   1,   Z)," & 
+         " 298 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 297 (  BC_7,  MEM_EA20,    BIDIR,  X,   296,   1,   Z)," & 
+         " 296 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 295 (  BC_7,  MEM_EA21,    BIDIR,  X,   294,   1,   Z)," & 
+         " 294 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 293 (  BC_7,  MEM_EA22,    BIDIR,  X,   292,   1,   Z)," & 
+         " 292 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 291 (  BC_7,  MEM_EA23,    BIDIR,  X,   290,   1,   Z)," & 
+         " 290 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 289 (  BC_7,  MEM_EA24,    BIDIR,  X,   288,   1,   Z)," & 
+         " 288 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 287 (  BC_7,  MEM_EA25,    BIDIR,  X,   286,   1,   Z)," & 
+         " 286 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 285 (  BC_7,  MEM_EA26,    BIDIR,  X,   284,   1,   Z)," & 
+         " 284 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 283 (  BC_7,   MEM_XRD,    BIDIR,  X,   282,   1,   Z)," & 
+         " 282 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 281 (  BC_7,  MEM_XWR0,    BIDIR,  X,   280,   1,   Z)," & 
+         " 280 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 279 (  BC_7,   MEM_RDY,    BIDIR,  X,   278,   1,   Z)," & 
+         " 278 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 277 (  BC_7,   MEM_ALE,    BIDIR,  X,   276,   1,   Z)," & 
+         " 276 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 275 (  BC_7,   MEM_CLK,    BIDIR,  X,   274,   1,   Z)," & 
+         " 274 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 273 (  BC_7,   MEM_CLE,    BIDIR,  X,   272,   1,   Z)," & 
+         " 272 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 271 (  BC_7,  MEM_XWR1,    BIDIR,  X,   270,   1,   Z)," & 
+         " 270 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 269 (  BC_7, MEM_MNREX,    BIDIR,  X,   268,   1,   Z)," & 
+         " 268 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 267 (  BC_7, MEM_MNWEX,    BIDIR,  X,   266,   1,   Z)," & 
+         " 266 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 265 (  BC_7,  MEM_XWR2,    BIDIR,  X,   264,   1,   Z)," & 
+         " 264 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 263 (  BC_7,  MEM_XWR3,    BIDIR,  X,   262,   1,   Z)," & 
+         " 262 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 261 (  BC_7,  MEM_ED16,    BIDIR,  X,   260,   1,   Z)," & 
+         " 260 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 259 (  BC_7,  MEM_ED17,    BIDIR,  X,   258,   1,   Z)," & 
+         " 258 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 257 (  BC_7,  MEM_ED18,    BIDIR,  X,   256,   1,   Z)," & 
+         " 256 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 255 (  BC_7,  MEM_ED19,    BIDIR,  X,   254,   1,   Z)," & 
+         " 254 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 253 (  BC_7,  MEM_ED20,    BIDIR,  X,   252,   1,   Z)," & 
+         " 252 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 251 (  BC_7,  MEM_ED21,    BIDIR,  X,   250,   1,   Z)," & 
+         " 250 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 249 (  BC_7,  MEM_ED22,    BIDIR,  X,   248,   1,   Z)," & 
+         " 248 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 247 (  BC_7,  MEM_ED23,    BIDIR,  X,   246,   1,   Z)," & 
+         " 246 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 245 (  BC_7,  MEM_ED24,    BIDIR,  X,   244,   1,   Z)," & 
+         " 244 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 243 (  BC_7,  MEM_ED25,    BIDIR,  X,   242,   1,   Z)," & 
+         " 242 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 241 (  BC_7,  MEM_ED26,    BIDIR,  X,   240,   1,   Z)," & 
+         " 240 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 239 (  BC_7,  MEM_ED27,    BIDIR,  X,   238,   1,   Z)," & 
+         " 238 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 237 (  BC_7,  MEM_ED28,    BIDIR,  X,   236,   1,   Z)," & 
+         " 236 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 235 (  BC_7,  MEM_ED29,    BIDIR,  X,   234,   1,   Z)," & 
+         " 234 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 233 (  BC_7,  MEM_ED30,    BIDIR,  X,   232,   1,   Z)," & 
+         " 232 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 231 (  BC_7,  MEM_ED31,    BIDIR,  X,   230,   1,   Z)," & 
+         " 230 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 229 (  BC_1,         *, INTERNAL,  X  )," & 
+         " 228 (  BC_1,         *, INTERNAL,  X  )," & 
+         " 227 (  BC_4,         *, INTERNAL,  X  )," & 
+         " 226 (  BC_4,         *, INTERNAL,  X  )," & 
+         " 225 (  BC_1,         *, INTERNAL,  X  )," & 
+         " 224 (  BC_4,         *, INTERNAL,  X  )," & 
+         " 223 (  BC_4,         *, INTERNAL,  X  )," & 
+         " 222 (  BC_1,         *, INTERNAL,  X  )," & 
+         " 221 (  BC_7,DISP0HSYNC,    BIDIR,  X,   220,   1,   PULL1)," & 
+         " 220 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 219 (  BC_7,DISP0VSYNC,    BIDIR,  X,   218,   1,   PULL1)," & 
+         " 218 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 217 (  BC_7,DISP0CSYNC,    BIDIR,  X,   216,   1,   PULL1)," & 
+         " 216 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 215 (  BC_7, DISP0CLKI,    BIDIR,  X,   214,   1,   PULL1)," & 
+         " 214 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 213 (  BC_7,   DISP0DE,    BIDIR,  X,   212,   1,   PULL1)," & 
+         " 212 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 211 (  BC_7,   DISP0GV,    BIDIR,  X,   210,   1,   PULL1)," & 
+         " 210 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 209 (  BC_7,USART0_SIN,    BIDIR,  X,   208,   1,   PULL1)," & 
+         " 208 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 207 (  BC_7,USART0_SOUT,    BIDIR,  X,   206,   1,   PULL1)," & 
+         " 206 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 205 (  BC_7,USART0_SCK,    BIDIR,  X,   204,   1,   PULL1)," & 
+         " 204 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 203 (  BC_7,USART1_SOUT,    BIDIR,  X,   202,   1,   PULL1)," & 
+         " 202 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 201 (  BC_7,USART1_SCK,    BIDIR,  X,   200,   1,   PULL1)," & 
+         " 200 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 199 (  BC_7,USART1_SIN,    BIDIR,  X,   198,   1,   PULL1)," & 
+         " 198 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 197 (  BC_7,USART2_SIN,    BIDIR,  X,   196,   1,   PULL1)," & 
+         " 196 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 195 (  BC_7,USART2_SOUT,    BIDIR,  X,   194,   1,   PULL1)," & 
+         " 194 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 193 (  BC_7,USART2_SCK,    BIDIR,  X,   192,   1,   PULL1)," & 
+         " 192 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 191 (  BC_7,USART3_SIN,    BIDIR,  X,   190,   1,   PULL1)," & 
+         " 190 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 189 (  BC_7,USART3_SOUT,    BIDIR,  X,   188,   1,   PULL1)," & 
+         " 188 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 187 (  BC_7,USART3_SCK,    BIDIR,  X,   186,   1,   PULL1)," & 
+         " 186 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 185 (  BC_7,USART4_SIN,    BIDIR,  X,   184,   1,   Z)," & 
+         " 184 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 183 (  BC_7,USART4_SOUT,    BIDIR,  X,   182,   1,   Z)," & 
+         " 182 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 181 (  BC_7,USART4_SCK,    BIDIR,  X,   180,   1,   Z)," & 
+         " 180 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 179 (  BC_7,USART5_SIN,    BIDIR,  X,   178,   1,   Z)," & 
+         " 178 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 177 (  BC_7,USART5_SOUT,    BIDIR,  X,   176,   1,   Z)," & 
+         " 176 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 175 (  BC_7,USART5_SCK,    BIDIR,  X,   174,   1,   Z)," & 
+         " 174 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 173 (  BC_7,    PWM_O6,    BIDIR,  X,   172,   1,   Z)," & 
+         " 172 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 171 (  BC_7,    PWM_O7,    BIDIR,  X,   170,   1,   Z)," & 
+         " 170 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 169 (  BC_7,    PWM_O8,    BIDIR,  X,   168,   1,   Z)," & 
+         " 168 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 167 (  BC_7,   OSDCLK0,    BIDIR,  X,   166,   1,   Z)," & 
+         " 166 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 165 (  BC_7,    SD0CMD,    BIDIR,  X,   164,   1,   Z)," & 
+         " 164 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 163 (  BC_7,   SD0DAT0,    BIDIR,  X,   162,   1,   Z)," & 
+         " 162 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 161 (  BC_7,   SD0DAT1,    BIDIR,  X,   160,   1,   Z)," & 
+         " 160 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 159 (  BC_7,   SD0DAT2,    BIDIR,  X,   158,   1,   Z)," & 
+         " 158 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 157 (  BC_7,   SD0DAT3,    BIDIR,  X,   156,   1,   Z)," & 
+         " 156 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 155 (  BC_7,    ISD0CD,    BIDIR,  X,   154,   1,   Z)," & 
+         " 154 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 153 (  BC_7,    ISD0WP,    BIDIR,  X,   152,   1,   Z)," & 
+         " 152 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 151 (  BC_7,   I2S1_WS,    BIDIR,  X,   150,   1,   Z)," & 
+         " 150 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 149 (  BC_7,  I2S1_SDI,    BIDIR,  X,   148,   1,   Z)," & 
+         " 148 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 147 (  BC_7,  I2S1_SDO,    BIDIR,  X,   146,   1,   Z)," & 
+         " 146 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 145 (  BC_7, I2S1_ECLK,    BIDIR,  X,   144,   1,   Z)," & 
+         " 144 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 143 (  BC_7,  I2S1_SCK,    BIDIR,  X,   142,   1,   Z)," & 
+         " 142 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 141 (  BC_7,  I2S0_SDI,    BIDIR,  X,   140,   1,   Z)," & 
+         " 140 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 139 (  BC_7,  I2S0_SDO,    BIDIR,  X,   138,   1,   Z)," & 
+         " 138 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 137 (  BC_7, I2S0_ECLK,    BIDIR,  X,   136,   1,   Z)," & 
+         " 136 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 135 (  BC_7,  I2S0_SCK,    BIDIR,  X,   134,   1,   Z)," & 
+         " 134 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 133 (  BC_7,   I2S0_WS,    BIDIR,  X,   132,   1,   Z)," & 
+         " 132 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 131 (  BC_7, DISP1VI_0,    BIDIR,  X,   130,   1,   Z)," & 
+         " 130 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 129 (  BC_7, DISP1VI_1,    BIDIR,  X,   128,   1,   Z)," & 
+         " 128 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 127 (  BC_7, DISP1VI_2,    BIDIR,  X,   126,   1,   Z)," & 
+         " 126 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 125 (  BC_7, DISP1VI_3,    BIDIR,  X,   124,   1,   Z)," & 
+         " 124 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 123 (  BC_7, DISP1VI_4,    BIDIR,  X,   122,   1,   Z)," & 
+         " 122 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 121 (  BC_7, DISP1VI_5,    BIDIR,  X,   120,   1,   Z)," & 
+         " 120 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 119 (  BC_7, DISP1VI_6,    BIDIR,  X,   118,   1,   Z)," & 
+         " 118 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 117 (  BC_7, DISP1VI_7,    BIDIR,  X,   116,   1,   Z)," & 
+         " 116 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 115 (  BC_7,  DISP1CLK,    BIDIR,  X,   114,   1,   Z)," & 
+         " 114 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 113 (  BC_7,   CAP3CLK,    BIDIR,  X,   112,   1,   Z)," & 
+         " 112 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 111 (  BC_7,  CAP3VI_0,    BIDIR,  X,   110,   1,   Z)," & 
+         " 110 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 109 (  BC_7,  CAP3VI_1,    BIDIR,  X,   108,   1,   Z)," & 
+         " 108 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 107 (  BC_7,  CAP3VI_2,    BIDIR,  X,   106,   1,   Z)," & 
+         " 106 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 105 (  BC_7,  CAP3VI_3,    BIDIR,  X,   104,   1,   Z)," & 
+         " 104 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 103 (  BC_7,  CAP3VI_4,    BIDIR,  X,   102,   1,   Z)," & 
+         " 102 (  BC_2,         *, CONTROLR,  1  )," & 
+         " 101 (  BC_7,  CAP3VI_5,    BIDIR,  X,   100,   1,   Z)," & 
+         " 100 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  99 (  BC_7,  CAP3VI_6,    BIDIR,  X,   98,   1,   Z)," & 
+         "  98 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  97 (  BC_7,  CAP3VI_7,    BIDIR,  X,   96,   1,   Z)," & 
+         "  96 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  95 (  BC_7,  CAP2VI_0,    BIDIR,  X,   94,   1,   Z)," & 
+         "  94 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  93 (  BC_7,   CAP2CLK,    BIDIR,  X,   92,   1,   Z)," & 
+         "  92 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  91 (  BC_7,  CAP2VI_1,    BIDIR,  X,   90,   1,   Z)," & 
+         "  90 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  89 (  BC_7,  CAP2VI_2,    BIDIR,  X,   88,   1,   Z)," & 
+         "  88 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  87 (  BC_7,  CAP2VI_3,    BIDIR,  X,   86,   1,   Z)," & 
+         "  86 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  85 (  BC_7,  CAP2VI_4,    BIDIR,  X,   84,   1,   Z)," & 
+         "  84 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  83 (  BC_7,  CAP2VI_5,    BIDIR,  X,   82,   1,   Z)," & 
+         "  82 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  81 (  BC_7,  CAP2VI_6,    BIDIR,  X,   80,   1,   Z)," & 
+         "  80 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  79 (  BC_7,  CAP2VI_7,    BIDIR,  X,   78,   1,   Z)," & 
+         "  78 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  77 (  BC_7,   CAP1CLK,    BIDIR,  X,   76,   1,   Z)," & 
+         "  76 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  75 (  BC_7,  CAP1VI_0,    BIDIR,  X,   74,   1,   Z)," & 
+         "  74 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  73 (  BC_7,  CAP1VI_1,    BIDIR,  X,   72,   1,   Z)," & 
+         "  72 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  71 (  BC_7,  CAP1VI_2,    BIDIR,  X,   70,   1,   Z)," & 
+         "  70 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  69 (  BC_7,  CAP1VI_3,    BIDIR,  X,   68,   1,   Z)," & 
+         "  68 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  67 (  BC_7,  CAP1VI_4,    BIDIR,  X,   66,   1,   Z)," & 
+         "  66 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  65 (  BC_7,  CAP1VI_5,    BIDIR,  X,   64,   1,   Z)," & 
+         "  64 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  63 (  BC_7,  CAP1VI_6,    BIDIR,  X,   62,   1,   Z)," & 
+         "  62 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  61 (  BC_7,  CAP1VI_7,    BIDIR,  X,   60,   1,   Z)," & 
+         "  60 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  59 (  BC_7,   CAP0CLK,    BIDIR,  X,   58,   1,   PULL1)," & 
+         "  58 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  57 (  BC_7,    CAP0R0,    BIDIR,  X,   56,   1,   PULL1)," & 
+         "  56 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  55 (  BC_7,    CAP0R1,    BIDIR,  X,   54,   1,   PULL1)," & 
+         "  54 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  53 (  BC_7,    CAP0R2,    BIDIR,  X,   52,   1,   PULL1)," & 
+         "  52 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  51 (  BC_7,    CAP0R3,    BIDIR,  X,   50,   1,   PULL1)," & 
+         "  50 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  49 (  BC_7,    CAP0R4,    BIDIR,  X,   48,   1,   PULL1)," & 
+         "  48 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  47 (  BC_7,    CAP0R5,    BIDIR,  X,   46,   1,   PULL1)," & 
+         "  46 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  45 (  BC_7,    CAP0R6,    BIDIR,  X,   44,   1,   PULL1)," & 
+         "  44 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  43 (  BC_7,    CAP0R7,    BIDIR,  X,   42,   1,   PULL1)," & 
+         "  42 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  41 (  BC_7,    CAP0G0,    BIDIR,  X,   40,   1,   PULL1)," & 
+         "  40 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  39 (  BC_7,    CAP0G1,    BIDIR,  X,   38,   1,   PULL1)," & 
+         "  38 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  37 (  BC_7,    CAP0G2,    BIDIR,  X,   36,   1,   PULL1)," & 
+         "  36 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  35 (  BC_7,    CAP0G3,    BIDIR,  X,   34,   1,   PULL1)," & 
+         "  34 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  33 (  BC_7,    CAP0G4,    BIDIR,  X,   32,   1,   PULL1)," & 
+         "  32 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  31 (  BC_7,    CAP0G5,    BIDIR,  X,   30,   1,   PULL1)," & 
+         "  30 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  29 (  BC_7,    CAP0G6,    BIDIR,  X,   28,   1,   PULL1)," & 
+         "  28 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  27 (  BC_7,    CAP0G7,    BIDIR,  X,   26,   1,   PULL1)," & 
+         "  26 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  25 (  BC_7,    CAP0B0,    BIDIR,  X,   24,   1,   PULL1)," & 
+         "  24 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  23 (  BC_7,    CAP0B1,    BIDIR,  X,   22,   1,   PULL1)," & 
+         "  22 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  21 (  BC_7,    CAP0B2,    BIDIR,  X,   20,   1,   PULL1)," & 
+         "  20 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  19 (  BC_7,    CAP0B3,    BIDIR,  X,   18,   1,   PULL1)," & 
+         "  18 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  17 (  BC_7,    CAP0B4,    BIDIR,  X,   16,   1,   PULL1)," & 
+         "  16 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  15 (  BC_7,    CAP0B5,    BIDIR,  X,   14,   1,   PULL1)," & 
+         "  14 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  13 (  BC_7,    CAP0B6,    BIDIR,  X,   12,   1,   PULL1)," & 
+         "  12 (  BC_2,         *, CONTROLR,  1  )," & 
+         "  11 (  BC_7,    CAP0B7,    BIDIR,  X,   10,   1,   PULL1)," & 
+         "  10 (  BC_2,         *, CONTROLR,  1  )," & 
+         "   9 (  BC_7,    CAP0VS,    BIDIR,  X,   8,   1,   PULL1)," & 
+         "   8 (  BC_2,         *, CONTROLR,  1  )," & 
+         "   7 (  BC_7,    CAP0HS,    BIDIR,  X,   6,   1,   PULL1)," & 
+         "   6 (  BC_2,         *, CONTROLR,  1  )," & 
+         "   5 (  BC_7,   CAP0FID,    BIDIR,  X,   4,   1,   PULL1)," & 
+         "   4 (  BC_2,         *, CONTROLR,  1  )," & 
+         "   3 (  BC_7,   CAP0VAL,    BIDIR,  X,   2,   1,   PULL1)," & 
+         "   2 (  BC_2,         *, CONTROLR,  1  )," & 
+         "   1 (  BC_7,     XSRST,    BIDIR,  X,   0,   1,   PULL1)," & 
+         "   0 (  BC_2,         *, CONTROLR,  1  ) " ; 
+
+end MB86R12;
+

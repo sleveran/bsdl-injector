@@ -1,0 +1,927 @@
+-- ========================================================================
+--	Symbios Logic Inc. Confidential
+--
+--	Boundary Scan Description File (BSDL)
+--
+--	Product:	53C876QS
+--
+--	Version:	1.0
+--
+--	Author:	        Kevin Guy	
+--	Date Created:   10/16/96	
+--
+-- =======================================================================
+-- IMPORTANT NOTICE
+-- This information is provided on an AS IS basis without a warranty of any kind.
+--
+-- IN NO EVENT SHALL SYMBIOS LOGIC BE LIABLE FOR INDIRECT, INCIDENTAL,
+-- CONSEQUENTIAL OR PUNITIVE DAMAGES ARISING FROM USE OF THIS
+-- INFORMATION. THIS DISCLAIMER OF WARRANTY EXTENDS TO THE USER OF THE
+-- INFORMATION, AND TO THEIR CUSTOMERS  OR USERS OF PRODUCTS AND IS IN
+-- LIEU OF ALL WARRANTIES WHETHER EXPRESS, IMPLIED, OR STATUTORY,
+-- INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
+-- PARTICULAR PURPOSE
+--
+-- SYMBIOS LOGIC does not represent or warrant that the information
+-- furnished hereunder is free of infringement of any third party
+-- patents, copyrights, trade secrets, or other intellectual property
+-- rights.   SYMBIOS LOGIC does not represent or warrant that the
+-- information is free of defect or omissions, or that it meets any
+-- particular standard, requirements or need of the user of the
+-- information or their customers
+--
+-- SYMBIOS LOGIC reserves the right to change the information in this
+-- file without notice.
+--
+-- =======================================================================
+--	Revision Control:
+--
+--	Version:	Date		Reason for Change
+--
+--	1.0	 	4/28/95		Initial Version
+--
+-- ======================================================================
+
+
+ENTITY SYM_53C876QS IS
+
+
+generic(PHYSICAL_PIN_MAP : string := "PQFP_208");
+
+PORT(
+           AD26  :   inout    bit;
+           AD25  :   inout    bit;
+           AD24  :   inout    bit;
+         C_BE3N  :   inout    bit;
+          IDSEL  :   inout    bit;
+           AD23  :   inout    bit;
+           AD22  :   inout    bit;
+           AD21  :   inout    bit;
+           AD20  :   inout    bit;
+           AD19  :   inout    bit;
+           AD18  :   inout    bit;
+           AD17  :   inout    bit;
+           AD16  :   inout    bit;
+         C_BE2N  :   inout    bit;
+         FRAMEN  :   inout    bit;
+          IRDYN  :   inout    bit;
+          TRDYN  :   inout    bit;
+        DEVSELN  :   inout    bit;
+          STOPN  :   inout    bit;
+          PERRN  :   inout    bit;
+          SERRN  :   inout    bit;
+            PAR  :   inout    bit;
+         C_BE1N  :   inout    bit;
+           AD15  :   inout    bit;
+           AD14  :   inout    bit;
+           AD13  :   inout    bit;
+           AD12  :   inout    bit;
+           AD11  :   inout    bit;
+           AD10  :   inout    bit;
+            AD9  :   inout    bit;
+            AD8  :   inout    bit;
+         C_BE0N  :   inout    bit;
+            AD7  :   inout    bit;
+            AD6  :   inout    bit;
+            AD5  :   inout    bit;
+            AD4  :   inout    bit;
+            AD3  :   inout    bit;
+            AD2  :   inout    bit;
+            AD1  :   inout    bit;
+            AD0  :   inout    bit;
+            TCK  :   in       bit;
+            TDI  :   in       bit;
+            TMS  :   in       bit;
+            TDO  :   out      bit;
+           SCLK  :   in       bit;
+         TESTIN  :   in       bit;
+        A_GPIO0  :   inout    bit;
+        A_GPIO1  :   inout    bit;
+        A_GPIO2  :   inout    bit;
+        A_GPIO3  :   inout    bit;
+        A_GPIO4  :   inout    bit;
+           MAD7  :   inout    bit;
+           MAD6  :   inout    bit;
+           MAD5  :   inout    bit;
+           MAD4  :   inout    bit;
+           MAD3  :   inout    bit;
+           MAD2  :   inout    bit;
+           MAD1  :   inout    bit;
+           MAD0  :   inout    bit;
+        B_GPIO0  :   inout    bit;
+        B_GPIO1  :   inout    bit;
+        B_GPIO2  :   inout    bit;
+        B_GPIO3  :   inout    bit;
+        B_GPIO4  :   inout    bit;
+       B_SD11B  :   inout    bit;
+       B_SD10B  :   inout    bit;
+        B_SD9B  :   inout    bit;
+        B_SD8B  :   inout    bit;
+         B_SIOB  :   inout    bit;
+        B_SREQB  :   inout    bit;
+         B_SCDB  :   inout    bit;
+        B_SSELB  :   inout    bit;
+        B_SMSGB  :   inout    bit;
+        B_SRSTB  :   inout    bit;
+        B_SACKB  :   inout    bit;
+        B_SBSYB  :   inout    bit;
+        B_SATNB  :   inout    bit;
+       B_SDP0B   :   inout    bit;
+        B_SD7B  :   inout    bit;
+        B_SD6B  :   inout    bit;
+        B_SD5B  :   inout    bit;
+        B_SD4B  :   inout    bit;
+        B_SD3B  :   inout    bit;
+        B_SD2B  :   inout    bit;
+        B_SD1B  :   inout    bit;
+        B_SD0B  :   inout    bit;
+       B_SDP1B   :   inout    bit;
+       B_SD15B  :   inout    bit;
+       B_SD14B  :   inout    bit;
+       B_SD13B  :   inout    bit;
+       B_SD12B  :   inout    bit;
+     A_DIFFSENS  :   in       bit;
+          A_TGS  :   inout    bit;
+          A_IGS  :   inout    bit;
+      A_DIR_SEL  :   inout    bit;
+      A_DIR_RST  :   inout    bit;
+      A_DIR_BSY  :   inout    bit;
+     A_DIR_SD11  :   inout    bit;
+     A_DIR_SD10  :   inout    bit;
+      A_DIR_SD9  :   inout    bit;
+      A_DIR_SD8  :   inout    bit;
+       A_SD11B  :   inout    bit;
+       A_SD10B  :   inout    bit;
+        A_SD9B  :   inout    bit;
+        A_SD8B  :   inout    bit;
+         A_SIOB  :   inout    bit;
+        A_SREQB  :   inout    bit;
+         A_SCDB  :   inout    bit;
+        A_SSELB  :   inout    bit;
+        A_SMSGB  :   inout    bit;
+        A_SRSTB  :   inout    bit;
+        A_SACKB  :   inout    bit;
+        A_SBSYB  :   inout    bit;
+        A_SATNB  :   inout    bit;
+       A_SDP0B   :   inout    bit;
+        A_SD7B  :   inout    bit;
+        A_SD6B  :   inout    bit;
+        A_SD5B  :   inout    bit;
+        A_SD4B  :   inout    bit;
+        A_SD3B  :   inout    bit;
+        A_SD2B  :   inout    bit;
+        A_SD1B  :   inout    bit;
+        A_SD0B  :   inout    bit;
+       A_SDP1B   :   inout    bit;
+       A_SD15B  :   inout    bit;
+       A_SD14B  :   inout    bit;
+       A_SD13B  :   inout    bit;
+       A_SD12B  :   inout    bit;
+  A_DIR_SDP_0_1  :   inout    bit;
+      A_DIR_SD7  :   inout    bit;
+      A_DIR_SD6  :   inout    bit;
+      A_DIR_SD5  :   inout    bit;
+      A_DIR_SD4  :   inout    bit;
+      A_DIR_SD3  :   inout    bit;
+      A_DIR_SD2  :   inout    bit;
+      A_DIR_SD1  :   inout    bit;
+      A_DIR_SD0  :   inout    bit;
+     A_DIR_SD15  :   inout    bit;
+     A_DIR_SD14  :   inout    bit;
+     A_DIR_SD13  :   inout    bit;
+     A_DIR_SD12  :   inout    bit;
+          MAS1N  :   inout    bit;
+          MAS0N  :   inout    bit;
+           MWEN  :   inout    bit;
+      MOEN_TOUT  :   inout    bit;
+           MCEN  :   inout    bit;
+          INTBN  :   inout    bit;
+          INTAN  :   inout    bit;
+           RSTN  :   in       bit;
+            CLK  :   in       bit;
+           GNTN  :   inout    bit;
+           REQN  :   inout    bit;
+           AD31  :   inout    bit;
+           AD30  :   inout    bit;
+           AD29  :   inout    bit;
+           AD28  :   inout    bit;
+           AD27  :   inout    bit;
+   PINNOCONNECT  :   linkage  bit_vector(2 downto 1);
+            VSS	 :   linkage  bit_vector(32 downto 1);
+            VDD  :   linkage  bit_vector(17 downto 1)
+);
+
+
+-- Incorporate 1994 and 1992 IEEE cells and types
+use STD_1149_1_1994.all;
+
+
+-- Conformance Attribute - 1993
+attribute COMPONENT_CONFORMANCE of SYM_53C876QS: entity is "STD_1149_1_1993";
+
+
+attribute PIN_MAP of SYM_53C876QS : entity is PHYSICAL_PIN_MAP;
+
+
+constant PQFP_208:PIN_MAP_STRING:=
+
+              "AD26                :     1,"  &
+              "AD25                :     3,"  &
+              "AD24                :     4,"  &
+              "C_BE3N              :     5,"  &
+              "IDSEL               :     7,"  &
+              "AD23                :     8,"  &
+              "AD22                :    10,"  &
+              "AD21                :    11,"  &
+              "AD20                :    12,"  &
+              "AD19                :    14,"  &
+              "AD18                :    16,"  &
+              "AD17                :    17,"  &
+              "AD16                :    18,"  &
+              "C_BE2N              :    20,"  &
+              "FRAMEN              :    21,"  &
+              "IRDYN               :    23,"  &
+              "TRDYN               :    25,"  &
+              "DEVSELN             :    26,"  &
+              "STOPN               :    28,"  &
+              "PERRN               :    30,"  &
+              "SERRN               :    32,"  &
+              "PAR                 :    33,"  &
+              "C_BE1N              :    34,"  &
+              "AD15                :    36,"  &
+              "AD14                :    37,"  &
+              "AD13                :    38,"  &
+              "AD12                :    40,"  &
+              "AD11                :    42,"  &
+              "AD10                :    43,"  &
+              "AD9                 :    44,"  &
+              "AD8                 :    46,"  &
+              "C_BE0N              :    48,"  &
+              "AD7                 :    49,"  &
+              "AD6                 :    50,"  &
+              "AD5                 :    52,"  &
+              "AD4                 :    53,"  &
+              "AD3                 :    54,"  &
+              "AD2                 :    56,"  &
+              "AD1                 :    58,"  &
+              "AD0                 :    59,"  &
+              "TCK                 :    60,"  &
+              "TDI                 :    61,"  &
+              "TMS                 :    62,"  &
+              "TDO                 :    63,"  &
+              "SCLK                :    65,"  &
+              "TESTIN              :    66,"  &
+              "A_GPIO0             :    68,"  &
+              "A_GPIO1             :    69,"  &
+              "A_GPIO2             :    70,"  &
+              "A_GPIO3             :    71,"  &
+              "A_GPIO4             :    73,"  &
+              "MAD7                :    74,"  &
+              "MAD6                :    76,"  &
+              "MAD5                :    77,"  &
+              "MAD4                :    79,"  &
+              "MAD3                :    80,"  &
+              "MAD2                :    81,"  &
+              "MAD1                :    82,"  &
+              "MAD0                :    83,"  &
+              "B_GPIO0             :    84,"  &
+              "B_GPIO1             :    86,"  &
+              "B_GPIO2             :    87,"  &
+              "B_GPIO3             :    88,"  &
+              "B_GPIO4             :    89,"  &
+              "B_SD11B            :    91,"  &
+              "B_SD10B            :    92,"  &
+              "B_SD9B             :    93,"  &
+              "B_SD8B             :    95,"  &
+              "B_SIOB              :    96,"  &
+              "B_SREQB             :    97,"  &
+              "B_SCDB              :    98,"  &
+              "B_SSELB             :   100,"  &
+              "B_SMSGB             :   101,"  &
+              "B_SRSTB             :   102,"  &
+              "B_SACKB             :   103,"  &
+              "B_SBSYB             :   104,"  &
+              "B_SATNB             :   106,"  &
+              "B_SDP0B             :   107,"  &
+              "B_SD7B             :   108,"  &
+              "B_SD6B             :   109,"  &
+              "B_SD5B             :   111,"  &
+              "B_SD4B             :   112,"  &
+              "B_SD3B             :   113,"  &
+              "B_SD2B             :   114,"  &
+              "B_SD1B             :   116,"  &
+              "B_SD0B             :   117,"  &
+              "B_SDP1B             :   118,"  &
+              "B_SD15B            :   119,"  &
+              "B_SD14B            :   121,"  &
+              "B_SD13B            :   122,"  &
+              "B_SD12B            :   123,"  &
+              "A_DIFFSENS          :   125,"  &
+              "A_TGS               :   126,"  &
+              "A_IGS               :   127,"  &
+              "A_DIR_SEL           :   128,"  &
+              "A_DIR_RST           :   130,"  &
+              "A_DIR_BSY           :   132,"  &
+              "A_DIR_SD11          :   134,"  &
+              "A_DIR_SD10          :   135,"  &
+              "A_DIR_SD9           :   136,"  &
+              "A_DIR_SD8           :   137,"  &
+              "A_SD11B            :   139,"  &
+              "A_SD10B            :   140,"  &
+              "A_SD9B             :   141,"  &
+              "A_SD8B             :   143,"  &
+              "A_SIOB              :   144,"  &
+              "A_SREQB             :   145,"  &
+              "A_SCDB              :   146,"  &
+              "A_SSELB             :   148,"  &
+              "A_SMSGB             :   149,"  &
+              "A_SRSTB             :   150,"  &
+              "A_SACKB             :   151,"  &
+              "A_SBSYB             :   152,"  &
+              "A_SATNB             :   154,"  &
+              "A_SDP0B             :   155,"  &
+              "A_SD7B             :   156,"  &
+              "A_SD6B             :   157,"  &
+              "A_SD5B             :   159,"  &
+              "A_SD4B             :   160,"  &
+              "A_SD3B             :   161,"  &
+              "A_SD2B             :   162,"  &
+              "A_SD1B             :   164,"  &
+              "A_SD0B             :   165,"  &
+              "A_SDP1B             :   166,"  &
+              "A_SD15B            :   167,"  &
+              "A_SD14B            :   169,"  &
+              "A_SD13B            :   170,"  &
+              "A_SD12B            :   171,"  &
+              "A_DIR_SDP_0_1       :   173,"  &
+              "A_DIR_SD7           :   174,"  &
+              "A_DIR_SD6           :   175,"  &
+              "A_DIR_SD5           :   176,"  &
+              "A_DIR_SD4           :   177,"  &
+              "A_DIR_SD3           :   179,"  &
+              "A_DIR_SD2           :   180,"  &
+              "A_DIR_SD1           :   181,"  &
+              "A_DIR_SD0           :   182,"  &
+              "A_DIR_SD15          :   183,"  &
+              "A_DIR_SD14          :   184,"  &
+              "A_DIR_SD13          :   185,"  &
+              "A_DIR_SD12          :   187,"  &
+              "MAS1N               :   189,"  &
+              "MAS0N               :   190,"  &
+              "MWEN                :   191,"  &
+              "MOEN_TOUT           :   192,"  &
+              "MCEN                :   193,"  &
+              "INTBN               :   194,"  &
+              "INTAN               :   195,"  &
+              "RSTN                :   196,"  &
+              "CLK                 :   197,"  &
+              "GNTN                :   199,"  &
+              "REQN                :   200,"  &
+              "AD31                :   202,"  &
+              "AD30                :   203,"  &
+              "AD29                :   205,"  &
+              "AD28                :   207,"  &
+              "AD27                :   208,"  &
+              "PINNOCONNECT        :   (27,78)," &
+              "VDD                 :   (6,13,22,31,39,47,55,64,75,90," & 
+              "                        124,131,138,172,186,201,206),"  &
+              "VSS                 :   (2,9,15,19,24,29,35,41,45,51,57," &
+              "                         67,72,85,94,99,105,110,115,120,129," &
+              "                        133,142,147,153,158,163,168,178,188," &
+              "                        198,204)"; 
+
+
+-- ==========================================================================
+--
+-- SCAN PORT IDENTIFICATION
+--
+-- ==========================================================================
+
+attribute TAP_SCAN_CLOCK of TCK   : signal is (10.0e6, BOTH);
+attribute TAP_SCAN_IN of TDI      : signal is true;
+attribute TAP_SCAN_MODE of TMS    : signal is true;
+attribute TAP_SCAN_OUT of TDO     : signal is true;
+
+
+
+-- ==========================================================================
+--
+-- COMPLIANCE PORT IDENTIFICATION
+--
+-- ==========================================================================
+
+-- ******************* READ ME FIRST ! ***************************
+--
+-- Note: The RSTN is used as a compliance pin ONLY because when it
+-- is asserted low during boundary scan testing, the part's SCSI
+-- data and control buses will TRI-STATE. This activity is required
+-- of SCSI parts, but it is NOT boundary scan compliant!. If the
+-- SCSI bus tri-stating is not an issue to the boundary scan software
+-- then the following can be commented out. 
+--
+
+-- attribute COMPLIANCE_PATTERNS of SYM_53C876QS : entity is 
+--                 "(RSTN) (1)";
+
+
+
+
+-- ==========================================================================
+--
+-- INSTRUCTION REGISTER DESCRIPTION
+--
+-- ==========================================================================
+
+attribute INSTRUCTION_LENGTH of SYM_53C876QS : entity is 8;
+
+attribute INSTRUCTION_OPCODE of SYM_53C876QS : entity is
+   "EXTEST (00000000, 10000000)," &
+   "BYPASS (00000001, 10000001, 00000110, 10000110, 00000111, 10000111, 11111111)," &
+   "SAMPLE (00000010, 10000010)," &
+   "CLAMP  (00000011, 10000011)," &
+   "HIGHZ  (00000100, 10000100)," &
+   "IDCODE (00000101, 10000101)";
+
+
+attribute INSTRUCTION_CAPTURE of SYM_53C876QS : entity is "00000001";
+
+attribute IDCODE_REGISTER of SYM_53C876QS : entity is
+
+   "0000" &                 -- 4-bit Version 
+   "0101000001100000" &     -- 16-bit JEDEC Code (SYM_53C876QS = 5060)
+   "00000100010" &          -- 11-bit Manufacuters Code (022)
+   "1";                     -- Mandatory LSB
+
+-- Total Part number is 05060045 Hex.
+
+-- ==========================================================================
+--
+-- BOUNDARY REGISTER DESCRIPTION
+--
+-- ==========================================================================
+
+attribute BOUNDARY_LENGTH of SYM_53C876QS : entity is 429;
+
+attribute BOUNDARY_REGISTER of SYM_53C876QS : entity is
+
+--       num    cell   port               function  safe   [ccell,     disval,    rslt]
+
+        "428  (BC_4, TESTIN,         observe_only,   X),"  &
+        "427  (BC_4, SCLK,           observe_only,   X),"  &
+        "426  (BC_1, AD0,                   input,   X),"  &
+        "425  (BC_1, AD0,                 output3,   X,       83,         0,        Z),"  &
+        "424  (BC_1, AD1,                   input,   X),"  &
+        "423  (BC_1, AD1,                 output3,   X,       83,         0,        Z),"  &
+        "422  (BC_1, AD2,                   input,   X),"  &
+        "421  (BC_1, AD2,                 output3,   X,       83,         0,        Z),"  &
+        "420  (BC_1, AD3,                   input,   X),"  &
+        "419  (BC_1, AD3,                 output3,   X,       83,         0,        Z),"  &
+        "418  (BC_1, AD4,                   input,   X),"  &
+        "417  (BC_1, AD4,                 output3,   X,       83,         0,        Z),"  &
+        "416  (BC_1, AD5,                   input,   X),"  &
+        "415  (BC_1, AD5,                 output3,   X,       83,         0,        Z),"  &
+        "414  (BC_1, AD6,                   input,   X),"  &
+        "413  (BC_1, AD6,                 output3,   X,       83,         0,        Z),"  &
+        "412  (BC_1, AD7,                   input,   X),"  &
+        "411  (BC_1, AD7,                 output3,   X,       83,         0,        Z),"  &
+        "410  (BC_1, C_BE0N,                input,   X),"  &
+        "409  (BC_1, C_BE0N,              output3,   X,       82,         0,        Z),"  &
+        "408  (BC_1, AD8,                   input,   X),"  &
+        "407  (BC_1, AD8,                 output3,   X,       83,         0,        Z),"  &
+        "406  (BC_1, AD9,                   input,   X),"  &
+        "405  (BC_1, AD9,                 output3,   X,       83,         0,        Z),"  &
+        "404  (BC_1, AD10,                  input,   X),"  &
+        "403  (BC_1, AD10,                output3,   X,       83,         0,        Z),"  &
+        "402  (BC_1, AD11,                  input,   X),"  &
+        "401  (BC_1, AD11,                output3,   X,       83,         0,        Z),"  &
+        "400  (BC_1, AD12,                  input,   X),"  &
+        "399  (BC_1, AD12,                output3,   X,       83,         0,        Z),"  &
+        "398  (BC_1, AD13,                  input,   X),"  &
+        "397  (BC_1, AD13,                output3,   X,       83,         0,        Z),"  &
+        "396  (BC_1, AD14,                  input,   X),"  &
+        "395  (BC_1, AD14,                output3,   X,       83,         0,        Z),"  &
+        "394  (BC_1, AD15,                  input,   X),"  &
+        "393  (BC_1, AD15,                output3,   X,       83,         0,        Z),"  &
+        "392  (BC_1, C_BE1N,                input,   X),"  &
+        "391  (BC_1, C_BE1N,              output3,   X,       82,         0,        Z),"  &
+        "390  (BC_1, PAR,                   input,   X),"  &
+        "389  (BC_1, PAR,                 output3,   X,       81,         0,        Z),"  &
+        "388  (BC_1, SERRN,                 input,   X),"  &
+        "387  (BC_1, SERRN,               output3,   X,       80,         0,        Z),"  &
+        "386  (BC_1, PERRN,                 input,   X),"  &
+        "385  (BC_1, PERRN,               output3,   X,       79,         0,        Z),"  &
+        "384  (BC_1, STOPN,                 input,   X),"  &
+        "383  (BC_1, STOPN,               output3,   X,       78,         0,        Z),"  &
+        "382  (BC_1, DEVSELN,               input,   X),"  &
+        "381  (BC_1, DEVSELN,             output3,   X,       77,         0,        Z),"  &
+        "380  (BC_1, TRDYN,                 input,   X),"  &
+        "379  (BC_1, TRDYN,               output3,   X,       76,         0,        Z),"  &
+        "378  (BC_1, IRDYN,                 input,   X),"  &
+        "377  (BC_1, IRDYN,               output3,   X,       75,         0,        Z),"  &
+        "376  (BC_1, FRAMEN,                input,   X),"  &
+        "375  (BC_1, FRAMEN,              output3,   X,       74,         0,        Z),"  &
+        "374  (BC_1, C_BE2N,                input,   X),"  &
+        "373  (BC_1, C_BE2N,              output3,   X,       82,         0,        Z),"  &
+        "372  (BC_1, AD16,                  input,   X),"  &
+        "371  (BC_1, AD16,                output3,   X,       83,         0,        Z),"  &
+        "370  (BC_1, AD17,                  input,   X),"  &
+        "369  (BC_1, AD17,                output3,   X,       83,         0,        Z),"  &
+        "368  (BC_1, AD18,                  input,   X),"  &
+        "367  (BC_1, AD18,                output3,   X,       83,         0,        Z),"  &
+        "366  (BC_1, AD19,                  input,   X),"  &
+        "365  (BC_1, AD19,                output3,   X,       83,         0,        Z),"  &
+        "364  (BC_1, AD20,                  input,   X),"  &
+        "363  (BC_1, AD20,                output3,   X,       83,         0,        Z),"  &
+        "362  (BC_1, AD21,                  input,   X),"  &
+        "361  (BC_1, AD21,                output3,   X,       83,         0,        Z),"  &
+        "360  (BC_1, AD22,                  input,   X),"  &
+        "359  (BC_1, AD22,                output3,   X,       83,         0,        Z),"  &
+        "358  (BC_1, AD23,                  input,   X),"  &
+        "357  (BC_1, AD23,                output3,   X,       83,         0,        Z),"  &
+        "356  (BC_1, IDSEL,                 input,   X),"  &
+        "355  (BC_1, IDSEL,               output3,   X,       73,         0,        Z),"  &
+        "354  (BC_1, C_BE3N,                input,   X),"  &
+        "353  (BC_1, C_BE3N,              output3,   X,       82,         0,        Z),"  &
+        "352  (BC_1, AD24,                  input,   X),"  &
+        "351  (BC_1, AD24,                output3,   X,       83,         0,        Z),"  &
+        "350  (BC_1, AD25,                  input,   X),"  &
+        "349  (BC_1, AD25,                output3,   X,       83,         0,        Z),"  &
+        "348  (BC_1, AD26,                  input,   X),"  &
+        "347  (BC_1, AD26,                output3,   X,       83,         0,        Z),"  &
+        "346  (BC_1, AD27,                  input,   X),"  &
+        "345  (BC_1, AD27,                output3,   X,       83,         0,        Z),"  &
+        "344  (BC_1, AD28,                  input,   X),"  &
+        "343  (BC_1, AD28,                output3,   X,       83,         0,        Z),"  &
+        "342  (BC_1, AD29,                  input,   X),"  &
+        "341  (BC_1, AD29,                output3,   X,       83,         0,        Z),"  &
+        "340  (BC_1, AD30,                  input,   X),"  &
+        "339  (BC_1, AD30,                output3,   X,       83,         0,        Z),"  &
+        "338  (BC_1, AD31,                  input,   X),"  &
+        "337  (BC_1, AD31,                output3,   X,       83,         0,        Z),"  &
+        "336  (BC_1, REQN,                  input,   X),"  &
+        "335  (BC_1, REQN,                output3,   X,       72,         0,        Z),"  &
+        "334  (BC_1, GNTN,                  input,   X),"  &
+        "333  (BC_1, GNTN,                output3,   X,       71,         0,        Z),"  &
+        "332  (BC_1, INTAN,                 input,   X),"  &
+        "331  (BC_1, INTAN,               output3,   X,       68,         1,        Z),"  &
+        "330  (BC_1, INTBN,                 input,   X),"  &
+        "329  (BC_1, INTBN,               output3,   X,       67,         1,        Z),"  &
+        "328  (BC_1, MCEN,                  input,   X),"  &
+        "327  (BC_1, MCEN,                output3,   X,       65,         1,        Z),"  &
+        "326  (BC_1, MOEN_TOUT,             input,   X),"  &
+        "325  (BC_1, MOEN_TOUT,           output3,   X,       66,         1,        Z),"  &
+        "324  (BC_1, MWEN,                  input,   X),"  &
+        "323  (BC_1, MWEN,                output3,   X,       65,         1,        Z),"  &
+        "322  (BC_1, MAS0N,                 input,   X),"  &
+        "321  (BC_1, MAS0N,               output3,   X,       65,         1,        Z),"  &
+        "320  (BC_1, MAS1N,                 input,   X),"  &
+        "319  (BC_1, MAS1N,               output3,   X,       65,         1,        Z),"  &
+        "318  (BC_1, *,                  internal,   X),"  &
+        "317  (BC_1, *,                  internal,   X),"  &
+        "316  (BC_1, *,                  internal,   X),"  &
+        "315  (BC_1, *,                  internal,   X),"  &
+        "314  (BC_1, *,                  internal,   X),"  &
+        "313  (BC_1, *,                  internal,   X),"  &
+        "312  (BC_1, *,                  internal,   X),"  &
+        "311  (BC_1, *,                  internal,   X),"  &
+        "310  (BC_1, *,                  internal,   X),"  &
+        "309  (BC_1, *,                  internal,   X),"  &
+        "308  (BC_1, *,                  internal,   X),"  &
+        "307  (BC_1, *,                  internal,   X),"  &
+        "306  (BC_1, *,                  internal,   X),"  &
+        "305  (BC_1, A_DIR_SD12,            input,   X),"  &
+        "304  (BC_1, A_DIR_SD12,          output3,   X,       65,         1,        Z),"  &
+        "303  (BC_1, A_DIR_SD13,            input,   X),"  &
+        "302  (BC_1, A_DIR_SD13,          output3,   X,       65,         1,        Z),"  &
+        "301  (BC_1, A_DIR_SD14,            input,   X),"  &
+        "300  (BC_1, A_DIR_SD14,          output3,   X,       65,         1,        Z),"  &
+        "299  (BC_1, A_DIR_SD15,            input,   X),"  &
+        "298  (BC_1, A_DIR_SD15,          output3,   X,       65,         1,        Z),"  &
+        "297  (BC_1, A_DIR_SD0,             input,   X),"  &
+        "296  (BC_1, A_DIR_SD0,           output3,   X,       65,         1,        Z),"  &
+        "295  (BC_1, A_DIR_SD1,             input,   X),"  &
+        "294  (BC_1, A_DIR_SD1,           output3,   X,       65,         1,        Z),"  &
+        "293  (BC_1, A_DIR_SD2,             input,   X),"  &
+        "292  (BC_1, A_DIR_SD2,           output3,   X,       65,         1,        Z),"  &
+        "291  (BC_1, A_DIR_SD3,             input,   X),"  &
+        "290  (BC_1, A_DIR_SD3,           output3,   X,       65,         1,        Z),"  &
+        "289  (BC_1, A_DIR_SD4,             input,   X),"  &
+        "288  (BC_1, A_DIR_SD4,           output3,   X,       65,         1,        Z),"  &
+        "287  (BC_1, A_DIR_SD5,             input,   X),"  &
+        "286  (BC_1, A_DIR_SD5,           output3,   X,       65,         1,        Z),"  &
+        "285  (BC_1, A_DIR_SD6,             input,   X),"  &
+        "284  (BC_1, A_DIR_SD6,           output3,   X,       65,         1,        Z),"  &
+        "283  (BC_1, A_DIR_SD7,             input,   X),"  &
+        "282  (BC_1, A_DIR_SD7,           output3,   X,       65,         1,        Z),"  &
+        "281  (BC_1, A_DIR_SDP_0_1,         input,   X),"  &
+        "280  (BC_1, A_DIR_SDP_0_1,       output3,   X,       65,         1,        Z),"  &
+        "279  (BC_1, A_SD12B,              input,   X),"  &
+        "278  (BC_1, A_SD12B,            output3,   X,       64,         0,        Z),"  &
+        "277  (BC_1, A_SD13B,              input,   X),"  &
+        "276  (BC_1, A_SD13B,            output3,   X,       63,         0,        Z),"  &
+        "275  (BC_1, A_SD14B,              input,   X),"  &
+        "274  (BC_1, A_SD14B,            output3,   X,       62,         0,        Z),"  &
+        "273  (BC_1, A_SD15B,              input,   X),"  &
+        "272  (BC_1, A_SD15B,            output3,   X,       61,         0,        Z),"  &
+        "271  (BC_1, A_SDP1B,              input,   X),"  &
+        "270  (BC_1, A_SDP1B,            output3,   X,       60,         0,        Z),"  &
+        "269  (BC_1, A_SD0B,               input,   X),"  &
+        "268  (BC_1, A_SD0B,             output3,   X,       59,         0,        Z),"  &
+        "267  (BC_1, A_SD1B,               input,   X),"  &
+        "266  (BC_1, A_SD1B,             output3,   X,       58,         0,        Z),"  &
+        "265  (BC_1, A_SD2B,               input,   X),"  &
+        "264  (BC_1, A_SD2B,             output3,   X,       57,         0,        Z),"  &
+        "263  (BC_1, A_SD3B,               input,   X),"  &
+        "262  (BC_1, A_SD3B,             output3,   X,       56,         0,        Z),"  &
+        "261  (BC_1, A_SD4B,               input,   X),"  &
+        "260  (BC_1, A_SD4B,             output3,   X,       55,         0,        Z),"  &
+        "259  (BC_1, A_SD5B,               input,   X),"  &
+        "258  (BC_1, A_SD5B,             output3,   X,       54,         0,        Z),"  &
+        "257  (BC_1, A_SD6B,               input,   X),"  &
+        "256  (BC_1, A_SD6B,             output3,   X,       53,         0,        Z),"  &
+        "255  (BC_1, A_SD7B,               input,   X),"  &
+        "254  (BC_1, A_SD7B,             output3,   X,       52,         0,        Z),"  &
+        "253  (BC_1, A_SDP0B,              input,   X),"  &
+        "252  (BC_1, A_SDP0B,            output3,   X,       51,         0,        Z),"  &
+        "251  (BC_1, A_SATNB,               input,   X),"  &
+        "250  (BC_1, A_SATNB,             output3,   X,       50,         0,        Z),"  &
+        "249  (BC_1, A_SBSYB,               input,   X),"  &
+        "248  (BC_1, A_SBSYB,             output3,   X,       49,         0,        Z),"  &
+        "247  (BC_1, A_SACKB,               input,   X),"  &
+        "246  (BC_1, A_SACKB,             output3,   X,       48,         0,        Z),"  &
+        "245  (BC_1, A_SRSTB,               input,   X),"  &
+        "244  (BC_1, A_SRSTB,             output3,   X,       47,         0,        Z),"  &
+        "243  (BC_1, A_SMSGB,               input,   X),"  &
+        "242  (BC_1, A_SMSGB,             output3,   X,       46,         0,        Z),"  &
+        "241  (BC_1, A_SSELB,               input,   X),"  &
+        "240  (BC_1, A_SSELB,             output3,   X,       45,         0,        Z),"  &
+        "239  (BC_1, A_SCDB,                input,   X),"  &
+        "238  (BC_1, A_SCDB,              output3,   X,       44,         0,        Z),"  &
+        "237  (BC_1, A_SREQB,               input,   X),"  &
+        "236  (BC_1, A_SREQB,             output3,   X,       43,         0,        Z),"  &
+        "235  (BC_1, A_SIOB,                input,   X),"  &
+        "234  (BC_1, A_SIOB,              output3,   X,       42,         0,        Z),"  &
+        "233  (BC_1, A_SD8B,               input,   X),"  &
+        "232  (BC_1, A_SD8B,             output3,   X,       41,         0,        Z),"  &
+        "231  (BC_1, A_SD9B,               input,   X),"  &
+        "230  (BC_1, A_SD9B,             output3,   X,       40,         0,        Z),"  &
+        "229  (BC_1, A_SD10B,              input,   X),"  &
+        "228  (BC_1, A_SD10B,            output3,   X,       39,         0,        Z),"  &
+        "227  (BC_1, A_SD11B,              input,   X),"  &
+        "226  (BC_1, A_SD11B,            output3,   X,       38,         0,        Z),"  &
+        "225  (BC_1, A_DIR_SD8,             input,   X),"  &
+        "224  (BC_1, A_DIR_SD8,           output3,   X,       65,         1,        Z),"  &
+        "223  (BC_1, A_DIR_SD9,             input,   X),"  &
+        "222  (BC_1, A_DIR_SD9,           output3,   X,       65,         1,        Z),"  &
+        "221  (BC_1, A_DIR_SD10,            input,   X),"  &
+        "220  (BC_1, A_DIR_SD10,          output3,   X,       65,         1,        Z),"  &
+        "219  (BC_1, A_DIR_SD11,            input,   X),"  &
+        "218  (BC_1, A_DIR_SD11,          output3,   X,       65,         1,        Z),"  &
+        "217  (BC_1, A_DIR_BSY,             input,   X),"  &
+        "216  (BC_1, A_DIR_BSY,           output3,   X,       65,         1,        Z),"  &
+        "215  (BC_1, A_DIR_RST,             input,   X),"  &
+        "214  (BC_1, A_DIR_RST,           output3,   X,       65,         1,        Z),"  &
+        "213  (BC_1, A_DIR_SEL,             input,   X),"  &
+        "212  (BC_1, A_DIR_SEL,           output3,   X,       65,         1,        Z),"  &
+        "211  (BC_1, A_IGS,                 input,   X),"  &
+        "210  (BC_1, A_IGS,               output3,   X,       65,         1,        Z),"  &
+        "209  (BC_1, A_TGS,                 input,   X),"  &
+        "208  (BC_1, A_TGS,               output3,   X,       65,         1,        Z),"  &
+        "207  (BC_4, A_DIFFSENS,     observe_only,   X),"  &
+        "206  (BC_1, *,                  internal,   X),"  &
+        "205  (BC_1, *,                  internal,   X),"  &
+        "204  (BC_1, *,                  internal,   X),"  &
+        "203  (BC_1, *,                  internal,   X),"  &
+        "202  (BC_1, *,                  internal,   X),"  &
+        "201  (BC_1, *,                  internal,   X),"  &
+        "200  (BC_1, *,                  internal,   X),"  &
+        "199  (BC_1, *,                  internal,   X),"  &
+        "198  (BC_1, *,                  internal,   X),"  &
+        "197  (BC_1, *,                  internal,   X),"  &
+        "196  (BC_1, *,                  internal,   X),"  &
+        "195  (BC_1, *,                  internal,   X),"  &
+        "194  (BC_1, *,                  internal,   X),"  &
+        "193  (BC_1, *,                  internal,   X),"  &
+        "192  (BC_1, *,                  internal,   X),"  &
+        "191  (BC_1, *,                  internal,   X),"  &
+        "190  (BC_1, *,                  internal,   X),"  &
+        "189  (BC_1, *,                  internal,   X),"  &
+        "188  (BC_1, B_SD12B,              input,   X),"  &
+        "187  (BC_1, B_SD12B,            output3,   X,       37,         0,        Z),"  &
+        "186  (BC_1, B_SD13B,              input,   X),"  &
+        "185  (BC_1, B_SD13B,            output3,   X,       36,         0,        Z),"  &
+        "184  (BC_1, B_SD14B,              input,   X),"  &
+        "183  (BC_1, B_SD14B,            output3,   X,       35,         0,        Z),"  &
+        "182  (BC_1, B_SD15B,              input,   X),"  &
+        "181  (BC_1, B_SD15B,            output3,   X,       34,         0,        Z),"  &
+        "180  (BC_1, B_SDP1B,              input,   X),"  &
+        "179  (BC_1, B_SDP1B,            output3,   X,       33,         0,        Z),"  &
+        "178  (BC_1, B_SD0B,               input,   X),"  &
+        "177  (BC_1, B_SD0B,             output3,   X,       32,         0,        Z),"  &
+        "176  (BC_1, B_SD1B,               input,   X),"  &
+        "175  (BC_1, B_SD1B,             output3,   X,       31,         0,        Z),"  &
+        "174  (BC_1, B_SD2B,               input,   X),"  &
+        "173  (BC_1, B_SD2B,             output3,   X,       30,         0,        Z),"  &
+        "172  (BC_1, B_SD3B,               input,   X),"  &
+        "171  (BC_1, B_SD3B,             output3,   X,       29,         0,        Z),"  &
+        "170  (BC_1, B_SD4B,               input,   X),"  &
+        "169  (BC_1, B_SD4B,             output3,   X,       28,         0,        Z),"  &
+        "168  (BC_1, B_SD5B,               input,   X),"  &
+        "167  (BC_1, B_SD5B,             output3,   X,       27,         0,        Z),"  &
+        "166  (BC_1, B_SD6B,               input,   X),"  &
+        "165  (BC_1, B_SD6B,             output3,   X,       26,         0,        Z),"  &
+        "164  (BC_1, B_SD7B,               input,   X),"  &
+        "163  (BC_1, B_SD7B,             output3,   X,       25,         0,        Z),"  &
+        "162  (BC_1, B_SDP0B,              input,   X),"  &
+        "161  (BC_1, B_SDP0B,            output3,   X,       24,         0,        Z),"  &
+        "160  (BC_1, B_SATNB,               input,   X),"  &
+        "159  (BC_1, B_SATNB,             output3,   X,       23,         0,        Z),"  &
+        "158  (BC_1, B_SBSYB,               input,   X),"  &
+        "157  (BC_1, B_SBSYB,             output3,   X,       22,         0,        Z),"  &
+        "156  (BC_1, B_SACKB,               input,   X),"  &
+        "155  (BC_1, B_SACKB,             output3,   X,       21,         0,        Z),"  &
+        "154  (BC_1, B_SRSTB,               input,   X),"  &
+        "153  (BC_1, B_SRSTB,             output3,   X,       20,         0,        Z),"  &
+        "152  (BC_1, B_SMSGB,               input,   X),"  &
+        "151  (BC_1, B_SMSGB,             output3,   X,       19,         0,        Z),"  &
+        "150  (BC_1, B_SSELB,               input,   X),"  &
+        "149  (BC_1, B_SSELB,             output3,   X,       18,         0,        Z),"  &
+        "148  (BC_1, B_SCDB,                input,   X),"  &
+        "147  (BC_1, B_SCDB,              output3,   X,       17,         0,        Z),"  &
+        "146  (BC_1, B_SREQB,               input,   X),"  &
+        "145  (BC_1, B_SREQB,             output3,   X,       16,         0,        Z),"  &
+        "144  (BC_1, B_SIOB,                input,   X),"  &
+        "143  (BC_1, B_SIOB,              output3,   X,       15,         0,        Z),"  &
+        "142  (BC_1, B_SD8B,               input,   X),"  &
+        "141  (BC_1, B_SD8B,             output3,   X,       14,         0,        Z),"  &
+        "140  (BC_1, B_SD9B,               input,   X),"  &
+        "139  (BC_1, B_SD9B,             output3,   X,       13,         0,        Z),"  &
+        "138  (BC_1, B_SD10B,              input,   X),"  &
+        "137  (BC_1, B_SD10B,            output3,   X,       12,         0,        Z),"  &
+        "136  (BC_1, B_SD11B,              input,   X),"  &
+        "135  (BC_1, B_SD11B,            output3,   X,       11,         0,        Z),"  &
+        "134  (BC_1, *,                  internal,   X),"  &
+        "133  (BC_1, *,                  internal,   X),"  &
+        "132  (BC_1, *,                  internal,   X),"  &
+        "131  (BC_1, *,                  internal,   X),"  &
+        "130  (BC_1, *,                  internal,   X),"  &
+        "129  (BC_1, *,                  internal,   X),"  &
+        "128  (BC_1, *,                  internal,   X),"  &
+        "127  (BC_1, *,                  internal,   X),"  &
+        "126  (BC_1, *,                  internal,   X),"  &
+        "125  (BC_1, *,                  internal,   X),"  &
+        "124  (BC_1, *,                  internal,   X),"  &
+        "123  (BC_1, *,                  internal,   X),"  &
+        "122  (BC_1, *,                  internal,   X),"  &
+        "121  (BC_1, *,                  internal,   X),"  &
+        "120  (BC_1, *,                  internal,   X),"  &
+        "119  (BC_1, B_GPIO4,               input,   X),"  &
+        "118  (BC_1, B_GPIO4,             output3,   X,       10,         1,        Z),"  &
+        "117  (BC_1, B_GPIO3,               input,   X),"  &
+        "116  (BC_1, B_GPIO3,             output3,   X,        9,         1,        Z),"  &
+        "115  (BC_1, B_GPIO2,               input,   X),"  &
+        "114  (BC_1, B_GPIO2,             output3,   X,        8,         1,        Z),"  &
+        "113  (BC_1, B_GPIO1,               input,   X),"  &
+        "112  (BC_1, B_GPIO1,             output3,   X,        7,         1,        Z),"  &
+        "111  (BC_1, B_GPIO0,               input,   X),"  &
+        "110  (BC_1, B_GPIO0,             output3,   X,        6,         1,        Z),"  &
+        "109  (BC_1, MAD0,                  input,   X),"  &
+        "108  (BC_1, MAD0,                output3,   X,        5,         1,        Z),"  &
+        "107  (BC_1, MAD1,                  input,   X),"  &
+        "106  (BC_1, MAD1,                output3,   X,        5,         1,        Z),"  &
+        "105  (BC_1, MAD2,                  input,   X),"  &
+        "104  (BC_1, MAD2,                output3,   X,        5,         1,        Z),"  &
+        "103  (BC_1, MAD3,                  input,   X),"  &
+        "102  (BC_1, MAD3,                output3,   X,        5,         1,        Z),"  &
+        "101  (BC_1, MAD4,                  input,   X),"  &
+        "100  (BC_1, MAD4,                output3,   X,        5,         1,        Z),"  &
+        "99   (BC_1, MAD5,                  input,   X),"  &
+        "98   (BC_1, MAD5,                output3,   X,        5,         1,        Z),"  &
+        "97   (BC_1, MAD6,                  input,   X),"  &
+        "96   (BC_1, MAD6,                output3,   X,        5,         1,        Z),"  &
+        "95   (BC_1, MAD7,                  input,   X),"  &
+        "94   (BC_1, MAD7,                output3,   X,        5,         1,        Z),"  &
+        "93   (BC_1, A_GPIO4,               input,   X),"  &
+        "92   (BC_1, A_GPIO4,             output3,   X,        4,         1,        Z),"  &
+        "91   (BC_1, A_GPIO3,               input,   X),"  &
+        "90   (BC_1, A_GPIO3,             output3,   X,        3,         1,        Z),"  &
+        "89   (BC_1, A_GPIO2,               input,   X),"  &
+        "88   (BC_1, A_GPIO2,             output3,   X,        2,         1,        Z),"  &
+        "87   (BC_1, A_GPIO1,               input,   X),"  &
+        "86   (BC_1, A_GPIO1,             output3,   X,        1,         1,        Z),"  &
+        "85   (BC_1, A_GPIO0,               input,   X),"  &
+        "84   (BC_1, A_GPIO0,             output3,   X,        0,         1,        Z),"  &
+
+-- Output and Bidirectional Control Cells
+
+
+        "83   (BC_1, *,              control,         0),"    &    --  AD Enable    
+        "82   (BC_1, *,              control,         0),"    &    --  CBEN Enable    
+        "81   (BC_1, *,              control,         0),"    &    --  PAR Enable    
+        "80   (BC_1, *,              control,         0),"    &    --  SERR Enable    
+        "79   (BC_1, *,              control,         0),"    &    --  PERR Enable    
+        "78   (BC_1, *,              control,         0),"    &    --  STOP Enable    
+        "77   (BC_1, *,              control,         0),"    &    --  DEVSEL Enable    
+        "76   (BC_1, *,              control,         0),"    &    --  TRDY Enable    
+        "75   (BC_1, *,              control,         0),"    &    --  IRDY Enable    
+        "74   (BC_1, *,              control,         0),"    &    --  FRAME Enable    
+        "73   (BC_1, *,              control,         0),"    &    --  IDSEL Enable    
+        "72   (BC_1, *,              control,         0),"    &    --  REQ Enable    
+        "71   (BC_1, *,              control,         0),"    &    --  GNT Enable    
+        "70   (BC_4, CLK,       observe_only,         X),"    &    --  CLK_SCAN_IN           
+        "69   (BC_4, RSTN,      observe_only,         1),"    &    --  RSTN_SCAN_IN           
+        "68   (BC_1, *,              control,         1),"    &    --  INTA Enable    
+        "67   (BC_1, *,              control,         1),"    &    --  INTB Enable    
+        "66   (BC_1, *,              control,         1),"    &    --  ZMODES Enable    
+        "65   (BC_1, *,              control,         1),"    &    --  ZMODE Enable    
+        "64   (BC_1, *,              control,         0),"    &    --  A_SD12 Enable    
+        "63   (BC_1, *,              control,         0),"    &    --  A_SD13 Enable    
+        "62   (BC_1, *,              control,         0),"    &    --  A_SD14 Enable    
+        "61   (BC_1, *,              control,         0),"    &    --  A_SD15 Enable    
+        "60   (BC_1, *,              control,         0),"    &    --  A_SDP1 Enable    
+        "59   (BC_1, *,              control,         0),"    &    --  A_SD0 Enable    
+        "58   (BC_1, *,              control,         0),"    &    --  A_SD1 Enable    
+        "57   (BC_1, *,              control,         0),"    &    --  A_SD2 Enable    
+        "56   (BC_1, *,              control,         0),"    &    --  A_SD3 Enable    
+        "55   (BC_1, *,              control,         0),"    &    --  A_SD4 Enable    
+        "54   (BC_1, *,              control,         0),"    &    --  A_SD5 Enable    
+        "53   (BC_1, *,              control,         0),"    &    --  A_SD6 Enable    
+        "52   (BC_1, *,              control,         0),"    &    --  A_SD7 Enable    
+        "51   (BC_1, *,              control,         0),"    &    --  A_SDP0 Enable    
+        "50   (BC_1, *,              control,         0),"    &    --  A_SATN Enable    
+        "49   (BC_1, *,              control,         0),"    &    --  A_SBSY Enable    
+        "48   (BC_1, *,              control,         0),"    &    --  A_SACK Enable    
+        "47   (BC_1, *,              control,         0),"    &    --  A_SRST Enable    
+        "46   (BC_1, *,              control,         0),"    &    --  A_SMSG Enable    
+        "45   (BC_1, *,              control,         0),"    &    --  A_SSEL Enable    
+        "44   (BC_1, *,              control,         0),"    &    --  A_SCD Enable    
+        "43   (BC_1, *,              control,         0),"    &    --  A_SREQ Enable    
+        "42   (BC_1, *,              control,         0),"    &    --  A_SIO Enable    
+        "41   (BC_1, *,              control,         0),"    &    --  A_SD8 Enable    
+        "40   (BC_1, *,              control,         0),"    &    --  A_SD9 Enable    
+        "39   (BC_1, *,              control,         0),"    &    --  A_SD10 Enable    
+        "38   (BC_1, *,              control,         0),"    &    --  A_SD11 Enable    
+        "37   (BC_1, *,              control,         0),"    &    --  B_SD12 Enable    
+        "36   (BC_1, *,              control,         0),"    &    --  B_SD13 Enable    
+        "35   (BC_1, *,              control,         0),"    &    --  B_SD14 Enable    
+        "34   (BC_1, *,              control,         0),"    &    --  B_SD15 Enable    
+        "33   (BC_1, *,              control,         0),"    &    --  B_SDP1 Enable    
+        "32   (BC_1, *,              control,         0),"    &    --  B_SD0 Enable    
+        "31   (BC_1, *,              control,         0),"    &    --  B_SD1 Enable    
+        "30   (BC_1, *,              control,         0),"    &    --  B_SD2 Enable    
+        "29   (BC_1, *,              control,         0),"    &    --  B_SD3 Enable    
+        "28   (BC_1, *,              control,         0),"    &    --  B_SD4 Enable    
+        "27   (BC_1, *,              control,         0),"    &    --  B_SD5 Enable    
+        "26   (BC_1, *,              control,         0),"    &    --  B_SD6 Enable    
+        "25   (BC_1, *,              control,         0),"    &    --  B_SD7 Enable    
+        "24   (BC_1, *,              control,         0),"    &    --  B_SDP0 Enable    
+        "23   (BC_1, *,              control,         0),"    &    --  B_SATN Enable    
+        "22   (BC_1, *,              control,         0),"    &    --  B_SBSY Enable    
+        "21   (BC_1, *,              control,         0),"    &    --  B_SACK Enable    
+        "20   (BC_1, *,              control,         0),"    &    --  B_SRST Enable    
+        "19   (BC_1, *,              control,         0),"    &    --  B_SMSG Enable    
+        "18   (BC_1, *,              control,         0),"    &    --  B_SSEL Enable    
+        "17   (BC_1, *,              control,         0),"    &    --  B_SCD  Enable    
+        "16   (BC_1, *,              control,         0),"    &    --  B_SREQ Enable    
+        "15   (BC_1, *,              control,         0),"    &    --  B_SIO Enable    
+        "14   (BC_1, *,              control,         0),"    &    --  B_SD8 Enable    
+        "13   (BC_1, *,              control,         0),"    &    --  B_SD9 Enable    
+        "12   (BC_1, *,              control,         0),"    &    --  B_SD10 Enable    
+        "11   (BC_1, *,              control,         0),"    &    --  B_SD11 Enable    
+        "10   (BC_1, *,              control,         1),"    &    --  B_GPIO4 Enable    
+        "9    (BC_1, *,              control,         1),"    &    --  B_GPIO3 Enable    
+        "8    (BC_1, *,              control,         1),"    &    --  B_GPIO2 Enable    
+        "7    (BC_1, *,              control,         1),"    &    --  B_GPIO1 Enable    
+        "6    (BC_1, *,              control,         1),"    &    --  B_GPIO0 Enable    
+        "5    (BC_1, *,              control,         1),"    &    --  MAD Enable    
+        "4    (BC_1, *,              control,         1),"    &    --  A_GPIO4 Enable    
+        "3    (BC_1, *,              control,         1),"    &    --  A_GPIO3 Enable    
+        "2    (BC_1, *,              control,         1),"    &    --  A_GPIO2 Enable    
+        "1    (BC_1, *,              control,         1),"    &    --  A_GPIO1 Enable    
+        "0    (BC_1, *,              control,         1)";         --  A_GPIO0 Enable    
+
+
+-- =================================================================================
+--
+--                         RESET CONTROL DESIGN WARNING
+-- 
+-- =================================================================================
+
+
+attribute DESIGN_WARNING of SYM_53C876QS : entity is
+
+        "Asserting RSTN low (0) will tri-state the SCSI bus output drivers " &
+        "regardless of the state of the control cells for the SCSI output "  &
+        "drivers. This behavior is required in the SCSI specification. ";
+
+
+
+
+
+
+END SYM_53C876QS;
+
+-- ================================= END BSDL ======================================
+
+
+

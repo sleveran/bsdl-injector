@@ -1,0 +1,371 @@
+-- Boundary Scan Description Language (BSDL) for MITEL MT90823 IC
+-- File name : MT90823.bsd
+-- Device : 3V Large Digital Switch
+-- BSDL revision : 3.0
+-- Revision History:  For the 3rd revision, the addition of the pin M1 for 
+--			    PBGA package GND pin description
+			    For the 2nd revision, the addition of the 100-pin LQFP
+--                    and 120-pin PBGA
+-- Date created  : 26/01/1999
+-- Last updated  : 18/07/2000
+-- Documentation : Preliminary data sheet
+-- Packages      : 84-pin PLCC, 100-pin MQFP, 100-pin LQFP, 120 pin-PBGA
+
+--                        IMPORTANT NOTICE
+--
+--  MITEL and MT90823 are trademarks of MITEL Corporation. MITEL products
+--  marketed under trademarks are protected under numerous US and foreign
+--  patents and pending applications, maskwork rights, and copyrights.
+--
+--  MITEL reserves the right to make changes to any products and services
+--  at any time without notice.  MITEL assumes no responsibility or
+--  liability arising out of the application or use of any information,
+--  product, or service described herein except as expressly agreed to
+--  in writing by MITEL Corporation. MITEL customers are advised to obtain
+--  the latest version of device specifications before relying on any
+--  published information and before placing orders for products or services.
+
+
+entity MT90823 is
+   generic (PHYSICAL_PIN_MAP : string:="UNDEFINED");
+
+port
+  (
+   STo7: out bit;
+   STo6: out bit;
+   STo5: out bit;
+   STo4: out bit;
+   STo3: out bit;
+   STo2: out bit;
+   STo1: out bit;
+   STo0: out bit;
+   ODE:  in bit;
+   CSTo: out bit;
+   DTAn: out bit;
+   D15:  inout bit;
+   D14:  inout bit;
+   D13:  inout bit;
+   D12:  inout bit;
+   D11:  inout bit;
+   D10:  inout bit;
+   D9 :  inout bit;
+   D8 :  inout bit;
+   AD7:  inout bit;
+   AD6:  inout bit;
+   AD5:  inout bit;
+   AD4:  inout bit;
+   AD3:  inout bit;
+   AD2:  inout bit;
+   AD1:  inout bit;
+   AD0:  inout bit;
+   IM :  in bit;
+   AS :  in bit;
+   CSn:  in bit;
+   RWn:  in bit;
+   DS :  in bit;
+   A7 :  in bit;
+   A6 :  in bit;
+   A5 :  in bit;
+   A4 :  in bit;
+   A3 :  in bit;
+   A2 :  in bit;
+   A1 :  in bit;
+   A0 :  in bit;
+   WFPS: in bit;
+   RESETn : in bit;
+   CLK:  in bit;
+   FE :  in bit;
+   FOi:  in bit;
+   STi15: in bit;
+   STi14: in bit;
+   STi13: in bit;
+   STi12: in bit;
+   STi11: in bit;
+   STi10: in bit;
+   STi9:  in bit;
+   STi8:  in bit;
+   STi7:  in bit;
+   STi6:  in bit;
+   STi5:  in bit;
+   STi4:  in bit;
+   STi3:  in bit;
+   STi2:  in bit;
+   STi1:  in bit;
+   STi0:  in bit;
+   STo15: out bit;
+   STo14: out bit;
+   STo13: out bit;
+   STo12: out bit;
+   STo11: out bit;
+   STo10: out bit;
+   STo9:  out bit;
+   STo8:  out bit;
+   IC: linkage bit;
+   TCK, TMS, TDI, TRSTn: in bit;
+   TDO: out bit;
+   VDD: linkage bit_vector(1 to 16);
+   GND: linkage bit_vector(1 to 29);
+-- NC1: linkage bit_vector(none for 84 pin PLCC);
+   NC:  linkage bit_vector (1 to 16));--end of port
+
+   use STD_1149_1_1990.all; -- Get standard attributes and definitions
+
+   attribute PIN_MAP of MT90823: entity is PHYSICAL_PIN_MAP;
+
+-- ******** PLCC ***********
+   constant PLCC_PACKAGE : PIN_MAP_STRING:= "STo7:84,STo6:83,STo5:82,"&
+   "STo4:81,STo3:80,STo2:79,STo1:78,STo0:77,ODE:76,CSTo:74,DTAn:73,"&
+   "D15: 72, D14: 71, D13: 70, D12: 69, D11: 68, D10: 67, D9: 66,"&
+   "D8: 65, AD7: 62, AD6: 61, AD5: 60, AD4: 59, AD3: 58, AD2: 57,"&
+   "AD1: 56, AD0: 55, IM: 53, AS: 52, CSn: 51, RWn: 50, DS: 49, A7: 48,"&
+   "A6: 47, A5: 46, A4: 45, A3: 44, A2: 43, A1: 42, A0: 41, WFPS: 40,"&
+   "IC: 38, RESETn: 39, CLK: 31, FE: 29, FOi: 28, STi15: 27, STi14: 26,"&
+   "STi13: 25, STi12: 24, STi11: 23, STi10: 22, STi9: 21, STi8: 20,"&
+   "STi7: 19, STi6: 18, STi5: 17, STi4: 16, STi3: 15, STi2: 14,"&
+   "STi1: 13, STi0: 12, STo15: 10, STo14: 9, STo13: 8, STo12: 7,"&
+   "STo11: 6, STo10: 5, STo9: 4, STo8: 3,"&
+
+   -- TAP controller pins
+   "TCK: 36, TMS: 33, TDI: 34, TRSTn: 37, TDO: 35,"&
+
+   --Power pins
+   "VDD: (2,32,63),"&
+   "GND: (1,11,30,54,64,75)";
+   --NC1: No connects pins : None in 84 pin PLCC package
+
+-- ******** MQFP ***********
+   constant MQFP_PACKAGE : PIN_MAP_STRING:= "STo7:65,STo6:64,STo5:63,"&
+   "STo4:62,STo3:61,STo2:60,STo1:59,STo0:58,ODE:57,CSTo:55,DTAn:50,"&
+   "D15: 49, D14: 48, D13: 47, D12: 46, D11: 45, D10: 44, D9: 43,"&
+   "D8: 42, AD7: 39, AD6: 38, AD5: 37, AD4: 36, AD3: 35, AD2: 34,"&
+   "AD1: 33, AD0: 32, IM: 26, AS: 25, CSn: 24, RWn: 23, DS: 22, A7: 21,"&
+   "A6: 20, A5: 19, A4: 18, A3: 17, A2: 16, A1: 15, A0: 14, WFPS: 13,"&
+   "IC: 11, RESETn: 12, CLK: 100, FE: 98, FOi: 97, STi15: 96, STi14: 95,"&
+   "STi13: 94, STi12: 93, STi11: 92, STi10: 91, STi9: 90, STi8: 89,"&
+   "STi7: 88, STi6: 87, STi5: 86, STi4: 85, STi3: 84, STi2: 83,"&
+   "STi1: 82, STi0: 81, STo15: 75, STo14: 74, STo13:73, STo12: 72,"&
+   "STo11: 71, STo10: 70, STo9: 69, STo8: 68,"&
+
+   -- TAP controller pins
+   "TCK: 9, TMS: 6, TDI: 7, TRSTn: 10, TDO: 8,"&
+
+   --Power pins
+   "VDD: (5,40,67),"&
+   "GND: (31,41,56,66,76,99),"&
+   "NC : (1,2,3,4,27,28,29,30,51,52,53,54,77,78,79,80)";
+
+-- ******** LQFP ***********
+   constant LQFP_PACKAGE : PIN_MAP_STRING:= "STo7:62,STo6:61,STo5:60,"&
+   "STo4:59,STo3:58,STo2:57,STo1:56,STo0:55,ODE:54,CSTo:48,DTAn:47,"&
+   "D15: 46, D14: 45, D13: 44, D12: 43, D11: 42, D10: 41, D9: 40,"&
+   "D8: 39, AD7: 36, AD6: 35, AD5: 34, AD4: 33, AD3: 32, AD2: 31,"&
+   "AD1: 30, AD0: 29, IM: 23, AS: 22, CSn: 21, RWn: 20, DS: 19, A7: 18,"&
+   "A6: 17, A5: 16, A4: 15, A3: 14, A2: 13, A1: 12, A0: 11, WFPS: 10,"&
+   "IC: 8, RESETn: 9, CLK: 97, FE: 95, FOi: 94, STi15: 93, STi14: 92,"&
+   "STi13: 91, STi12: 90, STi11: 89, STi10: 88, STi9: 87, STi8: 86,"&
+   "STi7: 85, STi6: 84, STi5: 83, STi4: 82, STi3: 81, STi2: 80,"&
+   "STi1: 79, STi0: 78, STo15: 72, STo14: 71, STo13:70, STo12: 69,"&
+   "STo11: 68, STo10: 67, STo9: 66, STo8: 65,"&
+
+   -- TAP controller pins
+   "TCK: 6, TMS: 3, TDI: 4, TRSTn: 7, TDO: 5,"&
+
+   --Power pins
+   "VDD: (37,64,98),"&
+   "GND: (28,38,53,63,73,96),"&
+   "NC : (1,2,24,25,26,27,49,50,51,52,74,75,76,77,99,100)";
+
+-- ******** PBGA ***********
+   constant PBGA_PACKAGE : PIN_MAP_STRING:= "STo7:A7,STo6:B8,STo5:A8,"&
+   "STo4:A9,STo3:B9,STo2:A10,STo1:B10,STo0:A11,ODE:B11,CSTo:C13,DTAn:C12,"&
+   "D15: D13, D14: D12, D13: E13, D12: E12, D11: F13, D10: F12, D9: G13,"&
+   "D8: G12, AD7: H13, AD6: H12, AD5: J13, AD4: J12, AD3: K13, AD2: K12,"&
+   "AD1: L13, AD0: L12, IM: N13, AS: M11, CSn: N12, RWn: M10, DS: N11, A7: N10,"&
+   "A6: M9, A5: N9, A4: M8, A3: N8, A2: N7, A1: M7, A0: N6, WFPS: M6,"&
+   "IC: M5, RESETn: N5, CLK: N1, FE: L2, FOi: L1, STi15: K2, STi14: K1,"&
+   "STi13: J2, STi12: J1, STi11: H2, STi10: H1, STi9: G2, STi8: G1,"&
+   "STi7: F2, STi6: F1, STi5: E2, STi4: E1, STi3: D2, STi2: D1,"&
+   "STi1: C2, STi0: C1, STo15: B3, STo14: A3, STo13:B4, STo12: A4,"&
+   "STo11: B5, STo10: A5, STo9: A6, STo8: B6,"&
+
+   -- TAP controller pins
+   "TCK: M4, TMS: N2, TDI: M3, TRSTn: N4, TDO: N3,"&
+
+   --Power pins
+   "VDD: (C4,C6,C8,C10,D3,D11,F3,F11,H3,H11,K3,K11,L4,L6,L8,L10),"&
+   "GND: (A1,A2,A12,A13,B1,B2,B7,B12,B13,C3,C5,C7,C9,C11,E3,E11,"&
+         "G3,G11,J3,J11,L3,L5,L7,L9,L11,M1,M2,M12,M13)";
+   --NC1: No connects pins : None in 128 pin PBGA package
+
+   --Scan port identification
+   attribute TAP_SCAN_IN of TDI:signal is true;
+   attribute TAP_SCAN_MODE of TMS:signal is true;
+   attribute TAP_SCAN_OUT of TDO:signal is true;
+   attribute TAP_SCAN_RESET of TRSTn:signal is true;
+   attribute TAP_SCAN_CLOCK of TCK:signal is (8.192e6, BOTH);
+
+   --TAP Description
+   attribute INSTRUCTION_LENGTH of MT90823: entity is 3 ;
+   attribute INSTRUCTION_OPCODE of MT90823: entity is
+  "BYPASS (111),"&
+  "EXTEST (000),"&
+  "IDCODE (001),"&
+  "SAMPLE (010)";
+
+
+   attribute INSTRUCTION_CAPTURE of MT90823: entity is "001";
+   -- there is no INSTRUCTION_DISABLE attribute for MT90823
+   -- there is no INSTRUCTION_PRIVATE attribute for MT90823
+   -- id code register in MT90823 rev A.
+   attribute IDCODE_REGISTER of MT90823: entity is
+   "0000" &
+   "0000100000100011" &
+   "00010100101" & "1";
+
+
+
+   attribute REGISTER_ACCESS of MT90823: entity is
+   "BYPASS (BYPASS),"& -- 1149.1 bypass
+   "BOUNDARY (EXTEST, SAMPLE)"; -- 1149.1 extest & sample
+
+   -- THE BOUNDARY SCAN CHAIN
+   -- The first cell is close to TDO
+   attribute BOUNDARY_CELLS of MT90823: entity is "BC_1, BC_4";
+   attribute BOUNDARY_LENGTH of MT90823: entity is 118;
+
+   attribute BOUNDARY_REGISTER of MT90823: entity is
+
+ -- num cell port   function safe [ccell disval rslt]
+
+    --   --  --     -----    ----   ---  ----
+    "0    (BC_1, *,   control, 0),"&
+    "1    (BC_1, STo7,   output3, X, 0, 0, Z),"&
+    "2    (BC_1, *,   control, 0),"&
+    "3    (BC_1, STo6,   output3, X, 2, 0, Z),"&
+    "4    (BC_1, *,   control, 0),"&
+    "5    (BC_1, STo5,   output3, X, 4, 0, Z),"&
+    "6    (BC_1, *,   control, 0),"&
+    "7    (BC_1, STo4,   output3, X, 6, 0, Z),"&
+    "8    (BC_1, *,   control, 0),"&
+    "9    (BC_1, STo3,   output3, X, 8, 0, Z),"&
+    "10   (BC_1, *,   control, 0),"&
+    "11   (BC_1, STo2,   output3, X, 10, 0, Z),"&
+    "12   (BC_1, *,   control, 0),"&
+    "13   (BC_1, STo1,   output3, X, 12, 0, Z),"&
+    "14   (BC_1, *,   control, 0),"&
+    "15   (BC_1, STo0,   output3, X, 14, 0, Z),"&
+    "16   (BC_4, ODE,    input, X),"&
+    "17   (BC_1, *,   control, 0),"&
+    "18   (BC_1, CSTo,   output3, X, 17, 0, Z),"&
+    "19   (BC_1, DTAn,   output2, X),"&
+    "20   (BC_1, *,    control, 0),"&
+    "21   (BC_1, D15,    output3, X, 20, 0, Z),"&
+    "22   (BC_4, D15,    input, X),"&
+    "23   (BC_1, *,    control, 0),"&
+    "24   (BC_1, D14,    output3, X, 23, 0, Z),"&
+    "25   (BC_4, D14,    input, X),"&
+    "26   (BC_1, *,    control, 0),"&
+    "27   (BC_1, D13,    output3, X, 26, 0, Z),"&
+    "28   (BC_4, D13,    input, X),"&
+    "29   (BC_1, *,    control, 0),"&
+    "30   (BC_1, D12,    output3, X, 29, 0, Z),"&
+    "31   (BC_4, D12,    input, X),"&
+    "32   (BC_1, *,    control, 0),"&
+    "33   (BC_1, D11,    output3, X, 32, 0, Z),"&
+    "34   (BC_4, D11,    input, X),"&
+    "35   (BC_1, *,    control, 0),"&
+    "36   (BC_1, D10,    output3, X, 35, 0, Z),"&
+    "37   (BC_4, D10,    input, X),"&
+    "38   (BC_1, *,     control, 0),"&
+    "39   (BC_1, D9,     output3, X, 38, 0, Z),"&
+    "40   (BC_4, D9,     input, X),"&
+    "41   (BC_1, *,     control, 0),"&
+    "42   (BC_1, D8,     output3, X, 41, 0, Z),"&
+    "43   (BC_4, D8,     input, X),"&
+    "44   (BC_1, *,    control, 0),"&
+    "45   (BC_1, AD7,    output3, X, 44, 0, Z),"&
+    "46   (BC_4, AD7,    input, X),"&
+    "47   (BC_1, *,    control, 0),"&
+    "48   (BC_1, AD6,    output3, X, 47, 0, Z),"&
+    "49   (BC_4, AD6,    input, X),"&
+    "50   (BC_1, *,    control, 0),"&
+    "51   (BC_1, AD5,    output3, X, 50, 0, Z),"&
+    "52   (BC_4, AD5,    input, X),"&
+    "53   (BC_1, *,    control, 0),"&
+    "54   (BC_1, AD4,    output3, X, 53, 0, Z),"&
+    "55   (BC_4, AD4,    input, X),"&
+    "56   (BC_1, *,    control, 0),"&
+    "57   (BC_1, AD3,    output3, X, 56, 0, Z),"&
+    "58   (BC_4, AD3,    input, X),"&
+    "59   (BC_1, *,    control, 0),"&
+    "60   (BC_1, AD2,    output3, X, 59, 0, Z),"&
+    "61   (BC_4, AD2,    input, X),"&
+    "62   (BC_1, *,    control, 0),"&
+    "63   (BC_1, AD1,    output3, X, 62, 0, Z),"&
+    "64   (BC_4, AD1,    input, X),"&
+    "65   (BC_1, *,    control, 0),"&
+    "66   (BC_1, AD0,    output3, X, 65, 0, Z),"&
+    "67   (BC_4, AD0,    input, X),"&
+    "68   (BC_4, IM,     input, X),"&
+    "69   (BC_4, AS,     input, X),"&
+    "70   (BC_4, CSn,    input, X),"&
+    "71   (BC_4, RWn,    input, X),"&
+    "72   (BC_4, DS,     input, X),"&
+    "73   (BC_4, A7,     input, X),"&
+    "74   (BC_4, A6,     input, X),"&
+    "75   (BC_4, A5,     input, X),"&
+    "76   (BC_4, A4,     input, X),"&
+    "77   (BC_4, A3,     input, X),"&
+    "78   (BC_4, A2,     input, X),"&
+    "79   (BC_4, A1,     input, X),"&
+    "80   (BC_4, A0,     input, X),"&
+    "81   (BC_4, WFPS,   input, X),"&
+    "82   (BC_4, RESETn, input, X),"&
+    "83   (BC_4, CLK,    input, X),"&
+    "84   (BC_4, FE,     input, X),"&
+    "85   (BC_4, FOi,    input, X),"&
+    "86   (BC_4, STi15,  input, X),"&
+    "87   (BC_4, STi14,  input, X),"&
+    "88   (BC_4, STi13,  input, X),"&
+    "89   (BC_4, STi12,  input, X),"&
+    "90   (BC_4, STi11,  input, X),"&
+    "91   (BC_4, STi10,  input, X),"&
+    "92   (BC_4, STi9,   input, X),"&
+    "93   (BC_4, STi8,   input, X),"&
+    "94   (BC_4, STi7,   input, X),"&
+    "95   (BC_4, STi6,   input, X),"&
+    "96   (BC_4, STi5,   input, X),"&
+    "97   (BC_4, STi4,   input, X),"&
+    "98   (BC_4, STi3,   input, X),"&
+    "99   (BC_4, STi2,   input, X),"&
+    "100  (BC_4, STi1,   input, X),"&
+    "101  (BC_4, STi0,   input, X),"&
+    "102  (BC_1, *,  control, 0),"&
+    "103  (BC_1, STo15,  output3, X, 102, 0, Z),"&
+    "104  (BC_1, *,  control, 0),"&
+    "105  (BC_1, STo14,  output3, X, 104, 0, Z),"&
+    "106  (BC_1, *,  control, 0),"&
+    "107  (BC_1, STo13,  output3, X, 106, 0, Z),"&
+    "108  (BC_1, *,  control, X),"&
+    "109  (BC_1, STo12,  output3, X, 108, 0, Z),"&
+    "110  (BC_1, *,  control, 0),"&
+    "111  (BC_1, STo11,  output3, X, 110, 0, Z),"&
+    "112  (BC_1, *,  control, 0),"&
+    "113  (BC_1, STo10,  output3, X, 112, 0, Z),"&
+    "114  (BC_1, *,   control, 0),"&
+    "115  (BC_1, STo9,   output3, X, 114, 0, Z),"&
+    "116  (BC_1, *,   control, 0),"&
+    "117  (BC_1, STo8,   output3, X, 116, 0, Z)";
+
+end MT90823;
+
+
+
+
+
+
+
+
+
+
+

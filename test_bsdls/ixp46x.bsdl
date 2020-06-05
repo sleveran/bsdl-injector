@@ -1,0 +1,1460 @@
+-- Copyright Intel Corporation 2004
+--**************************************************************************** 
+-- Intel Corporation makes no warranty for the use of its products
+-- and assumes no responsibility for any errors which may appear in
+-- this document nor does it make a commitment to update the information 
+-- contained herein.
+--**************************************************************************** 
+--
+-- ixp46x A-step BSDL File
+-- ---------------------------------------------------------
+-- Rev 0.0
+--
+
+entity ixp46x is
+   generic(PHYSICAL_PIN_MAP : string:= "BGA");
+   port (
+         ethb_rxdata_2 : in bit;
+         utp_ip_data_2 : in bit;
+         ex_addr_11 : inout bit;
+         rts_n_1 : out bit;
+         gpio_15 : inout bit;
+         rts_n_0 : out bit;
+         utp_op_addr_1 : inout bit;
+         ethb_rxdata_3 : in bit;
+         utp_ip_fco : out bit;
+         ethc_txen : out bit;
+         utp_op_data_0 : out bit;
+         ethc_rxclk : in bit;
+         pll_lock : out bit;
+         ssp_sclk : out bit;
+         eth_mdio : inout bit;
+         ethb_txdata_2 : out bit;
+         ex_addr_12 : inout bit;
+         ethb_rxdata_0 : in bit;
+         pci_serr_n : inout bit;
+         ssp_extclk : in bit;
+         scantestmode_n : in bit;
+         rxdata1 : in bit;
+         usb_dneg : inout bit;
+         rcomp_ref : out bit;
+         ex_addr_0 : inout bit;
+         utp_op_fci : in bit;
+         utp_op_data_5 : out bit;
+         ex_data_26 : inout bit;
+         ex_data_27 : inout bit;
+         gpio_2 : inout bit;
+         gpio_6 : inout bit;
+         ddr1_ck_2 : out bit;
+         ex_parity_3 : inout bit;
+         ex_addr_13 : inout bit;
+         ex_addr_14 : inout bit;
+         utp_ip_addr_3 : inout bit;
+         ethb_txclk : in bit;
+         utp_ip_addr_1 : inout bit;
+         jtg_tdo : out bit;
+         ethb_rxclk : in bit;
+         ddr1_rcomp : out bit;
+         gpio_4 : inout bit;
+         ex_addr_1 : inout bit;
+         utp_op_clk : in bit;
+         utp_op_addr_3 : inout bit;
+         gpio_9 : inout bit;
+         ssp_sfrm : out bit;
+         i2c_scl : inout bit;
+         ex_addr_16 : inout bit;
+         utp_op_fco : out bit;
+         ex_data_24 : inout bit;
+         ex_data_3 : inout bit;
+         utp_ip_data_4 : in bit;
+         utp_ip_addr_0 : inout bit;
+         utp_ip_data_1 : in bit;
+         pci_cbe_n_3 : inout bit;
+         ssp_txd : out bit;
+         utp_op_data_1 : out bit;
+         utp_op_data_2 : out bit;
+         ssp_rxd : in bit;
+         cts_n_0 : in bit;
+         pci_ad_21 : inout bit;
+         eth_mdc : inout bit;
+         ex_req_n_2 : in bit;
+         pci_ad_31 : inout bit;
+         ex_gnt_n_1 : out bit;
+         pci_gnt_n_3 : out bit;
+         gpio_13 : inout bit;
+         utp_op_data_7 : out bit;
+         ex_parity_0 : inout bit;
+         utp_ip_data_0 : in bit;
+         gpio_1 : inout bit;
+         pci_ad_18 : inout bit;
+         txdata_0 : out bit;
+         utp_ip_data_5 : in bit;
+         utp_ip_clk : in bit;
+         osc_in : in bit;
+         utp_ip_fci : in bit;
+         utp_ip_addr_4 : inout bit;
+         ex_data_0 : inout bit;
+         jtg_tms : in bit;
+         ex_addr_9 : inout bit;
+         reset_in_n : in bit;
+         osc_out : out bit;
+         ddr1_dq_2 : inout bit;
+         ddr1_dq_3 : inout bit;
+         utp_ip_addr_2 : inout bit;
+         ddr1_dq_4 : inout bit;
+         utp_ip_data_7 : in bit;
+         highz_n : in bit;
+         ethb_crs : inout bit;
+         i2c_sda : inout bit;
+         utp_op_addr_2 : inout bit;
+         gpio_8 : inout bit;
+         utp_op_addr_0 : inout bit;
+         pci_cbe_n_1 : inout bit;
+         pci_ad_11 : inout bit;
+         pci_par : inout bit;
+         pci_perr_n : inout bit;
+         pci_ad_16 : inout bit;
+         ex_be_n_3 : inout bit;
+         ex_be_n_2 : inout bit;
+         ex_cs_n_6 : inout bit;
+         pci_ad_27 : inout bit;
+         pci_ad_12 : inout bit;
+         pci_cbe_n_0 : inout bit;
+         ex_addr_24 : inout bit;
+         pci_ad_13 : inout bit;
+         pci_ad_14 : inout bit;
+         ex_parity_2 : inout bit;
+         ex_parity_1 : inout bit;
+         ex_data_9 : inout bit;
+         ex_data_31 : inout bit;
+         ethc_txdata_2 : out bit;
+         ethc_rxdata_1 : in bit;
+         ethc_txdata_0 : out bit;
+         ethb_txdata_1 : out bit;
+         ddr1_ba_1 : out bit;
+         ddr1_ma_8 : out bit;
+         ddr1_ma_0 : out bit;
+         ddr1_ma_4 : out bit;
+         ddr1_ma_12 : out bit;
+         ddr1_ma_2 : out bit;
+         ddr1_cb_6 : inout bit;
+         ddr1_cb_4 : inout bit;
+         pci_gnt_n_1 : out bit;
+         pci_req_n_1 : in bit;
+         ex_gnt_n_2 : out bit;
+         pci_idsel : in bit;
+         ex_req_n_3 : in bit;
+         ex_addr_4 : inout bit;
+         ddr1_dq_0 : inout bit;
+         ddr1_ma_1 : out bit;
+         ddr1_dq_16 : inout bit;
+         ddr1_dm_2 : out bit;
+         ddr1_dq_27 : inout bit;
+         ddr1_dq_28 : inout bit;
+         ddr1_dqs_4 : inout bit;
+         ddr1_cb_7 : inout bit;
+         ddr1_cb_5 : inout bit;
+         ddr1_cb_3 : inout bit;
+         usb_hpos : inout bit;
+         spare1 : out bit;
+         ddr1_ma_13 : out bit;
+         ddr1_ma_10 : out bit;
+         ddr1_ma_6 : out bit;
+         ddr1_ma_3 : out bit;
+         ddr1_dq_19 : inout bit;
+         ddr1_dqs_2 : inout bit;
+         jtg_tck : in bit;
+         jtg_trst_n : in bit;
+         utp_ip_data_6 : in bit;
+         gpio_5 : inout bit;
+         ex_addr_15 : inout bit;
+         bypass_clk : in bit;
+         utp_op_data_3 : out bit;
+         utp_op_data_4 : out bit;
+         gpio_0 : inout bit;
+         ex_data_16 : inout bit;
+         ex_data_30 : inout bit;
+         ex_data_18 : inout bit;
+         ex_data_20 : inout bit;
+         ex_data_12 : inout bit;
+         hss_rxframe1 : inout bit;
+         hss_rxclk1 : inout bit;
+         hss_rxdata1 : in bit;
+         ethc_rxdata_3 : in bit;
+         ethc_txdata_1 : out bit;
+         utp_op_data_6 : out bit;
+         ex_cs_n_3 : inout bit;
+         ex_addr_5 : inout bit;
+         ex_addr_20 : inout bit;
+         pci_cbe_n_2 : inout bit;
+         pci_devsel_n : inout bit;
+         pci_ad_15 : inout bit;
+         pci_ad_25 : inout bit;
+         pci_ad_22 : inout bit;
+         pci_ad_24 : inout bit;
+         ex_addr_8 : inout bit;
+         ex_req_n_1 : in bit;
+         ex_gnt_req_n : out bit;
+         utp_op_soc : out bit;
+         pci_ad_20 : inout bit;
+         ddr1_dq_10 : inout bit;
+         ethb_rxdata_1 : in bit;
+         gpio_11 : inout bit;
+         ddr1_dq_15 : inout bit;
+         pwron_reset_n : in bit;
+         ex_be_n_1 : inout bit;
+         ex_wr_n : inout bit;
+         gpio_10 : inout bit;
+         gpio_3 : inout bit;
+         ex_rdy_n_0 : in bit;
+         ex_iowait_n : in bit;
+         pci_ad_4 : inout bit;
+         pci_ad_6 : inout bit;
+         pci_ad_9 : inout bit;
+         pci_ad_10 : inout bit;
+         ex_data_28 : inout bit;
+         ex_addr_3 : inout bit;
+         ex_addr_2 : inout bit;
+         pci_gnt_n_2 : out bit;
+         pci_req_n_0 : inout bit;
+         pci_ad_28 : inout bit;
+         pci_ad_26 : inout bit;
+         ddr1_rcvenout_n : out bit;
+         ddr1_ck_0 : out bit;
+         ddr1_cke_0 : out bit;
+         ddr1_ba_0 : out bit;
+         rxdata_0 : in bit;
+         gpio_12 : inout bit;
+         gpio_14 : inout bit;
+         gpio_7 : inout bit;
+         utp_ip_data_3 : in bit;
+         jtg_tdi : in bit;
+         utp_op_addr_4 : inout bit;
+         txdata1 : out bit;
+         pci_inta_n : out bit;
+         pci_req_n_3 : in bit;
+         usb_hpen : out bit;
+         usb_dpos : inout bit;
+         ex_req_gnt_n : in bit;
+         ex_slave_cs_n : in bit;
+         ex_addr_18 : inout bit;
+         ex_addr_22 : inout bit;
+         pci_ad_17 : inout bit;
+         ddr1_dq_11 : inout bit;
+         ddr1_dq_13 : inout bit;
+         ddr1_dm_1 : out bit;
+         ddr1_cas_n : out bit;
+         ddr1_dq_29 : inout bit;
+         ddr1_dm_4 : out bit;
+         ddr1_ck_n_1 : out bit;
+         ddr1_cb_0 : inout bit;
+         ddr1_dqs_3 : inout bit;
+         ddr1_ck_1 : out bit;
+         ddr1_cb_1 : inout bit;
+         ddr1_cb_2 : inout bit;
+         ddr1_dq_9 : inout bit;
+         ddr1_dq_12 : inout bit;
+         ddr1_ck_n_0 : out bit;
+         ddr1_cke_1 : out bit;
+         ddr1_cs_n_1 : out bit;
+         pci_ad_3 : inout bit;
+         pci_ad_5 : inout bit;
+         pci_ad_1 : inout bit;
+         ex_wait_n : out bit;
+         ex_burst : in bit;
+         ex_addr_7 : inout bit;
+         ex_addr_10 : inout bit;
+         ex_rdy_n_2 : in bit;
+         ex_rdy_n_1 : in bit;
+         pci_irdy_n : inout bit;
+         ex_cs_n_7 : inout bit;
+         usb_hneg : inout bit;
+         ex_addr_23 : inout bit;
+         ex_gnt_n_3 : out bit;
+         cts_n_1 : in bit;
+         utp_ip_soc : in bit;
+         ethb_txdata_0 : out bit;
+         ddr1_ck_n_2 : out bit;
+         ddr1_dq_20 : inout bit;
+         hss_txframe0 : inout bit;
+         ex_data_1 : inout bit;
+         ex_rdy_n_3 : in bit;
+         ex_data_22 : inout bit;
+         ddr1_ma_5 : out bit;
+         ddr1_dq_17 : inout bit;
+         ddr1_dq_23 : inout bit;
+         ddr1_dq_21 : inout bit;
+         ddr1_dq_24 : inout bit;
+         ddr1_dq_31 : inout bit;
+         ddr1_dq_18 : inout bit;
+         ddr1_dq_22 : inout bit;
+         ddr1_dq_25 : inout bit;
+         ddr1_dq_26 : inout bit;
+         ddr1_dq_30 : inout bit;
+         ddr1_dm_3 : out bit;
+         pci_ad_7 : inout bit;
+         pci_stop_n : inout bit;
+         ddr1_dq_7 : inout bit;
+         ddr1_dq_5 : inout bit;
+         ddr1_dqs_0 : inout bit;
+         ddr1_dq_14 : inout bit;
+         ddr1_dqs_1 : inout bit;
+         ddr1_vref : out bit;
+         pci_gnt_n_0 : inout bit;
+         pci_ad_30 : inout bit;
+         ex_data_25 : inout bit;
+         ex_data_6 : inout bit;
+         ethb_txdata_3 : out bit;
+         ex_data_10 : inout bit;
+         ex_data_8 : inout bit;
+         ex_data_19 : inout bit;
+         ethc_txdata_3 : out bit;
+         ethc_rxdata_2 : in bit;
+         ethc_crs : in bit;
+         ethb_rxdv : in bit;
+         spare2 : out bit;
+         ex_data_23 : inout bit;
+         ex_addr_6 : inout bit;
+         ethb_col : in bit;
+         ex_data_2 : inout bit;
+         ex_data_29 : inout bit;
+         ex_cs_n_0 : inout bit;
+         usb_hpwr : in bit;
+         pci_req_n_2 : in bit;
+         pci_ad_29 : inout bit;
+         ddr1_dq_1 : inout bit;
+         ddr1_dq_8 : inout bit;
+         ddr1_ras_n : out bit;
+         ddr1_cs_n_0 : out bit;
+         ddr1_ma_11 : out bit;
+         ddr1_ma_9 : out bit;
+         ddr1_ma_7 : out bit;
+         ex_data_14 : inout bit;
+         ex_data_13 : inout bit;
+         ethb_txen : out bit;
+         ethc_col : in bit;
+         ethc_rxdata_0 : in bit;
+         ethc_txclk : in bit;
+         hss_txframe1 : inout bit;
+         hss_txdata1 : out bit;
+         hss_txclk1 : inout bit;
+         ethc_rxdv : in bit;
+         ex_addr_17 : inout bit;
+         ex_addr_21 : inout bit;
+         pci_frame_n : inout bit;
+         pci_clkin : in bit;
+         ex_be_n_0 : inout bit;
+         ex_ale : out bit;
+         pci_ad_23 : inout bit;
+         pci_ad_19 : inout bit;
+         ddr1_dq_6 : inout bit;
+         ddr1_dm_0 : out bit;
+         ddr1_rcvenin_n : in bit;
+         ddr1_we_n : out bit;
+         ex_cs_n_5 : inout bit;
+         ex_cs_n_2 : inout bit;
+         ex_cs_n_4 : inout bit;
+         ex_cs_n_1 : inout bit;
+         ex_data_21 : inout bit;
+         ex_data_15 : inout bit;
+         ex_data_5 : inout bit;
+         ex_data_4 : inout bit;
+         pci_trdy_n : inout bit;
+         hss_txdata0 : out bit;
+         hss_rxframe0 : inout bit;
+         hss_txclk0 : inout bit;
+         hss_rxdata0 : in bit;
+         pci_ad_8 : inout bit;
+         pci_ad_2 : inout bit;
+         hss_rxclk0 : inout bit;
+         ex_data_7 : inout bit;
+         pci_ad_0 : inout bit;
+         ex_data_17 : inout bit;
+         ex_data_11 : inout bit;
+         ex_addr_19 : inout bit;
+         ex_clk : in bit;
+         ex_rd_n : inout bit;
+         VSS : linkage bit_vector(96 downto 1);
+         VCC : linkage bit_vector(44 downto 1);
+         VCCP : linkage bit_vector(25 downto 1);
+         VCCM : linkage bit_vector(11 downto 1);
+         VCCPLL1 : linkage bit;
+         VCCPLL2 : linkage bit;
+         VCCPLL3 : linkage bit;
+         OSC_VCC : linkage bit;
+         OSC_VCCP : linkage bit;
+         OSC_VSS : linkage bit;
+         OSC_VSSP : linkage bit_vector(2 downto 1)
+);
+   use STD_1149_1_1990.all;
+   use verde_a.all;
+
+   attribute PIN_MAP of ixp46x : entity is PHYSICAL_PIN_MAP;
+
+    constant BGA:PIN_MAP_STRING :=
+     "ethb_rxdata_2         :  ab7,"&
+     "utp_ip_data_2         :  af4,"&
+     "ex_addr_11            :  y20,"&
+     "rts_n_1               :  ae19,"&
+     "gpio_15               :  ae21,"&
+     "rts_n_0               :  ae20,"&
+     "utp_op_addr_1         :  ae9,"&
+     "ethb_rxdata_3         :  y8,"&
+     "utp_ip_fco            :  ae10,"&
+     "ethc_txen             :  t6,"&
+     "utp_op_data_0         :  af3,"&
+     "ethc_rxclk            :  ab1,"&
+     "pll_lock              :  ab14,"&
+     "ssp_sclk              :  ae24,"&
+     "eth_mdio              :  ab2,"&
+     "ethb_txdata_2         :  ab3,"&
+     "ex_addr_12            :  w20,"&
+     "ethb_rxdata_0         :  ad3,"&
+     "pci_serr_n            :  h7,"&
+     "ssp_extclk            :  ae25,"&
+     "scantestmode_n        :  ae16,"&
+     "rxdata1               :  ae18,"&
+     "usb_dneg              :  h20,"&
+     "rcomp_ref             :  g7,"&
+     "ex_addr_0             :  aa22,"&
+     "utp_op_fci            :  ab10,"&
+     "utp_op_data_5         :  ab8,"&
+     "ex_data_26            :  aa24,"&
+     "ex_data_27            :  aa25,"&
+     "gpio_2                :  ae23,"&
+     "gpio_6                :  ae22,"&
+     "ddr1_ck_2             :  g8,"&
+     "ex_parity_3           :  aa23,"&
+     "ex_addr_13            :  y19,"&
+     "ex_addr_14            :  aa20,"&
+     "utp_ip_addr_3         :  ae13,"&
+     "ethb_txclk            :  ad1,"&
+     "utp_ip_addr_1         :  ae14,"&
+     "jtg_tdo               :  ae17,"&
+     "ethb_rxclk            :  ad2,"&
+     "ddr1_rcomp            :  g20,"&
+     "gpio_4                :  ac20,"&
+     "ex_addr_1             :  ab23,"&
+     "utp_op_clk            :  af7,"&
+     "utp_op_addr_3         :  ad9,"&
+     "gpio_9                :  ac19,"&
+     "ssp_sfrm              :  ad23,"&
+     "i2c_scl               :  ad24,"&
+     "ex_addr_16            :  ad25,"&
+     "utp_op_fco            :  ac9,"&
+     "ex_data_24            :  ab25,"&
+     "ex_data_3             :  ab26,"&
+     "utp_ip_data_4         :  ae5,"&
+     "utp_ip_addr_0         :  ad14,"&
+     "utp_ip_data_1         :  ae6,"&
+     "pci_cbe_n_3           :  f2,"&
+     "ssp_txd               :  ac21,"&
+     "utp_op_data_1         :  ae4,"&
+     "utp_op_data_2         :  ae3,"&
+     "ssp_rxd               :  aa19,"&
+     "cts_n_0               :  ac17,"&
+     "pci_ad_21             :  f1,"&
+     "eth_mdc               :  ac1,"&
+     "ex_req_n_2            :  e26,"&
+     "pci_ad_31             :  f4,"&
+     "ex_gnt_n_1            :  e25,"&
+     "pci_gnt_n_3           :  f5,"&
+     "gpio_13               :  ad20,"&
+     "utp_op_data_7         :  ac6,"&
+     "ex_parity_0           :  ab24,"&
+     "utp_ip_data_0         :  af6,"&
+     "gpio_1                :  aa18,"&
+     "pci_ad_18             :  g1,"&
+     "txdata_0              :  ad18,"&
+     "utp_ip_data_5         :  ac8,"&
+     "utp_ip_clk            :  af10,"&
+     "osc_in                :  af11,"&
+     "utp_ip_fci            :  ac11,"&
+     "utp_ip_addr_4         :  ac13,"&
+     "ex_data_0             :  ac25,"&
+     "jtg_tms               :  ac15,"&
+     "ex_addr_9             :  ac24,"&
+     "reset_in_n            :  ac14,"&
+     "osc_out               :  af13,"&
+     "ddr1_dq_2             :  c23,"&
+     "ddr1_dq_3             :  c22,"&
+     "utp_ip_addr_2         :  af14,"&
+     "ddr1_dq_4             :  c21,"&
+     "utp_ip_data_7         :  ad4,"&
+     "highz_n               :  af17,"&
+     "ethb_crs              :  ac2,"&
+     "i2c_sda               :  ab20,"&
+     "utp_op_addr_2         :  af8,"&
+     "gpio_8                :  ab18,"&
+     "utp_op_addr_0         :  af9,"&
+     "pci_cbe_n_1           :  l2,"&
+     "pci_ad_11             :  l1,"&
+     "pci_par               :  l4,"&
+     "pci_perr_n            :  l3,"&
+     "pci_ad_16             :  j3,"&
+     "ex_be_n_3             :  l26,"&
+     "ex_be_n_2             :  l25,"&
+     "ex_cs_n_6             :  j21,"&
+     "pci_ad_27             :  j6,"&
+     "pci_ad_12             :  m2,"&
+     "pci_cbe_n_0           :  m1,"&
+     "ex_addr_24            :  j23,"&
+     "pci_ad_13             :  m4,"&
+     "pci_ad_14             :  m3,"&
+     "ex_parity_2           :  p24,"&
+     "ex_parity_1           :  p23,"&
+     "ex_data_9             :  w26,"&
+     "ex_data_31            :  w25,"&
+     "ethc_txdata_2         :  y1,"&
+     "ethc_rxdata_1         :  y3,"&
+     "ethc_txdata_0         :  y2,"&
+     "ethb_txdata_1         :  y6,"&
+     "ddr1_ba_1             :  a15,"&
+     "ddr1_ma_8             :  a14,"&
+     "ddr1_ma_0             :  a13,"&
+     "ddr1_ma_4             :  a11,"&
+     "ddr1_ma_12            :  e15,"&
+     "ddr1_ma_2             :  e13,"&
+     "ddr1_cb_6             :  d6,"&
+     "ddr1_cb_4             :  d5,"&
+     "pci_gnt_n_1           :  d3,"&
+     "pci_req_n_1           :  d2,"&
+     "ex_gnt_n_2            :  k21,"&
+     "pci_idsel             :  k6,"&
+     "ex_req_n_3            :  k22,"&
+     "ex_addr_4             :  k24,"&
+     "ddr1_dq_0             :  d23,"&
+     "ddr1_ma_1             :  c13,"&
+     "ddr1_dq_16            :  c11,"&
+     "ddr1_dm_2             :  c9,"&
+     "ddr1_dq_27            :  c8,"&
+     "ddr1_dq_28            :  c7,"&
+     "ddr1_dqs_4            :  c6,"&
+     "ddr1_cb_7             :  c5,"&
+     "ddr1_cb_5             :  c4,"&
+     "ddr1_cb_3             :  c3,"&
+     "usb_hpos              :  g22,"&
+     "spare1                :  f21,"&
+     "ddr1_ma_13            :  d15,"&
+     "ddr1_ma_10            :  d14,"&
+     "ddr1_ma_6             :  d13,"&
+     "ddr1_ma_3             :  d12,"&
+     "ddr1_dq_19            :  d11,"&
+     "ddr1_dqs_2            :  d10,"&
+     "jtg_tck               :  ac16,"&
+     "jtg_trst_n            :  af18,"&
+     "utp_ip_data_6         :  ad6,"&
+     "gpio_5                :  ad21,"&
+     "ex_addr_15            :  ac22,"&
+     "bypass_clk            :  af15,"&
+     "utp_op_data_3         :  ac7,"&
+     "utp_op_data_4         :  aa9,"&
+     "gpio_0                :  ad22,"&
+     "ex_data_16            :  u23,"&
+     "ex_data_30            :  u22,"&
+     "ex_data_18            :  u24,"&
+     "ex_data_20            :  u26,"&
+     "ex_data_12            :  u25,"&
+     "hss_rxframe1          :  v1,"&
+     "hss_rxclk1            :  v3,"&
+     "hss_rxdata1           :  v2,"&
+     "ethc_rxdata_3         :  v5,"&
+     "ethc_txdata_1         :  v4,"&
+     "utp_op_data_6         :  ae2,"&
+     "ex_cs_n_3             :  e24,"&
+     "ex_addr_5             :  j25,"&
+     "ex_addr_20            :  j24,"&
+     "pci_cbe_n_2           :  k3,"&
+     "pci_devsel_n          :  k2,"&
+     "pci_ad_15             :  m5,"&
+     "pci_ad_25             :  g4,"&
+     "pci_ad_22             :  g3,"&
+     "pci_ad_24             :  h4,"&
+     "ex_addr_8             :  ad26,"&
+     "ex_req_n_1            :  f25,"&
+     "ex_gnt_req_n          :  f24,"&
+     "utp_op_soc            :  ad8,"&
+     "pci_ad_20             :  g2,"&
+     "ddr1_dq_10            :  c20,"&
+     "ethb_rxdata_1         :  aa8,"&
+     "gpio_11               :  af22,"&
+     "ddr1_dq_15            :  c19,"&
+     "pwron_reset_n         :  af16,"&
+     "ex_be_n_1             :  m23,"&
+     "ex_wr_n               :  m22,"&
+     "gpio_10               :  af23,"&
+     "gpio_3                :  af24,"&
+     "ex_rdy_n_0            :  m26,"&
+     "ex_iowait_n           :  m25,"&
+     "pci_ad_4              :  n2,"&
+     "pci_ad_6              :  n1,"&
+     "pci_ad_9              :  n5,"&
+     "pci_ad_10             :  n4,"&
+     "ex_data_28            :  u21,"&
+     "ex_addr_3             :  n22,"&
+     "ex_addr_2             :  n23,"&
+     "pci_gnt_n_2           :  e4,"&
+     "pci_req_n_0           :  e3,"&
+     "pci_ad_28             :  e2,"&
+     "pci_ad_26             :  e1,"&
+     "ddr1_rcvenout_n       :  c18,"&
+     "ddr1_ck_0             :  c17,"&
+     "ddr1_cke_0            :  c16,"&
+     "ddr1_ba_0             :  c15,"&
+     "rxdata_0              :  ab16,"&
+     "gpio_12               :  ab17,"&
+     "gpio_14               :  ac18,"&
+     "gpio_7                :  aa17,"&
+     "utp_ip_data_3         :  aa10,"&
+     "jtg_tdi               :  ad16,"&
+     "utp_op_addr_4         :  ae8,"&
+     "txdata1               :  ad17,"&
+     "pci_inta_n            :  g6,"&
+     "pci_req_n_3           :  g5,"&
+     "usb_hpen              :  b25,"&
+     "usb_dpos              :  g21,"&
+     "ex_req_gnt_n          :  g24,"&
+     "ex_slave_cs_n         :  g23,"&
+     "ex_addr_18            :  g26,"&
+     "ex_addr_22            :  g25,"&
+     "pci_ad_17             :  h2,"&
+     "ddr1_dq_11            :  a21,"&
+     "ddr1_dq_13            :  a20,"&
+     "ddr1_dm_1             :  a19,"&
+     "ddr1_cas_n            :  a18,"&
+     "ddr1_dq_29            :  d8,"&
+     "ddr1_dm_4             :  d7,"&
+     "ddr1_ck_n_1           :  a4,"&
+     "ddr1_cb_0             :  a3,"&
+     "ddr1_dqs_3            :  b6,"&
+     "ddr1_ck_1             :  b5,"&
+     "ddr1_cb_1             :  b4,"&
+     "ddr1_cb_2             :  b3,"&
+     "ddr1_dq_9             :  d19,"&
+     "ddr1_dq_12            :  d18,"&
+     "ddr1_ck_n_0           :  d17,"&
+     "ddr1_cke_1            :  d16,"&
+     "ddr1_cs_n_1           :  a17,"&
+     "pci_ad_3              :  r3,"&
+     "pci_ad_5              :  r2,"&
+     "pci_ad_1              :  r4,"&
+     "ex_wait_n             :  p26,"&
+     "ex_burst              :  p25,"&
+     "ex_addr_7             :  y22,"&
+     "ex_addr_10            :  y21,"&
+     "ex_rdy_n_2            :  n25,"&
+     "ex_rdy_n_1            :  n24,"&
+     "pci_irdy_n            :  l5,"&
+     "ex_cs_n_7             :  h22,"&
+     "usb_hneg              :  h21,"&
+     "ex_addr_23            :  h24,"&
+     "ex_gnt_n_3            :  h23,"&
+     "cts_n_1               :  af20,"&
+     "utp_ip_soc            :  ad10,"&
+     "ethb_txdata_0         :  w7,"&
+     "ddr1_ck_n_2           :  f7,"&
+     "ddr1_dq_20            :  e11,"&
+     "hss_txframe0          :  r5,"&
+     "ex_data_1             :  y23,"&
+     "ex_rdy_n_3            :  n26,"&
+     "ex_data_22            :  r24,"&
+     "ddr1_ma_5             :  b12,"&
+     "ddr1_dq_17            :  b11,"&
+     "ddr1_dq_23            :  b10,"&
+     "ddr1_dq_21            :  b9,"&
+     "ddr1_dq_24            :  b8,"&
+     "ddr1_dq_31            :  b7,"&
+     "ddr1_dq_18            :  a10,"&
+     "ddr1_dq_22            :  a9,"&
+     "ddr1_dq_25            :  a8,"&
+     "ddr1_dq_26            :  a7,"&
+     "ddr1_dq_30            :  a6,"&
+     "ddr1_dm_3             :  a5,"&
+     "pci_ad_7              :  r1,"&
+     "pci_stop_n            :  k4,"&
+     "ddr1_dq_7             :  b23,"&
+     "ddr1_dq_5             :  b22,"&
+     "ddr1_dqs_0            :  b21,"&
+     "ddr1_dq_14            :  b20,"&
+     "ddr1_dqs_1            :  b19,"&
+     "ddr1_vref             :  b18,"&
+     "pci_gnt_n_0           :  c2,"&
+     "pci_ad_30             :  c1,"&
+     "ex_data_25            :  v21,"&
+     "ex_data_6             :  v23,"&
+     "ethb_txdata_3         :  aa4,"&
+     "ex_data_10            :  v25,"&
+     "ex_data_8             :  v24,"&
+     "ex_data_19            :  v26,"&
+     "ethc_txdata_3         :  w2,"&
+     "ethc_rxdata_2         :  w4,"&
+     "ethc_crs              :  w5,"&
+     "ethb_rxdv             :  aa7,"&
+     "spare2                :  aa6,"&
+     "ex_data_23            :  p22,"&
+     "ex_addr_6             :  w21,"&
+     "ethb_col              :  w6,"&
+     "ex_data_2             :  w22,"&
+     "ex_data_29            :  w24,"&
+     "ex_cs_n_0             :  f23,"&
+     "usb_hpwr              :  e23,"&
+     "pci_req_n_2           :  h6,"&
+     "pci_ad_29             :  h5,"&
+     "ddr1_dq_1             :  d22,"&
+     "ddr1_dq_8             :  d20,"&
+     "ddr1_ras_n            :  b17,"&
+     "ddr1_cs_n_0           :  b16,"&
+     "ddr1_ma_11            :  b15,"&
+     "ddr1_ma_9             :  b14,"&
+     "ddr1_ma_7             :  b13,"&
+     "ex_data_14            :  t26,"&
+     "ex_data_13            :  t25,"&
+     "ethb_txen             :  y5,"&
+     "ethc_col              :  y4,"&
+     "ethc_rxdata_0         :  aa2,"&
+     "ethc_txclk            :  aa1,"&
+     "hss_txframe1          :  u1,"&
+     "hss_txdata1           :  u2,"&
+     "hss_txclk1            :  u4,"&
+     "ethc_rxdv             :  u6,"&
+     "ex_addr_17            :  h26,"&
+     "ex_addr_21            :  h25,"&
+     "pci_frame_n           :  j2,"&
+     "pci_clkin             :  j1,"&
+     "ex_be_n_0             :  l24,"&
+     "ex_ale                :  l23,"&
+     "pci_ad_23             :  j5,"&
+     "pci_ad_19             :  j4,"&
+     "ddr1_dq_6             :  a23,"&
+     "ddr1_dm_0             :  a22,"&
+     "ddr1_rcvenin_n        :  e17,"&
+     "ddr1_we_n             :  e16,"&
+     "ex_cs_n_5             :  c26,"&
+     "ex_cs_n_2             :  c25,"&
+     "ex_cs_n_4             :  d25,"&
+     "ex_cs_n_1             :  d24,"&
+     "ex_data_21            :  r23,"&
+     "ex_data_15            :  r25,"&
+     "ex_data_5             :  y25,"&
+     "ex_data_4             :  y24,"&
+     "pci_trdy_n            :  p2,"&
+     "hss_txdata0           :  t1,"&
+     "hss_rxframe0          :  t3,"&
+     "hss_txclk0            :  t2,"&
+     "hss_rxdata0           :  t4,"&
+     "pci_ad_8              :  p4,"&
+     "pci_ad_2              :  p3,"&
+     "hss_rxclk0            :  t5,"&
+     "ex_data_7             :  y26,"&
+     "pci_ad_0              :  p5,"&
+     "ex_data_17            :  t22,"&
+     "ex_data_11            :  t23,"&
+     "ex_addr_19            :  k23,"&
+     "ex_clk                :  k26,"&
+     "ex_rd_n               :  k25,"&
+     "OSC_VCC               : AD13,"&
+     "OSC_VSS               : AD12,"&
+     "OSC_VCCP               : AD11,"&
+     "VCCPLL1               : AC12,"&
+     "VSS                   : (AB6,AF2,AE26,AF1,AA26,AB4,AB5,AB9,AA21,AD15,AD7,AC4,F6,AD19,F18,AC23,F17,E21,AB21,L11,J22,A12,E14,D4,C12,B26,F20,E19,F26,AF5,P14,P13,V22,K1,M11,AE1,F19,M24,AF25,AF26,N12,N11,N13,N15,N14,N16,H3,E6,E5,M13,M12,M16,M15,D9,A2,A1,R11,L13,L12,L15,L14,AF21,F8,E10,B1,A26,A25,R13,R12,R14,R16,R15,P1,M14,K5,AA5,P16,P15,W3,F22,E22,B2,P12,U5,AA3,L16,E18,C24,T11,T13,T12,T14,T16,T15,P11,T24),"&
+     "VCC                   : (F14,Y9,AB13,K7,J7,Y10,AA15,AA16,V20,G9,Y17,V7,G10,M6,M21,N21,P21,AA14,F12,R21,T21,AA11,L21,Y18,F16,P6,G17,R6,G18,N6,G19,J20,K20,L6,F15,F11,F10,AA12,F13,U20,V6,R22,AA13,U7),"&
+     "VCCP                  : (AB15,AE15,AF19,AB22,AE7,F3,AC3,AF12,AD5,Y7,B24,AC5,AC10,J26,N3,AB19,H1,AC26,W1,W23,U3,L22,D1,D26,R26),"&
+     "VCCM                  : (F9,C10,E20,C14,E8,E7,A16,E12,E9,A24,D21),"&
+     "OSC_VSSP              : (AE11,AE12)";
+
+   attribute Tap_Scan_In    of  jtg_tdi    : signal is true;
+   attribute Tap_Scan_Mode  of  jtg_tms    : signal is true;
+   attribute Tap_Scan_Out   of  jtg_tdo    : signal is true;
+   attribute Tap_Scan_Reset of  jtg_trst_n : signal is true;
+   attribute Tap_Scan_Clock of  jtg_tck    : signal is (16.0e6, BOTH);
+
+   attribute Instruction_Length of ixp46x: entity is 7;
+
+   attribute Instruction_Opcode of ixp46x: entity is
+
+      "BYPASS	(1111111)," &
+      "EXTEST	(0000000)," &
+      "SAMPLE	(0000001)," &
+      "IDCODE	(1111110)," &
+      "CLAMP	(1001001)," &
+      "HIGHZ	(1001010)," &
+      "DBGRX    (0000010)," &
+      "DCSR     (0001001)," &
+      "DBGTX    (0010000)," &
+      "Reserved	(0000011, 0000100, 0000101, 0000110, 0000111, 0001000, "&
+       "         0001010, 0001011, 0001100, 0001101, 0001110, 0001111, "&
+       "         0010001, 0010010, 0010011, 0010100, 0010101, 0010110, "&
+       "         0010111, 0011000, 0011001, 0011010, 0011011, 0011100, "&
+       "         0011101, 0011110, 0011111, 0100000, 0100001, 0100010, "&
+       "         0100011, 0100100, 0100101, 0100110, 0100111, "&
+       "         0101000, 0101001, 0101010, 0101011, 0101100, 0101101, "&
+       "         0101110, 0101111, 0110000, 0110001, 0110010, 0110011, "&
+       "         0110100, 0110101, 0110110, 0110111, 0111000, 0111001, "&
+       "         0111010, 0111011, 0111100, 0111101, 0111110, 0111111, "&
+       "         1000000, 1000001, 1000010, 1000011, 1000100, 1000101, "&
+       "         1000110, 1000111, 1001000, 1001011, 1001100, 1001101, "&
+       "         1001110, 1001111, 1010000, 1010001, 1010010, 1010011, "&
+       "         1010100, 1010101, 1010110, 1010111, 1011000, 1011001, "&
+       "         1011010, 1011011, 1011100, 1011101, 1011110, 1011111, "&
+       "         1100000, 1100001, 1100010, 1100011, 1100100, 1100101, "&
+       "         1100110, 1100111, 1101000, 1101001, 1101010, 1101011, "&
+       "         1101100, 1101101, 1101110, 1101111, 1110000, 1110001, "&
+       "         1110010, 1110011, 1110100, 1110101, 1110110, 1110111, "&
+       "         1111000, 1111001, 1111010, 1111011, 1111100, 1111101)";
+
+   attribute Instruction_Capture of ixp46x: entity is "0000001";
+
+   attribute Instruction_Private of ixp46x: entity is "Reserved" ;
+
+   attribute Idcode_Register of ixp46x: entity is
+      "0000"                  &  --version (next stepping)
+      "1001001001111010"      &  --part number (Azusa : 927A hex)
+      "00000001001"           &  --manufacturers identity (Intel)
+      "1";                       --required by the standard
+
+   attribute Register_Access of ixp46x: entity is
+	"Bypass		(CLAMP, HIGHZ)," &
+        "Dbg[36]        (DBGRX, DBGTX, DCSR)";
+
+--{*******************************************************************}
+--{  The first cell, cell 0, is closest to TDO                        }
+--{  BC_1:Control, Output3  BC_4: Input, Clock                        }
+--{  CBSC_1: Bidirectional                                            }
+--{*******************************************************************}
+
+   attribute Boundary_Cells of ixp46x: entity is "BC_4, BC_1, CBSC_1";
+   attribute Boundary_Length of ixp46x: entity is 628;
+   attribute Boundary_Register of ixp46x: entity is
+-- #    cell    name          function    safe  control   disable   disable
+--      type                              bit   signal    value     result
+  "0   (BC_1,               *, control,     1                           )," &
+  "1   (BC_1,               *, control,     1                           )," &
+  "2   (BC_4,         cts_n_1,   input,     X                           )," &
+  "3   (BC_4,         rxdata1,   input,     X                           )," &
+  "4   (BC_1,         rts_n_1, output3,     X,      0,       1,        Z)," &
+  "5   (BC_1,         txdata1, output3,     X,      1,       1,        Z)," &
+  "6   (BC_1,               *, control,     1                           )," &
+  "7   (BC_1,               *, control,     1                           )," &
+  "8   (BC_4,         cts_n_0,   input,     X                           )," &
+  "9   (BC_4,        rxdata_0,   input,     X                           )," &
+  "10  (BC_1,         rts_n_0, output3,     X,      6,       1,        Z)," &
+  "11  (BC_1,        txdata_0, output3,     X,      7,       1,        Z)," &
+  "12  (BC_1,               *, control,     1                           )," &
+  "13  (BC_1,               *, control,     1                           )," &
+  "14  (BC_1,               *, control,     1                           )," &
+  "15  (BC_1,               *, control,     1                           )," &
+  "16  (BC_1,               *, control,     1                           )," &
+  "17  (BC_1,               *, control,     1                           )," &
+  "18  (BC_1,               *, control,     1                           )," &
+  "19  (BC_1,               *, control,     1                           )," &
+  "20  (BC_1,               *, control,     1                           )," &
+  "21  (BC_1,               *, control,     1                           )," &
+  "22  (BC_1,               *, control,     1                           )," &
+  "23  (BC_1,               *, control,     1                           )," &
+  "24  (BC_1,               *, control,     1                           )," &
+  "25  (BC_1,               *, control,     1                           )," &
+  "26  (BC_1,               *, control,     1                           )," &
+  "27  (CBSC_1,       gpio_15,   bidir,     X,     12,       1,        Z)," &
+  "28  (CBSC_1,       gpio_14,   bidir,     X,     13,       1,        Z)," &
+  "29  (CBSC_1,       gpio_13,   bidir,     X,     14,       1,        Z)," &
+  "30  (CBSC_1,       gpio_12,   bidir,     X,     15,       1,        Z)," &
+  "31  (CBSC_1,       gpio_11,   bidir,     X,     16,       1,        Z)," &
+  "32  (CBSC_1,       gpio_10,   bidir,     X,     17,       1,        Z)," &
+  "33  (CBSC_1,        gpio_9,   bidir,     X,     18,       1,        Z)," &
+  "34  (CBSC_1,        gpio_8,   bidir,     X,     19,       1,        Z)," &
+  "35  (CBSC_1,        gpio_7,   bidir,     X,     20,       1,        Z)," &
+  "36  (CBSC_1,        gpio_6,   bidir,     X,     21,       1,        Z)," &
+  "37  (CBSC_1,        gpio_5,   bidir,     X,     22,       1,        Z)," &
+  "38  (CBSC_1,        gpio_4,   bidir,     X,     23,       1,        Z)," &
+  "39  (CBSC_1,        gpio_3,   bidir,     X,     24,       1,        Z)," &
+  "40  (CBSC_1,        gpio_2,   bidir,     X,     25,       1,        Z)," &
+  "41  (CBSC_1,        gpio_1,   bidir,     X,     26,       1,        Z)," &
+  "42  (BC_1,               *, control,     1                           )," &
+  "43  (BC_1,               *, control,     1                           )," &
+  "44  (BC_1,               *, control,     1                           )," &
+  "45  (BC_4,      ssp_extclk,   input,     X                           )," &
+  "46  (BC_1,        ssp_sclk, output3,     X,     42,       1,        Z)," &
+  "47  (BC_4,         ssp_rxd,   input,     X                           )," &
+  "48  (BC_1,         ssp_txd, output3,     X,     43,       1,        Z)," &
+  "49  (BC_1,        ssp_sfrm, output3,     X,     44,       1,        Z)," &
+  "50  (BC_1,               *, control,     1                           )," &
+  "51  (BC_1,               *, control,     1                           )," &
+  "52  (CBSC_1,       i2c_scl,   bidir,     X,     50,       1,        Z)," &
+  "53  (CBSC_1,       i2c_sda,   bidir,     X,     51,       1,        Z)," &
+  "54  (BC_1,               *, control,     1                           )," &
+  "55  (BC_1,               *, control,     1                           )," &
+  "56  (BC_1,               *, control,     1                           )," &
+  "57  (BC_1,               *, control,     1                           )," &
+  "58  (BC_1,               *, control,     1                           )," &
+  "59  (BC_1,               *, control,     1                           )," &
+  "60  (BC_1,               *, control,     1                           )," &
+  "61  (BC_1,               *, control,     1                           )," &
+  "62  (BC_1,               *, control,     1                           )," &
+  "63  (BC_1,               *, control,     1                           )," &
+  "64  (BC_1,               *, control,     1                           )," &
+  "65  (BC_1,               *, control,     1                           )," &
+  "66  (BC_1,               *, control,     1                           )," &
+  "67  (BC_1,               *, control,     1                           )," &
+  "68  (BC_1,               *, control,     1                           )," &
+  "69  (BC_1,               *, control,     1                           )," &
+  "70  (BC_1,               *, control,     1                           )," &
+  "71  (BC_1,               *, control,     1                           )," &
+  "72  (BC_1,               *, control,     1                           )," &
+  "73  (BC_1,               *, control,     1                           )," &
+  "74  (BC_1,               *, control,     1                           )," &
+  "75  (BC_1,               *, control,     1                           )," &
+  "76  (BC_1,               *, control,     1                           )," &
+  "77  (BC_1,               *, control,     1                           )," &
+  "78  (BC_1,               *, control,     1                           )," &
+  "79  (BC_1,               *, control,     1                           )," &
+  "80  (BC_1,               *, control,     1                           )," &
+  "81  (BC_1,               *, control,     1                           )," &
+  "82  (BC_1,               *, control,     1                           )," &
+  "83  (BC_1,               *, control,     1                           )," &
+  "84  (BC_1,               *, control,     1                           )," &
+  "85  (BC_1,               *, control,     1                           )," &
+  "86  (BC_1,               *, control,     1                           )," &
+  "87  (BC_1,               *, control,     1                           )," &
+  "88  (BC_1,               *, control,     1                           )," &
+  "89  (BC_1,               *, control,     1                           )," &
+  "90  (BC_1,               *, control,     1                           )," &
+  "91  (BC_1,               *, control,     1                           )," &
+  "92  (BC_1,               *, control,     1                           )," &
+  "93  (BC_1,               *, control,     1                           )," &
+  "94  (BC_1,               *, control,     1                           )," &
+  "95  (BC_1,               *, control,     1                           )," &
+  "96  (BC_1,               *, control,     1                           )," &
+  "97  (BC_1,               *, control,     1                           )," &
+  "98  (BC_1,               *, control,     1                           )," &
+  "99  (BC_1,               *, control,     1                           )," &
+  "100 (BC_1,               *, control,     1                           )," &
+  "101 (BC_1,               *, control,     1                           )," &
+  "102 (BC_1,               *, control,     1                           )," &
+  "103 (BC_1,               *, control,     1                           )," &
+  "104 (BC_1,               *, control,     1                           )," &
+  "105 (BC_1,               *, control,     1                           )," &
+  "106 (BC_1,               *, control,     1                           )," &
+  "107 (BC_1,               *, control,     1                           )," &
+  "108 (BC_1,               *, control,     1                           )," &
+  "109 (BC_1,               *, control,     1                           )," &
+  "110 (BC_1,               *, control,     1                           )," &
+  "111 (BC_1,               *, control,     1                           )," &
+  "112 (BC_1,               *, control,     1                           )," &
+  "113 (BC_1,               *, control,     1                           )," &
+  "114 (BC_1,               *, control,     1                           )," &
+  "115 (BC_1,               *, control,     1                           )," &
+  "116 (BC_1,               *, control,     1                           )," &
+  "117 (BC_1,               *, control,     1                           )," &
+  "118 (BC_1,               *, control,     1                           )," &
+  "119 (BC_1,               *, control,     1                           )," &
+  "120 (BC_1,               *, control,     1                           )," &
+  "121 (BC_1,               *, control,     1                           )," &
+  "122 (BC_1,               *, control,     1                           )," &
+  "123 (BC_1,               *, control,     1                           )," &
+  "124 (BC_1,               *, control,     1                           )," &
+  "125 (BC_1,               *, control,     1                           )," &
+  "126 (BC_1,               *, control,     1                           )," &
+  "127 (BC_1,               *, control,     1                           )," &
+  "128 (BC_1,               *, control,     1                           )," &
+  "129 (BC_1,               *, control,     1                           )," &
+  "130 (BC_1,               *, control,     1                           )," &
+  "131 (BC_1,               *, control,     1                           )," &
+  "132 (BC_1,               *, control,     1                           )," &
+  "133 (BC_1,               *, control,     1                           )," &
+  "134 (BC_1,               *, control,     1                           )," &
+  "135 (BC_4,          ex_clk,   input,     X                           )," &
+  "136 (BC_4,        ex_burst,   input,     X                           )," &
+  "137 (BC_1,       ex_wait_n, output3,     X,    108,       1,        Z)," &
+  "138 (BC_4,   ex_slave_cs_n,   input,     X                           )," &
+  "139 (CBSC_1,     ex_be_n_3,   bidir,     X,     62,       1,        Z)," &
+  "140 (CBSC_1,     ex_be_n_2,   bidir,     X,     63,       1,        Z)," &
+  "141 (CBSC_1,     ex_be_n_1,   bidir,     X,     64,       1,        Z)," &
+  "142 (CBSC_1,     ex_be_n_0,   bidir,     X,     65,       1,        Z)," &
+  "143 (BC_1,      ex_gnt_n_3, output3,     X,     58,       1,        Z)," &
+  "144 (BC_1,      ex_gnt_n_2, output3,     X,     59,       1,        Z)," &
+  "145 (BC_1,      ex_gnt_n_1, output3,     X,     60,       1,        Z)," &
+  "146 (BC_1,    ex_gnt_req_n, output3,     X,     61,       1,        Z)," &
+  "147 (BC_4,      ex_req_n_3,   input,     X                           )," &
+  "148 (BC_4,      ex_req_n_2,   input,     X                           )," &
+  "149 (BC_4,      ex_req_n_1,   input,     X                           )," &
+  "150 (BC_4,    ex_req_gnt_n,   input,     X                           )," &
+  "151 (CBSC_1,   ex_parity_3,   bidir,     X,     54,       1,        Z)," &
+  "152 (CBSC_1,   ex_parity_2,   bidir,     X,     55,       1,        Z)," &
+  "153 (CBSC_1,   ex_parity_1,   bidir,     X,     56,       1,        Z)," &
+  "154 (CBSC_1,   ex_parity_0,   bidir,     X,     57,       1,        Z)," &
+  "155 (BC_4,      ex_rdy_n_3,   input,     X                           )," &
+  "156 (BC_4,      ex_rdy_n_2,   input,     X                           )," &
+  "157 (BC_4,      ex_rdy_n_1,   input,     X                           )," &
+  "158 (BC_4,      ex_rdy_n_0,   input,     X                           )," &
+  "159 (CBSC_1,    ex_data_31,   bidir,     X,     66,       1,        Z)," &
+  "160 (CBSC_1,    ex_data_30,   bidir,     X,     67,       1,        Z)," &
+  "161 (CBSC_1,    ex_data_29,   bidir,     X,     68,       1,        Z)," &
+  "162 (CBSC_1,    ex_data_28,   bidir,     X,     69,       1,        Z)," &
+  "163 (CBSC_1,    ex_data_27,   bidir,     X,     70,       1,        Z)," &
+  "164 (CBSC_1,    ex_data_26,   bidir,     X,     71,       1,        Z)," &
+  "165 (CBSC_1,    ex_data_25,   bidir,     X,     72,       1,        Z)," &
+  "166 (CBSC_1,    ex_data_24,   bidir,     X,     73,       1,        Z)," &
+  "167 (CBSC_1,    ex_data_23,   bidir,     X,     74,       1,        Z)," &
+  "168 (CBSC_1,    ex_data_22,   bidir,     X,     75,       1,        Z)," &
+  "169 (CBSC_1,    ex_data_21,   bidir,     X,     76,       1,        Z)," &
+  "170 (CBSC_1,    ex_data_20,   bidir,     X,     77,       1,        Z)," &
+  "171 (CBSC_1,    ex_data_19,   bidir,     X,     78,       1,        Z)," &
+  "172 (CBSC_1,    ex_data_18,   bidir,     X,     79,       1,        Z)," &
+  "173 (CBSC_1,    ex_data_17,   bidir,     X,     80,       1,        Z)," &
+  "174 (CBSC_1,    ex_data_16,   bidir,     X,     81,       1,        Z)," &
+  "175 (CBSC_1,    ex_data_15,   bidir,     X,     82,       1,        Z)," &
+  "176 (CBSC_1,    ex_data_14,   bidir,     X,     83,       1,        Z)," &
+  "177 (CBSC_1,    ex_data_13,   bidir,     X,     84,       1,        Z)," &
+  "178 (CBSC_1,    ex_data_12,   bidir,     X,     85,       1,        Z)," &
+  "179 (CBSC_1,    ex_data_11,   bidir,     X,     86,       1,        Z)," &
+  "180 (CBSC_1,    ex_data_10,   bidir,     X,     87,       1,        Z)," &
+  "181 (CBSC_1,     ex_data_9,   bidir,     X,     88,       1,        Z)," &
+  "182 (CBSC_1,     ex_data_8,   bidir,     X,     89,       1,        Z)," &
+  "183 (CBSC_1,     ex_data_7,   bidir,     X,     90,       1,        Z)," &
+  "184 (CBSC_1,     ex_data_6,   bidir,     X,     91,       1,        Z)," &
+  "185 (CBSC_1,     ex_data_5,   bidir,     X,     92,       1,        Z)," &
+  "186 (CBSC_1,     ex_data_4,   bidir,     X,     93,       1,        Z)," &
+  "187 (CBSC_1,     ex_data_3,   bidir,     X,     94,       1,        Z)," &
+  "188 (CBSC_1,     ex_data_2,   bidir,     X,     95,       1,        Z)," &
+  "189 (CBSC_1,     ex_data_1,   bidir,     X,     96,       1,        Z)," &
+  "190 (CBSC_1,     ex_data_0,   bidir,     X,     97,       1,        Z)," &
+  "191 (CBSC_1,     ex_cs_n_7,   bidir,     X,     98,       1,        Z)," &
+  "192 (CBSC_1,     ex_cs_n_6,   bidir,     X,     99,       1,        Z)," &
+  "193 (CBSC_1,     ex_cs_n_5,   bidir,     X,    100,       1,        Z)," &
+  "194 (CBSC_1,     ex_cs_n_4,   bidir,     X,    101,       1,        Z)," &
+  "195 (CBSC_1,     ex_cs_n_3,   bidir,     X,    102,       1,        Z)," &
+  "196 (CBSC_1,     ex_cs_n_2,   bidir,     X,    103,       1,        Z)," &
+  "197 (CBSC_1,     ex_cs_n_1,   bidir,     X,    104,       1,        Z)," &
+  "198 (CBSC_1,     ex_cs_n_0,   bidir,     X,    105,       1,        Z)," &
+  "199 (CBSC_1,       ex_rd_n,   bidir,     X,    106,       1,        Z)," &
+  "200 (CBSC_1,       ex_wr_n,   bidir,     X,    107,       1,        Z)," &
+  "201 (CBSC_1,    ex_addr_24,   bidir,     X,    109,       1,        Z)," &
+  "202 (CBSC_1,    ex_addr_23,   bidir,     X,    110,       1,        Z)," &
+  "203 (CBSC_1,    ex_addr_22,   bidir,     X,    111,       1,        Z)," &
+  "204 (CBSC_1,    ex_addr_22,   bidir,     X,    111,       1,        Z)," &
+  "205 (CBSC_1,    ex_addr_20,   bidir,     X,    113,       1,        Z)," &
+  "206 (CBSC_1,    ex_addr_19,   bidir,     X,    114,       1,        Z)," &
+  "207 (CBSC_1,    ex_addr_18,   bidir,     X,    115,       1,        Z)," &
+  "208 (CBSC_1,    ex_addr_17,   bidir,     X,    116,       1,        Z)," &
+  "209 (CBSC_1,    ex_addr_16,   bidir,     X,    117,       1,        Z)," &
+  "210 (CBSC_1,    ex_addr_15,   bidir,     X,    118,       1,        Z)," &
+  "211 (CBSC_1,    ex_addr_14,   bidir,     X,    119,       1,        Z)," &
+  "212 (CBSC_1,    ex_addr_13,   bidir,     X,    120,       1,        Z)," &
+  "213 (CBSC_1,    ex_addr_12,   bidir,     X,    121,       1,        Z)," &
+  "214 (CBSC_1,    ex_addr_11,   bidir,     X,    122,       1,        Z)," &
+  "215 (CBSC_1,    ex_addr_10,   bidir,     X,    123,       1,        Z)," &
+  "216 (CBSC_1,     ex_addr_9,   bidir,     X,    124,       1,        Z)," &
+  "217 (CBSC_1,     ex_addr_8,   bidir,     X,    125,       1,        Z)," &
+  "218 (CBSC_1,     ex_addr_7,   bidir,     X,    126,       1,        Z)," &
+  "219 (CBSC_1,     ex_addr_6,   bidir,     X,    127,       1,        Z)," &
+  "220 (CBSC_1,     ex_addr_5,   bidir,     X,    128,       1,        Z)," &
+  "221 (CBSC_1,     ex_addr_4,   bidir,     X,    129,       1,        Z)," &
+  "222 (CBSC_1,     ex_addr_3,   bidir,     X,    130,       1,        Z)," &
+  "223 (CBSC_1,     ex_addr_2,   bidir,     X,    131,       1,        Z)," &
+  "224 (CBSC_1,     ex_addr_1,   bidir,     X,    132,       1,        Z)," &
+  "225 (CBSC_1,     ex_addr_0,   bidir,     X,    133,       1,        Z)," &
+  "226 (BC_1,          ex_ale, output3,     X,    134,       1,        Z)," &
+  "227 (BC_4,     ex_iowait_n,   input,     X                           )," &
+  "228 (BC_1,               *, control,     1                           )," &
+  "229 (BC_1,               *, control,     1                           )," &
+  "230 (BC_1,               *, control,     1                           )," &
+  "231 (BC_1,               *, control,     1                           )," &
+  "232 (BC_4,        usb_hpwr,   input,     X                           )," &
+  "233 (BC_1,        usb_hpen, output3,     X,    228,       1,        Z)," &
+  "234 (CBSC_1,      usb_hneg,   bidir,     X,    229,       1,        Z)," &
+  "235 (CBSC_1,      usb_hpos,   bidir,     X,    229,       1,        Z)," &
+  "236 (CBSC_1,      usb_dneg,   bidir,     X,    230,       1,        Z)," &
+  "237 (CBSC_1,      usb_dpos,   bidir,     X,    231,       1,        Z)," &
+  "238 (BC_1,               *, control,     1                           )," &
+  "239 (BC_1,               *, control,     1                           )," &
+  "240 (BC_1,               *, control,     1                           )," &
+  "241 (BC_1,               *, control,     1                           )," &
+  "242 (BC_1,               *, control,     1                           )," &
+  "243 (BC_1,               *, control,     1                           )," &
+  "244 (BC_1,               *, control,     1                           )," &
+  "245 (BC_1,               *, control,     1                           )," &
+  "246 (BC_1,               *, control,     1                           )," &
+  "247 (BC_1,               *, control,     1                           )," &
+  "248 (BC_1,               *, control,     1                           )," &
+  "249 (BC_1,               *, control,     1                           )," &
+  "250 (BC_1,               *, control,     1                           )," &
+  "251 (BC_1,               *, control,     1                           )," &
+  "252 (BC_1,               *, control,     1                           )," &
+  "253 (BC_1,               *, control,     1                           )," &
+  "254 (BC_1,               *, control,     1                           )," &
+  "255 (BC_1,               *, control,     1                           )," &
+  "256 (BC_1,               *, control,     1                           )," &
+  "257 (BC_1,               *, control,     1                           )," &
+  "258 (BC_1,               *, control,     1                           )," &
+  "259 (BC_1,               *, control,     1                           )," &
+  "260 (BC_1,               *, control,     1                           )," &
+  "261 (BC_1,               *, control,     1                           )," &
+  "262 (BC_1,               *, control,     1                           )," &
+  "263 (BC_1,               *, control,     1                           )," &
+  "264 (BC_1,               *, control,     1                           )," &
+  "265 (BC_1,               *, control,     1                           )," &
+  "266 (BC_1,               *, control,     1                           )," &
+  "267 (BC_1,               *, control,     1                           )," &
+  "268 (BC_1,               *, control,     1                           )," &
+  "269 (BC_1,               *, control,     1                           )," &
+  "270 (BC_1,               *, control,     1                           )," &
+  "271 (BC_1,               *, control,     1                           )," &
+  "272 (BC_1,               *, control,     1                           )," &
+  "273 (BC_1,               *, control,     1                           )," &
+  "274 (BC_1,               *, control,     1                           )," &
+  "275 (BC_1,               *, control,     1                           )," &
+  "276 (BC_1,               *, control,     1                           )," &
+  "277 (BC_1,               *, control,     1                           )," &
+  "278 (BC_1,               *, control,     1                           )," &
+  "279 (BC_1,               *, control,     1                           )," &
+  "280 (BC_1,               *, control,     1                           )," &
+  "281 (BC_1,               *, control,     1                           )," &
+  "282 (BC_1,               *, control,     1                           )," &
+  "283 (BC_1,               *, control,     1                           )," &
+  "284 (BC_1,               *, control,     1                           )," &
+  "285 (BC_1,               *, control,     1                           )," &
+  "286 (BC_1,               *, control,     1                           )," &
+  "287 (BC_1,               *, control,     1                           )," &
+  "288 (BC_1,               *, control,     1                           )," &
+  "289 (BC_1,               *, control,     1                           )," &
+  "290 (BC_1,               *, control,     1                           )," &
+  "291 (BC_1,               *, control,     1                           )," &
+  "292 (BC_1,               *, control,     1                           )," &
+  "293 (BC_1,               *, control,     1                           )," &
+  "294 (BC_1,               *, control,     1                           )," &
+  "295 (BC_1,               *, control,     1                           )," &
+  "296 (BC_1,               *, control,     1                           )," &
+  "297 (BC_1,               *, control,     1                           )," &
+  "298 (BC_1,               *, control,     1                           )," &
+  "299 (BC_1,               *, control,     1                           )," &
+  "300 (BC_1,               *, control,     1                           )," &
+  "301 (BC_1,               *, control,     1                           )," &
+  "302 (BC_1,               *, control,     1                           )," &
+  "303 (BC_1,               *, control,     1                           )," &
+  "304 (BC_1,               *, control,     1                           )," &
+  "305 (BC_1,               *, control,     1                           )," &
+  "306 (BC_1,               *, control,     1                           )," &
+  "307 (BC_1,               *, control,     1                           )," &
+  "308 (BC_1,               *, control,     1                           )," &
+  "309 (BC_1,               *, control,     1                           )," &
+  "310 (BC_1,               *, control,     1                           )," &
+  "311 (BC_1,               *, control,     1                           )," &
+  "312 (BC_1,               *, control,     1                           )," &
+  "313 (BC_1,               *, control,     1                           )," &
+  "314 (BC_1,               *, control,     1                           )," &
+  "315 (BC_1,               *, control,     1                           )," &
+  "316 (BC_1,               *, control,     1                           )," &
+  "317 (BC_1,               *, control,     1                           )," &
+  "318 (BC_4,  ddr1_rcvenin_n,   input,     X                           )," &
+  "319 (BC_1, ddr1_rcvenout_n, output3,     X,    238,       1,        Z)," &
+  "320 (BC_1,     ddr1_ck_n_2, output3,     X,    239,       1,        Z)," &
+  "321 (BC_1,     ddr1_ck_n_1, output3,     X,    240,       1,        Z)," &
+  "322 (BC_1,     ddr1_ck_n_0, output3,     X,    241,       1,        Z)," &
+  "323 (BC_1,       ddr1_ck_2, output3,     X,    242,       1,        Z)," &
+  "324 (BC_1,       ddr1_ck_1, output3,     X,    243,       1,        Z)," &
+  "325 (BC_1,       ddr1_ck_0, output3,     X,    244,       1,        Z)," &
+  "326 (BC_1,      ddr1_cke_1, output3,     X,    245,       1,        Z)," &
+  "327 (BC_1,      ddr1_cke_0, output3,     X,    246,       1,        Z)," &
+  "328 (BC_1,       ddr1_we_n, output3,     X,    247,       1,        Z)," &
+  "329 (BC_1,      ddr1_ras_n, output3,     X,    248,       1,        Z)," &
+  "330 (BC_1,      ddr1_cas_n, output3,     X,    249,       1,        Z)," &
+  "331 (BC_1,       ddr1_ba_1, output3,     X,    250,       1,        Z)," &
+  "332 (BC_1,       ddr1_ba_0, output3,     X,    251,       1,        Z)," &
+  "333 (CBSC_1,    ddr1_dqs_4,   bidir,     X,    252,       1,        Z)," &
+  "334 (CBSC_1,    ddr1_dqs_3,   bidir,     X,    253,       1,        Z)," &
+  "335 (CBSC_1,    ddr1_dqs_2,   bidir,     X,    254,       1,        Z)," &
+  "336 (CBSC_1,    ddr1_dqs_1,   bidir,     X,    255,       1,        Z)," &
+  "337 (CBSC_1,    ddr1_dqs_0,   bidir,     X,    256,       1,        Z)," &
+  "338 (BC_1,       ddr1_dm_4, output3,     X,    257,       1,        Z)," &
+  "339 (BC_1,       ddr1_dm_3, output3,     X,    258,       1,        Z)," &
+  "340 (BC_1,       ddr1_dm_2, output3,     X,    259,       1,        Z)," &
+  "341 (BC_1,       ddr1_dm_1, output3,     X,    260,       1,        Z)," &
+  "342 (BC_1,       ddr1_dm_0, output3,     X,    261,       1,        Z)," &
+  "343 (BC_1,     ddr1_cs_n_1, output3,     X,    262,       1,        Z)," &
+  "344 (BC_1,     ddr1_cs_n_0, output3,     X,    263,       1,        Z)," &
+  "345 (CBSC_1,     ddr1_cb_7,   bidir,     X,    264,       1,        Z)," &
+  "346 (CBSC_1,     ddr1_cb_6,   bidir,     X,    265,       1,        Z)," &
+  "347 (CBSC_1,     ddr1_cb_5,   bidir,     X,    266,       1,        Z)," &
+  "348 (CBSC_1,     ddr1_cb_4,   bidir,     X,    267,       1,        Z)," &
+  "349 (CBSC_1,     ddr1_cb_3,   bidir,     X,    268,       1,        Z)," &
+  "350 (CBSC_1,     ddr1_cb_2,   bidir,     X,    269,       1,        Z)," &
+  "351 (CBSC_1,     ddr1_cb_1,   bidir,     X,    270,       1,        Z)," &
+  "352 (CBSC_1,     ddr1_cb_0,   bidir,     X,    271,       1,        Z)," &
+  "353 (CBSC_1,    ddr1_dq_31,   bidir,     X,    272,       1,        Z)," &
+  "354 (CBSC_1,    ddr1_dq_30,   bidir,     X,    273,       1,        Z)," &
+  "355 (CBSC_1,    ddr1_dq_29,   bidir,     X,    274,       1,        Z)," &
+  "356 (CBSC_1,    ddr1_dq_28,   bidir,     X,    275,       1,        Z)," &
+  "357 (CBSC_1,    ddr1_dq_27,   bidir,     X,    276,       1,        Z)," &
+  "358 (CBSC_1,    ddr1_dq_26,   bidir,     X,    277,       1,        Z)," &
+  "359 (CBSC_1,    ddr1_dq_25,   bidir,     X,    278,       1,        Z)," &
+  "360 (CBSC_1,    ddr1_dq_24,   bidir,     X,    279,       1,        Z)," &
+  "361 (CBSC_1,    ddr1_dq_23,   bidir,     X,    280,       1,        Z)," &
+  "362 (CBSC_1,    ddr1_dq_22,   bidir,     X,    281,       1,        Z)," &
+  "363 (CBSC_1,    ddr1_dq_21,   bidir,     X,    282,       1,        Z)," &
+  "364 (CBSC_1,    ddr1_dq_20,   bidir,     X,    283,       1,        Z)," &
+  "365 (CBSC_1,    ddr1_dq_19,   bidir,     X,    284,       1,        Z)," &
+  "366 (CBSC_1,    ddr1_dq_18,   bidir,     X,    285,       1,        Z)," &
+  "367 (CBSC_1,    ddr1_dq_17,   bidir,     X,    286,       1,        Z)," &
+  "368 (CBSC_1,    ddr1_dq_16,   bidir,     X,    287,       1,        Z)," &
+  "369 (CBSC_1,    ddr1_dq_15,   bidir,     X,    288,       1,        Z)," &
+  "370 (CBSC_1,    ddr1_dq_14,   bidir,     X,    289,       1,        Z)," &
+  "371 (CBSC_1,    ddr1_dq_13,   bidir,     X,    290,       1,        Z)," &
+  "372 (CBSC_1,    ddr1_dq_12,   bidir,     X,    291,       1,        Z)," &
+  "373 (CBSC_1,    ddr1_dq_11,   bidir,     X,    292,       1,        Z)," &
+  "374 (CBSC_1,    ddr1_dq_10,   bidir,     X,    293,       1,        Z)," &
+  "375 (CBSC_1,     ddr1_dq_9,   bidir,     X,    294,       1,        Z)," &
+  "376 (CBSC_1,     ddr1_dq_8,   bidir,     X,    295,       1,        Z)," &
+  "377 (CBSC_1,     ddr1_dq_7,   bidir,     X,    296,       1,        Z)," &
+  "378 (CBSC_1,     ddr1_dq_6,   bidir,     X,    297,       1,        Z)," &
+  "379 (CBSC_1,     ddr1_dq_5,   bidir,     X,    298,       1,        Z)," &
+  "380 (CBSC_1,     ddr1_dq_4,   bidir,     X,    299,       1,        Z)," &
+  "381 (CBSC_1,     ddr1_dq_3,   bidir,     X,    300,       1,        Z)," &
+  "382 (CBSC_1,     ddr1_dq_2,   bidir,     X,    301,       1,        Z)," &
+  "383 (CBSC_1,     ddr1_dq_1,   bidir,     X,    302,       1,        Z)," &
+  "384 (CBSC_1,     ddr1_dq_0,   bidir,     X,    303,       1,        Z)," &
+  "385 (BC_1,      ddr1_ma_13, output3,     X,    304,       1,        Z)," &
+  "386 (BC_1,      ddr1_ma_12, output3,     X,    305,       1,        Z)," &
+  "387 (BC_1,      ddr1_ma_11, output3,     X,    306,       1,        Z)," &
+  "388 (BC_1,      ddr1_ma_10, output3,     X,    307,       1,        Z)," &
+  "389 (BC_1,       ddr1_ma_9, output3,     X,    308,       1,        Z)," &
+  "390 (BC_1,       ddr1_ma_8, output3,     X,    309,       1,        Z)," &
+  "391 (BC_1,       ddr1_ma_7, output3,     X,    310,       1,        Z)," &
+  "392 (BC_1,       ddr1_ma_6, output3,     X,    311,       1,        Z)," &
+  "393 (BC_1,       ddr1_ma_5, output3,     X,    312,       1,        Z)," &
+  "394 (BC_1,       ddr1_ma_4, output3,     X,    313,       1,        Z)," &
+  "395 (BC_1,       ddr1_ma_3, output3,     X,    314,       1,        Z)," &
+  "396 (BC_1,       ddr1_ma_2, output3,     X,    315,       1,        Z)," &
+  "397 (BC_1,       ddr1_ma_1, output3,     X,    316,       1,        Z)," &
+  "398 (BC_1,       ddr1_ma_0, output3,     X,    317,       1,        Z)," &
+  "399 (BC_1,               *, control,     1                           )," &
+  "400 (BC_1,               *, control,     1                           )," &
+  "401 (BC_1,               *, control,     1                           )," &
+  "402 (BC_1,               *, control,     1                           )," &
+  "403 (BC_1,               *, control,     1                           )," &
+  "404 (BC_1,               *, control,     1                           )," &
+  "405 (BC_1,               *, control,     1                           )," &
+  "406 (BC_1,               *, control,     1                           )," &
+  "407 (BC_1,               *, control,     1                           )," &
+  "408 (BC_1,               *, control,     1                           )," &
+  "409 (BC_1,               *, control,     1                           )," &
+  "410 (BC_1,               *, control,     1                           )," &
+  "411 (BC_1,               *, control,     1                           )," &
+  "412 (BC_1,               *, control,     1                           )," &
+  "413 (BC_1,               *, control,     1                           )," &
+  "414 (BC_1,               *, control,     1                           )," &
+  "415 (BC_1,               *, control,     1                           )," &
+  "416 (BC_1,               *, control,     1                           )," &
+  "417 (BC_1,               *, control,     1                           )," &
+  "418 (BC_1,               *, control,     1                           )," &
+  "419 (BC_1,               *, control,     1                           )," &
+  "420 (BC_1,               *, control,     1                           )," &
+  "421 (BC_1,               *, control,     1                           )," &
+  "422 (BC_1,               *, control,     1                           )," &
+  "423 (BC_1,               *, control,     1                           )," &
+  "424 (BC_1,               *, control,     1                           )," &
+  "425 (BC_1,               *, control,     1                           )," &
+  "426 (BC_1,               *, control,     1                           )," &
+  "427 (BC_1,               *, control,     1                           )," &
+  "428 (BC_1,               *, control,     1                           )," &
+  "429 (BC_1,               *, control,     1                           )," &
+  "430 (BC_1,               *, control,     1                           )," &
+  "431 (BC_1,               *, control,     1                           )," &
+  "432 (BC_1,               *, control,     1                           )," &
+  "433 (BC_1,               *, control,     1                           )," &
+  "434 (BC_1,               *, control,     1                           )," &
+  "435 (BC_1,               *, control,     1                           )," &
+  "436 (BC_1,               *, control,     1                           )," &
+  "437 (BC_1,               *, control,     1                           )," &
+  "438 (BC_1,               *, control,     1                           )," &
+  "439 (BC_1,               *, control,     1                           )," &
+  "440 (BC_1,               *, control,     1                           )," &
+  "441 (BC_1,               *, control,     1                           )," &
+  "442 (BC_1,               *, control,     1                           )," &
+  "443 (BC_1,               *, control,     1                           )," &
+  "444 (BC_1,               *, control,     1                           )," &
+  "445 (BC_1,               *, control,     1                           )," &
+  "446 (BC_1,               *, control,     1                           )," &
+  "447 (BC_1,               *, control,     1                           )," &
+  "448 (BC_1,               *, control,     1                           )," &
+  "449 (BC_4,       pci_clkin,   input,     X                           )," &
+  "450 (BC_1,      pci_inta_n, output3,     X,    399,       1,        Z)," &
+  "451 (BC_1,     pci_gnt_n_3, output3,     X,    400,       1,        Z)," &
+  "452 (BC_1,     pci_gnt_n_2, output3,     X,    401,       1,        Z)," &
+  "453 (BC_1,     pci_gnt_n_1, output3,     X,    402,       1,        Z)," &
+  "454 (CBSC_1,   pci_gnt_n_0,   bidir,     X,    403,       1,        Z)," &
+  "455 (BC_4,     pci_req_n_3,   input,     X                           )," &
+  "456 (BC_4,     pci_req_n_2,   input,     X                           )," &
+  "457 (BC_4,     pci_req_n_1,   input,     X                           )," &
+  "458 (CBSC_1,   pci_req_n_0,   bidir,     X,    404,       1,        Z)," &
+  "459 (CBSC_1,    pci_serr_n,   bidir,     X,    405,       1,        Z)," &
+  "460 (CBSC_1,    pci_perr_n,   bidir,     X,    406,       1,        Z)," &
+  "461 (BC_4,       pci_idsel,   input,     X                           )," &
+  "462 (CBSC_1,  pci_devsel_n,   bidir,     X,    407,       1,        Z)," &
+  "463 (CBSC_1,    pci_stop_n,   bidir,     X,    408,       1,        Z)," &
+  "464 (CBSC_1,    pci_trdy_n,   bidir,     X,    409,       1,        Z)," &
+  "465 (CBSC_1,    pci_irdy_n,   bidir,     X,    410,       1,        Z)," &
+  "466 (CBSC_1,   pci_frame_n,   bidir,     X,    411,       1,        Z)," &
+  "467 (CBSC_1,       pci_par,   bidir,     X,    412,       1,        Z)," &
+  "468 (CBSC_1,   pci_cbe_n_3,   bidir,     X,    413,       1,        Z)," &
+  "469 (CBSC_1,   pci_cbe_n_2,   bidir,     X,    414,       1,        Z)," &
+  "470 (CBSC_1,   pci_cbe_n_1,   bidir,     X,    415,       1,        Z)," &
+  "471 (CBSC_1,   pci_cbe_n_0,   bidir,     X,    416,       1,        Z)," &
+  "472 (CBSC_1,     pci_ad_31,   bidir,     X,    417,       1,        Z)," &
+  "473 (CBSC_1,     pci_ad_30,   bidir,     X,    418,       1,        Z)," &
+  "474 (CBSC_1,     pci_ad_29,   bidir,     X,    419,       1,        Z)," &
+  "475 (CBSC_1,     pci_ad_28,   bidir,     X,    420,       1,        Z)," &
+  "476 (CBSC_1,     pci_ad_27,   bidir,     X,    421,       1,        Z)," &
+  "477 (CBSC_1,     pci_ad_26,   bidir,     X,    422,       1,        Z)," &
+  "478 (CBSC_1,     pci_ad_25,   bidir,     X,    423,       1,        Z)," &
+  "479 (CBSC_1,     pci_ad_24,   bidir,     X,    424,       1,        Z)," &
+  "480 (CBSC_1,     pci_ad_23,   bidir,     X,    425,       1,        Z)," &
+  "481 (CBSC_1,     pci_ad_22,   bidir,     X,    426,       1,        Z)," &
+  "482 (CBSC_1,     pci_ad_21,   bidir,     X,    427,       1,        Z)," &
+  "483 (CBSC_1,     pci_ad_20,   bidir,     X,    428,       1,        Z)," &
+  "484 (CBSC_1,     pci_ad_19,   bidir,     X,    429,       1,        Z)," &
+  "485 (CBSC_1,     pci_ad_18,   bidir,     X,    430,       1,        Z)," &
+  "486 (CBSC_1,     pci_ad_17,   bidir,     X,    431,       1,        Z)," &
+  "487 (CBSC_1,     pci_ad_16,   bidir,     X,    432,       1,        Z)," &
+  "488 (CBSC_1,     pci_ad_15,   bidir,     X,    433,       1,        Z)," &
+  "489 (CBSC_1,     pci_ad_14,   bidir,     X,    434,       1,        Z)," &
+  "490 (CBSC_1,     pci_ad_13,   bidir,     X,    435,       1,        Z)," &
+  "491 (CBSC_1,     pci_ad_12,   bidir,     X,    436,       1,        Z)," &
+  "492 (CBSC_1,     pci_ad_11,   bidir,     X,    437,       1,        Z)," &
+  "493 (CBSC_1,     pci_ad_10,   bidir,     X,    438,       1,        Z)," &
+  "494 (CBSC_1,      pci_ad_9,   bidir,     X,    439,       1,        Z)," &
+  "495 (CBSC_1,      pci_ad_8,   bidir,     X,    440,       1,        Z)," &
+  "496 (CBSC_1,      pci_ad_7,   bidir,     X,    441,       1,        Z)," &
+  "497 (CBSC_1,      pci_ad_6,   bidir,     X,    442,       1,        Z)," &
+  "498 (CBSC_1,      pci_ad_5,   bidir,     X,    443,       1,        Z)," &
+  "499 (CBSC_1,      pci_ad_4,   bidir,     X,    444,       1,        Z)," &
+  "500 (CBSC_1,      pci_ad_3,   bidir,     X,    445,       1,        Z)," &
+  "501 (CBSC_1,      pci_ad_2,   bidir,     X,    446,       1,        Z)," &
+  "502 (CBSC_1,      pci_ad_1,   bidir,     X,    447,       1,        Z)," &
+  "503 (CBSC_1,      pci_ad_0,   bidir,     X,    448,       1,        Z)," &
+  "504 (BC_1,               *, control,     1                           )," &
+  "505 (BC_1,               *, control,     1                           )," &
+  "506 (BC_1,               *, control,     1                           )," &
+  "507 (BC_1,               *, control,     1                           )," &
+  "508 (BC_1,               *, control,     1                           )," &
+  "509 (CBSC_1,  hss_txframe0,   bidir,     X,    504,       1,        Z)," &
+  "510 (BC_1,     hss_txdata0, output3,     X,    505,       1,        Z)," &
+  "511 (CBSC_1,    hss_txclk0,   bidir,     X,    506,       1,        Z)," &
+  "512 (CBSC_1,  hss_rxframe0,   bidir,     X,    507,       1,        Z)," &
+  "513 (BC_4,     hss_rxdata0,   input,     X                           )," &
+  "514 (CBSC_1,    hss_rxclk0,   bidir,     X,    508,       1,        Z)," &
+  "515 (BC_1,               *, control,     1                           )," &
+  "516 (BC_1,               *, control,     1                           )," &
+  "517 (BC_1,               *, control,     1                           )," &
+  "518 (BC_1,               *, control,     1                           )," &
+  "519 (BC_1,               *, control,     1                           )," &
+  "520 (CBSC_1,  hss_txframe1,   bidir,     X,    515,       1,        Z)," &
+  "521 (BC_1,     hss_txdata1, output3,     X,    516,       1,        Z)," &
+  "522 (CBSC_1,    hss_txclk1,   bidir,     X,    517,       1,        Z)," &
+  "523 (CBSC_1,  hss_rxframe1,   bidir,     X,    518,       1,        Z)," &
+  "524 (BC_4,     hss_rxdata1,   input,     X                           )," &
+  "525 (CBSC_1,    hss_rxclk1,   bidir,     X,    519,       1,        Z)," &
+  "526 (BC_1,               *, control,     1                           )," &
+  "527 (BC_1,               *, control,     1                           )," &
+  "528 (BC_1,               *, control,     1                           )," &
+  "529 (BC_1,               *, control,     1                           )," &
+  "530 (BC_1,               *, control,     1                           )," &
+  "531 (BC_4,        ethc_col,   input,     X                           )," &
+  "532 (BC_4,        ethc_crs,   input,     X                           )," &
+  "533 (BC_4,      ethc_rxclk,   input,     X                           )," &
+  "534 (BC_4,   ethc_rxdata_3,   input,     X                           )," &
+  "535 (BC_4,   ethc_rxdata_2,   input,     X                           )," &
+  "536 (BC_4,   ethc_rxdata_1,   input,     X                           )," &
+  "537 (BC_4,   ethc_rxdata_0,   input,     X                           )," &
+  "538 (BC_4,       ethc_rxdv,   input,     X                           )," &
+  "539 (BC_4,      ethc_txclk,   input,     X                           )," &
+  "540 (BC_1,   ethc_txdata_3, output3,     X,    526,       1,        Z)," &
+  "541 (BC_1,   ethc_txdata_2, output3,     X,    527,       1,        Z)," &
+  "542 (BC_1,   ethc_txdata_1, output3,     X,    528,       1,        Z)," &
+  "543 (BC_1,   ethc_txdata_0, output3,     X,    529,       1,        Z)," &
+  "544 (BC_1,       ethc_txen, output3,     X,    530,       1,        Z)," &
+  "545 (BC_1,               *, control,     1                           )," &
+  "546 (BC_1,               *, control,     1                           )," &
+  "547 (BC_1,               *, control,     1                           )," &
+  "548 (BC_1,               *, control,     1                           )," &
+  "549 (BC_1,               *, control,     1                           )," &
+  "550 (BC_1,               *, control,     1                           )," &
+  "551 (BC_1,               *, control,     1                           )," &
+  "552 (BC_1,               *, control,     1                           )," &
+  "553 (CBSC_1,       eth_mdc,   bidir,     X,    545,       1,        Z)," &
+  "554 (CBSC_1,      eth_mdio,   bidir,     X,    546,       1,        Z)," &
+  "555 (BC_4,        ethb_col,   input,     X                           )," &
+  "556 (CBSC_1,      ethb_crs,   bidir,     X,    547,       1,        Z)," &
+  "557 (BC_4,      ethb_rxclk,   input,     X                           )," &
+  "558 (BC_4,   ethb_rxdata_3,   input,     X                           )," &
+  "559 (BC_4,   ethb_rxdata_2,   input,     X                           )," &
+  "560 (BC_4,   ethb_rxdata_1,   input,     X                           )," &
+  "561 (BC_4,   ethb_rxdata_0,   input,     X                           )," &
+  "562 (BC_4,       ethb_rxdv,   input,     X                           )," &
+  "563 (BC_4,      ethb_txclk,   input,     X                           )," &
+  "564 (BC_1,   ethb_txdata_3, output3,     X,    548,       1,        Z)," &
+  "565 (BC_1,   ethb_txdata_2, output3,     X,    549,       1,        Z)," &
+  "566 (BC_1,   ethb_txdata_1, output3,     X,    550,       1,        Z)," &
+  "567 (BC_1,   ethb_txdata_0, output3,     X,    551,       1,        Z)," &
+  "568 (BC_1,       ethb_txen, output3,     X,    552,       1,        Z)," &
+  "569 (BC_1,               *, control,     1                           )," &
+  "570 (BC_1,               *, control,     1                           )," &
+  "571 (BC_1,               *, control,     1                           )," &
+  "572 (BC_1,               *, control,     1                           )," &
+  "573 (BC_1,               *, control,     1                           )," &
+  "574 (BC_1,               *, control,     1                           )," &
+  "575 (BC_1,               *, control,     1                           )," &
+  "576 (BC_1,               *, control,     1                           )," &
+  "577 (BC_1,               *, control,     1                           )," &
+  "578 (BC_1,               *, control,     1                           )," &
+  "579 (BC_1,               *, control,     1                           )," &
+  "580 (BC_1,               *, control,     1                           )," &
+  "581 (BC_1,               *, control,     1                           )," &
+  "582 (BC_1,               *, control,     1                           )," &
+  "583 (BC_1,               *, control,     1                           )," &
+  "584 (BC_1,               *, control,     1                           )," &
+  "585 (BC_1,               *, control,     1                           )," &
+  "586 (BC_1,               *, control,     1                           )," &
+  "587 (BC_1,               *, control,     1                           )," &
+  "588 (BC_1,               *, control,     1                           )," &
+  "589 (BC_1,               *, control,     1                           )," &
+  "590 (CBSC_1, utp_ip_addr_4,   bidir,     X,    569,       1,        Z)," &
+  "591 (CBSC_1, utp_ip_addr_3,   bidir,     X,    570,       1,        Z)," &
+  "592 (CBSC_1, utp_ip_addr_2,   bidir,     X,    571,       1,        Z)," &
+  "593 (CBSC_1, utp_ip_addr_1,   bidir,     X,    572,       1,        Z)," &
+  "594 (CBSC_1, utp_ip_addr_0,   bidir,     X,    573,       1,        Z)," &
+  "595 (BC_4,   utp_ip_data_7,   input,     X                           )," &
+  "596 (BC_4,   utp_ip_data_6,   input,     X                           )," &
+  "597 (BC_4,   utp_ip_data_5,   input,     X                           )," &
+  "598 (BC_4,   utp_ip_data_4,   input,     X                           )," &
+  "599 (BC_4,   utp_ip_data_3,   input,     X                           )," &
+  "600 (BC_4,   utp_ip_data_2,   input,     X                           )," &
+  "601 (BC_4,   utp_ip_data_1,   input,     X                           )," &
+  "602 (BC_4,   utp_ip_data_0,   input,     X                           )," &
+  "603 (BC_4,      utp_ip_soc,   input,     X                           )," &
+  "604 (BC_4,      utp_ip_fci,   input,     X                           )," &
+  "605 (BC_1,      utp_ip_fco, output3,     X,    574,       1,        Z)," &
+  "606 (BC_4,      utp_ip_clk,   input,     X                           )," &
+  "607 (CBSC_1, utp_op_addr_4,   bidir,     X,    575,       1,        Z)," &
+  "608 (CBSC_1, utp_op_addr_3,   bidir,     X,    576,       1,        Z)," &
+  "609 (CBSC_1, utp_op_addr_2,   bidir,     X,    577,       1,        Z)," &
+  "610 (CBSC_1, utp_op_addr_1,   bidir,     X,    578,       1,        Z)," &
+  "611 (CBSC_1, utp_op_addr_0,   bidir,     X,    579,       1,        Z)," &
+  "612 (BC_1,      utp_op_soc, output3,     X,    580,       1,        Z)," &
+  "613 (BC_1,   utp_op_data_7, output3,     X,    581,       1,        Z)," &
+  "614 (BC_1,   utp_op_data_6, output3,     X,    582,       1,        Z)," &
+  "615 (BC_1,   utp_op_data_5, output3,     X,    583,       1,        Z)," &
+  "616 (BC_1,   utp_op_data_4, output3,     X,    584,       1,        Z)," &
+  "617 (BC_1,   utp_op_data_3, output3,     X,    585,       1,        Z)," &
+  "618 (BC_1,   utp_op_data_2, output3,     X,    586,       1,        Z)," &
+  "619 (BC_1,   utp_op_data_1, output3,     X,    587,       1,        Z)," &
+  "620 (BC_1,   utp_op_data_0, output3,     X,    588,       1,        Z)," &
+  "621 (BC_4,      utp_op_fci,   input,     X                           )," &
+  "622 (BC_1,      utp_op_fco, output3,     X,    589,       1,        Z)," &
+  "623 (BC_4,      utp_op_clk,   input,     X                           )," &
+  "624 (BC_1,               *, control,     1                           )," &
+  "625 (BC_4,      reset_in_n,   input,     X                           )," &
+  "626 (BC_1,        pll_lock, output3,     X,    624,       1,        Z)," &
+  "627 (BC_4,      bypass_clk,   input,     X                           )";
+
+end ixp46x;
+ 

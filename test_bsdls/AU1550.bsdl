@@ -1,0 +1,1129 @@
+Raza Microelectronics, Inc.
+BSDL for the RMI Alchemy™ Au1550™ Processor
+***************************************************************************************************************
+-----------------------------------------------------------------------------
+-- AU1550.bsdl - IEEE 1149.1 Boundary Scan Description                     --
+--                                                                         --
+-- DISCLAIMER: This information is for modeling purposes only, and is      --
+--  not guaranteed. This information may contain technical inaccuracies    --
+--  or typographical errors. Raza Microelectronics reserves the right     --
+--  to withdraw this information at any time without notice.               --
+-- Copyright 2002 Raza Microelectronics, All rights reserved              --
+--                                                                         --
+-- ELECTRONICALLY VERIFIED                                                 --
+-- Rev. 1.0 05/26/2004                                                     --
+-----------------------------------------------------------------------------
+
+entity AU1550 is
+--- Generic Parameter (ref B.8.2) ---
+generic (PHYSICAL_PIN_MAP: string:= "BGA_25x25");
+--- Logical Port Description (ref B.8.3) ---
+port(
+DA		: buffer bit_vector	(0 to 13);
+DBA		: buffer bit_vector	(0 to 1);
+DDQ		: inout bit_vector	(0 to 31);
+DDQS		: inout bit_vector	(0 to 3);
+DDM		: buffer bit_vector	(0 to 3);
+DRAS_n		: buffer bit;
+DCAS_n		: buffer bit;
+DWE_n		: buffer bit;
+DCK		: buffer bit_vector	(0 to 1);
+DCK_n		: buffer bit_vector	(0 to 1);
+DCS_n		: buffer bit_vector	(0 to 2);
+DCKE		: buffer bit;
+DRVSEL		: in bit;
+DVREF		: linkage bit;				
+RAD		: inout bit_vector	(0 to 28);
+RD		: inout bit_vector	(0 to 31);
+RCLK		: buffer bit;
+RBEN_n		: inout bit_vector	(0 to 3);
+RWE_n		: inout bit;
+ROE_n		: inout bit;
+RCS_n		: inout bit_vector	(0 to 3);
+EWAIT_n		: in bit;
+RNB		: in bit;
+RALE		: inout bit;
+RCLE		: inout bit;
+PREG_n		: inout bit;
+PCE_n		: inout bit_vector	(1 to 2);
+POE_n		: inout bit;
+PWE_n		: inout bit;
+PIOR_n		: inout bit;
+PIOW_n		: inout bit;
+PWAIT_n		: in bit;
+PIOS16_n	: in bit;
+PSC0_CLK	: inout bit;
+PSC0_SYNC1	: inout bit;				-- Muxed with GPIO(16)
+PSC0_SYNC0	: inout bit;
+PSC0_D1		: inout bit;
+PSC0_D0		: inout bit;
+-- PSC0_EXTCLK	: in bit;				-- Muxed with GPIO2(1)
+PSC1_CLK	: inout bit;
+PSC1_SYNC1	: inout bit;				-- Muxed with GPIO(17)
+PSC1_SYNC0	: inout bit;
+PSC1_D1		: inout bit;
+PSC1_D0		: inout bit;
+-- PSC1_EXTCLK	: in bit;				-- Muxed with GPIO2(2)
+-- PSC2_CLK	: inout bit;				-- Muxed with GPIO2(10)
+-- PSC2_SYNC1	: buffer bit;				-- Muxed with GPIO2(6)
+-- PSC2_SYNC0	: inout bit;				-- Muxed with GPIO2(7)
+-- PSC2_D1	: inout bit;				-- Muxed with GPIO2(8)
+-- PSC2_D0	: inout bit;				-- Muxed with GPIO2(9)
+-- PSC2_EXTCLK	: in bit;				-- Muxed with GPIO2(3)
+-- PSC3_CLK	: inout bit;				-- Muxed with GPIO2(15)
+-- PSC3_SYNC1	: buffer bit;				-- Muxed with GPIO2(11)
+-- PSC3_SYNC0	: inout bit;				-- Muxed with GPIO2(12)
+-- PSC3_D1	: inout bit;				-- Muxed with GPIO2(13)
+-- PSC3_D0	: inout bit;				-- Muxed with GPIO2(14)
+-- PSC3_EXTCLK	: in bit;				-- Muxed with GPIO2(4)
+PCI_AD		: inout bit_vector	(0 to 31);
+PCI_CBE_n	: inout bit_vector	(0 to 3);
+PCI_FRAME_n	: inout bit;
+PCI_IRDY_n	: inout bit;
+PCI_TRDY_n	: inout bit;
+PCI_STOP_n	: inout bit;
+PCI_PERR_n	: inout bit;
+PCI_SERR_n	: inout bit;
+PCI_PAR		: inout bit;
+PCI_DEVSEL_n	: inout bit;
+PCI_IDSEL	: in bit;
+PCI_LOCK_n	: in bit;
+PCI_REQ_n	: in bit_vector		(0 to 3);
+PCI_GNT_n	: inout bit_vector	(0 to 3);
+PCI_INT_n	: in bit_vector		(0 to 3);
+PCI_CLKO	: buffer bit;
+PCI_CLK		: in bit;
+PCI_RST_n	: in bit;
+-- PCI_RSTO_n	: buffer bit;				-- Muxed with GPIO2(0)
+PCI_CFG		: in bit;
+USBH0P		: inout bit;
+USBH0M		: inout bit;
+USBH1P		: inout bit;
+USBH1M		: inout bit;
+USBDP		: inout bit;
+USBDM		: inout bit;
+U0TXD		: inout bit;				-- Muxed with GPIO(20)
+U0RXD		: in bit;
+U1TXD		: inout bit;				-- Muxed with GPIO(21)
+U1RXD		: in bit;
+U1CTS_n		: in bit;
+U1RTS_n		: inout bit;				-- Muxed with GPIO(22)
+U3TXD		: inout bit;				-- Muxed with GPIO(23)
+U3RXD		: in bit;
+-- U3CTS_n	: in bit;				-- Muxed with GPIO(9)
+-- U3DSR_n	: in bit;				-- Muxed with GPIO(10)
+-- U3DCD_n	: in bit;				-- Muxed with GPIO(11)
+-- U3RI_n	: in bit;				-- Muxed with GPIO(12)
+-- U3RTS_n	: buffer bit;				-- Muxed with GPIO(13)
+-- U3DTR_n	: buffer bit;				-- Muxed with GPIO(14)
+N0TXCLK		: in bit;
+N0TXEN		: inout bit;
+N0TXD		: inout bit_vector	(0 to 3);
+N0RXCLK		: in bit;
+N0RXDV		: in bit;
+N0RXD		: in bit_vector		(0 to 3);
+N0CRS		: in bit;
+N0COL		: in bit;
+N0MDC		: inout bit;
+N0MDIO		: inout bit;
+N1TXCLK		: in bit;
+N1TXEN		: inout bit;				-- Muxed with GPIO(24)
+N1TXD		: inout bit_vector	(0 to 3);	-- Muxed with GPIO(25, 26, 27, 28)
+N1RXCLK		: in bit;
+N1RXDV		: in bit;
+N1RXD		: in bit_vector		(0 to 3);
+N1CRS		: in bit;
+N1COL		: in bit;
+N1MDC		: inout bit;
+N1MDIO		: inout bit;
+TRST_n		: in bit;
+TDI		: in bit;
+TDO		: out bit;
+TMS		: in bit;
+TCK		: in bit;
+TC		: in bit_vector		(0 to 3);
+TESTEN		: in bit;
+GPIO		: inout bit_vector	(0 to 15);	-- Using alternate signals for GPIO(16-28)
+GPIO2		: inout bit_vector	(0 to 15);
+XTI12		: linkage bit;
+XTO12		: linkage bit;
+XTI32		: linkage bit;
+XTO32		: linkage bit;
+RESETIN_n	: in bit;
+RESETOUT_n	: buffer bit;
+BOOT		: in bit_vector		(0 to 2);
+PWR_EN		: linkage bit;
+VDDXOK		: in bit;
+WAKE_n		: in bit;
+FWTOY_n		: in bit;
+VDDI		: linkage bit_vector	(0 to 11);
+VDDX		: linkage bit_vector	(0 to 39);
+VDDY		: linkage bit_vector	(0 to 18);
+VSS		: linkage bit_vector	(0 to 80);
+XPWR12		: linkage bit;
+XAGND12		: linkage bit;
+XPWR32		: linkage bit;
+XAGND32		: linkage bit
+);
+--- Standard Use Statement (ref B.8.4) ---
+use STD_1149_1_1994.all;
+--- Component Conformance Statement (ref B.8.6) ---
+attribute COMPONENT_CONFORMANCE of AU1550: entity is "STD_1149_1_1993";
+--- Device Package Pin Mappings (ref B.8.7) ---
+attribute PIN_MAP of AU1550 : entity is PHYSICAL_PIN_MAP;
+constant BGA_25x25 : PIN_MAP_STRING :=
+"DA		: (AC19, AA19, AC20, AB20, AC21, AE22, AD21, AE21, AE20, AD19, " &
+		  "AA18, AE19, AE18, AA14), " &
+"DBA		: (AC18, AB18), " &
+"DDQ		: (AE3,  AE4,  AE5,  AE6,  AE7,  AE8,  AE9, AE10, AE12, AE11, " &
+		  "AD11, AD9,  AD7,  AD5,  AC4,  AD3,  AC5,  AB6,  AC6,  AC7, " &
+		  "AB8,  AC8,  AC9,  AC10, AA12, AA11, AB10, AA10, AA9,  AA8, " &
+		  "AA7,  AA6), " &
+"DDQS		: (AE13, AC12, AC11, AA13), " &
+"DDM		: (AD13, AC13, AB12, AB14), " &
+"DRAS_n		: AC16, " &
+"DCAS_n		: AC15, " &
+"DWE_n		: AC14, " &
+"DCK		: (AD17, AD15), " &
+"DCK_n		: (AE17, AE15), " &
+"DCS_n		: (AC17, AB16, AA16), " &
+"DCKE		: AE16, " &
+"DRVSEL		: AA20, " &
+"DVREF		: AE14, " &
+"RAD		: (T3,   T1,   R5,   R3,   R2,   R1,   P5,   P4,   P3,   P2, " &
+		  "M5,   M4,   M3,   M1,   M2,   L5,   L3,   L1,   L2,   P1, " &
+		  "N5,   N1,   N3,   N4,   K3,   K4,   J1,   K1,   J2), " &
+"RD		: (AD1,  AC1,  AB1,  AA2,  Y2,   W3,   V2,   U2,   AC2,  AB3, " &
+		  "AA3,  AA1,  Y1,   W1,   V1,   U1,   AE2,  AB4,  AA4,  Y3, " &
+		  "W4,   V3,   U3,   T4,   AC3,  AA5,  Y5,   W5,   V4,   V5," & 
+		  "U5,   T5), " &
+"RCLK		: J3, " &
+"RBEN_n		: (F1,   F2,   E1,   E2), " &
+"RWE_n		: H2, " &
+"ROE_n		: H1, " &
+"RCS_n		: (D1,   D3,   C1,   C2), " &
+"EWAIT_n	: H3, " &
+"RNB		: F3, " &
+"RALE		: G3, " &
+"RCLE		: G1, " &
+"PREG_n		: K5, " &
+"PCE_n		: (J5,   H5), " &
+"POE_n		: E3, " &
+"PWE_n		: G4, " &
+"PIOR_n		: G5, " &
+"PIOW_n		: F5, " &
+"PWAIT_n	: H4, " &
+"PIOS16_n	: E4, " &
+"PSC0_CLK	: Y23, " &
+"PSC0_SYNC1	: W22, " &
+"PSC0_SYNC0	: Y24, " &
+"PSC0_D1	: Y25, " &
+"PSC0_D0	: AA25, " &
+"PSC1_CLK	: W23, " &
+"PSC1_SYNC1	: V21, " &
+"PSC1_SYNC0	: V22, " &
+"PSC1_D1	: V23, " &
+"PSC1_D0	: W25, " &
+"PCI_AD		: (K23,  K22,  K25,  J21,  J25,  J23,  J24,  H22,  H21,  H25, " &
+		  "H24,  G22,  G21,  G23,  G25,  F25,  D23,  C24,  B25,  C23, " &
+		  "B24,  C22,  A24,  B23,  A23,  A21,  C21,  E20,  C20,  B20, " &
+		  "A20,  D19), " &
+"PCI_CBE_n	: (H23,  F21,  C25,  A22), " &
+"PCI_FRAME_n	: D21, " &
+"PCI_IRDY_n	: D25, " &
+"PCI_TRDY_n	: E24, " &
+"PCI_STOP_n	: E23, " &
+"PCI_PERR_n	: E22, " &
+"PCI_SERR_n	: F24, " &
+"PCI_PAR	: F23, " &
+"PCI_DEVSEL_n	: E25, " &
+"PCI_IDSEL	: B21, " &
+"PCI_LOCK_n	: E21, " &
+"PCI_REQ_n	: (E16,  A18,  C18,  E18), " &
+"PCI_GNT_n	: (E17,  B18,  D18,  E19), " &
+"PCI_INT_n	: (C16,  A17,  D16,  B17), " &
+"PCI_CLKO	: C17, " &
+"PCI_CLK	: A19, " &
+"PCI_RST_n	: C19, " &
+"PCI_CFG	: K21, " &
+"USBH0P		: AD25, " &
+"USBH0M		: AE24, " &
+"USBH1P		: AD23, " &
+"USBH1M		: AE23, " &
+"USBDP		: AC25, " &
+"USBDM		: AC24, " &
+"U0TXD		: A10, " &
+"U0RXD		: D12, " &
+"U1TXD		: B11, " &
+"U1RXD		: C10, " &
+"U1CTS_n	: A11, " &
+"U1RTS_n	: E12, " &
+"U3TXD		: C11, " &
+"U3RXD		: B12, " &
+"N0TXCLK	: T21, " &
+"N0TXEN		: T22, " &
+"N0TXD		: (U25,  U24,  U23,  U21), " &
+"N0RXCLK	: T23, " &
+"N0RXDV		: T25, " &
+"N0RXD		: (R21,  R23,  R24,  R25), " &
+"N0CRS		: V24, " &
+"N0COL		: V25, " &
+"N0MDC		: P21, " &
+"N0MDIO		: P22, " &
+"N1TXCLK	: M21, " &
+"N1TXEN		: N25, " &
+"N1TXD		: (N23,  N22,  N21,  P25), " &
+"N1RXCLK	: M22, " &
+"N1RXDV		: M23, " &
+"N1RXD		: (M25,  M24,  L21,  L23), " &
+"N1CRS		: P23, " &
+"N1COL		: P24, " &
+"N1MDC		: L25, " &
+"N1MDIO		: L24, " &
+"TRST_n		: AA21, " &
+"TDI		: AB22, " &
+"TDO		: AB23, " &
+"TMS		: D8, " &
+"TCK		: AA22, " &
+"TC		: (E9,   C9,   E11,  E10), " &
+"TESTEN		: E6, " &
+"GPIO		: (A6,   A7,   A8,   C8,   A9,   B8,   B9,   D7,   E7,   E8, " &
+		  "D10,  A12,  A13,  C12,  E13,  D13), " &
+"GPIO2		: (C13,  E14,  D14,  C14,  B14,  A14,  E15,  C15,  B15,  A15, " &
+		  "A16,  AA24, AB25, W21,  AA23, Y21), " &
+"XTI12		: A4, " &
+"XTO12		: B4, " &
+"XTI32		: A3, " &
+"XTO32		: B2, " &
+"RESETIN_n	: B6, " &
+"RESETOUT_n	: AC23, " &
+"BOOT		: (C6,   C7,   B5), " &
+"PWR_EN		: A5, " &
+"VDDXOK		: AC22, " &
+"WAKE_n		: E5, " &
+"FWTOY_n	: D5, " &
+"VDDI		: (F12,  F13,  F14,  M6,   M20,  N6,   N20,  P6,   P20,  Y12, " &
+		  "Y13,  Y14), " &
+"VDDX		: (D4,   D6,   D9,   D11,  D15,  D17,  D20,  D22,  F4,   F6, " &
+		  "F7,   F8,   F9,   F17,  F18,  F19,  F20,  F22,  G6,   G20, " &
+		  "H6,   H20,  J4,   J6,   J20,  J22,  L4,   L22,  R4,   R22, " &
+		  "U4,   U6,   U20,  U22,  V6,   V20,  W6,   W20,  Y4,   Y22), " &
+"VDDY		: (Y6,   Y7,   Y8,   Y9,   Y17,  Y18,  Y19,  Y20,  AA15, AA17, " &
+		  "AB5,  AB7,  AB9,  AB11, AB13, AB15, AB17, AB19, AB21), " &
+"VSS		: (B7,   B10,  B13,  B16,  B19,  B22,  D2,   D24,  G2,   G24, " &
+		  "K2,   K10,  K11,  K12,  K13,  K14,  K15,  K16,  K24,  L10, " &
+		  "L11,  L12,  L13,  L14,  L15,  L16,  M10,  M11,  M12,  M13, " &
+		  "M14,  M15,  M16,  N2,   N10,  N11,  N12,  N13,  N14,  N15, " &
+		  "N16,  N24,  P10,  P11,  P12,  P13,  P14,  P15,  P16,  R10, " &
+		  "R11,  R12,  R13,  R14,  R15,  R16,  T2,   T10,  T11,  T12, " &
+		  "T13,  T14,  T15,  T16,  T24,  W2,   W24,  AB2,  AB24, AD2, " &
+		  "AD4,  AD6,  AD8,  AD10, AD12, AD14, AD16, AD18, AD20, AD22, " &
+		  "AD24), " &
+"XPWR12		: C4, " &
+"XAGND12	: C5, " &
+"XPWR32		: C3, " &
+"XAGND32	: B3";
+--- Scan Port Identification (ref B.8.9) ---
+attribute TAP_SCAN_CLOCK of TCK : signal is (24.0e6, LOW); -- NOTE: 40MHz is absolute max.  
+attribute TAP_SCAN_IN of TDI : signal is TRUE;
+attribute TAP_SCAN_OUT of TDO : signal is TRUE;
+attribute TAP_SCAN_MODE of TMS : signal is TRUE;
+attribute TAP_SCAN_RESET of TRST_N : signal is TRUE;
+--- Instruction Register Description (ref B.8.11) ---
+attribute INSTRUCTION_LENGTH of AU1550 : entity is 5;
+attribute INSTRUCTION_OPCODE of AU1550 : entity is
+"EXTEST (00000)," &
+"IDCODE (00001)," &
+"SAMPLE (00010)," &
+"HIZ (00101)," &
+"CLAMP (00110)," &
+"BYPASS (11111)";
+attribute INSTRUCTION_CAPTURE of AU1550 : entity is "X0X01";
+--- Optional Register Description (ref B.8.12) ---
+attribute IDCODE_REGISTER of AU1550 : entity is
+"000X" & -- Version
+"0000001100000010" & -- Part Number
+"00101000111" & -- Manufacturer
+"1"; -- Required by IEEE Std 1149.1-1990
+--- Register Access Description (ref B.8.13) ---
+attribute REGISTER_ACCESS of AU1550 : entity is
+"BOUNDARY (EXTEST, SAMPLE), " &
+"BYPASS (BYPASS, HIZ, CLAMP)";
+--- Boundary-Scan Register Description (ref B.8.14) ---
+attribute BOUNDARY_LENGTH of AU1550 : entity is 773;
+attribute BOUNDARY_REGISTER of AU1550 : entity is
+"772 (BC_4, USBDM, INPUT, x), " &
+"771 (BC_4, USBDP, INPUT, x), " &
+"770 (BC_2, *, control, 0), " &
+"769 (BC_1, USBDP, OUTPUT3, x, 770, 0, Z), " &
+"768 (BC_1, USBDM, OUTPUT3, x, 770, 0, Z), " &
+"767 (BC_4, USBH0M, INPUT, x), " &
+"766 (BC_4, USBH0P, INPUT, x), " &
+"765 (BC_2, *, control, 0), " &
+"764 (BC_1, USBH0P, OUTPUT3, x, 765, 0, Z), " &
+"763 (BC_1, USBH0M, OUTPUT3, x, 765, 0, Z), " &
+"762 (BC_4, USBH1P, INPUT, x), " &
+"761 (BC_4, USBH1M, INPUT, x), " &
+"760 (BC_2, *, control, 0), " &
+"759 (BC_1, USBH1M, OUTPUT3, x, 760, 0, Z), " &
+"758 (BC_1, USBH1P, OUTPUT3, x, 760, 0, Z), " &
+"757 (BC_1, RESETOUT_n, OUTPUT2, x), " &
+"756 (BC_4, DRVSEL, INPUT, x), " &
+"755 (BC_4, VDDXOK, INPUT, x), " &
+"754 (BC_1, DA(4), OUTPUT2, x), " &
+"753 (BC_1, DA(3), OUTPUT2, x), " &
+"752 (BC_1, DA(5), OUTPUT2, x), " &
+"751 (BC_1, DA(1), OUTPUT2, x), " &
+"750 (BC_1, DA(6), OUTPUT2, x), " &
+"749 (BC_1, DA(2), OUTPUT2, x), " &
+"748 (BC_1, DA(7), OUTPUT2, x), " &
+"747 (BC_1, DA(10), OUTPUT2, x), " &
+"746 (BC_1, DA(0), OUTPUT2, x), " &
+"745 (BC_1, DA(8), OUTPUT2, x), " &
+"744 (BC_1, DBA(1), OUTPUT2, x), " &
+"743 (BC_1, DA(9), OUTPUT2, x), " &
+"742 (BC_1, DA(11), OUTPUT2, x), " &
+"741 (BC_1, DBA(0), OUTPUT2, x), " &
+"740 (BC_1, DA(12), OUTPUT2, x), " &
+"739 (BC_1, DCS_n(0), OUTPUT2, x), " &
+"738 (BC_1, DCS_n(2), OUTPUT2, x), " &
+"737 (BC_1, DCK_n(0), OUTPUT2, x), " &
+"736 (BC_1, DCK(0), OUTPUT2, x), " &
+"735 (BC_1, DCS_n(1), OUTPUT2, x), " &
+"734 (BC_1, DRAS_n, OUTPUT2, x), " &
+"733 (BC_1, DCKE, OUTPUT2, x), " &
+"732 (BC_1, DCAS_n, OUTPUT2, x), " &
+"731 (BC_1, DCK_n(1), OUTPUT2, x), " &
+"730 (BC_1, DCK(1), OUTPUT2, x), " &
+"729 (BC_1, DA(13), OUTPUT2, x), " &
+"728 (BC_1, DDM(3), OUTPUT2, x), " &
+"727 (BC_1, DWE_n, OUTPUT2, x), " &
+"726 (BC_4, DDQS(0), INPUT, x), " &
+"725 (BC_2, *, control, 0), " &
+"724 (BC_1, DDQS(0), OUTPUT3, x, 725, 0, Z), " &
+"723 (BC_1, DDM(0), OUTPUT2, x), " &
+"722 (BC_1, DDM(1), OUTPUT2, x), " &
+"721 (BC_4, DDQS(3), INPUT, x), " &
+"720 (BC_2, *, control, 0), " &
+"719 (BC_1, DDQS(3), OUTPUT3, x, 720, 0, Z), " &
+"718 (BC_4, DDQS(1), INPUT, x), " &
+"717 (BC_2, *, control, 0), " &
+"716 (BC_1, DDQS(1), OUTPUT3, x, 717, 0, Z), " &
+"715 (BC_4, DDQ(8), INPUT, x), " &
+"714 (BC_2, *, control, 0), " &
+"713 (BC_1, DDQ(8), OUTPUT3, x, 714, 0, Z), " &
+"712 (BC_1, DDM(2), OUTPUT2, x), " &
+"711 (BC_4, DDQ(24), INPUT, x), " &
+"710 (BC_2, *, control, 0), " &
+"709 (BC_1, DDQ(24), OUTPUT3, x, 710, 0, Z), " &
+"708 (BC_4, DDQ(9), INPUT, x), " &
+"707 (BC_2, *, control, 0), " &
+"706 (BC_1, DDQ(9), OUTPUT3, x, 707, 0, Z), " &
+"705 (BC_4, DDQ(10), INPUT, x), " &
+"704 (BC_2, *, control, 0), " &
+"703 (BC_1, DDQ(10), OUTPUT3, x, 704, 0, Z), " &
+"702 (BC_4, DDQS(2), INPUT, x), " &
+"701 (BC_2, *, control, 0), " &
+"700 (BC_1, DDQS(2), OUTPUT3, x, 701, 0, Z), " &
+"699 (BC_4, DDQ(25), INPUT, x), " &
+"698 (BC_2, *, control, 0), " &
+"697 (BC_1, DDQ(25), OUTPUT3, x, 698, 0, Z), " &
+"696 (BC_4, DDQ(27), INPUT, x), " &
+"695 (BC_2, *, control, 0), " &
+"694 (BC_1, DDQ(27), OUTPUT3, x, 695, 0, Z), " &
+"693 (BC_4, DDQ(7), INPUT, x), " &
+"692 (BC_2, *, control, 0), " &
+"691 (BC_1, DDQ(7), OUTPUT3, x, 692, 0, Z), " &
+"690 (BC_4, DDQ(23), INPUT, x), " &
+"689 (BC_2, *, control, 0), " &
+"688 (BC_1, DDQ(23), OUTPUT3, x, 689, 0, Z), " &
+"687 (BC_4, DDQ(26), INPUT, x), " &
+"686 (BC_2, *, control, 0), " &
+"685 (BC_1, DDQ(26), OUTPUT3, x, 686, 0, Z), " &
+"684 (BC_4, DDQ(6), INPUT, x), " &
+"683 (BC_2, *, control, 0), " &
+"682 (BC_1, DDQ(6), OUTPUT3, x, 683, 0, Z), " &
+"681 (BC_4, DDQ(11), INPUT, x), " &
+"680 (BC_2, *, control, 0), " &
+"679 (BC_1, DDQ(11), OUTPUT3, x, 680, 0, Z), " &
+"678 (BC_4, DDQ(22), INPUT, x), " &
+"677 (BC_2, *, control, 0), " &
+"676 (BC_1, DDQ(22), OUTPUT3, x, 677, 0, Z), " &
+"675 (BC_4, DDQ(5), INPUT, x), " &
+"674 (BC_2, *, control, 0), " &
+"673 (BC_1, DDQ(5), OUTPUT3, x, 674, 0, Z), " &
+"672 (BC_4, DDQ(21), INPUT, x), " &
+"671 (BC_2, *, control, 0), " &
+"670 (BC_1, DDQ(21), OUTPUT3, x, 671, 0, Z), " &
+"669 (BC_4, DDQ(28), INPUT, x), " &
+"668 (BC_2, *, control, 0), " &
+"667 (BC_1, DDQ(28), OUTPUT3, x, 668, 0, Z), " &
+"666 (BC_4, DDQ(4), INPUT, x), " &
+"665 (BC_2, *, control, 0), " &
+"664 (BC_1, DDQ(4), OUTPUT3, x, 665, 0, Z), " &
+"663 (BC_4, DDQ(12), INPUT, x), " &
+"662 (BC_2, *, control, 0), " &
+"661 (BC_1, DDQ(12), OUTPUT3, x, 662, 0, Z), " &
+"660 (BC_4, DDQ(20), INPUT, x), " &
+"659 (BC_2, *, control, 0), " &
+"658 (BC_1, DDQ(20), OUTPUT3, x, 659, 0, Z), " &
+"657 (BC_4, DDQ(3), INPUT, x), " &
+"656 (BC_2, *, control, 0), " &
+"655 (BC_1, DDQ(3), OUTPUT3, x, 656, 0, Z), " &
+"654 (BC_4, DDQ(19), INPUT, x), " &
+"653 (BC_2, *, control, 0), " &
+"652 (BC_1, DDQ(19), OUTPUT3, x, 653, 0, Z), " &
+"651 (BC_4, DDQ(29), INPUT, x), " &
+"650 (BC_2, *, control, 0), " &
+"649 (BC_1, DDQ(29), OUTPUT3, x, 650, 0, Z), " &
+"648 (BC_4, DDQ(2), INPUT, x), " &
+"647 (BC_2, *, control, 0), " &
+"646 (BC_1, DDQ(2), OUTPUT3, x, 647, 0, Z), " &
+"645 (BC_4, DDQ(18), INPUT, x), " &
+"644 (BC_2, *, control, 0), " &
+"643 (BC_1, DDQ(18), OUTPUT3, x, 644, 0, Z), " &
+"642 (BC_4, DDQ(13), INPUT, x), " &
+"641 (BC_2, *, control, 0), " &
+"640 (BC_1, DDQ(13), OUTPUT3, x, 641, 0, Z), " &
+"639 (BC_4, DDQ(30), INPUT, x), " &
+"638 (BC_2, *, control, 0), " &
+"637 (BC_1, DDQ(30), OUTPUT3, x, 638, 0, Z), " &
+"636 (BC_4, DDQ(1), INPUT, x), " &
+"635 (BC_2, *, control, 0), " &
+"634 (BC_1, DDQ(1), OUTPUT3, x, 635, 0, Z), " &
+"633 (BC_4, DDQ(17), INPUT, x), " &
+"632 (BC_2, *, control, 0), " &
+"631 (BC_1, DDQ(17), OUTPUT3, x, 632, 0, Z), " &
+"630 (BC_4, DDQ(16), INPUT, x), " &
+"629 (BC_2, *, control, 0), " &
+"628 (BC_1, DDQ(16), OUTPUT3, x, 629, 0, Z), " &
+"627 (BC_4, DDQ(0), INPUT, x), " &
+"626 (BC_2, *, control, 0), " &
+"625 (BC_1, DDQ(0), OUTPUT3, x, 626, 0, Z), " &
+"624 (BC_4, DDQ(31), INPUT, x), " &
+"623 (BC_2, *, control, 0), " &
+"622 (BC_1, DDQ(31), OUTPUT3, x, 623, 0, Z), " &
+"621 (BC_4, DDQ(14), INPUT, x), " &
+"620 (BC_2, *, control, 0), " &
+"619 (BC_1, DDQ(14), OUTPUT3, x, 620, 0, Z), " &
+"618 (BC_4, DDQ(15), INPUT, x), " &
+"617 (BC_2, *, control, 0), " &
+"616 (BC_1, DDQ(15), OUTPUT3, x, 617, 0, Z), " &
+"615 (BC_4, RD(16), INPUT, x), " &
+"614 (BC_2, *, control, 0), " &
+"613 (BC_1, RD(16), OUTPUT3, x, 614, 0, Z), " &
+"612 (BC_4, RD(25), INPUT, x), " &
+"611 (BC_2, *, control, 0), " &
+"610 (BC_1, RD(25), OUTPUT3, x, 611, 0, Z), " &
+"609 (BC_4, RD(17), INPUT, x), " &
+"608 (BC_2, *, control, 0), " &
+"607 (BC_1, RD(17), OUTPUT3, x, 608, 0, Z), " &
+"606 (BC_4, RD(24), INPUT, x), " &
+"605 (BC_2, *, control, 0), " &
+"604 (BC_1, RD(24), OUTPUT3, x, 605, 0, Z), " &
+"603 (BC_4, RD(0), INPUT, x), " &
+"602 (BC_2, *, control, 0), " &
+"601 (BC_1, RD(0), OUTPUT3, x, 602, 0, Z), " &
+"600 (BC_4, RD(8), INPUT, x), " &
+"599 (BC_2, *, control, 0), " &
+"598 (BC_1, RD(8), OUTPUT3, x, 599, 0, Z), " &
+"597 (BC_4, RD(9), INPUT, x), " &
+"596 (BC_2, *, control, 0), " &
+"595 (BC_1, RD(9), OUTPUT3, x, 596, 0, Z), " &
+"594 (BC_4, RD(18), INPUT, x), " &
+"593 (BC_2, *, control, 0), " &
+"592 (BC_1, RD(18), OUTPUT3, x, 593, 0, Z), " &
+"591 (BC_4, RD(26), INPUT, x), " &
+"590 (BC_2, *, control, 0), " &
+"589 (BC_1, RD(26), OUTPUT3, x, 590, 0, Z), " &
+"588 (BC_4, RD(1), INPUT, x), " &
+"587 (BC_2, *, control, 0), " &
+"586 (BC_1, RD(1), OUTPUT3, x, 587, 0, Z), " &
+"585 (BC_4, RD(10), INPUT, x), " &
+"584 (BC_2, *, control, 0), " &
+"583 (BC_1, RD(10), OUTPUT3, x, 584, 0, Z), " &
+"582 (BC_4, RD(27), INPUT, x), " &
+"581 (BC_2, *, control, 0), " &
+"580 (BC_1, RD(27), OUTPUT3, x, 581, 0, Z), " &
+"579 (BC_4, RD(2), INPUT, x), " &
+"578 (BC_2, *, control, 0), " &
+"577 (BC_1, RD(2), OUTPUT3, x, 578, 0, Z), " &
+"576 (BC_4, RD(3), INPUT, x), " &
+"575 (BC_2, *, control, 0), " &
+"574 (BC_1, RD(3), OUTPUT3, x, 575, 0, Z), " &
+"573 (BC_4, RD(19), INPUT, x), " &
+"572 (BC_2, *, control, 0), " &
+"571 (BC_1, RD(19), OUTPUT3, x, 572, 0, Z), " &
+"570 (BC_4, RD(11), INPUT, x), " &
+"569 (BC_2, *, control, 0), " &
+"568 (BC_1, RD(11), OUTPUT3, x, 569, 0, Z), " &
+"567 (BC_4, RD(4), INPUT, x), " &
+"566 (BC_2, *, control, 0), " &
+"565 (BC_1, RD(4), OUTPUT3, x, 566, 0, Z), " &
+"564 (BC_4, RD(5), INPUT, x), " &
+"563 (BC_2, *, control, 0), " &
+"562 (BC_1, RD(5), OUTPUT3, x, 563, 0, Z), " &
+"561 (BC_4, RD(12), INPUT, x), " &
+"560 (BC_2, *, control, 0), " &
+"559 (BC_1, RD(12), OUTPUT3, x, 560, 0, Z), " &
+"558 (BC_4, RD(28), INPUT, x), " &
+"557 (BC_2, *, control, 0), " &
+"556 (BC_1, RD(28), OUTPUT3, x, 557, 0, Z), " &
+"555 (BC_4, RD(30), INPUT, x), " &
+"554 (BC_2, *, control, 0), " &
+"553 (BC_1, RD(30), OUTPUT3, x, 554, 0, Z), " &
+"552 (BC_4, RD(21), INPUT, x), " &
+"551 (BC_2, *, control, 0), " &
+"550 (BC_1, RD(21), OUTPUT3, x, 551, 0, Z), " &
+"549 (BC_4, RD(13), INPUT, x), " &
+"548 (BC_2, *, control, 0), " &
+"547 (BC_1, RD(13), OUTPUT3, x, 548, 0, Z), " &
+"546 (BC_4, RD(20), INPUT, x), " &
+"545 (BC_2, *, control, 0), " &
+"544 (BC_1, RD(20), OUTPUT3, x, 545, 0, Z), " &
+"543 (BC_4, RD(6), INPUT, x), " &
+"542 (BC_2, *, control, 0), " &
+"541 (BC_1, RD(6), OUTPUT3, x, 542, 0, Z), " &
+"540 (BC_4, RD(29), INPUT, x), " &
+"539 (BC_2, *, control, 0), " &
+"538 (BC_1, RD(29), OUTPUT3, x, 539, 0, Z), " &
+"537 (BC_4, RD(14), INPUT, x), " &
+"536 (BC_2, *, control, 0), " &
+"535 (BC_1, RD(14), OUTPUT3, x, 536, 0, Z), " &
+"534 (BC_4, RD(22), INPUT, x), " &
+"533 (BC_2, *, control, 0), " &
+"532 (BC_1, RD(22), OUTPUT3, x, 533, 0, Z), " &
+"531 (BC_4, RD(31), INPUT, x), " &
+"530 (BC_2, *, control, 0), " &
+"529 (BC_1, RD(31), OUTPUT3, x, 530, 0, Z), " &
+"528 (BC_4, RD(7), INPUT, x), " &
+"527 (BC_2, *, control, 0), " &
+"526 (BC_1, RD(7), OUTPUT3, x, 527, 0, Z), " &
+"525 (BC_4, RD(23), INPUT, x), " &
+"524 (BC_2, *, control, 0), " &
+"523 (BC_1, RD(23), OUTPUT3, x, 524, 0, Z), " &
+"522 (BC_4, RD(15), INPUT, x), " &
+"521 (BC_2, *, control, 0), " &
+"520 (BC_1, RD(15), OUTPUT3, x, 521, 0, Z), " &
+"519 (BC_4, RAD(0), INPUT, x), " &
+"518 (BC_2, *, control, 0), " &
+"517 (BC_1, RAD(0), OUTPUT3, x, 518, 0, Z), " &
+"516 (BC_4, RAD(2), INPUT, x), " &
+"515 (BC_2, *, control, 0), " &
+"514 (BC_1, RAD(2), OUTPUT3, x, 515, 0, Z), " &
+"513 (BC_4, RAD(1), INPUT, x), " &
+"512 (BC_2, *, control, 0), " &
+"511 (BC_1, RAD(1), OUTPUT3, x, 512, 0, Z), " &
+"510 (BC_4, RAD(7), INPUT, x), " &
+"509 (BC_2, *, control, 0), " &
+"508 (BC_1, RAD(7), OUTPUT3, x, 509, 0, Z), " &
+"507 (BC_4, RAD(3), INPUT, x), " &
+"506 (BC_2, *, control, 0), " &
+"505 (BC_1, RAD(3), OUTPUT3, x, 506, 0, Z), " &
+"504 (BC_4, RAD(4), INPUT, x), " &
+"503 (BC_2, *, control, 0), " &
+"502 (BC_1, RAD(4), OUTPUT3, x, 503, 0, Z), " &
+"501 (BC_4, RAD(5), INPUT, x), " &
+"500 (BC_2, *, control, 0), " &
+"499 (BC_1, RAD(5), OUTPUT3, x, 500, 0, Z), " &
+"498 (BC_4, RAD(8), INPUT, x), " &
+"497 (BC_2, *, control, 0), " &
+"496 (BC_1, RAD(8), OUTPUT3, x, 497, 0, Z), " &
+"495 (BC_4, RAD(6), INPUT, x), " &
+"494 (BC_2, *, control, 0), " &
+"493 (BC_1, RAD(6), OUTPUT3, x, 494, 0, Z), " &
+"492 (BC_4, RAD(9), INPUT, x), " &
+"491 (BC_2, *, control, 0), " &
+"490 (BC_1, RAD(9), OUTPUT3, x, 491, 0, Z), " &
+"489 (BC_4, RAD(19), INPUT, x), " &
+"488 (BC_2, *, control, 0), " &
+"487 (BC_1, RAD(19), OUTPUT3, x, 488, 0, Z), " &
+"486 (BC_4, RAD(20), INPUT, x), " &
+"485 (BC_2, *, control, 0), " &
+"484 (BC_1, RAD(20), OUTPUT3, x, 485, 0, Z), " &
+"483 (BC_4, RAD(23), INPUT, x), " &
+"482 (BC_2, *, control, 0), " &
+"481 (BC_1, RAD(23), OUTPUT3, x, 482, 0, Z), " &
+"480 (BC_4, RAD(22), INPUT, x), " &
+"479 (BC_2, *, control, 0), " &
+"478 (BC_1, RAD(22), OUTPUT3, x, 479, 0, Z), " &
+"477 (BC_4, RAD(21), INPUT, x), " &
+"476 (BC_2, *, control, 0), " &
+"475 (BC_1, RAD(21), OUTPUT3, x, 476, 0, Z), " &
+"474 (BC_4, RAD(13), INPUT, x), " &
+"473 (BC_2, *, control, 0), " &
+"472 (BC_1, RAD(13), OUTPUT3, x, 473, 0, Z), " &
+"471 (BC_4, RAD(14), INPUT, x), " &
+"470 (BC_2, *, control, 0), " &
+"469 (BC_1, RAD(14), OUTPUT3, x, 470, 0, Z), " &
+"468 (BC_4, RAD(12), INPUT, x), " &
+"467 (BC_2, *, control, 0), " &
+"466 (BC_1, RAD(12), OUTPUT3, x, 467, 0, Z), " &
+"465 (BC_4, RAD(11), INPUT, x), " &
+"464 (BC_2, *, control, 0), " &
+"463 (BC_1, RAD(11), OUTPUT3, x, 464, 0, Z), " &
+"462 (BC_4, RAD(17), INPUT, x), " &
+"461 (BC_2, *, control, 0), " &
+"460 (BC_1, RAD(17), OUTPUT3, x, 461, 0, Z), " &
+"459 (BC_4, RAD(18), INPUT, x), " &
+"458 (BC_2, *, control, 0), " &
+"457 (BC_1, RAD(18), OUTPUT3, x, 458, 0, Z), " &
+"456 (BC_4, RAD(16), INPUT, x), " &
+"455 (BC_2, *, control, 0), " &
+"454 (BC_1, RAD(16), OUTPUT3, x, 455, 0, Z), " &
+"453 (BC_4, RAD(10), INPUT, x), " &
+"452 (BC_2, *, control, 0), " &
+"451 (BC_1, RAD(10), OUTPUT3, x, 452, 0, Z), " &
+"450 (BC_4, RAD(15), INPUT, x), " &
+"449 (BC_2, *, control, 0), " &
+"448 (BC_1, RAD(15), OUTPUT3, x, 449, 0, Z), " &
+"447 (BC_4, PREG_n, INPUT, x), " &
+"446 (BC_2, *, control, 0), " &
+"445 (BC_1, PREG_n, OUTPUT3, x, 446, 0, Z), " &
+"444 (BC_4, RAD(27), INPUT, x), " &
+"443 (BC_2, *, control, 0), " &
+"442 (BC_1, RAD(27), OUTPUT3, x, 443, 0, Z), " &
+"441 (BC_4, RAD(24), INPUT, x), " &
+"440 (BC_2, *, control, 0), " &
+"439 (BC_1, RAD(24), OUTPUT3, x, 440, 0, Z), " &
+"438 (BC_4, RAD(25), INPUT, x), " &
+"437 (BC_2, *, control, 0), " &
+"436 (BC_1, RAD(25), OUTPUT3, x, 437, 0, Z), " &
+"435 (BC_4, PCE_n(1), INPUT, x), " &
+"434 (BC_2, *, control, 0), " &
+"433 (BC_1, PCE_n(1), OUTPUT3, x, 434, 0, Z), " &
+"432 (BC_4, RAD(26), INPUT, x), " &
+"431 (BC_2, *, control, 0), " &
+"430 (BC_1, RAD(26), OUTPUT3, x, 431, 0, Z), " &
+"429 (BC_4, RAD(28), INPUT, x), " &
+"428 (BC_2, *, control, 0), " &
+"427 (BC_1, RAD(28), OUTPUT3, x, 428, 0, Z), " &
+"426 (BC_1, RCLK, OUTPUT2, x), " &
+"425 (BC_4, ROE_n, INPUT, x), " &
+"424 (BC_2, *, control, 0), " &
+"423 (BC_1, ROE_n, OUTPUT3, x, 424, 0, Z), " &
+"422 (BC_4, PCE_n(2), INPUT, x), " &
+"421 (BC_2, *, control, 0), " &
+"420 (BC_1, PCE_n(2), OUTPUT3, x, 421, 0, Z), " &
+"419 (BC_4, RWE_n, INPUT, x), " &
+"418 (BC_2, *, control, 0), " &
+"417 (BC_1, RWE_n, OUTPUT3, x, 418, 0, Z), " &
+"416 (BC_4, EWAIT_n, INPUT, x), " &
+"415 (BC_4, RCLE, INPUT, x), " &
+"414 (BC_2, *, control, 0), " &
+"413 (BC_1, RCLE, OUTPUT3, x, 414, 0, Z), " &
+"412 (BC_4, PWAIT_n, INPUT, x), " &
+"411 (BC_4, RBEN_n(0), INPUT, x), " &
+"410 (BC_2, *, control, 0), " &
+"409 (BC_1, RBEN_n(0), OUTPUT3, x, 410, 0, Z), " &
+"408 (BC_4, RALE, INPUT, x), " &
+"407 (BC_2, *, control, 0), " &
+"406 (BC_1, RALE, OUTPUT3, x, 407, 0, Z), " &
+"405 (BC_4, RBEN_n(1), INPUT, x), " &
+"404 (BC_2, *, control, 0), " &
+"403 (BC_1, RBEN_n(1), OUTPUT3, x, 404, 0, Z), " &
+"402 (BC_4, PWE_n, INPUT, x), " &
+"401 (BC_2, *, control, 0), " &
+"400 (BC_1, PWE_n, OUTPUT3, x, 401, 0, Z), " &
+"399 (BC_4, RBEN_n(2), INPUT, x), " &
+"398 (BC_2, *, control, 0), " &
+"397 (BC_1, RBEN_n(2), OUTPUT3, x, 398, 0, Z), " &
+"396 (BC_4, RNB, INPUT, x), " &
+"395 (BC_4, RBEN_n(3), INPUT, x), " &
+"394 (BC_2, *, control, 0), " &
+"393 (BC_1, RBEN_n(3), OUTPUT3, x, 394, 0, Z), " &
+"392 (BC_4, PIOR_n, INPUT, x), " &
+"391 (BC_2, *, control, 0), " &
+"390 (BC_1, PIOR_n, OUTPUT3, x, 391, 0, Z), " &
+"389 (BC_4, RCS_n(0), INPUT, x), " &
+"388 (BC_2, *, control, 0), " &
+"387 (BC_1, RCS_n(0), OUTPUT3, x, 388, 0, Z), " &
+"386 (BC_4, POE_n, INPUT, x), " &
+"385 (BC_2, *, control, 0), " &
+"384 (BC_1, POE_n, OUTPUT3, x, 385, 0, Z), " &
+"383 (BC_4, RCS_n(2), INPUT, x), " &
+"382 (BC_2, *, control, 0), " &
+"381 (BC_1, RCS_n(2), OUTPUT3, x, 382, 0, Z), " &
+"380 (BC_4, PIOW_n, INPUT, x), " &
+"379 (BC_2, *, control, 0), " &
+"378 (BC_1, PIOW_n, OUTPUT3, x, 379, 0, Z), " &
+"377 (BC_4, RCS_n(1), INPUT, x), " &
+"376 (BC_2, *, control, 0), " &
+"375 (BC_1, RCS_n(1), OUTPUT3, x, 376, 0, Z), " &
+"374 (BC_4, RCS_n(3), INPUT, x), " &
+"373 (BC_2, *, control, 0), " &
+"372 (BC_1, RCS_n(3), OUTPUT3, x, 373, 0, Z), " &
+"371 (BC_4, PIOS16_n, INPUT, x), " &
+"370 (BC_4, TESTEN, INPUT, x), " &
+"369 (BC_4, WAKE_n, INPUT, x), " &
+"368 (BC_4, FWTOY_n, INPUT, x), " &
+"367 (BC_4, BOOT(0), INPUT, x), " &
+"366 (BC_4, BOOT(1), INPUT, x), " &
+"365 (BC_4, RESETIN_n, INPUT, x), " &
+"364 (BC_4, BOOT(2), INPUT, x), " &
+"363 (BC_4, GPIO(9), INPUT, x), " &
+"362 (BC_2, *, control, 0), " &
+"361 (BC_1, GPIO(9), OUTPUT3, x, 362, 0, Z), " &
+"360 (BC_4, GPIO(7), INPUT, x), " &
+"359 (BC_2, *, control, 0), " &
+"358 (BC_1, GPIO(7), OUTPUT3, x, 359, 0, Z), " &
+"357 (BC_4, GPIO(8), INPUT, x), " &
+"356 (BC_2, *, control, 0), " &
+"355 (BC_1, GPIO(8), OUTPUT3, x, 356, 0, Z), " &
+"354 (BC_4, GPIO(1), INPUT, x), " &
+"353 (BC_2, *, control, 0), " &
+"352 (BC_1, GPIO(1), OUTPUT3, x, 353, 0, Z), " &
+"351 (BC_4, GPIO(5), INPUT, x), " &
+"350 (BC_2, *, control, 0), " &
+"349 (BC_1, GPIO(5), OUTPUT3, x, 350, 0, Z), " &
+"348 (BC_4, GPIO(2), INPUT, x), " &
+"347 (BC_2, *, control, 0), " &
+"346 (BC_1, GPIO(2), OUTPUT3, x, 347, 0, Z), " &
+"345 (BC_4, GPIO(3), INPUT, x), " &
+"344 (BC_2, *, control, 0), " &
+"343 (BC_1, GPIO(3), OUTPUT3, x, 344, 0, Z), " &
+"342 (BC_4, TC(0), INPUT, x), " &
+"341 (BC_4, GPIO(0), INPUT, x), " &
+"340 (BC_2, *, control, 0), " &
+"339 (BC_1, GPIO(0), OUTPUT3, x, 340, 0, Z), " &
+"338 (BC_4, GPIO(6), INPUT, x), " &
+"337 (BC_2, *, control, 0), " &
+"336 (BC_1, GPIO(6), OUTPUT3, x, 337, 0, Z), " &
+"335 (BC_4, TC(3), INPUT, x), " &
+"334 (BC_4, GPIO(10), INPUT, x), " &
+"333 (BC_2, *, control, 0), " &
+"332 (BC_1, GPIO(10), OUTPUT3, x, 333, 0, Z), " &
+"331 (BC_4, GPIO(4), INPUT, x), " &
+"330 (BC_2, *, control, 0), " &
+"329 (BC_1, GPIO(4), OUTPUT3, x, 330, 0, Z), " &
+"328 (BC_4, TC(1), INPUT, x), " &
+"327 (BC_4, TC(2), INPUT, x), " &
+"326 (BC_4, U0TXD, INPUT, x), " &
+"325 (BC_2, *, control, 0), " &
+"324 (BC_1, U0TXD, OUTPUT3, x, 325, 0, Z), " &
+"323 (BC_4, U0RXD, INPUT, x), " &
+"322 (BC_4, U1RXD, INPUT, x), " &
+"321 (BC_4, U1TXD, INPUT, x), " &
+"320 (BC_2, *, control, 0), " &
+"319 (BC_1, U1TXD, OUTPUT3, x, 320, 0, Z), " &
+"318 (BC_4, U1CTS_n, INPUT, x), " &
+"317 (BC_4, U1RTS_n, INPUT, x), " &
+"316 (BC_2, *, control, 0), " &
+"315 (BC_1, U1RTS_n, OUTPUT3, x, 316, 0, Z), " &
+"314 (BC_4, U3TXD, INPUT, x), " &
+"313 (BC_2, *, control, 0), " &
+"312 (BC_1, U3TXD, OUTPUT3, x, 313, 0, Z), " &
+"311 (BC_4, U3RXD, INPUT, x), " &
+"310 (BC_4, GPIO(11), INPUT, x), " &
+"309 (BC_2, *, control, 0), " &
+"308 (BC_1, GPIO(11), OUTPUT3, x, 309, 0, Z), " &
+"307 (BC_4, GPIO(15), INPUT, x), " &
+"306 (BC_2, *, control, 0), " &
+"305 (BC_1, GPIO(15), OUTPUT3, x, 306, 0, Z), " &
+"304 (BC_4, GPIO(13), INPUT, x), " &
+"303 (BC_2, *, control, 0), " &
+"302 (BC_1, GPIO(13), OUTPUT3, x, 303, 0, Z), " &
+"301 (BC_4, GPIO(12), INPUT, x), " &
+"300 (BC_2, *, control, 0), " &
+"299 (BC_1, GPIO(12), OUTPUT3, x, 300, 0, Z), " &
+"298 (BC_4, GPIO(14), INPUT, x), " &
+"297 (BC_2, *, control, 0), " &
+"296 (BC_1, GPIO(14), OUTPUT3, x, 297, 0, Z), " &
+"295 (BC_4, GPIO2(0), INPUT, x), " &
+"294 (BC_2, *, control, 0), " &
+"293 (BC_1, GPIO2(0), OUTPUT3, x, 294, 0, Z), " &
+"292 (BC_4, GPIO2(5), INPUT, x), " &
+"291 (BC_2, *, control, 0), " &
+"290 (BC_1, GPIO2(5), OUTPUT3, x, 291, 0, Z), " &
+"289 (BC_4, GPIO2(4), INPUT, x), " &
+"288 (BC_2, *, control, 0), " &
+"287 (BC_1, GPIO2(4), OUTPUT3, x, 288, 0, Z), " &
+"286 (BC_4, GPIO2(2), INPUT, x), " &
+"285 (BC_2, *, control, 0), " &
+"284 (BC_1, GPIO2(2), OUTPUT3, x, 285, 0, Z), " &
+"283 (BC_4, GPIO2(9), INPUT, x), " &
+"282 (BC_2, *, control, 0), " &
+"281 (BC_1, GPIO2(9), OUTPUT3, x, 282, 0, Z), " &
+"280 (BC_4, GPIO2(8), INPUT, x), " &
+"279 (BC_2, *, control, 0), " &
+"278 (BC_1, GPIO2(8), OUTPUT3, x, 279, 0, Z), " &
+"277 (BC_4, GPIO2(3), INPUT, x), " &
+"276 (BC_2, *, control, 0), " &
+"275 (BC_1, GPIO2(3), OUTPUT3, x, 276, 0, Z), " &
+"274 (BC_4, GPIO2(1), INPUT, x), " &
+"273 (BC_2, *, control, 0), " &
+"272 (BC_1, GPIO2(1), OUTPUT3, x, 273, 0, Z), " &
+"271 (BC_4, GPIO2(10), INPUT, x), " &
+"270 (BC_2, *, control, 0), " &
+"269 (BC_1, GPIO2(10), OUTPUT3, x, 270, 0, Z), " &
+"268 (BC_4, GPIO2(6), INPUT, x), " &
+"267 (BC_2, *, control, 0), " &
+"266 (BC_1, GPIO2(6), OUTPUT3, x, 267, 0, Z), " &
+"265 (BC_4, GPIO2(7), INPUT, x), " &
+"264 (BC_2, *, control, 0), " &
+"263 (BC_1, GPIO2(7), OUTPUT3, x, 264, 0, Z), " &
+"262 (BC_4, PCI_INT_n(1), INPUT, x), " &
+"261 (BC_4, PCI_INT_n(2), INPUT, x), " &
+"260 (BC_4, PCI_INT_n(3), INPUT, x), " &
+"259 (BC_4, PCI_REQ_n(0), INPUT, x), " &
+"258 (BC_4, PCI_INT_n(0), INPUT, x), " &
+"257 (BC_4, PCI_REQ_n(1), INPUT, x), " &
+"256 (BC_4, PCI_GNT_n(1), INPUT, x), " &
+"255 (BC_2, *, control, 0), " &
+"254 (BC_1, PCI_GNT_n(1), OUTPUT3, x, 255, 0, Z), " &
+"253 (BC_4, PCI_CLK, INPUT, x), " &
+"252 (BC_4, PCI_AD(29), INPUT, x), " &
+"251 (BC_2, *, control, 0), " &
+"250 (BC_1, PCI_AD(29), OUTPUT3, x, 251, 0, Z), " &
+"249 (BC_1, PCI_CLKO, OUTPUT2, x), " &
+"248 (BC_4, PCI_GNT_n(0), INPUT, x), " &
+"247 (BC_2, *, control, 0), " &
+"246 (BC_1, PCI_GNT_n(0), OUTPUT3, x, 247, 0, Z), " &
+"245 (BC_4, PCI_GNT_n(2), INPUT, x), " &
+"244 (BC_2, *, control, 0), " &
+"243 (BC_1, PCI_GNT_n(2), OUTPUT3, x, 244, 0, Z), " &
+"242 (BC_4, PCI_AD(30), INPUT, x), " &
+"241 (BC_2, *, control, 0), " &
+"240 (BC_1, PCI_AD(30), OUTPUT3, x, 241, 0, Z), " &
+"239 (BC_4, PCI_REQ_n(2), INPUT, x), " &
+"238 (BC_4, PCI_REQ_n(3), INPUT, x), " &
+"237 (BC_4, PCI_AD(25), INPUT, x), " &
+"236 (BC_2, *, control, 0), " &
+"235 (BC_1, PCI_AD(25), OUTPUT3, x, 236, 0, Z), " &
+"234 (BC_4, PCI_AD(31), INPUT, x), " &
+"233 (BC_2, *, control, 0), " &
+"232 (BC_1, PCI_AD(31), OUTPUT3, x, 233, 0, Z), " &
+"231 (BC_4, PCI_RST_n, INPUT, x), " &
+"230 (BC_4, PCI_IDSEL, INPUT, x), " &
+"229 (BC_4, PCI_AD(28), INPUT, x), " &
+"228 (BC_2, *, control, 0), " &
+"227 (BC_1, PCI_AD(28), OUTPUT3, x, 228, 0, Z), " &
+"226 (BC_4, PCI_CBE_n(3), INPUT, x), " &
+"225 (BC_2, *, control, 0), " &
+"224 (BC_1, PCI_CBE_n(3), OUTPUT3, x, 225, 0, Z), " &
+"223 (BC_4, PCI_GNT_n(3), INPUT, x), " &
+"222 (BC_2, *, control, 0), " &
+"221 (BC_1, PCI_GNT_n(3), OUTPUT3, x, 222, 0, Z), " &
+"220 (BC_4, PCI_AD(26), INPUT, x), " &
+"219 (BC_2, *, control, 0), " &
+"218 (BC_1, PCI_AD(26), OUTPUT3, x, 219, 0, Z), " &
+"217 (BC_4, PCI_AD(24), INPUT, x), " &
+"216 (BC_2, *, control, 0), " &
+"215 (BC_1, PCI_AD(24), OUTPUT3, x, 216, 0, Z), " &
+"214 (BC_4, PCI_AD(27), INPUT, x), " &
+"213 (BC_2, *, control, 0), " &
+"212 (BC_1, PCI_AD(27), OUTPUT3, x, 213, 0, Z), " &
+"211 (BC_4, PCI_FRAME_n, INPUT, x), " &
+"210 (BC_2, *, control, 0), " &
+"209 (BC_1, PCI_FRAME_n, OUTPUT3, x, 210, 0, Z), " &
+"208 (BC_4, PCI_AD(21), INPUT, x), " &
+"207 (BC_2, *, control, 0), " &
+"206 (BC_1, PCI_AD(21), OUTPUT3, x, 207, 0, Z), " &
+"205 (BC_4, PCI_AD(23), INPUT, x), " &
+"204 (BC_2, *, control, 0), " &
+"203 (BC_1, PCI_AD(23), OUTPUT3, x, 204, 0, Z), " &
+"202 (BC_4, PCI_AD(22), INPUT, x), " &
+"201 (BC_2, *, control, 0), " &
+"200 (BC_1, PCI_AD(22), OUTPUT3, x, 201, 0, Z), " &
+"199 (BC_4, PCI_AD(20), INPUT, x), " &
+"198 (BC_2, *, control, 0), " &
+"197 (BC_1, PCI_AD(20), OUTPUT3, x, 198, 0, Z), " &
+"196 (BC_4, PCI_AD(19), INPUT, x), " &
+"195 (BC_2, *, control, 0), " &
+"194 (BC_1, PCI_AD(19), OUTPUT3, x, 195, 0, Z), " &
+"193 (BC_4, PCI_LOCK_n, INPUT, x), " &
+"192 (BC_4, PCI_AD(18), INPUT, x), " &
+"191 (BC_2, *, control, 0), " &
+"190 (BC_1, PCI_AD(18), OUTPUT3, x, 191, 0, Z), " &
+"189 (BC_4, PCI_AD(17), INPUT, x), " &
+"188 (BC_2, *, control, 0), " &
+"187 (BC_1, PCI_AD(17), OUTPUT3, x, 188, 0, Z), " &
+"186 (BC_4, PCI_AD(16), INPUT, x), " &
+"185 (BC_2, *, control, 0), " &
+"184 (BC_1, PCI_AD(16), OUTPUT3, x, 185, 0, Z), " &
+"183 (BC_4, PCI_CBE_n(1), INPUT, x), " &
+"182 (BC_2, *, control, 0), " &
+"181 (BC_1, PCI_CBE_n(1), OUTPUT3, x, 182, 0, Z), " &
+"180 (BC_4, PCI_CBE_n(2), INPUT, x), " &
+"179 (BC_2, *, control, 0), " &
+"178 (BC_1, PCI_CBE_n(2), OUTPUT3, x, 179, 0, Z), " &
+"177 (BC_4, PCI_STOP_n, INPUT, x), " &
+"176 (BC_2, *, control, 0), " &
+"175 (BC_1, PCI_STOP_n, OUTPUT3, x, 176, 0, Z), " &
+"174 (BC_4, PCI_IRDY_n, INPUT, x), " &
+"173 (BC_2, *, control, 0), " &
+"172 (BC_1, PCI_IRDY_n, OUTPUT3, x, 173, 0, Z), " &
+"171 (BC_4, PCI_AD(12), INPUT, x), " &
+"170 (BC_2, *, control, 0), " &
+"169 (BC_1, PCI_AD(12), OUTPUT3, x, 170, 0, Z), " &
+"168 (BC_4, PCI_TRDY_n, INPUT, x), " &
+"167 (BC_2, *, control, 0), " &
+"166 (BC_1, PCI_TRDY_n, OUTPUT3, x, 167, 0, Z), " &
+"165 (BC_4, PCI_PAR, INPUT, x), " &
+"164 (BC_2, *, control, 0), " &
+"163 (BC_1, PCI_PAR, OUTPUT3, x, 164, 0, Z), " &
+"162 (BC_4, PCI_DEVSEL_n, INPUT, x), " &
+"161 (BC_2, *, control, 0), " &
+"160 (BC_1, PCI_DEVSEL_n, OUTPUT3, x, 161, 0, Z), " &
+"159 (BC_4, PCI_SERR_n, INPUT, x), " &
+"158 (BC_2, *, control, 0), " &
+"157 (BC_1, PCI_SERR_n, OUTPUT3, x, 158, 0, Z), " &
+"156 (BC_4, PCI_PERR_n, INPUT, x), " &
+"155 (BC_2, *, control, 0), " &
+"154 (BC_1, PCI_PERR_n, OUTPUT3, x, 155, 0, Z), " &
+"153 (BC_4, PCI_AD(8), INPUT, x), " &
+"152 (BC_2, *, control, 0), " &
+"151 (BC_1, PCI_AD(8), OUTPUT3, x, 152, 0, Z), " &
+"150 (BC_4, PCI_AD(13), INPUT, x), " &
+"149 (BC_2, *, control, 0), " &
+"148 (BC_1, PCI_AD(13), OUTPUT3, x, 149, 0, Z), " &
+"147 (BC_4, PCI_AD(15), INPUT, x), " &
+"146 (BC_2, *, control, 0), " &
+"145 (BC_1, PCI_AD(15), OUTPUT3, x, 146, 0, Z), " &
+"144 (BC_4, PCI_AD(7), INPUT, x), " &
+"143 (BC_2, *, control, 0), " &
+"142 (BC_1, PCI_AD(7), OUTPUT3, x, 143, 0, Z), " &
+"141 (BC_4, PCI_AD(14), INPUT, x), " &
+"140 (BC_2, *, control, 0), " &
+"139 (BC_1, PCI_AD(14), OUTPUT3, x, 140, 0, Z), " &
+"138 (BC_4, PCI_CBE_n(0), INPUT, x), " &
+"137 (BC_2, *, control, 0), " &
+"136 (BC_1, PCI_CBE_n(0), OUTPUT3, x, 137, 0, Z), " &
+"135 (BC_4, PCI_AD(11), INPUT, x), " &
+"134 (BC_2, *, control, 0), " &
+"133 (BC_1, PCI_AD(11), OUTPUT3, x, 134, 0, Z), " &
+"132 (BC_4, PCI_AD(3), INPUT, x), " &
+"131 (BC_2, *, control, 0), " &
+"130 (BC_1, PCI_AD(3), OUTPUT3, x, 131, 0, Z), " &
+"129 (BC_4, PCI_AD(10), INPUT, x), " &
+"128 (BC_2, *, control, 0), " &
+"127 (BC_1, PCI_AD(10), OUTPUT3, x, 128, 0, Z), " &
+"126 (BC_4, PCI_AD(9), INPUT, x), " &
+"125 (BC_2, *, control, 0), " &
+"124 (BC_1, PCI_AD(9), OUTPUT3, x, 125, 0, Z), " &
+"123 (BC_4, PCI_AD(5), INPUT, x), " &
+"122 (BC_2, *, control, 0), " &
+"121 (BC_1, PCI_AD(5), OUTPUT3, x, 122, 0, Z), " &
+"120 (BC_4, PCI_CFG, INPUT, x), " &
+"119 (BC_4, PCI_AD(6), INPUT, x), " &
+"118 (BC_2, *, control, 0), " &
+"117 (BC_1, PCI_AD(6), OUTPUT3, x, 118, 0, Z), " &
+"116 (BC_4, PCI_AD(4), INPUT, x), " &
+"115 (BC_2, *, control, 0), " &
+"114 (BC_1, PCI_AD(4), OUTPUT3, x, 115, 0, Z), " &
+"113 (BC_4, PCI_AD(1), INPUT, x), " &
+"112 (BC_2, *, control, 0), " &
+"111 (BC_1, PCI_AD(1), OUTPUT3, x, 112, 0, Z), " &
+"110 (BC_4, PCI_AD(0), INPUT, x), " &
+"109 (BC_2, *, control, 0), " &
+"108 (BC_1, PCI_AD(0), OUTPUT3, x, 109, 0, Z), " &
+"107 (BC_4, PCI_AD(2), INPUT, x), " &
+"106 (BC_2, *, control, 0), " &
+"105 (BC_1, PCI_AD(2), OUTPUT3, x, 106, 0, Z), " &
+"104 (BC_4, N1RXD(2), INPUT, x), " &
+"103 (BC_4, N1RXD(3), INPUT, x), " &
+"102 (BC_4, N1MDIO, INPUT, x), " &
+"101 (BC_2, *, control, 0), " &
+"100 (BC_1, N1MDIO, OUTPUT3, x, 101, 0, Z), " &
+"99 (BC_4, N1MDC, INPUT, x), " &
+"98 (BC_2, *, control, 0), " &
+"97 (BC_1, N1MDC, OUTPUT3, x, 98, 0, Z), " &
+"96 (BC_4, N1RXCLK, INPUT, x), " &
+"95 (BC_4, N1TXCLK, INPUT, x), " &
+"94 (BC_4, N1RXDV, INPUT, x), " &
+"93 (BC_4, N1RXD(1), INPUT, x), " &
+"92 (BC_4, N1RXD(0), INPUT, x), " &
+"91 (BC_4, N1TXEN, INPUT, x), " &
+"90 (BC_2, *, control, 0), " &
+"89 (BC_1, N1TXEN, OUTPUT3, x, 90, 0, Z), " &
+"88 (BC_4, N1TXD(2), INPUT, x), " &
+"87 (BC_2, *, control, 0), " &
+"86 (BC_1, N1TXD(2), OUTPUT3, x, 87, 0, Z), " &
+"85 (BC_4, N1TXD(0), INPUT, x), " &
+"84 (BC_2, *, control, 0), " &
+"83 (BC_1, N1TXD(0), OUTPUT3, x, 84, 0, Z), " &
+"82 (BC_4, N1TXD(1), INPUT, x), " &
+"81 (BC_2, *, control, 0), " &
+"80 (BC_1, N1TXD(1), OUTPUT3, x, 81, 0, Z), " &
+"79 (BC_4, N1TXD(3), INPUT, x), " &
+"78 (BC_2, *, control, 0), " &
+"77 (BC_1, N1TXD(3), OUTPUT3, x, 78, 0, Z), " &
+"76 (BC_4, N1COL, INPUT, x), " &
+"75 (BC_4, N1CRS, INPUT, x), " &
+"74 (BC_4, N0MDIO, INPUT, x), " &
+"73 (BC_2, *, control, 0), " &
+"72 (BC_1, N0MDIO, OUTPUT3, x, 73, 0, Z), " &
+"71 (BC_4, N0RXD(3), INPUT, x), " &
+"70 (BC_4, N0MDC, INPUT, x), " &
+"69 (BC_2, *, control, 0), " &
+"68 (BC_1, N0MDC, OUTPUT3, x, 69, 0, Z), " &
+"67 (BC_4, N0RXD(2), INPUT, x), " &
+"66 (BC_4, N0RXD(1), INPUT, x), " &
+"65 (BC_4, N0RXDV, INPUT, x), " &
+"64 (BC_4, N0RXD(0), INPUT, x), " &
+"63 (BC_4, N0RXCLK, INPUT, x), " &
+"62 (BC_4, N0TXD(0), INPUT, x), " &
+"61 (BC_2, *, control, 0), " &
+"60 (BC_1, N0TXD(0), OUTPUT3, x, 61, 0, Z), " &
+"59 (BC_4, N0TXEN, INPUT, x), " &
+"58 (BC_2, *, control, 0), " &
+"57 (BC_1, N0TXEN, OUTPUT3, x, 58, 0, Z), " &
+"56 (BC_4, N0TXD(1), INPUT, x), " &
+"55 (BC_2, *, control, 0), " &
+"54 (BC_1, N0TXD(1), OUTPUT3, x, 55, 0, Z), " &
+"53 (BC_4, N0TXCLK, INPUT, x), " &
+"52 (BC_4, N0TXD(3), INPUT, x), " &
+"51 (BC_2, *, control, 0), " &
+"50 (BC_1, N0TXD(3), OUTPUT3, x, 51, 0, Z), " &
+"49 (BC_4, N0TXD(2), INPUT, x), " &
+"48 (BC_2, *, control, 0), " &
+"47 (BC_1, N0TXD(2), OUTPUT3, x, 48, 0, Z), " &
+"46 (BC_4, N0COL, INPUT, x), " &
+"45 (BC_4, N0CRS, INPUT, x), " &
+"44 (BC_4, PSC1_D0, INPUT, x), " &
+"43 (BC_2, *, control, 0), " &
+"42 (BC_1, PSC1_D0, OUTPUT3, x, 43, 0, Z), " &
+"41 (BC_4, PSC1_D1, INPUT, x), " &
+"40 (BC_2, *, control, 0), " &
+"39 (BC_1, PSC1_D1, OUTPUT3, x, 40, 0, Z), " &
+"38 (BC_4, PSC1_SYNC0, INPUT, x), " &
+"37 (BC_2, *, control, 0), " &
+"36 (BC_1, PSC1_SYNC0, OUTPUT3, x, 37, 0, Z), " &
+"35 (BC_4, PSC1_SYNC1, INPUT, x), " &
+"34 (BC_2, *, control, 0), " &
+"33 (BC_1, PSC1_SYNC1, OUTPUT3, x, 34, 0, Z), " &
+"32 (BC_4, PSC1_CLK, INPUT, x), " &
+"31 (BC_2, *, control, 0), " &
+"30 (BC_1, PSC1_CLK, OUTPUT3, x, 31, 0, Z), " &
+"29 (BC_4, PSC0_D1, INPUT, x), " &
+"28 (BC_2, *, control, 0), " &
+"27 (BC_1, PSC0_D1, OUTPUT3, x, 28, 0, Z), " &
+"26 (BC_4, PSC0_SYNC0, INPUT, x), " &
+"25 (BC_2, *, control, 0), " &
+"24 (BC_1, PSC0_SYNC0, OUTPUT3, x, 25, 0, Z), " &
+"23 (BC_4, PSC0_D0, INPUT, x), " &
+"22 (BC_2, *, control, 0), " &
+"21 (BC_1, PSC0_D0, OUTPUT3, x, 22, 0, Z), " &
+"20 (BC_4, PSC0_SYNC1, INPUT, x), " &
+"19 (BC_2, *, control, 0), " &
+"18 (BC_1, PSC0_SYNC1, OUTPUT3, x, 19, 0, Z), " &
+"17 (BC_4, PSC0_CLK, INPUT, x), " &
+"16 (BC_2, *, control, 0), " &
+"15 (BC_1, PSC0_CLK, OUTPUT3, x, 16, 0, Z), " &
+"14 (BC_4, GPIO2(11), INPUT, x), " &
+"13 (BC_2, *, control, 0), " &
+"12 (BC_1, GPIO2(11), OUTPUT3, x, 13, 0, Z), " &
+"11 (BC_4, GPIO2(12), INPUT, x), " &
+"10 (BC_2, *, control, 0), " &
+"9 (BC_1, GPIO2(12), OUTPUT3, x, 10, 0, Z), " &
+"8 (BC_4, GPIO2(13), INPUT, x), " &
+"7 (BC_2, *, control, 0), " &
+"6 (BC_1, GPIO2(13), OUTPUT3, x, 7, 0, Z), " &
+"5 (BC_4, GPIO2(14), INPUT, x), " &
+"4 (BC_2, *, control, 0), " &
+"3 (BC_1, GPIO2(14), OUTPUT3, x, 4, 0, Z), " &
+"2 (BC_4, GPIO2(15), INPUT, x), " &
+"1 (BC_2, *, control, 0), " &
+"0 (BC_1, GPIO2(15), OUTPUT3, x, 1, 0, Z)";
+
+end AU1550;

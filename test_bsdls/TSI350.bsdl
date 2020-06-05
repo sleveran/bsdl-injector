@@ -1,0 +1,440 @@
+-- ***************************************************************
+--      Company:  TIntegrated Device Technology, Inc.
+--
+--      Document number: 35D5030_BS001_03
+--
+--      Title: BSDL file of Tsi350A - BGA_256 package
+--      
+--
+--      Release status: formal issue
+--      Security level: client use
+
+--      Group ownership: DFT         Revision Date: 
+--      Released by  :       
+--      Revision History:
+--		Aug 12, 2005: 	Created
+--              Aug 2, 2006:   	initial release
+--				 - Modify BGA ball map   
+--              March 10, 2006:   	MOdified revision ID to 0010
+--              Sep 2, 2009:    Updated with IDT formatting
+--              
+--      BSDL Syntax Checker ->  passed March 10, 2008
+--           
+--           
+-- ***************************************************************
+--
+--  *  Created: Fri Aug 12 11:06:52 2005
+--  *  By     : BSCAN2BSDL
+--  *           
+--  *  (c) 1991-2001, SynTest Technologies, Inc.
+--
+
+
+entity Tsi350 is
+  --
+  -- Generic Parameter
+  --
+  generic (PHYSICAL_PIN_MAP : string := "PBGA_256");
+
+  --
+  -- Logical Port Description
+  --
+  port (
+          S_REQ_N		: in 		bit_vector(8 downto 0);
+          S_GNT_N		: out 		bit_vector(8 downto 0);
+          S_CLKI		: in 		bit;
+          S_RST_N		: out 		bit;
+          S_CFN_N		: in 		bit;
+          GPIO			: inout	 	bit_vector(3 downto 0);
+          S_CLK_O		: out 		bit_vector(9 downto 0);
+          P_RST_N		: in 		bit;
+          BPCCE			: in 		bit;
+          P_CLK			: in 		bit;
+          P_GNT_N		: in 		bit;
+          P_REQ_N		: out 		bit;
+          P_AD			: inout 	bit_vector(31 downto 0);
+          P_CBE_N		: inout 	bit_vector(3 downto 0);
+          P_IDSEL		: in 		bit;
+          P_FRAME_N		: inout 	bit;
+          P_IRDY_N		: inout 	bit;
+          P_TRDY_N		: inout 	bit;
+          P_DEVSEL_N		: inout 	bit;
+          P_STOP_N		: inout 	bit;
+          P_LOCK_N		: in 		bit;
+          P_PERR_N		: inout 	bit;
+          P_SERR_N		: out 		bit;
+          P_PAR			: inout 	bit;
+          P_M66EN		: in 		bit;
+          MS1			: in 		bit;
+          CONFIG66		: in 		bit;
+          MSK_IN		: in 		bit;
+          TDI			: in 		bit;
+          TDO			: out 		bit;
+          TMS			: in 		bit;
+          TCK			: in 		bit;
+          TRST_N		: in 		bit;
+          S_AD			: inout 	bit_vector(31 downto 0);
+          S_CBE_N		: inout 	bit_vector(3 downto 0);
+          S_M66EN		: inout 	bit;
+          MS0			: in 		bit;
+	  P_VIO		   	: linkage 	bit;
+	  S_VIO		   	: linkage 	bit;
+          S_PAR			: inout 	bit;
+          S_SERR_N		: in 		bit;
+          S_PERR_N		: inout 	bit;
+          S_LOCK_N		: inout 	bit;
+          S_STOP_N		: inout 	bit;
+          S_DEVSEL_N		: inout 	bit;
+          S_TRDY_N		: inout 	bit;
+          S_IRDY_N		: inout 	bit;
+          S_FRAME_N		: inout 	bit
+       );
+
+  --
+  -- Use Statements
+  --
+  use STD_1149_1_1994.all;  -- Get Std 1149.1-1994 attributes and definitions
+
+  attribute COMPONENT_CONFORMANCE of Tsi350 : entity is "STD_1149_1_1993";
+
+  --
+  -- Package Pin Mapping
+  --
+  attribute PIN_MAP of Tsi350 : entity is PHYSICAL_PIN_MAP; 
+
+    constant PBGA_256 : PIN_MAP_STRING := 
+         "P_AD:       (N3,T2,T4,N5,P5,T5,N6,R5,T6,"          &
+                      "P7,T7,R7,T8,P8,R8,T9,R12,P12,"        &
+                      "T14,R13,N12,T15,P16,N15,M14,"         &
+                      "M13,M15,L13,M16,L14,L15,L16),"        &
+         "P_CBE_N:    (R6,R9,T13,N16),            "          &
+         "P_PAR:        N11,                      "          &
+         "P_FRAME_N:    P9,                       "          &
+         "P_IRDY_N:     T10,                      "          &
+         "P_TRDY_N:     R10,                      "          &
+         "P_DEVSEL_N:   P10,                      "          &
+         "P_STOP_N:     T11,                      "          &
+         "P_LOCK_N:     R11,                      "          &
+         "P_IDSEL:      P6,                       "          &
+         "P_PERR_N:     T12,                      "          &
+         "P_SERR_N:     P11,                      "          &
+         "P_REQ_N:      P2,                       "          &
+         "P_GNT_N:      R1,                       "          &
+         "S_AD:       (A4,D5,C5,A5,B5,D6,         "          &
+                      "A6,C6,C7,A7,B7,C8,         "          &
+                      "A8,B8,A9,C9,C12,D12,       "          &
+                      "A14,B13,A15,B16,E13,C16,   "          &
+                      "E14,D16,F13,E16,F14,F15,   "          &
+                      "F16,G16),                  "          &
+         "S_CBE_N:    (B6,B9,B12,E15),            "          &
+         "S_PAR:        A13,                      "          &
+         "S_FRAME_N:    A10,                      "          &
+         "S_IRDY_N:     B10,                      "          &
+         "S_TRDY_N:     C10,                      "          &
+         "S_DEVSEL_N:   A11,                      "          &
+         "S_STOP_N:     B11,                      "          &
+         "S_LOCK_N:     C11,                      "          &
+         "S_PERR_N:     A12,                      "          &
+         "S_SERR_N:     D11,                      "          &
+         "S_REQ_N:    (E4,E3,D2,C1,C2,D3,A2,B3,B4),"         &
+         "S_GNT_N:    (G1,F1,F2,G3,F4,E1,E2,F3,   "          &
+                      "D1),                       "          &
+         "S_CLKI:       H3,                       "          &
+         "S_CLK_O:    (M3,M2,N1,L4,L3,M1,L2,L1,   "          &
+                      "K3,K2),                    "          &
+         "S_CFN_N:      H2,                       "          &
+         "GPIO:       (J3,J2,J1,K1),              "          &
+         "BPCCE:        N2,                       "          &
+         "P_CLK:        M4,                       "          &
+         "P_RST_N:      P1,                       "          &
+         "S_RST_N:      H1,                       "          &
+         "MSK_IN:       K15,                      "          &
+         "P_VIO:        K14,                      "          &
+         "S_VIO:        G14,                      "          &
+         "CONFIG66:     K16,                      "          &
+         "S_M66EN:      D15,                      "          &
+         "P_M66EN:      R14,                      "          &
+         "TDI:          J15,                      "          &
+         "TDO:          H16,                      "          &
+         "TMS:          H14,                      "          &
+         "TCK:          H15,                      "          &
+         "TRST_N:       G15,                      "          &
+         "MS0:          B14,                      "          &
+         "MS1:          R16";
+ 
+
+ --
+  -- Scan Port Identification
+  --
+  attribute TAP_SCAN_IN of TDI : signal is true;
+  attribute TAP_SCAN_MODE of TMS : signal is true;
+  attribute TAP_SCAN_OUT of TDO : signal is true;
+  attribute TAP_SCAN_RESET of TRST_N : signal is true;
+  attribute TAP_SCAN_CLOCK of TCK : signal is (25.0e6,BOTH);
+
+  --
+  -- TAP Instruction Description
+  --
+  attribute INSTRUCTION_LENGTH of Tsi350 : entity is 4;
+  attribute INSTRUCTION_OPCODE of Tsi350 : entity is
+    "BYPASS     (1111),"  &
+    "EXTEST     (0000),"  &
+    "SAMPLE     (0100),"  &
+    "HIGHZ      (0101),"  &
+    "IDCODE     (1101)";
+  attribute INSTRUCTION_CAPTURE of Tsi350 : entity is "0001";
+  attribute IDCODE_REGISTER of Tsi350 : entity is
+      "0010" &                -- 4-bit version
+      "0000000101010000" &    -- 16-bit part number
+      "00001010010" &         -- 11-bit manufacturer
+      "1";                    -- mandatory LSB
+
+  attribute REGISTER_ACCESS of Tsi350 : entity is
+  -- these are given by standard
+  -- "BOUNDARY(EXTEST,SAMPLE,INTEST)";
+  -- "BYPASS(BYPASS)";
+     "BYPASS    (BYPASS)," &
+     "BOUNDARY  (EXTEST)," &
+     "BOUNDARY  (SAMPLE)," &
+     "BYPASS    (HIGHZ)," &
+     "DEVICE_ID (IDCODE)";
+
+  --
+  -- Boundary Register Description for 1149.1 Boundary_Scan_Cell
+  --
+  attribute BOUNDARY_LENGTH of Tsi350 : entity is 228;
+
+
+  attribute BOUNDARY_REGISTER of Tsi350 : entity is
+  -- num   cell         port          function  safe [ccell disval rslt]
+
+    "0    (bc_7        ,S_AD(0)      ,bidir    ,X   ,1    ,0     ,Z)," &
+    "1    (bc_1        ,*            ,control  ,0)," &
+    "2    (bc_7        ,S_AD(1)      ,bidir    ,X   ,1    ,0     ,Z)," &
+    "3    (bc_7        ,S_AD(2)      ,bidir    ,X   ,4    ,0     ,Z)," &
+    "4    (bc_1        ,*            ,control  ,0)," &
+    "5    (bc_7        ,S_AD(3)      ,bidir    ,X   ,4    ,0     ,Z)," &
+    "6    (bc_7        ,S_AD(4)      ,bidir    ,X   ,7    ,0     ,Z)," &
+    "7    (bc_1        ,*            ,control  ,0)," &
+    "8    (bc_7        ,S_AD(5)      ,bidir    ,X   ,7    ,0     ,Z)," &
+    "9    (bc_7        ,S_AD(6)      ,bidir    ,X   ,10   ,0     ,Z)," &
+    "10   (bc_1        ,*            ,control  ,0)," &
+    "11   (bc_7        ,S_AD(7)      ,bidir    ,X   ,10   ,0     ,Z)," &
+    "12   (bc_7        ,S_CBE_N(0)   ,bidir    ,X   ,13   ,0     ,Z)," &
+    "13   (bc_1        ,*            ,control  ,0)," &
+    "14   (bc_7        ,S_AD(8)      ,bidir    ,X   ,15   ,0     ,Z)," &
+    "15   (bc_1        ,*            ,control  ,0)," &
+    "16   (bc_7        ,S_AD(9)      ,bidir    ,X   ,17   ,0     ,Z)," &
+    "17   (bc_1        ,*            ,control  ,0)," &
+    "18   (bc_7        ,S_M66EN      ,bidir    ,X   ,19   ,0     ,Z)," &
+    "19   (bc_1        ,*            ,control  ,0)," &
+    "20   (bc_7        ,S_AD(10)     ,bidir    ,X   ,21   ,0     ,Z)," &
+    "21   (bc_1        ,*            ,control  ,0)," &
+    "22   (bc_4        ,MS0          ,input    ,X)," &
+    "23   (bc_7        ,S_AD(11)     ,bidir    ,X   ,24   ,0     ,Z)," &
+    "24   (bc_1        ,*            ,control  ,0)," &
+    "25   (bc_7        ,S_AD(12)     ,bidir    ,X   ,26   ,0     ,Z)," &
+    "26   (bc_1        ,*            ,control  ,0)," &
+    "27   (bc_7        ,S_AD(13)     ,bidir    ,X   ,26   ,0     ,Z)," &
+    "28   (bc_7        ,S_AD(14)     ,bidir    ,X   ,29   ,0     ,Z)," &
+    "29   (bc_1        ,*            ,control  ,0)," &
+    "30   (bc_7        ,S_AD(15)     ,bidir    ,X   ,29   ,0     ,Z)," &
+    "31   (bc_7        ,S_CBE_N(1)   ,bidir    ,X   ,32   ,0     ,Z)," &
+    "32   (bc_1        ,*            ,control  ,0)," &
+    "33   (bc_7        ,S_PAR        ,bidir    ,X   ,34   ,0     ,Z)," &
+    "34   (bc_1        ,*            ,control  ,0)," &
+    "35   (bc_4        ,S_SERR_N     ,input    ,X)," &
+    "36   (bc_7        ,S_PERR_N     ,bidir    ,X   ,37   ,0     ,Z)," &
+    "37   (bc_1        ,*            ,control  ,0)," &
+    "38   (bc_7        ,S_LOCK_N     ,bidir    ,X   ,39   ,0     ,Z)," &
+    "39   (bc_1        ,*            ,control  ,0)," &
+    "40   (bc_7        ,S_STOP_N     ,bidir    ,X   ,41   ,0     ,Z)," &
+    "41   (bc_1        ,*            ,control  ,0)," &
+    "42   (bc_7        ,S_DEVSEL_N   ,bidir    ,X   ,43   ,0     ,Z)," &
+    "43   (bc_1        ,*            ,control  ,0)," &
+    "44   (bc_7        ,S_TRDY_N     ,bidir    ,X   ,45   ,0     ,Z)," &
+    "45   (bc_1        ,*            ,control  ,0)," &
+    "46   (bc_7        ,S_IRDY_N     ,bidir    ,X   ,47   ,0     ,Z)," &
+    "47   (bc_1        ,*            ,control  ,0)," &
+    "48   (bc_7        ,S_FRAME_N    ,bidir    ,X   ,49   ,0     ,Z)," &
+    "49   (bc_1        ,*            ,control  ,0)," &
+    "50   (bc_7        ,S_CBE_N(2)   ,bidir    ,X   ,51   ,0     ,Z)," &
+    "51   (bc_1        ,*            ,control  ,0)," &
+    "52   (bc_7        ,S_AD(16)     ,bidir    ,X   ,53   ,0     ,Z)," &
+    "53   (bc_1        ,*            ,control  ,0)," &
+    "54   (bc_7        ,S_AD(17)     ,bidir    ,X   ,53   ,0     ,Z)," &
+    "55   (bc_7        ,S_AD(18)     ,bidir    ,X   ,56   ,0     ,Z)," &
+    "56   (bc_1        ,*            ,control  ,0)," &
+    "57   (bc_7        ,S_AD(19)     ,bidir    ,X   ,56   ,0     ,Z)," &
+    "58   (bc_7        ,S_AD(20)     ,bidir    ,X   ,59   ,0     ,Z)," &
+    "59   (bc_1        ,*            ,control  ,0)," &
+    "60   (bc_7        ,S_AD(21)     ,bidir    ,X   ,59   ,0     ,Z)," &
+    "61   (bc_7        ,S_AD(22)     ,bidir    ,X   ,62   ,0     ,Z)," &
+    "62   (bc_1        ,*            ,control  ,0)," &
+    "63   (bc_7        ,S_AD(23)     ,bidir    ,X   ,62   ,0     ,Z)," &
+    "64   (bc_7        ,S_CBE_N(3)   ,bidir    ,X   ,65   ,0     ,Z)," &
+    "65   (bc_1        ,*            ,control  ,0)," &
+    "66   (bc_7        ,S_AD(24)     ,bidir    ,X   ,67   ,0     ,Z)," &
+    "67   (bc_1        ,*            ,control  ,0)," &
+    "68   (bc_7        ,S_AD(25)     ,bidir    ,X   ,69   ,0     ,Z)," &
+    "69   (bc_1        ,*            ,control  ,0)," &
+    "70   (bc_7        ,S_AD(26)     ,bidir    ,X   ,69   ,0     ,Z)," &
+    "71   (bc_7        ,S_AD(27)     ,bidir    ,X   ,72   ,0     ,Z)," &
+    "72   (bc_1        ,*            ,control  ,0)," &
+    "73   (bc_7        ,S_AD(28)     ,bidir    ,X   ,74   ,0     ,Z)," &
+    "74   (bc_1        ,*            ,control  ,0)," &
+    "75   (bc_7        ,S_AD(29)     ,bidir    ,X   ,76   ,0     ,Z)," &
+    "76   (bc_1        ,*            ,control  ,0)," &
+    "77   (bc_7        ,S_AD(30)     ,bidir    ,X   ,76   ,0     ,Z)," &
+    "78   (bc_7        ,S_AD(31)     ,bidir    ,X   ,79   ,0     ,Z)," &
+    "79   (bc_1        ,*            ,control  ,0)," &
+    "80   (bc_4        ,S_REQ_N(0)   ,input    ,X)," &
+    "81   (bc_4        ,S_REQ_N(1)   ,input    ,X)," &
+    "82   (bc_4        ,S_REQ_N(2)   ,input    ,X)," &
+    "83   (bc_4        ,S_REQ_N(3)   ,input    ,X)," &
+    "84   (bc_4        ,S_REQ_N(4)   ,input    ,X)," &
+    "85   (bc_4        ,S_REQ_N(5)   ,input    ,X)," &
+    "86   (bc_4        ,S_REQ_N(6)   ,input    ,X)," &
+    "87   (bc_4        ,S_REQ_N(7)   ,input    ,X)," &
+    "88   (bc_4        ,S_REQ_N(8)   ,input    ,X)," &
+    "89   (bc_1        ,S_GNT_N(0)   ,output3  ,X   ,90   ,0     ,Z)," &
+    "90   (bc_1        ,*            ,control  ,0)," &
+    "91   (bc_1        ,S_GNT_N(1)   ,output3  ,X   ,90   ,0     ,Z)," &
+    "92   (bc_1        ,S_GNT_N(2)   ,output3  ,X   ,93   ,0     ,Z)," &
+    "93   (bc_1        ,*            ,control  ,0)," &
+    "94   (bc_1        ,S_GNT_N(3)   ,output3  ,X   ,93   ,0     ,Z)," &
+    "95   (bc_1        ,S_GNT_N(4)   ,output3  ,X   ,96   ,0     ,Z)," &
+    "96   (bc_1        ,*            ,control  ,0)," &
+    "97   (bc_1        ,S_GNT_N(5)   ,output3  ,X   ,96   ,0     ,Z)," &
+    "98   (bc_1        ,S_GNT_N(6)   ,output3  ,X   ,99   ,0     ,Z)," &
+    "99   (bc_1        ,*            ,control  ,0)," &
+    "100  (bc_1        ,S_GNT_N(7)   ,output3  ,X   ,99   ,0     ,Z)," &
+    "101  (bc_1        ,S_GNT_N(8)   ,output3  ,X   ,102  ,0     ,Z)," &
+    "102  (bc_1        ,*            ,control  ,0)," &
+    "103  (bc_4        ,S_CLKI       ,input    ,X)," &
+    "104  (bc_1        ,S_RST_N      ,output3  ,X   ,105  ,0     ,Z)," &
+    "105  (bc_1        ,*            ,control  ,0)," &
+    "106  (bc_4        ,S_CFN_N      ,input    ,X)," &
+    "107  (bc_7        ,GPIO(3)      ,bidir    ,X   ,108  ,0     ,Z)," &
+    "108  (bc_1        ,*            ,control  ,0)," &
+    "109  (bc_7        ,GPIO(2)      ,bidir    ,X   ,110  ,0     ,Z)," &
+    "110  (bc_1        ,*            ,control  ,0)," &
+    "111  (bc_7        ,GPIO(1)      ,bidir    ,X   ,112  ,0     ,Z)," &
+    "112  (bc_1        ,*            ,control  ,0)," &
+    "113  (bc_7        ,GPIO(0)      ,bidir    ,X   ,114  ,0     ,Z)," &
+    "114  (bc_1        ,*            ,control  ,0)," &
+    "115  (bc_1        ,S_CLK_O(0)   ,output3  ,X   ,116  ,0     ,Z)," &
+    "116  (bc_1        ,*            ,control  ,0)," &
+    "117  (bc_1        ,S_CLK_O(1)   ,output3  ,X   ,118  ,0     ,Z)," &
+    "118  (bc_1        ,*            ,control  ,0)," &
+    "119  (bc_1        ,S_CLK_O(2)   ,output3  ,X   ,120  ,0     ,Z)," &
+    "120  (bc_1        ,*            ,control  ,0)," &
+    "121  (bc_1        ,S_CLK_O(3)   ,output3  ,X   ,122  ,0     ,Z)," &
+    "122  (bc_1        ,*            ,control  ,0)," &
+    "123  (bc_1        ,S_CLK_O(4)   ,output3  ,X   ,124  ,0     ,Z)," &
+    "124  (bc_1        ,*            ,control  ,0)," &
+    "125  (bc_1        ,S_CLK_O(5)   ,output3  ,X   ,126  ,0     ,Z)," &
+    "126  (bc_1        ,*            ,control  ,0)," &
+    "127  (bc_1        ,S_CLK_O(6)   ,output3  ,X   ,128  ,0     ,Z)," &
+    "128  (bc_1        ,*            ,control  ,0)," &
+    "129  (bc_1        ,S_CLK_O(7)   ,output3  ,X   ,130  ,0     ,Z)," &
+    "130  (bc_1        ,*            ,control  ,0)," &
+    "131  (bc_1        ,S_CLK_O(8)   ,output3  ,X   ,132  ,0     ,Z)," &
+    "132  (bc_1        ,*            ,control  ,0)," &
+    "133  (bc_1        ,S_CLK_O(9)   ,output3  ,X   ,134  ,0     ,Z)," &
+    "134  (bc_1        ,*            ,control  ,0)," &
+    "135  (bc_4        ,P_RST_N      ,input    ,X)," &
+    "136  (bc_4        ,BPCCE        ,input    ,X)," &
+    "137  (bc_4        ,P_CLK        ,input    ,X)," &
+    "138  (bc_4        ,P_GNT_N      ,input    ,X)," &
+    "139  (bc_1        ,P_REQ_N      ,output3  ,X   ,140  ,0     ,Z)," &
+    "140  (bc_1        ,*            ,control  ,0)," &
+    "141  (bc_7        ,P_AD(31)     ,bidir    ,X   ,142  ,0     ,Z)," &
+    "142  (bc_1        ,*            ,control  ,0)," &
+    "143  (bc_7        ,P_AD(30)     ,bidir    ,X   ,142  ,0     ,Z)," &
+    "144  (bc_7        ,P_AD(29)     ,bidir    ,X   ,145  ,0     ,Z)," &
+    "145  (bc_1        ,*            ,control  ,0)," &
+    "146  (bc_7        ,P_AD(28)     ,bidir    ,X   ,147  ,0     ,Z)," &
+    "147  (bc_1        ,*            ,control  ,0)," &
+    "148  (bc_7        ,P_AD(27)     ,bidir    ,X   ,149  ,0     ,Z)," &
+    "149  (bc_1        ,*            ,control  ,0)," &
+    "150  (bc_7        ,P_AD(26)     ,bidir    ,X   ,151  ,0     ,Z)," &
+    "151  (bc_1        ,*            ,control  ,0)," &
+    "152  (bc_7        ,P_AD(25)     ,bidir    ,X   ,151  ,0     ,Z)," &
+    "153  (bc_7        ,P_AD(24)     ,bidir    ,X   ,154  ,0     ,Z)," &
+    "154  (bc_1        ,*            ,control  ,0)," &
+    "155  (bc_7        ,P_CBE_N(3)   ,bidir    ,X   ,156  ,0     ,Z)," &
+    "156  (bc_1        ,*            ,control  ,0)," &
+    "157  (bc_4        ,P_IDSEL      ,input    ,X)," &
+    "158  (bc_7        ,P_AD(23)     ,bidir    ,X   ,159  ,0     ,Z)," &
+    "159  (bc_1        ,*            ,control  ,0)," &
+    "160  (bc_7        ,P_AD(22)     ,bidir    ,X   ,159  ,0     ,Z)," &
+    "161  (bc_7        ,P_AD(21)     ,bidir    ,X   ,162  ,0     ,Z)," &
+    "162  (bc_1        ,*            ,control  ,0)," &
+    "163  (bc_7        ,P_AD(20)     ,bidir    ,X   ,162  ,0     ,Z)," &
+    "164  (bc_7        ,P_AD(19)     ,bidir    ,X   ,165  ,0     ,Z)," &
+    "165  (bc_1        ,*            ,control  ,0)," &
+    "166  (bc_7        ,P_AD(18)     ,bidir    ,X   ,165  ,0     ,Z)," &
+    "167  (bc_7        ,P_AD(17)     ,bidir    ,X   ,168  ,0     ,Z)," &
+    "168  (bc_1        ,*            ,control  ,0)," &
+    "169  (bc_7        ,P_AD(16)     ,bidir    ,X   ,168  ,0     ,Z)," &
+    "170  (bc_7        ,P_CBE_N(2)   ,bidir    ,X   ,171  ,0     ,Z)," &
+    "171  (bc_1        ,*            ,control  ,0)," &
+    "172  (bc_7        ,P_FRAME_N    ,bidir    ,X   ,173  ,0     ,Z)," &
+    "173  (bc_1        ,*            ,control  ,0)," &
+    "174  (bc_7        ,P_IRDY_N     ,bidir    ,X   ,175  ,0     ,Z)," &
+    "175  (bc_1        ,*            ,control  ,0)," &
+    "176  (bc_7        ,P_TRDY_N     ,bidir    ,X   ,177  ,0     ,Z)," &
+    "177  (bc_1        ,*            ,control  ,0)," &
+    "178  (bc_7        ,P_DEVSEL_N   ,bidir    ,X   ,179  ,0     ,Z)," &
+    "179  (bc_1        ,*            ,control  ,0)," &
+    "180  (bc_7        ,P_STOP_N     ,bidir    ,X   ,181  ,0     ,Z)," &
+    "181  (bc_1        ,*            ,control  ,0)," &
+    "182  (bc_4        ,P_LOCK_N     ,input    ,X)," &
+    "183  (bc_7        ,P_PERR_N     ,bidir    ,X   ,184  ,0     ,Z)," &
+    "184  (bc_1        ,*            ,control  ,0)," &
+    "185  (bc_1        ,P_SERR_N     ,output3  ,X   ,186  ,0     ,Z)," &
+    "186  (bc_1        ,*            ,control  ,0)," &
+    "187  (bc_7        ,P_PAR        ,bidir    ,X   ,188  ,0     ,Z)," &
+    "188  (bc_1        ,*            ,control  ,0)," &
+    "189  (bc_7        ,P_CBE_N(1)   ,bidir    ,X   ,190  ,0     ,Z)," &
+    "190  (bc_1        ,*            ,control  ,0)," &
+    "191  (bc_7        ,P_AD(15)     ,bidir    ,X   ,192  ,0     ,Z)," &
+    "192  (bc_1        ,*            ,control  ,0)," &
+    "193  (bc_7        ,P_AD(14)     ,bidir    ,X   ,194  ,0     ,Z)," &
+    "194  (bc_1        ,*            ,control  ,0)," &
+    "195  (bc_7        ,P_AD(13)     ,bidir    ,X   ,194  ,0     ,Z)," &
+    "196  (bc_7        ,P_AD(12)     ,bidir    ,X   ,197  ,0     ,Z)," &
+    "197  (bc_1        ,*            ,control  ,0)," &
+    "198  (bc_7        ,P_AD(11)     ,bidir    ,X   ,199  ,0     ,Z)," &
+    "199  (bc_1        ,*            ,control  ,0)," &
+    "200  (bc_7        ,P_AD(10)     ,bidir    ,X   ,201  ,0     ,Z)," &
+    "201  (bc_1        ,*            ,control  ,0)," &
+    "202  (bc_4        ,P_M66EN      ,input    ,X)," &
+    "203  (bc_4        ,MS1          ,input    ,X)," &
+    "204  (bc_7        ,P_AD(9)      ,bidir    ,X   ,205  ,0     ,Z)," &
+    "205  (bc_1        ,*            ,control  ,0)," &
+    "206  (bc_7        ,P_AD(8)      ,bidir    ,X   ,207  ,0     ,Z)," &
+    "207  (bc_1        ,*            ,control  ,0)," &
+    "208  (bc_7        ,P_CBE_N(0)   ,bidir    ,X   ,209  ,0     ,Z)," &
+    "209  (bc_1        ,*            ,control  ,0)," &
+    "210  (bc_7        ,P_AD(7)      ,bidir    ,X   ,211  ,0     ,Z)," &
+    "211  (bc_1        ,*            ,control  ,0)," &
+    "212  (bc_7        ,P_AD(6)      ,bidir    ,X   ,211  ,0     ,Z)," &
+    "213  (bc_7        ,P_AD(5)      ,bidir    ,X   ,214  ,0     ,Z)," &
+    "214  (bc_1        ,*            ,control  ,0)," &
+    "215  (bc_7        ,P_AD(4)      ,bidir    ,X   ,214  ,0     ,Z)," &
+    "216  (bc_7        ,P_AD(3)      ,bidir    ,X   ,217  ,0     ,Z)," &
+    "217  (bc_1        ,*            ,control  ,0)," &
+    "218  (bc_7        ,P_AD(2)      ,bidir    ,X   ,217  ,0     ,Z)," &
+    "219  (bc_7        ,P_AD(1)      ,bidir    ,X   ,220  ,0     ,Z)," &
+    "220  (bc_1        ,*            ,control  ,0)," &
+    "221  (bc_7        ,P_AD(0)      ,bidir    ,X   ,220  ,0     ,Z)," &
+    "222  (bc_4        ,CONFIG66     ,input    ,X)," &
+    "223  (bc_4        ,MSK_IN       ,input    ,X)," &
+    "224  (bc_1        ,*            ,internal ,X)," &
+    "225  (bc_1        ,*            ,internal ,X)," &
+    "226  (bc_1        ,*            ,internal ,X)," &
+    "227  (bc_1        ,*            ,internal ,X)";
+
+end Tsi350;

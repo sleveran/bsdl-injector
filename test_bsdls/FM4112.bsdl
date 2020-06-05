@@ -1,0 +1,472 @@
+--  ********************************************************************
+--  *
+--  *  Module : FM4112
+--  *  Created: Tue Dec 18 13:00:00 2007
+--  *  By     : BSCAN2BSDL
+--  *           bscan2bsdl FM4112
+--  *  (c) 1991-2001, SynTest Technologies, Inc.
+--  *
+--  ********************************************************************
+
+entity FM4112 is
+  --
+  -- Generic Parameter
+  --
+  generic (PHYSICAL_PIN_MAP : string := "JTAG");
+
+  --
+  -- Logical Port Description
+  --
+  port (
+          DATA: inout bit_vector(0 to 31);
+          PAR: inout bit_vector(0 to 3);
+          RW_INV: inout bit;
+          DTACK_INV: inout bit;
+          AUTOBOOT: inout bit;
+          IGNORE_PARITY: inout bit;
+          SPI_MOSI: inout bit;
+          SPI_CS_N: inout bit;
+          SPI_CLK: inout bit;
+          SPI_MISO: inout bit;
+          EEPROM_EN1: inout bit;
+          EEPROM_EN2: inout bit;
+          GPIO: inout bit_vector(11 to 15);
+          I2C_SCL: inout bit;
+          I2C_SDA: inout bit;
+          MDIO: inout bit;
+          PARITY_EVEN: inout bit;
+          ADDR: in bit_vector(2 to 23);
+          CPU_CLK: in bit;
+          CPU_RESET_N: in bit;
+          CHIP_RESET_N: in bit;
+          AS_N: in bit;
+          RW_N: in bit;
+          CS_N: in bit;
+          TESTMODE: in bit;
+          TCK: in bit;
+          TDI: in bit;
+          TMS: in bit;
+          TRST_N: in bit;
+          CONT_EN: in bit;
+          FH_PLL_REFCLK: in bit;
+          DIODE_IN: in bit;
+          TXRDY_N: out bit;
+          RXRDY_N: out bit;
+          RXEOT_N: out bit;
+          INT_N: out bit;
+          DERR_N: out bit;
+          DTACK_N: out bit;
+          LED_CLK: out bit;
+          LED_DATA0: out bit;
+          LED_DATA1: out bit;
+          LED_DATA2: out bit;
+          LED_EN: out bit;
+          MDC: out bit;
+          TDO: out bit;
+          FH_PLL_CLKOUT: out bit;
+          CONT_OUT: out bit;
+          DIODE_OUT: out bit
+       );
+
+  --
+  -- Use Statements
+  --
+  use STD_1149_1_1994.all;  -- Get Std 1149.1-1994 attributes and definitions
+
+  attribute COMPONENT_CONFORMANCE of FM4112 : entity is "STD_1149_1_1993";
+
+  --
+  -- Package Pin Mapping
+  --
+  attribute PIN_MAP of FM4112 : entity is PHYSICAL_PIN_MAP;
+  constant JTAG:PIN_MAP_STRING:=
+          "ADDR :(k29,k25,l25,l26,l27,l28,l29,l30,l31,m25,m26," &
+                         "m27,m28,m29,m30,m31,n26,n27,n28,n29," &
+                         "n30,n31)," &
+          "CPU_CLK : r29," &
+          "CPU_RESET_N : t26," &
+          "CHIP_RESET_N : j27," &
+          "AS_N : p30," &
+          "RW_N : r28," &
+          "CS_N : p29," &
+          "DTACK_INV : ac27," &
+          "RW_INV : ab24," &
+          "IGNORE_PARITY : p28," &
+          "SPI_MISO : j31," &
+          "TESTMODE : l23," &
+          "TCK : ab25," &
+          "TDI : aa25," &
+          "TMS : ad25," &
+          "TRST_N : ac25," &
+          "AUTOBOOT : n25," &
+          "EEPROM_EN1 : j23," &
+          "EEPROM_EN2 : ad23," &
+          "CONT_EN : g23," &
+          "FH_PLL_REFCLK : ad24," &
+          "DIODE_IN : ab26," &
+          "DTACK_N : j25," &
+          "INT_N : p31," &
+          "DERR_N : l24," &
+          "RXEOT_N : p27," &
+          "RXRDY_N : p25," &
+          "TXRDY_N : p26," &
+          "SPI_MOSI : k30," &
+          "SPI_CS_N : j30," &
+          "SPI_CLK : k31," &
+          "LED_CLK : g24," &
+          "LED_DATA0 : h24," &
+          "LED_DATA1 : j24," &
+          "LED_DATA2 : k24," &
+          "LED_EN : k23," &
+          "TDO : ae25," &
+          "FH_PLL_CLKOUT : ac24," &
+          "CONT_OUT : h23," &
+          "DIODE_OUT : ac26," &
+          "PARITY_EVEN : ae23," &
+          "MDIO : k28," &
+          "MDC : k27," &
+          "I2C_SDA : u27," &
+          "I2C_SCL : t27," &
+	  "GPIO : (ae24,ac28,ac29,ac30,ac31)," &
+	  "DATA : (v31,v25,v26,v27,v28,v29,v30,w25,w26,w27,w28,w29," &
+			      "w30,w31,y25,y26,y27,y28,y29,y30,y31,aa26,aa27,aa28," &
+            "aa29,aa30,aa31,ab27,ab28,ab29,ab30,ab31)," &
+	  "PAR :  (t28,t29,u28,u29)";
+	  
+  --
+  -- Scan Port Identification
+  --
+  attribute TAP_SCAN_IN of TDI : signal is true;
+  attribute TAP_SCAN_MODE of TMS : signal is true;
+  attribute TAP_SCAN_OUT of TDO : signal is true;
+  attribute TAP_SCAN_RESET of TRST_N : signal is true;
+  attribute TAP_SCAN_CLOCK of TCK : signal is (100.0e6,BOTH);
+
+  --
+  -- TAP Instruction Description
+  --
+  attribute INSTRUCTION_LENGTH of FM4112 : entity is 6;
+  attribute INSTRUCTION_OPCODE of FM4112 : entity is
+    "IDCODE     (000001),"  &
+    "SAMPLE     (000010),"  &
+    "EXTEST     (000011),"  &
+    "HIGHZ      (000110),"  &
+    "CLAMP      (000111),"  &
+    "SCAN0      (001000),"  &
+    "SCAN1      (001001),"  &
+    "SCAN2      (001010),"  &
+    "SCAN3      (001011),"  &
+    "SCAN4      (001100),"  &
+    "SCAN5      (001101),"  &
+    "SCAN6      (001110),"  &
+    "SCAN7      (001111),"  &
+    "SCAN8      (010000),"  &
+    "SCAN9      (010001),"  &
+    "SCAN10     (010010),"  &
+    "SCAN11     (010011),"  &
+    "SCAN12     (010100),"  &
+    "SCAN13     (010101),"  &
+    "SCAN14     (010110),"  &
+    "SCAN15     (010111),"  &
+    "SCAN16     (011000),"  &
+    "SCAN17     (011001),"  &
+    "SCAN18     (011010),"  &
+    "SCAN19     (011011),"  &
+    "SCAN20     (011100),"  &
+    "SCAN21     (011101),"  &
+    "SCAN22     (011110),"  &
+    "SCAN23     (011111),"  &
+    "SCAN24     (100000),"  &
+    "SCAN25     (100001),"  &
+    "SCAN26     (100010),"  &
+    "SCAN27     (100011),"  &
+    "SCAN28     (100100),"  &
+    "SCAN29     (100101),"  &
+    "SCAN30     (100110),"  &
+    "SCAN31     (100111),"  &
+    "SCAN32     (101000),"  &
+    "SCAN33     (101001),"  &
+    "BYPASS     (111111)";
+  attribute INSTRUCTION_CAPTURE of FM4112 : entity is "000001";
+  attribute IDCODE_REGISTER of FM4112 : entity is
+      "00001010111000011001010000101011";
+      --"0000" &                -- 4-bit version
+      --"1010 1110 0001 1001" &    -- 16-bit part number
+      --"0100 0010 101" &         -- 11-bit manufacturer
+      --"1";                    -- mandatory LSB
+  --  AE1_942B
+  attribute REGISTER_ACCESS of FM4112 : entity is
+  -- these are given by standard
+  -- "BOUNDARY(EXTEST,SAMPLE,INTEST)";
+  -- "BYPASS(BYPASS)";
+     "DEVICE_ID (IDCODE)," &
+     "BOUNDARY  (SAMPLE)," &
+     "BOUNDARY  (EXTEST)," &
+     "BYPASS    (HIGHZ)," &
+     "BYPASS    (CLAMP)," &
+     "BOUNDARY  (SCAN0)," &
+     "BOUNDARY  (SCAN1)," &
+     "BOUNDARY  (SCAN2)," &
+     "BOUNDARY  (SCAN3)," &
+     "BOUNDARY  (SCAN4)," &
+     "BOUNDARY  (SCAN5)," &
+     "BOUNDARY  (SCAN6)," &
+     "BOUNDARY  (SCAN7)," &
+     "BOUNDARY  (SCAN8)," &
+     "BOUNDARY  (SCAN9)," &
+     "BOUNDARY  (SCAN10)," &
+     "BOUNDARY  (SCAN11)," &
+     "BOUNDARY  (SCAN12)," &
+     "BOUNDARY  (SCAN13)," &
+     "BOUNDARY  (SCAN14)," &
+     "BOUNDARY  (SCAN15)," &
+     "BOUNDARY  (SCAN16)," &
+     "BOUNDARY  (SCAN17)," &
+     "BOUNDARY  (SCAN18)," &
+     "BOUNDARY  (SCAN19)," &
+     "BOUNDARY  (SCAN20)," &
+     "BOUNDARY  (SCAN21)," &
+     "BOUNDARY  (SCAN22)," &
+     "BOUNDARY  (SCAN23)," &
+     "BOUNDARY  (SCAN24)," &
+     "BOUNDARY  (SCAN25)," &
+     "BOUNDARY  (SCAN26)," &
+     "BOUNDARY  (SCAN27)," &
+     "BOUNDARY  (SCAN28)," &
+     "BOUNDARY  (SCAN29)," &
+     "BOUNDARY  (SCAN30)," &
+     "BOUNDARY  (SCAN31)," &
+     "BOUNDARY  (SCAN32)," &
+     "BOUNDARY  (SCAN33)," &
+     "BYPASS    (BYPASS)";
+
+
+
+  --
+  -- Boundary Register Description for 1149.1 Boundary_Scan_Cell
+  --
+  attribute BOUNDARY_LENGTH of FM4112 : entity is 217;
+
+
+  attribute BOUNDARY_REGISTER of FM4112 : entity is
+  -- num   cell         port            function       safe [ccell disval rslt]
+
+  "0  (BC_1        ,*              ,control     ,0             )," &
+  "1  (BC_1        ,DATA(31)   ,output3     ,X  ,0   ,0  ,Z)," &
+  "2  (BC_1        ,DATA(31)   ,input       ,X             )," &
+  "3  (BC_1        ,*              ,control     ,0             )," &
+  "4  (BC_1        ,DATA(30)   ,output3     ,X  ,3   ,0  ,Z)," &
+  "5  (BC_1        ,DATA(30)   ,input       ,X             )," &
+  "6  (BC_1        ,*              ,control     ,0             )," &
+  "7  (BC_1        ,DATA(29)   ,output3     ,X  ,6   ,0  ,Z)," &
+  "8  (BC_1        ,DATA(29)   ,input       ,X             )," &
+  "9  (BC_1        ,*              ,control     ,0             )," &
+  "10 (BC_1        ,DATA(28)   ,output3     ,X  ,9   ,0  ,Z)," &
+  "11 (BC_1        ,DATA(28)   ,input       ,X             )," &
+  "12 (BC_1        ,*              ,control     ,0             )," &
+  "13 (BC_1        ,DATA(27)   ,output3     ,X  ,12  ,0  ,Z)," &
+  "14 (BC_1        ,DATA(27)   ,input       ,X             )," &
+  "15 (BC_1        ,*              ,control     ,0             )," &
+  "16 (BC_1        ,DATA(26)   ,output3     ,X  ,15  ,0  ,Z)," &
+  "17 (BC_1        ,DATA(26)   ,input       ,X             )," &
+  "18 (BC_1        ,*              ,control     ,0             )," &
+  "19 (BC_1        ,DATA(25)   ,output3     ,X  ,18  ,0  ,Z)," &
+  "20 (BC_1        ,DATA(25)   ,input       ,X             )," &
+  "21 (BC_1        ,*              ,control     ,0             )," &
+  "22 (BC_1        ,DATA(24)   ,output3     ,X  ,21  ,0  ,Z)," &
+  "23 (BC_1        ,DATA(24)   ,input       ,X             )," &
+  "24 (BC_1        ,*              ,control     ,0             )," &
+  "25 (BC_1        ,DATA(23)   ,output3     ,X  ,24  ,0  ,Z)," &
+  "26 (BC_1        ,DATA(23)   ,input       ,X             )," &
+  "27 (BC_1        ,*              ,control     ,0             )," &
+  "28 (BC_1        ,RW_INV     ,output3     ,X  ,27  ,0  ,Z)," &
+  "29 (BC_1        ,RW_INV     ,input       ,X             )," &
+  "30 (BC_1        ,*              ,control     ,0             )," &
+  "31 (BC_1        ,DATA(22)   ,output3     ,X  ,30  ,0  ,Z)," &
+  "32 (BC_1        ,DATA(22)   ,input       ,X             )," &
+  "33 (BC_1        ,*              ,control     ,0             )," &
+  "34 (BC_1        ,DATA(21)   ,output3     ,X  ,33  ,0  ,Z)," &
+  "35 (BC_1        ,DATA(21)   ,input       ,X             )," &
+  "36 (BC_1        ,*              ,control     ,0             )," &
+  "37 (BC_1        ,DATA(20)   ,output3     ,X  ,36  ,0  ,Z)," &
+  "38 (BC_1        ,DATA(20)   ,input       ,X             )," &
+  "39 (BC_1        ,*              ,control     ,0             )," &
+  "40 (BC_1        ,DATA(19)   ,output3     ,X  ,39  ,0  ,Z)," &
+  "41 (BC_1        ,DATA(19)   ,input       ,X             )," &
+  "42 (BC_1        ,*              ,control     ,0             )," &
+  "43 (BC_1        ,DATA(18)   ,output3     ,X  ,42  ,0  ,Z)," &
+  "44 (BC_1        ,DATA(18)   ,input       ,X             )," &
+  "45 (BC_1        ,*              ,control     ,0             )," &
+  "46 (BC_1        ,DATA(17)   ,output3     ,X  ,45  ,0  ,Z)," &
+  "47 (BC_1        ,DATA(17)   ,input       ,X             )," &
+  "48 (BC_1        ,*              ,control     ,0             )," &
+  "49 (BC_1        ,DATA(16)   ,output3     ,X  ,48  ,0  ,Z)," &
+  "50 (BC_1        ,DATA(16)   ,input       ,X             )," &
+  "51 (BC_1        ,*              ,control     ,0             )," &
+  "52 (BC_1        ,DATA(15)   ,output3     ,X  ,51  ,0  ,Z)," &
+  "53 (BC_1        ,DATA(15)   ,input       ,X             )," &
+  "54 (BC_1        ,*              ,control     ,0             )," &
+  "55 (BC_1        ,DATA(14)   ,output3     ,X  ,54  ,0  ,Z)," &
+  "56 (BC_1        ,DATA(14)   ,input       ,X             )," &
+  "57 (BC_1        ,*              ,control     ,0             )," &
+  "58 (BC_1        ,DATA(13)   ,output3     ,X  ,57  ,0  ,Z)," &
+  "59 (BC_1        ,DATA(13)   ,input       ,X             )," &
+  "60 (BC_1        ,*              ,control     ,0             )," &
+  "61 (BC_1        ,DATA(12)   ,output3     ,X  ,60  ,0  ,Z)," &
+  "62 (BC_1        ,DATA(12)   ,input       ,X             )," &
+  "63 (BC_1        ,*              ,control     ,0             )," &
+  "64 (BC_1        ,DATA(11)   ,output3     ,X  ,63  ,0  ,Z)," &
+  "65 (BC_1        ,DATA(11)   ,input       ,X             )," &
+  "66 (BC_1        ,*              ,control     ,0             )," &
+  "67 (BC_1        ,DATA(10)   ,output3     ,X  ,66  ,0  ,Z)," &
+  "68 (BC_1        ,DATA(10)   ,input       ,X             )," &
+  "69 (BC_1        ,*              ,control     ,0             )," &
+  "70 (BC_1        ,DATA(9)    ,output3     ,X  ,69  ,0  ,Z)," &
+  "71 (BC_1        ,DATA(9)    ,input       ,X             )," &
+  "72 (BC_1        ,*              ,control     ,0             )," &
+  "73 (BC_1        ,DATA(8)    ,output3     ,X  ,72  ,0  ,Z)," &
+  "74 (BC_1        ,DATA(8)    ,input       ,X             )," &
+  "75 (BC_1        ,*              ,control     ,0             )," &
+  "76 (BC_1        ,DATA(7)    ,output3     ,X  ,75  ,0  ,Z)," &
+  "77 (BC_1        ,DATA(7)    ,input       ,X             )," &
+  "78 (BC_1        ,*              ,control     ,0             )," &
+  "79 (BC_1        ,DATA(6)    ,output3     ,X  ,78  ,0  ,Z)," &
+  "80 (BC_1        ,DATA(6)    ,input       ,X             )," &
+  "81 (BC_1        ,*              ,control     ,0             )," &
+  "82 (BC_1        ,DATA(5)    ,output3     ,X  ,81  ,0  ,Z)," &
+  "83 (BC_1        ,DATA(5)    ,input       ,X             ),"&
+  "84 (BC_1        ,*              ,control     ,0             )," &
+  "85 (BC_1        ,DATA(4)    ,output3     ,X  ,84  ,0  ,Z)," &
+  "86 (BC_1        ,DATA(4)    ,input       ,X             ),"&
+  "87 (BC_1        ,*              ,control     ,0             )," &
+  "88 (BC_1        ,DATA(3)    ,output3     ,X  ,87  ,0  ,Z)," &
+  "89 (BC_1        ,DATA(3)    ,input       ,X             ),"&
+  "90 (BC_1        ,*              ,control     ,0             )," &
+  "91 (BC_1        ,DATA(2)    ,output3     ,X  ,90  ,0  ,Z)," &
+  "92 (BC_1        ,DATA(2)    ,input       ,X             )," &
+  "93 (BC_1        ,*              ,control     ,0             )," &
+  "94 (BC_1        ,DATA(1)    ,output3     ,X  ,93  ,0  ,Z)," &
+  "95 (BC_1        ,DATA(1)    ,input       ,X             )," &
+  "96 (BC_1        ,*              ,control     ,0             )," &
+  "97 (BC_1        ,DATA(0)    ,output3     ,X  ,96  ,0  ,Z)," &
+  "98 (BC_1        ,DATA(0)    ,input       ,X             )," &
+  "99 (BC_1        ,*              ,control     ,0             )," &
+  "100 (BC_1        ,DTACK_INV ,output3     ,X  ,99  ,0  ,Z)," &
+  "101 (BC_1        ,DTACK_INV ,input       ,X             )," &
+  "102 (BC_1        ,*             ,control     ,0             )," &
+  "103 (BC_1        ,TXRDY_N   ,output3     ,X  ,102 ,0  ,Z)," &
+  "104 (BC_1        ,*             ,control     ,0             )," &
+  "105 (BC_1        ,RXRDY_N   ,output3     ,X  ,104 ,0  ,Z)," &
+  "106 (BC_1        ,*             ,control     ,0             )," &
+  "107 (BC_1        ,PAR(3)    ,output3     ,X  ,106 ,0  ,Z)," &
+  "108 (BC_1        ,PAR(3)    ,input       ,X             )," &
+  "109 (BC_1        ,*             ,control     ,0             )," &
+  "110 (BC_1        ,PAR(2)    ,output3     ,X  ,109 ,0  ,Z)," &
+  "111 (BC_1        ,PAR(2)    ,input       ,X             )," &
+  "112 (BC_1        ,*             ,control     ,0             )," &
+  "113 (BC_1        ,PAR(1)    ,output3     ,X  ,112 ,0  ,Z)," &
+  "114 (BC_1        ,PAR(1)    ,input       ,X             )," &
+  "115 (BC_1        ,CPU_CLK   ,input       ,X             )," &
+  "116 (BC_1        ,*             ,control     ,0             )," &
+  "117 (BC_1        ,PAR(0)    ,output3     ,X  ,116 ,0  ,Z)," &
+  "118 (BC_1        ,PAR(0)    ,input       ,X             )," &
+  "119 (BC_1        ,RW_N      ,input       ,X             )," &
+  "120 (BC_1        ,*             ,control     ,0             )," &
+  "121 (BC_1        ,RXEOT_N   ,output3     ,X  ,120 ,0  ,Z)," &
+  "122 (BC_1        ,*             ,control     ,0             )," &
+  "123 (BC_1        ,AUTOBOOT  ,output3     ,X  ,122 ,0  ,Z)," &
+  "124 (BC_1        ,AUTOBOOT  ,input       ,X             )," &
+  "125 (BC_1        ,INT_N    ,output3     ,X  ,126 ,0  ,Z)," &
+  "126 (BC_1        ,*             ,control     ,0             )," &   
+  "127 (BC_1        ,AS_N      ,input       ,X             )," &
+  "128 (BC_1        ,CS_N      ,input       ,X             )," &
+  "129 (BC_1        ,CPU_RESET_N,input      ,X             )," &
+  "130 (BC_1        ,*             ,control     ,0             )," &
+  "131 (BC_1        ,IGNORE_PARITY,output3  ,X  ,130 ,0  ,Z)," &
+  "132 (BC_1        ,IGNORE_PARITY,input    ,X             )," &
+  "133 (BC_1        ,ADDR(23)  ,input       ,X             )," &
+  "134 (BC_1        ,ADDR(22)  ,input       ,X             )," &
+  "135 (BC_1        ,ADDR(21)  ,input       ,X             )," &
+  "136 (BC_1        ,ADDR(20)  ,input       ,X             )," &
+  "137 (BC_1        ,ADDR(19)  ,input       ,X             )," &
+  "138 (BC_1        ,*             ,control     ,0             )," &  
+  "139 (BC_1        ,DERR_N    ,output3     ,X  ,138 ,0  ,Z)," &
+  "140 (BC_1        ,ADDR(18)  ,input       ,X             )," &
+  "141 (BC_1        ,ADDR(17)  ,input       ,X             )," &
+  "142 (BC_1        ,ADDR(16)  ,input       ,X             )," &
+  "143 (BC_1        ,ADDR(15)  ,input       ,X             )," &
+  "144 (BC_1        ,ADDR(14)  ,input       ,X             )," &
+  "145 (BC_1        ,ADDR(13)  ,input       ,X             )," &
+  "146 (BC_1        ,ADDR(12)  ,input       ,X             )," &
+  "147 (BC_1        ,ADDR(11)  ,input       ,X             )," &
+  "148 (BC_1        ,ADDR(10)  ,input       ,X             )," &
+  "149 (BC_1        ,*             ,control     ,0             )," &
+  "150 (BC_1        ,DTACK_N   ,output3     ,X  ,149 ,0  ,Z)," &
+  "151 (BC_1        ,ADDR(9)   ,input       ,X             )," &
+  "152 (BC_1        ,ADDR(8)   ,input       ,X             )," &
+  "153 (BC_1        ,ADDR(7)   ,input       ,X             )," &
+  "154 (BC_1        ,ADDR(6)   ,input       ,X             )," &
+  "155 (BC_1        ,ADDR(5)   ,input       ,X             )," &
+  "156 (BC_1        ,ADDR(4)   ,input       ,X             )," &
+  "157 (BC_1        ,ADDR(3)   ,input       ,X             )," &
+  "158 (BC_1        ,ADDR(2)   ,input       ,X             )," &
+  "159 (BC_1        ,*             ,control     ,0             )," & 
+  "160 (BC_1        ,LED_EN    ,output3     ,X  ,159 ,0  ,Z)," &
+  "161 (BC_1        ,*             ,control     ,0             )," &
+  "162 (BC_1        ,LED_CLK   ,output3     ,X  ,161 ,0  ,Z)," &
+  "163 (BC_1        ,*             ,control     ,0             )," &  
+  "164 (BC_1        ,LED_DATA2 ,output3     ,X  ,163 ,0  ,Z)," &
+  "165 (BC_1        ,*             ,control     ,0             )," &  
+  "166 (BC_1        ,LED_DATA1 ,output3     ,X  ,165 ,0  ,Z)," &
+  "167 (BC_1        ,*             ,control     ,0             )," &  
+  "168 (BC_1        ,LED_DATA0 ,output3     ,X  ,167 ,0  ,Z)," &
+  "169 (BC_1        ,*             ,control     ,0             )," &
+  "170 (BC_1        ,SPI_MOSI  ,output3     ,X  ,169 ,0  ,Z)," &
+  "171 (BC_1        ,SPI_MOSI  ,input       ,X             )," &
+  "172 (BC_1        ,*             ,control     ,0             )," &
+  "173 (BC_1        ,SPI_CLK   ,output3     ,X  ,172 ,0  ,Z)," &
+  "174 (BC_1        ,SPI_CLK   ,input       ,X             )," &
+  "175 (BC_1        ,CHIP_RESET_N,input     ,X             )," &
+  "176 (BC_1        ,*             ,control     ,0             )," &  
+  "177 (BC_1        ,SPI_CS_N  ,output3     ,X  ,176 ,0  ,Z)," &
+  "178 (BC_1        ,SPI_CS_N  ,input       ,X             )," &
+  "179 (BC_1        ,*             ,control     ,0             )," &  
+  "180 (BC_1        ,SPI_MISO  ,output3     ,X  ,179 ,0  ,Z)," &
+  "181 (BC_1        ,SPI_MISO  ,input       ,X             )," &
+  "182 (BC_1        ,*             ,control     ,0             )," &  
+  "183 (BC_1        ,EEPROM_EN1 ,output3     ,X  ,182 ,0  ,Z)," &
+  "184 (BC_1        ,EEPROM_EN1 ,input       ,X             )," &
+  "185 (BC_1        ,*             ,control     ,0             )," &  
+  "186 (BC_1        ,EEPROM_EN2,output3     ,X  ,185 ,0  ,Z)," &
+  "187 (BC_1        ,EEPROM_EN2,input       ,X             )," &
+  "188 (BC_1        ,*             ,control     ,0             )," &  
+  "189 (BC_1        ,GPIO(11)  ,output3     ,X  ,188 ,0  ,Z)," &
+  "190 (BC_1        ,GPIO(11)  ,input       ,X             )," &
+  "191 (BC_1        ,*             ,control     ,0             )," &  
+  "192 (BC_1        ,GPIO(12)  ,output3     ,X  ,191 ,0  ,Z)," &
+  "193 (BC_1        ,GPIO(12)  ,input       ,X             )," &
+  "194 (BC_1        ,*             ,control     ,0             )," &  
+  "195 (BC_1        ,GPIO(13)  ,output3     ,X  ,194 ,0  ,Z)," &
+  "196 (BC_1        ,GPIO(13)  ,input       ,X             )," &
+  "197 (BC_1        ,*             ,control     ,0             )," &  
+  "198 (BC_1        ,GPIO(14)  ,output3     ,X  ,197 ,0  ,Z)," &
+  "199 (BC_1        ,GPIO(14)  ,input       ,X             )," &
+  "200 (BC_1        ,*             ,control     ,0             )," &  
+  "201 (BC_1        ,GPIO(15)  ,output3     ,X  ,200 ,0  ,Z)," &
+  "202 (BC_1        ,GPIO(15)  ,input       ,X             )," &
+  "203 (BC_1        ,*             ,control     ,0             )," &  
+  "204 (BC_1        ,I2C_SCL   ,output3     ,X  ,203 ,0  ,Z)," &
+  "205 (BC_1        ,I2C_SCL   ,input       ,X             )," &
+  "206 (BC_1        ,*             ,control     ,0             )," &  
+  "207 (BC_1        ,I2C_SDA   ,output3     ,X  ,206 ,0  ,Z)," &
+  "208 (BC_1        ,I2C_SDA   ,input       ,X             )," &
+  "209 (BC_1        ,*             ,control     ,0             )," &  
+  "210 (BC_1        ,MDC       ,output3     ,X  ,209 ,0  ,Z)," &
+  "211 (BC_1        ,*             ,control     ,0             )," &  
+  "212 (BC_1        ,MDIO      ,output3     ,X  ,211 ,0  ,Z)," &
+  "213 (BC_1        ,MDIO      ,input       ,X             )," &
+  "214 (BC_1        ,*             ,control     ,0             )," &  
+  "215 (BC_1        ,PARITY_EVEN,output3    ,X  ,214 ,0  ,Z)," &
+  "216 (BC_1        ,PARITY_EVEN,input      ,X             )";
+
+end FM4112;

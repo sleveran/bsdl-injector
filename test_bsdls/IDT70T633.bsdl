@@ -1,0 +1,289 @@
+-- Part IDT70T633: 512K x 18
+-- Rev 0.0
+
+entity IDT70T633 is
+    generic (PHYSICAL_PIN_MAP : string := "BC256");
+
+    port (
+        AL             :in             bit_vector(0 to 18);
+        RWL            :in             bit;
+        OELB           :in             bit;
+        LBLB           :in             bit;
+        UBLB           :in             bit;
+        CE0LB          :in             bit;
+        CE1L           :in             bit;
+        IOL            :inout          bit_vector(0 to 17);
+        SEMLB          :in             bit;
+        INTLB          :buffer         bit;
+        BUSYLB         :inout          bit;
+        OPTL           :in             bit;
+        ZZL            :linkage        bit;
+        AR             :in             bit_vector(0 to 18);
+        RWR            :in             bit;
+        OERB           :in             bit;
+        LBRB           :in             bit;
+        UBRB           :in             bit;
+        CE0RB          :in             bit;
+        CE1R           :in             bit;
+        IOR            :inout          bit_vector(0 to 17);
+        SEMRB          :in             bit;
+        INTRB          :buffer         bit;
+        BUSYRB         :inout          bit;
+        OPTR           :in             bit;
+        ZZR            :linkage	       bit;
+        MSB            :in             bit;
+        TMS            :in             bit;
+        TCK            :in             bit;
+        TDI            :in             bit;
+        TDO            :out            bit;
+        TRSTB          :in             bit;
+        VDD            :linkage        bit_vector(0 to 15);
+        VSS            :linkage        bit_vector(0 to 48);
+        VDDQL          :linkage        bit_vector(0 to 15);
+        VDDQR          :linkage        bit_vector(0 to 15)
+    );
+
+    use STD_1149_1_1994.all;
+
+    attribute COMPONENT_CONFORMANCE of IDT70T633 : entity is "STD_1149_1_1993";
+
+    attribute PIN_MAP of IDT70T633 : entity is PHYSICAL_PIN_MAP;
+
+       
+  -- Pin-port map for package BC256
+    constant BC256 : PIN_MAP_STRING :=
+        "AL:(A14, B13, A13, C13, B12, A12, C12, C7, A7, B7, C6, A6," &
+         "B6, C5, A5, B5, C4, A4, B4), " &
+        "RWL:B10," &
+        "OELB:A10," &
+        "LBLB:C9," &
+        "UBLB:B8," &
+        "CE0LB:B9," &
+        "CE1L:A9," &
+        "IOL:(P16, M15, L14, K16, J16, G14, F16, E15, C16, C2, E2, "&
+         "F1, G3, J1, K3, L1, M2, P2), "&
+        "SEMLB:C10," &
+        "INTLB:A11," &
+        "BUSYLB:C11," &
+        "OPTL:C14," &
+        "ZZL:J12," &
+        "AR:(T14, R13, T13, P13, R12, T12, P12, P7, T7, R7, P6, T6," &
+         "R6, P5, T5, R5, P4, T4, R4), " &
+        "RWR:R10," &
+        "OERB:T10," &
+        "LBRB:P9," &
+        "UBRB:R8," &
+        "CE0RB:R9," &
+        "CE1R:T9," &
+        "IOR:(N15, M14, L16, J15, J14, H16, F14, E16, D16, D2, E1, "&
+         "F3, H2, J3, J2, L3, M1, N2), "&
+        "SEMRB:P10," &
+        "INTRB:T11," &
+        "BUSYRB:P11," &
+        "OPTR:R14," &
+        "ZZR:J5," &
+        "MSB:R11," &
+        "TMS:P3," &
+        "TCK:T2," &
+        "TDI:A2," &
+        "TRSTB:R3," &
+        "TDO:B3," &
+        "VDD:(D4, D13, E5, E6, E11, E12, F5, F12, L5, L12, M5, M6, " &
+         "M11, M12, N4, N13), " &
+        "VSS:(C3, E7, E8, E9, E10, F7, F8, F9, F10, F11, G5, G6, " &
+         "G7, G8, G9, G10, G11, G12, H5, H6, H7, H8, H9, H10, H11, " &
+         "H12, J6, J7, J8, J9, J10, J11, K5, K6, K7, K8, K9, K10, " &          
+         "K11, K12, L7, L8, L9, L10, L11, M7, M8, M9, M10), " &
+        "VDDQL:(D5, D6, D9, D10, E4, F4, G13, H13, J4, K4, L13, " &
+         "M13, N7, N8, N11, N12), " &
+        "VDDQR:(D7, D8, D11, D12, E13, F13, G4, H4, J13, K13, " &
+         "L4, M4, N5, N6, N9, N10)";
+        
+
+
+    attribute TAP_SCAN_IN of TDI : signal is true;
+    attribute TAP_SCAN_MODE of TMS : signal is true;
+    attribute TAP_SCAN_OUT of TDO : signal is true;
+    attribute TAP_SCAN_CLOCK of TCK : signal is (10.0e6, BOTH);
+    attribute TAP_SCAN_RESET of TRSTB : signal is true;
+
+    
+    attribute INSTRUCTION_LENGTH of IDT70T633 : entity is 4;
+
+    
+    attribute INSTRUCTION_OPCODE of IDT70T633 : entity is
+        "EXTEST     (0000)," &
+        "SAMPLE     (0001)," &
+        "IDCODE     (0010)," &
+        "HIGHZ      (0100)," &
+        "CLAMP      (0011)," &
+        "BYPASS     (1111)," &
+        "PRIVATE    (0101,0110,0111,1000,1001,1010,1011, "&
+                    "1100, 1101, 1110)";
+
+    
+    attribute INSTRUCTION_CAPTURE of IDT70T633 : entity is "0101";
+
+    
+    attribute INSTRUCTION_PRIVATE of IDT70T633 : entity is "PRIVATE";
+
+    
+    attribute IDCODE_REGISTER of IDT70T633 : entity is
+        "0000" &                -- version
+        "0000001100111011" &    -- part number
+        "00000110011" &         -- manufacturer's identity
+        "1";                    -- required by 1149.1
+
+
+
+    attribute REGISTER_ACCESS of IDT70T633 : entity is
+        "Bypass          (BYPASS, HIGHZ, CLAMP)," &
+        "Boundary        (SAMPLE, EXTEST)," &
+        "Device_ID       (IDCODE)";
+
+    
+    attribute BOUNDARY_LENGTH of IDT70T633 : entity is 138;
+
+    
+    attribute BOUNDARY_REGISTER  of IDT70T633 : entity is
+        "137 (BC_1,  *,          control,    0),                  " &
+        "136 (BC_1,  *,          internal,   X),                  " &
+        "135 (BC_4,  AL(18),     input,      X),                  " &
+        "134 (BC_4,  AL(17),     input,      X),                  " &
+        "133 (BC_4,  AL(16),     input,      X),                  " &
+        "132 (BC_4,  AL(15),     input,      X),                  " &
+        "131 (BC_4,  AL(14),     input,      X),                  " &
+        "130 (BC_4,  AL(13),     input,      X),                  " &
+        "129 (BC_4,  AL(12),     input,      X),                  " &
+        "128 (BC_4,  AL(11),     input,      X),                  " &
+        "127 (BC_4,  AL(10),     input,      X),                  " &
+        "126 (BC_4,  AL(9),      input,      X),                  " &
+        "125 (BC_4,  AL(8),      input,      X),                  " &
+        "124 (BC_4,  AL(7),      input,      X),                  " &
+        "123 (BC_4,  AL(6),      input,      X),                  " &
+        "122 (BC_4,  AL(5),      input,      X),                  " &
+        "121 (BC_4,  AL(4),      input,      X),                  " &
+        "120 (BC_4,  AL(3),      input,      X),                  " &
+        "119 (BC_4,  AL(2),      input,      X),                  " &
+        "118 (BC_4,  AL(1),      input,      X),                  " &
+        "117 (BC_4,  AL(0),      input,      X),                  " &
+        "116 (BC_4,  CE0LB,      input,      X),                  " &
+        "115 (BC_4,  CE1L,       input,      X),                  " &
+        "114 (BC_4,  RWL,        input,      X),                  " &
+        "113 (BC_4,  SEMLB,      input,      X),                  " &
+        "112 (BC_4,  OELB,       input,      X),                  " &
+        "111 (BC_4,  LBLB,       input,      X),                  " &
+        "110 (BC_4,  UBLB,       input,      X),                  " &
+        "109 (BC_4,  OPTL,       input,      X),                  " &
+        "108 (BC_1,  *,          control,    1),                  " &
+        "107 (BC_4,  BUSYLB,     input,      X),                  " &
+        "106 (BC_1,  BUSYLB,     output3,    X,    108,   1,   Z)," &
+        "105 (BC_1,  INTLB,      output2,    X),                  " &
+        "104 (BC_1,  *,          control,    0),                  " &
+        "103 (BC_1,  *,          internal,   X),                  " &
+        "102 (BC_4,  AR(18),     input,      X),                  " &
+        "101 (BC_4,  AR(17),     input,      X),                  " &
+        "100 (BC_4,  AR(16),     input,      X),                  " &
+        "99  (BC_4,  AR(15),     input,      X),                  " &
+        "98  (BC_4,  AR(14),     input,      X),                  " &
+        "97  (BC_4,  AR(13),     input,      X),                  " &
+        "96  (BC_4,  AR(12),     input,      X),                  " &
+        "95  (BC_4,  AR(11),     input,      X),                  " &
+        "94  (BC_4,  AR(10),     input,      X),                  " &
+        "93  (BC_4,  AR(9),      input,      X),                  " &
+        "92  (BC_4,  AR(8),      input,      X),                  " &
+        "91  (BC_4,  AR(7),      input,      X),                  " &
+        "90  (BC_4,  AR(6),      input,      X),                  " &
+        "89  (BC_4,  AR(5),      input,      X),                  " &
+        "88  (BC_4,  AR(4),      input,      X),                  " &
+        "87  (BC_4,  AR(3),      input,      X),                  " &
+        "86  (BC_4,  AR(2),      input,      X),                  " &
+        "85  (BC_4,  AR(1),      input,      X),                  " &
+        "84  (BC_4,  AR(0),      input,      X),                  " &
+        "83  (BC_4,  CE0RB,      input,      X),                  " &
+        "82  (BC_4,  CE1R,       input,      X),                  " &
+        "81  (BC_4,  RWR,        input,      X),                  " &
+        "80  (BC_4,  SEMRB,      input,      X),                  " &
+        "79  (BC_4,  OERB,       input,      X),                  " &
+        "78  (BC_4,  MSB,        input,      X),                  " &
+        "77  (BC_4,  LBRB,       input,      X),                  " &
+        "76  (BC_4,  UBRB,       input,      X),                  " &
+        "75  (BC_4,  OPTR,       input,      X),                  " &
+        "74  (BC_4,  BUSYRB,     input,      X),                  " &
+        "73  (BC_1,  BUSYRB,     output3,    X,    108,   1,   Z)," &
+        "72  (BC_1,  INTRB,      output2,    X),                  " &
+        "71  (BC_4,  IOL(0),     input,      X),                  " &
+        "70  (BC_1,  IOL(0),     output3,    X,    137,   0,   Z)," &
+        "69  (BC_4,  IOR(0),     input,      X),                  " &
+        "68  (BC_1,  IOR(0),     output3,    X,    104,   0,   Z)," &
+        "67  (BC_4,  IOL(1),     input,      X),                  " &
+        "66  (BC_1,  IOL(1),     output3,    X,    137,   0,   Z)," &
+        "65  (BC_4,  IOR(1),     input,      X),                  " &
+        "64  (BC_1,  IOR(1),     output3,    X,    104,   0,   Z)," &
+        "63  (BC_4,  IOL(2),     input,      X),                  " &
+        "62  (BC_1,  IOL(2),     output3,    X,    137,   0,   Z)," &
+        "61  (BC_4,  IOR(2),     input,      X),                  " &
+        "60  (BC_1,  IOR(2),     output3,    X,    104,   0,   Z)," &
+        "59  (BC_4,  IOL(3),     input,      X),                  " &
+        "58  (BC_1,  IOL(3),     output3,    X,    137,   0,   Z)," &
+        "57  (BC_4,  IOR(3),     input,      X),                  " &
+        "56  (BC_1,  IOR(3),     output3,    X,    104,   0,   Z)," &
+        "55  (BC_4,  IOL(4),     input,      X),                  " &
+        "54  (BC_1,  IOL(4),     output3,    X,    137,   0,   Z)," &
+        "53  (BC_4,  IOR(4),     input,      X),                  " &
+        "52  (BC_1,  IOR(4),     output3,    X,    104,   0,   Z)," &
+        "51  (BC_4,  IOL(8),     input,      X),                  " &
+        "50  (BC_1,  IOL(8),     output3,    X,    137,   0,   Z)," &
+        "49  (BC_4,  IOR(8),     input,      X),                  " &
+        "48  (BC_1,  IOR(8),     output3,    X,    104,   0,   Z)," &
+        "47  (BC_4,  IOL(7),     input,      X),                  " &
+        "46  (BC_1,  IOL(7),     output3,    X,    137,   0,   Z)," &
+        "45  (BC_4,  IOR(7),     input,      X),                  " &
+        "44  (BC_1,  IOR(7),     output3,    X,    104,   0,   Z)," &
+        "43  (BC_4,  IOL(6),     input,      X),                  " &
+        "42  (BC_1,  IOL(6),     output3,    X,    137,   0,   Z)," &
+        "41  (BC_4,  IOR(6),     input,      X),                  " &
+        "40  (BC_1,  IOR(6),     output3,    X,    104,   0,   Z)," &
+        "39  (BC_4,  IOL(5),     input,      X),                  " &
+        "38  (BC_1,  IOL(5),     output3,    X,    137,   0,   Z)," &
+        "37  (BC_4,  IOR(5),     input,      X),                  " &
+        "36  (BC_1,  IOR(5),     output3,    X,    104,   0,   Z)," &
+        "35  (BC_4,  IOL(17),    input,      X),                  " &
+        "34  (BC_1,  IOL(17),    output3,    X,    137,   0,   Z)," &
+        "33  (BC_4,  IOR(17),    input,      X),                  " &
+        "32  (BC_1,  IOR(17),    output3,    X,    104,   0,   Z)," &
+        "31  (BC_4,  IOL(16),    input,      X),                  " &
+        "30  (BC_1,  IOL(16),    output3,    X,    137,   0,   Z)," &
+        "29  (BC_4,  IOR(16),    input,      X),                  " &
+        "28  (BC_1,  IOR(16),    output3,    X,    104,   0,   Z)," &
+        "27  (BC_4,  IOL(15),    input,      X),                  " &
+        "26  (BC_1,  IOL(15),    output3,    X,    137,   0,   Z)," &
+        "25  (BC_4,  IOR(15),    input,      X),                  " &
+        "24  (BC_1,  IOR(15),    output3,    X,    104,   0,   Z)," &
+        "23  (BC_4,  IOL(14),    input,      X),                  " &
+        "22  (BC_1,  IOL(14),    output3,    X,    137,   0,   Z)," &
+        "21  (BC_4,  IOR(14),    input,      X),                  " &
+        "20  (BC_1,  IOR(14),    output3,    X,    104,   0,   Z)," &
+        "19  (BC_4,  IOL(13),    input,      X),                  " &
+        "18  (BC_1,  IOL(13),    output3,    X,    137,   0,   Z)," &
+        "17  (BC_4,  IOR(13),    input,      X),                  " &
+        "16  (BC_1,  IOR(13),    output3,    X,    104,   0,   Z)," &
+        "15  (BC_4,  IOL(9),     input,      X),                  " &
+        "14  (BC_1,  IOL(9),     output3,    X,    137,   0,   Z)," &
+        "13  (BC_4,  IOR(9),     input,      X),                  " &
+        "12  (BC_1,  IOR(9),     output3,    X,    104,   0,   Z)," &
+        "11  (BC_4,  IOL(10),    input,      X),                  " &
+        "10  (BC_1,  IOL(10),    output3,    X,    137,   0,   Z)," &
+        "9   (BC_4,  IOR(10),    input,      X),                  " &
+        "8   (BC_1,  IOR(10),    output3,    X,    104,   0,   Z)," &
+        "7   (BC_4,  IOL(11),    input,      X),                  " &
+        "6   (BC_1,  IOL(11),    output3,    X,    137,   0,   Z)," &
+        "5   (BC_4,  IOR(11),    input,      X),                  " &
+        "4   (BC_1,  IOR(11),    output3,    X,    104,   0,   Z)," &
+        "3   (BC_4,  IOL(12),    input,      X),                  " &
+        "2   (BC_1,  IOL(12),    output3,    X,    137,   0,   Z)," &
+        "1   (BC_4,  IOR(12),    input,      X),                  " &
+        "0   (BC_1,  IOR(12),    output3,    X,    104,   0,   Z) " ;
+
+
+end IDT70T633; 

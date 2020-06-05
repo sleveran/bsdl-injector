@@ -1,0 +1,232 @@
+-- GSI  816218 PBGA J T A G   S O F T W A R E
+-- BSDL File Generated: 6th April 2005
+--
+-- Revision History:
+-- 07/16/07 1) Updated IDCODE register.
+-- 11/13/06  1) Swapped DQa and DQb in scan chain
+
+entity GS816218BD is
+     generic (PHYSICAL_PIN_MAP : string := "BGA_PACKAGE");
+
+     port (
+         ADDR:   in      bit_vector(0 to 19);
+         CK:     in      bit;
+         Ba:     in      bit;
+         Bb:     in      bit;
+         GW:     in      bit;
+         BW:     in      bit;
+         E1:     in      bit;
+         E2:     in      bit;
+         E3:     in      bit;
+         G:      in      bit; 
+         ADV:    in      bit; 
+         ADSP:   in      bit; 
+         ADSC:   in      bit; 
+         DQa:    inout   bit_vector(1 to 9);
+         DQb:    inout   bit_vector(1 to 9);
+         SCD:    in      bit;
+--         ZQ:     in      bit;
+         ZZ:     in      bit;
+         FT:     in      bit;
+         LBO:    in      bit;
+         TMS:    in      bit;
+         TDI:    in      bit;
+         TDO:    out     bit;
+         TCK:    in      bit;
+         VDD:    linkage bit_vector(0 to 17);
+         VSS:    linkage bit_vector(0 to 33);
+         VDDQ:   linkage bit_vector(0 to 19);
+         NC:     linkage bit_vector(0 to 30)
+       );
+
+     use STD_1149_1_1990.all;
+
+     attribute PIN_MAP of GS816218BD : entity is PHYSICAL_PIN_MAP;
+
+     constant BGA_PACKAGE : PIN_MAP_STRING := 
+
+     "ADDR:  (R6,P6,R4,R3,P4,P3,A2,B2,B10,A10,A11, " &
+             "R11,R10,P10,R9,P9,P8,R8,P11,N6), " &
+     "CK:     B6, " &
+     "Ba:     B5, " &
+     "Bb:     A4, " &
+     "GW:     B7, " &
+     "E1:     A3, " &
+     "E2:     B3, " &
+     "E3:     A6, " &
+     "BW:     A7, " &
+     "G:      B8, " &
+     "ADV:    A9, " &
+     "ADSP:   B9, " &
+     "ADSC:   A8, " &
+     "DQa:   (M10,L10,K10,J10,G11,F11,E11,D11,C11), " &
+     "DQb:   (D2,E2,F2,G2,J1,K1,L1,M1,N1), " &
+     "SCD:    N2, " &
+     "ZZ:     H11, " &
+--     "ZQ:     H10, " &
+     "FT:     H1, " &
+     "LBO:    R1, " &
+     "TMS:    R5, " &
+     "TDI:    P5, " &
+     "TDO:    P7, " &
+     "TCK:    R7, " &
+     "VDD:   (D4,D8,E4,E8,F4,F8,G4,G8,H4,H8,J4,J8,K4,K8,L4,L8, " &
+             "M4,M8), " &
+     "VSS:   (C4,C5,C6,C7,C8,D5,D6,D7,E5,E6,E7,F5,F6,F7,G5,G6,G7, " &
+             "H5,H6,H7,J5,J6,J7,K5,K6,K7,L5,L6,L7,M5,M6,M7,N4,N8), " &
+     "VDDQ:  (C3,C9,D3,D9,E3,E9,F3,F9,G3,G9,J3,J9,K3,K9,L3,L9, " &
+             "M3,M9,N3,N9)," &
+     "NC:    (A1,A5,B1,B4,B11,C1,C2,C10,D1,D10,E1,E10,F1,F10,G1,G10, " &
+             "J2,J11,K2,K11,L2,L11,M2,M11,N5,N7,N10,N11,P1,P2,R2)";
+
+     attribute TAP_SCAN_IN    of  TDI : signal is true;
+     attribute TAP_SCAN_OUT   of  TDO : signal is true;
+     attribute TAP_SCAN_MODE  of  TMS : signal is true;
+     attribute TAP_SCAN_CLOCK of  TCK : signal is (10.0e6, BOTH);
+
+     attribute INSTRUCTION_LENGTH of GS816218BD : entity is 3;
+
+     attribute INSTRUCTION_OPCODE of GS816218BD : entity is 
+        "EXTEST       (000)," &
+        "SAMPLE       (100)," &
+        "IDCODE       (001)," &
+        "SAMPLZ       (010)," &
+        "BYPASS       (111)";
+
+
+     attribute INSTRUCTION_CAPTURE of GS816218BD : entity is "001";
+     attribute IDCODE_REGISTER   of GS816218BD : entity is 
+     "00000000000000010010000110110011";
+    
+     attribute REGISTER_ACCESS of GS816218BD : entity is 
+       "BOUNDARY  (EXTEST,SAMPLE,SAMPLZ),"&
+       "IDCODE    (IDCODE),"&
+       "BYPASS    (BYPASS)";   
+
+     attribute BOUNDARY_CELLS of GS816218BD : entity is 
+        "BC_1,BC_4";
+
+     attribute BOUNDARY_LENGTH of GS816218BD : entity is 117;
+
+     attribute BOUNDARY_REGISTER of GS816218BD : entity is 
+     -- num    cell     port    func     safe [ccell disval rslt]
+
+ "0      (BC_4, *       ,internal, X)," &
+ "1      (BC_1, ADDR(19), input, X)," &
+ "2      (BC_1, ADDR(18), input, X)," &
+ "3      (BC_1, ADDR(17), input, X)," &
+ "4      (BC_1, ADDR(16), input, X)," &
+ "5      (BC_1, ADDR(15), input, X)," &
+ "6      (BC_1, ADDR(14), input, X)," &
+ "7      (BC_1, ADDR(13), input, X)," &
+ "8      (BC_1, ADDR(12), input, X)," &
+ "9      (BC_1, ADDR(11), input, X)," &
+ "10     (BC_4, *       ,internal, X)," &
+ "11     (BC_4, *       ,internal, X)," &
+ "12     (BC_4, *       ,internal, X)," &
+ "13     (BC_4, *       ,internal, X)," &
+ "14     (BC_4, *       ,internal, X)," &
+ "15     (BC_4, *       ,internal, X)," &
+ "16     (BC_4, *       ,internal, X)," &
+ "17     (BC_4, *       ,internal, X)," &
+ "18     (BC_4, *       ,internal, X)," &
+ "19     (BC_4, *       ,internal, X)," &
+ "20     (BC_1, DQa(1)  , output3, X, 116, 0, Z)," &
+ "21     (BC_1, DQa(1)  , input, X)," &
+ "22     (BC_1, DQa(2)  , output3, X, 116, 0, Z)," &
+ "23     (BC_1, DQa(2)  , input, X)," &
+ "24     (BC_1, DQa(3)  , output3, X, 116, 0, Z)," &
+ "25     (BC_1, DQa(3)  , input, X)," &
+ "26     (BC_1, DQa(4)  , output3, X, 116, 0, Z)," &
+ "27     (BC_1, DQa(4)  , input, X)," &
+ "28     (BC_1, ZZ      , input, X)," &
+ "29     (BC_4, *       ,internal, X)," &
+ "30     (BC_1, DQa(5)  , output3, X, 116, 0, Z)," &
+ "31     (BC_1, DQa(5)  , input, X)," &
+ "32     (BC_1, DQa(6)  , output3, X, 116, 0, Z)," &
+ "33     (BC_1, DQa(6)  , input, X)," &
+ "34     (BC_1, DQa(7)  , output3, X, 116, 0, Z)," &
+ "35     (BC_1, DQa(7)  , input, X)," &
+ "36     (BC_1, DQa(8)  , output3, X, 116, 0, Z)," &
+ "37     (BC_1, DQa(8)  , input, X)," &
+ "38     (BC_1, DQa(9)  , output3, X, 116, 0, Z)," &
+ "39     (BC_1, DQa(9)  , input, X)," &
+ "40     (BC_4, *       ,internal, X)," &
+ "41     (BC_4, *       ,internal, X)," &
+ "42     (BC_4, *       ,internal, X)," &
+ "43     (BC_4, *       ,internal, X)," &
+ "44     (BC_4, *       ,internal, X)," &
+ "45     (BC_4, *       ,internal, X)," &
+ "46     (BC_4, *       ,internal, X)," &
+ "47     (BC_4, *       ,internal, X)," &
+ "48     (BC_1, ADDR(10), input, X)," &
+ "49     (BC_1, ADDR(9), input, X)," &
+ "50     (BC_1, ADDR(8) , input, X)," &
+ "51     (BC_1, ADV     , input, X)," &
+ "52     (BC_1, ADSP    , input, X)," &
+ "53     (BC_1, ADSC    , input, X)," &
+ "54     (BC_1, G       , input, X)," &
+ "55     (BC_1, BW      , input, X)," &
+ "56     (BC_1, GW      , input, X)," &
+ "57     (BC_1, CK      , input, X)," &
+ "58     (BC_4, *       ,internal, X)," &
+ "59     (BC_4, *       ,internal, X)," &
+ "60     (BC_4, *       ,internal, X)," &
+ "61     (BC_4, *       ,internal, X)," &
+ "62    (BC_1, E3       , input, X)," &
+ "63    (BC_1, Ba       , input, X)," &
+ "64    (BC_4, *        ,internal, X)," &
+ "65    (BC_1, BB       , input, X)," &
+ "66    (BC_4, *        ,internal, X)," &
+ "67    (BC_1, E2       , input, X)," &
+ "68    (BC_1, E1       , input, X)," &
+ "69    (BC_1, ADDR(7)  , input, X)," &
+ "70    (BC_1, ADDR(6)  , input, X)," &
+ "71    (BC_4, *        ,internal, X)," &
+ "72    (BC_4, *        ,internal, X)," &
+ "73    (BC_4, *        ,internal, X)," &
+ "74    (BC_4, *        ,internal, X)," &
+ "75    (BC_4, *        ,internal, X)," &
+ "76    (BC_4, *        ,internal, X)," &
+ "77    (BC_4, *        ,internal, X)," &
+ "78    (BC_4, *        ,internal, X)," &
+ "79    (BC_4, *        ,internal, X)," &
+ "80    (BC_4, *        ,internal, X)," &
+ "81    (BC_1, DQb(1)   , output3, X, 116, 0, Z)," &
+ "82    (BC_1, DQb(1)   , input, X)," &
+ "83    (BC_1, DQb(2)   , output3, X, 116, 0, Z)," &
+ "84    (BC_1, DQb(2)   , input, X)," &
+ "85    (BC_1, DQb(3)   , output3, X, 116, 0, Z)," &
+ "86    (BC_1, DQb(3)   , input, X)," &
+ "87    (BC_1, DQb(4)   , output3, X, 116, 0, Z)," &
+ "88    (BC_1, DQb(4)   , input, X)," &
+ "89    (BC_1, FT       , input, X)," &
+ "90    (BC_1, SCD      ,input, X)," &
+ "91    (BC_1, DQb(5)   , output3, X, 116, 0, Z)," &
+ "92    (BC_1, DQb(5)   , input, X)," &
+ "93    (BC_1, DQb(6)   , output3, X, 116, 0, Z)," &
+ "94    (BC_1, DQb(6)   , input, X)," &
+ "95    (BC_1, DQb(7)   , output3, X, 116, 0, Z)," &
+ "96    (BC_1, DQb(7)   , input, X)," &
+ "97    (BC_1, DQb(8)   , output3, X, 116, 0, Z)," &
+ "98    (BC_1, DQb(8)   , input, X)," &
+ "99    (BC_1, DQb(9)   , output3, X, 116, 0, Z)," &
+ "100   (BC_1, DQb(9)   , input, X)," &
+ "101   (BC_4, *        ,internal, X)," &
+ "102   (BC_4, *        ,internal, X)," &
+ "103   (BC_4, *        ,internal, X)," &
+ "104   (BC_4, *        ,internal, X)," &
+ "105   (BC_4, *        ,internal, X)," &
+ "106   (BC_4, *        ,internal, X)," &
+ "107   (BC_4, *        ,internal, X)," &
+ "108   (BC_4, *        ,internal, X)," &
+ "109   (BC_1, LBO      , input, X)," &
+ "110   (BC_1, ADDR(5)  , input, X)," &
+ "111   (BC_1, ADDR(4)  , input, X)," &
+ "112   (BC_1, ADDR(3)  , input, X)," &
+ "113   (BC_1, ADDR(2)  , input, X)," &
+ "114   (BC_1, ADDR(1)  , input, X)," &
+ "115   (BC_1, ADDR(0)  , input, X)," &
+ "116   (BC_1, *        , control, 0)" ;
+
+end GS816218BD;

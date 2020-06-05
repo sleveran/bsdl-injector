@@ -1,0 +1,487 @@
+------------------------------------------------------------------------
+-- A T M E L   A R M   M I C R O C O N T R O L L E R S                --
+------------------------------------------------------------------------
+-- BSDL file
+--
+-- File Name:     sam4n16b_qfn64.bsdl
+-- File Revision: 1.0
+-- Date: 	  Mon May 21 17:00:00 2012
+
+-- Created by:    Atmel Corporation
+-- File Status:   Released
+--
+-- Device:        sam4n16b
+-- Package:       qfn64
+--
+-- Visit http://www.atmel.com for a updated list of BSDL files.
+--
+------------------------------------------------------------------------
+-- Syntax and Semantics are checked against the IEEE 1149.1 standard. --
+-- The logical functioning of the standard Boundary-Scan instructions --
+-- and of the associated bypass, idcode and boundary-scan register    --
+-- described in this BSDL file has been verified against its related  --
+-- silicon by JTAG Technologies B.V.                                  --
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+--                       IMPORTANT NOTICE                             --
+--                                                                    --
+--   Copyright 2005 Atmel Corporation. All Rights Reserved.           --
+--                                                                    --
+--   Atmel assumes no responsibility or liability arising out         --
+--   this application or use of any information described herein      --
+--   except as expressly agreed to in writing by Atmel Corporation.   --
+--                                                                    --
+-- ------------------------------------------------------------------ --
+-- This BSDL File has been verified on severals BSDL Syntax           --
+-- Checker/Compilers                                                  --
+--                                                                    --
+-- http://www.asset-intertech.com/bsdl_service                        --
+--   File Name: 	sam4n16b_qfn64.bsdl
+--   Timestamp: 	Monday, May 21, 2012 10:07 AM
+--   Results: 	Entity name: sam4n16b
+--   IEEE Std 1149.1-2001 (Version 2.0)
+--   Packaging option selected is QFN64.
+--   Inputs = 0
+--   Outputs = 0
+--   Bidirectionals = 38
+--   Instruction Reg Length = 3
+--   Boundary Reg Length = 142
+--   
+--   BSDL compilation of 487 lines completed without errors.
+-- *****************************************************************************
+
+
+entity sam4n16b is 
+
+-- This section identifies the default device package selected. 
+
+generic (PHYSICAL_PIN_MAP: string:= "qfn64");
+
+-- This section declares all the ports in the design.
+
+port (
+           PA18                 : inout   bit;
+           PA21                 : inout   bit;
+           PA19                 : inout   bit;
+           PA22                 : inout   bit;
+           PA23                 : inout   bit;
+           PA20                 : inout   bit;
+           PA16                 : inout   bit;
+           PA15                 : inout   bit;
+           PA14                 : inout   bit;
+           PA13                 : inout   bit;
+           PA24                 : inout   bit;
+           PA25                 : inout   bit;
+           PA26                 : inout   bit;
+           PA12                 : inout   bit;
+           PA11                 : inout   bit;
+           PA10                 : linkage bit;
+           PB0                  : inout   bit;
+           PA9                  : inout   bit;
+           PA8                  : linkage bit;
+           PA7                  : in      bit;
+           TDI                  : in      bit;
+           PA6                  : inout   bit;
+           PA5                  : inout   bit;
+           PA4                  : inout   bit;
+           PA27                 : inout   bit;
+           PA28                 : inout   bit;
+           NRST                 : in      bit;
+           PB1                  : inout   bit;
+           TST                  : in      bit;
+           PA29                 : inout   bit;
+           PA30                 : inout   bit;
+           PA3                  : inout   bit;
+           PA2                  : inout   bit;
+           PA1                  : inout   bit;
+           PA0                  : inout   bit;
+           TDO                  : out     bit;
+           PB2                  : inout   bit;
+           JTAGSEL              : in      bit;
+           TMS                  : in      bit;
+           PA31                 : inout   bit;
+           TCK                  : in      bit;
+           ERASE                : inout   bit;
+           PB10                  : inout   bit;
+           PB11                  : inout   bit;
+           PB13                 : inout   bit;
+           PB3                  : inout   bit;
+           XOUT                 : linkage bit;
+           XIN                  : linkage bit;
+           PB14                 : inout   bit;
+           PA17                 : inout   bit
+           );
+use STD_1149_1_2001.all;
+
+attribute COMPONENT_CONFORMANCE of sam4n16b : entity is "STD_1149_1_2001";
+
+attribute PIN_MAP of sam4n16b: entity is PHYSICAL_PIN_MAP;
+
+-- This section specifies the pin map for each port. This information is
+-- extracted from the port-to-pin map file that was read in using the 
+-- "read_pin_map" command.
+
+constant qfn64: PIN_MAP_STRING :=
+
+        "PA18                        : 10 , "& 
+        "PA21                        : 11 , "& 
+        "PA19                        : 13 , "& 
+        "PA22                        : 14 , "& 
+        "PA23                        : 15 , "& 
+        "PA20                        : 16 , "& 
+        "PA16                        : 19 , "& 
+        "PA15                        : 20 , "& 
+        "PA14                        : 21 , "& 
+        "PA13                        : 22 , "& 
+        "PA24                        : 23 , "& 
+        "PA25                        : 25 , "& 
+        "PA26                        : 26 , "& 
+        "PA12                        : 27 , "& 
+        "PA11                        : 28 , "& 
+        "PA10                        : 29 , "& 
+        "PB0                         : 3, "& 
+        "PA9                         : 30 , "& 
+        "PA8                         : 31 , "& 
+        "PA7                         : 32 , "& 
+        "TDI                         : 33 , "& 
+        "PA6                         : 34 , "& 
+        "PA5                         : 35 , "& 
+        "PA4                         : 36 , "& 
+        "PA27                        : 37 , "& 
+        "PA28                        : 38 , "& 
+        "NRST                        : 39 , "& 
+        "PB1                         : 4, "& 
+        "TST                         : 40 , "& 
+        "PA29                        : 41 , "& 
+        "PA30                        : 42 , "& 
+        "PA3                         : 43 , "& 
+        "PA2                         : 44 , "& 
+        "PA1                         : 47 , "& 
+        "PA0                         : 48 , "& 
+        "TDO                         : 49 , "& 
+        "PB2                         : 5, "& 
+        "JTAGSEL                     : 50 , "& 
+        "TMS                         : 51 , "& 
+        "PA31                        : 52 , "& 
+        "TCK                         : 53 , "& 
+        "ERASE                       : 55 , "& 
+        "PB10                         : 56 , "& 
+        "PB11                         : 57 , "& 
+        "PB13                        : 59 , "& 
+        "PB3                         : 6, "& 
+        "XOUT                        : 61 , "& 
+        "XIN                         : 62 , "& 
+        "PB14                        : 63 , "& 
+        "PA17                        : 9 "; 
+
+-- This section specifies the TAP ports. For the TAP TCK port, the PArameters in 
+-- the brackets are:
+--        First Field : Maximum  TCK frequency.
+--        Second Field: Allowable states TCK may be stopped in.
+
+   attribute TAP_SCAN_CLOCK of TCK : signal is (1.000000e+06, BOTH);
+   attribute TAP_SCAN_IN    of TDI : signal is true;
+   attribute TAP_SCAN_MODE  of TMS : signal is true;
+   attribute TAP_SCAN_OUT   of TDO : signal is true;
+   attribute TAP_SCAN_RESET of NRST: signal is true;
+
+-- Specifies the compliance enable patterns for the design. It lists a set of 
+-- design ports and the values that they should be set to, in order to enable 
+-- compliance to IEEE Std 1149.1
+
+   attribute COMPLIANCE_PATTERNS of sam4n16b: entity is 
+        "(JTAGSEL, TST, PA7) (110)";
+
+   
+-- Specifies the number of bits in the instruction register.
+   
+   attribute INSTRUCTION_LENGTH of sam4n16b: entity is 3;
+   
+-- Specifies the boundary-scan instructions implemented in the design and their 
+-- opcodes.
+   
+   attribute INSTRUCTION_OPCODE of sam4n16b: entity is 
+     "BYPASS (111, 101, 110)," &
+     "EXTEST (000)," &
+     "SAMPLE (100)," &
+     "PRELOAD (100)," &
+     "USER1  (010)," &
+     "HIGHZ  (001)," &
+     "IDCODE (011)";
+   
+-- Specifies the bit pattern that is loaded into the instruction register when 
+-- the TAP controller passes through the Capture-IR state. The standard mandates 
+-- that the two LSBs must be "01". The remaining bits are design specific.
+   
+   attribute INSTRUCTION_CAPTURE of sam4n16b: entity is "001";
+   
+-- Specifies the bit pattern that is loaded into the DEVICE_ID register during 
+-- the IDCODE instruction when the TAP controller passes through the Capture-DR 
+-- state.
+   
+   attribute IDCODE_REGISTER of sam4n16b: entity is 
+     "0000" &                  
+ -- 4-bit version number
+     "0101101100110110" &     
+ -- 16-bit part number
+     "00000011111" &           
+ -- 11-bit identity of the manufacturer
+     "1";                      
+ -- Required by IEEE Std 1149.1
+   
+-- This section specifies the test data register placed between TDI and TDO for 
+-- each implemented instruction.
+   
+   attribute REGISTER_ACCESS of sam4n16b: entity is 
+        "BYPASS    (BYPASS, HIGHZ)," &
+        "BOUNDARY  (EXTEST, SAMPLE, USER1)," &
+        "DEVICE_ID (IDCODE)";
+   
+-- Specifies the length of the boundary scan register.
+   
+   attribute BOUNDARY_LENGTH of sam4n16b: entity is 142;
+   
+-- The following list specifies the characteristics of each cell in the boundary 
+-- scan register from TDI to TDO. The following is a description of the label 
+-- fields:
+--      num     : Is the cell number.
+--      cell    : Is the cell type as defined by the standard.
+--      port    : Is the design port name. Control cells do not have a port 
+--                name.
+--      function: Is the function of the cell as defined by the standard. Is one 
+--                of input, output2, output3, bidir, control or controlr.
+--      safe    : Specifies the value that the BSR cell should be loaded with 
+--                for safe operation when the software might otherwise choose a 
+--                random value.
+--      ccell   : The control cell number. Specifies the control cell that 
+--                drives the output enable for this port.
+--      disval  : Specifies the value that is loaded into the control cell to 
+--                disable the output enable for the corresponding port.
+--      rslt    : Resulting state. Shows the state of the driver when it is 
+--                disabled.
+   
+   attribute BOUNDARY_REGISTER of sam4n16b: entity is 
+--     
+--    num   cell   port                    function      safe  [ccell  disval  
+--    rslt]
+--     
+     "141  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "140  (BC_7,  PA16,                 bidir,        X,    141,    " &
+     "1,      Z),  " &
+     "139  (BC_0,  *,       internal,     X),   " &
+     "138  (BC_0,  *,       internal,     X),   " &
+     "137  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "136  (BC_7,  PA15,                 bidir,        X,    137,    " &
+     "1,      Z),  " &
+     "135  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "134  (BC_7,  PA14,                 bidir,        X,    135,    " &
+     "1,      Z),  " &
+     "133  (BC_0,  *,       internal,     X),   " &
+     "132  (BC_0,  *,       internal,     X),   " &
+     "131  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "130  (BC_7,  PA13,                 bidir,        X,    131,    " &
+     "1,      Z),  " &
+     "129  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "128  (BC_7,  PA24,                 bidir,        X,    129,    " &
+     "1,      Z),  " &
+     "127  (BC_0,  *,       internal,     X),   " &
+     "126  (BC_0,  *,       internal,     X),   " &
+     "125  (BC_0,  *,       internal,     X),   " &
+     "124  (BC_0,  *,       internal,     X),   " &
+     "123  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "122  (BC_7,  PA25,                 bidir,        X,    123,    " &
+     "1,      Z),  " &
+     "121  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "120  (BC_7,  PA26,                 bidir,        X,    121,    " &
+     "1,      Z),  " &
+     "119  (BC_0,  *,       internal,     X),   " &
+     "118  (BC_0,  *,       internal,     X),   " &
+     "117  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "116  (BC_7,  PA12,                 bidir,        X,    117,    " &
+     "1,      Z),  " &
+     "115  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "114  (BC_7,  PA11,                 bidir,        X,    115,    " &
+     "1,      Z),  " &
+     "113  (BC_0,  *,       internal,     X),   " &
+     "112  (BC_0,  *,       internal,     X),   " &
+     "111  (BC_0,  *,       internal,     X),    " & 
+     "110  (BC_0,  *,       internal,     X),    " &  
+     "109  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "108  (BC_7,  PA9,                  bidir,        X,    109,    " &
+     "1,      Z),  " &
+     "107  (BC_0,  *,       internal,     X),   " &
+     "106  (BC_0,  *,       internal,     X),   " &
+     "105  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "104  (BC_7,  PA6,                  bidir,        X,    105,    " &
+     "1,      Z),  " &
+     "103  (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "102  (BC_7,  PA5,                  bidir,        X,    103,    " &
+     "1,      Z),  " &
+     "101  (BC_0,  *,       internal,     X),   " &
+     "100  (BC_0,  *,       internal,     X),   " &
+     "99   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "98   (BC_7,  PA4,                  bidir,        X,    99,     " &
+     "1,      Z),  " &
+     "97   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "96   (BC_7,  PA27,                 bidir,        X,    97,     " &
+     "1,      Z),  " &
+     "95   (BC_0,  *,       internal,     X),   " &
+     "94   (BC_0,  *,       internal,     X),   " &
+     "93   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "92   (BC_7,  PA28,                 bidir,        X,    93,     " &
+     "1,      Z),  " &
+     "91   (BC_0,  *,       internal,     X),   " &
+     "90   (BC_0,  *,       internal,     X),   " &
+     "89   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "88   (BC_7,  PA29,                 bidir,        X,    89,     " &
+     "1,      Z),  " &
+     "87   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "86   (BC_7,  PA30,                 bidir,        X,    87,     " &
+     "1,      Z),  " &
+     "85   (BC_0,  *,       internal,     X),   " &
+     "84   (BC_0,  *,       internal,     X),   " &
+     "83   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "82   (BC_7,  PA3,                  bidir,        X,    83,     " &
+     "1,      Z),  " &
+     "81   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "80   (BC_7,  PA2,                  bidir,        X,    81,     " &
+     "1,      Z),  " &
+     "79   (BC_0,  *,       internal,     X),   " &
+     "78   (BC_0,  *,       internal,     X),   " &
+     "77   (BC_0,  *,       internal,     X),   " &
+     "76   (BC_0,  *,       internal,     X),   " &
+     "75   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "74   (BC_7,  PA1,                  bidir,        X,    75,     " &
+     "1,      Z),  " &
+     "73   (BC_0,  *,       internal,     X),   " &
+     "72   (BC_0,  *,       internal,     X),   " &
+     "71   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "70   (BC_7,  PA0,                  bidir,        X,    71,     " &
+     "1,      Z),  " &
+     "69   (BC_0,  *,       internal,     X),   " &
+     "68   (BC_0,  *,       internal,     X),   " &
+     "67   (BC_0,  *,       internal,     X),   " &
+     "66   (BC_0,  *,       internal,     X),   " &
+     "65   (BC_0,  *,       internal,     X),   " &
+     "64   (BC_0,  *,       internal,     X),   " &
+     "63   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "62   (BC_7,  PA31,                 bidir,        X,    63,     " &
+     "1,      Z),  " &
+     "61   (BC_0,  *,       internal,     X),   " &
+     "60   (BC_0,  *,       internal,     X),   " &
+     "59   (BC_0,  *,       internal,     X),   " &
+     "58   (BC_0,  *,       internal,     X),   " &
+     "57   (BC_0,  *,       internal,     X),   " &
+     "56   (BC_0,  *,       internal,     X),   " &
+     "55   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "54   (BC_7,  ERASE,                   bidir,        X,    55,     " &
+     "1,      Z),  " &
+     "53   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "52   (BC_7,  PB10,                   bidir,        X,    53,     " &
+     "1,      Z),  " &
+     "51   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "50   (BC_7,  PB11,                   bidir,        X,    51,     " &
+     "1,      Z),  " &
+     "49   (BC_0,  *,       internal,     X),   " &
+     "48   (BC_0,  *,       internal,     X),   " &
+     "47   (BC_0,  *,       internal,     X),   " &
+     "46   (BC_0,  *,       internal,     X),   " &
+     "45   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "44   (BC_7,  PB13,                   bidir,        X,    45,     " &
+     "1,      Z),  " &
+     "43   (BC_0,  *,       internal,     X),   " &
+     "42   (BC_0,  *,       internal,     X),   " &
+     "41   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "40   (BC_7,  PB14,                   bidir,        X,    41,     " &
+     "1,      Z),  " &
+     "39   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "38   (BC_7,  PB0,                    bidir,        X,    39,     " &
+     "1,      Z),  " &
+     "37   (BC_0,  *,       internal,     X),   " &
+     "36   (BC_0,  *,       internal,     X),   " &
+     "35   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "34   (BC_7,  PB1,                    bidir,        X,    35,     " &
+     "1,      Z),  " &
+     "33   (BC_0,  *,       internal,     X),   " &
+     "32   (BC_0,  *,       internal,     X),   " &
+     "31   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "30   (BC_7,  PB2,                    bidir,        X,    31,     " &
+     "1,      Z),  " &
+     "29   (BC_0,  *,       internal,     X),   " &
+     "28   (BC_0,  *,       internal,     X),   " &
+     "27   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "26   (BC_7,  PB3,                    bidir,        X,    27,     " &
+     "1,      Z),  " &
+     "25   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "24   (BC_7,  PA17,                 bidir,        X,    25,     " &
+     "1,      Z),  " &
+     "23   (BC_0,  *,       internal,     X),   " &
+     "22   (BC_0,  *,       internal,     X),   " &
+     "21   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "20   (BC_7,  PA18,                 bidir,        X,    21,     " &
+     "1,      Z),  " &
+     "19   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "18   (BC_7,  PA21,                 bidir,        X,    19,     " &
+     "1,      Z),  " &
+     "17   (BC_0,  *,       internal,     X),   " &
+     "16   (BC_0,  *,       internal,     X),   " &
+     "15   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "14   (BC_7,  PA19,                 bidir,        X,    15,     " &
+     "1,      Z),  " &
+     "13   (BC_0,  *,       internal,     X),   " &
+     "12   (BC_0,  *,       internal,     X),   " &
+     "11   (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "10   (BC_7,  PA22,                 bidir,        X,    11,     " &
+     "1,      Z),  " &
+     "9    (BC_0,  *,       internal,     X),   " &
+     "8    (BC_0,  *,       internal,     X),   " &
+     "7    (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "6    (BC_7,  PA23,                 bidir,        X,    7,      " &
+     "1,      Z),  " &
+     "5    (BC_0,  *,       internal,     X),   " &
+     "4    (BC_0,  *,       internal,     X),   " &
+     "3    (BC_1,  *,                      control,      " &
+     "1),                        " &
+     "2    (BC_7,  PA20,                 bidir,        X,    3,      " &
+     "1,      Z),  " &
+     "1    (BC_0,  *,       internal,     X),   " &
+     "0    (BC_0,  *,       internal,     X)   ";
+ 
+ end sam4n16b;

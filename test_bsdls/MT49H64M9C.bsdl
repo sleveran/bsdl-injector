@@ -1,0 +1,270 @@
+--****************************************************************
+--*
+--*    File Name:  MT49H64M9C.BSDL  
+--*     Revision:  1.2
+--*         Date:  Aug 24, 2007
+--*        Model:  BSDL
+--*    Simulator:  Agilent Technologies
+--*
+--* Dependencies:  None
+--*
+--*       Author:  Brian Gross
+--*        Email:  bgross@micron.com
+--*        Phone:  (208)363-1961
+--*      Company:  Micron Technology, Inc.
+--*        Model:  MT49H64M9C (64M x 9 SIO RLDRAM II)
+--*
+--*  Description:  Micron 64M x 9 SIO BSDL model
+--*
+--*   Limitation:  IEEE 1149.1 Serial Boundary Scan (JTAG) 
+--*
+--*                Disclaimer:  THESE DESIGNS ARE PROVIDED
+--*                "AS IS" WITH NO WARRANTY WHATSOEVER AND  
+--*                MICRON SPECIFICALLY DISCLAIMS ANY IMPLIED
+--*                WARRANTIES OF MERCHANTABILITY, FITNESS FOR
+--*                A PARTICULAR PURPOSE, OR AGAINST INFRINGEMENT.
+--*
+--*                Copyright (C) 1998
+--*                Micron Semiconductor Products, Inc.
+--*                All rights reserved
+--*
+--* Rev	  Author   Date     Changes
+--* ---------------------------------------------------------------------------   
+--* 1.2	  BCG	   8/24/07  * Added Rev History
+--*		            * Corrected the order of the bidir/control pins as they were backwards 
+--* 
+--***************************************************************/
+
+entity  MT49H64M9C is
+
+generic (PHYSICAL_PIN_MAP : string := "FBGA");
+
+port  (
+               A:   in                 bit_vector(0 to 21);
+               B:   in                 bit_vector(0 to 2);
+               D:   in                 bit_vector(0 to 8);
+               Q:   out                bit_vector(0 to 8);
+            QK_n:   buffer             bit; 
+              QK:   buffer             bit;
+              DK:   in                 bit;
+            DK_n:   in                 bit;
+              DM:   in                 bit;
+              CK:   in                 bit;
+            CK_n:   in                 bit;
+            WE_n:   in                 bit;
+           REF_n:   in                 bit;
+            CS_n:   in                 bit;
+              ZQ:   in                 bit;
+             TMS:   in                 bit;
+            QVLD:   buffer             bit;
+             TDI:   in                 bit;
+             TCK:   in                 bit;
+             TDO:   out                bit;
+            VEXT:   linkage bit_vector(0 to 3);
+            VREF:   linkage bit_vector(0 to 1);
+             Vdd:   linkage bit_vector(0 to 14);
+	    VddL:   linkage bit;
+             Vss:   linkage bit_vector(0 to 14);
+	    VssL:   linkage bit;
+            VssQ:   linkage bit_vector(0 to 11);
+            VddQ:   linkage bit_vector(0 to 7);
+             VTT:   linkage bit_vector(0 to 3);
+              NC:   linkage bit_vector(0 to 20));
+
+             use STD_1149_1_1994.all;
+
+         attribute COMPONENT_CONFORMANCE of MT49H64M9C : entity is
+
+            "STD_1149_1_1993";
+
+         attribute PIN_MAP of  MT49H64M9C : entity is PHYSICAL_PIN_MAP;
+
+            constant FBGA : PIN_MAP_STRING:=  
+
+       "       A:    (G12,G11,G10,H12,H11,F1,G2,G3,G1,H2,M12,  " &
+       "              M11,M10,L12,L11,P1,M2,M3,N1,N12,E12,E1), " & --Address
+       "       B:    (J11,K11,H1),                 " &  --Bank Address
+       "    VEXT:    (A3,A10,V3,V10),              " &  --Power Supply
+       "      DM:     P12,                         " &  --Input Data Mask
+       "      QK:     D11,                        " &  --Output Data Clock
+       "    QK_n:     D10,                         " &  --Output Data Clock 
+       "      DK:     K1,                          " &  --Input Data Clock
+       "    DK_n:     K2,                          " &  --Input Data Clock 
+       "      CK:     J12,                         " &  --Pos Clock
+       "    CK_n:     K12,                         " &  --Neg Clock
+       "   REF_n:     L1,                          " &  --Command control
+       "    QVLD:     F12,                         " &  --Data Valid
+       "    CS_n:     L2,                          " &  --Neg Chip Select
+       "    WE_n:     M1,                          " &  --Command control
+       "      ZQ:     V2,                          " &  --Impedance control 
+       "      D:     (B11,C11,E11,F11,N11,P11,     " &
+       "              R11,T11,U11), 	           " &                                      
+       "      Q:     (B10,C10,E10,F10,N10,P10,     " &
+       "              R10,T10,U10),  	           " &                                      
+       "     TMS:     A11,                  " &     --Test Mode Select
+       "     TDI:     V12,                  " &     --Test Data-In
+       "     TCK:     A12,                  " &     --Test Clock
+       "     TDO:     V11,                  " &     --Test Data-Out
+       "    VREF:    (A1,V1),               " &     --HSTL Input Ref Voltage
+       "     VDD:    (B1,B12,G4,G9,J3,J4,J9,K3,K4,       " & --Power Supply
+       "              K9,K10,M4,M9,U1,U12),              " & 
+       "    VDDL:     J10,				 " & --Isolated DLL Power Supply
+       "     VSS:    (A2,A4,A9,D12,H3,H4,H9,L3,L4,L9,L10,      " & --GND
+       "              R1,R12,V4,V9),                     " &
+       "    VSSL:     H10,				 " & --Isolated DLL GND
+       "     VTT:    (C1,C12,T1,T12),             " & --Isolated Term Supply
+       "    VSSQ:    (B4,B9,D4,D9,F4,F9,N4,N9,R4,R9,U4,U9),   " & --Isolated
+                                                		  -- Output Buffer Supply, GND
+       "    VDDQ:    (C4,C9,E4,E9,P4,P9,T4,T9),          " & --Power Supply
+       "      NC:    (B2,B3,C2,C3,D1,D2,D3,E2,E3,F2,F3,J1,J2,N2,N3,P2,P3,T2,T3,U2,U3)  " ; --No Connection   
+         attribute TAP_SCAN_IN         of    TDI : signal is true;
+         attribute TAP_SCAN_OUT        of    TDO : signal is true;
+         attribute TAP_SCAN_MODE       of    TMS : signal is true;
+         attribute TAP_SCAN_CLOCK      of    TCK : signal is (10.0e6, BOTH);
+
+         attribute INSTRUCTION_LENGTH of MT49H64M9C : entity is 8;   
+
+         attribute INSTRUCTION_OPCODE of MT49H64M9C : entity is
+
+                   "EXTEST            (00000000),  " &                    
+                   "SAMPLEZ           (00000011),  " &
+                   "SAMPLE            (00000101),  " &
+                   "CLAMP             (00000111),  " & 
+                   "IDCODE            (00100001),  " & 
+                   "BYPASS            (11111111)   " ;
+
+         attribute INSTRUCTION_CAPTURE of MT49H64M9C : entity is 
+
+                   "00100001";
+                  
+         attribute IDCODE_REGISTER of  MT49H64M9C : entity is
+
+                   "0000"               & --Die Rev & Width
+                   "0001100110100111"   & --Device ID
+                   "00000101100"        & --MICRON JEDEC ID
+                   "1"                  ; --ID REGISTER PRESENCE INDICATOR
+
+        attribute REGISTER_ACCESS of MT49H64M9C : entity is
+                   
+                   "BOUNDARY           (EXTEST,SAMPLE)," &
+                   "BYPASS             (SAMPLEZ,CLAMP,BYPASS)";
+
+        attribute BOUNDARY_LENGTH  of MT49H64M9C : entity is 113;
+
+        attribute BOUNDARY_REGISTER  of  MT49H64M9C : entity is
+
+                  "0        (BC_1, DK,         input,    X), " &
+                  "1        (BC_1, DK_n,       input,    X), " &
+                  "2        (BC_1, CS_n,       input,    X), " &
+                  "3        (BC_1, REF_n,      input,    X), " &
+                  "4        (BC_1, WE_n,       input,    X), " &
+                  "5        (BC_1, A(17),      input,    X), " &
+                  "6        (BC_1, A(16),      input,    X), " &
+                  "7        (BC_1, A(18),      input,    X), " &
+                  "8        (BC_1, A(15),      input,    X), " &
+                  "9        (BC_4, *,          internal, X), " &
+                 "10        (BC_4, *,          internal, X), " &
+                 "11        (BC_4, *,          internal, X), " &
+                 "12        (BC_4, *,          internal, X), " &
+                 "13        (BC_4, *,          internal, X), " &
+                 "14        (BC_4, *,          internal, X), " &
+                 "15        (BC_4, *,          internal, X), " &
+                 "16        (BC_4, *,          internal, X), " &
+                 "17        (BC_4, *,          internal, X), " &
+                 "18        (BC_4, *,          internal, X), " &
+                 "19        (BC_4, *,          internal, X), " &
+                 "20        (BC_4, *,          internal, X), " &
+                 "21        (BC_4, *,          internal, X), " &
+                 "22        (BC_4, *,          internal, X), " &
+                 "23        (BC_4, *,          internal, X), " &
+                 "24        (BC_4, *,          internal, X), " &
+                 "25        (BC_4, *,          internal, X), " &
+                 "26        (BC_4, *,          internal, X), " &
+                 "27        (BC_1, ZQ,         input,    X), " &
+                 "28        (BC_2, *,          control,  0), " &
+                 "29        (BC_1, Q(8),       output3,  X, 28, 0, Z), " &
+                 "30        (BC_4, *,          internal, X), " &
+                 "31        (BC_1, D(8),       input,    X), " &
+                 "32        (BC_2, *,          control,  0), " &
+                 "33        (BC_1, Q(7),       output3,  X, 32, 0, Z), " &
+                 "34        (BC_4, *,          internal, X), " &
+                 "35        (BC_1, D(7),       input,    X), " &
+                 "36        (BC_2, *,          control,  0), " &
+                 "37        (BC_1, Q(6),       output3,  X, 36, 0, Z), " &
+                 "38        (BC_4, *,          internal, X), " &
+                 "39        (BC_1, D(6),       input,    X), " &
+                 "40        (BC_4, *,          internal, X), " &
+                 "41        (BC_1, D(5),       input,    X), " &
+                 "42        (BC_2, *,          control,  0), " &
+                 "43        (BC_1, Q(5),       output3,  X, 42, 0, Z), " &
+                 "44        (BC_4, *,          internal, X), " &
+                 "45        (BC_1, D(4),       input,    X), " &
+                 "46        (BC_2, *,          control,  0), " &
+                 "47        (BC_1, Q(4),       output3,  X, 46, 0, Z), " &
+                 "48        (BC_1, DM,         input,    X), " &
+                 "49        (BC_1, A(19),      input,    X), " &
+                 "50        (BC_1, A(11),      input,    X), " &
+                 "51        (BC_1, A(12),      input,    X), " &
+                 "52        (BC_1, A(10),      input,    X), " &
+                 "53        (BC_1, A(13),      input,    X), " &
+                 "54        (BC_1, A(14),      input,    X), " &
+                 "55        (BC_1, B(1),       input,    X), " &
+                 "56        (BC_4, CK_n,       input,    X), " &
+                 "57        (BC_4, CK,         input,    X), " &
+                 "58        (BC_1, B(0),       input,    X), " &
+                 "59        (BC_1, A(4),       input,    X), " &
+                 "60        (BC_1, A(3),       input,    X), " &
+                 "61        (BC_1, A(0),       input,    X), " &
+                 "62        (BC_1, A(2),       input,    X), " &
+                 "63        (BC_1, A(1),       input,    X), " &
+                 "64        (BC_1, A(20),      input,    X), " &
+                 "65        (BC_1, QVLD,       output2,  X), " &
+                 "66        (BC_2, *,          control,  0), " &
+                 "67        (BC_1, Q(3),       output3,  X, 66, 0, Z), " &
+                 "68        (BC_4, *,          internal, X), " &
+                 "69        (BC_1, D(3),       input,    X), " &
+                 "70        (BC_2, *,          control,  0), " &
+                 "71        (BC_1, Q(2),       output3,  X, 70, 0, Z), " &
+                 "72        (BC_2, *,          internal, X), " &
+                 "73        (BC_1, D(2),       input,    X), " &
+                 "74        (BC_1, QK,         output2,  X), " &
+                 "75        (BC_1, QK_n,       output2,  X), " &
+                 "76        (BC_4, *,          internal, X), " &
+                 "77        (BC_1, D(1),       input,    X), " &
+                 "78        (BC_2, *,          control,  0), " &
+                 "79        (BC_1, Q(1),       output3,  X, 78, 0, Z), " &
+                 "80        (BC_4, *,          internal, X), " &
+                 "81        (BC_1, D(0),       input,    X), " &
+                 "82        (BC_2, *,          control,  0), " &
+                 "83        (BC_1, Q(0),       output3,  X, 82, 0, Z), " &
+                 "84        (BC_4, *,          internal, X), " &
+                 "85        (BC_4, *,          internal, X), " &
+                 "86        (BC_4, *,          internal, X), " &
+                 "87        (BC_4, *,          internal, X), " &
+                 "88        (BC_4, *,          internal, X), " &
+                 "89        (BC_4, *,          internal, X), " &
+                 "90        (BC_4, *,          internal, X), " &
+                 "91        (BC_4, *,          internal, X), " &
+                 "92        (BC_4, *,          internal, X), " &
+                 "93        (BC_4, *,          internal, X), " &
+                 "94        (BC_4, *,          internal, X), " &
+                 "95        (BC_4, *,          internal, X), " &
+                 "96        (BC_4, *,          internal, X), " &
+                 "97        (BC_4, *,          internal, X), " &
+                 "98        (BC_4, *,          internal, X), " &
+                 "99        (BC_4, *,          internal, X), " &
+                "100        (BC_4, *,          internal, X), " &
+                "101        (BC_4, *,          internal, X), " &
+                "102        (BC_4, *,          internal, X), " &
+                "103        (BC_4, *,          internal, X), " &
+                "104        (BC_1, A(21),      input,    X), " &
+                "105        (BC_1, A(5),       input,    X), " &
+                "106        (BC_1, A(6),       input,    X), " &
+                "107        (BC_1, A(7),       input,    X), " &
+                "108        (BC_1, A(8),       input,    X), " &
+                "109        (BC_1, B(2),       input,    X), " &
+                "110        (BC_1, A(9),       input,    X), " &
+                "111        (BC_4, *,          internal, X), " &
+                "112        (BC_4, *,          internal, X) " ;
+
+end MT49H64M9C;

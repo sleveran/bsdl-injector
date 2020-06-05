@@ -1,0 +1,194 @@
+-----------------------------------------------------------------------------------
+-- DATE & TIME    :  Mon Jul  2 10:28:33 2007
+-- File Type      :  BSDL Description for Top-Level Entity PI7C9X20303UL
+-----------------------------------------------------------------------------------
+
+ entity PI7C9X20303UL is 
+
+    generic(PHYSICAL_PIN_MAP : string := "BGA148"); 
+
+    port (
+              DEBUG_OUT            : inout        bit_vector(15 downto 0);
+              DM_L                 : in           bit;
+              EECLK                : out          bit;
+              EEPD                 : inout        bit;
+              GPIO                 : inout        bit_vector(7 downto 0);
+              LANEACT              : out          bit_vector(3 downto 0);
+              PERST_L              : in           bit;
+              WAKE_L               : in           bit;
+              VDDC                 : linkage      bit_vector(10 downto 0);
+              VSSC                 : linkage      bit_vector(6 downto 0);
+              VSSR                 : linkage      bit;
+              VSS                  : linkage      bit;
+              VDDR                 : linkage      bit_vector(7 downto 0);
+              VDDCAUX              : linkage      bit;
+              VAUX                 : linkage      bit;
+              CLKINP               : linkage      bit;
+              CLKINN               : linkage      bit;
+              RXN04                : linkage      bit;
+              RXP04                : linkage      bit;
+              RXN05                : linkage      bit;
+              RXP05                : linkage      bit;
+              RXN07                : linkage      bit;
+              RXP07                : linkage      bit;
+              TXN04                : linkage      bit;
+              TXP04                : linkage      bit;
+              TXN05                : linkage      bit;
+              TXP05                : linkage      bit;
+              TXN07                : linkage      bit;
+              TXP07                : linkage      bit;
+              JTG_TDI              : in           bit;
+              JTG_TMS              : in           bit;
+              JTG_TCK              : in           bit;
+              JTG_TDO              : out          bit;
+              JTG_TRST_L           : in           bit
+         ); 
+
+    use STD_1149_1_1994.all; -- Get IEEE 1149.1-1994 attributes and definitions 
+
+    attribute COMPONENT_CONFORMANCE of PI7C9X20303UL : entity is "STD_1149_1_1993";
+
+    attribute PIN_MAP of PI7C9X20303UL : entity is PHYSICAL_PIN_MAP; 
+
+    constant BGA148 : PIN_MAP_STRING := 
+       "DEBUG_OUT: (B18,A18,B15,A17,B9,A10,B8,B7,A8,B6,A7,B5,A5,A71,B59,A70)," & 
+       "DM_L: A38," & 
+       "VDDC: (B2,A9,B14,A21,B20,B22,A28,A29,A33,A57,A69)," & 
+       "VSSC: (B1,B16,B21,B25,B30,B32,B45)," & 
+       "VSSR: B60," & 
+       "VSS: B41," & 
+       "VDDR: (A6,A11,B17,A22,B23,B26,B47,B58)," & 
+       "VDDCAUX: B3," & 
+       "VAUX: A4," & 
+       "CLKINP: B42," & 
+       "CLKINN: B43," & 
+       "RXN04: B48," & 
+       "RXP04: A58," & 
+       "RXN05: A64," & 
+       "RXP05: B53," & 
+       "RXN07: B57," & 
+       "RXP07: A68," & 
+       "TXN04: A61," & 
+       "TXP04: A60," & 
+       "TXN05: A62," & 
+       "TXP05: B52," & 
+       "TXN07: A66," & 
+       "TXP07: B56," & 
+       "DM_L: A38," & 
+       "DWNRST_L: (B46,B44,A52)," & 
+       "EECLK: A23," & 
+       "EEPD: B19," & 
+       "GPIO: (B13,A15,B12,A14,B11,A13,A12,B10)," & 
+       "LANEACT: (A30,B24,A27,A26)," & 
+       "PERST_L: A25," & 
+       "WAKE_L: B4," & 
+       "JTG_TDI: B29," & 
+       "JTG_TMS: A34," & 
+       "JTG_TCK: B27," & 
+       "JTG_TDO: A32," & 
+       "JTG_TRST_L: B31";
+
+    attribute TAP_SCAN_IN of JTG_TDI : signal is true; 
+    attribute TAP_SCAN_MODE of JTG_TMS : signal is true; 
+    attribute TAP_SCAN_OUT of JTG_TDO : signal is true; 
+    attribute TAP_SCAN_CLOCK of JTG_TCK : signal is (20.0e6, BOTH); 
+    attribute TAP_SCAN_RESET of JTG_TRST_L : signal is true; 
+
+    attribute INSTRUCTION_LENGTH of PI7C9X20303UL : entity is 5;
+    attribute INSTRUCTION_OPCODE of PI7C9X20303UL : entity is 
+        "extest (00000),"  & 
+        "bypass (11111),"  & 
+        "sample (00001),"  & 
+        "mem_bist (01010),"  & 
+        "phy_test_sig (01001),"  & 
+        "int_scan (00010),"  & 
+        "idcode (01100),"  & 
+        "clamp (00100),"  & 
+        "highz (00101)"; 
+
+    attribute INSTRUCTION_CAPTURE of PI7C9X20303UL : entity is "00001";
+    attribute IDCODE_REGISTER of PI7C9X20303UL : entity is 
+        "0001"  &                -- Version Number 
+        "0000010000000100"  &    -- Part Number 
+        "01000111111"  &         -- Manufacturer ID 
+        "1";                     -- Required by IEEE Std. 1149.1-1990 
+
+    attribute INSTRUCTION_PRIVATE of PI7C9X20303UL : entity is
+     "int_scan, mem_bist, phy_test_sig";
+
+    attribute REGISTER_ACCESS of PI7C9X20303UL : entity is 
+        "BOUNDARY (extest, sample), " & 
+        "DEVICE_ID (idcode), " & 
+        "BYPASS (bypass, clamp, highz)"; 
+
+    attribute BOUNDARY_LENGTH of PI7C9X20303UL : entity is 64;
+    attribute BOUNDARY_REGISTER of PI7C9X20303UL : entity is 
+      --- num            cell                 port      function   safe  [ccell  disval  rslt]
+       "0    (           BC_4,              WAKE_L,        input,     X)," & 
+       "1    (           BC_7,        DEBUG_OUT(3),        bidir,     X,      4,      0,    Z)," & 
+       "2    (           BC_7,        DEBUG_OUT(4),        bidir,     X,      4,      0,    Z)," & 
+       "3    (           BC_7,        DEBUG_OUT(5),        bidir,     X,      4,      0,    Z)," & 
+       "4    (         BC_2_A,                   *,      control,     0)," & 
+       "5    (           BC_7,        DEBUG_OUT(6),        bidir,     X,      4,      0,    Z)," & 
+       "6    (           BC_7,        DEBUG_OUT(7),        bidir,     X,      4,      0,    Z)," & 
+       "7    (           BC_7,        DEBUG_OUT(8),        bidir,     X,      4,      0,    Z)," & 
+       "8    (           BC_7,        DEBUG_OUT(9),        bidir,     X,      4,      0,    Z)," & 
+       "9    (           BC_7,       DEBUG_OUT(10),        bidir,     X,      4,      0,    Z)," & 
+       "10   (           BC_7,       DEBUG_OUT(11),        bidir,     X,      4,      0,    Z)," & 
+       "11   (           BC_7,             GPIO(0),        bidir,     X,     12,      0,    Z)," & 
+       "12   (         BC_2_A,                   *,      control,     0)," & 
+       "13   (           BC_7,             GPIO(1),        bidir,     X,     14,      0,    Z)," & 
+       "14   (         BC_2_A,                   *,      control,     0)," & 
+       "15   (           BC_7,             GPIO(2),        bidir,     X,     16,      0,    Z)," & 
+       "16   (         BC_2_A,                   *,      control,     0)," & 
+       "17   (           BC_7,             GPIO(3),        bidir,     X,     18,      0,    Z)," & 
+       "18   (         BC_2_A,                   *,      control,     0)," & 
+       "19   (           BC_7,             GPIO(4),        bidir,     X,     20,      0,    Z)," & 
+       "20   (         BC_2_A,                   *,      control,     0)," & 
+       "21   (           BC_7,             GPIO(5),        bidir,     X,     22,      0,    Z)," & 
+       "22   (         BC_2_A,                   *,      control,     0)," & 
+       "23   (           BC_7,             GPIO(6),        bidir,     X,     24,      0,    Z)," & 
+       "24   (         BC_2_A,                   *,      control,     0)," & 
+       "25   (           BC_7,             GPIO(7),        bidir,     X,     26,      0,    Z)," & 
+       "26   (         BC_2_A,                   *,      control,     0)," & 
+       "27   (           BC_7,       DEBUG_OUT(12),        bidir,     X,      4,      0,    Z)," & 
+       "28   (           BC_7,       DEBUG_OUT(13),        bidir,     X,      4,      0,    Z)," & 
+       "29   (           BC_7,       DEBUG_OUT(14),        bidir,     X,      4,      0,    Z)," & 
+       "30   (           BC_7,       DEBUG_OUT(15),        bidir,     X,      4,      0,    Z)," & 
+       "31   (           BC_1,               EECLK,      output2,     X)," & 
+       "32   (           BC_7,                EEPD,        bidir,     X,     33,      0,    Z)," & 
+       "33   (         BC_2_A,                   *,      control,     0)," & 
+       "34   (           BC_4,             PERST_L,        input,     X)," & 
+       "35   (           BC_1,          	 *,     internal,     X)," & 
+       "36   (           BC_1,          	 *,     internal,     X)," & 
+       "37   (           BC_1,          LANEACT(0),      output2,     X)," & 
+       "38   (           BC_1,          	 *,     internal,     X)," & 
+       "39   (           BC_1,          	 *,     internal,     X)," & 
+       "40   (           BC_1,          LANEACT(1),      output2,     X)," & 
+       "41   (           BC_4,          	 *,     internal,     X)," & 
+       "42   (           BC_4,          	 *,     internal,     X)," & 
+       "43   (           BC_1,          LANEACT(2),      output2,     X)," & 
+       "44   (           BC_4,          	 *,     internal,     X)," & 
+       "45   (           BC_4,          	 *,     internal,     X)," & 
+       "46   (           BC_1,          	 *,     internal,     X)," & 
+       "47   (           BC_1,          	 *,     internal,     X)," & 
+       "48   (           BC_4,          	 *,     internal,     X)," & 
+       "49   (           BC_4,          	 *,     internal,     X)," & 
+       "50   (           BC_1,          LANEACT(3),      output2,     X)," & 
+       "51   (           BC_4,                DM_L,        input,     X)," & 
+       "52   (           BC_1,         		 *,     internal,     X)," & 
+       "53   (           BC_1,         		 *,     internal,     X)," & 
+       "54   (           BC_1,         		 *,     internal,     X)," & 
+       "55   (           BC_1,         	 	 *,     internal,     X)," & 
+       "56   (           BC_7,        DEBUG_OUT(0),        bidir,     X,      4,      0,    Z)," & 
+       "57   (           BC_1,          	 *,     internal,     X)," & 
+       "58   (           BC_4,          	 *,     internal,     X)," & 
+       "59   (           BC_7,        DEBUG_OUT(1),        bidir,     X,      4,      0,    Z)," & 
+       "60   (           BC_4,          	 *,     internal,     X)," & 
+       "61   (           BC_1,          	 *,     internal,     X)," & 
+       "62   (           BC_4,          	 *,     internal,     X)," & 
+       "63   (           BC_7,        DEBUG_OUT(2),        bidir,     X,      4,      0,    Z)";
+
+ end PI7C9X20303UL;
+
+        

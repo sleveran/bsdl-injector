@@ -1,0 +1,2248 @@
+---------------------------------------------------------------------------
+--
+--  Boundary Scan Descriptor Language (BSDL) for:
+--
+--    CPC710_133
+--    35mm, 728 pin FC-PBGA
+--    Revision 3.0
+--
+--    MaxFreq    Pkg size/pitch  shipping       Orderable P/N       IBM P/N
+--    -------    --------------  ---------  ---------------------   -------
+--    133 MHz     35mm/1.27mm      tray     IBM25CPC710CF3B133      06K9035
+--
+--
+--  This BSDL also requires the file IBMDFT_1149_1_1998.bsdl
+--
+---------------------------------------------------------------------------
+--
+--  Please direct all inquiries regarding this file to Embedded PowerPC
+--  Technical Support: ppcsupp@us.ibm.com
+--
+--    Version    Date
+--    -------  ---------
+--      1.0    14-MAR-01  CPC710 Rev 3.0 Model (35mm package)
+--      1.01   23-OCT-01  Updated disclaimer
+--
+--  Copyright 2001, IBM. All Rights Reserved
+--
+---------------------------------------------------------------------------
+--
+-- This information is for modeling purposes only, and is not guaranteed.
+--
+-- The following are trademarks of International Business Machines
+-- Corporation in the United States,  or other countries, or both:
+--
+--  IBM   IBM Logo   PowerPC   PowerPC Logo
+--
+-- Other company,  product and service names may be trademarks or
+-- service marks of others.
+--
+-- THIS INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+-- KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION,
+-- THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+-- PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  SOME JURISDICTIONS
+-- DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO THE
+-- ABOVE EXCLUSION MAY NOT APPLY TO YOU.
+--
+-- This Information may contain technical inaccuracies or
+-- typographical errors.  IBM reserves the right to modify or
+-- withdraw this information at any time without notice.
+-- All information contained in this document was obtained in 
+-- specific environments, and is presented as an illustration. 
+-- The results obtained in other operating environments may vary.	
+--
+-- IN NO EVENT WILL IBM BE LIABLE TO ANY PARTY FOR ANY DIRECT,
+-- INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES FOR ANY USE OF
+-- THIS INFORMATION, INCLUDING, WITHOUT LIMITATION, ANY LOST
+-- PROFITS, BUSINESS INTERRUPTION, LOSS OF PROGRAMS OR OTHER
+-- DATA ON YOUR INFORMATION HANDLING SYSTEM OR OTHERWISE, EVEN
+-- IF WE ARE EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH
+-- DAMAGES.
+--
+-- The information contained in this document is subject to 
+-- change without notice.  The information contained in this 
+-- document does not affect or change IBM's product specification
+-- or warranties.  Nothing in this document shall operate as an 
+-- express or implied license or indemnity under the intellectual
+-- property rights of IBM or third parties.
+--
+---------------------------------------------------------------------------
+                                                                                                   --
+entity CPC710_133 is
+--Generic Parameter
+generic (PHYSICAL_PIN_MAP: string := "IPN0848DMI_FCPG35S_03MP");
+
+--Logical Port Description
+port (
+   BS0             : out                              bit;
+   BS1             : out                              bit;
+   CE0_TEST        : in                               bit;
+   CHKSTOP_N       : out                              bit;
+   DRAMGNT_N       : buffer                           bit;
+   DRAMREQ_N       : in                               bit;
+   FLASH_CE_N      : buffer                           bit;
+   FLASH_OE_N      : buffer                           bit;
+   FLASH_WE_N      : buffer                           bit;
+   G_ACK64_N       : inout                            bit;
+   G_ADH0          : inout                            bit;
+   G_ADH1          : inout                            bit;
+   G_ADH3          : inout                            bit;
+   G_ADH4          : inout                            bit;
+   G_ADH5          : inout                            bit;
+   G_ADH6          : inout                            bit;
+   G_ADH7          : inout                            bit;
+   G_ADH8          : inout                            bit;
+   G_ADH9          : inout                            bit;
+   G_ADH2          : inout                            bit;
+   G_ADH10         : inout                            bit;
+   G_ADH11         : inout                            bit;
+   G_ADH12         : inout                            bit;
+   G_ADH13         : inout                            bit;
+   G_ADH14         : inout                            bit;
+   G_ADH15         : inout                            bit;
+   G_ADH16         : inout                            bit;
+   G_ADH17         : inout                            bit;
+   G_ADH18         : inout                            bit;
+   G_ADH19         : inout                            bit;
+   G_ADH20         : inout                            bit;
+   G_ADH21         : inout                            bit;
+   G_ADH22         : inout                            bit;
+   G_ADH23         : inout                            bit;
+   G_ADH24         : inout                            bit;
+   G_ADH25         : inout                            bit;
+   G_ADH26         : inout                            bit;
+   G_ADH27         : inout                            bit;
+   G_ADH28         : inout                            bit;
+   G_ADH29         : inout                            bit;
+   G_ADH30         : inout                            bit;
+   G_ADH31         : inout                            bit;
+   G_ADL0          : inout                            bit;
+   G_ADL1          : inout                            bit;
+   G_ADL2          : inout                            bit;
+   G_ADL3          : inout                            bit;
+   G_ADL4          : inout                            bit;
+   G_ADL5          : inout                            bit;
+   G_ADL6          : inout                            bit;
+   G_ADL7          : inout                            bit;
+   G_ADL8          : inout                            bit;
+   G_ADL9          : inout                            bit;
+   G_ADL10         : inout                            bit;
+   G_ADL11         : inout                            bit;
+   G_ADL12         : inout                            bit;
+   G_ADL13         : inout                            bit;
+   G_ADL14         : inout                            bit;
+   G_ADL15         : inout                            bit;
+   G_ADL16         : inout                            bit;
+   G_ADL17         : inout                            bit;
+   G_ADL18         : inout                            bit;
+   G_ADL19         : inout                            bit;
+   G_ADL20         : inout                            bit;
+   G_ADL21         : inout                            bit;
+   G_ADL22         : inout                            bit;
+   G_ADL23         : inout                            bit;
+   G_ADL24         : inout                            bit;
+   G_ADL25         : inout                            bit;
+   G_ADL26         : inout                            bit;
+   G_ADL27         : inout                            bit;
+   G_ADL28         : inout                            bit;
+   G_ADL29         : inout                            bit;
+   G_ADL30         : inout                            bit;
+   G_ADL31         : inout                            bit;
+   G_ARB           : buffer                           bit;
+   G_CBE0          : inout                            bit;
+   G_CBE1          : inout                            bit;
+   G_CBE2          : inout                            bit;
+   G_CBE3          : inout                            bit;
+   G_CBE4          : inout                            bit;
+   G_CBE5          : inout                            bit;
+   G_CBE6          : inout                            bit;
+   G_CBE7          : inout                            bit;
+   G_CLK           : in                               bit;
+   G_DEVSEL_N      : inout                            bit;
+   G_FRAME_N       : inout                            bit;
+   G_GNT0_N        : out                              bit;
+   G_GNT1_N        : out                              bit;
+   G_GNT2_N        : out                              bit;
+   G_GNT3_N        : out                              bit;
+   G_GNT4_N        : out                              bit;
+   G_GNT5_N        : out                              bit;
+   G_GNT6_N        : out                              bit;
+   G_GNT7_N        : out                              bit;
+   G_IDSEL         : in                               bit;
+   G_INTA_N        : out                              bit;
+   G_INTB_N        : out                              bit;
+   G_INTC_N        : out                              bit;
+   G_INTD_N        : out                              bit;
+   G_IRDY_N        : out                              bit;
+   G_LOCK_N        : inout                            bit;
+   GND             : linkage                          bit_vector (1 to 81);
+   G_PAR64         : inout                            bit;
+   G_PAR           : inout                            bit;
+   G_PERR_N        : inout                            bit;
+   GPIO0           : inout                            bit;
+   GPIO1           : inout                            bit;
+   GPIO2           : inout                            bit;
+   G_REQ0_N        : in                               bit;
+   G_REQ1_N        : in                               bit;
+   G_REQ2_N        : in                               bit;
+   G_REQ3_N        : in                               bit;
+   G_REQ4_N        : in                               bit;
+   G_REQ5_N        : in                               bit;
+   G_REQ6_N        : in                               bit;
+   G_REQ7_N        : in                               bit;
+   G_REQ64_N       : inout                            bit;
+   G_RESETOUT_N    : out                              bit;
+   G_RST_N         : inout                            bit;
+   G_SERR_N        : inout                            bit;
+   G_STOP_N        : inout                            bit;
+   G_TRDY_N        : inout                            bit;
+   IT1_N           : out                              bit;
+   IT2_N           : out                              bit;
+   MADDR0_EVEN     : out                              bit;
+   MADDR0_ODD      : out                              bit;
+   MADDR1          : out                              bit;
+   MADDR2          : out                              bit;
+   MADDR3          : out                              bit;
+   MADDR4          : out                              bit;
+   MADDR5          : out                              bit;
+   MADDR6          : out                              bit;
+   MADDR7          : out                              bit;
+   MADDR8          : out                              bit;
+   MADDR9          : out                              bit;
+   MADDR10         : out                              bit;
+   MADDR11         : out                              bit;
+   MADDR12         : out                              bit;
+   MADDR13         : out                              bit;
+   MDATA0          : inout                            bit;
+   MDATA1          : inout                            bit;
+   MDATA2          : inout                            bit;
+   MDATA3          : inout                            bit;
+   MDATA4          : inout                            bit;
+   MDATA5          : inout                            bit;
+   MDATA6          : inout                            bit;
+   MDATA7          : inout                            bit;
+   MDATA8          : inout                            bit;
+   MDATA9          : inout                            bit;
+   MDATA10         : inout                            bit;
+   MDATA11         : inout                            bit;
+   MDATA12         : inout                            bit;
+   MDATA13         : inout                            bit;
+   MDATA14         : inout                            bit;
+   MDATA15         : inout                            bit;
+   MDATA16         : inout                            bit;
+   MDATA17         : inout                            bit;
+   MDATA18         : inout                            bit;
+   MDATA19         : inout                            bit;
+   MDATA20         : inout                            bit;
+   MDATA21         : inout                            bit;
+   MDATA22         : inout                            bit;
+   MDATA23         : inout                            bit;
+   MDATA24         : inout                            bit;
+   MDATA25         : inout                            bit;
+   MDATA26         : inout                            bit;
+   MDATA27         : inout                            bit;
+   MDATA28         : inout                            bit;
+   MDATA29         : inout                            bit;
+   MDATA30         : inout                            bit;
+   MDATA31         : inout                            bit;
+   MDATA32         : inout                            bit;
+   MDATA33         : inout                            bit;
+   MDATA34         : inout                            bit;
+   MDATA35         : inout                            bit;
+   MDATA36         : inout                            bit;
+   MDATA37         : inout                            bit;
+   MDATA38         : inout                            bit;
+   MDATA39         : inout                            bit;
+   MDATA40         : inout                            bit;
+   MDATA41         : inout                            bit;
+   MDATA42         : inout                            bit;
+   MDATA43         : inout                            bit;
+   MDATA44         : inout                            bit;
+   MDATA45         : inout                            bit;
+   MDATA46         : inout                            bit;
+   MDATA47         : inout                            bit;
+   MDATA48         : inout                            bit;
+   MDATA49         : inout                            bit;
+   MDATA50         : inout                            bit;
+   MDATA51         : inout                            bit;
+   MDATA52         : inout                            bit;
+   MDATA53         : inout                            bit;
+   MDATA54         : inout                            bit;
+   MDATA55         : inout                            bit;
+   MDATA56         : inout                            bit;
+   MDATA57         : inout                            bit;
+   MDATA58         : inout                            bit;
+   MDATA59         : inout                            bit;
+   MDATA60         : inout                            bit;
+   MDATA61         : inout                            bit;
+   MDATA62         : inout                            bit;
+   MDATA63         : inout                            bit;
+   MDATA64         : inout                            bit;
+   MDATA65         : inout                            bit;
+   MDATA66         : inout                            bit;
+   MDATA67         : inout                            bit;
+   MDATA68         : inout                            bit;
+   MDATA69         : inout                            bit;
+   MDATA70         : inout                            bit;
+   MDATA71         : inout                            bit;
+   MUX_CLKEN1B_N   : out                              bit;
+   MUX_CLKEN2B_N   : out                              bit;
+   MUX_CLKENA1_N   : out                              bit;
+   MUX_CLKENA2_N   : linkage                          bit;
+   MUX_OEA_N       : linkage                          bit;
+   MUX_OEB_N       : linkage                          bit;
+   MUX_SEL_N       : out                              bit;
+   NOCONNECT       : linkage                          bit_vector (1 to 83);
+   P_ADL0          : inout                            bit;
+   P_ADL1          : inout                            bit;
+   P_ADL2          : inout                            bit;
+   P_ADL3          : inout                            bit;
+   P_ADL4          : inout                            bit;
+   P_ADL5          : inout                            bit;
+   P_ADL6          : inout                            bit;
+   P_ADL7          : inout                            bit;
+   P_ADL8          : inout                            bit;
+   P_ADL9          : inout                            bit;
+   P_ADL10         : inout                            bit;
+   P_ADL11         : inout                            bit;
+   P_ADL12         : inout                            bit;
+   P_ADL13         : inout                            bit;
+   P_ADL14         : inout                            bit;
+   P_ADL15         : inout                            bit;
+   P_ADL16         : inout                            bit;
+   P_ADL17         : inout                            bit;
+   P_ADL18         : inout                            bit;
+   P_ADL19         : inout                            bit;
+   P_ADL20         : inout                            bit;
+   P_ADL21         : inout                            bit;
+   P_ADL22         : inout                            bit;
+   P_ADL23         : inout                            bit;
+   P_ADL24         : inout                            bit;
+   P_ADL25         : inout                            bit;
+   P_ADL26         : inout                            bit;
+   P_ADL27         : inout                            bit;
+   P_ADL28         : inout                            bit;
+   P_ADL29         : inout                            bit;
+   P_ADL30         : inout                            bit;
+   P_ADL31         : inout                            bit;
+   P_CLK           : in                               bit;
+   P_CMDBEL0       : inout                            bit;
+   P_CMDBEL1       : inout                            bit;
+   P_CMDBEL2       : inout                            bit;
+   P_CMDBEL3       : inout                            bit;
+   P_DEVSEL_N      : inout                            bit;
+   P_FRAME_N       : inout                            bit;
+   P_GNT0_N        : out                              bit;
+   P_GNT1_N        : out                              bit;
+   P_GNT2_N        : out                              bit;
+   P_GNT3_N        : out                              bit;
+   P_IRDY_N        : inout                            bit;
+   P_LOCK_N        : inout                            bit;
+   P_MEMACK_N      : buffer                           bit;
+   P_MEMREQ_N      : in                               bit;
+   P_PAR           : inout                            bit;
+   P_PERR_N        : inout                            bit;
+   P_REQ0_N        : in                               bit;
+   P_REQ1_N        : in                               bit;
+   P_REQ2_N        : in                               bit;
+   P_REQ3_N        : in                               bit;
+   P_RST_N         : buffer                           bit;
+   P_SERR_N        : inout                            bit;
+   P_STOP_N        : inout                            bit;
+   P_TRDY_N        : inout                            bit;
+   PLL_LOCK        : buffer                           bit;
+   PLL_RANGE0      : in                               bit;
+   PLL_RANGE1      : in                               bit;
+   PLL_RESET_N     : in                               bit;
+   PLL_TUNE0       : in                               bit;
+   PLL_TUNE1       : in                               bit;
+   PLL_TUNE2       : in                               bit;
+   PLL_TUNE3       : in                               bit;
+   PLL_TUNE4       : in                               bit;
+   PLL_TUNE5       : in                               bit;
+   POWERGOOD       : in                               bit;
+   PRES_OE0_N      : buffer                           bit;
+   PRES_OE1_N      : buffer                           bit;
+   SDCAS0          : out                              bit;
+   SDCAS1          : out                              bit;
+   SDCKE0          : out                              bit;
+   SDCKE1          : out                              bit;
+   SDCKE2          : out                              bit;
+   SDCKE3          : out                              bit;
+   SDCKE4          : out                              bit;
+   SDCKE5          : out                              bit;
+   SDCKE6          : out                              bit;
+   SDCKE7          : out                              bit;
+   SDCKE8          : out                              bit;
+   SDCKE9          : out                              bit;
+   SDCS0           : out                              bit;
+   SDCS1           : out                              bit;
+   SDCS2           : out                              bit;
+   SDCS3           : out                              bit;
+   SDCS4           : out                              bit;
+   SDCS5           : out                              bit;
+   SDCS6           : out                              bit;
+   SDCS7           : out                              bit;
+   SDCS8           : out                              bit;
+   SDCS9           : out                              bit;
+   SDCS10          : out                              bit;
+   SDCS11          : out                              bit;
+   SDRAS0          : out                              bit;
+   SDRAS1          : out                              bit;
+   SYS_AACK_N      : buffer                           bit;
+   SYS_ADDR0       : inout                            bit;
+   SYS_ADDR1       : inout                            bit;
+   SYS_ADDR2       : inout                            bit;
+   SYS_ADDR3       : inout                            bit;
+   SYS_ADDR4       : inout                            bit;
+   SYS_ADDR5       : inout                            bit;
+   SYS_ADDR6       : inout                            bit;
+   SYS_ADDR7       : inout                            bit;
+   SYS_ADDR8       : inout                            bit;
+   SYS_ADDR9       : inout                            bit;
+   SYS_ADDR10      : inout                            bit;
+   SYS_ADDR11      : inout                            bit;
+   SYS_ADDR12      : inout                            bit;
+   SYS_ADDR13      : inout                            bit;
+   SYS_ADDR14      : inout                            bit;
+   SYS_ADDR15      : inout                            bit;
+   SYS_ADDR16      : inout                            bit;
+   SYS_ADDR17      : inout                            bit;
+   SYS_ADDR18      : inout                            bit;
+   SYS_ADDR19      : inout                            bit;
+   SYS_ADDR20      : inout                            bit;
+   SYS_ADDR21      : inout                            bit;
+   SYS_ADDR22      : inout                            bit;
+   SYS_ADDR23      : inout                            bit;
+   SYS_ADDR24      : inout                            bit;
+   SYS_ADDR25      : inout                            bit;
+   SYS_ADDR26      : inout                            bit;
+   SYS_ADDR27      : inout                            bit;
+   SYS_ADDR28      : inout                            bit;
+   SYS_ADDR29      : inout                            bit;
+   SYS_ADDR30      : inout                            bit;
+   SYS_ADDR31      : inout                            bit;
+   SYS_ADDR32      : inout                            bit;
+   SYS_ADDR33      : inout                            bit;
+   SYS_ADDR34      : inout                            bit;
+   SYS_ADDR35      : inout                            bit;
+   SYS_ADDRP0      : inout                            bit;
+   SYS_ADDRP1      : inout                            bit;
+   SYS_ADDRP2      : inout                            bit;
+   SYS_ADDRP3      : inout                            bit;
+   SYS_ADDRP4      : inout                            bit;
+   SYS_ARTRY_N     : out                              bit;
+   SYS_BG0_N       : buffer                           bit;
+   SYS_BG1_N       : buffer                           bit;
+   SYS_BG2_N       : buffer                           bit;
+   SYS_BG3_N       : buffer                           bit;
+   SYS_BR0_N       : in                               bit;
+   SYS_BR1_N       : in                               bit;
+   SYS_BR2_N       : in                               bit;
+   SYS_BR3_N       : in                               bit;
+   SYS_CLK         : linkage                          bit;
+   SYS_DATA0       : inout                            bit;
+   SYS_DATA1       : inout                            bit;
+   SYS_DATA2       : inout                            bit;
+   SYS_DATA3       : inout                            bit;
+   SYS_DATA4       : inout                            bit;
+   SYS_DATA5       : inout                            bit;
+   SYS_DATA6       : inout                            bit;
+   SYS_DATA7       : inout                            bit;
+   SYS_DATA8       : inout                            bit;
+   SYS_DATA9       : inout                            bit;
+   SYS_DATA10      : inout                            bit;
+   SYS_DATA11      : inout                            bit;
+   SYS_DATA12      : inout                            bit;
+   SYS_DATA13      : inout                            bit;
+   SYS_DATA14      : inout                            bit;
+   SYS_DATA15      : inout                            bit;
+   SYS_DATA16      : inout                            bit;
+   SYS_DATA17      : inout                            bit;
+   SYS_DATA18      : inout                            bit;
+   SYS_DATA19      : inout                            bit;
+   SYS_DATA20      : inout                            bit;
+   SYS_DATA21      : inout                            bit;
+   SYS_DATA22      : inout                            bit;
+   SYS_DATA23      : inout                            bit;
+   SYS_DATA24      : inout                            bit;
+   SYS_DATA25      : inout                            bit;
+   SYS_DATA26      : inout                            bit;
+   SYS_DATA27      : inout                            bit;
+   SYS_DATA28      : inout                            bit;
+   SYS_DATA29      : inout                            bit;
+   SYS_DATA30      : inout                            bit;
+   SYS_DATA31      : inout                            bit;
+   SYS_DATA32      : inout                            bit;
+   SYS_DATA33      : inout                            bit;
+   SYS_DATA34      : inout                            bit;
+   SYS_DATA35      : inout                            bit;
+   SYS_DATA36      : inout                            bit;
+   SYS_DATA37      : inout                            bit;
+   SYS_DATA38      : inout                            bit;
+   SYS_DATA39      : inout                            bit;
+   SYS_DATA40      : inout                            bit;
+   SYS_DATA41      : inout                            bit;
+   SYS_DATA42      : inout                            bit;
+   SYS_DATA43      : inout                            bit;
+   SYS_DATA44      : inout                            bit;
+   SYS_DATA45      : inout                            bit;
+   SYS_DATA46      : inout                            bit;
+   SYS_DATA47      : inout                            bit;
+   SYS_DATA48      : inout                            bit;
+   SYS_DATA49      : inout                            bit;
+   SYS_DATA50      : inout                            bit;
+   SYS_DATA51      : inout                            bit;
+   SYS_DATA52      : inout                            bit;
+   SYS_DATA53      : inout                            bit;
+   SYS_DATA54      : inout                            bit;
+   SYS_DATA55      : inout                            bit;
+   SYS_DATA56      : inout                            bit;
+   SYS_DATA57      : inout                            bit;
+   SYS_DATA58      : inout                            bit;
+   SYS_DATA59      : inout                            bit;
+   SYS_DATA60      : inout                            bit;
+   SYS_DATA61      : inout                            bit;
+   SYS_DATA62      : inout                            bit;
+   SYS_DATA63      : inout                            bit;
+   SYS_DATAP0      : inout                            bit;
+   SYS_DATAP1      : inout                            bit;
+   SYS_DATAP2      : inout                            bit;
+   SYS_DATAP3      : inout                            bit;
+   SYS_DATAP4      : inout                            bit;
+   SYS_DATAP5      : inout                            bit;
+   SYS_DATAP6      : inout                            bit;
+   SYS_DATAP7      : inout                            bit;
+   SYS_DBG0_N      : buffer                           bit;
+   SYS_DBG1_N      : buffer                           bit;
+   SYS_DBG2_N      : buffer                           bit;
+   SYS_DBG3_N      : buffer                           bit;
+   SYS_GBL_N       : inout                            bit;
+   SYS_HRESET0_N   : buffer                           bit;
+   SYS_HRESET1_N   : buffer                           bit;
+   SYS_HRESET2_N   : buffer                           bit;
+   SYS_HRESET3_N   : buffer                           bit;
+   SYS_L2_HIT_N    : linkage                          bit;
+   SYS_MCP0_N      : out                              bit;
+   SYS_MCP1_N      : out                              bit;
+   SYS_MCP2_N      : out                              bit;
+   SYS_MCP3_N      : out                              bit;
+   SYS_SHD_N       : inout                            bit;
+   SYS_SRESET0_N   : buffer                           bit;
+   SYS_SRESET1_N   : buffer                           bit;
+   SYS_SRESET2_N   : buffer                           bit;
+   SYS_SRESET3_N   : buffer                           bit;
+   SYS_TA_HIT_N    : in                               bit;
+   SYS_TA_N        : inout                            bit;
+   SYS_TBE         : buffer                           bit;
+   SYS_TBST_N      : inout                            bit;
+   SYS_TEA_N       : inout                            bit;
+   SYS_TSIZ0       : inout                            bit;
+   SYS_TSIZ1       : inout                            bit;
+   SYS_TSIZ2       : inout                            bit;
+   SYS_TS_N        : inout                            bit;
+   SYS_TT0         : inout                            bit;
+   SYS_TT1         : inout                            bit;
+   SYS_TT2         : inout                            bit;
+   SYS_TT3         : inout                            bit;
+   SYS_TT4         : inout                            bit;
+   TCK             : in                               bit;
+   TDI             : in                               bit;
+   TDO             : out                              bit;
+   TMS             : in                               bit;
+   TRST_N          : in                               bit;
+   VDD2            : linkage                          bit_vector (1 to 10);
+   VDD3            : linkage                          bit_vector (1 to 10);
+   VDD4            : linkage                          bit_vector (1 to 10);
+   VDD5            : linkage                          bit_vector (1 to 10);
+   VDDA            : linkage                          bit;
+   VDD             : linkage                          bit_vector (1 to 44);
+   WE0             : out                              bit;
+   WE1             : out                              bit;
+   XADR_LAT        : buffer                           bit;
+   XCVR_RD         : buffer                           bit);
+
+---------------------------------------------------------------------------
+--
+---------------------------------------------------------------------------
+
+use STD_1149_1_1994.all;
+use IBMDFT_1149_1_1998.all;
+
+attribute COMPONENT_CONFORMANCE of CPC710_133 : entity is "STD_1149_1_1993";
+
+---------------------------------------------------------------------------
+--
+---------------------------------------------------------------------------
+
+attribute PIN_MAP of CPC710_133 : entity is PHYSICAL_PIN_MAP;
+constant IPN0848DMI_FCPG35S_03MP : PIN_MAP_STRING :=
+
+-- port         package_pin (728)
+  " BS0                       : J10 ," &
+  " BS1                       : J09 ," &
+  " CE0_TEST                  : N23 ," &
+  " CHKSTOP_N                 : J26 ," &
+  " DRAMGNT_N                 : G06 ," &
+  " DRAMREQ_N                 : A02 ," &
+  " FLASH_CE_N                : G27 ," &
+  " FLASH_OE_N                : H27 ," &
+  " FLASH_WE_N                : H26 ," &
+  " G_ACK64_N                 : R06 ," &
+  " G_ADH0                    : AD02 ," &
+  " G_ADH1                    : AE02 ," &
+  " G_ADH2                    : AC02 ," &
+  " G_ADH3                    : AB01 ," &
+  " G_ADH4                    : AA02 ," &
+  " G_ADH5                    : AA01 ," &
+  " G_ADH6                    : Y02 ," &
+  " G_ADH7                    : Y01 ," &
+  " G_ADH8                    : W02 ," &
+  " G_ADH9                    : V03 ," &
+  " G_ADH10                   : V02 ," &
+  " G_ADH11                   : V01 ," &
+  " G_ADH12                   : U02 ," &
+  " G_ADH13                   : T04 ," &
+  " G_ADH14                   : T03 ," &
+  " G_ADH15                   : T02 ," &
+  " G_ADH16                   : T01 ," &
+  " G_ADH17                   : R04 ," &
+  " G_ADH18                   : R02 ," &
+  " G_ADH19                   : R01 ," &
+  " G_ADH20                   : P03 ," &
+  " G_ADH21                   : P02 ," &
+  " G_ADH22                   : N07 ," &
+  " G_ADH23                   : N06 ," &
+  " G_ADH24                   : N05 ," &
+  " G_ADH25                   : N04 ," &
+  " G_ADH26                   : N02 ," &
+  " G_ADH27                   : N01 ," &
+  " G_ADH28                   : M04 ," &
+  " G_ADH29                   : M03 ," &
+  " G_ADH30                   : M02 ," &
+  " G_ADH31                   : M01 ," &
+  " G_ADL0                    : M09 ," &
+  " G_ADL1                    : M07 ," &
+  " G_ADL2                    : M06 ," &
+  " G_ADL3                    : M05 ," &
+  " G_ADL4                    : L09 ," &
+  " G_ADL5                    : L08 ," &
+  " G_ADL6                    : L06 ," &
+  " G_ADL7                    : L04 ," &
+  " G_ADL8                    : L02 ," &
+  " G_ADL9                    : K07 ," &
+  " G_ADL10                   : K06 ," &
+  " G_ADL11                   : K05 ," &
+  " G_ADL12                   : K04 ," &
+  " G_ADL13                   : K03 ," &
+  " G_ADL14                   : K02 ," &
+  " G_ADL15                   : K01 ," &
+  " G_ADL16                   : J06 ," &
+  " G_ADL17                   : J04 ," &
+  " G_ADL18                   : J02 ," &
+  " G_ADL19                   : H05 ," &
+  " G_ADL20                   : H04 ," &
+  " G_ADL21                   : H03 ," &
+  " G_ADL22                   : H02 ," &
+  " G_ADL23                   : H01 ," &
+  " G_ADL24                   : G04 ," &
+  " G_ADL25                   : G02 ," &
+  " G_ADL26                   : G01 ," &
+  " G_ADL27                   : F03 ," &
+  " G_ADL28                   : F02 ," &
+  " G_ADL29                   : F01 ," &
+  " G_ADL30                   : E02 ," &
+  " G_ADL31                   : D01 ," &
+  " G_ARB                     : H06 ," &
+  " G_CBE0                    : V09 ," &
+  " G_CBE1                    : U09 ," &
+  " G_CBE2                    : U08 ," &
+  " G_CBE3                    : R07 ," &
+  " G_CBE4                    : R05 ," &
+  " G_CBE5                    : P09 ," &
+  " G_CBE6                    : P07 ," &
+  " G_CBE7                    : P05 ," &
+  " G_CLK                     : W08 ," &
+  " G_DEVSEL_N                : AB04 ," &
+  " G_FRAME_N                 : B01 ," &
+  " G_GNT0_N                  : AA04 ," &
+  " G_GNT1_N                  : Y05 ," &
+  " G_GNT2_N                  : Y04 ," &
+  " G_GNT3_N                  : Y03 ," &
+  " G_GNT4_N                  : W04 ," &
+  " G_GNT5_N                  : V05 ," &
+  " G_GNT6_N                  : V04 ," &
+  " G_GNT7_N                  : U04 ," &
+  " G_IDSEL                   : AD03 ," &
+  " G_INTA_N                  : T09 ," &
+  " G_INTB_N                  : T07 ," &
+  " G_INTC_N                  : T06 ," &
+  " G_INTD_N                  : T05 ," &
+  " G_IRDY_N                  : K09 ," &
+  " G_LOCK_N                  : AC04 ," &
+  " GND                       : (A03 ," &
+  "                             A11 ," &
+  "                             A17 ," &
+  "                             A25 ," &
+  "                             AA05 ," &
+  "                             AA09 ," &
+  "                             AA19 ," &
+  "                             AA23 ," &
+  "                             AB14 ," &
+  "                             AC03 ," &
+  "                             AC07 ," &
+  "                             AC11 ," &
+  "                             AC17 ," &
+  "                             AC21 ," &
+  "                             AC25 ," &
+  "                             AE01 ," &
+  "                             AE05 ," &
+  "                             AE09 ," &
+  "                             AE13 ," &
+  "                             AE15 ," &
+  "                             AE19 ," &
+  "                             AE23 ," &
+  "                             AE27 ," &
+  "                             AG03 ," &
+  "                             AG11 ," &
+  "                             AG17 ," &
+  "                             AG25 ," &
+  "                             C01 ," &
+  "                             C05 ," &
+  "                             C09 ," &
+  "                             C13 ," &
+  "                             C15 ," &
+  "                             C19 ," &
+  "                             C23 ," &
+  "                             C27 ," &
+  "                             E03 ," &
+  "                             E07 ," &
+  "                             E11 ," &
+  "                             E17 ," &
+  "                             E21 ," &
+  "                             E25 ," &
+  "                             F14 ," &
+  "                             G05 ," &
+  "                             G09 ," &
+  "                             G19 ," &
+  "                             G23 ," &
+  "                             H12 ," &
+  "                             H16 ," &
+  "                             J03 ," &
+  "                             J07 ," &
+  "                             J21 ," &
+  "                             J25 ," &
+  "                             L01 ," &
+  "                             L05 ," &
+  "                             L23 ," &
+  "                             L27 ," &
+  "                             M08 ," &
+  "                             M20 ," &
+  "                             N03 ," &
+  "                             N13 ," &
+  "                             N15 ," &
+  "                             N25 ," &
+  "                             P06 ," &
+  "                             P14 ," &
+  "                             P22 ," &
+  "                             R03 ," &
+  "                             R13 ," &
+  "                             R15 ," &
+  "                             R25 ," &
+  "                             T08 ," &
+  "                             T20 ," &
+  "                             U01 ," &
+  "                             U05 ," &
+  "                             U23 ," &
+  "                             U27 ," &
+  "                             W03 ," &
+  "                             W07 ," &
+  "                             W21 ," &
+  "                             W25 ," &
+  "                             Y12 ," &
+  "                             Y16)," &
+  " G_PAR64                   : AB05 ," &
+  " G_PAR                     : R08 ," &
+  " G_PERR_N                  : F04 ," &
+  " GPIO0                     : H25 ," &
+  " GPIO1                     : F25 ," &
+  " GPIO2                     : D25 ," &
+  " G_REQ0_N                  : U06 ," &
+  " G_REQ1_N                  : V06 ," &
+  " G_REQ2_N                  : V07 ," &
+  " G_REQ3_N                  : W06 ," &
+  " G_REQ4_N                  : Y06 ," &
+  " G_REQ5_N                  : Y07 ," &
+  " G_REQ6_N                  : Y09 ," &
+  " G_REQ7_N                  : AA06 ," &
+  " G_REQ64_N                 : AB03 ," &
+  " G_RESETOUT_N              : AD01 ," &
+  " G_RST_N                   : D02 ," &
+  " G_SERR_N                  : AB02 ," &
+  " G_STOP_N                  : N08 ," &
+  " G_TRDY_N                  : J08 ," &
+  " IT1_N                     : E22 ," &
+  " IT2_N                     : E24 ," &
+  " MADDR0_EVEN               : C18 ," &
+  " MADDR0_ODD                : D17 ," &
+  " MADDR1                    : D18 ," &
+  " MADDR2                    : E18 ," &
+  " MADDR3                    : E20 ," &
+  " MADDR4                    : F17 ," &
+  " MADDR5                    : F18 ," &
+  " MADDR6                    : F19 ," &
+  " MADDR7                    : F20 ," &
+  " MADDR8                    : F21 ," &
+  " MADDR9                    : F22 ," &
+  " MADDR10                   : G18 ," &
+  " MADDR11                   : G20 ," &
+  " MADDR12                   : H17 ," &
+  " MADDR13                   : H19 ," &
+  " MDATA0                    : A04 ," &
+  " MDATA1                    : A06 ," &
+  " MDATA2                    : A07 ," &
+  " MDATA3                    : A08 ," &
+  " MDATA4                    : A10 ," &
+  " MDATA5                    : A12 ," &
+  " MDATA6                    : A13 ," &
+  " MDATA7                    : A15 ," &
+  " MDATA8                    : A16 ," &
+  " MDATA9                    : B04 ," &
+  " MDATA10                   : B05 ," &
+  " MDATA11                   : B06 ," &
+  " MDATA12                   : B07 ," &
+  " MDATA13                   : B08 ," &
+  " MDATA14                   : B09 ," &
+  " MDATA15                   : B10 ," &
+  " MDATA16                   : B11 ," &
+  " MDATA17                   : B12 ," &
+  " MDATA18                   : B13 ," &
+  " MDATA19                   : B14 ," &
+  " MDATA20                   : B15 ," &
+  " MDATA21                   : B16 ," &
+  " MDATA22                   : B17 ," &
+  " MDATA23                   : C04 ," &
+  " MDATA24                   : C06 ," &
+  " MDATA25                   : C08 ," &
+  " MDATA26                   : C10 ," &
+  " MDATA27                   : C12 ," &
+  " MDATA28                   : C14 ," &
+  " MDATA29                   : C16 ," &
+  " MDATA30                   : D05 ," &
+  " MDATA31                   : D06 ," &
+  " MDATA32                   : D07 ," &
+  " MDATA33                   : D08 ," &
+  " MDATA34                   : D09 ," &
+  " MDATA35                   : D10 ," &
+  " MDATA36                   : D11 ," &
+  " MDATA37                   : D12 ," &
+  " MDATA38                   : D13 ," &
+  " MDATA39                   : D15 ," &
+  " MDATA40                   : D16 ," &
+  " MDATA41                   : E06 ," &
+  " MDATA42                   : E08 ," &
+  " MDATA43                   : E10 ," &
+  " MDATA44                   : E12 ," &
+  " MDATA45                   : E13 ," &
+  " MDATA46                   : E14 ," &
+  " MDATA47                   : E15 ," &
+  " MDATA48                   : E16 ," &
+  " MDATA49                   : F07 ," &
+  " MDATA50                   : F08 ," &
+  " MDATA51                   : F09 ," &
+  " MDATA52                   : F10 ," &
+  " MDATA53                   : F11 ," &
+  " MDATA54                   : F12 ," &
+  " MDATA55                   : F13 ," &
+  " MDATA56                   : F15 ," &
+  " MDATA57                   : F16 ," &
+  " MDATA58                   : G08 ," &
+  " MDATA59                   : G10 ," &
+  " MDATA60                   : G12 ," &
+  " MDATA61                   : G13 ," &
+  " MDATA62                   : G14 ," &
+  " MDATA63                   : G15 ," &
+  " MDATA64                   : G16 ," &
+  " MDATA65                   : H11 ," &
+  " MDATA66                   : H13 ," &
+  " MDATA67                   : H15 ," &
+  " MDATA68                   : J11 ," &
+  " MDATA69                   : J12 ," &
+  " MDATA70                   : J14 ," &
+  " MDATA71                   : J16 ," &
+  " MUX_CLKEN1B_N             : J17 ," &
+  " MUX_CLKEN2B_N             : J18 ," &
+  " MUX_CLKENA1_N             : F06 ," &
+  " MUX_CLKENA2_N             : H07 ," &
+  " MUX_OEA_N                 : B03 ," &
+  " MUX_OEB_N                 : C02 ," &
+  " MUX_SEL_N                 : D04 ," &
+  " NOCONNECT                 : (J13 ," &
+  "                             J15 ," &
+  "                             J19 ," &
+  "                             K10 ," &
+  "                             K11 ," &
+  "                             K12 ," &
+  "                             K13 ," &
+  "                             K14 ," &
+  "                             K15 ," &
+  "                             K16 ," &
+  "                             K17 ," &
+  "                             K18 ," &
+  "                             L10 ," &
+  "                             L11 ," &
+  "                             L12 ," &
+  "                             L13 ," &
+  "                             L14 ," &
+  "                             L15 ," &
+  "                             L16 ," &
+  "                             L17 ," &
+  "                             L18 ," &
+  "                             M10 ," &
+  "                             M11 ," &
+  "                             M12 ," &
+  "                             M13 ," &
+  "                             M14 ," &
+  "                             M15 ," &
+  "                             M16 ," &
+  "                             M17 ," &
+  "                             M18 ," &
+  "                             N09 ," &
+  "                             N10 ," &
+  "                             N11 ," &
+  "                             N12 ," &
+  "                             N16 ," &
+  "                             N17 ," &
+  "                             N18 ," &
+  "                             N19 ," &
+  "                             P10 ," &
+  "                             P11 ," &
+  "                             P12 ," &
+  "                             P16 ," &
+  "                             P17 ," &
+  "                             P18 ," &
+  "                             R09 ," &
+  "                             R10 ," &
+  "                             R11 ," &
+  "                             R12 ," &
+  "                             R16 ," &
+  "                             R17 ," &
+  "                             R18 ," &
+  "                             R19 ," &
+  "                             T10 ," &
+  "                             T11 ," &
+  "                             T12 ," &
+  "                             T13 ," &
+  "                             T14 ," &
+  "                             T15 ," &
+  "                             T16 ," &
+  "                             T17 ," &
+  "                             T18 ," &
+  "                             U10 ," &
+  "                             U11 ," &
+  "                             U12 ," &
+  "                             U13 ," &
+  "                             U14 ," &
+  "                             U15 ," &
+  "                             U16 ," &
+  "                             U17 ," &
+  "                             U18 ," &
+  "                             V10 ," &
+  "                             V11 ," &
+  "                             V12 ," &
+  "                             V13 ," &
+  "                             V14 ," &
+  "                             V15 ," &
+  "                             V16 ," &
+  "                             V17 ," &
+  "                             V18 ," &
+  "                             W09 ," &
+  "                             W13 ," &
+  "                             W15 ," &
+  "                             W19)," &
+  " P_ADL0                    : P26 ," &
+  " P_ADL1                    : N26 ," &
+  " P_ADL2                    : M26 ," &
+  " P_ADL3                    : L26 ," &
+  " P_ADL4                    : K26 ," &
+  " P_ADL5                    : K25 ," &
+  " P_ADL6                    : M25 ," &
+  " P_ADL7                    : P25 ," &
+  " P_ADL8                    : N24 ," &
+  " P_ADL9                    : M24 ," &
+  " P_ADL10                   : L24 ," &
+  " P_ADL11                   : K24 ," &
+  " P_ADL12                   : J24 ," &
+  " P_ADL13                   : K23 ," &
+  " P_ADL14                   : M23 ," &
+  " P_ADL15                   : N22 ," &
+  " P_ADL16                   : M22 ," &
+  " P_ADL17                   : L22 ," &
+  " P_ADL18                   : K22 ," &
+  " P_ADL19                   : J22 ," &
+  " P_ADL20                   : H22 ," &
+  " P_ADL21                   : G22 ," &
+  " P_ADL22                   : K21 ," &
+  " P_ADL23                   : M21 ," &
+  " P_ADL24                   : N21 ," &
+  " P_ADL25                   : P21 ," &
+  " P_ADL26                   : N20 ," &
+  " P_ADL27                   : L20 ," &
+  " P_ADL28                   : K19 ," &
+  " P_ADL29                   : L19 ," &
+  " P_ADL30                   : M19 ," &
+  " P_ADL31                   : P19 ," &
+  " P_CLK                     : AB27 ," &
+  " P_CMDBEL0                 : R24 ," &
+  " P_CMDBEL1                 : T24 ," &
+  " P_CMDBEL2                 : T25 ," &
+  " P_CMDBEL3                 : T26 ," &
+  " P_DEVSEL_N                : R22 ," &
+  " P_FRAME_N                 : T22 ," &
+  " P_GNT0_N                  : AA27 ," &
+  " P_GNT1_N                  : Y27 ," &
+  " P_GNT2_N                  : W26 ," &
+  " P_GNT3_N                  : T27 ," &
+  " P_IRDY_N                  : F24 ," &
+  " P_LOCK_N                  : H21 ," &
+  " P_MEMACK_N                : G24 ," &
+  " P_MEMREQ_N                : H24 ," &
+  " P_PAR                     : H23 ," &
+  " P_PERR_N                  : U26 ," &
+  " P_REQ0_N                  : V27 ," &
+  " P_REQ1_N                  : V26 ," &
+  " P_REQ2_N                  : V25 ," &
+  " P_REQ3_N                  : V24 ," &
+  " P_RST_N                   : N27 ," &
+  " P_SERR_N                  : V23 ," &
+  " P_STOP_N                  : U24 ," &
+  " P_TRDY_N                  : M27 ," &
+  " PLL_LOCK                  : P23 ," &
+  " PLL_RANGE0                : K27 ," &
+  " PLL_RANGE1                : F23 ," &
+  " PLL_RESET_N               : A27 ," &
+  " PLL_TUNE0                 : B25 ," &
+  " PLL_TUNE1                 : H20 ," &
+  " PLL_TUNE2                 : T23 ," &
+  " PLL_TUNE3                 : R27 ," &
+  " PLL_TUNE4                 : R23 ," &
+  " PLL_TUNE5                 : J20 ," &
+  " POWERGOOD                 : AG06 ," &
+  " PRES_OE0_N                : B26 ," &
+  " PRES_OE1_N                : C26 ," &
+  " SDCAS0                    : E04 ," &
+  " SDCAS1                    : F05 ," &
+  " SDCKE0                    : A22 ," &
+  " SDCKE1                    : A24 ," &
+  " SDCKE2                    : A26 ," &
+  " SDCKE3                    : B22 ," &
+  " SDCKE4                    : B23 ," &
+  " SDCKE5                    : B24 ," &
+  " SDCKE6                    : C22 ," &
+  " SDCKE7                    : C24 ," &
+  " SDCKE8                    : D22 ," &
+  " SDCKE9                    : D24 ," &
+  " SDCS0                     : D23 ," &
+  " SDCS1                     : D21 ," &
+  " SDCS2                     : D20 ," &
+  " SDCS3                     : D19 ," &
+  " SDCS4                     : C20 ," &
+  " SDCS5                     : B21 ," &
+  " SDCS6                     : B20 ," &
+  " SDCS7                     : B19 ," &
+  " SDCS8                     : B18 ," &
+  " SDCS9                     : A21 ," &
+  " SDCS10                    : A20 ," &
+  " SDCS11                    : A18 ," &
+  " SDRAS0                    : B02 ," &
+  " SDRAS1                    : D03 ," &
+  " SYS_AACK_N                : W10 ," &
+  " SYS_ADDR0                 : W24 ," &
+  " SYS_ADDR1                 : Y22 ," &
+  " SYS_ADDR2                 : Y23 ," &
+  " SYS_ADDR3                 : Y24 ," &
+  " SYS_ADDR4                 : AA22 ," &
+  " SYS_ADDR5                 : AA24 ," &
+  " SYS_ADDR6                 : AB22 ," &
+  " SYS_ADDR7                 : AB23 ," &
+  " SYS_ADDR8                 : AB24 ," &
+  " SYS_ADDR9                 : AB25 ," &
+  " SYS_ADDR10                : AB26 ," &
+  " SYS_ADDR11                : AC22 ," &
+  " SYS_ADDR12                : AC24 ," &
+  " SYS_ADDR13                : AC26 ," &
+  " SYS_ADDR14                : AD22 ," &
+  " SYS_ADDR15                : AD23 ," &
+  " SYS_ADDR16                : AD24 ," &
+  " SYS_ADDR17                : AD25 ," &
+  " SYS_ADDR18                : AD26 ," &
+  " SYS_ADDR19                : AD27 ," &
+  " SYS_ADDR20                : AE22 ," &
+  " SYS_ADDR21                : AE24 ," &
+  " SYS_ADDR22                : AE26 ," &
+  " SYS_ADDR23                : AF21 ," &
+  " SYS_ADDR24                : AF22 ," &
+  " SYS_ADDR25                : AF23 ," &
+  " SYS_ADDR26                : AF24 ," &
+  " SYS_ADDR27                : AF25 ," &
+  " SYS_ADDR28                : AF26 ," &
+  " SYS_ADDR29                : AF27 ," &
+  " SYS_ADDR30                : AG20 ," &
+  " SYS_ADDR31                : AG21 ," &
+  " SYS_ADDR32                : AG22 ," &
+  " SYS_ADDR33                : AG24 ," &
+  " SYS_ADDR34                : AG26 ," &
+  " SYS_ADDR35                : AG27 ," &
+  " SYS_ADDRP0                : Y21 ," &
+  " SYS_ADDRP1                : W22 ," &
+  " SYS_ADDRP2                : V22 ," &
+  " SYS_ADDRP3                : V21 ," &
+  " SYS_ADDRP4                : U22 ," &
+  " SYS_ARTRY_N               : W11 ," &
+  " SYS_BG0_N                 : AF01 ," &
+  " SYS_BG1_N                 : Y20 ," &
+  " SYS_BG2_N                 : Y25 ," &
+  " SYS_BG3_N                 : AA26 ," &
+  " SYS_BR0_N                 : V19 ," &
+  " SYS_BR1_N                 : U19 ," &
+  " SYS_BR2_N                 : T19 ," &
+  " SYS_BR3_N                 : U20 ," &
+  " SYS_CLK                   : B27 ," &
+  " SYS_DATA0                 : Y08 ," &
+  " SYS_DATA1                 : AA08 ," &
+  " SYS_DATA2                 : AA10 ," &
+  " SYS_DATA3                 : AA12 ," &
+  " SYS_DATA4                 : AA13 ," &
+  " SYS_DATA5                 : AA14 ," &
+  " SYS_DATA6                 : AA15 ," &
+  " SYS_DATA7                 : AA16 ," &
+  " SYS_DATA8                 : AB08 ," &
+  " SYS_DATA9                 : AB09 ," &
+  " SYS_DATA10                : AB10 ," &
+  " SYS_DATA11                : AB11 ," &
+  " SYS_DATA12                : AB12 ," &
+  " SYS_DATA13                : AB13 ," &
+  " SYS_DATA14                : AB15 ," &
+  " SYS_DATA15                : AB16 ," &
+  " SYS_DATA16                : AB17 ," &
+  " SYS_DATA17                : AB18 ," &
+  " SYS_DATA18                : AB19 ," &
+  " SYS_DATA19                : AC08 ," &
+  " SYS_DATA20                : AC10 ," &
+  " SYS_DATA21                : AC12 ," &
+  " SYS_DATA22                : AC13 ," &
+  " SYS_DATA23                : AC14 ," &
+  " SYS_DATA24                : AC15 ," &
+  " SYS_DATA25                : AC16 ," &
+  " SYS_DATA26                : AC18 ," &
+  " SYS_DATA27                : AD07 ," &
+  " SYS_DATA28                : AD08 ," &
+  " SYS_DATA29                : AD09 ," &
+  " SYS_DATA30                : AD10 ," &
+  " SYS_DATA31                : AD11 ," &
+  " SYS_DATA32                : AD12 ," &
+  " SYS_DATA33                : AD13 ," &
+  " SYS_DATA34                : AD15 ," &
+  " SYS_DATA35                : AD16 ," &
+  " SYS_DATA36                : AD17 ," &
+  " SYS_DATA37                : AD18 ," &
+  " SYS_DATA38                : AE08 ," &
+  " SYS_DATA39                : AE10 ," &
+  " SYS_DATA40                : AE12 ," &
+  " SYS_DATA41                : AE14 ," &
+  " SYS_DATA42                : AE16 ," &
+  " SYS_DATA43                : AE18 ," &
+  " SYS_DATA44                : AF07 ," &
+  " SYS_DATA45                : AF08 ," &
+  " SYS_DATA46                : AF09 ," &
+  " SYS_DATA47                : AF10 ," &
+  " SYS_DATA48                : AF11 ," &
+  " SYS_DATA49                : AF12 ," &
+  " SYS_DATA50                : AF13 ," &
+  " SYS_DATA51                : AF14 ," &
+  " SYS_DATA52                : AF15 ," &
+  " SYS_DATA53                : AF16 ," &
+  " SYS_DATA54                : AF17 ," &
+  " SYS_DATA55                : AF18 ," &
+  " SYS_DATA56                : AG07 ," &
+  " SYS_DATA57                : AG08 ," &
+  " SYS_DATA58                : AG10 ," &
+  " SYS_DATA59                : AG12 ," &
+  " SYS_DATA60                : AG13 ," &
+  " SYS_DATA61                : AG15 ," &
+  " SYS_DATA62                : AG16 ," &
+  " SYS_DATA63                : AG18 ," &
+  " SYS_DATAP0                : AG04 ," &
+  " SYS_DATAP1                : AF03 ," &
+  " SYS_DATAP2                : AF04 ," &
+  " SYS_DATAP3                : AF06 ," &
+  " SYS_DATAP4                : AE04 ," &
+  " SYS_DATAP5                : AD05 ," &
+  " SYS_DATAP6                : AD06 ," &
+  " SYS_DATAP7                : AB07 ," &
+  " SYS_DBG0_N                : T21 ," &
+  " SYS_DBG1_N                : W20 ," &
+  " SYS_DBG2_N                : R21 ," &
+  " SYS_DBG3_N                : R20 ," &
+  " SYS_GBL_N                 : Y11 ," &
+  " SYS_HRESET0_N             : AD20 ," &
+  " SYS_HRESET1_N             : AC20 ," &
+  " SYS_HRESET2_N             : AE20 ," &
+  " SYS_HRESET3_N             : AD19 ," &
+  " SYS_L2_HIT_N              : AF02 ," &
+  " SYS_MCP0_N                : W14 ," &
+  " SYS_MCP1_N                : Y15 ," &
+  " SYS_MCP2_N                : W12 ," &
+  " SYS_MCP3_N                : Y13 ," &
+  " SYS_SHD_N                 : AF05 ," &
+  " SYS_SRESET0_N             : AD21 ," &
+  " SYS_SRESET1_N             : AB21 ," &
+  " SYS_SRESET2_N             : AB20 ," &
+  " SYS_SRESET3_N             : AA20 ," &
+  " SYS_TA_HIT_N              : AC06 ," &
+  " SYS_TA_N                  : AG01 ," &
+  " SYS_TBE                   : AD04 ," &
+  " SYS_TBST_N                : AE06 ," &
+  " SYS_TEA_N                 : AB06 ," &
+  " SYS_TSIZ0                 : AF19 ," &
+  " SYS_TSIZ1                 : AF20 ," &
+  " SYS_TSIZ2                 : AG02 ," &
+  " SYS_TS_N                  : Y26 ," &
+  " SYS_TT0                   : AA18 ," &
+  " SYS_TT1                   : W18 ," &
+  " SYS_TT2                   : W17 ," &
+  " SYS_TT3                   : Y17 ," &
+  " SYS_TT4                   : W16 ," &
+  " TCK                       : Y19 ," &
+  " TDI                       : E26 ," &
+  " TDO                       : F27 ," &
+  " TMS                       : R26 ," &
+  " TRST_N                    : D26 ," &
+  " VDD2                      : (AA25 ," &
+  "                             AC27 ," &
+  "                             E27 ," &
+  "                             G25 ," &
+  "                             J23 ," &
+  "                             L21 ," &
+  "                             P20 ," &
+  "                             P27 ," &
+  "                             U21 ," &
+  "                             W23)," &
+  " VDD3                      : (AA11 ," &
+  "                             AA17 ," &
+  "                             AC09 ," &
+  "                             AC19 ," &
+  "                             AE07 ," &
+  "                             AE21 ," &
+  "                             AG05 ," &
+  "                             AG14 ," &
+  "                             AG23 ," &
+  "                             Y14)," &
+  " VDD4                      : (AA03 ," &
+  "                             AC01 ," &
+  "                             E01 ," &
+  "                             G03 ," &
+  "                             J05 ," &
+  "                             L07 ," &
+  "                             P01 ," &
+  "                             P08 ," &
+  "                             U07 ," &
+  "                             W05)," &
+  " VDD5                      : (A05 ," &
+  "                             A14 ," &
+  "                             A23 ," &
+  "                             C07 ," &
+  "                             C21 ," &
+  "                             E09 ," &
+  "                             E19 ," &
+  "                             G11 ," &
+  "                             G17 ," &
+  "                             H14)," &
+  " VDDA                      : D27 ," &
+  " VDD                       : (A09 ," &
+  "                             A19 ," &
+  "                             AA07 ," &
+  "                             AA21 ," &
+  "                             AC05 ," &
+  "                             AC23 ," &
+  "                             AD14 ," &
+  "                             AE03 ," &
+  "                             AE11 ," &
+  "                             AE17 ," &
+  "                             AE25 ," &
+  "                             AG09 ," &
+  "                             AG19 ," &
+  "                             C03 ," &
+  "                             C11 ," &
+  "                             C17 ," &
+  "                             C25 ," &
+  "                             D14 ," &
+  "                             E05 ," &
+  "                             E23 ," &
+  "                             G07 ," &
+  "                             G21 ," &
+  "                             H10 ," &
+  "                             H18 ," &
+  "                             J01 ," &
+  "                             J27 ," &
+  "                             K08 ," &
+  "                             K20 ," &
+  "                             L03 ," &
+  "                             L25 ," &
+  "                             N14 ," &
+  "                             P04 ," &
+  "                             P13 ," &
+  "                             P15 ," &
+  "                             P24 ," &
+  "                             R14 ," &
+  "                             U03 ," &
+  "                             U25 ," &
+  "                             V08 ," &
+  "                             V20 ," &
+  "                             W01 ," &
+  "                             W27 ," &
+  "                             Y10 ," &
+  "                             Y18)," &
+  " WE0                       : H08 ," &
+  " WE1                       : H09 ," &
+  " XADR_LAT                  : G26 ," &
+  " XCVR_RD                   : F26 " ;
+
+-- ground on package (81)
+
+-- vdd on package (44)
+
+-- vdd2, vdd3, vdd4, vdd5 on package (40)
+
+-- dummy on package (83)
+
+---------------------------------------------------------------------------
+-- Scan Port Identification  
+---------------------------------------------------------------------------
+
+ attribute TAP_SCAN_IN    of     TDI : signal is true;
+ attribute TAP_SCAN_OUT   of     TDO : signal is true;
+ attribute TAP_SCAN_MODE  of     TMS : signal is true;
+ attribute TAP_SCAN_CLOCK of     TCK : signal is (1.0e+06, BOTH);
+ attribute TAP_SCAN_RESET of     TRST_N: signal is true;
+
+---------------------------------------------------------------------------
+-- Compliance pin definition   
+---------------------------------------------------------------------------
+
+attribute COMPLIANCE_PATTERNS of CPC710_133 : entity is
+
+      "(    CE0_TEST) " &
+       "(0)";
+
+---------------------------------------------------------------------------
+-- BSDL_InLine       
+---------------------------------------------------------------------------
+
+ attribute INSTRUCTION_LENGTH of CPC710_133 : entity is 3;
+ attribute INSTRUCTION_OPCODE of CPC710_133 : entity is
+   "EXTEST               (000)," &
+   "INTEST               (001)," &
+   "SAMPLE               (010)," &
+   "IDCODE               (011)," &
+   "HIGHZ                (100)," &
+   "CLAMP                (110)," &
+   "BYPASS               (111, 101)";
+
+ attribute INSTRUCTION_CAPTURE of CPC710_133 : entity is "001";
+
+ attribute IDCODE_REGISTER of CPC710_133 : entity is
+   "0011" &          -- EC   (31:28)=3    (version code for P/N: 06K9035)
+   "0100" &          -- LOC  (27:24)=4    (Essonnes Component Lab  ID)
+   "000000110101" &  -- ID   (23:12)=035  (CPC710  code)
+   "00000100100"  &  -- MFID (11: 1)      (IBM Manufacturer ID)
+   "1";              --      (0)          (required by standard)
+
+ attribute REGISTER_ACCESS of CPC710_133 : entity is
+   "DEVICE_ID (IDCODE)";
+
+---------------------------------------------------------------------------
+--                                                                       --
+--    -- Boundary Register Field Definition and Assumptions --           --
+--                                                                       --
+-- There are 8 possible fields: the first 5 fields are always used       --
+-- and the final 3 are used only for output3 and bidir.                  --
+--                                                                       --
+-- Field_num:  1    2    3    4        5     6      7       8            --
+-- Field_name: num  cell port function safe [ccell  disval  rslt]        --
+--                                                                       --
+-- num= cell position                                                    --
+-- cell= name of boundary cell                                           --
+-- port= name of the system input or output port                         --
+-- function=                                                             --
+--  [ input                                                              --
+--  | clock                                                              --
+--  | output2  (2-state output)                                          --
+--  | output3  (3-state output)                                          --
+--  | internal (a cell that captures "1", "0" or "X")                    --
+--  | control  (controls a 3-state control, or a direction control)      --
+--  | controlr (a control cell that is forced to its disable state       --
+--              in the Test-Logic-Reset controller state)                --
+--  | bidir ]                                                            --
+-- safe = [ 1 | 0 | X ]                                                  --
+--        Safe value, used only by test generation software.             --
+--        Not used for synthesis.                                        --
+-- ccell= Identifies control cell.                                       --
+-- disval= [ 1 | 0 ]                                                     --
+--         Disable value.  The value that must be scanned in to the      --
+--         control cell to disable the output.                           --
+-- rslt= [ Z | WEAK0 | WEAK1 | PULL0 | PULL1 ]                           --
+--       Disable result.  Condition of driver when it is placed in       --
+--       the inactive drive state.  Not used for synthesis.              --
+--                                                                       --
+-- Defaults:                                                             --
+-- =========                                                             --
+-- 1) Functions "output3" or "bidir":                                    --
+--                                                                       --
+-- num  (calc as before)                                                 --
+-- cell (get from jtag_map)                                              --
+-- port (calc as before)                                                 --
+-- function   (get from jtag_map)                                        --
+-- safe  (default to X, non-default keyword = ??)                        --
+-- ccell (calc as before)                                                --
+-- disval (default to 0, non-default keyword = ??)                       --
+-- rslt (default to Z, non-default keyword = ??)                         --
+--                                                                       --
+-- 2) Function "control" or "controlr":                                  --
+--                                                                       --
+-- num  (calc as before)                                                 --
+-- cell (get from jtag_map)                                              --
+-- port (*)                                                              --
+-- function (control)                                                    --
+-- safe (set to 0)                                                       --
+--                                                                       --
+-- 3) Functions other than "output3", "bidir", "control" or "controlr":  --
+--                                                                       --
+-- num  (calc as before)                                                 --
+-- cell (get from jtag_map)                                              --
+-- port (calc as before)                                                 --
+-- function   (get from jtag_map)                                        --
+-- safe  (default to X, non-default keyword = ??)                        --
+--                                                                       --
+---------------------------------------------------------------------------
+
+
+ attribute BOUNDARY_LENGTH of CPC710_133 : entity is 799;
+
+ attribute BOUNDARY_REGISTER of CPC710_133 : entity is
+
+
+  "0  (IBM1149_BSR_BIDI,     GPIO0, bidir, X, 1, 0, Z)," &
+  "1  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "2  (IBM1149_BSR_BIDIOUT,   P_MEMACK_N, output2, X)," &
+  "3  (IBM1149_BSR_BIDI,     GPIO1, bidir, X, 4, 0, Z)," &
+  "4  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "5  (IBM1149_BSR_BIDIOUT,     MADDR13, output3, X, 170, 0, Z)," &
+  "6  (IBM1149_BSR_BIDIOUT,     PRES_OE1_N, output2, X)," &
+  "7  (IBM1149_BSR_BIDIOUT,     IT2_N, output3, X, 8, 0, Z)," &
+  "8  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "9  (IBM1149_BSR_IN,     PLL_TUNE5, input, X)," &
+  "10  (IBM1149_BSR_BIDIIN,     PLL_RESET_N, input, X)," &
+  "11  (IBM1149_BSR_BIDIOUT,     PRES_OE0_N, output2, X)," &
+  "12  (IBM1149_BSR_BIDI,     GPIO2, bidir, X, 13, 0, Z)," &
+  "13  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "14  (IBM1149_BSR_BIDIOUT,     SDCKE9, output3, X, 170, 0, Z)," &
+  "15  (IBM1149_BSR_BIDIOUT,     SDCKE2, output3, X, 170, 0, Z)," &
+  "16  (IBM1149_BSR_BIDIOUT,     SDCKE5, output3, X, 170, 0, Z)," &
+  "17  (IBM1149_BSR_BIDIOUT,     SDCS0, output3, X, 170, 0, Z)," &
+  "18  (IBM1149_BSR_BIDIOUT,     SDCKE7, output3, X, 170, 0, Z)," &
+  "19  (IBM1149_BSR_OUT,     IT1_N, output3, X, 20, 0, Z)," &
+  "20  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "21  (IBM1149_BSR_IN,     PLL_TUNE1, input, X)," &
+  "22  (IBM1149_BSR_BIDIOUT, MUX_CLKEN2B_N, output3, X, 170, 0, Z)," &
+  "23  (IBM1149_BSR_BIDIOUT,     SDCKE4, output3, X, 170, 0, Z)," &
+  "24  (IBM1149_BSR_BIDIOUT,     SDCKE3, output3, X, 170, 0, Z)," &
+  "25  (IBM1149_BSR_BIDIOUT,     SDCKE6, output3, X, 170, 0, Z)," &
+  "26  (IBM1149_BSR_OUT,     SDCKE1, output3, X, 170, 0, Z)," &
+  "27  (IBM1149_BSR_IN,     PLL_TUNE0, input, X)," &
+  "28  (IBM1149_BSR_BIDIOUT,     MADDR3, output3, X, 170, 0, Z)," &
+  "29  (IBM1149_BSR_BIDIOUT,     MADDR6, output3, X, 170, 0, Z)," &
+  "30  (IBM1149_BSR_OUT,     SDCKE0, output3, X, 170, 0, Z)," &
+  "31  (IBM1149_BSR_OUT,     MADDR8, output3, X, 170, 0, Z)," &
+  "32  (IBM1149_BSR_BIDIOUT, MUX_CLKEN1B_N, output3, X, 170, 0, Z)," &
+  "33  (IBM1149_BSR_BIDIOUT,     MADDR11, output3, X, 170, 0, Z)," &
+  "34  (IBM1149_BSR_BIDIOUT,     MADDR7, output3, X, 170, 0, Z)," &
+  "35  (IBM1149_BSR_BIDIOUT,     SDCS5, output3, X, 170, 0, Z)," &
+  "36  (IBM1149_BSR_BIDIOUT,     SDCS4, output3, X, 170, 0, Z)," &
+  "37  (IBM1149_BSR_BIDIOUT,     SDCS1, output3, X, 170, 0, Z)," &
+  "38  (IBM1149_BSR_BIDIOUT,     SDCS2, output3, X, 170, 0, Z)," &
+  "39  (IBM1149_BSR_BIDIOUT,     MADDR5, output3, X, 170, 0, Z)," &
+  "40  (IBM1149_BSR_BIDIOUT,     MADDR10, output3, X, 170, 0, Z)," &
+  "41  (IBM1149_BSR_BIDI,     MDATA64, bidir, X, 42, 0, Z)," &
+  "42  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "43  (IBM1149_BSR_BIDIOUT,     SDCS10, output3, X, 170, 0, Z)," &
+  "44  (IBM1149_BSR_BIDIOUT,     SDCS7, output3, X, 170, 0, Z)," &
+  "45  (IBM1149_BSR_BIDIOUT,     SDCS6, output3, X, 170, 0, Z)," &
+  "46  (IBM1149_BSR_BIDIOUT,     SDCS9, output3, X, 170, 0, Z)," &
+  "47  (IBM1149_BSR_BIDIOUT,     MADDR12, output3, X, 170, 0, Z)," &
+  "48  (IBM1149_BSR_BIDI,     MDATA71, bidir, X, 49, 0, Z)," &
+  "49  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "50  (IBM1149_BSR_BIDIOUT,     SDCKE8, output3, X, 170, 0, Z)," &
+  "51  (IBM1149_BSR_BIDIOUT,     MADDR0_EVEN, output3, X, 170, 0, Z)," &
+  "52  (IBM1149_BSR_BIDIOUT,     MADDR1, output3, X, 170, 0, Z)," &
+  "53  (IBM1149_BSR_BIDIOUT,     SDCS11, output3, X, 170, 0, Z)," &
+  "54  (IBM1149_BSR_BIDIOUT,     SDCS8, output3, X, 170, 0, Z)," &
+  "55  (IBM1149_BSR_BIDIOUT,     MADDR4, output3, X, 170, 0, Z)," &
+  "56  (IBM1149_BSR_BIDI,     MDATA57, bidir, X, 57, 0, Z)," &
+  "57  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "58  (IBM1149_BSR_BIDI,     MDATA70, bidir, X, 59, 0, Z)," &
+  "59  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "60  (IBM1149_BSR_BIDI,     MDATA48, bidir, X, 61, 0, Z)," &
+  "61  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "62  (IBM1149_BSR_BIDI,     MDATA56, bidir, X, 63, 0, Z)," &
+  "63  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "64  (IBM1149_BSR_BIDIOUT,     MADDR0_ODD, output3, X, 170, 0, Z)," &
+  "65  (IBM1149_BSR_BIDI,     MDATA22, bidir, X, 66, 0, Z)," &
+  "66  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "67  (IBM1149_BSR_BIDIOUT,     SDCS3, output3, X, 170, 0, Z)," &
+  "68  (IBM1149_BSR_BIDIOUT,     MADDR2, output3, X, 170, 0, Z)," &
+  "69  (IBM1149_BSR_BIDI,     MDATA62, bidir, X, 70, 0, Z)," &
+  "70  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "71  (IBM1149_BSR_BIDI,     MDATA29, bidir, X, 72, 0, Z)," &
+  "72  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "73  (IBM1149_BSR_BIDI,     MDATA40, bidir, X, 74, 0, Z)," &
+  "74  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "75  (IBM1149_BSR_BIDI,     MDATA8, bidir, X, 76, 0, Z)," &
+  "76  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "77  (IBM1149_BSR_BIDI,     MDATA21, bidir, X, 78, 0, Z)," &
+  "78  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "79  (IBM1149_BSR_BIDI,     MDATA67, bidir, X, 80, 0, Z)," &
+  "80  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "81  (IBM1149_BSR_BIDI,     MDATA63, bidir, X, 82, 0, Z)," &
+  "82  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "83  (IBM1149_BSR_BIDI,     MDATA66, bidir, X, 84, 0, Z)," &
+  "84  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "85  (IBM1149_BSR_BIDI,     MDATA7, bidir, X, 86, 0, Z)," &
+  "86  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "87  (IBM1149_BSR_BIDI,     MDATA20, bidir, X, 88, 0, Z)," &
+  "88  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "89  (IBM1149_BSR_BIDI,     MDATA47, bidir, X, 90, 0, Z)," &
+  "90  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "91  (IBM1149_BSR_BIDI,     MDATA39, bidir, X, 92, 0, Z)," &
+  "92  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "93  (IBM1149_BSR_BIDI,     MDATA34, bidir, X, 94, 0, Z)," &
+  "94  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "95  (IBM1149_BSR_BIDI,     MDATA35, bidir, X, 96, 0, Z)," &
+  "96  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "97  (IBM1149_BSR_BIDI,     MDATA61, bidir, X, 98, 0, Z)," &
+  "98  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "99  (IBM1149_BSR_BIDI,     MDATA55, bidir, X, 100, 0, Z)," &
+  "100  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "101  (IBM1149_BSR_BIDI,     MDATA28, bidir, X, 102, 0, Z)," &
+  "102  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "103  (IBM1149_BSR_BIDI,     MDATA19, bidir, X, 104, 0, Z)," &
+  "104  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "105  (IBM1149_BSR_BIDI,     MDATA46, bidir, X, 106, 0, Z)," &
+  "106  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "107  (IBM1149_BSR_BIDI,     MDATA45, bidir, X, 108, 0, Z)," &
+  "108  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "109  (IBM1149_BSR_BIDI,     MDATA43, bidir, X, 110, 0, Z)," &
+  "110  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "111  (IBM1149_BSR_BIDI,     MDATA33, bidir, X, 112, 0, Z)," &
+  "112  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "113  (IBM1149_BSR_BIDI,     MDATA42, bidir, X, 114, 0, Z)," &
+  "114  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "115  (IBM1149_BSR_BIDI,     MDATA18, bidir, X, 116, 0, Z)," &
+  "116  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "117  (IBM1149_BSR_BIDI,     MDATA38, bidir, X, 118, 0, Z)," &
+  "118  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "119  (IBM1149_BSR_BIDI,     MDATA17, bidir, X, 120, 0, Z)," &
+  "120  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "121  (IBM1149_BSR_BIDI,     MDATA27, bidir, X, 122, 0, Z)," &
+  "122  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "123  (IBM1149_BSR_BIDI,     MDATA51, bidir, X, 124, 0, Z)," &
+  "124  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "125  (IBM1149_BSR_BIDI,     MDATA60, bidir, X, 126, 0, Z)," &
+  "126  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "127  (IBM1149_BSR_BIDI,     MDATA53, bidir, X, 128, 0, Z)," &
+  "128  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "129  (IBM1149_BSR_BIDI,     MDATA5, bidir, X, 130, 0, Z)," &
+  "130  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "131  (IBM1149_BSR_BIDI,     MDATA6, bidir, X, 132, 0, Z)," &
+  "132  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "133  (IBM1149_BSR_BIDI,     MDATA44, bidir, X, 134, 0, Z)," &
+  "134  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "135  (IBM1149_BSR_BIDI,     MDATA54, bidir, X, 136, 0, Z)," &
+  "136  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "137  (IBM1149_BSR_BIDI,     MDATA52, bidir, X, 138, 0, Z)," &
+  "138  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "139  (IBM1149_BSR_BIDI,     MDATA50, bidir, X, 140, 0, Z)," &
+  "140  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "141  (IBM1149_BSR_BIDI,     MDATA49, bidir, X, 142, 0, Z)," &
+  "142  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "143  (IBM1149_BSR_BIDI,     MDATA36, bidir, X, 144, 0, Z)," &
+  "144  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "145  (IBM1149_BSR_BIDI,     MDATA37, bidir, X, 146, 0, Z)," &
+  "146  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "147  (IBM1149_BSR_BIDI,     MDATA16, bidir, X, 148, 0, Z)," &
+  "148  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "149  (IBM1149_BSR_BIDI,     MDATA4, bidir, X, 150, 0, Z)," &
+  "150  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "151  (IBM1149_BSR_BIDI,     MDATA58, bidir, X, 152, 0, Z)," &
+  "152  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "153  (IBM1149_BSR_BIDI,     MDATA65, bidir, X, 154, 0, Z)," &
+  "154  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "155  (IBM1149_BSR_BIDI,     MDATA69, bidir, X, 156, 0, Z)," &
+  "156  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "157  (IBM1149_BSR_BIDI,     MDATA26, bidir, X, 158, 0, Z)," &
+  "158  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "159  (IBM1149_BSR_BIDI,     MDATA15, bidir, X, 160, 0, Z)," &
+  "160  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "161  (IBM1149_BSR_BIDI,     MDATA3, bidir, X, 162, 0, Z)," &
+  "162  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "163  (IBM1149_BSR_BIDI,     MDATA14, bidir, X, 164, 0, Z)," &
+  "164  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "165  (IBM1149_BSR_BIDI,     MDATA59, bidir, X, 166, 0, Z)," &
+  "166  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "167  (IBM1149_BSR_BIDI,     MDATA68, bidir, X, 168, 0, Z)," &
+  "168  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "169  (IBM1149_BSR_BIDIOUT,     BS0, output3, X, 170, 0, Z)," &
+  "170  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "171  (IBM1149_BSR_BIDI,     MDATA13, bidir, X, 172, 0, Z)," &
+  "172  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "173  (IBM1149_BSR_BIDI,     MDATA2, bidir, X, 174, 0, Z)," &
+  "174  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "175  (IBM1149_BSR_BIDI,     MDATA12, bidir, X, 176, 0, Z)," &
+  "176  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "177  (IBM1149_BSR_BIDI,     MDATA11, bidir, X, 178, 0, Z)," &
+  "178  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "179  (IBM1149_BSR_BIDI,     MDATA31, bidir, X, 180, 0, Z)," &
+  "180  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "181  (IBM1149_BSR_BIDIOUT, MUX_CLKENA1_N, output3, X, 170, 0, Z)," &
+  "182  (IBM1149_BSR_BIDI,     MDATA41, bidir, X, 183, 0, Z)," &
+  "183  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "184  (IBM1149_BSR_BIDI,     MDATA10, bidir, X, 185, 0, Z)," &
+  "185  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "186  (IBM1149_BSR_BIDI,     MDATA1, bidir, X, 187, 0, Z)," &
+  "187  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "188  (IBM1149_BSR_BIDI,     MDATA25, bidir, X, 189, 0, Z)," &
+  "189  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "190  (IBM1149_BSR_BIDI,     MDATA32, bidir, X, 191, 0, Z)," &
+  "191  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "192  (IBM1149_BSR_BIDI,     MDATA9, bidir, X, 193, 0, Z)," &
+  "193  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "194  (IBM1149_BSR_BIDI,     MDATA0, bidir, X, 195, 0, Z)," &
+  "195  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "196  (IBM1149_BSR_BIDI,     MDATA24, bidir, X, 197, 0, Z)," &
+  "197  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "198  (IBM1149_BSR_BIDI,   G_TRDY_N, bidir, X, 199, 0, Z)," &
+  "199  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+-- "200  (IBM1149_BSR_BIDIOUT, MUX_OEA_N, output3, X, 170, 0, Z)," &
+  "200  (IBM1149_BSR_BIDIOUT, *, internal, X)," &
+  "201  (IBM1149_BSR_BIDIOUT,     BS1, output3, X, 170, 0, Z)," &
+  "202  (IBM1149_BSR_OUT,     WE1, output3, X, 170, 0, Z)," &
+  "203  (IBM1149_BSR_BIDIIN, DRAMREQ_N, input, X)," &
+  "204  (IBM1149_BSR_BIDIOUT,     SDRAS0, output3, X, 170, 0, Z)," &
+  "205  (IBM1149_BSR_BIDIOUT, MUX_SEL_N, output3, X, 170, 0, Z)," &
+  "206  (IBM1149_BSR_BIDI,     MDATA23, bidir, X, 207, 0, Z)," &
+  "207  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "208  (IBM1149_BSR_BIDI,     MDATA30, bidir, X, 209, 0, Z)," &
+  "209  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "210  (IBM1149_BSR_BIDI,   G_FRAME_N, bidir, X, 211, 0, Z)," &
+  "211  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "212  (IBM1149_BSR_BIDI,       G_RST_N, bidir, X, 213, 0, Z)," &
+  "213  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "214  (IBM1149_BSR_BIDIOUT,     SDCAS0, output3, X, 170, 0, Z)," &
+  "215  (IBM1149_BSR_BIDIOUT,     SDRAS1, output3, X, 170, 0, Z)," &
+  "216  (IBM1149_BSR_OUT,     SDCAS1, output3, X, 170, 0, Z)," &
+  "217  (IBM1149_BSR_OUT,     WE0, output3, X, 170, 0, Z)," &
+--  "218  (IBM1149_BSR_BIDI,   G_IRDY_N, bidir, X, 219, 0, Z)," &
+  "218  (IBM1149_BSR_BIDIOUT,   G_IRDY_N, output3, X, 219, 0, Z)," &
+  "219  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "220  (IBM1149_BSR_BIDI,   G_ADL30, bidir, X, 221, 0, Z)," &
+  "221  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "222  (IBM1149_BSR_BIDI,   G_ADL28, bidir, X, 223, 0, Z)," &
+  "223  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "224  (IBM1149_BSR_BIDI,   G_ADL27, bidir, X, 225, 0, Z)," &
+  "225  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "226  (IBM1149_BSR_BIDI,   G_ADL31, bidir, X, 227, 0, Z)," &
+  "227  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+--  "228  (IBM1149_BSR_OUT, MUX_OEB_N, output3, X, 170, 0, Z)," &
+  "228  (BC_3, *, internal, X)," &
+  "229  (IBM1149_BSR_BIDI,   G_ADL19, bidir, X, 230, 0, Z)," &
+  "230  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "231  (IBM1149_BSR_BIDI,   G_ADL16, bidir, X, 232, 0, Z)," &
+  "232  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "233  (IBM1149_BSR_BIDI,   G_ADL29, bidir, X, 234, 0, Z)," &
+  "234  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "235  (IBM1149_BSR_TESTOUT, DRAMGNT_N, output2, X)," &
+  "236  (IBM1149_BSR_BIDI,   G_ADL4, bidir, X, 237, 0, Z)," &
+  "237  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+--  "238  (IBM1149_BSR_BIDIOUT, MUX_CLKENA2_N, output3, X, 170, 0, Z)," &
+  "238  (BC_3, *, internal, X)," &
+  "239  (IBM1149_BSR_BIDIOUT,   G_ARB, output2, X)," &
+  "240  (IBM1149_BSR_BIDI,   G_ADL25, bidir, X, 241, 0, Z)," &
+  "241  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "242  (IBM1149_BSR_BIDI,   G_ADL21, bidir, X, 243, 0, Z)," &
+  "243  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "244  (IBM1149_BSR_BIDI,   G_ADL24, bidir, X, 245, 0, Z)," &
+  "245  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "246  (IBM1149_BSR_BIDI,   G_ADL20, bidir, X, 247, 0, Z)," &
+  "247  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "248  (IBM1149_BSR_BIDI,   G_ADL10, bidir, X, 249, 0, Z)," &
+  "249  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "250  (IBM1149_BSR_BIDI,   G_ADL9, bidir, X, 251, 0, Z)," &
+  "251  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "252  (IBM1149_BSR_BIDI,   G_ADL1, bidir, X, 253, 0, Z)," &
+  "253  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "254  (IBM1149_BSR_BIDI,   G_ADL23, bidir, X, 255, 0, Z)," &
+  "255  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "256  (IBM1149_BSR_BIDI,   G_ADL18, bidir, X, 257, 0, Z)," &
+  "257  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "258  (IBM1149_BSR_BIDI,   G_ADL22, bidir, X, 259, 0, Z)," &
+  "259  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "260  (IBM1149_BSR_BIDI,   G_ADL26, bidir, X, 261, 0, Z)," &
+  "261  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "262  (IBM1149_BSR_BIDI,   G_ADL5, bidir, X, 263, 0, Z)," &
+  "263  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "264  (IBM1149_BSR_BIDI,   G_ADL0, bidir, X, 265, 0, Z)," &
+  "265  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "266  (IBM1149_BSR_BIDI,   G_PERR_N, bidir, X, 267, 0, Z)," &
+  "267  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "268  (IBM1149_BSR_BIDI,   G_ADL13, bidir, X, 269, 0, Z)," &
+  "269  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "270  (IBM1149_BSR_BIDI,   G_ADL12, bidir, X, 271, 0, Z)," &
+  "271  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "272  (IBM1149_BSR_BIDI,   G_ADL15, bidir, X, 273, 0, Z)," &
+  "273  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "274  (IBM1149_BSR_BIDI,   G_ADL14, bidir, X, 275, 0, Z)," &
+  "275  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "276  (IBM1149_BSR_BIDI,   G_ADL6, bidir, X, 277, 0, Z)," &
+  "277  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "278  (IBM1149_BSR_BIDI,   G_ADL2, bidir, X, 279, 0, Z)," &
+  "279  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "280  (IBM1149_BSR_BIDI,   G_CBE5, bidir, X, 281, 0, Z)," &
+  "281  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "282  (IBM1149_BSR_BIDI,   G_ADL3, bidir, X, 283, 0, Z)," &
+  "283  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "284  (IBM1149_BSR_BIDI,   G_ADH23, bidir, X, 285, 0, Z)," &
+  "285  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "286  (IBM1149_BSR_BIDI,   G_ADL7, bidir, X, 287, 0, Z)," &
+  "287  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "288  (IBM1149_BSR_BIDI,   G_ADL8, bidir, X, 289, 0, Z)," &
+  "289  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "290  (IBM1149_BSR_BIDI,   G_ADL17, bidir, X, 291, 0, Z)," &
+  "291  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "292  (IBM1149_BSR_BIDI,   G_ADL11, bidir, X, 293, 0, Z)," &
+  "293  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "294  (IBM1149_BSR_BIDI,   G_CBE6, bidir, X, 295, 0, Z)," &
+  "295  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "296  (IBM1149_BSR_BIDI,   G_ADH29, bidir, X, 297, 0, Z)," &
+  "297  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "298  (IBM1149_BSR_BIDI,   G_ADH28, bidir, X, 299, 0, Z)," &
+  "299  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "300  (IBM1149_BSR_BIDI,   G_ADH31, bidir, X, 301, 0, Z)," &
+  "301  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "302  (IBM1149_BSR_BIDI,   G_ADH30, bidir, X, 303, 0, Z)," &
+  "303  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "304  (IBM1149_BSR_BIDI,   G_STOP_N, bidir, X, 305, 0, Z)," &
+  "305  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "306  (IBM1149_BSR_BIDI,   G_ADH22, bidir, X, 307, 0, Z)," &
+  "307  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "308  (IBM1149_BSR_BIDI,   G_PAR, bidir, X, 309, 0, Z)," &
+  "309  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "310  (IBM1149_BSR_BIDI,   G_ADH27, bidir, X, 311, 0, Z)," &
+  "311  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "312  (IBM1149_BSR_BIDI,   G_ADH26, bidir, X, 313, 0, Z)," &
+  "313  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "314  (IBM1149_BSR_BIDI,   G_ADH24, bidir, X, 315, 0, Z)," &
+  "315  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "316  (IBM1149_BSR_BIDI,   G_ADH25, bidir, X, 317, 0, Z)," &
+  "317  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "318  (IBM1149_BSR_BIDIOUT,       G_GNT4_N, output3, X, 319, 0, Z)," &
+  "319  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "320  (IBM1149_BSR_BIDIOUT,       G_GNT6_N, output3, X, 321, 0, Z)," &
+  "321  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "322  (IBM1149_BSR_BIDI,   G_CBE3, bidir, X, 323, 0, Z)," &
+  "323  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "324  (IBM1149_BSR_BIDI,   G_ACK64_N, bidir, X, 325, 0, Z)," &
+  "325  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "326  (IBM1149_BSR_BIDI,   G_ADH20, bidir, X, 327, 0, Z)," &
+  "327  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "328  (IBM1149_BSR_BIDI,   G_ADH21, bidir, X, 329, 0, Z)," &
+  "329  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "330  (IBM1149_BSR_BIDI,   G_CBE7, bidir, X, 331, 0, Z)," &
+  "331  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "332  (IBM1149_BSR_BIDI,   G_CBE4, bidir, X, 333, 0, Z)," &
+  "333  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "334  (IBM1149_BSR_BIDIOUT,       G_GNT5_N, output3, X, 335, 0, Z)," &
+  "335  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "336  (IBM1149_BSR_BIDIOUT,       G_GNT2_N, output3, X, 337, 0, Z)," &
+  "337  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "338  (IBM1149_BSR_BIDIOUT,       G_GNT1_N, output3, X, 339, 0, Z)," &
+  "339  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "340  (IBM1149_BSR_BIDI,   G_ADH18, bidir, X, 341, 0, Z)," &
+  "341  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "342  (IBM1149_BSR_BIDI,   G_ADH17, bidir, X, 343, 0, Z)," &
+  "343  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "344  (IBM1149_BSR_BIDI,   G_ADH15, bidir, X, 345, 0, Z)," &
+  "345  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "346  (IBM1149_BSR_BIDI,   G_ADH14, bidir, X, 347, 0, Z)," &
+  "347  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "348  (IBM1149_BSR_BIDIIN,       G_REQ3_N, input, X)," &
+  "349  (IBM1149_BSR_BIDIOUT,   G_INTB_N, output3, X, 350, 0, Z)," &
+  "350  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "351  (IBM1149_BSR_BIDIIN,       G_REQ0_N, input, X)," &
+  "352  (IBM1149_BSR_BIDI,   G_ADH16, bidir, X, 353, 0, Z)," &
+  "353  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "354  (IBM1149_BSR_BIDI,   G_ADH19, bidir, X, 355, 0, Z)," &
+  "355  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "356  (IBM1149_BSR_BIDIOUT,   G_INTD_N, output3, X, 357, 0, Z)," &
+  "357  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "358  (IBM1149_BSR_BIDIOUT,   G_INTC_N, output3, X, 359, 0, Z)," &
+  "359  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "360  (IBM1149_BSR_BIDIIN,       G_REQ1_N, input, X)," &
+  "361  (IBM1149_BSR_BIDIIN,       G_REQ4_N, input, X)," &
+  "362  (IBM1149_BSR_BIDIIN,       G_REQ7_N, input, X)," &
+  "363  (IBM1149_BSR_BIDIOUT,       G_GNT7_N, output3, X, 364, 0, Z)," &
+  "364  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "365  (IBM1149_BSR_BIDI,   G_ADH13, bidir, X, 366, 0, Z)," &
+  "366  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "367  (IBM1149_BSR_BIDI,   G_ADH12, bidir, X, 368, 0, Z)," &
+  "368  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "369  (IBM1149_BSR_BIDI,   G_ADH11, bidir, X, 370, 0, Z)," &
+  "370  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "371  (IBM1149_BSR_BIDIIN,       G_REQ5_N, input, X)," &
+  "372  (IBM1149_BSR_BIDI,   G_CBE2, bidir, X, 373, 0, Z)," &
+  "373  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "374  (IBM1149_BSR_BIDIOUT,   G_INTA_N, output3, X, 375, 0, Z)," &
+  "375  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "376  (IBM1149_BSR_BIDI,   G_ADH9, bidir, X, 377, 0, Z)," &
+  "377  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "378  (IBM1149_BSR_BIDI,   G_ADH10, bidir, X, 379, 0, Z)," &
+  "379  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "380  (IBM1149_BSR_BIDI,   G_ADH7, bidir, X, 381, 0, Z)," &
+  "381  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "382  (IBM1149_BSR_BIDI,   G_ADH8, bidir, X, 383, 0, Z)," &
+  "383  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "384  (IBM1149_BSR_BIDIIN,       G_REQ2_N, input, X)," &
+  "385  (IBM1149_BSR_BIDI,   G_CBE1, bidir, X, 386, 0, Z)," &
+  "386  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "387  (IBM1149_BSR_BIDI,   G_CBE0, bidir, X, 388, 0, Z)," &
+  "388  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "389  (IBM1149_BSR_BIDI,   G_ADH6, bidir, X, 390, 0, Z)," &
+  "390  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "391  (IBM1149_BSR_BIDI,   G_ADH5, bidir, X, 392, 0, Z)," &
+  "392  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "393  (IBM1149_BSR_BIDI,   G_ADH4, bidir, X, 394, 0, Z)," &
+  "394  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "395  (IBM1149_BSR_BIDI,   G_SERR_N, bidir, X, 396, 0, Z)," &
+  "396  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "397  (IBM1149_BSR_BIDI,   G_DEVSEL_N, bidir, X, 398, 0, Z)," &
+  "398  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "399  (IBM1149_BSR_BIDI, SYS_TEA_N, bidir, X, 400, 0, Z)," &
+  "400  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "401  (IBM1149_BSR_BIDI,   G_PAR64, bidir, X, 402, 0, Z)," &
+  "402  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "403  (IBM1149_BSR_BIDI,   G_ADH2, bidir, X, 404, 0, Z)," &
+  "404  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "405  (IBM1149_BSR_BIDI,   G_ADH3, bidir, X, 406, 0, Z)," &
+  "406  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "407  (IBM1149_BSR_BIDIOUT,       G_GNT3_N, output3, X, 408, 0, Z)," &
+  "408  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "409  (IBM1149_BSR_BIDIOUT,       G_GNT0_N, output3, X, 410, 0, Z)," &
+  "410  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "411  (IBM1149_BSR_BIDI,   G_ADH0, bidir, X, 412, 0, Z)," &
+  "412  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "413  (IBM1149_BSR_OUT,       G_RESETOUT_N, output3, X, 414, 0, Z)," &
+  "414  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "415  (IBM1149_BSR_BIDI,   G_REQ64_N, bidir, X, 416, 0, Z)," &
+  "416  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "417  (IBM1149_BSR_BIDIIN,       G_REQ6_N, input, X)," &
+  "418  (IBM1149_BSR_BIDI,   G_ADH1, bidir, X, 419, 0, Z)," &
+  "419  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "420  (IBM1149_BSR_BIDI,   G_LOCK_N, bidir, X, 421, 0, Z)," &
+  "421  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "422  (IBM1149_BSR_CLKIN,     G_CLK, clock, X)," &
+  "423  (IBM1149_BSR_BIDIOUT, SYS_BG0_N, output2, X)," &
+  "424  (IBM1149_BSR_BIDI, SYS_TA_N, bidir, X, 425, 0, Z)," &
+  "425  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+--  "426  (IBM1149_BSR_BIDIIN, SYS_L2_HIT_N, input, X)," &
+  "426  (BC_3, *, internal, X)," &
+  "427  (IBM1149_BSR_BIDIIN,   G_IDSEL, input, X)," &
+  "428  (IBM1149_BSR_BIDIOUT, SYS_TBE, output2, X)," &
+  "429  (IBM1149_BSR_BIDI, SYS_TSIZ2, bidir, X, 430, 0, Z)," &
+  "430  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "431  (IBM1149_BSR_BIDI, SYS_DATAP2, bidir, X, 432, 0, Z)," &
+  "432  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "433  (IBM1149_BSR_BIDI, SYS_DATAP5, bidir, X, 434, 0, Z)," &
+  "434  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "435  (IBM1149_BSR_BIDI, SYS_DATAP4, bidir, X, 436, 0, Z)," &
+  "436  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "437  (IBM1149_BSR_BIDIIN, SYS_TA_HIT_N, input, X)," &
+  "438  (IBM1149_BSR_BIDITESTOUT, SYS_DATA0, bidir, X, 439, 0, Z)," &
+  "439  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "440  (IBM1149_BSR_BIDIOUT, SYS_AACK_N, output2, X)," &
+  "441  (IBM1149_BSR_BIDI, SYS_SHD_N, bidir, X, 442, 0, Z)," &
+  "442  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "443  (IBM1149_BSR_BIDI, SYS_DATAP3, bidir, X, 444, 0, Z)," &
+  "444  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "445  (IBM1149_BSR_BIDI, SYS_TBST_N, bidir, X, 446, 0, Z)," &
+  "446  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "447  (IBM1149_BSR_BIDITESTOUT, SYS_DATAP0, bidir, X, 448, 0, Z)," &
+  "448  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "449  (IBM1149_BSR_BIDITESTOUT, SYS_DATAP1, bidir, X, 450, 0, Z)," &
+  "450  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "451  (IBM1149_BSR_BIDI, SYS_DATA19, bidir, X, 452, 0, Z)," &
+  "452  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "453  (IBM1149_BSR_BIDI, SYS_DATA9, bidir, X, 454, 0, Z)," &
+  "454  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "455  (IBM1149_BSR_CLKIN, POWERGOOD, clock, X)," &
+  "456  (IBM1149_BSR_BIDI, SYS_DATAP7, bidir, X, 457, 0, Z)," &
+  "457  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+--  "458  (IBM1149_BSR_BIDI, SYS_ARTRY_N, bidir, X, 459, 0, Z)," &
+  "458  (IBM1149_BSR_BIDIOUT, SYS_ARTRY_N, output3, X, 459, 0, Z)," &
+  "459  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "460  (IBM1149_BSR_BIDI, SYS_DATA1, bidir, X, 461, 0, Z)," &
+  "461  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "462  (IBM1149_BSR_BIDI, SYS_DATA8, bidir, X, 463, 0, Z)," &
+  "463  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "464  (IBM1149_BSR_BIDI, SYS_DATA44, bidir, X, 465, 0, Z)," &
+  "465  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "466  (IBM1149_BSR_BIDI, SYS_DATA38, bidir, X, 467, 0, Z)," &
+  "467  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "468  (IBM1149_BSR_BIDI, SYS_DATA27, bidir, X, 469, 0, Z)," &
+  "469  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "470  (IBM1149_BSR_BIDI, SYS_DATA28, bidir, X, 471, 0, Z)," &
+  "471  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "472  (IBM1149_BSR_BIDI, SYS_DATA10, bidir, X, 473, 0, Z)," &
+  "473  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "474  (IBM1149_BSR_BIDI, SYS_DATA2, bidir, X, 475, 0, Z)," &
+  "475  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "476  (IBM1149_BSR_BIDI, SYS_DATA3, bidir, X, 477, 0, Z)," &
+  "477  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "478  (IBM1149_BSR_BIDI, SYS_DATA57, bidir, X, 479, 0, Z)," &
+  "479  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "480  (IBM1149_BSR_BIDI, SYS_DATA46, bidir, X, 481, 0, Z)," &
+  "481  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "482  (IBM1149_BSR_BIDI, SYS_DATA45, bidir, X, 483, 0, Z)," &
+  "483  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "484  (IBM1149_BSR_BIDI, SYS_DATA56, bidir, X, 485, 0, Z)," &
+  "485  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "486  (IBM1149_BSR_BIDI, SYS_GBL_N, bidir, X, 487, 0, Z)," &
+  "487  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "488  (IBM1149_BSR_BIDIOUT, SYS_MCP2_N, output3, X, 489, 0, Z)," &
+  "489  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "490  (IBM1149_BSR_BIDI, SYS_DATAP6, bidir, X, 491, 0, Z)," &
+  "491  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "492  (IBM1149_BSR_BIDI, SYS_DATA39, bidir, X, 493, 0, Z)," &
+  "493  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "494  (IBM1149_BSR_BIDI, SYS_DATA30, bidir, X, 495, 0, Z)," &
+  "495  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "496  (IBM1149_BSR_BIDI, SYS_DATA58, bidir, X, 497, 0, Z)," &
+  "497  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "498  (IBM1149_BSR_BIDI, SYS_DATA47, bidir, X, 499, 0, Z)," &
+  "499  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "500  (IBM1149_BSR_BIDI, SYS_DATA11, bidir, X, 501, 0, Z)," &
+  "501  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "502  (IBM1149_BSR_BIDI, SYS_DATA12, bidir, X, 503, 0, Z)," &
+  "503  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "504  (IBM1149_BSR_BIDIOUT, SYS_MCP0_N, output3, X, 505, 0, Z)," &
+  "505  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "506  (IBM1149_BSR_BIDI, SYS_DATA21, bidir, X, 507, 0, Z)," &
+  "507  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "508  (IBM1149_BSR_BIDI, SYS_DATA13, bidir, X, 509, 0, Z)," &
+  "509  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "510  (IBM1149_BSR_BIDI, SYS_DATA31, bidir, X, 511, 0, Z)," &
+  "511  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "512  (IBM1149_BSR_BIDI, SYS_DATA48, bidir, X, 513, 0, Z)," &
+  "513  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "514  (IBM1149_BSR_BIDI, SYS_DATA29, bidir, X, 515, 0, Z)," &
+  "515  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "516  (IBM1149_BSR_BIDI, SYS_DATA20, bidir, X, 517, 0, Z)," &
+  "517  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "518  (IBM1149_BSR_BIDI, SYS_DATA5, bidir, X, 519, 0, Z)," &
+  "519  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "520  (IBM1149_BSR_BIDI, SYS_DATA40, bidir, X, 521, 0, Z)," &
+  "521  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "522  (IBM1149_BSR_BIDI, SYS_DATA32, bidir, X, 523, 0, Z)," &
+  "523  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "524  (IBM1149_BSR_BIDI, SYS_DATA59, bidir, X, 525, 0, Z)," &
+  "525  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "526  (IBM1149_BSR_BIDI, SYS_DATA49, bidir, X, 527, 0, Z)," &
+  "527  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "528  (IBM1149_BSR_BIDIOUT, SYS_MCP3_N, output3, X, 529, 0, Z)," &
+  "529  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "530  (IBM1149_BSR_BIDI, SYS_DATA4, bidir, X, 531, 0, Z)," &
+  "531  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "532  (IBM1149_BSR_BIDIOUT, SYS_MCP1_N, output3, X, 533, 0, Z)," &
+  "533  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "534  (IBM1149_BSR_BIDITESTOUT, SYS_DATA60, bidir, X, 535, 0, Z)," &
+  "535  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "536  (IBM1149_BSR_BIDITESTOUT, SYS_DATA50, bidir, X, 537, 0, Z)," &
+  "537  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "538  (IBM1149_BSR_BIDI, SYS_DATA22, bidir, X, 539, 0, Z)," &
+  "539  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "540  (IBM1149_BSR_BIDI, SYS_DATA33, bidir, X, 541, 0, Z)," &
+  "541  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "542  (IBM1149_BSR_BIDIOUT, SYS_HRESET3_N, output2, X)," &
+  "543  (IBM1149_BSR_BIDI, SYS_DATA37, bidir, X, 544, 0, Z)," &
+  "544  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "545  (IBM1149_BSR_BIDI, SYS_DATA6, bidir, X, 546, 0, Z)," &
+  "546  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "547  (IBM1149_BSR_BIDI, SYS_DATA14, bidir, X, 548, 0, Z)," &
+  "548  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "549  (IBM1149_BSR_BIDI, SYS_DATA41, bidir, X, 550, 0, Z)," &
+  "550  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "551  (IBM1149_BSR_BIDI, SYS_DATA51, bidir, X, 552, 0, Z)," &
+  "552  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "553  (IBM1149_BSR_BIDI, SYS_DATA23, bidir, X, 554, 0, Z)," &
+  "554  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "555  (IBM1149_BSR_BIDITESTOUT, SYS_DATA24, bidir, X, 556, 0, Z)," &
+  "556  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "557  (IBM1149_BSR_BIDI, SYS_DATA26, bidir, X, 558, 0, Z)," &
+  "558  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "559  (IBM1149_BSR_BIDIOUT, SYS_HRESET0_N, output2, X)," &
+  "560  (IBM1149_BSR_BIDIOUT, SYS_HRESET1_N, output2, X)," &
+  "561  (IBM1149_BSR_BIDI, SYS_DATA52, bidir, X, 562, 0, Z)," &
+  "562  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "563  (IBM1149_BSR_BIDI, SYS_DATA34, bidir, X, 564, 0, Z)," &
+  "564  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "565  (IBM1149_BSR_BIDI, SYS_DATA53, bidir, X, 566, 0, Z)," &
+  "566  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "567  (IBM1149_BSR_BIDI, SYS_DATA42, bidir, X, 568, 0, Z)," &
+  "568  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "569  (IBM1149_BSR_BIDI, SYS_DATA18, bidir, X, 570, 0, Z)," &
+  "570  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "571  (IBM1149_BSR_BIDI, SYS_DATA7, bidir, X, 572, 0, Z)," &
+  "572  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "573  (IBM1149_BSR_BIDI, SYS_DATA16, bidir, X, 574, 0, Z)," &
+  "574  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "575  (IBM1149_BSR_BIDI, SYS_DATA62, bidir, X, 576, 0, Z)," &
+  "576  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "577  (IBM1149_BSR_BIDI, SYS_DATA61, bidir, X, 578, 0, Z)," &
+  "578  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "579  (IBM1149_BSR_BIDI, SYS_DATA25, bidir, X, 580, 0, Z)," &
+  "580  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "581  (IBM1149_BSR_BIDI, SYS_DATA15, bidir, X, 582, 0, Z)," &
+  "582  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "583  (IBM1149_BSR_BIDI, SYS_DATA17, bidir, X, 584, 0, Z)," &
+  "584  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "585  (IBM1149_BSR_BIDIOUT, SYS_SRESET2_N, output2, X)," &
+  "586  (IBM1149_BSR_BIDIOUT, SYS_SRESET1_N, output2, X)," &
+  "587  (IBM1149_BSR_BIDI, SYS_DATA36, bidir, X, 588, 0, Z)," &
+  "588  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "589  (IBM1149_BSR_BIDI, SYS_DATA35, bidir, X, 590, 0, Z)," &
+  "590  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "591  (IBM1149_BSR_BIDI, SYS_DATA54, bidir, X, 592, 0, Z)," &
+  "592  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "593  (IBM1149_BSR_BIDI, SYS_DATA63, bidir, X, 594, 0, Z)," &
+  "594  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "595  (IBM1149_BSR_BIDIOUT, SYS_SRESET3_N, output2, X)," &
+  "596  (IBM1149_BSR_BIDI, SYS_TT3, bidir, X, 597, 0, Z)," &
+  "597  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "598  (IBM1149_BSR_BIDI, SYS_TT4, bidir, X, 599, 0, Z)," &
+  "599  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "600  (IBM1149_BSR_BIDI, SYS_DATA43, bidir, X, 601, 0, Z)," &
+  "601  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "602  (IBM1149_BSR_BIDI, SYS_DATA55, bidir, X, 603, 0, Z)," &
+  "603  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "604  (IBM1149_BSR_BIDI, SYS_ADDR30, bidir, X, 605, 0, Z)," &
+  "605  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "606  (IBM1149_BSR_BIDI, SYS_TSIZ0, bidir, X, 607, 0, Z)," &
+  "607  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "608  (IBM1149_BSR_BIDI, SYS_TT0, bidir, X, 609, 0, Z)," &
+  "609  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "610  (IBM1149_BSR_BIDI, SYS_TT2, bidir, X, 611, 0, Z)," &
+  "611  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "612  (IBM1149_BSR_BIDI, SYS_TT1, bidir, X, 613, 0, Z)," &
+  "613  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "614  (IBM1149_BSR_BIDI, SYS_TSIZ1, bidir, X, 615, 0, Z)," &
+  "615  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "616  (IBM1149_BSR_BIDI, SYS_ADDR31, bidir, X, 617, 0, Z)," &
+  "617  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "618  (IBM1149_BSR_BIDI, SYS_ADDR23, bidir, X, 619, 0, Z)," &
+  "619  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "620  (IBM1149_BSR_BIDI, SYS_ADDR24, bidir, X, 621, 0, Z)," &
+  "621  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "622  (IBM1149_BSR_BIDI, SYS_ADDR14, bidir, X, 623, 0, Z)," &
+  "623  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "624  (IBM1149_BSR_BIDI, SYS_ADDR6, bidir, X, 625, 0, Z)," &
+  "625  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "626  (IBM1149_BSR_BIDI, SYS_ADDR11, bidir, X, 627, 0, Z)," &
+  "627  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "628  (IBM1149_BSR_BIDITESTOUT, SYS_ADDR25, bidir, X, 629, 0, Z)," &
+  "629  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "630  (IBM1149_BSR_BIDI, SYS_ADDR32, bidir, X, 631, 0, Z)," &
+  "631  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "632  (IBM1149_BSR_BIDIOUT, SYS_HRESET2_N, output2, X)," &
+  "633  (IBM1149_BSR_BIDIOUT, SYS_SRESET0_N, output2, X)," &
+  "634  (IBM1149_BSR_BIDITESTOUT, SYS_ADDR26, bidir, X, 635, 0, Z)," &
+  "635  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "636  (IBM1149_BSR_BIDI, SYS_ADDR33, bidir, X, 637, 0, Z)," &
+  "637  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "638  (IBM1149_BSR_BIDI, SYS_ADDR20, bidir, X, 639, 0, Z)," &
+  "639  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "640  (IBM1149_BSR_BIDIOUT, SYS_DBG1_N, output2, X)," &
+  "641  (IBM1149_BSR_BIDI, SYS_ADDR27, bidir, X, 642, 0, Z)," &
+  "642  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "643  (IBM1149_BSR_BIDI, SYS_ADDR15, bidir, X, 644, 0, Z)," &
+  "644  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "645  (IBM1149_BSR_BIDITESTOUT, SYS_ADDR34, bidir, X, 646, 0, Z)," &
+  "646  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "647  (IBM1149_BSR_BIDI, SYS_ADDR35, bidir, X, 648, 0, Z)," &
+  "648  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "649  (IBM1149_BSR_BIDI, SYS_ADDR28, bidir, X, 650, 0, Z)," &
+  "650  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "651  (IBM1149_BSR_BIDI, SYS_ADDR21, bidir, X, 652, 0, Z)," &
+  "652  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "653  (IBM1149_BSR_BIDI, SYS_ADDR16, bidir, X, 654, 0, Z)," &
+  "654  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "655  (IBM1149_BSR_BIDI, SYS_ADDR29, bidir, X, 656, 0, Z)," &
+  "656  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "657  (IBM1149_BSR_BIDI, SYS_ADDR18, bidir, X, 658, 0, Z)," &
+  "658  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "659  (IBM1149_BSR_BIDI, SYS_ADDR12, bidir, X, 660, 0, Z)," &
+  "660  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "661  (IBM1149_BSR_BIDI, SYS_ADDR17, bidir, X, 662, 0, Z)," &
+  "662  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "663  (IBM1149_BSR_BIDITESTOUT, SYS_ADDR7, bidir, X, 664, 0, Z)," &
+  "664  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "665  (IBM1149_BSR_OUT, SYS_BG1_N, output2, X)," &
+  "666  (IBM1149_BSR_BIDIIN, SYS_BR0_N, input, X)," &
+  "667  (IBM1149_BSR_BIDI, SYS_ADDR13, bidir, X, 668, 0, Z)," &
+  "668  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "669  (IBM1149_BSR_BIDI, SYS_ADDR10, bidir, X, 670, 0, Z)," &
+  "670  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "671  (IBM1149_BSR_BIDI, SYS_ADDR9, bidir, X, 672, 0, Z)," &
+  "672  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "673  (IBM1149_BSR_BIDI, SYS_ADDR19, bidir, X, 674, 0, Z)," &
+  "674  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "675  (IBM1149_BSR_BIDITESTOUT, SYS_ADDR22, bidir, X, 676, 0, Z)," &
+  "676  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "677  (IBM1149_BSR_BIDI, SYS_ADDR2, bidir, X, 678, 0, Z)," &
+  "678  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "679  (IBM1149_BSR_BIDI, SYS_ADDRP1, bidir, X, 680, 0, Z)," &
+  "680  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "681  (IBM1149_BSR_CLKIN,     P_CLK, clock, X)," &
+  "682  (IBM1149_BSR_BIDITESTOUT, SYS_ADDR4, bidir, X, 683, 0, Z)," &
+  "683  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "684  (IBM1149_BSR_BIDIIN, SYS_BR1_N, input, X)," &
+  "685  (IBM1149_BSR_BIDI, SYS_ADDRP0, bidir, X, 686, 0, Z)," &
+  "686  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "687  (IBM1149_BSR_BIDI, SYS_ADDR1, bidir, X, 688, 0, Z)," &
+  "688  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "689  (IBM1149_BSR_BIDIOUT, SYS_BG3_N, output2, X)," &
+  "690  (IBM1149_BSR_BIDIOUT, SYS_BG2_N, output2, X)," &
+  "691  (IBM1149_BSR_BIDI, SYS_ADDR5, bidir, X, 692, 0, Z)," &
+  "692  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "693  (IBM1149_BSR_BIDI, SYS_ADDR3, bidir, X, 694, 0, Z)," &
+  "694  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "695  (IBM1149_BSR_BIDI, SYS_ADDRP2, bidir, X, 696, 0, Z)," &
+  "696  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "697  (IBM1149_BSR_BIDI, SYS_ADDRP3, bidir, X, 698, 0, Z)," &
+  "698  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "699  (IBM1149_BSR_BIDIOUT, SYS_DBG0_N, output2, X)," &
+  "700  (IBM1149_BSR_BIDIOUT,   P_GNT1_N, output3, X, 701, 0, Z)," &
+  "701  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "702  (IBM1149_BSR_BIDIOUT,   P_GNT2_N, output3, X, 703, 0, Z)," &
+  "703  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "704  (IBM1149_BSR_BIDI, SYS_TS_N, bidir, X, 705, 0, Z)," &
+  "705  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "706  (IBM1149_BSR_BIDIOUT,   P_GNT0_N, output3, X, 707, 0, Z)," &
+  "707  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "708  (IBM1149_BSR_BIDIIN, SYS_BR3_N, input, X)," &
+  "709  (IBM1149_BSR_BIDIIN, SYS_BR2_N, input, X)," &
+  "710  (IBM1149_BSR_BIDI, SYS_ADDR8, bidir, X, 711, 0, Z)," &
+  "711  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "712  (IBM1149_BSR_BIDIIN,   P_REQ2_N, input, X)," &
+  "713  (IBM1149_BSR_BIDIIN,   P_REQ3_N, input, X)," &
+  "714  (IBM1149_BSR_BIDIIN,   P_REQ0_N, input, X)," &
+  "715  (IBM1149_BSR_BIDIIN,   P_REQ1_N, input, X)," &
+  "716  (IBM1149_BSR_BIDI, SYS_ADDRP4, bidir, X, 717, 0, Z)," &
+  "717  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "718  (IBM1149_BSR_BIDI,   P_FRAME_N, bidir, X, 719, 0, Z)," &
+  "719  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "720  (IBM1149_BSR_BIDI,   P_ADL31, bidir, X, 748, 0, Z)," &
+  "721  (IBM1149_BSR_BIDIIN,     PLL_TUNE2, input, X)," &
+  "722  (IBM1149_BSR_BIDI,   P_DEVSEL_N, bidir, X, 723, 0, Z)," &
+  "723  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "724  (IBM1149_BSR_BIDI,   P_STOP_N, bidir, X, 725, 0, Z)," &
+  "725  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "726  (IBM1149_BSR_BIDI,   P_PERR_N, bidir, X, 727, 0, Z)," &
+  "727  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "728  (IBM1149_BSR_BIDI, SYS_ADDR0, bidir, X, 729, 0, Z)," &
+  "729  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "730  (IBM1149_BSR_BIDI,   P_SERR_N, bidir, X, 731, 0, Z)," &
+  "731  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "732  (IBM1149_BSR_BIDI,   P_ADL25, bidir, X, 748, 0, Z)," &
+  "733  (IBM1149_BSR_BIDI,   P_CMDBEL2, bidir, X, 744, 0, Z)," &
+  "734  (IBM1149_BSR_BIDI,   P_CMDBEL1, bidir, X, 744, 0, Z)," &
+  "735  (IBM1149_BSR_BIDIOUT,   P_GNT3_N, output3, X, 736, 0, Z)," &
+  "736  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "737  (IBM1149_BSR_BIDI,   P_CMDBEL3, bidir, X, 744, 0, Z)," &
+  "738  (IBM1149_BSR_BIDIOUT, SYS_DBG3_N, output2, X)," &
+  "739  (IBM1149_BSR_BIDIOUT, SYS_DBG2_N, output2, X)," &
+  "740  (IBM1149_BSR_BIDI,   P_ADL26, bidir, X, 748, 0, Z)," &
+  "741  (IBM1149_BSR_BIDIIN,     PLL_TUNE3, input, X)," &
+  "742  (IBM1149_BSR_BIDIIN,     PLL_TUNE4, input, X)," &
+  "743  (IBM1149_BSR_BIDI,   P_CMDBEL0, bidir, X, 744, 0, Z)," &
+  "744  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "745  (IBM1149_BSR_BIDI,   P_ADL12, bidir, X, 775, 0, Z)," &
+  "746  (IBM1149_BSR_BIDI,   P_ADL11, bidir, X, 775, 0, Z)," &
+  "747  (IBM1149_BSR_BIDI,   P_ADL24, bidir, X, 748, 0, Z)," &
+  "748  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "749  (IBM1149_BSR_BIDI,   P_ADL15, bidir, X, 775, 0, Z)," &
+  "750  (IBM1149_BSR_BIDI,   P_ADL7, bidir, X, 752, 0, Z)," &
+  "751  (IBM1149_BSR_BIDI,   P_ADL0, bidir, X, 752, 0, Z)," &
+  "752  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "753  (IBM1149_BSR_BIDIOUT,     PLL_LOCK, output2, X)," &
+  "754  (IBM1149_BSR_BIDI,   P_ADL13, bidir, X, 775, 0, Z)," &
+  "755  (IBM1149_BSR_BIDIIN,   P_MEMREQ_N, input, X)," &
+  "756  (IBM1149_BSR_BIDI,   P_PAR, bidir, X, 757, 0, Z)," &
+  "757  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "758  (IBM1149_BSR_BIDI,   P_ADL1, bidir, X, 752, 0, Z)," &
+  "759  (IBM1149_BSR_BIDI,   P_ADL8, bidir, X, 775, 0, Z)," &
+  "760  (IBM1149_BSR_BIDI,   P_ADL2, bidir, X, 752, 0, Z)," &
+  "761  (IBM1149_BSR_BIDI,   P_ADL6, bidir, X, 752, 0, Z)," &
+  "762  (IBM1149_BSR_BIDI,   P_ADL19, bidir, X, 770, 0, Z)," &
+  "763  (IBM1149_BSR_BIDI,   P_ADL23, bidir, X, 770, 0, Z)," &
+  "764  (IBM1149_BSR_BIDI,   P_ADL17, bidir, X, 770, 0, Z)," &
+  "765  (IBM1149_BSR_BIDI,   P_TRDY_N, bidir, X, 766, 0, Z)," &
+  "766  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "767  (IBM1149_BSR_BIDIOUT,       P_RST_N, output2, X)," &
+  "768  (IBM1149_BSR_BIDI,   P_ADL14, bidir, X, 775, 0, Z)," &
+  "769  (IBM1149_BSR_BIDI,   P_ADL16, bidir, X, 770, 0, Z)," &
+  "770  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "771  (IBM1149_BSR_BIDI,   P_ADL18, bidir, X, 770, 0, Z)," &
+  "772  (IBM1149_BSR_BIDI,   P_ADL20, bidir, X, 770, 0, Z)," &
+  "773  (IBM1149_BSR_BIDI,   P_ADL21, bidir, X, 770, 0, Z)," &
+  "774  (IBM1149_BSR_BIDI,   P_ADL10, bidir, X, 775, 0, Z)," &
+  "775  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "776  (IBM1149_BSR_BIDI,   P_ADL9, bidir, X, 775, 0, Z)," &
+  "777  (IBM1149_BSR_BIDI,   P_ADL3, bidir, X, 752, 0, Z)," &
+  "778  (IBM1149_BSR_BIDIIN,     PLL_RANGE0, input, X)," &
+  "779  (IBM1149_BSR_BIDI,   P_LOCK_N, bidir, X, 780, 0, Z)," &
+  "780  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "781  (IBM1149_BSR_BIDI,   P_ADL27, bidir, X, 748, 0, Z)," &
+  "782  (IBM1149_BSR_BIDI,   P_ADL30, bidir, X, 748, 0, Z)," &
+  "783  (IBM1149_BSR_BIDI,   P_ADL5, bidir, X, 752, 0, Z)," &
+  "784  (IBM1149_BSR_BIDI,   P_ADL4, bidir, X, 752, 0, Z)," &
+  "785  (IBM1149_BSR_BIDIOUT,     FLASH_OE_N, output2, X)," &
+  "786  (IBM1149_BSR_BIDIOUT,     CHKSTOP_N, output3, X, 787, 0, Z)," &
+  "787  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "788  (IBM1149_BSR_BIDI,   P_ADL22, bidir, X, 770, 0, Z)," &
+  "789  (IBM1149_BSR_BIDI,   P_ADL29, bidir, X, 748, 0, Z)," &
+  "790  (IBM1149_BSR_BIDI,   P_ADL28, bidir, X, 748, 0, Z)," &
+  "791  (IBM1149_BSR_BIDIOUT,     FLASH_WE_N, output2, X)," &
+  "792  (IBM1149_BSR_BIDIOUT,     FLASH_CE_N, output2, X)," &
+  "793  (IBM1149_BSR_BIDIOUT,     XADR_LAT, output2, X)," &
+  "794  (IBM1149_BSR_BIDIOUT,     XCVR_RD, output2, X)," &
+  "795  (IBM1149_BSR_BIDI,   P_IRDY_N, bidir, X, 796, 0, Z)," &
+  "796  (IBM1149_BSR_FASTENAB, *, control, 0)," &
+  "797  (IBM1149_BSR_BIDIOUT,     MADDR9, output3, X, 170, 0, Z)," &
+  "798  (IBM1149_BSR_BIDIIN,     PLL_RANGE1, input, X)";
+
+---------------------------------------------------------------------------
+--
+---------------------------------------------------------------------------
+
+attribute BOUNDARY_SCAN_DESIGN_TYPE : BSDL_EXTENSION;
+attribute BOUNDARY_SCAN_DESIGN_TYPE of CPC710_133 : entity is "IEEE_11491_LSSD";
+
+end CPC710_133;

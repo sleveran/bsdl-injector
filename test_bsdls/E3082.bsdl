@@ -1,0 +1,586 @@
+-- Automatically generated BSDL file
+-- CASCON Galaxy    GOEPEL electronic GmbH
+-- Device library version  4.2.1e
+-- E3082   date: 10/14/17   time: 12:59h
+
+-- ***********************************************************************
+--   BSDL file for design E3082
+--   Created by Synopsys Version 2000.11 (Nov 27, 2000)
+--   Designer: 
+--   Company:  
+--   Date: Fri Apr 26 17:47:40 2002
+-- ***********************************************************************
+ENTITY E3082 IS
+GENERIC (PHYSICAL_PIN_MAP : STRING := "E3082_PKG");
+
+-- This section declares all the ports in the design.
+PORT (
+	CLKREF : IN BIT;
+	CONFIG_0 : IN BIT;
+	CONFIG_1 : IN BIT;
+	CONFIG_10 : IN BIT;
+	CONFIG_2 : IN BIT;
+	CONFIG_3 : IN BIT;
+	CONFIG_4 : IN BIT;
+	CONFIG_5 : IN BIT;
+	CONFIG_6 : IN BIT;
+	CONFIG_7 : IN BIT;
+	CONFIG_8 : IN BIT;
+	CONFIG_9 : IN BIT;
+	MDC : IN BIT;
+	NORMAL : IN BIT;
+	RESET : IN BIT;
+	SEL_RMII : IN BIT;
+	TCK : IN BIT;
+	TDI : IN BIT;
+	TMS : IN BIT;
+	TRST : IN BIT;
+	TXD_0_0 : IN BIT;
+	TXD_0_1 : IN BIT;
+	TXD_0_2 : IN BIT;
+	TXD_0_3 : IN BIT;
+	TXD_0_4 : IN BIT;
+	TXD_0_5 : IN BIT;
+	TXD_0_6 : IN BIT;
+	TXD_0_7 : IN BIT;
+	TXD_1_0 : IN BIT;
+	TXD_1_1 : IN BIT;
+	TXD_1_2 : IN BIT;
+	TXD_1_3 : IN BIT;
+	TXD_1_4 : IN BIT;
+	TXD_1_5 : IN BIT;
+	TXD_1_6 : IN BIT;
+	TXD_1_7 : IN BIT;
+	TX_EN_0 : IN BIT;
+	TX_EN_1 : IN BIT;
+	TX_EN_2 : IN BIT;
+	TX_EN_3 : IN BIT;
+	TX_EN_4 : IN BIT;
+	TX_EN_5 : IN BIT;
+	TX_EN_6 : IN BIT;
+	TX_EN_7 : IN BIT;
+	MDIO : INOUT BIT;
+	CRS_DV_0 : OUT BIT;
+	CRS_DV_1 : OUT BIT;
+	CRS_DV_2 : OUT BIT;
+	CRS_DV_3 : OUT BIT;
+	CRS_DV_4 : OUT BIT;
+	CRS_DV_5 : OUT BIT;
+	CRS_DV_6 : OUT BIT;
+	CRS_DV_7 : OUT BIT;
+	LEDCLK : OUT BIT;
+	LEDENA : OUT BIT;
+	LEDSER : OUT BIT;
+	LED_0_0 : OUT BIT;
+	LED_0_1 : OUT BIT;
+	LED_0_2 : OUT BIT;
+	LED_0_3 : OUT BIT;
+	LED_0_4 : OUT BIT;
+	LED_0_5 : OUT BIT;
+	LED_0_6 : OUT BIT;
+	LED_0_7 : OUT BIT;
+	LED_1_0 : OUT BIT;
+	LED_1_1 : OUT BIT;
+	LED_1_2 : OUT BIT;
+	LED_1_3 : OUT BIT;
+	LED_1_4 : OUT BIT;
+	LED_1_5 : OUT BIT;
+	LED_1_6 : OUT BIT;
+	LED_1_7 : OUT BIT;
+	LED_2_0 : OUT BIT;
+	LED_2_1 : OUT BIT;
+	LED_2_2 : OUT BIT;
+	LED_2_3 : OUT BIT;
+	LED_2_4 : OUT BIT;
+	LED_2_5 : OUT BIT;
+	LED_2_6 : OUT BIT;
+	LED_2_7 : OUT BIT;
+	RXD_0_0 : OUT BIT;
+	RXD_0_1 : OUT BIT;
+	RXD_0_2 : OUT BIT;
+	RXD_0_3 : OUT BIT;
+	RXD_0_4 : OUT BIT;
+	RXD_0_5 : OUT BIT;
+	RXD_0_6 : OUT BIT;
+	RXD_0_7 : OUT BIT;
+	RXD_1_0 : OUT BIT;
+	RXD_1_1 : OUT BIT;
+	RXD_1_2 : OUT BIT;
+	RXD_1_3 : OUT BIT;
+	RXD_1_4 : OUT BIT;
+	RXD_1_5 : OUT BIT;
+	RXD_1_6 : OUT BIT;
+	RXD_1_7 : OUT BIT;
+	RX_ER_0 : OUT BIT;
+	RX_ER_1 : OUT BIT;
+	RX_ER_2 : OUT BIT;
+	RX_ER_3 : OUT BIT;
+	RX_ER_4 : OUT BIT;
+	RX_ER_5 : OUT BIT;
+	RX_ER_6 : OUT BIT;
+	RX_ER_7 : OUT BIT;
+	TDO : OUT BIT;
+	CONTROL_X : LINKAGE BIT;
+	HSDACN : LINKAGE BIT;
+	HSDACP : LINKAGE BIT;
+	INT : LINKAGE BIT;
+	RSET : LINKAGE BIT;
+	RXN_A_0 : LINKAGE BIT;
+	RXN_A_1 : LINKAGE BIT;
+	RXN_A_2 : LINKAGE BIT;
+	RXN_A_3 : LINKAGE BIT;
+	RXN_A_4 : LINKAGE BIT;
+	RXN_A_5 : LINKAGE BIT;
+	RXN_A_6 : LINKAGE BIT;
+	RXN_A_7 : LINKAGE BIT;
+	RXP_A_0 : LINKAGE BIT;
+	RXP_A_1 : LINKAGE BIT;
+	RXP_A_2 : LINKAGE BIT;
+	RXP_A_3 : LINKAGE BIT;
+	RXP_A_4 : LINKAGE BIT;
+	RXP_A_5 : LINKAGE BIT;
+	RXP_A_6 : LINKAGE BIT;
+	RXP_A_7 : LINKAGE BIT;
+	SDETP_0 : LINKAGE BIT;
+	SDETP_1 : LINKAGE BIT;
+	SDETP_2 : LINKAGE BIT;
+	SDETP_3 : LINKAGE BIT;
+	SDETP_4 : LINKAGE BIT;
+	SDETP_5 : LINKAGE BIT;
+	SDETP_6 : LINKAGE BIT;
+	SDETP_7 : LINKAGE BIT;
+	SEL_25V : LINKAGE BIT;
+	TST_PT : LINKAGE BIT;
+	TXN_T_0 : LINKAGE BIT;
+	TXN_T_1 : LINKAGE BIT;
+	TXN_T_2 : LINKAGE BIT;
+	TXN_T_3 : LINKAGE BIT;
+	TXN_T_4 : LINKAGE BIT;
+	TXN_T_5 : LINKAGE BIT;
+	TXN_T_6 : LINKAGE BIT;
+	TXN_T_7 : LINKAGE BIT;
+	TXP_T_0 : LINKAGE BIT;
+	TXP_T_1 : LINKAGE BIT;
+	TXP_T_2 : LINKAGE BIT;
+	TXP_T_3 : LINKAGE BIT;
+	TXP_T_4 : LINKAGE BIT;
+	TXP_T_5 : LINKAGE BIT;
+	TXP_T_6 : LINKAGE BIT;
+	TXP_T_7 : LINKAGE BIT;
+	AVDDAH : LINKAGE BIT_VECTOR (1 TO 6);
+	AVDDAL : LINKAGE BIT_VECTOR (1 TO 6);
+	VDD : LINKAGE BIT_VECTOR (1 TO 7);
+	VDDO : LINKAGE BIT_VECTOR (1 TO 7);
+	VSS : LINKAGE BIT_VECTOR (1 TO 46));
+
+USE STD_1149_1_1994.all;
+
+
+ATTRIBUTE COMPONENT_CONFORMANCE OF E3082 : ENTITY IS "STD_1149_1_1993";
+
+ATTRIBUTE PIN_MAP OF E3082 : ENTITY IS PHYSICAL_PIN_MAP;
+
+CONSTANT E3082_PKG : PIN_MAP_STRING :=
+	"CLKREF: B8," &
+	"CONFIG_0: L3," &
+	"CONFIG_1: K3," &
+	"CONFIG_10: F2," &
+	"CONFIG_2: K4," &
+	"CONFIG_3: K1," &
+	"CONFIG_4: K2," &
+	"CONFIG_5: J4," &
+	"CONFIG_6: J1," &
+	"CONFIG_7: J3," &
+	"CONFIG_8: H3," &
+	"CONFIG_9: H4," &
+	"MDC: G4," &
+	"NORMAL: F1," &
+	"RESET: E1," &
+	"SEL_RMII: D13," &
+	"TCK: H2," &
+	"TDI: G1," &
+	"TMS: H1," &
+	"TRST: J2," &
+	"TXD_0_0: C1," &
+	"TXD_0_1: A2," &
+	"TXD_0_2: B4," &
+	"TXD_0_3: B6," &
+	"TXD_0_4: D8," &
+	"TXD_0_5: B10," &
+	"TXD_0_6: B12," &
+	"TXD_0_7: C13," &
+	"TXD_1_0: E2," &
+	"TXD_1_1: B2," &
+	"TXD_1_2: D5," &
+	"TXD_1_3: A5," &
+	"TXD_1_4: A8," &
+	"TXD_1_5: A10," &
+	"TXD_1_6: A12," &
+	"TXD_1_7: B14," &
+	"TX_EN_0: D2," &
+	"TX_EN_1: D4," &
+	"TX_EN_2: A4," &
+	"TX_EN_3: A6," &
+	"TX_EN_4: C8," &
+	"TX_EN_5: C10," &
+	"TX_EN_6: C12," &
+	"TX_EN_7: D12," &
+	"MDIO: G3," &
+	"CRS_DV_0: B1," &
+	"CRS_DV_1: B3," &
+	"CRS_DV_2: B5," &
+	"CRS_DV_3: D7," &
+	"CRS_DV_4: A9," &
+	"CRS_DV_5: B11," &
+	"CRS_DV_6: A13," &
+	"CRS_DV_7: E11," &
+	"LEDCLK: N12," &
+	"LEDENA: P12," &
+	"LEDSER: M12," &
+	"LED_0_0: G12," &
+	"LED_0_1: E14," &
+	"LED_0_2: G13," &
+	"LED_0_3: H13," &
+	"LED_0_4: J13," &
+	"LED_0_5: K14," &
+	"LED_0_6: K12," &
+	"LED_0_7: N14," &
+	"LED_1_0: D14," &
+	"LED_1_1: H12," &
+	"LED_1_2: F14," &
+	"LED_1_3: H14," &
+	"LED_1_4: J14," &
+	"LED_1_5: L14," &
+	"LED_1_6: M14," &
+	"LED_1_7: N13," &
+	"LED_2_0: E13," &
+	"LED_2_1: F13," &
+	"LED_2_2: G14," &
+	"LED_2_3: J12," &
+	"LED_2_4: K13," &
+	"LED_2_5: L13," &
+	"LED_2_6: M13," &
+	"LED_2_7: L11," &
+	"RXD_0_0: C2," &
+	"RXD_0_1: A3," &
+	"RXD_0_2: D6," &
+	"RXD_0_3: C7," &
+	"RXD_0_4: C9," &
+	"RXD_0_5: C11," &
+	"RXD_0_6: B13," &
+	"RXD_0_7: E12," &
+	"RXD_1_0: E3," &
+	"RXD_1_1: C4," &
+	"RXD_1_2: C6," &
+	"RXD_1_3: A7," &
+	"RXD_1_4: D9," &
+	"RXD_1_5: D10," &
+	"RXD_1_6: A14," &
+	"RXD_1_7: C14," &
+	"RX_ER_0: F3," &
+	"RX_ER_1: C3," &
+	"RX_ER_2: C5," &
+	"RX_ER_3: B7," &
+	"RX_ER_4: B9," &
+	"RX_ER_5: A11," &
+	"RX_ER_6: D11," &
+	"RX_ER_7: F12," &
+	"TDO: G2," &
+	"CONTROL_X: M1," &
+	"HSDACN: L2," &
+	"HSDACP: L1," &
+	"INT: D1," &
+	"RSET: M2," &
+	"RXN_A_0: P1," &
+	"RXN_A_1: T3," &
+	"RXN_A_2: R4," &
+	"RXN_A_3: T7," &
+	"RXN_A_4: T8," &
+	"RXN_A_5: R11," &
+	"RXN_A_6: T12," &
+	"RXN_A_7: P14," &
+	"RXP_A_0: P2," &
+	"RXP_A_1: R3," &
+	"RXP_A_2: T4," &
+	"RXP_A_3: R7," &
+	"RXP_A_4: R8," &
+	"RXP_A_5: T11," &
+	"RXP_A_6: R12," &
+	"RXP_A_7: P13," &
+	"SDETP_0: N2," &
+	"SDETP_1: M3," &
+	"SDETP_2: N3," &
+	"SDETP_3: P3," &
+	"SDETP_4: M11," &
+	"SDETP_5: N11," &
+	"SDETP_6: P11," &
+	"SDETP_7: L12," &
+	"SEL_25V: D3," &
+	"TST_PT: N1," &
+	"TXN_T_0: T1," &
+	"TXN_T_1: R2," &
+	"TXN_T_2: T5," &
+	"TXN_T_3: R6," &
+	"TXN_T_4: R9," &
+	"TXN_T_5: T10," &
+	"TXN_T_6: R13," &
+	"TXN_T_7: T14," &
+	"TXP_T_0: R1," &
+	"TXP_T_1: T2," &
+	"TXP_T_2: R5," &
+	"TXP_T_3: T6," &
+	"TXP_T_4: T9," &
+	"TXP_T_5: R10," &
+	"TXP_T_6: T13," &
+	"TXP_T_7: R14," &
+	"AVDDAH: (M5, M6, M7, M8, M9, M10)," &
+	"AVDDAL: (N10, N5, N6, N7, N8, N9)," &
+	"VDD: (F4, F5, G11, H11, J11, K11, F11)," &
+	"VDDO: (E4, E5, E6, E7, E8, E9, E10)," &
+	"VSS: (F10, F6, F7, F8, F9, G10, G5, G6, G7, G8, G9, A1, H10, H5, H6, H7, H8, H9, J10, J5, J6, J7, J8, J9, K10, K5, K6, K7, K8, K9, L10, L4, L5, L6, L7, L8, L9, M4, N4, P10, P4, P5, P6, P7, P8, P9)";
+
+-- This section specifies the TAP ports.
+-- For the TAP TCK port, the parameters in the brackets are:
+--        First Field : Maximum  TCK frequency.
+--        Second Field: Allowable states TCK may be stopped in.
+ATTRIBUTE TAP_SCAN_CLOCK OF TCK : SIGNAL IS (2.000E+007, BOTH);
+ATTRIBUTE TAP_SCAN_IN OF TDI : SIGNAL IS TRUE;
+ATTRIBUTE TAP_SCAN_MODE OF TMS : SIGNAL IS TRUE;
+ATTRIBUTE TAP_SCAN_RESET OF TRST : SIGNAL IS TRUE;
+ATTRIBUTE TAP_SCAN_OUT OF TDO : SIGNAL IS TRUE;
+
+-- Specifies the number of bits in the instruction register.
+ATTRIBUTE INSTRUCTION_LENGTH OF E3082 : ENTITY IS 8;
+
+-- Specifies the boundary-scan instructions implemented in the
+-- design and their opcodes.
+ATTRIBUTE INSTRUCTION_OPCODE OF E3082 : ENTITY IS
+	"BYPASS (11111111)," &
+	"EXTEST (00000000)," &
+	"SAMPLE (00000001)," &
+	"CLAMP (00000010)," &
+	"HIGHZ (00000011)," &
+	"USER1 (00000100, 00001000, 00001100)," &
+	"USER2 (00000101, 00001001, 00001101)," &
+	"USER3 (00000110, 00001010)," &
+	"USER4 (00000111, 00001011, 00001111)," &
+	"USER5 (00001110)," &
+	"USER6 (00010000, 00010100, 00011000, 00011100)," &
+	"USER7 (00010001, 00010101, 00011001, 00011101)," &
+	"USER8 (00010010, 00010110, 00011010)," &
+	"USER9 (00010011, 00010111, 00011011, 00011111)," &
+	"USER10 (00011110)," &
+	"USER11 (00100000, 00100100, 00101000, 00101100)," &
+	"USER12 (00100001, 00100101, 00101001, 00101101)," &
+	"USER13 (00100010, 00100110, 00101010)," &
+	"USER14 (00100011, 00100111, 00101011, 00101111)," &
+	"USER15 (00101110)," &
+	"USER16 (00110000, 00110100, 00111000, 00111100)," &
+	"USER17 (00110001, 00110101, 00111001, 00111101)," &
+	"USER18 (00110010, 00110110, 00111010)," &
+	"USER19 (00110011, 00110111, 00111011, 00111111)," &
+	"USER20 (00111110)," &
+	"USER21 (01000000, 01000100, 01001000, 01001100)," &
+	"USER22 (01000001, 01000101, 01001001, 01001101)," &
+	"USER23 (01000010, 01000110, 01001010)," &
+	"USER24 (01000011, 01000111, 01001011, 01001111)," &
+	"USER25 (01001110)," &
+	"USER26 (01010000, 01010100, 01011000, 01011100)," &
+	"USER27 (01010001, 01010101, 01011001, 01011101)," &
+	"USER28 (01010010, 01010110, 01011010)," &
+	"USER29 (01010011, 01010111, 01011011, 01011111)," &
+	"USER30 (01011110)," &
+	"USER31 (01100000, 01100100, 01101000, 01101100)," &
+	"USER32 (01100001, 01100101, 01101001, 01101101)," &
+	"USER33 (01100010, 01100110, 01101010)," &
+	"USER34 (01100011, 01100111, 01101011, 01101111)," &
+	"USER35 (01101110)," &
+	"USER36 (01110000, 01110100, 01111000, 01111100)," &
+	"USER37 (01110001, 01110101, 01111001, 01111101)," &
+	"USER38 (01110010, 01110110, 01111010)," &
+	"USER39 (01110011, 01110111, 01111011, 01111111)," &
+	"USER40 (01111110)," &
+	"USER41 (10000000, 10000100, 10001000, 10001100)," &
+	"USER42 (10000001, 10000101, 10001001, 10001101)," &
+	"USER43 (10000010, 10000110, 10001010)," &
+	"USER44 (10000011, 10000111, 10001011, 10001111)," &
+	"USER45 (10001110)," &
+	"USER46 (10010000, 10010100, 10011000, 10011100)," &
+	"USER47 (10010001, 10010101, 10011001, 10011101)," &
+	"USER48 (10010010, 10010110, 10011010)," &
+	"USER49 (10010011, 10010111, 10011011, 10011111)," &
+	"USER50 (10011110)," &
+	"USER51 (10100000, 10100100, 10101000, 10101100)," &
+	"USER52 (10100001, 10100101, 10101001, 10101101)," &
+	"USER53 (10100010, 10100110, 10101010)," &
+	"USER54 (10100011, 10100111, 10101011, 10101111)," &
+	"USER55 (10101110)," &
+	"USER56 (10110000, 10110100, 10111000, 10111100)," &
+	"USER57 (10110001, 10110101, 10111001, 10111101)," &
+	"USER58 (10110010, 10110110, 10111010)," &
+	"USER59 (10110011, 10110111, 10111011, 10111111)," &
+	"USER60 (10111110)," &
+	"USER61 (11000000, 11000100, 11001000, 11001100)," &
+	"USER62 (11000001, 11000101, 11001001, 11001101)," &
+	"USER63 (11000010, 11000110, 11001010)," &
+	"USER64 (11000011, 11000111, 11001011, 11001111)," &
+	"USER65 (11001110)," &
+	"USER66 (11010000, 11010100, 11011000, 11011100)," &
+	"USER67 (11010001, 11010101, 11011001, 11011101)," &
+	"USER68 (11010010, 11010110, 11011010)," &
+	"USER69 (11010011, 11010111, 11011011, 11011111)," &
+	"USER70 (11011110)," &
+	"USER71 (11100000, 11100100, 11101000, 11101100)," &
+	"USER72 (11100001, 11100101, 11101001, 11101101)," &
+	"USER73 (11100010, 11100110, 11101010)," &
+	"USER74 (11100011, 11100111, 11101011, 11101111)," &
+	"USER75 (11101110)," &
+	"USER76 (11110000, 11110100, 11111000, 11111100)," &
+	"USER77 (11110001, 11110101, 11111001, 11111101)," &
+	"USER78 (11110010, 11110110, 11111010)," &
+	"USER79 (11111110)";
+
+-- Specifies the bit pattern that is loaded into the instruction
+-- register when the TAP controller passes through the Capture-IR
+-- state. The standard mandates that the two LSBs must be "01".
+-- The remaining bits are design specific.
+ATTRIBUTE INSTRUCTION_CAPTURE OF E3082 : ENTITY IS
+	"00000001";
+
+-- This section specifies the test data register placed between TDI
+-- and TDO for each implemented instruction.
+ATTRIBUTE REGISTER_ACCESS OF E3082 : ENTITY IS
+	"BYPASS (BYPASS, CLAMP, HIGHZ, USER1, USER2, USER3, USER4, USER5, USER6, USER7, USER8, USER9, USER10, USER11, USER12, USER13, USER14, USER15, USER16, USER17, USER18, USER19, USER20, USER21, USER22, USER23, USER24, USER25, USER26, USER27, USER28, USER29, USER30, USER31, USER32, USER33, USER34, USER35, USER36, USER37, USER38, USER39, USER40, USER41, USER42, USER43, USER44, USER45, USER46, USER47, USER48, USER49, USER50, USER51, USER52, USER53, USER54, USER55, USER56, USER57, USER58, USER59, USER60, USER61, USER62, USER63, USER64, USER65, USER66, USER67, USER68, USER69, USER70, USER71, USER72, USER73, USER74, USER75, USER76, USER77, USER78, USER79),"&
+	"BOUNDARY (EXTEST, SAMPLE)";
+
+-- Specifies the length of the boundary scan register.
+ATTRIBUTE BOUNDARY_LENGTH OF E3082 : ENTITY IS 105;
+
+-- The following list specifies the characteristics of each cell
+-- in the boundary scan register from TDI to TDO.
+-- The following is a description of the label fields:
+--      num     : Is the cell number.
+--      cell    : Is the cell type as defined by the standard.
+--      port    : Is the design port name. Control cells do not
+--                have a port name.
+--      function: Is the function of the cell as defined by the
+--                standard. Is one of input, output2, output3,
+--                bidir, control or controlr.
+--      safe    : Specifies the value that the BSR cell should be
+--                loaded with for safe operation when the software
+--                might otherwise choose a random value.
+--      ccell   : The control cell number. Specifies the control
+--                cell that drives the output enable for this port.
+--      disval  : Specifies the value that is loaded into the
+--                control cell to disable the output enable for
+--                the corresponding port.
+--      rslt    : Resulting state. Shows the state of the driver
+--                when it is disabled.
+ATTRIBUTE BOUNDARY_REGISTER OF E3082 : ENTITY IS
+	"0 (BC_1, CONFIG_7, INPUT, X)," &
+	"1 (BC_1, LED_2_7, OUTPUT3, X, 97, 0, Z)," &
+	"2 (BC_1, LED_1_7, OUTPUT3, X, 97, 0, Z)," &
+	"3 (BC_1, LED_0_7, OUTPUT3, X, 97, 0, Z)," &
+	"4 (BC_1, RXD_1_7, OUTPUT3, X, 97, 0, Z)," &
+	"5 (BC_1, RXD_0_7, OUTPUT3, X, 97, 0, Z)," &
+	"6 (BC_1, CRS_DV_7, OUTPUT3, X, 97, 0, Z)," &
+	"7 (BC_1, RX_ER_7, OUTPUT3, X, 97, 0, Z)," &
+	"8 (BC_1, TX_EN_7, INPUT, X)," &
+	"9 (BC_1, TXD_0_7, INPUT, X)," &
+	"10 (BC_1, TXD_1_7, INPUT, X)," &
+	"11 (BC_1, CONFIG_6, INPUT, X)," &
+	"12 (BC_1, LED_2_6, OUTPUT3, X, 97, 0, Z)," &
+	"13 (BC_1, LED_1_6, OUTPUT3, X, 97, 0, Z)," &
+	"14 (BC_1, LED_0_6, OUTPUT3, X, 97, 0, Z)," &
+	"15 (BC_1, RXD_1_6, OUTPUT3, X, 97, 0, Z)," &
+	"16 (BC_1, RXD_0_6, OUTPUT3, X, 97, 0, Z)," &
+	"17 (BC_1, CRS_DV_6, OUTPUT3, X, 97, 0, Z)," &
+	"18 (BC_1, RX_ER_6, OUTPUT3, X, 97, 0, Z)," &
+	"19 (BC_1, TX_EN_6, INPUT, X)," &
+	"20 (BC_1, TXD_0_6, INPUT, X)," &
+	"21 (BC_1, TXD_1_6, INPUT, X)," &
+	"22 (BC_1, CONFIG_5, INPUT, X)," &
+	"23 (BC_1, LED_2_5, OUTPUT3, X, 97, 0, Z)," &
+	"24 (BC_1, LED_1_5, OUTPUT3, X, 97, 0, Z)," &
+	"25 (BC_1, LED_0_5, OUTPUT3, X, 97, 0, Z)," &
+	"26 (BC_1, RXD_1_5, OUTPUT3, X, 97, 0, Z)," &
+	"27 (BC_1, RXD_0_5, OUTPUT3, X, 97, 0, Z)," &
+	"28 (BC_1, CRS_DV_5, OUTPUT3, X, 97, 0, Z)," &
+	"29 (BC_1, RX_ER_5, OUTPUT3, X, 97, 0, Z)," &
+	"30 (BC_1, TX_EN_5, INPUT, X)," &
+	"31 (BC_1, TXD_0_5, INPUT, X)," &
+	"32 (BC_1, TXD_1_5, INPUT, X)," &
+	"33 (BC_1, CONFIG_4, INPUT, X)," &
+	"34 (BC_1, LED_2_4, OUTPUT3, X, 97, 0, Z)," &
+	"35 (BC_1, LED_1_4, OUTPUT3, X, 97, 0, Z)," &
+	"36 (BC_1, LED_0_4, OUTPUT3, X, 97, 0, Z)," &
+	"37 (BC_1, RXD_1_4, OUTPUT3, X, 97, 0, Z)," &
+	"38 (BC_1, RXD_0_4, OUTPUT3, X, 97, 0, Z)," &
+	"39 (BC_1, CRS_DV_4, OUTPUT3, X, 97, 0, Z)," &
+	"40 (BC_1, RX_ER_4, OUTPUT3, X, 97, 0, Z)," &
+	"41 (BC_1, TX_EN_4, INPUT, X)," &
+	"42 (BC_1, TXD_0_4, INPUT, X)," &
+	"43 (BC_1, TXD_1_4, INPUT, X)," &
+	"44 (BC_1, CONFIG_3, INPUT, X)," &
+	"45 (BC_1, LED_2_3, OUTPUT3, X, 97, 0, Z)," &
+	"46 (BC_1, LED_1_3, OUTPUT3, X, 97, 0, Z)," &
+	"47 (BC_1, LED_0_3, OUTPUT3, X, 97, 0, Z)," &
+	"48 (BC_1, RXD_1_3, OUTPUT3, X, 97, 0, Z)," &
+	"49 (BC_1, RXD_0_3, OUTPUT3, X, 97, 0, Z)," &
+	"50 (BC_1, CRS_DV_3, OUTPUT3, X, 97, 0, Z)," &
+	"51 (BC_1, RX_ER_3, OUTPUT3, X, 97, 0, Z)," &
+	"52 (BC_1, TX_EN_3, INPUT, X)," &
+	"53 (BC_1, TXD_0_3, INPUT, X)," &
+	"54 (BC_1, TXD_1_3, INPUT, X)," &
+	"55 (BC_1, CONFIG_2, INPUT, X)," &
+	"56 (BC_1, LED_2_2, OUTPUT3, X, 97, 0, Z)," &
+	"57 (BC_1, LED_1_2, OUTPUT3, X, 97, 0, Z)," &
+	"58 (BC_1, LED_0_2, OUTPUT3, X, 97, 0, Z)," &
+	"59 (BC_1, RXD_1_2, OUTPUT3, X, 97, 0, Z)," &
+	"60 (BC_1, RXD_0_2, OUTPUT3, X, 97, 0, Z)," &
+	"61 (BC_1, CRS_DV_2, OUTPUT3, X, 97, 0, Z)," &
+	"62 (BC_1, RX_ER_2, OUTPUT3, X, 97, 0, Z)," &
+	"63 (BC_1, TX_EN_2, INPUT, X)," &
+	"64 (BC_1, TXD_0_2, INPUT, X)," &
+	"65 (BC_1, TXD_1_2, INPUT, X)," &
+	"66 (BC_1, CONFIG_1, INPUT, X)," &
+	"67 (BC_1, LED_2_1, OUTPUT3, X, 97, 0, Z)," &
+	"68 (BC_1, LED_1_1, OUTPUT3, X, 97, 0, Z)," &
+	"69 (BC_1, LED_0_1, OUTPUT3, X, 97, 0, Z)," &
+	"70 (BC_1, RXD_1_1, OUTPUT3, X, 97, 0, Z)," &
+	"71 (BC_1, RXD_0_1, OUTPUT3, X, 97, 0, Z)," &
+	"72 (BC_1, CRS_DV_1, OUTPUT3, X, 97, 0, Z)," &
+	"73 (BC_1, RX_ER_1, OUTPUT3, X, 97, 0, Z)," &
+	"74 (BC_1, TX_EN_1, INPUT, X)," &
+	"75 (BC_1, TXD_0_1, INPUT, X)," &
+	"76 (BC_1, TXD_1_1, INPUT, X)," &
+	"77 (BC_1, CONFIG_0, INPUT, X)," &
+	"78 (BC_1, LED_2_0, OUTPUT3, X, 97, 0, Z)," &
+	"79 (BC_1, LED_1_0, OUTPUT3, X, 97, 0, Z)," &
+	"80 (BC_1, LED_0_0, OUTPUT3, X, 97, 0, Z)," &
+	"81 (BC_1, RXD_1_0, OUTPUT3, X, 97, 0, Z)," &
+	"82 (BC_1, RXD_0_0, OUTPUT3, X, 97, 0, Z)," &
+	"83 (BC_1, CRS_DV_0, OUTPUT3, X, 97, 0, Z)," &
+	"84 (BC_1, RX_ER_0, OUTPUT3, X, 97, 0, Z)," &
+	"85 (BC_1, TX_EN_0, INPUT, X)," &
+	"86 (BC_1, TXD_0_0, INPUT, X)," &
+	"87 (BC_1, TXD_1_0, INPUT, X)," &
+	"88 (BC_1, NORMAL, INPUT, X)," &
+	"89 (BC_1, CONFIG_10, INPUT, X)," &
+	"90 (BC_1, CONFIG_9, INPUT, X)," &
+	"91 (BC_1, CONFIG_8, INPUT, X)," &
+	"92 (BC_1, CLKREF, INPUT, X)," &
+	"93 (BC_1, *, CONTROLR, 0)," &
+	"94 (BC_1, LEDSER, OUTPUT3, X, 93, 0, Z)," &
+	"95 (BC_1, LEDCLK, OUTPUT3, X, 93, 0, Z)," &
+	"96 (BC_1, LEDENA, OUTPUT3, X, 93, 0, Z)," &
+	"97 (BC_1, *, CONTROL, 0)," &
+	"98 (BC_1, SEL_RMII, INPUT, X)," &
+	"99 (BC_0, *, INTERNAL, X)," &
+	"100 (BC_1, *, CONTROLR, 0)," &
+	"101 (BC_1, MDIO, OUTPUT3, X, 100, 0, Z)," &
+	"102 (BC_1, MDIO, INPUT, X)," &
+	"103 (BC_1, MDC, INPUT, X)," &
+	"104 (BC_1, RESET, INPUT, X)";
+
+END E3082;

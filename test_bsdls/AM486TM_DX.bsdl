@@ -1,0 +1,337 @@
+--
+--   BSDL File created/edited by AT&T BSD Editor
+--   This BSDL file is to be used with the Am486DE
+--     or the Am486DX2 in write-back mode.
+--   Package = PGA
+--BSDE:Revision: A
+--BSDE:Description: 
+--
+-- VCC and VSS pintype changed to linkage and number of pins reduced with 1
+-- for both in bit vector statement.  ClBa/ 5.12.1997
+--
+--BSDE:Revision: B
+--BSDE:Description: 
+--
+-- Modified for the PGA package. ID code is 474, 16K WB, 2X
+-- Sharon Hoger 4/3/98
+--
+--
+--BSDE:Revision: C
+--BSDE:Description: 
+--
+-- Corrected pin designations for BE0 and WB
+-- Sharon Hoger 6/25/98
+--
+--BSDE:Revision: D
+--BSDE:Description: 
+--
+-- Modified the bsr chain, putting the clkmul pin after the
+-- clk pin.
+-- Sharon Hoger 8/18/98
+--
+--BSDE:Revision: E
+--BSDE:Description: 
+--
+-- Added INC pins to PIN_MAP_STRING and PHYSICAL_PIN_MAP.
+-- Sharon Hoger 8/27/98
+--
+--BSDE:Revision: F
+--BSDE:Description: 
+--
+-- Changed NC_PGA:linkage bit_vector (0 2) to
+-- NC_PGA: linkage bit_vector (0 to 2);
+-- Sharon Hoger 1/21/99	
+--
+--BSDE:Revision: G
+--BSDE:Description: 
+-- Sharon Hoger 1/11/00
+--
+-- Changed the count of the VCC and ground pins
+--	VCC: linkage bit_vector (0 to 52);
+--	VSS: linkage bit_vector (0 to 37);
+--	to 
+--	VCC: linkage bit_vector (0 to 22);
+--	VSS: linkage bit_vector (0 to 27);
+
+
+entity AM486TM_DX is
+
+generic (PHYSICAL_PIN_MAP : string := "PGA" );
+
+port (
+	A20M: in bit;
+	ABUS: inout bit_vector (4 to 31);
+	ABUS2: out bit;
+	ABUS3: out bit;
+	ADS: out bit;
+	AHOLD: in bit;
+	BE: out bit_vector (0 to 3);
+	BLAST: out bit;
+	BOFF: in bit;
+	BRDY: in bit;
+	BREQ: out bit;
+	BS16: in bit;
+	BS8: in bit;
+	CACHE: out bit;
+	CLK: in bit;
+	CLKMUL: in bit;
+	DBUS: inout bit_vector (0 to 31);
+	DC: out bit;
+	DP: inout bit_vector (0 to 3);
+	EADS: in bit;
+	FERR: out bit;
+	FLUSH: in bit;
+	HITM: out bit;
+	HLDA: out bit;
+	HOLD: in bit;
+	IGNNE: in bit;
+	INTR: in bit;
+	INV: in bit;
+	KEN: in bit;
+	LOCK: out bit;
+	MIO: out bit;
+	NMI: in bit;
+	PCD: out bit;
+	PCHK: out bit;
+	PLOCK: out bit;
+	PWT: out bit;
+	RDY: in bit;
+	RESET: in bit;
+	SMI: in bit;
+	SMIACT: out bit;
+	SRESET: in bit;
+	STPCLK: in bit;
+	TCK: in bit;
+	TDI: in bit;
+	TDO: out bit;
+	TMS: in bit;
+	UP: in bit;
+	WBWT: in bit;
+	VCC: linkage bit_vector (0 to 22);
+	VSS: linkage bit_vector (0 to 27);
+	NC_PGA: linkage bit_vector (0 to 2);
+
+	WR: out bit
+);
+
+use STD_1149_1_1990.all;
+
+attribute PIN_MAP of AM486TM_DX : entity is PHYSICAL_PIN_MAP;
+
+constant PGA: PIN_MAP_STRING:=
+	"A20M:D15," &
+	"ABUS:(S16,Q12,S15,Q13,R13,Q11,S13,R12,S7,Q10," &
+		"S5,R7,Q9,Q3,R5,Q4,Q8,Q5,Q7,S3," &
+		"Q6,R2,S2,S1,R1,P2,P3,Q1)," &
+	"ABUS2:Q14," &
+	"ABUS3:R15," &
+	"ADS:S17," &
+	"AHOLD:A17," &
+	"BE:(K15,J16,J15,F17)," &
+	"BLAST:R16," &
+	"BOFF:D17," &
+	"BRDY:H15," &
+	"BREQ:Q15," &
+	"BS16:C17," &
+	"BS8:D16," &
+	"CACHE:B12," &
+	"CLK:C3," &
+	"CLKMUL:R17," &
+	"DBUS:(P1,N2,N1,H2,M3,J2,L2,L3,F2,D1," &
+		"E3,C1,G3,D2,K3,F3,J3,D3,C2,B1," &
+		"A1,B2,A2,A4,A6,B6,C7,C6,C8,A8," &
+		"C9,B8)," &
+	"DC:M15," &
+	"DP:(N3,F1,H3,A5)," &
+	"EADS:B17," &
+	"FERR:C14," &
+	"FLUSH:C15," &
+	"HITM:A12," &
+	"HLDA:P15," &
+	"HOLD:E15," &
+	"IGNNE:A15," &
+	"INTR:A16," &
+	"INV:A10," &
+	"KEN:F15," &
+	"LOCK:N15," &
+	"MIO:N16," &
+	"NC_PGA:(A13,C13,J1),"&
+	"NMI:B15," &
+	"PCD:J17," &
+	"PCHK:Q17," &
+	"PLOCK:Q16," &
+	"PWT:L15," &
+	"RDY:F16," &
+	"RESET:C16," &
+	"SMI:B10," &
+	"SMIACT:C12," &
+	"SRESET:C10," &
+	"STPCLK:G15," &
+	"TCK:A3," &
+	"TDI:A14," &
+	"TDO:B16," &
+	"TMS:B14," &
+	"UP:C11," &
+	"WBWT:B13," &
+	"VCC:(B7,B9,B11,C4,C5,E2,E16,G2,G16,H16," &
+		"K2,K16,L16,M2,M16,P16,R3,R6,R8,R9," &
+		"R10,R11,R14)," &
+	"VSS:(A7,A9,A11,B3,B4,B5,E1,E17,G1,G17," &
+		"H1,H17,K1,K17,L1,L17,M1,M17,P17," &
+		"Q2,R4,S6,S8,S9,S10,S11,S12,S14)," &
+	"WR:N17";
+
+attribute TAP_SCAN_IN    of TDI : signal is true;
+attribute TAP_SCAN_OUT   of TDO : signal is true;
+attribute TAP_SCAN_MODE  of TMS : signal is true;
+attribute TAP_SCAN_CLOCK of TCK : signal is (2.50e+07, BOTH);
+attribute INSTRUCTION_LENGTH of AM486TM_DX : entity is 4;
+
+attribute INSTRUCTION_OPCODE of AM486TM_DX : entity is
+	"BYPASS ( 1111)," &
+	"EXTEST ( 0000)," &
+	"IDCODE ( 0010)," &
+	"PRIVATE ( 0011, 0100, 0101, 0110, 0111, 1001, 1010, 1011," &
+		" 1100, 1101, 1110)," &
+	"RUNBIST ( 1000)," &
+	"SAMPLE ( 0001)" ;
+
+attribute INSTRUCTION_CAPTURE of AM486TM_DX : entity is "0001";
+
+attribute INSTRUCTION_PRIVATE of AM486TM_DX : entity is
+	" PRIVATE";
+
+attribute IDCODE_REGISTER of AM486TM_DX : entity is
+	"0000" &		-- version
+	"0000010001110100" &	-- part number
+	"00000000001" &		-- manufacturer's id
+	"1";			-- required by standard
+
+attribute REGISTER_ACCESS of AM486TM_DX : entity is
+	"BYPASS ( BYPASS, PRIVATE)," &
+	"BOUNDARY ( EXTEST, SAMPLE)," &
+	"IDCODE ( IDCODE)," &
+	"BIST[1] ( RUNBIST)";
+
+attribute BOUNDARY_CELLS of AM486TM_DX : entity is
+	" BC_1, BC_2, BC_3, BC_6";
+
+attribute BOUNDARY_LENGTH of AM486TM_DX : entity is 113;
+
+attribute BOUNDARY_REGISTER of AM486TM_DX : entity is
+	"   0 (BC_2, ABUS2, output3, X, 111, 1, Z)," &
+	"   1 (BC_2, ABUS3, output3, X, 111, 1, Z)," &
+	"   2 (BC_6, ABUS(4), bidir, X, 111, 1, Z)," &
+	"   3 (BC_6, ABUS(5), bidir, X, 111, 1, Z)," &
+	"   4 (BC_3, UP, input, X)," &
+	"   5 (BC_6, ABUS(6), bidir, X, 111, 1, Z)," &
+	"   6 (BC_6, ABUS(7), bidir, X, 111, 1, Z)," &
+	"   7 (BC_6, ABUS(8), bidir, X, 111, 1, Z)," &
+	"   8 (BC_6, ABUS(9), bidir, X, 111, 1, Z)," &
+	"   9 (BC_6, ABUS(10), bidir, X, 111, 1, Z)," &
+	"  10 (BC_6, ABUS(11), bidir, X, 111, 1, Z)," &
+	"  11 (BC_6, ABUS(12), bidir, X, 111, 1, Z)," &
+	"  12 (BC_6, ABUS(13), bidir, X, 111, 1, Z)," &
+	"  13 (BC_6, ABUS(14), bidir, X, 111, 1, Z)," &
+	"  14 (BC_6, ABUS(15), bidir, X, 111, 1, Z)," &
+	"  15 (BC_6, ABUS(16), bidir, X, 111, 1, Z)," &
+	"  16 (BC_6, ABUS(17), bidir, X, 111, 1, Z)," &
+	"  17 (BC_6, ABUS(18), bidir, X, 111, 1, Z)," &
+	"  18 (BC_6, ABUS(19), bidir, X, 111, 1, Z)," &
+	"  19 (BC_6, ABUS(20), bidir, X, 111, 1, Z)," &
+	"  20 (BC_6, ABUS(21), bidir, X, 111, 1, Z)," &
+	"  21 (BC_6, ABUS(22), bidir, X, 111, 1, Z)," &
+	"  22 (BC_6, ABUS(23), bidir, X, 111, 1, Z)," &
+	"  23 (BC_6, ABUS(24), bidir, X, 111, 1, Z)," &
+	"  24 (BC_6, ABUS(25), bidir, X, 111, 1, Z)," &
+	"  25 (BC_6, ABUS(26), bidir, X, 111, 1, Z)," &
+	"  26 (BC_6, ABUS(27), bidir, X, 111, 1, Z)," &
+	"  27 (BC_6, ABUS(28), bidir, X, 111, 1, Z)," &
+	"  28 (BC_6, ABUS(29), bidir, X, 111, 1, Z)," &
+	"  29 (BC_6, ABUS(30), bidir, X, 111, 1, Z)," &
+	"  30 (BC_6, ABUS(31), bidir, X, 111, 1, Z)," &
+	"  31 (BC_6, DP(0), bidir, X, 112, 1, Z)," &
+	"  32 (BC_6, DBUS(0), bidir, X, 112, 1, Z)," &
+	"  33 (BC_6, DBUS(1), bidir, X, 112, 1, Z)," &
+	"  34 (BC_6, DBUS(2), bidir, X, 112, 1, Z)," &
+	"  35 (BC_6, DBUS(3), bidir, X, 112, 1, Z)," &
+	"  36 (BC_6, DBUS(4), bidir, X, 112, 1, Z)," &
+	"  37 (BC_6, DBUS(5), bidir, X, 112, 1, Z)," &
+	"  38 (BC_6, DBUS(6), bidir, X, 112, 1, Z)," &
+	"  39 (BC_6, DBUS(7), bidir, X, 112, 1, Z)," &
+	"  40 (BC_6, DP(1), bidir, X, 112, 1, Z)," &
+	"  41 (BC_6, DBUS(8), bidir, X, 112, 1, Z)," &
+	"  42 (BC_6, DBUS(9), bidir, X, 112, 1, Z)," &
+	"  43 (BC_6, DBUS(10), bidir, X, 112, 1, Z)," &
+	"  44 (BC_6, DBUS(11), bidir, X, 112, 1, Z)," &
+	"  45 (BC_6, DBUS(12), bidir, X, 112, 1, Z)," &
+	"  46 (BC_6, DBUS(13), bidir, X, 112, 1, Z)," &
+	"  47 (BC_6, DBUS(14), bidir, X, 112, 1, Z)," &
+	"  48 (BC_6, DBUS(15), bidir, X, 112, 1, Z)," &
+	"  49 (BC_6, DP(2), bidir, X, 112, 1, Z)," &
+	"  50 (BC_6, DBUS(16), bidir, X, 112, 1, Z)," &
+	"  51 (BC_6, DBUS(17), bidir, X, 112, 1, Z)," &
+	"  52 (BC_6, DBUS(18), bidir, X, 112, 1, Z)," &
+	"  53 (BC_6, DBUS(19), bidir, X, 112, 1, Z)," &
+	"  54 (BC_6, DBUS(20), bidir, X, 112, 1, Z)," &
+	"  55 (BC_6, DBUS(21), bidir, X, 112, 1, Z)," &
+	"  56 (BC_6, DBUS(22), bidir, X, 112, 1, Z)," &
+	"  57 (BC_6, DBUS(23), bidir, X, 112, 1, Z)," &
+	"  58 (BC_6, DP(3), bidir, X, 112, 1, Z)," &
+	"  59 (BC_6, DBUS(24), bidir, X, 112, 1, Z)," &
+	"  60 (BC_6, DBUS(25), bidir, X, 112, 1, Z)," &
+	"  61 (BC_6, DBUS(26), bidir, X, 112, 1, Z)," &
+	"  62 (BC_6, DBUS(27), bidir, X, 112, 1, Z)," &
+	"  63 (BC_6, DBUS(28), bidir, X, 112, 1, Z)," &
+	"  64 (BC_6, DBUS(29), bidir, X, 112, 1, Z)," &
+	"  65 (BC_6, DBUS(30), bidir, X, 112, 1, Z)," &
+	"  66 (BC_6, DBUS(31), bidir, X, 112, 1, Z)," &
+	"  67 (BC_3, STPCLK, input, X)," &
+	"  68 (BC_3, IGNNE, input, X)," &
+	"  69 (BC_3, INV, input, X)," &
+	"  70 (BC_2, CACHE, output3, X, 109, 1, Z)," &
+	"  71 (BC_2, FERR, output3, X, 109, 1, Z)," &
+	"  72 (BC_3, SMI, input, X)," &
+	"  73 (BC_3, WBWT, input, X)," &
+	"  74 (BC_2, HITM, output3, X, 109, 1, Z)," &
+	"  75 (BC_2, SMIACT, output3, X, 109, 1, Z)," &
+	"  76 (BC_3, SRESET, input, X)," &
+	"  77 (BC_3, NMI, input, X)," &
+	"  78 (BC_3, INTR, input, X)," &
+	"  79 (BC_3, FLUSH, input, X)," &
+	"  80 (BC_3, RESET, input, X)," &
+	"  81 (BC_3, A20M, input, X)," &
+	"  82 (BC_3, EADS, input, X)," &
+	"  83 (BC_2, PCD, output3, X, 110, 1, Z)," &
+	"  84 (BC_2, PWT, output3, X, 110, 1, Z)," &
+	"  85 (BC_2, DC, output3, X, 110, 1, Z)," &
+	"  86 (BC_2, MIO, output3, X, 110, 1, Z)," &
+	"  87 (BC_2, BE(3), output3, X, 110, 1, Z)," &
+	"  88 (BC_2, BE(2), output3, X, 110, 1, Z)," &
+	"  89 (BC_2, BE(1), output3, X, 110, 1, Z)," &
+	"  90 (BC_2, BE(0), output3, X, 110, 1, Z)," &
+	"  91 (BC_2, BREQ, output3, X, 109, 1, Z)," &
+	"  92 (BC_2, WR, output3, X, 110, 1, Z)," &
+	"  93 (BC_2, HLDA, output3, X, 109, 1, Z)," &
+	"  94 (BC_3, CLK, input, X)," &
+	"  95 (BC_3, CLKMUL, input, X)," &
+	"  96 (BC_3, AHOLD, input, X)," &
+	"  97 (BC_3, HOLD, input, X)," &
+	"  98 (BC_3, KEN, input, X)," &
+	"  99 (BC_3, RDY, input, X)," &
+	" 100 (BC_3, BS8, input, X)," &
+	" 101 (BC_3, BS16, input, X)," &
+	" 102 (BC_3, BOFF, input, X)," &
+	" 103 (BC_3, BRDY, input, X)," &
+	" 104 (BC_2, PCHK, output3, X, 109, 1, Z)," &
+	" 105 (BC_2, LOCK, output3, X, 110, 1, Z)," &
+	" 106 (BC_2, PLOCK, output3, X, 110, 1, Z)," &
+	" 107 (BC_2, BLAST, output3, X, 110, 1, Z)," &
+	" 108 (BC_2, ADS, output3, X, 110, 1, Z)," &
+	" 109 (BC_1, *, control, 1)," &
+	" 110 (BC_1, *, control, 1)," &
+	" 111 (BC_2, *, control, 1)," &
+	" 112 (BC_2, *, control, 1)";
+
+end AM486TM_DX;
+

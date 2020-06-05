@@ -1,0 +1,3135 @@
+-- ../../bsdl/AX1000_cqfp352.bsd
+-- FAMILY:	Axcelerator
+-- DEVICE:	AX1000
+-- PACKAGE:	352 CQFP
+-- Version: 1.2
+--         Include NC package pins in the BSDL files.
+--         (SARno37877)
+
+
+-- This BSDL file reflects the pre-programming JTAG
+-- behavior. To reflect the post-programming JTAG
+-- behavior, edit this file as described below:
+
+-- If the I/O is unused or configured as an output,
+-- the input boundary scan cell becomes internal only.
+-- The input buffer is turned off, and you can not
+-- transfer data from the I/O pad into the input scan
+-- cell. For example:
+-- IO(1) is an output, the BSDL entry would be modified
+-- from:
+-- " 0 (BC_1, IO(1), input,    X),           "&
+-- " 1 (BC_1, IO(1), output3,  X,  2, 0, Z), "&
+-- " 2 (BC_1, *,     control,  0),           "&
+-- to:
+-- " 0 (BC_1, *,     internal, X),           "&
+-- " 1 (BC_1, IO(1), output3,  X,  2, 0, Z), "&
+-- " 2 (BC_1, *,     control,  0),           "&
+-- No modification is necessary when the I/O is
+-- configured as an input.
+
+
+entity AX1000cq352 is
+    generic (PHYSICAL_PIN_MAP : string := "cq352");
+    port(
+        GND         :linkage bit_vector (0 to 54  );
+        IO108NB3F10 :out bit;
+        IO108PB3F10 :out bit;
+        IO109NB3F10 :out bit;
+        IO109PB3F10 :out bit;
+        IO111NB3F10 :out bit;
+        IO111PB3F10 :out bit;
+        IO112NB3F10 :out bit;
+        IO112PB3F10 :out bit;
+        IO113NB3F10 :out bit;
+        IO113PB3F10 :out bit;
+        IO115NB3F10 :out bit;
+        IO115PB3F10 :out bit;
+        IO116NB3F10 :out bit;
+        IO116PB3F10 :out bit;
+        IO117NB3F10 :out bit;
+        IO117PB3F10 :out bit;
+        IO124NB3F11 :out bit;
+        IO124PB3F11 :out bit;
+        IO125NB3F11 :out bit;
+        IO125PB3F11 :out bit;
+        IO127NB3F11 :out bit;
+        IO127PB3F11 :out bit;
+        IO128NB3F11 :out bit;
+        IO128PB3F11 :out bit;
+        IO130NB4F12 :out bit;
+        IO130PB4F12 :out bit;
+        IO131NB4F12 :out bit;
+        IO131PB4F12 :out bit;
+        IO132NB4F12 :out bit;
+        IO132PB4F12 :out bit;
+        IO133NB4F12 :out bit;
+        IO133PB4F12 :out bit;
+        IO134NB4F12 :out bit;
+        IO134PB4F12 :out bit;
+        IO136NB4F12 :out bit;
+        IO136PB4F12 :out bit;
+        IO137NB4F12 :out bit;
+        IO137PB4F12 :out bit;
+        IO138NB4F12 :out bit;
+        IO138PB4F12 :out bit;
+        IO153NB4F14 :out bit;
+        IO153PB4F14 :out bit;
+        IO159NB4F14_CLKEN:out bit;
+        IO159PB4F14_CLKEP:out bit;
+        IO160NB4F14_CLKFN:out bit;
+        IO160PB4F14_CLKFP:out bit;
+        IO161NB5F15_CLKGN:out bit;
+        IO161PB5F15_CLKGP:out bit;
+        IO162NB5F15_CLKHN:out bit;
+        IO162PB5F15_CLKHP:out bit;
+        IO167NB5F15 :out bit;
+        IO167PB5F15 :out bit;
+        IO183NB5F17 :out bit;
+        IO183PB5F17 :out bit;
+        IO184NB5F17 :out bit;
+        IO184PB5F17 :out bit;
+        IO185NB5F17 :out bit;
+        IO185PB5F17 :out bit;
+        IO186NB5F17 :out bit;
+        IO186PB5F17 :out bit;
+        IO187NB5F17 :out bit;
+        IO187PB5F17 :out bit;
+        IO188NB5F17 :out bit;
+        IO188PB5F17 :out bit;
+        IO190NB5F17 :out bit;
+        IO190PB5F17 :out bit;
+        IO192NB5F17 :out bit;
+        IO192PB5F17 :out bit;
+        IO193PB6F18 :out bit;
+        IO194NB6F18 :out bit;
+        IO194PB6F18 :out bit;
+        IO196NB6F18 :out bit;
+        IO196PB6F18 :out bit;
+        IO197NB6F18 :out bit;
+        IO197PB6F18 :out bit;
+        IO198NB6F18 :out bit;
+        IO198PB6F18 :out bit;
+        IO203NB6F19 :out bit;
+        IO203PB6F19 :out bit;
+        IO204NB6F19 :out bit;
+        IO204PB6F19 :out bit;
+        IO205NB6F19 :out bit;
+        IO205PB6F19 :out bit;
+        IO206NB6F19 :out bit;
+        IO206PB6F19 :out bit;
+        IO207NB6F19 :out bit;
+        IO207PB6F19 :out bit;
+        IO208NB6F19 :out bit;
+        IO208PB6F19 :out bit;
+        IO211NB6F19 :out bit;
+        IO211PB6F19 :out bit;
+        IO212NB6F19 :out bit;
+        IO212PB6F19 :out bit;
+        IO223NB6F20 :out bit;
+        IO223PB6F20 :out bit;
+        IO224NB6F20 :out bit;
+        IO224PB6F20 :out bit;
+        IO225NB7F21 :out bit;
+        IO225PB7F21 :out bit;
+        IO226NB7F21 :out bit;
+        IO226PB7F21 :out bit;
+        IO237NB7F22 :out bit;
+        IO237PB7F22 :out bit;
+        IO238NB7F22 :out bit;
+        IO238PB7F22 :out bit;
+        IO240NB7F22 :out bit;
+        IO240PB7F22 :out bit;
+        IO241NB7F22 :out bit;
+        IO241PB7F22 :out bit;
+        IO242NB7F22 :out bit;
+        IO242PB7F22 :out bit;
+        IO244NB7F22 :out bit;
+        IO244PB7F22 :out bit;
+        IO245NB7F22 :out bit;
+        IO245PB7F22 :out bit;
+        IO246NB7F22 :out bit;
+        IO246PB7F22 :out bit;
+        IO249NB7F23 :out bit;
+        IO249PB7F23 :out bit;
+        IO24NB0F2   :out bit;
+        IO24PB0F2   :out bit;
+        IO250NB7F23 :out bit;
+        IO250PB7F23 :out bit;
+        IO256NB7F23 :out bit;
+        IO256PB7F23 :out bit;
+        IO257NB7F23 :out bit;
+        IO257PB7F23 :out bit;
+        IO25NB0F2   :out bit;
+        IO25PB0F2   :out bit;
+        IO2NB0F0    :out bit;
+        IO2PB0F0    :out bit;
+        IO30NB0F2_HCLKAN:out bit;
+        IO30PB0F2_HCLKAP:out bit;
+        IO31NB0F2_HCLKBN:out bit;
+        IO31PB0F2_HCLKBP:out bit;
+        IO32NB1F3_HCLKCN:out bit;
+        IO32PB1F3_HCLKCP:out bit;
+        IO33NB1F3_HCLKDN:out bit;
+        IO33PB1F3_HCLKDP:out bit;
+        IO38NB1F3   :out bit;
+        IO38PB1F3   :out bit;
+        IO3PB0F0    :out bit;
+        IO4NB0F0    :out bit;
+        IO4PB0F0    :out bit;
+        IO54NB1F5   :out bit;
+        IO54PB1F5   :out bit;
+        IO55NB1F5   :out bit;
+        IO55PB1F5   :out bit;
+        IO56NB1F5   :out bit;
+        IO56PB1F5   :out bit;
+        IO57NB1F5   :out bit;
+        IO57PB1F5   :out bit;
+        IO59NB1F5   :out bit;
+        IO59PB1F5   :out bit;
+        IO60NB1F5   :out bit;
+        IO60PB1F5   :out bit;
+        IO61NB1F5   :out bit;
+        IO61PB1F5   :out bit;
+        IO63NB1F5   :out bit;
+        IO63PB1F5   :out bit;
+        IO64NB2F6   :out bit;
+        IO64PB2F6   :out bit;
+        IO67NB2F6   :out bit;
+        IO67PB2F6   :out bit;
+        IO68NB2F6   :out bit;
+        IO68PB2F6   :out bit;
+        IO69NB2F6   :out bit;
+        IO69PB2F6   :out bit;
+        IO74NB2F7   :out bit;
+        IO74PB2F7   :out bit;
+        IO75NB2F7   :out bit;
+        IO75PB2F7   :out bit;
+        IO76NB2F7   :out bit;
+        IO76PB2F7   :out bit;
+        IO77NB2F7   :out bit;
+        IO77PB2F7   :out bit;
+        IO78NB2F7   :out bit;
+        IO78PB2F7   :out bit;
+        IO79NB2F7   :out bit;
+        IO79PB2F7   :out bit;
+        IO82NB2F7   :out bit;
+        IO82PB2F7   :out bit;
+        IO83NB2F7   :out bit;
+        IO83PB2F7   :out bit;
+        IO8NB0F0    :out bit;
+        IO8PB0F0    :out bit;
+        IO94NB2F8   :out bit;
+        IO94PB2F8   :out bit;
+        IO95NB2F8   :out bit;
+        IO95PB2F8   :out bit;
+        IO96NB3F9   :out bit;
+        IO96PB3F9   :out bit;
+        IO97NB3F9   :out bit;
+        IO97PB3F9   :out bit;
+        IO99NB3F9   :out bit;
+        IO99PB3F9   :out bit;
+        IO9NB0F0    :out bit;
+        IO9PB0F0    :out bit;
+        LP          :linkage bit;
+        NC          :linkage bit_vector (0 to 6   );
+        PRA         :linkage bit;
+        PRB         :linkage bit;
+        PRC         :linkage bit;
+        PRD         :linkage bit;
+        TCK         :in bit;
+        TDI         :in bit;
+        TDO         :out bit;
+        TMS         :in bit;
+        TRST        :in bit;
+        VCCA        :linkage bit_vector (0 to 19  );
+        VCCDA       :linkage bit_vector (0 to 16  );
+        VCCIB0      :linkage bit_vector (0 to 2   );
+        VCCIB1      :linkage bit_vector (0 to 2   );
+        VCCIB2      :linkage bit_vector (0 to 3   );
+        VCCIB3      :linkage bit_vector (0 to 3   );
+        VCCIB4      :linkage bit_vector (0 to 2   );
+        VCCIB5      :linkage bit_vector (0 to 2   );
+        VCCIB6      :linkage bit_vector (0 to 3   );
+        VCCIB7      :linkage bit_vector (0 to 3   );
+        VCCPLA      :linkage bit;
+        VCCPLB      :linkage bit;
+        VCCPLC      :linkage bit;
+        VCCPLD      :linkage bit;
+        VCCPLE      :linkage bit;
+        VCCPLF      :linkage bit;
+        VCCPLG      :linkage bit;
+        VCCPLH      :linkage bit;
+        VCOMPLA     :linkage bit;
+        VCOMPLB     :linkage bit;
+        VCOMPLC     :linkage bit;
+        VCOMPLD     :linkage bit;
+        VCOMPLE     :linkage bit;
+        VCOMPLF     :linkage bit;
+        VCOMPLG     :linkage bit;
+        VCOMPLH     :linkage bit;
+        VPUMP       :linkage bit
+    );
+
+    use STD_1149_1_1994.all;
+
+    attribute COMPONENT_CONFORMANCE of AX1000cq352: entity is
+        "STD_1149_1_1993";
+
+    attribute PIN_MAP of AX1000cq352 : entity is PHYSICAL_PIN_MAP;
+    constant cq352 : PIN_MAP_STRING:=
+        "GND       :(1,    103,   109,   115,   121,   133,   145,   "&
+                   "15,    151,   157,   163,   169,   176,   177,   "&
+                   "186,   192,   198,   204,   21,    210,   216,   "&
+                   "222,   228,   234,   240,   246,   252,   258,   "&
+                   "264,   265,   27,    274,   280,   286,   292,   "&
+                   "298,   310,   322,   33,    330,   334,   340,   "&
+                   "345,   39,    45,    51,    57,    63,    69,    "&
+                   "75,    81,    88,    89,    9,     97),   "&
+        "IO108NB3F10:211,   "&
+        "IO108PB3F10:212,   "&
+        "IO109NB3F10:207,   "&
+        "IO109PB3F10:208,   "&
+        "IO111NB3F10:205,   "&
+        "IO111PB3F10:206,   "&
+        "IO112NB3F10:199,   "&
+        "IO112PB3F10:200,   "&
+        "IO113NB3F10:201,   "&
+        "IO113PB3F10:202,   "&
+        "IO115NB3F10:195,   "&
+        "IO115PB3F10:196,   "&
+        "IO116NB3F10:193,   "&
+        "IO116PB3F10:194,   "&
+        "IO117NB3F10:189,   "&
+        "IO117PB3F10:190,   "&
+        "IO124NB3F11:183,   "&
+        "IO124PB3F11:184,   "&
+        "IO125NB3F11:187,   "&
+        "IO125PB3F11:188,   "&
+        "IO127NB3F11:181,   "&
+        "IO127PB3F11:182,   "&
+        "IO128NB3F11:179,   "&
+        "IO128PB3F11:180,   "&
+        "IO130NB4F12:172,   "&
+        "IO130PB4F12:173,   "&
+        "IO131NB4F12:170,   "&
+        "IO131PB4F12:171,   "&
+        "IO132NB4F12:166,   "&
+        "IO132PB4F12:167,   "&
+        "IO133NB4F12:164,   "&
+        "IO133PB4F12:165,   "&
+        "IO134NB4F12:160,   "&
+        "IO134PB4F12:161,   "&
+        "IO136NB4F12:158,   "&
+        "IO136PB4F12:159,   "&
+        "IO137NB4F12:154,   "&
+        "IO137PB4F12:155,   "&
+        "IO138NB4F12:152,   "&
+        "IO138PB4F12:153,   "&
+        "IO153NB4F14:146,   "&
+        "IO153PB4F14:147,   "&
+        "IO159NB4F14_CLKEN:142,   "&
+        "IO159PB4F14_CLKEP:143,   "&
+        "IO160NB4F14_CLKFN:136,   "&
+        "IO160PB4F14_CLKFP:137,   "&
+        "IO161NB5F15_CLKGN:128,   "&
+        "IO161PB5F15_CLKGP:129,   "&
+        "IO162NB5F15_CLKHN:122,   "&
+        "IO162PB5F15_CLKHP:123,   "&
+        "IO167NB5F15:118,   "&
+        "IO167PB5F15:119,   "&
+        "IO183NB5F17:110,   "&
+        "IO183PB5F17:111,   "&
+        "IO184NB5F17:112,   "&
+        "IO184PB5F17:113,   "&
+        "IO185NB5F17:104,   "&
+        "IO185PB5F17:105,   "&
+        "IO186NB5F17:106,   "&
+        "IO186PB5F17:107,   "&
+        "IO187NB5F17:98,    "&
+        "IO187PB5F17:99,    "&
+        "IO188NB5F17:100,   "&
+        "IO188PB5F17:101,   "&
+        "IO190NB5F17:94,    "&
+        "IO190PB5F17:95,    "&
+        "IO192NB5F17:92,    "&
+        "IO192PB5F17:93,    "&
+        "IO193PB6F18:86,    "&
+        "IO194NB6F18:84,    "&
+        "IO194PB6F18:85,    "&
+        "IO196NB6F18:78,    "&
+        "IO196PB6F18:79,    "&
+        "IO197NB6F18:82,    "&
+        "IO197PB6F18:83,    "&
+        "IO198NB6F18:76,    "&
+        "IO198PB6F18:77,    "&
+        "IO203NB6F19:72,    "&
+        "IO203PB6F19:73,    "&
+        "IO204NB6F19:70,    "&
+        "IO204PB6F19:71,    "&
+        "IO205NB6F19:66,    "&
+        "IO205PB6F19:67,    "&
+        "IO206NB6F19:64,    "&
+        "IO206PB6F19:65,    "&
+        "IO207NB6F19:60,    "&
+        "IO207PB6F19:61,    "&
+        "IO208NB6F19:58,    "&
+        "IO208PB6F19:59,    "&
+        "IO211NB6F19:54,    "&
+        "IO211PB6F19:55,    "&
+        "IO212NB6F19:52,    "&
+        "IO212PB6F19:53,    "&
+        "IO223NB6F20:48,    "&
+        "IO223PB6F20:49,    "&
+        "IO224NB6F20:46,    "&
+        "IO224PB6F20:47,    "&
+        "IO225NB7F21:40,    "&
+        "IO225PB7F21:41,    "&
+        "IO226NB7F21:42,    "&
+        "IO226PB7F21:43,    "&
+        "IO237NB7F22:34,    "&
+        "IO237PB7F22:35,    "&
+        "IO238NB7F22:36,    "&
+        "IO238PB7F22:37,    "&
+        "IO240NB7F22:30,    "&
+        "IO240PB7F22:31,    "&
+        "IO241NB7F22:28,    "&
+        "IO241PB7F22:29,    "&
+        "IO242NB7F22:24,    "&
+        "IO242PB7F22:25,    "&
+        "IO244NB7F22:22,    "&
+        "IO244PB7F22:23,    "&
+        "IO245NB7F22:18,    "&
+        "IO245PB7F22:19,    "&
+        "IO246NB7F22:16,    "&
+        "IO246PB7F22:17,    "&
+        "IO249NB7F23:12,    "&
+        "IO249PB7F23:13,    "&
+        "IO24NB0F2 :325,   "&
+        "IO24PB0F2 :326,   "&
+        "IO250NB7F23:10,    "&
+        "IO250PB7F23:11,    "&
+        "IO256NB7F23:4,     "&
+        "IO256PB7F23:5,     "&
+        "IO257NB7F23:6,     "&
+        "IO257PB7F23:7,     "&
+        "IO25NB0F2 :323,   "&
+        "IO25PB0F2 :324,   "&
+        "IO2NB0F0  :341,   "&
+        "IO2PB0F0  :342,   "&
+        "IO30NB0F2_HCLKAN:319,   "&
+        "IO30PB0F2_HCLKAP:320,   "&
+        "IO31NB0F2_HCLKBN:313,   "&
+        "IO31PB0F2_HCLKBP:314,   "&
+        "IO32NB1F3_HCLKCN:305,   "&
+        "IO32PB1F3_HCLKCP:306,   "&
+        "IO33NB1F3_HCLKDN:299,   "&
+        "IO33PB1F3_HCLKDP:300,   "&
+        "IO38NB1F3 :295,   "&
+        "IO38PB1F3 :296,   "&
+        "IO3PB0F0  :343,   "&
+        "IO4NB0F0  :337,   "&
+        "IO4PB0F0  :338,   "&
+        "IO54NB1F5 :287,   "&
+        "IO54PB1F5 :288,   "&
+        "IO55NB1F5 :289,   "&
+        "IO55PB1F5 :290,   "&
+        "IO56NB1F5 :281,   "&
+        "IO56PB1F5 :282,   "&
+        "IO57NB1F5 :283,   "&
+        "IO57PB1F5 :284,   "&
+        "IO59NB1F5 :277,   "&
+        "IO59PB1F5 :278,   "&
+        "IO60NB1F5 :275,   "&
+        "IO60PB1F5 :276,   "&
+        "IO61NB1F5 :271,   "&
+        "IO61PB1F5 :272,   "&
+        "IO63NB1F5 :269,   "&
+        "IO63PB1F5 :270,   "&
+        "IO64NB2F6 :259,   "&
+        "IO64PB2F6 :260,   "&
+        "IO67NB2F6 :261,   "&
+        "IO67PB2F6 :262,   "&
+        "IO68NB2F6 :255,   "&
+        "IO68PB2F6 :256,   "&
+        "IO69NB2F6 :253,   "&
+        "IO69PB2F6 :254,   "&
+        "IO74NB2F7 :249,   "&
+        "IO74PB2F7 :250,   "&
+        "IO75NB2F7 :247,   "&
+        "IO75PB2F7 :248,   "&
+        "IO76NB2F7 :243,   "&
+        "IO76PB2F7 :244,   "&
+        "IO77NB2F7 :241,   "&
+        "IO77PB2F7 :242,   "&
+        "IO78NB2F7 :237,   "&
+        "IO78PB2F7 :238,   "&
+        "IO79NB2F7 :235,   "&
+        "IO79PB2F7 :236,   "&
+        "IO82NB2F7 :231,   "&
+        "IO82PB2F7 :232,   "&
+        "IO83NB2F7 :229,   "&
+        "IO83PB2F7 :230,   "&
+        "IO8NB0F0  :331,   "&
+        "IO8PB0F0  :332,   "&
+        "IO94NB2F8 :225,   "&
+        "IO94PB2F8 :226,   "&
+        "IO95NB2F8 :223,   "&
+        "IO95PB2F8 :224,   "&
+        "IO96NB3F9 :217,   "&
+        "IO96PB3F9 :218,   "&
+        "IO97NB3F9 :219,   "&
+        "IO97PB3F9 :220,   "&
+        "IO99NB3F9 :213,   "&
+        "IO99PB3F9 :214,   "&
+        "IO9NB0F0  :335,   "&
+        "IO9PB0F0  :336,   "&
+        "LP        :352,   "&
+        "NC        :(130,  131,   174,   268,   307,   308,   91),   "&
+        "PRA       :312,   "&
+        "PRB       :311,   "&
+        "PRC       :135,   "&
+        "PRD       :134,   "&
+        "TCK       :349,   "&
+        "TDI       :348,   "&
+        "TDO       :347,   "&
+        "TMS       :350,   "&
+        "TRST      :351,   "&
+        "VCCA      :(102,  114,   14,    150,   162,   175,   191,   "&
+                   "209,   233,   251,   263,   279,   291,   3,     "&
+                   "32,    329,   339,   56,    74,    87),   "&
+        "VCCDA     :(116,  117,   132,   148,   149,   178,   2,     "&
+                   "221,   266,   293,   294,   309,   327,   328,   "&
+                   "346,   44,    90),   "&
+        "VCCIB0    :(321,  333,   344),  "&
+        "VCCIB1    :(273,  285,   297),  "&
+        "VCCIB2    :(227,  239,   245,   257),  "&
+        "VCCIB3    :(185,  197,   203,   215),  "&
+        "VCCIB4    :(144,  156,   168),  "&
+        "VCCIB5    :(108,  120,   96),   "&
+        "VCCIB6    :(50,   62,    68,    80),   "&
+        "VCCIB7    :(20,   26,    38,    8),    "&
+        "VCCPLA    :317,   "&
+        "VCCPLB    :315,   "&
+        "VCCPLC    :303,   "&
+        "VCCPLD    :301,   "&
+        "VCCPLE    :140,   "&
+        "VCCPLF    :138,   "&
+        "VCCPLG    :126,   "&
+        "VCCPLH    :124,   "&
+        "VCOMPLA   :318,   "&
+        "VCOMPLB   :316,   "&
+        "VCOMPLC   :304,   "&
+        "VCOMPLD   :302,   "&
+        "VCOMPLE   :141,   "&
+        "VCOMPLF   :139,   "&
+        "VCOMPLG   :127,   "&
+        "VCOMPLH   :125,   "&
+        "VPUMP     :267    ";
+
+    attribute TAP_SCAN_IN of TDI              : signal is true;
+    attribute TAP_SCAN_MODE of TMS            : signal is true;
+    attribute TAP_SCAN_OUT of TDO             : signal is true;
+    attribute TAP_SCAN_RESET of TRST          : signal is true;
+    attribute TAP_SCAN_CLOCK of TCK           :
+        signal is ( 2.00e+007, BOTH);
+
+    attribute INSTRUCTION_LENGTH of AX1000cq352 : entity is    5;
+    attribute INSTRUCTION_OPCODE of AX1000cq352 : entity is 
+                    "EXTEST (00000), "&
+                    "SAMPLE (00001), "&
+                    "INTEST (00010), "&
+                    "HIGHZ (01110), "&
+                    "CLAMP (01111), "&
+                    "BYPASS (11111) ";
+    attribute INSTRUCTION_CAPTURE of AX1000cq352 : entity is "XXX01";
+
+    attribute REGISTER_ACCESS of AX1000cq352 : entity is
+                    "BOUNDARY(EXTEST, SAMPLE, INTEST), "&
+                    "BYPASS(HIGHZ, CLAMP, BYPASS)";
+    attribute BOUNDARY_LENGTH of AX1000cq352 : entity is 1548;
+    attribute BOUNDARY_REGISTER of AX1000cq352 : entity is 
+
+-- num   cell      port       function   safe   [ccell disval rslt]
+
+--BSR Scan Cell     0    Pin : 6    PadNum :     4 Pad : NTLHC041
+"     0	(BC_1, *,internal,   X), "&
+"     1	(BC_1, IO257NB7F23,	output3,   X,     2, 0, Z), "&
+"     2	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell     1    Pin : 7    PadNum :     5 Pad : PTLHC041
+"     3	(BC_1, *,internal,   X), "&
+"     4	(BC_1, IO257PB7F23,	output3,   X,     5, 0, Z), "&
+"     5	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell     2    Pin : 4    PadNum :     6 Pad : NBLHC041
+"     6	(BC_1, *,internal,   X), "&
+"     7	(BC_1, IO256NB7F23,	output3,   X,     8, 0, Z), "&
+"     8	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell     3
+"    12	(BC_1, *,internal,   X), "&
+"    13	(BC_1, *,internal,   X), "&
+"    14	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell     4    Pin : 5    PadNum :     8 Pad : PBLHC041
+"     9	(BC_1, *,internal,   X), "&
+"    10	(BC_1, IO256PB7F23,	output3,   X,    11, 0, Z), "&
+"    11	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell     5
+"    15	(BC_1, *,internal,   X), "&
+"    16	(BC_1, *,internal,   X), "&
+"    17	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     6
+"    18	(BC_1, *,internal,   X), "&
+"    19	(BC_1, *,internal,   X), "&
+"    20	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     7
+"    24	(BC_1, *,internal,   X), "&
+"    25	(BC_1, *,internal,   X), "&
+"    26	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     8
+"    21	(BC_1, *,internal,   X), "&
+"    22	(BC_1, *,internal,   X), "&
+"    23	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell     9
+"    27	(BC_1, *,internal,   X), "&
+"    28	(BC_1, *,internal,   X), "&
+"    29	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    10
+"    30	(BC_1, *,internal,   X), "&
+"    31	(BC_1, *,internal,   X), "&
+"    32	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    11
+"    36	(BC_1, *,internal,   X), "&
+"    37	(BC_1, *,internal,   X), "&
+"    38	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    12
+"    33	(BC_1, *,internal,   X), "&
+"    34	(BC_1, *,internal,   X), "&
+"    35	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    13
+"    39	(BC_1, *,internal,   X), "&
+"    40	(BC_1, *,internal,   X), "&
+"    41	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    14    Pin : 10    PadNum :    22 Pad : NTLHC036
+"    42	(BC_1, *,internal,   X), "&
+"    43	(BC_1, IO250NB7F23,	output3,   X,    44, 0, Z), "&
+"    44	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    15    Pin : 12    PadNum :    23 Pad : NBLHC036
+"    48	(BC_1, *,internal,   X), "&
+"    49	(BC_1, IO249NB7F23,	output3,   X,    50, 0, Z), "&
+"    50	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    16    Pin : 11    PadNum :    24 Pad : PTLHC036
+"    45	(BC_1, *,internal,   X), "&
+"    46	(BC_1, IO250PB7F23,	output3,   X,    47, 0, Z), "&
+"    47	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    17    Pin : 13    PadNum :    25 Pad : PBLHC036
+"    51	(BC_1, *,internal,   X), "&
+"    52	(BC_1, IO249PB7F23,	output3,   X,    53, 0, Z), "&
+"    53	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    18
+"    54	(BC_1, *,internal,   X), "&
+"    55	(BC_1, *,internal,   X), "&
+"    56	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    19
+"    60	(BC_1, *,internal,   X), "&
+"    61	(BC_1, *,internal,   X), "&
+"    62	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    20
+"    57	(BC_1, *,internal,   X), "&
+"    58	(BC_1, *,internal,   X), "&
+"    59	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    21
+"    63	(BC_1, *,internal,   X), "&
+"    64	(BC_1, *,internal,   X), "&
+"    65	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    22    Pin : 16    PadNum :    32 Pad : NTLHB034
+"    66	(BC_1, *,internal,   X), "&
+"    67	(BC_1, IO246NB7F22,	output3,   X,    68, 0, Z), "&
+"    68	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    23    Pin : 18    PadNum :    33 Pad : NBLHB034
+"    72	(BC_1, *,internal,   X), "&
+"    73	(BC_1, IO245NB7F22,	output3,   X,    74, 0, Z), "&
+"    74	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    24    Pin : 17    PadNum :    34 Pad : PTLHB034
+"    69	(BC_1, *,internal,   X), "&
+"    70	(BC_1, IO246PB7F22,	output3,   X,    71, 0, Z), "&
+"    71	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    25    Pin : 19    PadNum :    35 Pad : PBLHB034
+"    75	(BC_1, *,internal,   X), "&
+"    76	(BC_1, IO245PB7F22,	output3,   X,    77, 0, Z), "&
+"    77	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    26    Pin : 22    PadNum :    38 Pad : NTLHB033
+"    78	(BC_1, *,internal,   X), "&
+"    79	(BC_1, IO244NB7F22,	output3,   X,    80, 0, Z), "&
+"    80	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    27
+"    84	(BC_1, *,internal,   X), "&
+"    85	(BC_1, *,internal,   X), "&
+"    86	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    28    Pin : 23    PadNum :    40 Pad : PTLHB033
+"    81	(BC_1, *,internal,   X), "&
+"    82	(BC_1, IO244PB7F22,	output3,   X,    83, 0, Z), "&
+"    83	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    29
+"    87	(BC_1, *,internal,   X), "&
+"    88	(BC_1, *,internal,   X), "&
+"    89	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    30    Pin : 24    PadNum :    44 Pad : NTLHB032
+"    90	(BC_1, *,internal,   X), "&
+"    91	(BC_1, IO242NB7F22,	output3,   X,    92, 0, Z), "&
+"    92	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    31    Pin : 28    PadNum :    45 Pad : NBLHB032
+"    96	(BC_1, *,internal,   X), "&
+"    97	(BC_1, IO241NB7F22,	output3,   X,    98, 0, Z), "&
+"    98	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    32    Pin : 25    PadNum :    46 Pad : PTLHB032
+"    93	(BC_1, *,internal,   X), "&
+"    94	(BC_1, IO242PB7F22,	output3,   X,    95, 0, Z), "&
+"    95	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    33    Pin : 29    PadNum :    47 Pad : PBLHB032
+"    99	(BC_1, *,internal,   X), "&
+"   100	(BC_1, IO241PB7F22,	output3,   X,   101, 0, Z), "&
+"   101	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    34    Pin : 30    PadNum :    48 Pad : NBLHB030
+"   102	(BC_1, *,internal,   X), "&
+"   103	(BC_1, IO240NB7F22,	output3,   X,   104, 0, Z), "&
+"   104	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    35
+"   108	(BC_1, *,internal,   X), "&
+"   109	(BC_1, *,internal,   X), "&
+"   110	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    36    Pin : 31    PadNum :    50 Pad : PBLHB030
+"   105	(BC_1, *,internal,   X), "&
+"   106	(BC_1, IO240PB7F22,	output3,   X,   107, 0, Z), "&
+"   107	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    37
+"   111	(BC_1, *,internal,   X), "&
+"   112	(BC_1, *,internal,   X), "&
+"   113	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    38    Pin : 36    PadNum :    54 Pad : NBLHB029
+"   114	(BC_1, *,internal,   X), "&
+"   115	(BC_1, IO238NB7F22,	output3,   X,   116, 0, Z), "&
+"   116	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    39    Pin : 34    PadNum :    55 Pad : NTLHB028
+"   120	(BC_1, *,internal,   X), "&
+"   121	(BC_1, IO237NB7F22,	output3,   X,   122, 0, Z), "&
+"   122	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    40    Pin : 37    PadNum :    56 Pad : PBLHB029
+"   117	(BC_1, *,internal,   X), "&
+"   118	(BC_1, IO238PB7F22,	output3,   X,   119, 0, Z), "&
+"   119	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    41    Pin : 35    PadNum :    57 Pad : PTLHB028
+"   123	(BC_1, *,internal,   X), "&
+"   124	(BC_1, IO237PB7F22,	output3,   X,   125, 0, Z), "&
+"   125	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    42
+"   126	(BC_1, *,internal,   X), "&
+"   127	(BC_1, *,internal,   X), "&
+"   128	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    43
+"   132	(BC_1, *,internal,   X), "&
+"   133	(BC_1, *,internal,   X), "&
+"   134	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    44
+"   129	(BC_1, *,internal,   X), "&
+"   130	(BC_1, *,internal,   X), "&
+"   131	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    45
+"   135	(BC_1, *,internal,   X), "&
+"   136	(BC_1, *,internal,   X), "&
+"   137	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    46
+"   138	(BC_1, *,internal,   X), "&
+"   139	(BC_1, *,internal,   X), "&
+"   140	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    47
+"   144	(BC_1, *,internal,   X), "&
+"   145	(BC_1, *,internal,   X), "&
+"   146	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    48
+"   141	(BC_1, *,internal,   X), "&
+"   142	(BC_1, *,internal,   X), "&
+"   143	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    49
+"   147	(BC_1, *,internal,   X), "&
+"   148	(BC_1, *,internal,   X), "&
+"   149	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    50
+"   150	(BC_1, *,internal,   X), "&
+"   151	(BC_1, *,internal,   X), "&
+"   152	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    51
+"   156	(BC_1, *,internal,   X), "&
+"   157	(BC_1, *,internal,   X), "&
+"   158	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    52
+"   153	(BC_1, *,internal,   X), "&
+"   154	(BC_1, *,internal,   X), "&
+"   155	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    53
+"   159	(BC_1, *,internal,   X), "&
+"   160	(BC_1, *,internal,   X), "&
+"   161	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    54
+"   162	(BC_1, *,internal,   X), "&
+"   163	(BC_1, *,internal,   X), "&
+"   164	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    55
+"   168	(BC_1, *,internal,   X), "&
+"   169	(BC_1, *,internal,   X), "&
+"   170	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    56
+"   165	(BC_1, *,internal,   X), "&
+"   166	(BC_1, *,internal,   X), "&
+"   167	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    57
+"   171	(BC_1, *,internal,   X), "&
+"   172	(BC_1, *,internal,   X), "&
+"   173	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    58
+"   174	(BC_1, *,internal,   X), "&
+"   175	(BC_1, *,internal,   X), "&
+"   176	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    59
+"   180	(BC_1, *,internal,   X), "&
+"   181	(BC_1, *,internal,   X), "&
+"   182	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    60
+"   177	(BC_1, *,internal,   X), "&
+"   178	(BC_1, *,internal,   X), "&
+"   179	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    61
+"   183	(BC_1, *,internal,   X), "&
+"   184	(BC_1, *,internal,   X), "&
+"   185	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    62    Pin : 42    PadNum :    84 Pad : NTLHA021
+"   186	(BC_1, *,internal,   X), "&
+"   187	(BC_1, IO226NB7F21,	output3,   X,   188, 0, Z), "&
+"   188	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    63    Pin : 40    PadNum :    85 Pad : NBLHA021
+"   192	(BC_1, *,internal,   X), "&
+"   193	(BC_1, IO225NB7F21,	output3,   X,   194, 0, Z), "&
+"   194	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    64    Pin : 43    PadNum :    86 Pad : PTLHA021
+"   189	(BC_1, *,internal,   X), "&
+"   190	(BC_1, IO226PB7F21,	output3,   X,   191, 0, Z), "&
+"   191	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    65    Pin : 41    PadNum :    87 Pad : PBLHA021
+"   195	(BC_1, *,internal,   X), "&
+"   196	(BC_1, IO225PB7F21,	output3,   X,   197, 0, Z), "&
+"   197	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    66    Pin : 46    PadNum :    92 Pad : NTLGC020
+"   198	(BC_1, *,internal,   X), "&
+"   199	(BC_1, IO224NB6F20,	output3,   X,   200, 0, Z), "&
+"   200	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    67    Pin : 48    PadNum :    93 Pad : NBLGC020
+"   204	(BC_1, *,internal,   X), "&
+"   205	(BC_1, IO223NB6F20,	output3,   X,   206, 0, Z), "&
+"   206	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    68    Pin : 47    PadNum :    94 Pad : PTLGC020
+"   201	(BC_1, *,internal,   X), "&
+"   202	(BC_1, IO224PB6F20,	output3,   X,   203, 0, Z), "&
+"   203	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    69    Pin : 49    PadNum :    95 Pad : PBLGC020
+"   207	(BC_1, *,internal,   X), "&
+"   208	(BC_1, IO223PB6F20,	output3,   X,   209, 0, Z), "&
+"   209	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    70
+"   210	(BC_1, *,internal,   X), "&
+"   211	(BC_1, *,internal,   X), "&
+"   212	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    71
+"   216	(BC_1, *,internal,   X), "&
+"   217	(BC_1, *,internal,   X), "&
+"   218	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    72
+"   213	(BC_1, *,internal,   X), "&
+"   214	(BC_1, *,internal,   X), "&
+"   215	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    73
+"   219	(BC_1, *,internal,   X), "&
+"   220	(BC_1, *,internal,   X), "&
+"   221	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    74
+"   222	(BC_1, *,internal,   X), "&
+"   223	(BC_1, *,internal,   X), "&
+"   224	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    75
+"   228	(BC_1, *,internal,   X), "&
+"   229	(BC_1, *,internal,   X), "&
+"   230	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    76
+"   225	(BC_1, *,internal,   X), "&
+"   226	(BC_1, *,internal,   X), "&
+"   227	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    77
+"   231	(BC_1, *,internal,   X), "&
+"   232	(BC_1, *,internal,   X), "&
+"   233	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    78
+"   234	(BC_1, *,internal,   X), "&
+"   235	(BC_1, *,internal,   X), "&
+"   236	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    79
+"   240	(BC_1, *,internal,   X), "&
+"   241	(BC_1, *,internal,   X), "&
+"   242	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    80
+"   237	(BC_1, *,internal,   X), "&
+"   238	(BC_1, *,internal,   X), "&
+"   239	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    81
+"   243	(BC_1, *,internal,   X), "&
+"   244	(BC_1, *,internal,   X), "&
+"   245	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    82
+"   246	(BC_1, *,internal,   X), "&
+"   247	(BC_1, *,internal,   X), "&
+"   248	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    83
+"   252	(BC_1, *,internal,   X), "&
+"   253	(BC_1, *,internal,   X), "&
+"   254	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    84
+"   249	(BC_1, *,internal,   X), "&
+"   250	(BC_1, *,internal,   X), "&
+"   251	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    85
+"   255	(BC_1, *,internal,   X), "&
+"   256	(BC_1, *,internal,   X), "&
+"   257	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    86
+"   258	(BC_1, *,internal,   X), "&
+"   259	(BC_1, *,internal,   X), "&
+"   260	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    87
+"   264	(BC_1, *,internal,   X), "&
+"   265	(BC_1, *,internal,   X), "&
+"   266	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    88
+"   261	(BC_1, *,internal,   X), "&
+"   262	(BC_1, *,internal,   X), "&
+"   263	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    89
+"   267	(BC_1, *,internal,   X), "&
+"   268	(BC_1, *,internal,   X), "&
+"   269	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    90    Pin : 52    PadNum :   122 Pad : NBLGB013
+"   270	(BC_1, *,internal,   X), "&
+"   271	(BC_1, IO212NB6F19,	output3,   X,   272, 0, Z), "&
+"   272	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    91    Pin : 54    PadNum :   123 Pad : NTLGB012
+"   276	(BC_1, *,internal,   X), "&
+"   277	(BC_1, IO211NB6F19,	output3,   X,   278, 0, Z), "&
+"   278	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    92    Pin : 53    PadNum :   124 Pad : PBLGB013
+"   273	(BC_1, *,internal,   X), "&
+"   274	(BC_1, IO212PB6F19,	output3,   X,   275, 0, Z), "&
+"   275	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    93    Pin : 55    PadNum :   125 Pad : PTLGB012
+"   279	(BC_1, *,internal,   X), "&
+"   280	(BC_1, IO211PB6F19,	output3,   X,   281, 0, Z), "&
+"   281	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell    94
+"   282	(BC_1, *,internal,   X), "&
+"   283	(BC_1, *,internal,   X), "&
+"   284	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    95
+"   288	(BC_1, *,internal,   X), "&
+"   289	(BC_1, *,internal,   X), "&
+"   290	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    96
+"   285	(BC_1, *,internal,   X), "&
+"   286	(BC_1, *,internal,   X), "&
+"   287	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell    97
+"   291	(BC_1, *,internal,   X), "&
+"   292	(BC_1, *,internal,   X), "&
+"   293	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell    98    Pin : 58    PadNum :   132 Pad : NBLGB011
+"   294	(BC_1, *,internal,   X), "&
+"   295	(BC_1, IO208NB6F19,	output3,   X,   296, 0, Z), "&
+"   296	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell    99    Pin : 60    PadNum :   133 Pad : NBLGB009
+"   300	(BC_1, *,internal,   X), "&
+"   301	(BC_1, IO207NB6F19,	output3,   X,   302, 0, Z), "&
+"   302	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   100    Pin : 59    PadNum :   134 Pad : PBLGB011
+"   297	(BC_1, *,internal,   X), "&
+"   298	(BC_1, IO208PB6F19,	output3,   X,   299, 0, Z), "&
+"   299	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   101    Pin : 61    PadNum :   135 Pad : PBLGB009
+"   303	(BC_1, *,internal,   X), "&
+"   304	(BC_1, IO207PB6F19,	output3,   X,   305, 0, Z), "&
+"   305	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   102    Pin : 64    PadNum :   138 Pad : NTLGB008
+"   306	(BC_1, *,internal,   X), "&
+"   307	(BC_1, IO206NB6F19,	output3,   X,   308, 0, Z), "&
+"   308	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   103    Pin : 66    PadNum :   139 Pad : NBLGB008
+"   312	(BC_1, *,internal,   X), "&
+"   313	(BC_1, IO205NB6F19,	output3,   X,   314, 0, Z), "&
+"   314	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   104    Pin : 65    PadNum :   140 Pad : PTLGB008
+"   309	(BC_1, *,internal,   X), "&
+"   310	(BC_1, IO206PB6F19,	output3,   X,   311, 0, Z), "&
+"   311	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   105    Pin : 67    PadNum :   141 Pad : PBLGB008
+"   315	(BC_1, *,internal,   X), "&
+"   316	(BC_1, IO205PB6F19,	output3,   X,   317, 0, Z), "&
+"   317	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   106    Pin : 70    PadNum :   144 Pad : NTLGB007
+"   318	(BC_1, *,internal,   X), "&
+"   319	(BC_1, IO204NB6F19,	output3,   X,   320, 0, Z), "&
+"   320	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   107    Pin : 72    PadNum :   145 Pad : NBLGB007
+"   324	(BC_1, *,internal,   X), "&
+"   325	(BC_1, IO203NB6F19,	output3,   X,   326, 0, Z), "&
+"   326	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   108    Pin : 71    PadNum :   146 Pad : PTLGB007
+"   321	(BC_1, *,internal,   X), "&
+"   322	(BC_1, IO204PB6F19,	output3,   X,   323, 0, Z), "&
+"   323	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   109    Pin : 73    PadNum :   147 Pad : PBLGB007
+"   327	(BC_1, *,internal,   X), "&
+"   328	(BC_1, IO203PB6F19,	output3,   X,   329, 0, Z), "&
+"   329	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   110
+"   330	(BC_1, *,internal,   X), "&
+"   331	(BC_1, *,internal,   X), "&
+"   332	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   111
+"   336	(BC_1, *,internal,   X), "&
+"   337	(BC_1, *,internal,   X), "&
+"   338	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   112
+"   333	(BC_1, *,internal,   X), "&
+"   334	(BC_1, *,internal,   X), "&
+"   335	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   113
+"   339	(BC_1, *,internal,   X), "&
+"   340	(BC_1, *,internal,   X), "&
+"   341	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   114
+"   342	(BC_1, *,internal,   X), "&
+"   343	(BC_1, *,internal,   X), "&
+"   344	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   115
+"   348	(BC_1, *,internal,   X), "&
+"   349	(BC_1, *,internal,   X), "&
+"   350	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   116
+"   345	(BC_1, *,internal,   X), "&
+"   346	(BC_1, *,internal,   X), "&
+"   347	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   117
+"   351	(BC_1, *,internal,   X), "&
+"   352	(BC_1, *,internal,   X), "&
+"   353	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   118    Pin : 76    PadNum :   160 Pad : NTLGA004
+"   354	(BC_1, *,internal,   X), "&
+"   355	(BC_1, IO198NB6F18,	output3,   X,   356, 0, Z), "&
+"   356	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   119    Pin : 82    PadNum :   161 Pad : NBLGA004
+"   360	(BC_1, *,internal,   X), "&
+"   361	(BC_1, IO197NB6F18,	output3,   X,   362, 0, Z), "&
+"   362	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   120    Pin : 77    PadNum :   162 Pad : PTLGA004
+"   357	(BC_1, *,internal,   X), "&
+"   358	(BC_1, IO198PB6F18,	output3,   X,   359, 0, Z), "&
+"   359	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   121    Pin : 83    PadNum :   163 Pad : PBLGA004
+"   363	(BC_1, *,internal,   X), "&
+"   364	(BC_1, IO197PB6F18,	output3,   X,   365, 0, Z), "&
+"   365	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   122    Pin : 78    PadNum :   164 Pad : NBLGA002
+"   366	(BC_1, *,internal,   X), "&
+"   367	(BC_1, IO196NB6F18,	output3,   X,   368, 0, Z), "&
+"   368	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   123
+"   372	(BC_1, *,internal,   X), "&
+"   373	(BC_1, *,internal,   X), "&
+"   374	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   124    Pin : 79    PadNum :   166 Pad : PBLGA002
+"   369	(BC_1, *,internal,   X), "&
+"   370	(BC_1, IO196PB6F18,	output3,   X,   371, 0, Z), "&
+"   371	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   125
+"   375	(BC_1, *,internal,   X), "&
+"   376	(BC_1, *,internal,   X), "&
+"   377	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   126    Pin : 84    PadNum :   170 Pad : NBLGA001
+"   378	(BC_1, *,internal,   X), "&
+"   379	(BC_1, IO194NB6F18,	output3,   X,   380, 0, Z), "&
+"   380	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   127
+"   384	(BC_1, *,internal,   X), "&
+"   385	(BC_1, *,internal,   X), "&
+"   386	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   128    Pin : 85    PadNum :   172 Pad : PBLGA001
+"   381	(BC_1, *,internal,   X), "&
+"   382	(BC_1, IO194PB6F18,	output3,   X,   383, 0, Z), "&
+"   383	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   129    Pin : 86    PadNum :   173 Pad : PTLGA000
+"   387	(BC_1, *,internal,   X), "&
+"   388	(BC_1, IO193PB6F18,	output3,   X,   389, 0, Z), "&
+"   389	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   130    Pin : 92    PadNum :   178 Pad : NBBFC000
+"   390	(BC_1, *,internal,   X), "&
+"   391	(BC_1, IO192NB5F17,	output3,   X,   392, 0, Z), "&
+"   392	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   131    Pin : 93    PadNum :   179 Pad : PBBFC000
+"   393	(BC_1, *,internal,   X), "&
+"   394	(BC_1, IO192PB5F17,	output3,   X,   395, 0, Z), "&
+"   395	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   132
+"   396	(BC_1, *,internal,   X), "&
+"   397	(BC_1, *,internal,   X), "&
+"   398	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   133
+"   399	(BC_1, *,internal,   X), "&
+"   400	(BC_1, *,internal,   X), "&
+"   401	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   134    Pin : 94    PadNum :   184 Pad : NBBFC001
+"   402	(BC_1, *,internal,   X), "&
+"   403	(BC_1, IO190NB5F17,	output3,   X,   404, 0, Z), "&
+"   404	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   135
+"   408	(BC_1, *,internal,   X), "&
+"   409	(BC_1, *,internal,   X), "&
+"   410	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   136    Pin : 95    PadNum :   186 Pad : PBBFC001
+"   405	(BC_1, *,internal,   X), "&
+"   406	(BC_1, IO190PB5F17,	output3,   X,   407, 0, Z), "&
+"   407	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   137
+"   411	(BC_1, *,internal,   X), "&
+"   412	(BC_1, *,internal,   X), "&
+"   413	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   138    Pin : 100    PadNum :   188 Pad : NBBFC002
+"   414	(BC_1, *,internal,   X), "&
+"   415	(BC_1, IO188NB5F17,	output3,   X,   416, 0, Z), "&
+"   416	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   139    Pin : 98    PadNum :   189 Pad : NTBFC002
+"   420	(BC_1, *,internal,   X), "&
+"   421	(BC_1, IO187NB5F17,	output3,   X,   422, 0, Z), "&
+"   422	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   140    Pin : 101    PadNum :   190 Pad : PBBFC002
+"   417	(BC_1, *,internal,   X), "&
+"   418	(BC_1, IO188PB5F17,	output3,   X,   419, 0, Z), "&
+"   419	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   141    Pin : 99    PadNum :   191 Pad : PTBFC002
+"   423	(BC_1, *,internal,   X), "&
+"   424	(BC_1, IO187PB5F17,	output3,   X,   425, 0, Z), "&
+"   425	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   142    Pin : 106    PadNum :   194 Pad : NBBFC004
+"   426	(BC_1, *,internal,   X), "&
+"   427	(BC_1, IO186NB5F17,	output3,   X,   428, 0, Z), "&
+"   428	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   143    Pin : 104    PadNum :   195 Pad : NTBFC004
+"   432	(BC_1, *,internal,   X), "&
+"   433	(BC_1, IO185NB5F17,	output3,   X,   434, 0, Z), "&
+"   434	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   144    Pin : 107    PadNum :   196 Pad : PBBFC004
+"   429	(BC_1, *,internal,   X), "&
+"   430	(BC_1, IO186PB5F17,	output3,   X,   431, 0, Z), "&
+"   431	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   145    Pin : 105    PadNum :   197 Pad : PTBFC004
+"   435	(BC_1, *,internal,   X), "&
+"   436	(BC_1, IO185PB5F17,	output3,   X,   437, 0, Z), "&
+"   437	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   146    Pin : 112    PadNum :   198 Pad : NBBFC005
+"   438	(BC_1, *,internal,   X), "&
+"   439	(BC_1, IO184NB5F17,	output3,   X,   440, 0, Z), "&
+"   440	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   147    Pin : 110    PadNum :   199 Pad : NTBFC005
+"   444	(BC_1, *,internal,   X), "&
+"   445	(BC_1, IO183NB5F17,	output3,   X,   446, 0, Z), "&
+"   446	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   148    Pin : 113    PadNum :   200 Pad : PBBFC005
+"   441	(BC_1, *,internal,   X), "&
+"   442	(BC_1, IO184PB5F17,	output3,   X,   443, 0, Z), "&
+"   443	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   149    Pin : 111    PadNum :   201 Pad : PTBFC005
+"   447	(BC_1, *,internal,   X), "&
+"   448	(BC_1, IO183PB5F17,	output3,   X,   449, 0, Z), "&
+"   449	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   150
+"   450	(BC_1, *,internal,   X), "&
+"   451	(BC_1, *,internal,   X), "&
+"   452	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   151
+"   456	(BC_1, *,internal,   X), "&
+"   457	(BC_1, *,internal,   X), "&
+"   458	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   152
+"   453	(BC_1, *,internal,   X), "&
+"   454	(BC_1, *,internal,   X), "&
+"   455	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   153
+"   459	(BC_1, *,internal,   X), "&
+"   460	(BC_1, *,internal,   X), "&
+"   461	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   154
+"   462	(BC_1, *,internal,   X), "&
+"   463	(BC_1, *,internal,   X), "&
+"   464	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   155
+"   468	(BC_1, *,internal,   X), "&
+"   469	(BC_1, *,internal,   X), "&
+"   470	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   156
+"   465	(BC_1, *,internal,   X), "&
+"   466	(BC_1, *,internal,   X), "&
+"   467	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   157
+"   471	(BC_1, *,internal,   X), "&
+"   472	(BC_1, *,internal,   X), "&
+"   473	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   158
+"   474	(BC_1, *,internal,   X), "&
+"   475	(BC_1, *,internal,   X), "&
+"   476	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   159
+"   480	(BC_1, *,internal,   X), "&
+"   481	(BC_1, *,internal,   X), "&
+"   482	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   160
+"   477	(BC_1, *,internal,   X), "&
+"   478	(BC_1, *,internal,   X), "&
+"   479	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   161
+"   483	(BC_1, *,internal,   X), "&
+"   484	(BC_1, *,internal,   X), "&
+"   485	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   162
+"   486	(BC_1, *,internal,   X), "&
+"   487	(BC_1, *,internal,   X), "&
+"   488	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   163
+"   492	(BC_1, *,internal,   X), "&
+"   493	(BC_1, *,internal,   X), "&
+"   494	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   164
+"   489	(BC_1, *,internal,   X), "&
+"   490	(BC_1, *,internal,   X), "&
+"   491	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   165
+"   495	(BC_1, *,internal,   X), "&
+"   496	(BC_1, *,internal,   X), "&
+"   497	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   166
+"   498	(BC_1, *,internal,   X), "&
+"   499	(BC_1, *,internal,   X), "&
+"   500	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   167
+"   504	(BC_1, *,internal,   X), "&
+"   505	(BC_1, *,internal,   X), "&
+"   506	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   168
+"   501	(BC_1, *,internal,   X), "&
+"   502	(BC_1, *,internal,   X), "&
+"   503	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   169
+"   507	(BC_1, *,internal,   X), "&
+"   508	(BC_1, *,internal,   X), "&
+"   509	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   170
+"   510	(BC_1, *,internal,   X), "&
+"   511	(BC_1, *,internal,   X), "&
+"   512	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   171
+"   516	(BC_1, *,internal,   X), "&
+"   517	(BC_1, *,internal,   X), "&
+"   518	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   172
+"   513	(BC_1, *,internal,   X), "&
+"   514	(BC_1, *,internal,   X), "&
+"   515	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   173
+"   519	(BC_1, *,internal,   X), "&
+"   520	(BC_1, *,internal,   X), "&
+"   521	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   174
+"   522	(BC_1, *,internal,   X), "&
+"   523	(BC_1, *,internal,   X), "&
+"   524	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   175
+"   528	(BC_1, *,internal,   X), "&
+"   529	(BC_1, *,internal,   X), "&
+"   530	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   176
+"   525	(BC_1, *,internal,   X), "&
+"   526	(BC_1, *,internal,   X), "&
+"   527	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   177
+"   531	(BC_1, *,internal,   X), "&
+"   532	(BC_1, *,internal,   X), "&
+"   533	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   178
+"   534	(BC_1, *,internal,   X), "&
+"   535	(BC_1, *,internal,   X), "&
+"   536	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   179    Pin : 118    PadNum :   243 Pad : NTBFA014
+"   540	(BC_1, *,internal,   X), "&
+"   541	(BC_1, IO167NB5F15,	output3,   X,   542, 0, Z), "&
+"   542	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   180
+"   537	(BC_1, *,internal,   X), "&
+"   538	(BC_1, *,internal,   X), "&
+"   539	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   181    Pin : 119    PadNum :   245 Pad : PTBFA014
+"   543	(BC_1, *,internal,   X), "&
+"   544	(BC_1, IO167PB5F15,	output3,   X,   545, 0, Z), "&
+"   545	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   182
+"   546	(BC_1, *,internal,   X), "&
+"   547	(BC_1, *,internal,   X), "&
+"   548	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   183
+"   552	(BC_1, *,internal,   X), "&
+"   553	(BC_1, *,internal,   X), "&
+"   554	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   184
+"   549	(BC_1, *,internal,   X), "&
+"   550	(BC_1, *,internal,   X), "&
+"   551	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   185
+"   555	(BC_1, *,internal,   X), "&
+"   556	(BC_1, *,internal,   X), "&
+"   557	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   186
+"   558	(BC_1, *,internal,   X), "&
+"   559	(BC_1, *,internal,   X), "&
+"   560	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   187
+"   564	(BC_1, *,internal,   X), "&
+"   565	(BC_1, *,internal,   X), "&
+"   566	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   188
+"   561	(BC_1, *,internal,   X), "&
+"   562	(BC_1, *,internal,   X), "&
+"   563	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   189
+"   567	(BC_1, *,internal,   X), "&
+"   568	(BC_1, *,internal,   X), "&
+"   569	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   190    Pin : 122    PadNum :   258 Pad : NR3FA018
+"   570	(BC_1, *,internal,   X), "&
+"   571	(BC_1, IO162NB5F15_CLKHN,	output3,   X,   572, 0, Z), "&
+"   572	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   191    Pin : 123    PadNum :   259 Pad : PR3FA018
+"   573	(BC_1, *,internal,   X), "&
+"   574	(BC_1, IO162PB5F15_CLKHP,	output3,   X,   575, 0, Z), "&
+"   575	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   192    Pin : 128    PadNum :   264 Pad : NR2FA019
+"   576	(BC_1, *,internal,   X), "&
+"   577	(BC_1, IO161NB5F15_CLKGN,	output3,   X,   578, 0, Z), "&
+"   578	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   193    Pin : 129    PadNum :   265 Pad : PR2FA019
+"   579	(BC_1, *,internal,   X), "&
+"   580	(BC_1, IO161PB5F15_CLKGP,	output3,   X,   581, 0, Z), "&
+"   581	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   194    Pin : 136    PadNum :   272 Pad : NR1EC020
+"   582	(BC_1, *,internal,   X), "&
+"   583	(BC_1, IO160NB4F14_CLKFN,	output3,   X,   584, 0, Z), "&
+"   584	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   195    Pin : 137    PadNum :   273 Pad : PR1EC020
+"   585	(BC_1, *,internal,   X), "&
+"   586	(BC_1, IO160PB4F14_CLKFP,	output3,   X,   587, 0, Z), "&
+"   587	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   196    Pin : 142    PadNum :   278 Pad : NR0EC021
+"   588	(BC_1, *,internal,   X), "&
+"   589	(BC_1, IO159NB4F14_CLKEN,	output3,   X,   590, 0, Z), "&
+"   590	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   197    Pin : 143    PadNum :   279 Pad : PR0EC021
+"   591	(BC_1, *,internal,   X), "&
+"   592	(BC_1, IO159PB4F14_CLKEP,	output3,   X,   593, 0, Z), "&
+"   593	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   198
+"   594	(BC_1, *,internal,   X), "&
+"   595	(BC_1, *,internal,   X), "&
+"   596	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   199
+"   600	(BC_1, *,internal,   X), "&
+"   601	(BC_1, *,internal,   X), "&
+"   602	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   200
+"   597	(BC_1, *,internal,   X), "&
+"   598	(BC_1, *,internal,   X), "&
+"   599	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   201
+"   603	(BC_1, *,internal,   X), "&
+"   604	(BC_1, *,internal,   X), "&
+"   605	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   202
+"   606	(BC_1, *,internal,   X), "&
+"   607	(BC_1, *,internal,   X), "&
+"   608	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   203
+"   612	(BC_1, *,internal,   X), "&
+"   613	(BC_1, *,internal,   X), "&
+"   614	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   204
+"   609	(BC_1, *,internal,   X), "&
+"   610	(BC_1, *,internal,   X), "&
+"   611	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   205
+"   615	(BC_1, *,internal,   X), "&
+"   616	(BC_1, *,internal,   X), "&
+"   617	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   206
+"   618	(BC_1, *,internal,   X), "&
+"   619	(BC_1, *,internal,   X), "&
+"   620	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   207    Pin : 146    PadNum :   293 Pad : NBBEC025
+"   624	(BC_1, *,internal,   X), "&
+"   625	(BC_1, IO153NB4F14,	output3,   X,   626, 0, Z), "&
+"   626	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   208
+"   621	(BC_1, *,internal,   X), "&
+"   622	(BC_1, *,internal,   X), "&
+"   623	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   209    Pin : 147    PadNum :   295 Pad : PBBEC025
+"   627	(BC_1, *,internal,   X), "&
+"   628	(BC_1, IO153PB4F14,	output3,   X,   629, 0, Z), "&
+"   629	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   210
+"   630	(BC_1, *,internal,   X), "&
+"   631	(BC_1, *,internal,   X), "&
+"   632	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   211
+"   636	(BC_1, *,internal,   X), "&
+"   637	(BC_1, *,internal,   X), "&
+"   638	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   212
+"   633	(BC_1, *,internal,   X), "&
+"   634	(BC_1, *,internal,   X), "&
+"   635	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   213
+"   639	(BC_1, *,internal,   X), "&
+"   640	(BC_1, *,internal,   X), "&
+"   641	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   214
+"   642	(BC_1, *,internal,   X), "&
+"   643	(BC_1, *,internal,   X), "&
+"   644	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   215
+"   648	(BC_1, *,internal,   X), "&
+"   649	(BC_1, *,internal,   X), "&
+"   650	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   216
+"   645	(BC_1, *,internal,   X), "&
+"   646	(BC_1, *,internal,   X), "&
+"   647	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   217
+"   651	(BC_1, *,internal,   X), "&
+"   652	(BC_1, *,internal,   X), "&
+"   653	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   218
+"   654	(BC_1, *,internal,   X), "&
+"   655	(BC_1, *,internal,   X), "&
+"   656	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   219
+"   660	(BC_1, *,internal,   X), "&
+"   661	(BC_1, *,internal,   X), "&
+"   662	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   220
+"   657	(BC_1, *,internal,   X), "&
+"   658	(BC_1, *,internal,   X), "&
+"   659	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   221
+"   663	(BC_1, *,internal,   X), "&
+"   664	(BC_1, *,internal,   X), "&
+"   665	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   222
+"   666	(BC_1, *,internal,   X), "&
+"   667	(BC_1, *,internal,   X), "&
+"   668	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   223
+"   672	(BC_1, *,internal,   X), "&
+"   673	(BC_1, *,internal,   X), "&
+"   674	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   224
+"   669	(BC_1, *,internal,   X), "&
+"   670	(BC_1, *,internal,   X), "&
+"   671	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   225
+"   675	(BC_1, *,internal,   X), "&
+"   676	(BC_1, *,internal,   X), "&
+"   677	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   226
+"   678	(BC_1, *,internal,   X), "&
+"   679	(BC_1, *,internal,   X), "&
+"   680	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   227
+"   684	(BC_1, *,internal,   X), "&
+"   685	(BC_1, *,internal,   X), "&
+"   686	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   228
+"   681	(BC_1, *,internal,   X), "&
+"   682	(BC_1, *,internal,   X), "&
+"   683	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   229
+"   687	(BC_1, *,internal,   X), "&
+"   688	(BC_1, *,internal,   X), "&
+"   689	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   230
+"   690	(BC_1, *,internal,   X), "&
+"   691	(BC_1, *,internal,   X), "&
+"   692	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   231
+"   696	(BC_1, *,internal,   X), "&
+"   697	(BC_1, *,internal,   X), "&
+"   698	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   232
+"   693	(BC_1, *,internal,   X), "&
+"   694	(BC_1, *,internal,   X), "&
+"   695	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   233
+"   699	(BC_1, *,internal,   X), "&
+"   700	(BC_1, *,internal,   X), "&
+"   701	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   234
+"   702	(BC_1, *,internal,   X), "&
+"   703	(BC_1, *,internal,   X), "&
+"   704	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   235
+"   708	(BC_1, *,internal,   X), "&
+"   709	(BC_1, *,internal,   X), "&
+"   710	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   236
+"   705	(BC_1, *,internal,   X), "&
+"   706	(BC_1, *,internal,   X), "&
+"   707	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   237
+"   711	(BC_1, *,internal,   X), "&
+"   712	(BC_1, *,internal,   X), "&
+"   713	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   238    Pin : 152    PadNum :   336 Pad : NBBEA033
+"   714	(BC_1, *,internal,   X), "&
+"   715	(BC_1, IO138NB4F12,	output3,   X,   716, 0, Z), "&
+"   716	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   239    Pin : 154    PadNum :   337 Pad : NTBEA033
+"   720	(BC_1, *,internal,   X), "&
+"   721	(BC_1, IO137NB4F12,	output3,   X,   722, 0, Z), "&
+"   722	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   240    Pin : 153    PadNum :   338 Pad : PBBEA033
+"   717	(BC_1, *,internal,   X), "&
+"   718	(BC_1, IO138PB4F12,	output3,   X,   719, 0, Z), "&
+"   719	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   241    Pin : 155    PadNum :   339 Pad : PTBEA033
+"   723	(BC_1, *,internal,   X), "&
+"   724	(BC_1, IO137PB4F12,	output3,   X,   725, 0, Z), "&
+"   725	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   242    Pin : 158    PadNum :   340 Pad : NBBEA034
+"   726	(BC_1, *,internal,   X), "&
+"   727	(BC_1, IO136NB4F12,	output3,   X,   728, 0, Z), "&
+"   728	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   243
+"   732	(BC_1, *,internal,   X), "&
+"   733	(BC_1, *,internal,   X), "&
+"   734	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   244    Pin : 159    PadNum :   342 Pad : PBBEA034
+"   729	(BC_1, *,internal,   X), "&
+"   730	(BC_1, IO136PB4F12,	output3,   X,   731, 0, Z), "&
+"   731	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   245
+"   735	(BC_1, *,internal,   X), "&
+"   736	(BC_1, *,internal,   X), "&
+"   737	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   246    Pin : 160    PadNum :   346 Pad : NBBEA036
+"   738	(BC_1, *,internal,   X), "&
+"   739	(BC_1, IO134NB4F12,	output3,   X,   740, 0, Z), "&
+"   740	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   247    Pin : 164    PadNum :   347 Pad : NTBEA036
+"   744	(BC_1, *,internal,   X), "&
+"   745	(BC_1, IO133NB4F12,	output3,   X,   746, 0, Z), "&
+"   746	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   248    Pin : 161    PadNum :   348 Pad : PBBEA036
+"   741	(BC_1, *,internal,   X), "&
+"   742	(BC_1, IO134PB4F12,	output3,   X,   743, 0, Z), "&
+"   743	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   249    Pin : 165    PadNum :   349 Pad : PTBEA036
+"   747	(BC_1, *,internal,   X), "&
+"   748	(BC_1, IO133PB4F12,	output3,   X,   749, 0, Z), "&
+"   749	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   250    Pin : 166    PadNum :   350 Pad : NBBEA037
+"   750	(BC_1, *,internal,   X), "&
+"   751	(BC_1, IO132NB4F12,	output3,   X,   752, 0, Z), "&
+"   752	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   251    Pin : 170    PadNum :   351 Pad : NTBEA037
+"   756	(BC_1, *,internal,   X), "&
+"   757	(BC_1, IO131NB4F12,	output3,   X,   758, 0, Z), "&
+"   758	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   252    Pin : 167    PadNum :   352 Pad : PBBEA037
+"   753	(BC_1, *,internal,   X), "&
+"   754	(BC_1, IO132PB4F12,	output3,   X,   755, 0, Z), "&
+"   755	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   253    Pin : 171    PadNum :   353 Pad : PTBEA037
+"   759	(BC_1, *,internal,   X), "&
+"   760	(BC_1, IO131PB4F12,	output3,   X,   761, 0, Z), "&
+"   761	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   254    Pin : 172    PadNum :   356 Pad : NBBEA038
+"   762	(BC_1, *,internal,   X), "&
+"   763	(BC_1, IO130NB4F12,	output3,   X,   764, 0, Z), "&
+"   764	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   255
+"   768	(BC_1, *,internal,   X), "&
+"   769	(BC_1, *,internal,   X), "&
+"   770	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   256    Pin : 173    PadNum :   358 Pad : PBBEA038
+"   765	(BC_1, *,internal,   X), "&
+"   766	(BC_1, IO130PB4F12,	output3,   X,   767, 0, Z), "&
+"   767	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   257
+"   771	(BC_1, *,internal,   X), "&
+"   772	(BC_1, *,internal,   X), "&
+"   773	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   258    Pin : 179    PadNum :   364 Pad : NBRDC000
+"   774	(BC_1, *,internal,   X), "&
+"   775	(BC_1, IO128NB3F11,	output3,   X,   776, 0, Z), "&
+"   776	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   259    Pin : 180    PadNum :   365 Pad : PBRDC000
+"   777	(BC_1, *,internal,   X), "&
+"   778	(BC_1, IO128PB3F11,	output3,   X,   779, 0, Z), "&
+"   779	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   260    Pin : 181    PadNum :   366 Pad : NTRDC000
+"   780	(BC_1, *,internal,   X), "&
+"   781	(BC_1, IO127NB3F11,	output3,   X,   782, 0, Z), "&
+"   782	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   261
+"   786	(BC_1, *,internal,   X), "&
+"   787	(BC_1, *,internal,   X), "&
+"   788	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   262    Pin : 182    PadNum :   368 Pad : PTRDC000
+"   783	(BC_1, *,internal,   X), "&
+"   784	(BC_1, IO127PB3F11,	output3,   X,   785, 0, Z), "&
+"   785	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   263
+"   789	(BC_1, *,internal,   X), "&
+"   790	(BC_1, *,internal,   X), "&
+"   791	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   264    Pin : 187    PadNum :   372 Pad : NTRDC001
+"   792	(BC_1, *,internal,   X), "&
+"   793	(BC_1, IO125NB3F11,	output3,   X,   794, 0, Z), "&
+"   794	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   265    Pin : 183    PadNum :   373 Pad : NBRDC002
+"   798	(BC_1, *,internal,   X), "&
+"   799	(BC_1, IO124NB3F11,	output3,   X,   800, 0, Z), "&
+"   800	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   266    Pin : 188    PadNum :   374 Pad : PTRDC001
+"   795	(BC_1, *,internal,   X), "&
+"   796	(BC_1, IO125PB3F11,	output3,   X,   797, 0, Z), "&
+"   797	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   267    Pin : 184    PadNum :   375 Pad : PBRDC002
+"   801	(BC_1, *,internal,   X), "&
+"   802	(BC_1, IO124PB3F11,	output3,   X,   803, 0, Z), "&
+"   803	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   268
+"   804	(BC_1, *,internal,   X), "&
+"   805	(BC_1, *,internal,   X), "&
+"   806	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   269
+"   810	(BC_1, *,internal,   X), "&
+"   811	(BC_1, *,internal,   X), "&
+"   812	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   270
+"   807	(BC_1, *,internal,   X), "&
+"   808	(BC_1, *,internal,   X), "&
+"   809	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   271
+"   813	(BC_1, *,internal,   X), "&
+"   814	(BC_1, *,internal,   X), "&
+"   815	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   272
+"   816	(BC_1, *,internal,   X), "&
+"   817	(BC_1, *,internal,   X), "&
+"   818	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   273
+"   822	(BC_1, *,internal,   X), "&
+"   823	(BC_1, *,internal,   X), "&
+"   824	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   274
+"   819	(BC_1, *,internal,   X), "&
+"   820	(BC_1, *,internal,   X), "&
+"   821	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   275
+"   825	(BC_1, *,internal,   X), "&
+"   826	(BC_1, *,internal,   X), "&
+"   827	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   276
+"   828	(BC_1, *,internal,   X), "&
+"   829	(BC_1, *,internal,   X), "&
+"   830	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   277
+"   834	(BC_1, *,internal,   X), "&
+"   835	(BC_1, *,internal,   X), "&
+"   836	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   278
+"   831	(BC_1, *,internal,   X), "&
+"   832	(BC_1, *,internal,   X), "&
+"   833	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   279
+"   837	(BC_1, *,internal,   X), "&
+"   838	(BC_1, *,internal,   X), "&
+"   839	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   280    Pin : 189    PadNum :   392 Pad : NBRDB007
+"   840	(BC_1, *,internal,   X), "&
+"   841	(BC_1, IO117NB3F10,	output3,   X,   842, 0, Z), "&
+"   842	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   281    Pin : 193    PadNum :   393 Pad : NTRDB007
+"   846	(BC_1, *,internal,   X), "&
+"   847	(BC_1, IO116NB3F10,	output3,   X,   848, 0, Z), "&
+"   848	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   282    Pin : 190    PadNum :   394 Pad : PBRDB007
+"   843	(BC_1, *,internal,   X), "&
+"   844	(BC_1, IO117PB3F10,	output3,   X,   845, 0, Z), "&
+"   845	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   283    Pin : 194    PadNum :   395 Pad : PTRDB007
+"   849	(BC_1, *,internal,   X), "&
+"   850	(BC_1, IO116PB3F10,	output3,   X,   851, 0, Z), "&
+"   851	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   284    Pin : 195    PadNum :   398 Pad : NBRDB008
+"   852	(BC_1, *,internal,   X), "&
+"   853	(BC_1, IO115NB3F10,	output3,   X,   854, 0, Z), "&
+"   854	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   285
+"   858	(BC_1, *,internal,   X), "&
+"   859	(BC_1, *,internal,   X), "&
+"   860	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   286    Pin : 196    PadNum :   400 Pad : PBRDB008
+"   855	(BC_1, *,internal,   X), "&
+"   856	(BC_1, IO115PB3F10,	output3,   X,   857, 0, Z), "&
+"   857	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   287
+"   861	(BC_1, *,internal,   X), "&
+"   862	(BC_1, *,internal,   X), "&
+"   863	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   288    Pin : 201    PadNum :   404 Pad : NBRDB009
+"   864	(BC_1, *,internal,   X), "&
+"   865	(BC_1, IO113NB3F10,	output3,   X,   866, 0, Z), "&
+"   866	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   289    Pin : 199    PadNum :   405 Pad : NBRDB011
+"   870	(BC_1, *,internal,   X), "&
+"   871	(BC_1, IO112NB3F10,	output3,   X,   872, 0, Z), "&
+"   872	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   290    Pin : 202    PadNum :   406 Pad : PBRDB009
+"   867	(BC_1, *,internal,   X), "&
+"   868	(BC_1, IO113PB3F10,	output3,   X,   869, 0, Z), "&
+"   869	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   291    Pin : 200    PadNum :   407 Pad : PBRDB011
+"   873	(BC_1, *,internal,   X), "&
+"   874	(BC_1, IO112PB3F10,	output3,   X,   875, 0, Z), "&
+"   875	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   292    Pin : 205    PadNum :   408 Pad : NTRDB011
+"   876	(BC_1, *,internal,   X), "&
+"   877	(BC_1, IO111NB3F10,	output3,   X,   878, 0, Z), "&
+"   878	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   293
+"   882	(BC_1, *,internal,   X), "&
+"   883	(BC_1, *,internal,   X), "&
+"   884	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   294    Pin : 206    PadNum :   410 Pad : PTRDB011
+"   879	(BC_1, *,internal,   X), "&
+"   880	(BC_1, IO111PB3F10,	output3,   X,   881, 0, Z), "&
+"   881	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   295
+"   885	(BC_1, *,internal,   X), "&
+"   886	(BC_1, *,internal,   X), "&
+"   887	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   296    Pin : 207    PadNum :   414 Pad : NTRDB012
+"   888	(BC_1, *,internal,   X), "&
+"   889	(BC_1, IO109NB3F10,	output3,   X,   890, 0, Z), "&
+"   890	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   297    Pin : 211    PadNum :   415 Pad : NBRDB013
+"   894	(BC_1, *,internal,   X), "&
+"   895	(BC_1, IO108NB3F10,	output3,   X,   896, 0, Z), "&
+"   896	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   298    Pin : 208    PadNum :   416 Pad : PTRDB012
+"   891	(BC_1, *,internal,   X), "&
+"   892	(BC_1, IO109PB3F10,	output3,   X,   893, 0, Z), "&
+"   893	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   299    Pin : 212    PadNum :   417 Pad : PBRDB013
+"   897	(BC_1, *,internal,   X), "&
+"   898	(BC_1, IO108PB3F10,	output3,   X,   899, 0, Z), "&
+"   899	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   300
+"   900	(BC_1, *,internal,   X), "&
+"   901	(BC_1, *,internal,   X), "&
+"   902	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   301
+"   906	(BC_1, *,internal,   X), "&
+"   907	(BC_1, *,internal,   X), "&
+"   908	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   302
+"   903	(BC_1, *,internal,   X), "&
+"   904	(BC_1, *,internal,   X), "&
+"   905	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   303
+"   909	(BC_1, *,internal,   X), "&
+"   910	(BC_1, *,internal,   X), "&
+"   911	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   304
+"   912	(BC_1, *,internal,   X), "&
+"   913	(BC_1, *,internal,   X), "&
+"   914	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   305
+"   918	(BC_1, *,internal,   X), "&
+"   919	(BC_1, *,internal,   X), "&
+"   920	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   306
+"   915	(BC_1, *,internal,   X), "&
+"   916	(BC_1, *,internal,   X), "&
+"   917	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   307
+"   921	(BC_1, *,internal,   X), "&
+"   922	(BC_1, *,internal,   X), "&
+"   923	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   308
+"   924	(BC_1, *,internal,   X), "&
+"   925	(BC_1, *,internal,   X), "&
+"   926	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   309
+"   930	(BC_1, *,internal,   X), "&
+"   931	(BC_1, *,internal,   X), "&
+"   932	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   310
+"   927	(BC_1, *,internal,   X), "&
+"   928	(BC_1, *,internal,   X), "&
+"   929	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   311
+"   933	(BC_1, *,internal,   X), "&
+"   934	(BC_1, *,internal,   X), "&
+"   935	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   312
+"   936	(BC_1, *,internal,   X), "&
+"   937	(BC_1, *,internal,   X), "&
+"   938	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   313
+"   942	(BC_1, *,internal,   X), "&
+"   943	(BC_1, *,internal,   X), "&
+"   944	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   314
+"   939	(BC_1, *,internal,   X), "&
+"   940	(BC_1, *,internal,   X), "&
+"   941	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   315
+"   945	(BC_1, *,internal,   X), "&
+"   946	(BC_1, *,internal,   X), "&
+"   947	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   316    Pin : 213    PadNum :   438 Pad : NBRDA019
+"   948	(BC_1, *,internal,   X), "&
+"   949	(BC_1, IO99NB3F9,	output3,   X,   950, 0, Z), "&
+"   950	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   317
+"   954	(BC_1, *,internal,   X), "&
+"   955	(BC_1, *,internal,   X), "&
+"   956	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   318    Pin : 214    PadNum :   440 Pad : PBRDA019
+"   951	(BC_1, *,internal,   X), "&
+"   952	(BC_1, IO99PB3F9,	output3,   X,   953, 0, Z), "&
+"   953	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   319
+"   957	(BC_1, *,internal,   X), "&
+"   958	(BC_1, *,internal,   X), "&
+"   959	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   320    Pin : 219    PadNum :   444 Pad : NBRDA020
+"   960	(BC_1, *,internal,   X), "&
+"   961	(BC_1, IO97NB3F9,	output3,   X,   962, 0, Z), "&
+"   962	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   321    Pin : 217    PadNum :   445 Pad : NTRDA020
+"   966	(BC_1, *,internal,   X), "&
+"   967	(BC_1, IO96NB3F9,	output3,   X,   968, 0, Z), "&
+"   968	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   322    Pin : 220    PadNum :   446 Pad : PBRDA020
+"   963	(BC_1, *,internal,   X), "&
+"   964	(BC_1, IO97PB3F9,	output3,   X,   965, 0, Z), "&
+"   965	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   323    Pin : 218    PadNum :   447 Pad : PTRDA020
+"   969	(BC_1, *,internal,   X), "&
+"   970	(BC_1, IO96PB3F9,	output3,   X,   971, 0, Z), "&
+"   971	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   324    Pin : 223    PadNum :   452 Pad : NBRCC021
+"   972	(BC_1, *,internal,   X), "&
+"   973	(BC_1, IO95NB2F8,	output3,   X,   974, 0, Z), "&
+"   974	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   325    Pin : 225    PadNum :   453 Pad : NTRCC021
+"   978	(BC_1, *,internal,   X), "&
+"   979	(BC_1, IO94NB2F8,	output3,   X,   980, 0, Z), "&
+"   980	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   326    Pin : 224    PadNum :   454 Pad : PBRCC021
+"   975	(BC_1, *,internal,   X), "&
+"   976	(BC_1, IO95PB2F8,	output3,   X,   977, 0, Z), "&
+"   977	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   327    Pin : 226    PadNum :   455 Pad : PTRCC021
+"   981	(BC_1, *,internal,   X), "&
+"   982	(BC_1, IO94PB2F8,	output3,   X,   983, 0, Z), "&
+"   983	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   328
+"   984	(BC_1, *,internal,   X), "&
+"   985	(BC_1, *,internal,   X), "&
+"   986	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   329
+"   990	(BC_1, *,internal,   X), "&
+"   991	(BC_1, *,internal,   X), "&
+"   992	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   330
+"   987	(BC_1, *,internal,   X), "&
+"   988	(BC_1, *,internal,   X), "&
+"   989	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   331
+"   993	(BC_1, *,internal,   X), "&
+"   994	(BC_1, *,internal,   X), "&
+"   995	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   332
+"   996	(BC_1, *,internal,   X), "&
+"   997	(BC_1, *,internal,   X), "&
+"   998	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   333
+"  1002	(BC_1, *,internal,   X), "&
+"  1003	(BC_1, *,internal,   X), "&
+"  1004	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   334
+"   999	(BC_1, *,internal,   X), "&
+"  1000	(BC_1, *,internal,   X), "&
+"  1001	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   335
+"  1005	(BC_1, *,internal,   X), "&
+"  1006	(BC_1, *,internal,   X), "&
+"  1007	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   336
+"  1008	(BC_1, *,internal,   X), "&
+"  1009	(BC_1, *,internal,   X), "&
+"  1010	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   337
+"  1014	(BC_1, *,internal,   X), "&
+"  1015	(BC_1, *,internal,   X), "&
+"  1016	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   338
+"  1011	(BC_1, *,internal,   X), "&
+"  1012	(BC_1, *,internal,   X), "&
+"  1013	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   339
+"  1017	(BC_1, *,internal,   X), "&
+"  1018	(BC_1, *,internal,   X), "&
+"  1019	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   340
+"  1020	(BC_1, *,internal,   X), "&
+"  1021	(BC_1, *,internal,   X), "&
+"  1022	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   341
+"  1026	(BC_1, *,internal,   X), "&
+"  1027	(BC_1, *,internal,   X), "&
+"  1028	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   342
+"  1023	(BC_1, *,internal,   X), "&
+"  1024	(BC_1, *,internal,   X), "&
+"  1025	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   343
+"  1029	(BC_1, *,internal,   X), "&
+"  1030	(BC_1, *,internal,   X), "&
+"  1031	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   344
+"  1032	(BC_1, *,internal,   X), "&
+"  1033	(BC_1, *,internal,   X), "&
+"  1034	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   345
+"  1038	(BC_1, *,internal,   X), "&
+"  1039	(BC_1, *,internal,   X), "&
+"  1040	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   346
+"  1035	(BC_1, *,internal,   X), "&
+"  1036	(BC_1, *,internal,   X), "&
+"  1037	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   347
+"  1041	(BC_1, *,internal,   X), "&
+"  1042	(BC_1, *,internal,   X), "&
+"  1043	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   348    Pin : 229    PadNum :   482 Pad : NTRCB028
+"  1044	(BC_1, *,internal,   X), "&
+"  1045	(BC_1, IO83NB2F7,	output3,   X,  1046, 0, Z), "&
+"  1046	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   349    Pin : 231    PadNum :   483 Pad : NBRCB029
+"  1050	(BC_1, *,internal,   X), "&
+"  1051	(BC_1, IO82NB2F7,	output3,   X,  1052, 0, Z), "&
+"  1052	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   350    Pin : 230    PadNum :   484 Pad : PTRCB028
+"  1047	(BC_1, *,internal,   X), "&
+"  1048	(BC_1, IO83PB2F7,	output3,   X,  1049, 0, Z), "&
+"  1049	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   351    Pin : 232    PadNum :   485 Pad : PBRCB029
+"  1053	(BC_1, *,internal,   X), "&
+"  1054	(BC_1, IO82PB2F7,	output3,   X,  1055, 0, Z), "&
+"  1055	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   352
+"  1056	(BC_1, *,internal,   X), "&
+"  1057	(BC_1, *,internal,   X), "&
+"  1058	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   353
+"  1062	(BC_1, *,internal,   X), "&
+"  1063	(BC_1, *,internal,   X), "&
+"  1064	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   354
+"  1059	(BC_1, *,internal,   X), "&
+"  1060	(BC_1, *,internal,   X), "&
+"  1061	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   355
+"  1065	(BC_1, *,internal,   X), "&
+"  1066	(BC_1, *,internal,   X), "&
+"  1067	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   356    Pin : 235    PadNum :   492 Pad : NBRCB032
+"  1068	(BC_1, *,internal,   X), "&
+"  1069	(BC_1, IO79NB2F7,	output3,   X,  1070, 0, Z), "&
+"  1070	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   357    Pin : 237    PadNum :   493 Pad : NTRCB032
+"  1074	(BC_1, *,internal,   X), "&
+"  1075	(BC_1, IO78NB2F7,	output3,   X,  1076, 0, Z), "&
+"  1076	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   358    Pin : 236    PadNum :   494 Pad : PBRCB032
+"  1071	(BC_1, *,internal,   X), "&
+"  1072	(BC_1, IO79PB2F7,	output3,   X,  1073, 0, Z), "&
+"  1073	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   359    Pin : 238    PadNum :   495 Pad : PTRCB032
+"  1077	(BC_1, *,internal,   X), "&
+"  1078	(BC_1, IO78PB2F7,	output3,   X,  1079, 0, Z), "&
+"  1079	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   360    Pin : 241    PadNum :   498 Pad : NBRCB033
+"  1080	(BC_1, *,internal,   X), "&
+"  1081	(BC_1, IO77NB2F7,	output3,   X,  1082, 0, Z), "&
+"  1082	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   361    Pin : 243    PadNum :   499 Pad : NTRCB033
+"  1086	(BC_1, *,internal,   X), "&
+"  1087	(BC_1, IO76NB2F7,	output3,   X,  1088, 0, Z), "&
+"  1088	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   362    Pin : 242    PadNum :   500 Pad : PBRCB033
+"  1083	(BC_1, *,internal,   X), "&
+"  1084	(BC_1, IO77PB2F7,	output3,   X,  1085, 0, Z), "&
+"  1085	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   363    Pin : 244    PadNum :   501 Pad : PTRCB033
+"  1089	(BC_1, *,internal,   X), "&
+"  1090	(BC_1, IO76PB2F7,	output3,   X,  1091, 0, Z), "&
+"  1091	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   364    Pin : 247    PadNum :   504 Pad : NBRCB034
+"  1092	(BC_1, *,internal,   X), "&
+"  1093	(BC_1, IO75NB2F7,	output3,   X,  1094, 0, Z), "&
+"  1094	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   365    Pin : 249    PadNum :   505 Pad : NTRCB034
+"  1098	(BC_1, *,internal,   X), "&
+"  1099	(BC_1, IO74NB2F7,	output3,   X,  1100, 0, Z), "&
+"  1100	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   366    Pin : 248    PadNum :   506 Pad : PBRCB034
+"  1095	(BC_1, *,internal,   X), "&
+"  1096	(BC_1, IO75PB2F7,	output3,   X,  1097, 0, Z), "&
+"  1097	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   367    Pin : 250    PadNum :   507 Pad : PTRCB034
+"  1101	(BC_1, *,internal,   X), "&
+"  1102	(BC_1, IO74PB2F7,	output3,   X,  1103, 0, Z), "&
+"  1103	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   368
+"  1104	(BC_1, *,internal,   X), "&
+"  1105	(BC_1, *,internal,   X), "&
+"  1106	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   369
+"  1110	(BC_1, *,internal,   X), "&
+"  1111	(BC_1, *,internal,   X), "&
+"  1112	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   370
+"  1107	(BC_1, *,internal,   X), "&
+"  1108	(BC_1, *,internal,   X), "&
+"  1109	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   371
+"  1113	(BC_1, *,internal,   X), "&
+"  1114	(BC_1, *,internal,   X), "&
+"  1115	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   372
+"  1116	(BC_1, *,internal,   X), "&
+"  1117	(BC_1, *,internal,   X), "&
+"  1118	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   373
+"  1122	(BC_1, *,internal,   X), "&
+"  1123	(BC_1, *,internal,   X), "&
+"  1124	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   374
+"  1119	(BC_1, *,internal,   X), "&
+"  1120	(BC_1, *,internal,   X), "&
+"  1121	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   375
+"  1125	(BC_1, *,internal,   X), "&
+"  1126	(BC_1, *,internal,   X), "&
+"  1127	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   376    Pin : 253    PadNum :   520 Pad : NBRCA037
+"  1128	(BC_1, *,internal,   X), "&
+"  1129	(BC_1, IO69NB2F6,	output3,   X,  1130, 0, Z), "&
+"  1130	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   377    Pin : 255    PadNum :   521 Pad : NBRCA039
+"  1134	(BC_1, *,internal,   X), "&
+"  1135	(BC_1, IO68NB2F6,	output3,   X,  1136, 0, Z), "&
+"  1136	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   378    Pin : 254    PadNum :   522 Pad : PBRCA037
+"  1131	(BC_1, *,internal,   X), "&
+"  1132	(BC_1, IO69PB2F6,	output3,   X,  1133, 0, Z), "&
+"  1133	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   379    Pin : 256    PadNum :   523 Pad : PBRCA039
+"  1137	(BC_1, *,internal,   X), "&
+"  1138	(BC_1, IO68PB2F6,	output3,   X,  1139, 0, Z), "&
+"  1139	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   380    Pin : 261    PadNum :   524 Pad : NTRCA039
+"  1140	(BC_1, *,internal,   X), "&
+"  1141	(BC_1, IO67NB2F6,	output3,   X,  1142, 0, Z), "&
+"  1142	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   381
+"  1146	(BC_1, *,internal,   X), "&
+"  1147	(BC_1, *,internal,   X), "&
+"  1148	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   382    Pin : 262    PadNum :   526 Pad : PTRCA039
+"  1143	(BC_1, *,internal,   X), "&
+"  1144	(BC_1, IO67PB2F6,	output3,   X,  1145, 0, Z), "&
+"  1145	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   383
+"  1149	(BC_1, *,internal,   X), "&
+"  1150	(BC_1, *,internal,   X), "&
+"  1151	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   384
+"  1152	(BC_1, *,internal,   X), "&
+"  1153	(BC_1, *,internal,   X), "&
+"  1154	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   385    Pin : 259    PadNum :   531 Pad : NBRCA041
+"  1158	(BC_1, *,internal,   X), "&
+"  1159	(BC_1, IO64NB2F6,	output3,   X,  1160, 0, Z), "&
+"  1160	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   386
+"  1155	(BC_1, *,internal,   X), "&
+"  1156	(BC_1, *,internal,   X), "&
+"  1157	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   387    Pin : 260    PadNum :   533 Pad : PBRCA041
+"  1161	(BC_1, *,internal,   X), "&
+"  1162	(BC_1, IO64PB2F6,	output3,   X,  1163, 0, Z), "&
+"  1163	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   388    Pin : 269    PadNum :   539 Pad : NTTBC038
+"  1164	(BC_1, *,internal,   X), "&
+"  1165	(BC_1, IO63NB1F5,	output3,   X,  1166, 0, Z), "&
+"  1166	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   389    Pin : 270    PadNum :   540 Pad : PTTBC038
+"  1167	(BC_1, *,internal,   X), "&
+"  1168	(BC_1, IO63PB1F5,	output3,   X,  1169, 0, Z), "&
+"  1169	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   390
+"  1170	(BC_1, *,internal,   X), "&
+"  1171	(BC_1, *,internal,   X), "&
+"  1172	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   391
+"  1173	(BC_1, *,internal,   X), "&
+"  1174	(BC_1, *,internal,   X), "&
+"  1175	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   392    Pin : 271    PadNum :   545 Pad : NTTBC037
+"  1176	(BC_1, *,internal,   X), "&
+"  1177	(BC_1, IO61NB1F5,	output3,   X,  1178, 0, Z), "&
+"  1178	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   393    Pin : 275    PadNum :   546 Pad : NBTBC037
+"  1182	(BC_1, *,internal,   X), "&
+"  1183	(BC_1, IO60NB1F5,	output3,   X,  1184, 0, Z), "&
+"  1184	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   394    Pin : 272    PadNum :   547 Pad : PTTBC037
+"  1179	(BC_1, *,internal,   X), "&
+"  1180	(BC_1, IO61PB1F5,	output3,   X,  1181, 0, Z), "&
+"  1181	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   395    Pin : 276    PadNum :   548 Pad : PBTBC037
+"  1185	(BC_1, *,internal,   X), "&
+"  1186	(BC_1, IO60PB1F5,	output3,   X,  1187, 0, Z), "&
+"  1187	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   396    Pin : 277    PadNum :   549 Pad : NTTBC036
+"  1188	(BC_1, *,internal,   X), "&
+"  1189	(BC_1, IO59NB1F5,	output3,   X,  1190, 0, Z), "&
+"  1190	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   397
+"  1194	(BC_1, *,internal,   X), "&
+"  1195	(BC_1, *,internal,   X), "&
+"  1196	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   398    Pin : 278    PadNum :   551 Pad : PTTBC036
+"  1191	(BC_1, *,internal,   X), "&
+"  1192	(BC_1, IO59PB1F5,	output3,   X,  1193, 0, Z), "&
+"  1193	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   399
+"  1197	(BC_1, *,internal,   X), "&
+"  1198	(BC_1, *,internal,   X), "&
+"  1199	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   400    Pin : 283    PadNum :   555 Pad : NTTBC034
+"  1200	(BC_1, *,internal,   X), "&
+"  1201	(BC_1, IO57NB1F5,	output3,   X,  1202, 0, Z), "&
+"  1202	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   401    Pin : 281    PadNum :   556 Pad : NBTBC034
+"  1206	(BC_1, *,internal,   X), "&
+"  1207	(BC_1, IO56NB1F5,	output3,   X,  1208, 0, Z), "&
+"  1208	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   402    Pin : 284    PadNum :   557 Pad : PTTBC034
+"  1203	(BC_1, *,internal,   X), "&
+"  1204	(BC_1, IO57PB1F5,	output3,   X,  1205, 0, Z), "&
+"  1205	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   403    Pin : 282    PadNum :   558 Pad : PBTBC034
+"  1209	(BC_1, *,internal,   X), "&
+"  1210	(BC_1, IO56PB1F5,	output3,   X,  1211, 0, Z), "&
+"  1211	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   404    Pin : 289    PadNum :   559 Pad : NTTBC033
+"  1212	(BC_1, *,internal,   X), "&
+"  1213	(BC_1, IO55NB1F5,	output3,   X,  1214, 0, Z), "&
+"  1214	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   405    Pin : 287    PadNum :   560 Pad : NBTBC033
+"  1218	(BC_1, *,internal,   X), "&
+"  1219	(BC_1, IO54NB1F5,	output3,   X,  1220, 0, Z), "&
+"  1220	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   406    Pin : 290    PadNum :   561 Pad : PTTBC033
+"  1215	(BC_1, *,internal,   X), "&
+"  1216	(BC_1, IO55PB1F5,	output3,   X,  1217, 0, Z), "&
+"  1217	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   407    Pin : 288    PadNum :   562 Pad : PBTBC033
+"  1221	(BC_1, *,internal,   X), "&
+"  1222	(BC_1, IO54PB1F5,	output3,   X,  1223, 0, Z), "&
+"  1223	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   408
+"  1224	(BC_1, *,internal,   X), "&
+"  1225	(BC_1, *,internal,   X), "&
+"  1226	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   409
+"  1230	(BC_1, *,internal,   X), "&
+"  1231	(BC_1, *,internal,   X), "&
+"  1232	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   410
+"  1227	(BC_1, *,internal,   X), "&
+"  1228	(BC_1, *,internal,   X), "&
+"  1229	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   411
+"  1233	(BC_1, *,internal,   X), "&
+"  1234	(BC_1, *,internal,   X), "&
+"  1235	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   412
+"  1236	(BC_1, *,internal,   X), "&
+"  1237	(BC_1, *,internal,   X), "&
+"  1238	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   413
+"  1242	(BC_1, *,internal,   X), "&
+"  1243	(BC_1, *,internal,   X), "&
+"  1244	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   414
+"  1239	(BC_1, *,internal,   X), "&
+"  1240	(BC_1, *,internal,   X), "&
+"  1241	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   415
+"  1245	(BC_1, *,internal,   X), "&
+"  1246	(BC_1, *,internal,   X), "&
+"  1247	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   416
+"  1248	(BC_1, *,internal,   X), "&
+"  1249	(BC_1, *,internal,   X), "&
+"  1250	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   417
+"  1254	(BC_1, *,internal,   X), "&
+"  1255	(BC_1, *,internal,   X), "&
+"  1256	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   418
+"  1251	(BC_1, *,internal,   X), "&
+"  1252	(BC_1, *,internal,   X), "&
+"  1253	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   419
+"  1257	(BC_1, *,internal,   X), "&
+"  1258	(BC_1, *,internal,   X), "&
+"  1259	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   420
+"  1260	(BC_1, *,internal,   X), "&
+"  1261	(BC_1, *,internal,   X), "&
+"  1262	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   421
+"  1266	(BC_1, *,internal,   X), "&
+"  1267	(BC_1, *,internal,   X), "&
+"  1268	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   422
+"  1263	(BC_1, *,internal,   X), "&
+"  1264	(BC_1, *,internal,   X), "&
+"  1265	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   423
+"  1269	(BC_1, *,internal,   X), "&
+"  1270	(BC_1, *,internal,   X), "&
+"  1271	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   424
+"  1272	(BC_1, *,internal,   X), "&
+"  1273	(BC_1, *,internal,   X), "&
+"  1274	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   425
+"  1278	(BC_1, *,internal,   X), "&
+"  1279	(BC_1, *,internal,   X), "&
+"  1280	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   426
+"  1275	(BC_1, *,internal,   X), "&
+"  1276	(BC_1, *,internal,   X), "&
+"  1277	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   427
+"  1281	(BC_1, *,internal,   X), "&
+"  1282	(BC_1, *,internal,   X), "&
+"  1283	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   428
+"  1284	(BC_1, *,internal,   X), "&
+"  1285	(BC_1, *,internal,   X), "&
+"  1286	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   429
+"  1290	(BC_1, *,internal,   X), "&
+"  1291	(BC_1, *,internal,   X), "&
+"  1292	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   430
+"  1287	(BC_1, *,internal,   X), "&
+"  1288	(BC_1, *,internal,   X), "&
+"  1289	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   431
+"  1293	(BC_1, *,internal,   X), "&
+"  1294	(BC_1, *,internal,   X), "&
+"  1295	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   432
+"  1296	(BC_1, *,internal,   X), "&
+"  1297	(BC_1, *,internal,   X), "&
+"  1298	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   433
+"  1302	(BC_1, *,internal,   X), "&
+"  1303	(BC_1, *,internal,   X), "&
+"  1304	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   434
+"  1299	(BC_1, *,internal,   X), "&
+"  1300	(BC_1, *,internal,   X), "&
+"  1301	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   435
+"  1305	(BC_1, *,internal,   X), "&
+"  1306	(BC_1, *,internal,   X), "&
+"  1307	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   436
+"  1308	(BC_1, *,internal,   X), "&
+"  1309	(BC_1, *,internal,   X), "&
+"  1310	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   437    Pin : 295    PadNum :   604 Pad : NTTBA024
+"  1314	(BC_1, *,internal,   X), "&
+"  1315	(BC_1, IO38NB1F3,	output3,   X,  1316, 0, Z), "&
+"  1316	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   438
+"  1311	(BC_1, *,internal,   X), "&
+"  1312	(BC_1, *,internal,   X), "&
+"  1313	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   439    Pin : 296    PadNum :   606 Pad : PTTBA024
+"  1317	(BC_1, *,internal,   X), "&
+"  1318	(BC_1, IO38PB1F3,	output3,   X,  1319, 0, Z), "&
+"  1319	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   440
+"  1320	(BC_1, *,internal,   X), "&
+"  1321	(BC_1, *,internal,   X), "&
+"  1322	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   441
+"  1326	(BC_1, *,internal,   X), "&
+"  1327	(BC_1, *,internal,   X), "&
+"  1328	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   442
+"  1323	(BC_1, *,internal,   X), "&
+"  1324	(BC_1, *,internal,   X), "&
+"  1325	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   443
+"  1329	(BC_1, *,internal,   X), "&
+"  1330	(BC_1, *,internal,   X), "&
+"  1331	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   444
+"  1332	(BC_1, *,internal,   X), "&
+"  1333	(BC_1, *,internal,   X), "&
+"  1334	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   445
+"  1338	(BC_1, *,internal,   X), "&
+"  1339	(BC_1, *,internal,   X), "&
+"  1340	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   446
+"  1335	(BC_1, *,internal,   X), "&
+"  1336	(BC_1, *,internal,   X), "&
+"  1337	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   447
+"  1341	(BC_1, *,internal,   X), "&
+"  1342	(BC_1, *,internal,   X), "&
+"  1343	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   448    Pin : 299    PadNum :   619 Pad : NH3BA021
+"  1344	(BC_1, *,internal,   X), "&
+"  1345	(BC_1, IO33NB1F3_HCLKDN,	output3,   X,  1346, 0, Z), "&
+"  1346	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   449    Pin : 300    PadNum :   620 Pad : PH3BA021
+"  1347	(BC_1, *,internal,   X), "&
+"  1348	(BC_1, IO33PB1F3_HCLKDP,	output3,   X,  1349, 0, Z), "&
+"  1349	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   450    Pin : 305    PadNum :   625 Pad : NH2BA020
+"  1350	(BC_1, *,internal,   X), "&
+"  1351	(BC_1, IO32NB1F3_HCLKCN,	output3,   X,  1352, 0, Z), "&
+"  1352	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   451    Pin : 306    PadNum :   626 Pad : PH2BA020
+"  1353	(BC_1, *,internal,   X), "&
+"  1354	(BC_1, IO32PB1F3_HCLKCP,	output3,   X,  1355, 0, Z), "&
+"  1355	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   452    Pin : 313    PadNum :   633 Pad : NH1AC019
+"  1356	(BC_1, *,internal,   X), "&
+"  1357	(BC_1, IO31NB0F2_HCLKBN,	output3,   X,  1358, 0, Z), "&
+"  1358	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   453    Pin : 314    PadNum :   634 Pad : PH1AC019
+"  1359	(BC_1, *,internal,   X), "&
+"  1360	(BC_1, IO31PB0F2_HCLKBP,	output3,   X,  1361, 0, Z), "&
+"  1361	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   454    Pin : 319    PadNum :   639 Pad : NH0AC018
+"  1362	(BC_1, *,internal,   X), "&
+"  1363	(BC_1, IO30NB0F2_HCLKAN,	output3,   X,  1364, 0, Z), "&
+"  1364	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   455    Pin : 320    PadNum :   640 Pad : PH0AC018
+"  1365	(BC_1, *,internal,   X), "&
+"  1366	(BC_1, IO30PB0F2_HCLKAP,	output3,   X,  1367, 0, Z), "&
+"  1367	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   456
+"  1368	(BC_1, *,internal,   X), "&
+"  1369	(BC_1, *,internal,   X), "&
+"  1370	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   457
+"  1374	(BC_1, *,internal,   X), "&
+"  1375	(BC_1, *,internal,   X), "&
+"  1376	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   458
+"  1371	(BC_1, *,internal,   X), "&
+"  1372	(BC_1, *,internal,   X), "&
+"  1373	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   459
+"  1377	(BC_1, *,internal,   X), "&
+"  1378	(BC_1, *,internal,   X), "&
+"  1379	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   460
+"  1380	(BC_1, *,internal,   X), "&
+"  1381	(BC_1, *,internal,   X), "&
+"  1382	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   461
+"  1386	(BC_1, *,internal,   X), "&
+"  1387	(BC_1, *,internal,   X), "&
+"  1388	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   462
+"  1383	(BC_1, *,internal,   X), "&
+"  1384	(BC_1, *,internal,   X), "&
+"  1385	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   463
+"  1389	(BC_1, *,internal,   X), "&
+"  1390	(BC_1, *,internal,   X), "&
+"  1391	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   464    Pin : 323    PadNum :   653 Pad : NTTAC014
+"  1392	(BC_1, *,internal,   X), "&
+"  1393	(BC_1, IO25NB0F2,	output3,   X,  1394, 0, Z), "&
+"  1394	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   465    Pin : 325    PadNum :   654 Pad : NBTAC014
+"  1398	(BC_1, *,internal,   X), "&
+"  1399	(BC_1, IO24NB0F2,	output3,   X,  1400, 0, Z), "&
+"  1400	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   466    Pin : 324    PadNum :   655 Pad : PTTAC014
+"  1395	(BC_1, *,internal,   X), "&
+"  1396	(BC_1, IO25PB0F2,	output3,   X,  1397, 0, Z), "&
+"  1397	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   467    Pin : 326    PadNum :   656 Pad : PBTAC014
+"  1401	(BC_1, *,internal,   X), "&
+"  1402	(BC_1, IO24PB0F2,	output3,   X,  1403, 0, Z), "&
+"  1403	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   468
+"  1404	(BC_1, *,internal,   X), "&
+"  1405	(BC_1, *,internal,   X), "&
+"  1406	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   469
+"  1410	(BC_1, *,internal,   X), "&
+"  1411	(BC_1, *,internal,   X), "&
+"  1412	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   470
+"  1407	(BC_1, *,internal,   X), "&
+"  1408	(BC_1, *,internal,   X), "&
+"  1409	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   471
+"  1413	(BC_1, *,internal,   X), "&
+"  1414	(BC_1, *,internal,   X), "&
+"  1415	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   472
+"  1416	(BC_1, *,internal,   X), "&
+"  1417	(BC_1, *,internal,   X), "&
+"  1418	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   473
+"  1422	(BC_1, *,internal,   X), "&
+"  1423	(BC_1, *,internal,   X), "&
+"  1424	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   474
+"  1419	(BC_1, *,internal,   X), "&
+"  1420	(BC_1, *,internal,   X), "&
+"  1421	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   475
+"  1425	(BC_1, *,internal,   X), "&
+"  1426	(BC_1, *,internal,   X), "&
+"  1427	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   476
+"  1428	(BC_1, *,internal,   X), "&
+"  1429	(BC_1, *,internal,   X), "&
+"  1430	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   477
+"  1434	(BC_1, *,internal,   X), "&
+"  1435	(BC_1, *,internal,   X), "&
+"  1436	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   478
+"  1431	(BC_1, *,internal,   X), "&
+"  1432	(BC_1, *,internal,   X), "&
+"  1433	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   479
+"  1437	(BC_1, *,internal,   X), "&
+"  1438	(BC_1, *,internal,   X), "&
+"  1439	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   480
+"  1440	(BC_1, *,internal,   X), "&
+"  1441	(BC_1, *,internal,   X), "&
+"  1442	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   481
+"  1446	(BC_1, *,internal,   X), "&
+"  1447	(BC_1, *,internal,   X), "&
+"  1448	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   482
+"  1443	(BC_1, *,internal,   X), "&
+"  1444	(BC_1, *,internal,   X), "&
+"  1445	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   483
+"  1449	(BC_1, *,internal,   X), "&
+"  1450	(BC_1, *,internal,   X), "&
+"  1451	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   484
+"  1452	(BC_1, *,internal,   X), "&
+"  1453	(BC_1, *,internal,   X), "&
+"  1454	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   485
+"  1458	(BC_1, *,internal,   X), "&
+"  1459	(BC_1, *,internal,   X), "&
+"  1460	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   486
+"  1455	(BC_1, *,internal,   X), "&
+"  1456	(BC_1, *,internal,   X), "&
+"  1457	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   487
+"  1461	(BC_1, *,internal,   X), "&
+"  1462	(BC_1, *,internal,   X), "&
+"  1463	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   488
+"  1464	(BC_1, *,internal,   X), "&
+"  1465	(BC_1, *,internal,   X), "&
+"  1466	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   489
+"  1470	(BC_1, *,internal,   X), "&
+"  1471	(BC_1, *,internal,   X), "&
+"  1472	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   490
+"  1467	(BC_1, *,internal,   X), "&
+"  1468	(BC_1, *,internal,   X), "&
+"  1469	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   491
+"  1473	(BC_1, *,internal,   X), "&
+"  1474	(BC_1, *,internal,   X), "&
+"  1475	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   492
+"  1476	(BC_1, *,internal,   X), "&
+"  1477	(BC_1, *,internal,   X), "&
+"  1478	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   493
+"  1482	(BC_1, *,internal,   X), "&
+"  1483	(BC_1, *,internal,   X), "&
+"  1484	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   494
+"  1479	(BC_1, *,internal,   X), "&
+"  1480	(BC_1, *,internal,   X), "&
+"  1481	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   495
+"  1485	(BC_1, *,internal,   X), "&
+"  1486	(BC_1, *,internal,   X), "&
+"  1487	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   496    Pin : 335    PadNum :   697 Pad : NTTAA005
+"  1488	(BC_1, *,internal,   X), "&
+"  1489	(BC_1, IO9NB0F0,	output3,   X,  1490, 0, Z), "&
+"  1490	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   497    Pin : 331    PadNum :   698 Pad : NBTAA005
+"  1494	(BC_1, *,internal,   X), "&
+"  1495	(BC_1, IO8NB0F0,	output3,   X,  1496, 0, Z), "&
+"  1496	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   498    Pin : 336    PadNum :   699 Pad : PTTAA005
+"  1491	(BC_1, *,internal,   X), "&
+"  1492	(BC_1, IO9PB0F0,	output3,   X,  1493, 0, Z), "&
+"  1493	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   499    Pin : 332    PadNum :   700 Pad : PBTAA005
+"  1497	(BC_1, *,internal,   X), "&
+"  1498	(BC_1, IO8PB0F0,	output3,   X,  1499, 0, Z), "&
+"  1499	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   500
+"  1500	(BC_1, *,internal,   X), "&
+"  1501	(BC_1, *,internal,   X), "&
+"  1502	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   501
+"  1506	(BC_1, *,internal,   X), "&
+"  1507	(BC_1, *,internal,   X), "&
+"  1508	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   502
+"  1503	(BC_1, *,internal,   X), "&
+"  1504	(BC_1, *,internal,   X), "&
+"  1505	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   503
+"  1509	(BC_1, *,internal,   X), "&
+"  1510	(BC_1, *,internal,   X), "&
+"  1511	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   504
+"  1512	(BC_1, *,internal,   X), "&
+"  1513	(BC_1, *,internal,   X), "&
+"  1514	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   505    Pin : 337    PadNum :   708 Pad : NBTAA002
+"  1518	(BC_1, *,internal,   X), "&
+"  1519	(BC_1, IO4NB0F0,	output3,   X,  1520, 0, Z), "&
+"  1520	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   506
+"  1515	(BC_1, *,internal,   X), "&
+"  1516	(BC_1, *,internal,   X), "&
+"  1517	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   507    Pin : 338    PadNum :   710 Pad : PBTAA002
+"  1521	(BC_1, *,internal,   X), "&
+"  1522	(BC_1, IO4PB0F0,	output3,   X,  1523, 0, Z), "&
+"  1523	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   508
+"  1524	(BC_1, *,internal,   X), "&
+"  1525	(BC_1, *,internal,   X), "&
+"  1526	(BC_1, *,internal,   X), "&
+
+--BSR Scan Cell   509    Pin : 341    PadNum :   712 Pad : NBTAA001
+"  1530	(BC_1, *,internal,   X), "&
+"  1531	(BC_1, IO2NB0F0,	output3,   X,  1532, 0, Z), "&
+"  1532	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   510    Pin : 343    PadNum :   713 Pad : PTTAA001
+"  1527	(BC_1, *,internal,   X), "&
+"  1528	(BC_1, IO3PB0F0,	output3,   X,  1529, 0, Z), "&
+"  1529	(BC_1, *,	control, 0), "&
+
+--BSR Scan Cell   511    Pin : 342    PadNum :   714 Pad : PBTAA001
+"  1533	(BC_1, *,internal,   X), "&
+"  1534	(BC_1, IO2PB0F0,	output3,   X,  1535, 0, Z), "&
+"  1535	(BC_1, *,	control, 0), "&
+
+--BSR Pad not Bonded. Scan Cell   512
+"  1536	(BC_1, *,internal,   X), "&
+"  1537	(BC_1, *,internal,   X), "&
+"  1538	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   513
+"  1542	(BC_1, *,internal,   X), "&
+"  1543	(BC_1, *,internal,   X), "&
+"  1544	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   514
+"  1539	(BC_1, *,internal,   X), "&
+"  1540	(BC_1, *,internal,   X), "&
+"  1541	(BC_1, *,internal,   X), "&
+
+--BSR Pad not Bonded. Scan Cell   515
+"  1545	(BC_1, *,internal,   X), "&
+"  1546	(BC_1, *,internal,   X), "&
+"  1547	(BC_1, *,internal,   X) ";
+
+end AX1000cq352;

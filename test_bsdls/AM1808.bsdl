@@ -1,0 +1,1048 @@
+----------------------------------------------------------------------
+ --  TI AM1808 Fixed & Floating Point DSP with Boundary Scan   --
+ ----------------------------------------------------------------------
+ --  Supported Devices: AM1808 Revision 1.0                     --
+ ----------------------------------------------------------------------
+ --  Created by    : Texas Instruments Incorporated                  --
+ --  Documentation : AM1808 Users Guide                         --
+ --  BSDL Revision : 0.1 originally created                          --
+ --                                                                  --
+ --  BSDL Status   : Preliminary                                     --
+ --  Date Created  : 12/20/2008                                      --
+ --                                                                  --
+ ----------------------------------------------------------------------
+ --                                                                  --
+ --     
+ -------------------------------------------------------------------
+ 
+ 
+ entity AM1808 is
+ 
+   generic(PHYSICAL_PIN_MAP : string := "ZCE");
+ 
+   port(
+      RESERVEDN        :    in bit;
+      LCDACENBCSn_GP60 : inout bit;
+      VPIFCLKO3_GP61   : inout bit;
+      VPIFCLKIN3_MMCSD1DAT1_GP62: inout bit;
+      VPIFCLKO2_MMCSD1DAT2_GP63: inout bit;
+      VPIFCLKIN2_MMCSD1DAT3_GP64: inout bit;
+      MMCSD1DAT4_LCDVSYNC_GP88: inout bit;
+      MMCSD1DAT5_LCDHSYNC_GP89: inout bit;
+      MMCSD1DAT6_LCDMCLK_GP810: inout bit;
+      MMCSD1DAT7_LCDPCLK_GP811: inout bit;
+      UPPCHBWAIT_GP812 : inout bit;
+      MMCSD1CMD_UPPCHBENABLE_GP813: inout bit;
+      MMCSD1CLK_UPPCHBSTART_GP814: inout bit;
+      MMCSD1DAT0_UPPCHBCLOCK_GP815: inout bit;
+      VPIFDOUT8_LCDD8_UPPXD0_GP70_BOOT0: inout bit;
+      VPIFDOUT9_LCDD9_UPPXD1_GP71_BOOT1: inout bit;
+      VPIFDOUT10_LCDD10_UPPXD2_GP72_BOOT2: inout bit;
+      VPIFDOUT11_LCDD11_UPPXD3_GP73_BOOT3: inout bit;
+      VPIFDOUT12_LCDD12_UPPXD4_GP74_BOOT4: inout bit;
+      VPIFDOUT13_LCDD13_UPPXD5_GP75_BOOT5: inout bit;
+      VPIFDOUT14_LCDD14_UPPXD6_GP76_BOOT6: inout bit;
+      VPIFDOUT15_LCDD15_UPPXD7_GP77_BOOT7: inout bit;
+      VPIFDOUT0_LCDD0_UPPXD8_GP78: inout bit;
+      VPIFDOUT1_LCDD1_UPPXD9_GP79: inout bit;
+      VPIFDOUT2_LCDD2_UPPXD10_GP710: inout bit;
+      VPIFDOUT3_LCDD3_UPPXD11_GP711: inout bit;
+      VPIFDOUT4_LCDD4_UPPXD12_GP712: inout bit;
+      VPIFDOUT5_LCDD5_UPPXD13_GP713: inout bit;
+      VPIFDOUT6_LCDD6_UPPXD14_GP714: inout bit;
+      VPIFDOUT7_LCDD7_UPPXD15_GP715: inout bit;
+      VPIFDIN8_UHPIHD0_UPPD0_GP65: inout bit;
+      VPIFDIN9_UHPIHD1_UPPD1: inout bit;
+      VPIFDIN10_UHPIHD2_UPPD2: inout bit;
+      VPIFDIN11_UHPIHD3_UPPD3: inout bit;
+      VPIFDIN12_UHPIHD4_UPPD4: inout bit;
+      VPIFDIN13FIELD_UHPIHD5_UPPD5: inout bit;
+      VPIFDIN14HSYNC_UHPIHD6_UPPD6: inout bit;
+      VPIFDIN15VSYNC_UHPIHD7_UPPD7: inout bit;
+      VPIFDIN0_UHPIHD8_UPPD8_RMIICRSDV: inout bit;
+      VPIFDIN1_UHPIHD9_UPPD9_RMIIMHZ50CLK: inout bit;
+      VPIFDIN2_UHPIHD10_UPPD10_RMIIRXER: inout bit;
+      VPIFDIN3_UHPIHD11_UPPD11_RMIIRXD0: inout bit;
+      VPIFDIN4_UHPIHD12_UPPD12_RMIIRXD1: inout bit;
+      VPIFDIN5_UHPIHD13_UPPD13_RMIITXEN: inout bit;
+      VPIFDIN6_UHPIHD14_UPPD14_RMIITXD0: inout bit;
+      VPIFDIN7_UHPIHD15_UPPD15_RMIITXD1: inout bit;
+      VPIFCLKIN1_UHPIHDS1n_GP66: inout bit;
+      VPIFCLKIN0_UHPIHCSn_GP67_UPP2xTXCLK: inout bit;
+      UHPIHRWn_UPPCHAWAIT_GP68: inout bit;
+      UHPIHHWIL_UPPCHAENABLE_GP69: inout bit;
+      UHPIHCNTL1_UPPCHASTART_GP610: inout bit;
+      UHPIHCNTL0_UPPCHACLOCK_GP611: inout bit;
+      UHPIHINTn_GP612  : inout bit;
+      UHPIHRDYn_GP613  : inout bit;
+      CLKOUT_UHPIHDS2n_GP614: inout bit;
+      RESETOUTn_UHPIHASn_GP615: inout bit;
+      EMAA0_GP50       : inout bit;
+      EMAA1_GP51       : inout bit;
+      EMAA2_GP52       : inout bit;
+      EMAA3_GP53       : inout bit;
+      EMAA4_GP54       : inout bit;
+      EMAA5_GP55       : inout bit;
+      EMAA6_GP56       : inout bit;
+      EMAA7_GP57       : inout bit;
+      EMAA8_GP58       : inout bit;
+      EMAA9_GP59       : inout bit;
+      EMAA10_GP510     : inout bit;
+      EMAA11_GP511     : inout bit;
+      EMAA12_GP512     : inout bit;
+      EMAA13_GP513     : inout bit;
+      EMAA14_MMCSD0DAT7_GP514: inout bit;
+      EMAA15_MMCSD0DAT6_GP515: inout bit;
+      EMAA16_MMCSD0DAT5_GP40: inout bit;
+      EMAA17_MMCSD0DAT4_GP41: inout bit;
+      EMAA18_MMCSD0DAT3_GP42: inout bit;
+      EMAA19_MMCSD0DAT2_GP43: inout bit;
+      EMAA20_MMCSD0DAT1_GP44: inout bit;
+      EMAA21_MMCSD0DAT0_GP45: inout bit;
+      EMAA22_MMCSD0CMD_GP46: inout bit;
+      EMAA23_MMCSD0CLK_GP47: inout bit;
+      EMAD0_GP48       : inout bit;
+      EMAD1_GP49       : inout bit;
+      EMAD2_GP410      : inout bit;
+      EMAD3_GP411      : inout bit;
+      EMAD4_GP412      : inout bit;
+      EMAD5_GP413      : inout bit;
+      EMAD6_GP414      : inout bit;
+      EMAD7_GP415      : inout bit;
+      EMAD8_GP30       : inout bit;
+      EMAD9_GP31       : inout bit;
+      EMAD10_GP32      : inout bit;
+      EMAD11_GP33      : inout bit;
+      EMAD12_GP34      : inout bit;
+      EMAD13_GP35      : inout bit;
+      EMAD14_GP36      : inout bit;
+      EMAD15_GP37      : inout bit;
+      EMAWAIT0_GP38    : inout bit;
+      EMARNW_GP39      : inout bit;
+      EMAOEn_GP310     : inout bit;
+      EMAWEn_GP311     : inout bit;
+      EMACS5n_GP212    : inout bit;
+      EMACS4n_GP313    : inout bit;
+      EMACS3n_GP314    : inout bit;
+      EMACS2n_GP315    : inout bit;
+      EMACS0n_GP20     : inout bit;
+      EMAWAIT1_GP21    : inout bit;
+      EMAWEDQM1n_GP22  : inout bit;
+      EMAWEDQM0n_GP23  : inout bit;
+      EMACASn_GP24     : inout bit;
+      EMARASn_GP25     : inout bit;
+      EMASDCKE_GP26    : inout bit;
+      EMACLK_GP27      : inout bit;
+      EMABA0_GP28      : inout bit;
+      EMABA1_GP29      : inout bit;
+      SPI1SIMO_GP210   : inout bit;
+      SPI1SOMI_GP211   : inout bit;
+      SPI1ENAn_GP212   : inout bit;
+      SPI1CLK_GP213    : inout bit;
+      SPI1SCS0n_EPWM1B_GP214_TM64P3IN12: inout bit;
+      SPI1SCS1n_EPWM1A_GP215_TM64P2IN12: inout bit;
+      SPI1SCS2n_UART1TXD_SATACPPOD_GP10: inout bit;
+      SPI1SCS3n_UART1RXD_SATALED_GP11: inout bit;
+      SPI1SCS4n_UART2TXD_I2C1SDA_GP12: inout bit;
+      SPI1SCS5n_UART2RXD_I2C1SCL_GP13: inout bit;
+      SPI1SCS6n_I2C0SDA_TM64P3OUT12_GP14: inout bit;
+      SPI1SCS7n_I2C0SCL_TM64P2OUT12_GP15: inout bit;
+      SPI0SCS0n_TM64P1OUT12_GP16_MDIOD_TM64P1IN12: inout bit;
+      SPI0SCS1n_TM64P0OUT12_GP17_MDIOCLK_TM64P0IN12: inout bit;
+      SPI0SCS2n_UART0RTS_GP81_MIIRXD0_SATACPDET: inout bit;
+      SPI0SCS3n_UART0CTS_GP82_MIIRXD1_SATAMPSWITCH: inout bit;
+      SPI0SCS4n_UART0TXD_GP83_MIIRXD2: inout bit;
+      SPI0SCS5n_UART0RXD_GP84_MIIRXD3: inout bit;
+      SPI0SIMO_EPWMSYNC0_GP85_MIICRS: inout bit;
+      SPI0SOMI_EPWMSYNCI_GP86_MIIRXER: inout bit;
+      SPI0ENAn_EPWM0B_MIIRXDV: inout bit;
+      SPI0CLK_EPWM0A_GP18_MIIRXCLK: inout bit;
+      AXR00_ECAP0APWM0_GP87_MIITXD0_CLKS0: inout bit;
+      AXR01_DX0_GP19_MIITXD1: inout bit;
+      AXR02_DR0_GP110_MIITXD2: inout bit;
+      AXR03_FSX0_GP111_MIITXD3: inout bit;
+      AXR04_FSR0_GP112_MIICOL: inout bit;
+      AXR05_CLKX0_GP113_MIITXCLK: inout bit;
+      AXR06_CLKR0_GP114_MIITXEN: inout bit;
+      AXR07_EPWM1TZ0_GP115: inout bit;
+      AXR08_CLKS1_ECAP1APWM1_GP00: inout bit;
+      AXR09_DX1_GP01   : inout bit;
+      AXR010_DR1_GP02  : inout bit;
+      AXR011_FSX1_GP03 : inout bit;
+      AXR012_FSR1_GP04 : inout bit;
+      AXR013_CLKX1_GP05: inout bit;
+      AXR014_CLKR1_GP06: inout bit;
+      AXR015_EPWM0TZ0_ECAP2APWM2_GP07: inout bit;
+      AMUTEIN_RTCALARM_UART2CTS_GP08_DEEPSLEEPn: inout bit;
+      AMUTE_UART2RTS_GP09: inout bit;
+      AHCLKX_USBREFCLKIN_UART1CTS_GP010: inout bit;
+      AHCLKR_UART1RTS_GP011: inout bit;
+      AFSX0_GP012      : inout bit;
+      AFSR0_GP013      : inout bit;
+      ACLKX_GP014      : inout bit;
+      ACLKR_GP015      : inout bit;
+      USB0DRVVBUS      : inout bit;
+      EMU1                          : inout bit;
+      EMU0                          : inout bit;
+      DDRDQGATE1       : inout bit;
+      DDRDQGATE0       : inout bit;
+      DDRDQS0          : inout bit;
+      DDRDQS1          : inout bit;
+      DDRDQM0n         : inout bit;
+      DDRDQM1n         : inout bit;
+      DDRD15           : inout bit;
+      DDRD14           : inout bit;
+      DDRD13           : inout bit;
+      DDRD12           : inout bit;
+      DDRD11           : inout bit;
+      DDRD10           : inout bit;
+      DDRD9            : inout bit;
+      DDRD8            : inout bit;
+      DDRD7            : inout bit;
+      DDRD6            : inout bit;
+      DDRD5            : inout bit;
+      DDRD4            : inout bit;
+      DDRD3            : inout bit;
+      DDRD2            : inout bit;
+      DDRD1            : inout bit;
+      DDRD0            : inout bit;
+      DDRA13           : inout bit;
+      DDRA12           : inout bit;
+      DDRA11           : inout bit;
+      DDRA10           : inout bit;
+      DDRA9            : inout bit;
+      DDRA8            : inout bit;
+      DDRA7            : inout bit;
+      DDRA6            : inout bit;
+      DDRA5            : inout bit;
+      DDRA4            : inout bit;
+      DDRA3            : inout bit;
+      DDRA2            : inout bit;
+      DDRA1            : inout bit;
+      DDRA0            : inout bit;
+      DDRBA0           : inout bit;
+      DDRBA1           : inout bit;
+      DDRBA2           : inout bit;
+      DDRWEn           : inout bit;
+      DDRRASn          : inout bit;
+      DDRCASn          : inout bit;
+      DDRCSn           : inout bit;
+      DDRCLKN          : inout bit;
+      DDRCLKP          : inout bit;
+      DDRCKE           : inout bit;
+      SATARXN          :    in bit;
+      SATARXP          :    in bit;
+      SATATXP          :   buffer bit;
+ --   SATATXN          :   out bit;
+ --   SATAREFCLKP      :    in bit;
+ --   SATAREFCLKN      :    in bit;
+ 
+      RESETn           : in bit;
+      TRSTn            : in bit;
+      TCK                           : in bit;
+      TDI                           : in bit;
+      TMS                           : in bit;
+      TDO                           : out bit;
+ 
+ --   SATAAMUX         : inout bit;
+ --   SATAREG          : inout bit;
+ --   RTCK_GP80        : inout bit; 
+ --   RTCXI            : inout bit; 
+ --   RTCXO            : inout bit;
+ --   OSCOUT                        : inout bit;
+ --   OSCIN                         : inout bit;
+ --   USB0DM           : inout bit;
+ --   USB0DP           : inout bit;
+ --   USB0ID           : inout bit;
+ --   USB0VBUS         : inout bit;
+ --   USB1DM           : inout bit;
+ --   USB1DP           : inout bit;
+ 
+      VSS                           : linkage bit_vector(1 to 42);
+      VDD                           : linkage bit_vector(1 to 84));
+ 
+    use STD_1149_1_2001.all; -- Get standard attributes and definitions
+ 
+ attribute COMPONENT_CONFORMANCE of AM1808: entity is
+ "STD_1149_1_2001";
+ 
+     attribute PIN_MAP of AM1808: entity is PHYSICAL_PIN_MAP;
+     constant ZCE : PIN_MAP_STRING :=
+ 
+      "RESERVEDN                     : J17 ," &
+      "LCDACENBCSn_GP60              : R5 ," &
+      "VPIFCLKO3_GP61                : K4 ," &
+      "VPIFCLKIN3_MMCSD1DAT1_GP62    : J3 ," &
+      "VPIFCLKO2_MMCSD1DAT2_GP63     : K3 ," &
+      "VPIFCLKIN2_MMCSD1DAT3_GP64    : H3 ," &
+      "MMCSD1DAT4_LCDVSYNC_GP88      : G4 ," &
+      "MMCSD1DAT5_LCDHSYNC_GP89      : H4 ," &
+      "MMCSD1DAT6_LCDMCLK_GP810      : F2 ," &
+      "MMCSD1DAT7_LCDPCLK_GP811      : F1 ," &
+      "UPPCHBWAIT_GP812              : G3 ," &
+      "MMCSD1CMD_UPPCHBENABLE_GP813  : J4 ," &
+      "MMCSD1CLK_UPPCHBSTART_GP814   : G2 ," &
+      "MMCSD1DAT0_UPPCHBCLOCK_GP815    : G1 ," &
+      "VPIFDOUT8_LCDD8_UPPXD0_GP70_BOOT0: U3 ," &
+      "VPIFDOUT9_LCDD9_UPPXD1_GP71_BOOT1: T1 ," &
+      "VPIFDOUT10_LCDD10_UPPXD2_GP72_BOOT2: T2 ," &
+      "VPIFDOUT11_LCDD11_UPPXD3_GP73_BOOT3: T3 ," &
+      "VPIFDOUT12_LCDD12_UPPXD4_GP74_BOOT4: R1 ," &
+      "VPIFDOUT13_LCDD13_UPPXD5_GP75_BOOT5: R2 ," &
+      "VPIFDOUT14_LCDD14_UPPXD6_GP76_BOOT6: R3 ," &
+      "VPIFDOUT15_LCDD15_UPPXD7_GP77_BOOT7: P4 ," &
+      "VPIFDOUT0_LCDD0_UPPXD8_GP78   : W1 ," &
+      "VPIFDOUT1_LCDD1_UPPXD9_GP79   : W2 ," &
+      "VPIFDOUT2_LCDD2_UPPXD10_GP710 : W3 ," &
+      "VPIFDOUT3_LCDD3_UPPXD11_GP711 : V1 ," &
+      "VPIFDOUT4_LCDD4_UPPXD12_GP712 : V2 ," &
+      "VPIFDOUT5_LCDD5_UPPXD13_GP713 : V3 ," &
+      "VPIFDOUT6_LCDD6_UPPXD14_GP714 : U1 ," &
+      "VPIFDOUT7_LCDD7_UPPXD15_GP715 : U2 ," &
+      "VPIFDIN8_UHPIHD0_UPPD0_GP65   : P17 ," &
+      "VPIFDIN9_UHPIHD1_UPPD1        : R15 ," &
+      "VPIFDIN10_UHPIHD2_UPPD2       : R19 ," &
+      "VPIFDIN11_UHPIHD3_UPPD3       : R18 ," &
+      "VPIFDIN12_UHPIHD4_UPPD4       : T16 ," &
+      "VPIFDIN13FIELD_UHPIHD5_UPPD5  : U19 ," &
+      "VPIFDIN14HSYNC_UHPIHD6_UPPD6  : V19 ," &
+      "VPIFDIN15VSYNC_UHPIHD7_UPPD7  : V18 ," &
+      "VPIFDIN0_UHPIHD8_UPPD8_RMIICRSDV: W19 ," &
+      "VPIFDIN1_UHPIHD9_UPPD9_RMIIMHZ50CLK: W18 ," &
+      "VPIFDIN2_UHPIHD10_UPPD10_RMIIRXER: W17 ," &
+      "VPIFDIN3_UHPIHD11_UPPD11_RMIIRXD0: V17 ," &
+      "VPIFDIN4_UHPIHD12_UPPD12_RMIIRXD1: W16 ," &
+      "VPIFDIN5_UHPIHD13_UPPD13_RMIITXEN: R14 ," &
+      "VPIFDIN6_UHPIHD14_UPPD14_RMIITXD0: V16 ," &
+      "VPIFDIN7_UHPIHD15_UPPD15_RMIITXD1: U18 ," &
+      "VPIFCLKIN1_UHPIHDS1n_GP66     : V15 ," &
+      "VPIFCLKIN0_UHPIHCSn_GP67_UPP2xTXCLK: W14 ," &
+      "UHPIHRWn_UPPCHAWAIT_GP68      : T15 ," &
+      "UHPIHHWIL_UPPCHAENABLE_GP69   : U16 ," &
+      "UHPIHCNTL1_UPPCHASTART_GP610  : W15 ," &
+      "UHPIHCNTL0_UPPCHACLOCK_GP611    : U17 ," &
+      "UHPIHINTn_GP612               : R16 ," &
+      "UHPIHRDYn_GP613               : R17 ," &
+      "CLKOUT_UHPIHDS2n_GP614        : T18 ," &
+      "RESETOUTn_UHPIHASn_GP615      : T17 ," &
+      "EMAA0_GP50                    : C14 ," &
+      "EMAA1_GP51                    : D15 ," &
+      "EMAA2_GP52                    : B14 ," &
+      "EMAA3_GP53                    : D14 ," &
+      "EMAA4_GP54                    : A14 ," &
+      "EMAA5_GP55                    : C13 ," &
+      "EMAA6_GP56                    : E13 ," &
+      "EMAA7_GP57                    : B13 ," &
+      "EMAA8_GP58                    : A13 ," &
+      "EMAA9_GP59                    : D12 ," &
+      "EMAA10_GP510                  : C12 ," &
+      "EMAA11_GP511                  : B12 ," &
+      "EMAA12_GP512                  : D13 ," &
+      "EMAA13_GP513                  : D11 ," &
+      "EMAA14_MMCSD0DAT7_GP514       : A12 ," &
+      "EMAA15_MMCSD0DAT6_GP515       : C11 ," &
+      "EMAA16_MMCSD0DAT5_GP40        : E12 ," &
+      "EMAA17_MMCSD0DAT4_GP41        : B11 ," &
+      "EMAA18_MMCSD0DAT3_GP42        : E11 ," &
+      "EMAA19_MMCSD0DAT2_GP43        : C10 ," &
+      "EMAA20_MMCSD0DAT1_GP44        : A11 ," &
+      "EMAA21_MMCSD0DAT0_GP45        : B10 ," &
+      "EMAA22_MMCSD0CMD_GP46         : A10 ," &
+      "EMAA23_MMCSD0CLK_GP47         : E9 ," &
+      "EMAD0_GP48                    : C9 ," &
+      "EMAD1_GP49                    : A8 ," &
+      "EMAD2_GP410                   : B8 ," &
+      "EMAD3_GP411                   : E8 ," &
+      "EMAD4_GP412                   : B5 ," &
+      "EMAD5_GP413                   : E7 ," &
+      "EMAD6_GP414                   : C6 ," &
+      "EMAD7_GP415                   : D7 ," &
+      "EMAD8_GP30                    : E10 ," &
+      "EMAD9_GP31                    : D9 ," &
+      "EMAD10_GP32                   : A7 ," &
+      "EMAD11_GP33                   : D6 ," &
+      "EMAD12_GP34                   : A6 ," &
+      "EMAD13_GP35                   : B6 ," &
+      "EMAD14_GP36                   : C7 ," &
+      "EMAD15_GP37                   : E6 ," &
+      "EMAWAIT0_GP38                 : B18 ," &
+      "EMARNW_GP39                   : D10 ," &
+      "EMAOEn_GP310                  : B15 ," &
+      "EMAWEn_GP311                  : B9 ," &
+      "EMACS5n_GP212                 : B16 ," &
+      "EMACS4n_GP313                 : F9 ," &
+      "EMACS3n_GP314                 : A17 ," &
+      "EMACS2n_GP315                 : B17 ," &
+      "EMACS0n_GP20                  : A18 ," &
+      "EMAWAIT1_GP21                 : B19 ," &
+      "EMAWEDQM1n_GP22               : A5 ," &
+      "EMAWEDQM0n_GP23               : C8 ," &
+      "EMACASn_GP24                  : A9 ," &
+      "EMARASn_GP25                  : A16 ," &
+      "EMASDCKE_GP26                 : D8 ," &
+      "EMACLK_GP27                   : B7 ," &
+      "EMABA0_GP28                   : C15 ," &
+      "EMABA1_GP29                   : A15 ," &
+      "SPI1SIMO_GP210                : G17 ," &
+      "SPI1SOMI_GP211                : H17 ," &
+      "SPI1ENAn_GP212                : H16 ," &
+      "SPI1CLK_GP213                 : G19 ," &
+      "SPI1SCS0n_EPWM1B_GP214_TM64P3IN12: E19 ," &
+      "SPI1SCS1n_EPWM1A_GP215_TM64P2IN12: F18 ," &
+      "SPI1SCS2n_UART1TXD_SATACPPOD_GP10: F19 ," &
+      "SPI1SCS3n_UART1RXD_SATALED_GP11: E18 ," &
+      "SPI1SCS4n_UART2TXD_I2C1SDA_GP12: F16 ," &
+      "SPI1SCS5n_UART2RXD_I2C1SCL_GP13: F17 ," &
+      "SPI1SCS6n_I2C0SDA_TM64P3OUT12_GP14: G18 ," &
+      "SPI1SCS7n_I2C0SCL_TM64P2OUT12_GP15: G16 ," &
+      "SPI0SCS0n_TM64P1OUT12_GP16_MDIOD_TM64P1IN12: D17 ," &
+      "SPI0SCS1n_TM64P0OUT12_GP17_MDIOCLK_TM64P0IN12: E16 ," &
+      "SPI0SCS2n_UART0RTS_GP81_MIIRXD0_SATACPDET: D16 ," &
+      "SPI0SCS3n_UART0CTS_GP82_MIIRXD1_SATAMPSWITCH: E17 ," &
+      "SPI0SCS4n_UART0TXD_GP83_MIIRXD2: D18 ," &
+      "SPI0SCS5n_UART0RXD_GP84_MIIRXD3: C19 ," &
+      "SPI0SIMO_EPWMSYNC0_GP85_MIICRS: C18 ," &
+      "SPI0SOMI_EPWMSYNCI_GP86_MIIRXER: C16 ," &
+      "SPI0ENAn_EPWM0B_MIIRXDV       : C17 ," &
+      "SPI0CLK_EPWM0A_GP18_MIIRXCLK  : D19 ," &
+      "AXR00_ECAP0APWM0_GP87_MIITXD0_CLKS0: F3 ," &
+      "AXR01_DX0_GP19_MIITXD1        : E1 ," &
+      "AXR02_DR0_GP110_MIITXD2       : E2 ," &
+      "AXR03_FSX0_GP111_MIITXD3      : E3 ," &
+      "AXR04_FSR0_GP112_MIICOL       : D1 ," &
+      "AXR05_CLKX0_GP113_MIITXCLK    : D3 ," &
+      "AXR06_CLKR0_GP114_MIITXEN     : C1 ," &
+      "AXR07_EPWM1TZ0_GP115          : D2 ," &
+      "AXR08_CLKS1_ECAP1APWM1_GP00   : E4 ," &
+      "AXR09_DX1_GP01                : C3 ," &
+      "AXR010_DR1_GP02               : D4 ," &
+      "AXR011_FSX1_GP03              : C5 ," &
+      "AXR012_FSR1_GP04              : C4 ," &
+      "AXR013_CLKX1_GP05             : B3 ," &
+      "AXR014_CLKR1_GP06             : B4 ," &
+      "AXR015_EPWM0TZ0_ECAP2APWM2_GP07: A4 ," &
+      "AMUTEIN_RTCALARM_UART2CTS_GP08_DEEPSLEEPn: F4 ," &
+      "AMUTE_UART2RTS_GP09           : D5 ," &
+      "AHCLKX_USBREFCLKIN_UART1CTS_GP010: A3 ," &
+      "AHCLKR_UART1RTS_GP011         : A2 ," &
+      "AFSX0_GP012                   : B2 ," &
+      "AFSR0_GP013                   : C2 ," &
+      "ACLKX_GP014                   : B1 ," &
+      "ACLKR_GP015                   : A1 ," &
+      "USB0DRVVBUS                   : K18 ," &
+      "EMU1                          : K16 ," &
+      "EMU0                          : J16 ," &
+      "DDRDQGATE1                    : R12 ," &
+      "DDRDQGATE0                    : R11 ," &
+      "DDRDQS0                       : T14 ," &
+      "DDRDQS1                       : V11 ," &
+      "DDRDQM0n                      : W13 ," &
+      "DDRDQM1n                      : R10 ," &
+      "DDRD15                        : W10 ," &
+      "DDRD14                        : U11 ," &
+      "DDRD13                        : V10 ," &
+      "DDRD12                        : U10 ," &
+      "DDRD11                        : T12 ," &
+      "DDRD10                        : T10 ," &
+      "DDRD9                         : T11 ," &
+      "DDRD8                         : T13 ," &
+      "DDRD7                         : W11 ," &
+      "DDRD6                         : W12 ," &
+      "DDRD5                         : V12 ," &
+      "DDRD4                         : V13 ," &
+      "DDRD3                         : U13 ," &
+      "DDRD2                         : V14 ," &
+      "DDRD1                         : U14 ," &
+      "DDRD0                         : U15 ," &
+      "DDRA13                        : T5 ," &
+      "DDRA12                        : V4 ," &
+      "DDRA11                        : T4 ," &
+      "DDRA10                        : W4 ," &
+      "DDRA9                         : T6 ," &
+      "DDRA8                         : U4 ," &
+      "DDRA7                         : U6 ," &
+      "DDRA6                         : W5 ," &
+      "DDRA5                         : V5 ," &
+      "DDRA4                         : U5 ," &
+      "DDRA3                         : V6 ," &
+      "DDRA2                         : W6 ," &
+      "DDRA1                         : T7 ," &
+      "DDRA0                         : U7 ," &
+      "DDRBA0                        : V8 ," &
+      "DDRBA1                        : T9 ," &
+      "DDRBA2                        : U8 ," &
+      "DDRWEn                        : T8 ," &
+      "DDRRASn                       : W9 ," &
+      "DDRCASn                       : U9 ," &
+      "DDRCSn                        : V9 ," &
+      "DDRCLKN                       : W7 ," &
+      "DDRCLKP                       : W8 ," &
+      "DDRCKE                        : V7 ," &
+      "SATARXN                       : L2 ," &
+      "SATARXP                       : L1 ," &
+      "SATATXP                       : J1 ," &
+ --   "SATATXN                       : J2 ," &
+ --   "SATAREFCLKP                   : N2 ," &
+ --   "SATAREFCLKN                   : N1 ," &
+ 
+      "RESETn                        : K14 ," &
+      "TRSTn                         : L17 ," &
+      "TCK                           : J15 ," &
+      "TDI                           : M16 ," &
+      "TMS                           : L16 ," &
+      "TDO                           : J18 ," &
+ 
+ --   "SATAAMUX                      : M3 ," &
+ --   "SATAREG                       : N3 ," &
+ --   "RTCK_GP80                     : K17 ," &
+ --   "RTCXI                         : J19 ," &
+ --   "RTCXO                         : H19 ," &
+ --   "USB0DM                        : M18 ," &
+ --   "OSCOUT                        : K19 ," &
+ --   "OSCIN                         : L19 ," &
+ --   "USB0DP                        : M19 ," &
+ --   "USB0ID                        : P16 ," &
+ --   "USB0VBUS                      : N19 ," &
+ --   "USB1DM                        : P18 ," &
+ --   "USB1DP                        : P19 ," &
+ 
+      "VDD                 :(E15, G13, G7, G8, H10, H11, H12, H13, H6, H7, J12, J6, K12, K6, L12, M8, M9, N8, F14, G10," &
+                           "G11, G12, G6, J13, K5, L6, P13, R13, L14, N4, M12, L15, N15, N17, P14, N14, N18, P15, H14, R6," &
+                           "E5, N7, P3, N10, N6, N9, P10, P7, P8, P9, R7, R8, R9, E14, F10, F11, F12, F13, F6, F7, F8, G9," &
+                           "F5, G5, H5, J5, L4, P5, P6, R4, K13, L13, M13, N13, P12, J14, K15, F15, G14, G15, M2, P1, P2, T19)," &
+      "VSS                 :(A19, H15, H8, H9, J10, J11, J7, J8, J9, K10, K11, K7, K8, K9, L10, L11, L5, L7, L8, L9, M10, M11," &
+                           "M4, M5, M6, M7, N11, N12, N5, P11, M17, M15, N16, M14, H1, H2, K1, K2, L3, M1, L18, H18)";
+ 
+ 
+ -- *********************************************************
+     attribute TAP_SCAN_IN    of TDI      : signal is true;
+     attribute TAP_SCAN_MODE  of TMS      : signal is true;
+     attribute TAP_SCAN_OUT   of TDO      : signal is true;
+     attribute TAP_SCAN_RESET of TRSTn    : signal is true;
+     attribute TAP_SCAN_CLOCK of TCK      : signal is (20.00e6, BOTH);
+ 
+     attribute COMPLIANCE_PATTERNS of AM1808: entity is "(RESETN)(1)";
+ 
+     attribute INSTRUCTION_LENGTH of AM1808: entity is 6;
+     attribute INSTRUCTION_OPCODE of AM1808: entity is
+               "EXTEST    (011000), " &
+               "BYPASS    (111111), " &
+               "HIGHZ     (011110), " &
+               "PRELOAD   (011100), " &
+               "IDCODE    (000100), " &
+               "SAMPLE    (011011), " &
+               "PRIVATE   (000000,  " &
+               "           000001,  " &
+               "           000010,  " &
+               "           000011,  " &
+               "           000101,  " &
+               "           000110,  " &
+               "           000111,  " &
+               "           001000,  " &
+               "           001001,  " &
+               "           001010,  " &
+               "           001011,  " &
+               "           001100,  " &
+               "           001101,  " &
+               "           001110,  " &
+               "           001111,  " &
+               "           010000,  " &
+               "           010001,  " &
+               "           010010,  " &
+               "           010011,  " &
+               "           010100,  " &
+               "           010101,  " &
+               "           010110,  " &
+               "           010111,  " &
+               "           011001,  " &
+               "           011010,  " &
+               "           011101,  " &
+               "           011111,  " &
+               "           100000,  " &
+               "           100001,  " &
+               "           100010,  " &
+               "           100011,  " &
+               "           100100,  " &
+               "           100101,  " &
+               "           100110,  " &
+               "           100111,  " &
+               "           101000,  " &
+               "           101001,  " &
+               "           101010,  " &
+               "           101011,  " &
+               "           101100,  " &
+               "           101101,  " &
+               "           101110,  " &
+               "           101111,  " &
+               "           110000,  " &
+               "           110001,  " &
+               "           110010,  " &
+               "           110011,  " &
+               "           110100,  " &
+               "           110101,  " &
+               "           110110,  " &
+               "           110111,  " &
+               "           111000,  " &
+               "           111001,  " &
+               "           111010,  " &
+               "           111011,  " &
+               "           111100,  " &
+               "           111101,  " &
+               "           111110)  " ;
+ 
+     attribute INSTRUCTION_CAPTURE of AM1808: entity is "XXXX01";
+    
+     attribute INSTRUCTION_PRIVATE of AM1808: entity is "PRIVATE";
+ 
+     attribute IDCODE_REGISTER of AM1808: entity is
+               "0000" &                 -- Version number
+               "1011011111010001" &     -- Part number -- C6748 pin package ID
+               "00000010111" &          -- Manufacturer ID  -- Texas Instruments
+               "1";                     -- Required by IEEE Std. 
+ 
+     attribute REGISTER_ACCESS of AM1808: entity is
+               "BOUNDARY (EXTEST, PRELOAD, SAMPLE)," &
+               "BYPASS   (BYPASS, HIGHZ)  " ;
+ 
+ attribute BOUNDARY_LENGTH   of AM1808: entity is 422;
+ attribute BOUNDARY_REGISTER of AM1808: entity is
+ 
+ --- num  cell           port     function  safe ccell disval rslt
+ 
+    "0   (bc_2,               *,   control,  1               )," & 
+    "1   (bc_7,      USB0DRVVBUS,  bidir,  X,      0,   1,   Z)," & 
+    "2   (bc_2,               *,   control,  1               )," & 
+    "3   (bc_7,  UHPIHINTn_GP612,  bidir,  X,      2,   1,   Z)," & 
+    "4   (bc_2,               *,   control,  1               )," & 
+    "5   (bc_7,CLKOUT_UHPIHDS2n_GP614,  bidir,  X,      4,   1,   Z)," & 
+    "6   (bc_2,               *,   control,  1               )," & 
+    "7   (bc_7,  UHPIHRDYn_GP613,  bidir,  X,      6,   1,   Z)," & 
+    "8   (bc_2,               *,   control,  1               )," & 
+    "9   (bc_7,RESETOUTn_UHPIHASn_GP615,  bidir,  X,      8,   1,   Z)," & 
+    "10  (bc_2,               *,   control,  1               )," & 
+    "11  (bc_7,VPIFDIN8_UHPIHD0_UPPD0_GP65,  bidir,  X,     10,   1,   Z)," & 
+    "12  (bc_2,               *,   control,  1               )," & 
+    "13  (bc_7,VPIFDIN9_UHPIHD1_UPPD1,  bidir,  X,     12,   1,   Z)," & 
+    "14  (bc_2,               *,   control,  1               )," & 
+    "15  (bc_7,VPIFDIN10_UHPIHD2_UPPD2,  bidir,  X,     14,   1,   Z)," & 
+    "16  (bc_2,               *,   control,  1               )," & 
+    "17  (bc_7,VPIFDIN11_UHPIHD3_UPPD3,  bidir,  X,     16,   1,   Z)," & 
+    "18  (bc_2,               *,   control,  1               )," & 
+    "19  (bc_7,VPIFDIN12_UHPIHD4_UPPD4,  bidir,  X,     18,   1,   Z)," & 
+    "20  (bc_2,               *,   control,  1               )," & 
+    "21  (bc_7,VPIFDIN13FIELD_UHPIHD5_UPPD5,  bidir,  X,     20,   1,   Z)," & 
+    "22  (bc_2,               *,   control,  1               )," & 
+    "23  (bc_7,VPIFDIN14HSYNC_UHPIHD6_UPPD6,  bidir,  X,     22,   1,   Z)," & 
+    "24  (bc_2,               *,   control,  1               )," & 
+    "25  (bc_7,VPIFDIN15VSYNC_UHPIHD7_UPPD7,  bidir,  X,     24,   1,   Z)," & 
+    "26  (bc_2,               *,   control,  1               )," & 
+    "27  (bc_7,VPIFCLKIN1_UHPIHDS1n_GP66,  bidir,  X,     26,   1,   Z)," & 
+    "28  (bc_2,               *,   control,  1               )," & 
+    "29  (bc_7,VPIFDIN0_UHPIHD8_UPPD8_RMIICRSDV,  bidir,  X,     28,   1,   Z)," & 
+    "30  (bc_2,               *,   control,  1               )," & 
+    "31  (bc_7,VPIFDIN1_UHPIHD9_UPPD9_RMIIMHZ50CLK,  bidir,  X,     30,   1,   Z)," & 
+    "32  (bc_2,               *,   control,  1               )," & 
+    "33  (bc_7,VPIFDIN2_UHPIHD10_UPPD10_RMIIRXER,  bidir,  X,     32,   1,   Z)," & 
+    "34  (bc_2,               *,   control,  1               )," & 
+    "35  (bc_7,VPIFDIN3_UHPIHD11_UPPD11_RMIIRXD0,  bidir,  X,     34,   1,   Z)," & 
+    "36  (bc_2,               *,   control,  1               )," & 
+    "37  (bc_7,VPIFDIN4_UHPIHD12_UPPD12_RMIIRXD1,  bidir,  X,     36,   1,   Z)," & 
+    "38  (bc_2,               *,   control,  1               )," & 
+    "39  (bc_7,VPIFDIN5_UHPIHD13_UPPD13_RMIITXEN,  bidir,  X,     38,   1,   Z)," & 
+    "40  (bc_2,               *,   control,  1               )," & 
+    "41  (bc_7,VPIFDIN6_UHPIHD14_UPPD14_RMIITXD0,  bidir,  X,     40,   1,   Z)," & 
+    "42  (bc_2,               *,   control,  1               )," & 
+    "43  (bc_7,VPIFDIN7_UHPIHD15_UPPD15_RMIITXD1,  bidir,  X,     42,   1,   Z)," & 
+    "44  (bc_2,               *,   control,  1               )," & 
+    "45  (bc_7,VPIFCLKIN0_UHPIHCSn_GP67_UPP2xTXCLK,  bidir,  X,     44,   1,   Z)," & 
+    "46  (bc_2,               *,   control,  1               )," & 
+    "47  (bc_7,UHPIHCNTL1_UPPCHASTART_GP610,  bidir,  X,     46,   1,   Z)," & 
+    "48  (bc_2,               *,   control,  1               )," & 
+    "49  (bc_7,UHPIHCNTL0_UPPCHACLOCK_GP611,  bidir,  X,     48,   1,   Z)," & 
+    "50  (bc_2,               *,   control,  1               )," & 
+    "51  (bc_7,UHPIHHWIL_UPPCHAENABLE_GP69,  bidir,  X,     50,   1,   Z)," & 
+    "52  (bc_2,               *,   control,  1               )," & 
+    "53  (bc_7,UHPIHRWn_UPPCHAWAIT_GP68,  bidir,  X,     52,   1,   Z)," & 
+    "54  (bc_2,               *,   control,  1               )," & 
+    "55  (bc_7, LCDACENBCSn_GP60,  bidir,  X,     54,   1,   Z)," & 
+    "56  (bc_2,               *,   control,  1               )," & 
+    "57  (bc_7,VPIFDOUT0_LCDD0_UPPXD8_GP78,  bidir,  X,     56,   1,   Z)," & 
+    "58  (bc_2,               *,   control,  1               )," & 
+    "59  (bc_7,VPIFDOUT1_LCDD1_UPPXD9_GP79,  bidir,  X,     58,   1,   Z)," & 
+    "60  (bc_2,               *,   control,  1               )," & 
+    "61  (bc_7,VPIFDOUT2_LCDD2_UPPXD10_GP710,  bidir,  X,     60,   1,   Z)," & 
+    "62  (bc_2,               *,   control,  1               )," & 
+    "63  (bc_7,VPIFDOUT3_LCDD3_UPPXD11_GP711,  bidir,  X,     62,   1,   Z)," & 
+    "64  (bc_2,               *,   control,  1               )," & 
+    "65  (bc_7,VPIFDOUT4_LCDD4_UPPXD12_GP712,  bidir,  X,     64,   1,   Z)," & 
+    "66  (bc_2,               *,   control,  1               )," & 
+    "67  (bc_7,VPIFDOUT5_LCDD5_UPPXD13_GP713,  bidir,  X,     66,   1,   Z)," & 
+    "68  (bc_2,               *,   control,  1               )," & 
+    "69  (bc_7,VPIFDOUT6_LCDD6_UPPXD14_GP714,  bidir,  X,     68,   1,   Z)," & 
+    "70  (bc_2,               *,   control,  1               )," & 
+    "71  (bc_7,VPIFDOUT7_LCDD7_UPPXD15_GP715,  bidir,  X,     70,   1,   Z)," & 
+    "72  (bc_2,               *,   control,  1               )," & 
+    "73  (bc_7,VPIFDOUT8_LCDD8_UPPXD0_GP70_BOOT0,  bidir,  X,     72,   1,   Z)," & 
+    "74  (bc_2,               *,   control,  1               )," & 
+    "75  (bc_7,VPIFDOUT9_LCDD9_UPPXD1_GP71_BOOT1,  bidir,  X,     74,   1,   Z)," & 
+    "76  (bc_2,               *,   control,  1               )," & 
+    "77  (bc_7,VPIFDOUT10_LCDD10_UPPXD2_GP72_BOOT2,  bidir,  X,     76,   1,   Z)," & 
+    "78  (bc_2,               *,   control,  1               )," & 
+    "79  (bc_7,VPIFDOUT11_LCDD11_UPPXD3_GP73_BOOT3,  bidir,  X,     78,   1,   Z)," & 
+    "80  (bc_2,               *,   control,  1               )," & 
+    "81  (bc_7,VPIFDOUT12_LCDD12_UPPXD4_GP74_BOOT4,  bidir,  X,     80,   1,   Z)," & 
+    "82  (bc_2,               *,   control,  1               )," & 
+    "83  (bc_7,VPIFDOUT13_LCDD13_UPPXD5_GP75_BOOT5,  bidir,  X,     82,   1,   Z)," & 
+    "84  (bc_2,               *,   control,  1               )," & 
+    "85  (bc_7,VPIFDOUT14_LCDD14_UPPXD6_GP76_BOOT6,  bidir,  X,     84,   1,   Z)," & 
+    "86  (bc_2,               *,   control,  1               )," & 
+    "87  (bc_7,VPIFDOUT15_LCDD15_UPPXD7_GP77_BOOT7,  bidir,  X,     86,   1,   Z)," & 
+    "88  (bc_2,               *,   control,  1               )," & 
+    "89  (bc_7,   VPIFCLKO3_GP61,  bidir,  X,     88,   1,   Z)," & 
+    "90  (bc_2,               *,   control,  1               )," & 
+    "91  (bc_7,VPIFCLKIN3_MMCSD1DAT1_GP62,  bidir,  X,     90,   1,   Z)," & 
+    "92  (bc_2,               *,   control,  1               )," & 
+    "93  (bc_7,VPIFCLKO2_MMCSD1DAT2_GP63,  bidir,  X,     92,   1,   Z)," & 
+    "94  (bc_2,               *,   control,  1               )," & 
+    "95  (bc_7,VPIFCLKIN2_MMCSD1DAT3_GP64,  bidir,  X,     94,   1,   Z)," & 
+    "96  (bc_2,               *,   control,  1               )," & 
+    "97  (bc_7,MMCSD1CLK_UPPCHBSTART_GP814,  bidir,  X,     96,   1,   Z)," & 
+    "98  (bc_2,               *,   control,  1               )," & 
+    "99  (bc_7,MMCSD1DAT0_UPPCHBCLOCK_GP815,  bidir,  X,     98,   1,   Z)," & 
+    "100 (bc_2,               *,   control,  1               )," & 
+    "101 (bc_7,MMCSD1CMD_UPPCHBENABLE_GP813,  bidir,  X,    100,   1,   Z)," & 
+    "102 (bc_2,               *,   control,  1               )," & 
+    "103 (bc_7, UPPCHBWAIT_GP812,  bidir,  X,    102,   1,   Z)," & 
+    "104 (bc_2,               *,   control,  1               )," & 
+    "105 (bc_7,MMCSD1DAT7_LCDPCLK_GP811,  bidir,  X,    104,   1,   Z)," & 
+    "106 (bc_2,               *,   control,  1               )," & 
+    "107 (bc_7,MMCSD1DAT5_LCDHSYNC_GP89,  bidir,  X,    106,   1,   Z)," & 
+    "108 (bc_2,               *,   control,  1               )," & 
+    "109 (bc_7,MMCSD1DAT6_LCDMCLK_GP810,  bidir,  X,    108,   1,   Z)," & 
+    "110 (bc_2,               *,   control,  1               )," & 
+    "111 (bc_7,MMCSD1DAT4_LCDVSYNC_GP88,  bidir,  X,    110,   1,   Z)," & 
+    "112 (bc_2,               *,   control,  1               )," & 
+    "113 (bc_7,AXR00_ECAP0APWM0_GP87_MIITXD0_CLKS0,  bidir,  X,    112,   1,   Z)," & 
+    "114 (bc_2,               *,   control,  1               )," & 
+    "115 (bc_7,AXR01_DX0_GP19_MIITXD1,  bidir,  X,    114,   1,   Z)," & 
+    "116 (bc_2,               *,   control,  1               )," & 
+    "117 (bc_7,AXR02_DR0_GP110_MIITXD2,  bidir,  X,    116,   1,   Z)," & 
+    "118 (bc_2,               *,   control,  1               )," & 
+    "119 (bc_7,AXR03_FSX0_GP111_MIITXD3,  bidir,  X,    118,   1,   Z)," & 
+    "120 (bc_2,               *,   control,  1               )," & 
+    "121 (bc_7,AXR04_FSR0_GP112_MIICOL,  bidir,  X,    120,   1,   Z)," & 
+    "122 (bc_2,               *,   control,  1               )," & 
+    "123 (bc_7,AXR05_CLKX0_GP113_MIITXCLK,  bidir,  X,    122,   1,   Z)," & 
+    "124 (bc_2,               *,   control,  1               )," & 
+    "125 (bc_7,AXR06_CLKR0_GP114_MIITXEN,  bidir,  X,    124,   1,   Z)," & 
+    "126 (bc_2,               *,   control,  1               )," & 
+    "127 (bc_7,AXR07_EPWM1TZ0_GP115,  bidir,  X,    126,   1,   Z)," & 
+    "128 (bc_2,               *,   control,  1               )," & 
+    "129 (bc_7,      ACLKR_GP015,  bidir,  X,    128,   1,   Z)," & 
+    "130 (bc_2,               *,   control,  1               )," & 
+    "131 (bc_7,      AFSR0_GP013,  bidir,  X,    130,   1,   Z)," & 
+    "132 (bc_2,               *,   control,  1               )," & 
+    "133 (bc_7,      ACLKX_GP014,  bidir,  X,    132,   1,   Z)," & 
+    "134 (bc_2,               *,   control,  1               )," & 
+    "135 (bc_7,      AFSX0_GP012,  bidir,  X,    134,   1,   Z)," & 
+    "136 (bc_2,               *,   control,  1               )," & 
+    "137 (bc_7,AHCLKR_UART1RTS_GP011,  bidir,  X,    136,   1,   Z)," & 
+    "138 (bc_2,               *,   control,  1               )," & 
+    "139 (bc_7,AMUTEIN_RTCALARM_UART2CTS_GP08_DEEPSLEEPn,  bidir,  X,    138,   1,   Z)," & 
+    "140 (bc_2,               *,   control,  1               )," & 
+    "141 (bc_7,AMUTE_UART2RTS_GP09,  bidir,  X,    140,   1,   Z)," & 
+    "142 (bc_2,               *,   control,  1               )," & 
+    "143 (bc_7,AHCLKX_USBREFCLKIN_UART1CTS_GP010,  bidir,  X,    142,   1,   Z)," & 
+    "144 (bc_2,               *,   control,  1               )," & 
+    "145 (bc_7,AXR08_CLKS1_ECAP1APWM1_GP00,  bidir,  X,    144,   1,   Z)," & 
+    "146 (bc_2,               *,   control,  1               )," & 
+    "147 (bc_7,   AXR09_DX1_GP01,  bidir,  X,    146,   1,   Z)," & 
+    "148 (bc_2,               *,   control,  1               )," & 
+    "149 (bc_7,  AXR010_DR1_GP02,  bidir,  X,    148,   1,   Z)," & 
+    "150 (bc_2,               *,   control,  1               )," & 
+    "151 (bc_7, AXR011_FSX1_GP03,  bidir,  X,    150,   1,   Z)," & 
+    "152 (bc_2,               *,   control,  1               )," & 
+    "153 (bc_7, AXR012_FSR1_GP04,  bidir,  X,    152,   1,   Z)," & 
+    "154 (bc_2,               *,   control,  1               )," & 
+    "155 (bc_7,AXR013_CLKX1_GP05,  bidir,  X,    154,   1,   Z)," & 
+    "156 (bc_2,               *,   control,  1               )," & 
+    "157 (bc_7,AXR014_CLKR1_GP06,  bidir,  X,    156,   1,   Z)," & 
+    "158 (bc_2,               *,   control,  1               )," & 
+    "159 (bc_7,AXR015_EPWM0TZ0_ECAP2APWM2_GP07,  bidir,  X,    158,   1,   Z)," & 
+    "160 (bc_2,               *,   control,  1               )," & 
+    "161 (bc_7,      EMAD15_GP37,  bidir,  X,    160,   1,   Z)," & 
+    "162 (bc_2,               *,   control,  1               )," & 
+    "163 (bc_7,      EMAD7_GP415,  bidir,  X,    162,   1,   Z)," & 
+    "164 (bc_2,               *,   control,  1               )," & 
+    "165 (bc_7,      EMAD14_GP36,  bidir,  X,    164,   1,   Z)," & 
+    "166 (bc_2,               *,   control,  1               )," & 
+    "167 (bc_7,      EMAD6_GP414,  bidir,  X,    166,   1,   Z)," & 
+    "168 (bc_2,               *,   control,  1               )," & 
+    "169 (bc_7,      EMAD13_GP35,  bidir,  X,    168,   1,   Z)," & 
+    "170 (bc_2,               *,   control,  1               )," & 
+    "171 (bc_7,      EMAD5_GP413,  bidir,  X,    170,   1,   Z)," & 
+    "172 (bc_2,               *,   control,  1               )," & 
+    "173 (bc_7,      EMAD12_GP34,  bidir,  X,    172,   1,   Z)," & 
+    "174 (bc_2,               *,   control,  1               )," & 
+    "175 (bc_7,      EMAD4_GP412,  bidir,  X,    174,   1,   Z)," & 
+    "176 (bc_2,               *,   control,  1               )," & 
+    "177 (bc_7,  EMAWEDQM1n_GP22,  bidir,  X,    176,   1,   Z)," & 
+    "178 (bc_2,               *,   control,  1               )," & 
+    "179 (bc_7,      EMAD11_GP33,  bidir,  X,    178,   1,   Z)," & 
+    "180 (bc_2,               *,   control,  1               )," & 
+    "181 (bc_7,      EMAD3_GP411,  bidir,  X,    180,   1,   Z)," & 
+    "182 (bc_2,               *,   control,  1               )," & 
+    "183 (bc_7,    EMASDCKE_GP26,  bidir,  X,    182,   1,   Z)," & 
+    "184 (bc_2,               *,   control,  1               )," & 
+    "185 (bc_7,      EMACLK_GP27,  bidir,  X,    184,   1,   Z)," & 
+    "186 (bc_2,               *,   control,  1               )," & 
+    "187 (bc_7,      EMAD10_GP32,  bidir,  X,    186,   1,   Z)," & 
+    "188 (bc_2,               *,   control,  1               )," & 
+    "189 (bc_7,  EMAWEDQM0n_GP23,  bidir,  X,    188,   1,   Z)," & 
+    "190 (bc_2,               *,   control,  1               )," & 
+    "191 (bc_7,      EMAD2_GP410,  bidir,  X,    190,   1,   Z)," & 
+    "192 (bc_2,               *,   control,  1               )," & 
+    "193 (bc_7,       EMAD9_GP31,  bidir,  X,    192,   1,   Z)," & 
+    "194 (bc_2,               *,   control,  1               )," & 
+    "195 (bc_7,    EMACS4n_GP313,  bidir,  X,    194,   1,   Z)," & 
+    "196 (bc_2,               *,   control,  1               )," & 
+    "197 (bc_7,       EMAD1_GP49,  bidir,  X,    196,   1,   Z)," & 
+    "198 (bc_2,               *,   control,  1               )," & 
+    "199 (bc_7,     EMACASn_GP24,  bidir,  X,    198,   1,   Z)," & 
+    "200 (bc_2,               *,   control,  1               )," & 
+    "201 (bc_7,       EMAD8_GP30,  bidir,  X,    200,   1,   Z)," & 
+    "202 (bc_2,               *,   control,  1               )," & 
+    "203 (bc_7,     EMAWEn_GP311,  bidir,  X,    202,   1,   Z)," & 
+    "204 (bc_2,               *,   control,  1               )," & 
+    "205 (bc_7,       EMAD0_GP48,  bidir,  X,    204,   1,   Z)," & 
+    "206 (bc_2,               *,   control,  1               )," & 
+    "207 (bc_7,      EMARNW_GP39,  bidir,  X,    206,   1,   Z)," & 
+    "208 (bc_2,               *,   control,  1               )," & 
+    "209 (bc_7,EMAA23_MMCSD0CLK_GP47,  bidir,  X,    208,   1,   Z)," & 
+    "210 (bc_2,               *,   control,  1               )," & 
+    "211 (bc_7,EMAA22_MMCSD0CMD_GP46,  bidir,  X,    210,   1,   Z)," & 
+    "212 (bc_2,               *,   control,  1               )," & 
+    "213 (bc_7,EMAA21_MMCSD0DAT0_GP45,  bidir,  X,    212,   1,   Z)," & 
+    "214 (bc_2,               *,   control,  1               )," & 
+    "215 (bc_7,EMAA20_MMCSD0DAT1_GP44,  bidir,  X,    214,   1,   Z)," & 
+    "216 (bc_2,               *,   control,  1               )," & 
+    "217 (bc_7,EMAA19_MMCSD0DAT2_GP43,  bidir,  X,    216,   1,   Z)," & 
+    "218 (bc_2,               *,   control,  1               )," & 
+    "219 (bc_7,EMAA18_MMCSD0DAT3_GP42,  bidir,  X,    218,   1,   Z)," & 
+    "220 (bc_2,               *,   control,  1               )," & 
+    "221 (bc_7,EMAA17_MMCSD0DAT4_GP41,  bidir,  X,    220,   1,   Z)," & 
+    "222 (bc_2,               *,   control,  1               )," & 
+    "223 (bc_7,EMAA16_MMCSD0DAT5_GP40,  bidir,  X,    222,   1,   Z)," & 
+    "224 (bc_2,               *,   control,  1               )," & 
+    "225 (bc_7,EMAA15_MMCSD0DAT6_GP515,  bidir,  X,    224,   1,   Z)," & 
+    "226 (bc_2,               *,   control,  1               )," & 
+    "227 (bc_7,EMAA14_MMCSD0DAT7_GP514,  bidir,  X,    226,   1,   Z)," & 
+    "228 (bc_2,               *,   control,  1               )," & 
+    "229 (bc_7,     EMAA13_GP513,  bidir,  X,    228,   1,   Z)," & 
+    "230 (bc_2,               *,   control,  1               )," & 
+    "231 (bc_7,     EMAA12_GP512,  bidir,  X,    230,   1,   Z)," & 
+    "232 (bc_2,               *,   control,  1               )," & 
+    "233 (bc_7,     EMAA11_GP511,  bidir,  X,    232,   1,   Z)," & 
+    "234 (bc_2,               *,   control,  1               )," & 
+    "235 (bc_7,     EMAA10_GP510,  bidir,  X,    234,   1,   Z)," & 
+    "236 (bc_2,               *,   control,  1               )," & 
+    "237 (bc_7,       EMAA9_GP59,  bidir,  X,    236,   1,   Z)," & 
+    "238 (bc_2,               *,   control,  1               )," & 
+    "239 (bc_7,       EMAA8_GP58,  bidir,  X,    238,   1,   Z)," & 
+    "240 (bc_2,               *,   control,  1               )," & 
+    "241 (bc_7,       EMAA7_GP57,  bidir,  X,    240,   1,   Z)," & 
+    "242 (bc_2,               *,   control,  1               )," & 
+    "243 (bc_7,       EMAA6_GP56,  bidir,  X,    242,   1,   Z)," & 
+    "244 (bc_2,               *,   control,  1               )," & 
+    "245 (bc_7,       EMAA5_GP55,  bidir,  X,    244,   1,   Z)," & 
+    "246 (bc_2,               *,   control,  1               )," & 
+    "247 (bc_7,       EMAA4_GP54,  bidir,  X,    246,   1,   Z)," & 
+    "248 (bc_2,               *,   control,  1               )," & 
+    "249 (bc_7,       EMAA3_GP53,  bidir,  X,    248,   1,   Z)," & 
+    "250 (bc_2,               *,   control,  1               )," & 
+    "251 (bc_7,       EMAA2_GP52,  bidir,  X,    250,   1,   Z)," & 
+    "252 (bc_2,               *,   control,  1               )," & 
+    "253 (bc_7,       EMAA1_GP51,  bidir,  X,    252,   1,   Z)," & 
+    "254 (bc_2,               *,   control,  1               )," & 
+    "255 (bc_7,       EMAA0_GP50,  bidir,  X,    254,   1,   Z)," & 
+    "256 (bc_2,               *,   control,  1               )," & 
+    "257 (bc_7,      EMABA1_GP29,  bidir,  X,    256,   1,   Z)," & 
+    "258 (bc_2,               *,   control,  1               )," & 
+    "259 (bc_7,      EMABA0_GP28,  bidir,  X,    258,   1,   Z)," & 
+    "260 (bc_2,               *,   control,  1               )," & 
+    "261 (bc_7,     EMARASn_GP25,  bidir,  X,    260,   1,   Z)," & 
+    "262 (bc_2,               *,   control,  1               )," & 
+    "263 (bc_7,     EMAOEn_GP310,  bidir,  X,    262,   1,   Z)," & 
+    "264 (bc_2,               *,   control,  1               )," & 
+    "265 (bc_7,    EMACS5n_GP212,  bidir,  X,    264,   1,   Z)," & 
+    "266 (bc_2,               *,   control,  1               )," & 
+    "267 (bc_7,    EMACS3n_GP314,  bidir,  X,    266,   1,   Z)," & 
+    "268 (bc_2,               *,   control,  1               )," & 
+    "269 (bc_7,    EMACS2n_GP315,  bidir,  X,    268,   1,   Z)," & 
+    "270 (bc_2,               *,   control,  1               )," & 
+    "271 (bc_7,     EMACS0n_GP20,  bidir,  X,    270,   1,   Z)," & 
+    "272 (bc_2,               *,   control,  1               )," & 
+    "273 (bc_7,    EMAWAIT1_GP21,  bidir,  X,    272,   1,   Z)," & 
+    "274 (bc_2,               *,   control,  1               )," & 
+    "275 (bc_7,    EMAWAIT0_GP38,  bidir,  X,    274,   1,   Z)," & 
+    "276 (bc_2,               *,   control,  1               )," & 
+    "277 (bc_7,SPI0SOMI_EPWMSYNCI_GP86_MIIRXER,  bidir,  X,    276,   1,   Z)," & 
+    "278 (bc_2,               *,   control,  1               )," & 
+    "279 (bc_7,SPI0ENAn_EPWM0B_MIIRXDV,  bidir,  X,    278,   1,   Z)," & 
+    "280 (bc_2,               *,   control,  1               )," & 
+    "281 (bc_7,SPI0SIMO_EPWMSYNC0_GP85_MIICRS,  bidir,  X,    280,   1,   Z)," & 
+    "282 (bc_2,               *,   control,  1               )," & 
+    "283 (bc_7,SPI0CLK_EPWM0A_GP18_MIIRXCLK,  bidir,  X,    282,   1,   Z)," & 
+    "284 (bc_2,               *,   control,  1               )," & 
+    "285 (bc_7,SPI0SCS5n_UART0RXD_GP84_MIIRXD3,  bidir,  X,    284,   1,   Z)," & 
+    "286 (bc_2,               *,   control,  1               )," & 
+    "287 (bc_7,SPI0SCS4n_UART0TXD_GP83_MIIRXD2,  bidir,  X,    286,   1,   Z)," & 
+    "288 (bc_2,               *,   control,  1               )," & 
+    "289 (bc_7,SPI0SCS3n_UART0CTS_GP82_MIIRXD1_SATAMPSWITCH,  bidir,  X,    288,   1,   Z)," & 
+    "290 (bc_2,               *,   control,  1               )," & 
+    "291 (bc_7,SPI0SCS2n_UART0RTS_GP81_MIIRXD0_SATACPDET,  bidir,  X,    290,   1,   Z)," & 
+    "292 (bc_2,               *,   control,  1               )," & 
+    "293 (bc_7,SPI0SCS1n_TM64P0OUT12_GP17_MDIOCLK_TM64P0IN12,  bidir,  X,    292,   1,   Z)," & 
+    "294 (bc_2,               *,   control,  1               )," & 
+    "295 (bc_7,SPI0SCS0n_TM64P1OUT12_GP16_MDIOD_TM64P1IN12,  bidir,  X,    294,   1,   Z)," & 
+    "296 (bc_2,               *,   control,  1               )," & 
+    "297 (bc_7,SPI1SCS0n_EPWM1B_GP214_TM64P3IN12,  bidir,  X,    296,   1,   Z)," & 
+    "298 (bc_2,               *,   control,  1               )," & 
+    "299 (bc_7,SPI1SCS1n_EPWM1A_GP215_TM64P2IN12,  bidir,  X,    298,   1,   Z)," & 
+    "300 (bc_2,               *,   control,  1               )," & 
+    "301 (bc_7,SPI1SCS2n_UART1TXD_SATACPPOD_GP10,  bidir,  X,    300,   1,   Z)," & 
+    "302 (bc_2,               *,   control,  1               )," & 
+    "303 (bc_7,SPI1SCS3n_UART1RXD_SATALED_GP11,  bidir,  X,    302,   1,   Z)," & 
+    "304 (bc_2,               *,   control,  1               )," & 
+    "305 (bc_7,SPI1SCS4n_UART2TXD_I2C1SDA_GP12,  bidir,  X,    304,   1,   Z)," & 
+    "306 (bc_2,               *,   control,  1               )," & 
+    "307 (bc_7,SPI1SCS5n_UART2RXD_I2C1SCL_GP13,  bidir,  X,    306,   1,   Z)," & 
+    "308 (bc_2,               *,   control,  1               )," & 
+    "309 (bc_7,SPI1SCS6n_I2C0SDA_TM64P3OUT12_GP14,  bidir,  X,    308,   1,   Z)," & 
+    "310 (bc_2,               *,   control,  1               )," & 
+    "311 (bc_7,SPI1SCS7n_I2C0SCL_TM64P2OUT12_GP15,  bidir,  X,    310,   1,   Z)," & 
+    "312 (bc_2,               *,   control,  1               )," & 
+    "313 (bc_7,    SPI1CLK_GP213,  bidir,  X,    312,   1,   Z)," & 
+    "314 (bc_2,               *,   control,  1               )," & 
+    "315 (bc_7,   SPI1SIMO_GP210,  bidir,  X,    314,   1,   Z)," & 
+    "316 (bc_2,               *,   control,  1               )," & 
+    "317 (bc_7,   SPI1ENAn_GP212,  bidir,  X,    316,   1,   Z)," & 
+    "318 (bc_2,               *,   control,  1               )," & 
+    "319 (bc_7,   SPI1SOMI_GP211,  bidir,  X,    318,   1,   Z)," & 
+    "320 (bc_2,               *,   control,  1               )," & 
+    "321 (bc_7,            EMU1,  bidir,  X,    320,   1,   Z)," & 
+    "322 (bc_1,        RESERVEDN,  input,  X                  )," & 
+    "323 (bc_2,               *,   control,  1               )," & 
+    "324 (bc_7,            EMU0,  bidir,  X,    323,   1,   Z)," & 
+    "325 (bc_2,               *,   control,  1               )," & 
+    "326 (bc_7,       DDRDQGATE1,  bidir,  X,    325,   1,   Z)," & 
+    "327 (bc_2,               *,   control,  1               )," & 
+    "328 (bc_7,       DDRDQGATE0,  bidir,  X,    327,   1,   Z)," & 
+    "329 (bc_2,               *,   control,  1               )," & 
+    "330 (bc_7,          DDRDQS0,  bidir,  X,    329,   1,   Z)," & 
+    "331 (bc_2,               *,   control,  1               )," & 
+    "332 (bc_7,          DDRDQS1,  bidir,  X,    331,   1,   Z)," & 
+    "333 (bc_2,               *,   control,  1               )," & 
+    "334 (bc_7,         DDRDQM0n,  bidir,  X,    333,   1,   Z)," & 
+    "335 (bc_2,               *,   control,  1               )," & 
+    "336 (bc_7,         DDRDQM1n,  bidir,  X,    335,   1,   Z)," & 
+    "337 (bc_2,               *,   control,  1               )," & 
+    "338 (bc_7,           DDRD15,  bidir,  X,    337,   1,   Z)," & 
+    "339 (bc_2,               *,   control,  1               )," & 
+    "340 (bc_7,           DDRD14,  bidir,  X,    339,   1,   Z)," & 
+    "341 (bc_2,               *,   control,  1               )," & 
+    "342 (bc_7,           DDRD13,  bidir,  X,    341,   1,   Z)," & 
+    "343 (bc_2,               *,   control,  1               )," & 
+    "344 (bc_7,           DDRD12,  bidir,  X,    343,   1,   Z)," & 
+    "345 (bc_2,               *,   control,  1               )," & 
+    "346 (bc_7,           DDRD11,  bidir,  X,    345,   1,   Z)," & 
+    "347 (bc_2,               *,   control,  1               )," & 
+    "348 (bc_7,           DDRD10,  bidir,  X,    347,   1,   Z)," & 
+    "349 (bc_2,               *,   control,  1               )," & 
+    "350 (bc_7,            DDRD9,  bidir,  X,    349,   1,   Z)," & 
+    "351 (bc_2,               *,   control,  1               )," & 
+    "352 (bc_7,            DDRD8,  bidir,  X,    351,   1,   Z)," & 
+    "353 (bc_2,               *,   control,  1               )," & 
+    "354 (bc_7,            DDRD7,  bidir,  X,    353,   1,   Z)," & 
+    "355 (bc_2,               *,   control,  1               )," & 
+    "356 (bc_7,            DDRD6,  bidir,  X,    355,   1,   Z)," & 
+    "357 (bc_2,               *,   control,  1               )," & 
+    "358 (bc_7,            DDRD5,  bidir,  X,    357,   1,   Z)," & 
+    "359 (bc_2,               *,   control,  1               )," & 
+    "360 (bc_7,            DDRD4,  bidir,  X,    359,   1,   Z)," & 
+    "361 (bc_2,               *,   control,  1               )," & 
+    "362 (bc_7,            DDRD3,  bidir,  X,    361,   1,   Z)," & 
+    "363 (bc_2,               *,   control,  1               )," & 
+    "364 (bc_7,            DDRD2,  bidir,  X,    363,   1,   Z)," & 
+    "365 (bc_2,               *,   control,  1               )," & 
+    "366 (bc_7,            DDRD1,  bidir,  X,    365,   1,   Z)," & 
+    "367 (bc_2,               *,   control,  1               )," & 
+    "368 (bc_7,            DDRD0,  bidir,  X,    367,   1,   Z)," & 
+    "369 (bc_2,               *,   control,  1               )," & 
+    "370 (bc_7,           DDRA13,  bidir,  X,    369,   1,   Z)," & 
+    "371 (bc_2,               *,   control,  1               )," & 
+    "372 (bc_7,           DDRA12,  bidir,  X,    371,   1,   Z)," & 
+    "373 (bc_2,               *,   control,  1               )," & 
+    "374 (bc_7,           DDRA11,  bidir,  X,    373,   1,   Z)," & 
+    "375 (bc_2,               *,   control,  1               )," & 
+    "376 (bc_7,           DDRA10,  bidir,  X,    375,   1,   Z)," & 
+    "377 (bc_2,               *,   control,  1               )," & 
+    "378 (bc_7,            DDRA9,  bidir,  X,    377,   1,   Z)," & 
+    "379 (bc_2,               *,   control,  1               )," & 
+    "380 (bc_7,            DDRA8,  bidir,  X,    379,   1,   Z)," & 
+    "381 (bc_2,               *,   control,  1               )," & 
+    "382 (bc_7,            DDRA7,  bidir,  X,    381,   1,   Z)," & 
+    "383 (bc_2,               *,   control,  1               )," & 
+    "384 (bc_7,            DDRA6,  bidir,  X,    383,   1,   Z)," & 
+    "385 (bc_2,               *,   control,  1               )," & 
+    "386 (bc_7,            DDRA5,  bidir,  X,    385,   1,   Z)," & 
+    "387 (bc_2,               *,   control,  1               )," & 
+    "388 (bc_7,            DDRA4,  bidir,  X,    387,   1,   Z)," & 
+    "389 (bc_2,               *,   control,  1               )," & 
+    "390 (bc_7,            DDRA3,  bidir,  X,    389,   1,   Z)," & 
+    "391 (bc_2,               *,   control,  1               )," & 
+    "392 (bc_7,            DDRA2,  bidir,  X,    391,   1,   Z)," & 
+    "393 (bc_2,               *,   control,  1               )," & 
+    "394 (bc_7,            DDRA1,  bidir,  X,    393,   1,   Z)," & 
+    "395 (bc_2,               *,   control,  1               )," & 
+    "396 (bc_7,            DDRA0,  bidir,  X,    395,   1,   Z)," & 
+    "397 (bc_2,               *,   control,  1               )," & 
+    "398 (bc_7,           DDRBA0,  bidir,  X,    397,   1,   Z)," & 
+    "399 (bc_2,               *,   control,  1               )," & 
+    "400 (bc_7,           DDRBA1,  bidir,  X,    399,   1,   Z)," & 
+    "401 (bc_2,               *,   control,  1               )," & 
+    "402 (bc_7,           DDRBA2,  bidir,  X,    401,   1,   Z)," & 
+    "403 (bc_2,               *,   control,  1               )," & 
+    "404 (bc_7,           DDRWEn,  bidir,  X,    403,   1,   Z)," & 
+    "405 (bc_2,               *,   control,  1               )," & 
+    "406 (bc_7,          DDRRASn,  bidir,  X,    405,   1,   Z)," & 
+    "407 (bc_2,               *,   control,  1               )," & 
+    "408 (bc_7,          DDRCASn,  bidir,  X,    407,   1,   Z)," & 
+    "409 (bc_2,               *,   control,  1               )," & 
+    "410 (bc_7,           DDRCSn,  bidir,  X,    409,   1,   Z)," & 
+    "411 (bc_2,               *,   control,  1               )," & 
+    "412 (bc_7,          DDRCLKN,  bidir,  X,    411,   1,   Z)," & 
+    "413 (bc_2,               *,   control,  1               )," & 
+    "414 (bc_7,          DDRCLKP,  bidir,  X,    413,   1,   Z)," & 
+    "415 (bc_2,               *,   control,  1               )," & 
+    "416 (bc_7,           DDRCKE,  bidir,  X,    415,   1,   Z)," & 
+    "417 (bc_1,          SATARXN,     input,  X               )," &
+    "418 (bc_1,          SATARXP,     input,  X               )," &
+    "419 (bc_1,          SATATXP,   output2,  X               )," &
+    "420 (bc_4,               *,  internal,  X               )," &
+    "421 (bc_4,               *,  internal,  X               )";
+ 
+     attribute DESIGN_WARNING of AM1808: entity is
+               "According to simulation, BSD JTAG TAP may not work correctly unless   " &
+               "device has completed Power on Reset sequence first. If the BSDL tool  " &
+               "does not use TRSTn pin, please put a 10K Ohm pull up resistor on this pin. " &
+               "Due to DDR implementation and timing restrictions, it was not possible      " &
+               "to place boundary scan cells between core logic and the IO like boundary    " &
+               "scan cells for other IO. Instead, the boundary scan cells are tapped-off    " &
+               "to the DDR PHY and there is the equivalent of a mux inside the DDR PHY      " &
+               "which selects between functional and boundary scan paths. The implication   " &
+               "for boundary scan is that the DDR pins will not support the SAMPLE function " &
+               "of the output enable cells on the DDR pins and this is a violation          " &
+               "of IEEE 1149.1. Full EXTEST and PRELOAD capability is still available.      " ;
+ 
+ end AM1808;

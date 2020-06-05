@@ -1,0 +1,713 @@
+----------------------------------------------
+-- BSDL for ADSP_21487 LQFP_EP_PACKAGE
+-- 176 LQFP_EP 24mmx24mm Package
+--
+-- Revision History :
+--
+-- File Revision 0.0 - Initial release, PrA, Thu Aug  12 12:30:46 2010, Manna.K
+-- Silicon Revision: R0.2
+----------------------------------------------
+entity ADSP_21487 is
+	generic (PHYSICAL_PIN_MAP : string:="LQFP_EP_PACKAGE");
+
+	port (
+		SDDQM:            out      bit;
+		MS0:              out      bit;
+		SDCKE:            out      bit;
+		CLK_CFG1:         in       bit;
+		ADDR0:            inout    bit;
+		BOOT_CFG0:        in       bit;
+		ADDR1:            inout    bit;
+		ADDR2:            inout    bit;
+		ADDR3:            inout    bit;
+		ADDR4:            inout    bit;
+		ADDR5:            inout    bit;
+		BOOT_CFG1:        in       bit;
+		ADDR6:            inout    bit;
+		ADDR7:            inout    bit;
+		ADDR8:            inout    bit;
+		ADDR9:            inout    bit;
+		CLK_CFG0:         in       bit;
+		CLKIN:            in       bit;
+		XTAL:             out      bit;
+		ADDR10:           inout    bit;
+		SDA10:            out      bit;
+		ADDR11:           inout    bit;
+		ADDR12:           inout    bit;
+		ADDR17:           inout    bit;
+		ADDR13:           inout    bit;
+		ADDR18:           inout    bit;
+		RESETOUT:         inout    bit;
+		DPI_P01:          inout    bit;
+		DPI_P02:          inout    bit;
+		DPI_P03:          inout    bit;
+		DPI_P05:          inout    bit;
+		DPI_P04:          inout    bit;
+		DPI_P06:          inout    bit;
+		DPI_P08:          inout    bit;
+		DPI_P07:          inout    bit;
+		DPI_P09:          inout    bit;
+		DPI_P10:          inout    bit;
+		DPI_P11:          inout    bit;
+		DPI_P12:          inout    bit;
+		DPI_P13:          inout    bit;
+		DPI_P14:          inout    bit;
+		DAI_P03:          inout    bit;
+		WDTRSTO:          out      bit;
+		DAI_P07:          inout    bit;
+		DAI_P13:          inout    bit;
+		DAI_P19:          inout    bit;
+		DAI_P01:          inout    bit;
+		DAI_P02:          inout    bit;
+		DAI_P06:          inout    bit;
+		DAI_P05:          inout    bit;
+		DAI_P09:          inout    bit;
+		DAI_P10:          inout    bit;
+		DAI_P20:          inout    bit;
+		DAI_P08:          inout    bit;
+		DAI_P14:          inout    bit;
+		DAI_P04:          inout    bit;
+		DAI_P18:          inout    bit;
+		DAI_P17:          inout    bit;
+		DAI_P16:          inout    bit;
+		DAI_P12:          inout    bit;
+		DAI_P15:          inout    bit;
+		DAI_P11:          inout    bit;
+		BOOT_CFG2:        in       bit;
+		AMI_ACK:          in       bit;
+		MS1:              out      bit;
+		WDT_CLKO:         out      bit;
+		WDT_CLKIN:        in       bit;
+		ADDR23:           inout    bit;
+		ADDR22:           inout    bit;
+		ADDR21:           inout    bit;
+		ADDR20:           inout    bit;
+		ADDR19:           inout    bit;
+		ADDR16:           inout    bit;
+		ADDR15:           inout    bit;
+		ADDR14:           inout    bit;
+		AMI_WR:           out      bit;
+		AMI_RD:           out      bit;
+		FLAG0:            inout    bit;
+		FLAG1:            inout    bit;
+		FLAG2:            inout    bit;
+		FLAG3:            inout    bit;
+		TRST:             in       bit;
+		EMU:              out      bit;
+		DATA0:            inout    bit;
+		DATA1:            inout    bit;
+		DATA2:            inout    bit;
+		DATA3:            inout    bit;
+		TDO:              out      bit;
+		DATA4:            inout    bit;
+		DATA5:            inout    bit;
+		DATA6:            inout    bit;
+		DATA7:            inout    bit;
+		TDI:              in       bit;
+		SDCLK:            out      bit;
+		DATA8:            inout    bit;
+		DATA9:            inout    bit;
+		DATA10:           inout    bit;
+		TCK:              in       bit;
+		DATA11:           inout    bit;
+		DATA12:           inout    bit;
+		DATA14:           inout    bit;
+		DATA13:           inout    bit;
+		DATA15:           inout    bit;
+		SDWE:             out      bit;
+		SDRAS:            out      bit;
+		RESET:            in       bit;
+		TMS:              in       bit;
+		SDCAS:            out      bit;
+		NC:               linkage  bit_vector(0 to 22);
+	        THD_M:		  linkage  bit;
+	        THD_P:		  linkage  bit;
+	        VDD_THD:	  linkage  bit;
+	        VDD_INT:          linkage  bit_vector(0 to 26);
+	        VDD_EXT:          linkage  bit_vector(0 to 12);
+	        GND:	          linkage  bit_vector(0 to 1));
+
+
+	use STD_1149_1_1994.all;
+
+	attribute COMPONENT_CONFORMANCE of ADSP_21487 : entity is "STD_1149_1_1990";
+
+	attribute PIN_MAP of ADSP_21487: entity is PHYSICAL_PIN_MAP;
+
+
+	constant LQFP_EP_PACKAGE: PIN_MAP_STRING:=
+                "SDDQM:       1," &
+                "MS0:         2," &
+                "SDCKE:       3," &
+                "CLK_CFG1:    5," &
+		"ADDR0:       6," &
+		"BOOT_CFG0:   7," &
+		"ADDR1:       9," &
+		"ADDR2:       10," &
+		"ADDR3:       11," &
+		"ADDR4:       12," &
+		"ADDR5:       13," &
+		"BOOT_CFG1:   14," &
+		"ADDR6:       16," &
+		"ADDR7:       17," &
+		"ADDR8:       20," &
+		"ADDR9:       21," &
+		"CLK_CFG0:    22," &
+		"CLKIN:       24," &
+		"XTAL:        25," &
+		"ADDR10:      26," &
+		"SDA10:       27," &
+		"ADDR11:      30," &
+		"ADDR12:      31," &
+		"ADDR17:      32," &
+		"ADDR13:      33," &
+		"ADDR18:      35," &
+		"RESETOUT:       36," &
+		"DPI_P01:       38," &
+		"DPI_P02:       39," &
+		"DPI_P03:       40," &
+		"DPI_P05:       42," &
+		"DPI_P04:       43," &
+		"DPI_P06:       44," &
+		"DPI_P08:       46," &
+		"DPI_P07:       47," &
+		"DPI_P09:       49," &
+		"DPI_P10:       50," &
+		"DPI_P11:       51," &
+		"DPI_P12:       52," &
+		"DPI_P13:       53," &
+		"DPI_P14:       54," &
+		"DAI_P03:       55," &
+		"WDTRSTO:       70," &
+		"DAI_P07:       73," &
+		"DAI_P13:       74," &
+		"DAI_P19:       75," &
+		"DAI_P01:       76," &
+		"DAI_P02:       77," &
+		"DAI_P06:       86," &
+		"DAI_P05:       87," &
+		"DAI_P09:       88," &
+		"DAI_P10:       89," &
+		"DAI_P20:       92," &
+		"DAI_P08:       94," &
+		"DAI_P14:       95," &
+		"DAI_P04:       96," &
+		"DAI_P18:       97," &
+		"DAI_P17:       98," &
+		"DAI_P16:       99," &
+		"DAI_P12:       100," &
+		"DAI_P15:       101," &
+		"DAI_P11:       103," &
+		"BOOT_CFG2:     106," &
+		"AMI_ACK:       108," &
+		"THD_M:         110," &
+		"THD_P:         111," &
+		"MS1:           115," &
+		"WDT_CLKO:      117," &
+		"WDT_CLKIN:     118," &
+		"ADDR23:        120," &
+		"ADDR22:        121," &
+		"ADDR21:        122," &
+		"ADDR20:        124," &
+		"ADDR19:        125," &
+		"ADDR16:        127," &
+		"ADDR15:        128," &
+		"ADDR14:        130," &
+		"AMI_WR:        131," &
+		"AMI_RD:        132," &
+		"FLAG0:         134," &
+		"FLAG1:         135," &
+		"FLAG2:         136," &
+		"FLAG3:         138," &
+		"TRST:          144," &
+		"EMU:           146," &
+		"DATA0:         147," &
+		"DATA1:         148," &
+		"DATA2:         149," &
+		"DATA3:         150," &
+		"TDO:           151," &
+		"DATA4:         152," &
+		"DATA5:         154," &
+		"DATA6:         155," &
+		"DATA7:         157," &
+		"TDI:           158," &
+		"SDCLK:         159," &
+		"DATA8:         161," &
+		"DATA9:         162," &
+		"DATA10:        163," &
+		"TCK:           164," &
+		"DATA11:        165," &
+		"DATA12:        166," &
+		"DATA14:        167," &
+		"DATA13:        168," &
+		"DATA15:        170," &
+		"SDWE:          171," &
+		"SDRAS:         172," &
+		"RESET:         173," &
+		"TMS:           174," &
+		"SDCAS:         175," &
+		"NC: (18,19,56,58,59,60,61,63,64,66,67,69,71,79,80,81,82,83,137,139,140,142,145)," &
+		"VDD_INT: (4,23,29,34,37,41,48,62,65,68,78,85,90,93,102,105,107,113,114,116,123,129,133,143,156,169,176)," &
+		"VDD_EXT:(8,28,45,57,72,84,91,104,119,126,141,153,160)," &
+		"VDD_THD: 112," &
+		"GND:    (15,109)";
+		
+	attribute TAP_SCAN_IN of TDI: signal is true;
+	attribute TAP_SCAN_MODE of TMS: signal is true;
+	attribute TAP_SCAN_OUT of TDO: signal is true;
+	attribute TAP_SCAN_RESET of TRST: signal is true;
+	attribute TAP_SCAN_CLOCK of TCK: signal is (50.0e6, BOTH);
+
+	
+	attribute INSTRUCTION_LENGTH of ADSP_21487: entity is 5;
+
+	-- Unspecified opcodes assigned to Bypass.
+	attribute INSTRUCTION_OPCODE of ADSP_21487: entity is 
+		"IDCODE         (11101)," &
+		"BYPASS         (11111)," &
+		"EXTEST         (00000)," &
+		"SAMPLE         (10000)," &
+		"INTEST         (11000)," &
+		"EMULATION      (01000,00100,10100,10110,01100,11100,00010,01001,01010)";
+                 
+	attribute IDCODE_REGISTER of ADSP_21487: entity is
+	"00100000000011000000000011001011";
+
+	attribute INSTRUCTION_CAPTURE of ADSP_21487: entity is "00001";
+
+	attribute INSTRUCTION_PRIVATE of ADSP_21487: entity is 
+		"EMULATION";
+	--                "EMULATION," &
+	--                "MEMTEST";
+        
+	-- attribute INSTRUCTION_USAGE of ADSP_21487: entity is
+	-- "INTEST (clock CLKIN)";
+
+	--   attribute BOUNDARY_CELLS of ADSP_21487: entity is
+	--	"BC_1, BC_2, BC_3, BC_4";
+	-- BC_1: output, control; BC_2: input; BC_3: internal; BC_4: clock
+
+	attribute BOUNDARY_LENGTH of ADSP_21487: entity is 418;
+
+	attribute BOUNDARY_REGISTER of ADSP_21487: entity is
+		--num cell port function safe [ccell disval rslt]
+		" 0 (BC_1, SDDQM, output3, X, 1, 0, Z), " &
+		" 1 (BC_1, *, control, 0), " &
+		" 2 (BC_3, *, internal, X), " &
+		" 3 (BC_1, MS0, output3, X, 4, 0, Z), " &
+		" 4 (BC_1, *, control, 0), " &
+		" 5 (BC_3, *, internal, X), " &
+		" 6 (BC_1, SDCKE, output3, X, 7, 0, Z), " &
+		" 7 (BC_1, *, control, 0), " &
+		" 8 (BC_3, *, internal, X), " &
+		" 9 (BC_3, *, internal, X), " &
+		" 10 (BC_3, *, internal, X), " &
+		" 11 (BC_2, CLK_CFG1, input, X), " &
+		" 12 (BC_1, MS1, output3, X, 13, 0, Z), " &
+		" 13 (BC_1, *, control, 0), " &
+		" 14 (BC_3, *, internal, X), " &
+		" 15 (BC_1, ADDR0, output3, X, 16, 0, Z), " &
+		" 16 (BC_1, *, control, 0), " &
+		" 17 (BC_2, ADDR0, input, X), " &
+		" 18 (BC_3, *, internal, X), " &
+		" 19 (BC_3, *, internal, X), " &
+		" 20 (BC_2, BOOT_CFG0, input, X), " &
+		" 21 (BC_1, ADDR1, output3, X, 22, 0, Z), " &
+		" 22 (BC_1, *, control, 0), " &
+		" 23 (BC_2, ADDR1, input, X), " &
+		" 24 (BC_1, ADDR2, output3, X, 25, 0, Z), " &
+		" 25 (BC_1, *, control, 0), " &
+		" 26 (BC_2, ADDR2, input, X), " &
+		" 27 (BC_1, ADDR3, output3, X, 28, 0, Z), " &
+		" 28 (BC_1, *, control, 0), " &
+		" 29 (BC_2, ADDR3, input, X), " &
+		" 30 (BC_1, ADDR4, output3, X, 31, 0, Z), " &
+		" 31 (BC_1, *, control, 0), " &
+		" 32 (BC_2, ADDR4, input, X), " &
+		" 33 (BC_1, ADDR5, output3, X, 34, 0, Z), " &
+		" 34 (BC_1, *, control, 0), " &
+		" 35 (BC_2, ADDR5, input, X), " &
+		" 36 (BC_3, *, internal, X), " &
+		" 37 (BC_3, *, internal, X), " &
+		" 38 (BC_2, BOOT_CFG1, input, X), " &
+		" 39 (BC_1, ADDR6, output3, X, 40, 0, Z), " &
+		" 40 (BC_1, *, control, 0), " &
+		" 41 (BC_2, ADDR6, input, X), " &
+		" 42 (BC_1, ADDR7, output3, X, 43, 0, Z), " &
+		" 43 (BC_1, *, control, 0), " &
+		" 44 (BC_2, ADDR7, input, X), " &
+		" 45 (BC_1, ADDR8, output3, X, 46, 0, Z), " &
+		" 46 (BC_1, *, control, 0), " &
+		" 47 (BC_2, ADDR8, input, X), " &
+		" 48 (BC_1, ADDR9, output3, X, 49, 0, Z), " &
+		" 49 (BC_1, *, control, 0), " &
+		" 50 (BC_2, ADDR9, input, X), " &
+		" 51 (BC_3, *, internal, X), " &
+		" 52 (BC_3, *, internal, X), " &
+		" 53 (BC_2, CLK_CFG0, input, X), " &
+		" 54 (BC_1, SDA10, output3, X, 55, 0, Z), " &
+		" 55 (BC_1, *, control, 0), " &
+		" 56 (BC_3, *, internal, X), " &
+		" 57 (BC_1, ADDR10, output3, X, 58, 0, Z), " &
+		" 58 (BC_1, *, control, 0), " &
+		" 59 (BC_2, ADDR10, input, X), " &
+		" 60 (BC_1, ADDR11, output3, X, 61, 0, Z), " &
+		" 61 (BC_1, *, control, 0), " &
+		" 62 (BC_2, ADDR11, input, X), " &
+		" 63 (BC_1, ADDR12, output3, X, 64, 0, Z), " &
+		" 64 (BC_1, *, control, 0), " &
+		" 65 (BC_2, ADDR12, input, X), " &
+		" 66 (BC_1, ADDR13, output3, X, 67, 0, Z), " &
+		" 67 (BC_1, *, control, 0), " &
+		" 68 (BC_2, ADDR13, input, X), " &
+		" 69 (BC_1, ADDR17, output3, X, 70, 0, Z), " &
+		" 70 (BC_1, *, control, 0), " &
+		" 71 (BC_2, ADDR17, input, X), " &
+		" 72 (BC_1, ADDR18, output3, X, 73, 0, Z), " &
+		" 73 (BC_1, *, control, 0), " &
+		" 74 (BC_2, ADDR18, input, X), " &
+		" 75 (BC_1, RESETOUT, output3, X, 76, 0, Z), " &
+		" 76 (BC_1, *, control, 0), " &
+		" 77 (BC_2, RESETOUT, input, X), " &
+		" 78 (BC_3, *, internal, X), " &
+		" 79 (BC_3, *, internal, X), " &
+		" 80 (BC_3, *, internal, X), " &
+		" 81 (BC_3, *, internal, X), " &
+		" 82 (BC_3, *, internal, X), " &
+		" 83 (BC_3, *, internal, X), " &
+		" 84 (BC_3, *, internal, X), " &
+		" 85 (BC_3, *, internal, X), " &
+		" 86 (BC_3, *, internal, X), " &
+		" 87 (BC_3, *, internal, X), " &
+		" 88 (BC_3, *, internal, X), " &
+		" 89 (BC_3, *, internal, X), " &
+		" 90 (BC_3, *, internal, X), " &
+		" 91 (BC_3, *, internal, X), " &
+		" 92 (BC_3, *, internal, X), " &
+		" 93 (BC_3, *, internal, X), " &
+		" 94 (BC_3, *, internal, X), " &
+		" 95 (BC_3, *, internal, X), " &
+		" 96 (BC_3, *, internal, X), " &
+		" 97 (BC_3, *, internal, X), " &
+		" 98 (BC_3, *, internal, X), " &
+		" 99 (BC_3, *, internal, X), " &
+		" 100 (BC_3, *, internal, X), " &
+		" 101 (BC_3, *, internal, X), " &
+		" 102 (BC_3, *, internal, X), " &
+		" 103 (BC_3, *, internal, X), " &
+		" 104 (BC_3, *, internal, X), " &
+		" 105 (BC_3, *, internal, X), " &
+		" 106 (BC_3, *, internal, X), " &
+		" 107 (BC_3, *, internal, X), " &
+		" 108 (BC_1, DPI_P01, output3, X, 109, 0, Z), " &
+		" 109 (BC_1, *, control, 0), " &
+		" 110 (BC_2, DPI_P01, input, X), " &
+		" 111 (BC_1, DPI_P02, output3, X, 112, 0, Z), " &
+		" 112 (BC_1, *, control, 0), " &
+		" 113 (BC_2, DPI_P02, input, X), " &
+		" 114 (BC_1, DPI_P03, output3, X, 115, 0, Z), " &
+		" 115 (BC_1, *, control, 0), " &
+		" 116 (BC_2, DPI_P03, input, X), " &
+		" 117 (BC_1, DPI_P04, output3, X, 118, 0, Z), " &
+		" 118 (BC_1, *, control, 0), " &
+		" 119 (BC_2, DPI_P04, input, X), " &
+		" 120 (BC_1, DPI_P05, output3, X, 121, 0, Z), " &
+		" 121 (BC_1, *, control, 0), " &
+		" 122 (BC_2, DPI_P05, input, X), " &
+		" 123 (BC_1, DPI_P06, output3, X, 124, 0, Z), " &
+		" 124 (BC_1, *, control, 0), " &
+		" 125 (BC_2, DPI_P06, input, X), " &
+		" 126 (BC_1, DPI_P08, output3, X, 127, 0, Z), " &
+		" 127 (BC_1, *, control, 0), " &
+		" 128 (BC_2, DPI_P08, input, X), " &
+		" 129 (BC_1, DPI_P07, output3, X, 130, 0, Z), " &
+		" 130 (BC_1, *, control, 0), " &
+		" 131 (BC_2, DPI_P07, input, X), " &
+		" 132 (BC_1, DPI_P09, output3, X, 133, 0, Z), " &
+		" 133 (BC_1, *, control, 0), " &
+		" 134 (BC_2, DPI_P09, input, X), " &
+		" 135 (BC_1, DPI_P10, output3, X, 136, 0, Z), " &
+		" 136 (BC_1, *, control, 0), " &
+		" 137 (BC_2, DPI_P10, input, X), " &
+		" 138 (BC_1, DPI_P11, output3, X, 139, 0, Z), " &
+		" 139 (BC_1, *, control, 0), " &
+		" 140 (BC_2, DPI_P11, input, X), " &
+		" 141 (BC_1, DPI_P13, output3, X, 142, 0, Z), " &
+		" 142 (BC_1, *, control, 0), " &
+		" 143 (BC_2, DPI_P13, input, X), " &
+		" 144 (BC_1, DPI_P12, output3, X, 145, 0, Z), " &
+		" 145 (BC_1, *, control, 0), " &
+		" 146 (BC_2, DPI_P12, input, X), " &
+		" 147 (BC_1, DAI_P03, output3, X, 148, 0, Z), " &
+		" 148 (BC_1, *, control, 0), " &
+		" 149 (BC_2, DAI_P03, input, X), " &
+		" 150 (BC_1, DPI_P14, output3, X, 151, 0, Z), " &
+		" 151 (BC_1, *, control, 0), " &
+		" 152 (BC_2, DPI_P14, input, X), " &
+		" 153 (BC_3, *, internal, X), " &
+		" 154 (BC_3, *, internal, X), " &
+		" 155 (BC_3, *, internal, X), " &
+		" 156 (BC_3, *, internal, X), " &
+		" 157 (BC_3, *, internal, X), " &
+		" 158 (BC_3, *, internal, X), " &
+		" 159 (BC_3, *, internal, X), " &
+		" 160 (BC_3, *, internal, X), " &
+		" 161 (BC_3, *, internal, X), " &
+		" 162 (BC_3, *, internal, X), " &
+		" 163 (BC_3, *, internal, X), " &
+		" 164 (BC_3, *, internal, X), " &
+		" 165 (BC_3, *, internal, X), " &
+		" 166 (BC_3, *, internal, X), " &
+		" 167 (BC_3, *, internal, X), " &
+		" 168 (BC_3, *, internal, X), " &
+		" 169 (BC_3, *, internal, X), " &
+		" 170 (BC_3, *, internal, X), " &
+		" 171 (BC_3, *, internal, X), " &
+		" 172 (BC_3, *, internal, X), " &
+		" 173 (BC_3, *, internal, X), " &
+		" 174 (BC_3, *, internal, X), " &
+		" 175 (BC_3, *, internal, X), " &
+		" 176 (BC_3, *, internal, X), " &
+		" 177 (BC_3, *, internal, X), " &
+		" 178 (BC_3, *, internal, X), " &
+		" 179 (BC_3, *, internal, X), " &
+		" 180 (BC_3, *, internal, X), " &
+		" 181 (BC_3, *, internal, X), " &
+		" 182 (BC_3, *, internal, X), " &
+		" 183 (BC_1, WDTRSTO, output3, X, 184, 0, Z), " &
+		" 184 (BC_1, *, control, 0), " &
+		" 185 (BC_3, *, internal, X), " &
+		" 186 (BC_3, *, internal, X), " &
+		" 187 (BC_3, *, internal, X), " &
+		" 188 (BC_3, *, internal, X), " &
+		" 189 (BC_1, DAI_P13, output3, X, 190, 0, Z), " &
+		" 190 (BC_1, *, control, 0), " &
+		" 191 (BC_2, DAI_P13, input, X), " &
+		" 192 (BC_1, DAI_P07, output3, X, 193, 0, Z), " &
+		" 193 (BC_1, *, control, 0), " &
+		" 194 (BC_2, DAI_P07, input, X), " &
+		" 195 (BC_1, DAI_P01, output3, X, 196, 0, Z), " &
+		" 196 (BC_1, *, control, 0), " &
+		" 197 (BC_2, DAI_P01, input, X), " &
+		" 198 (BC_1, DAI_P19, output3, X, 199, 0, Z), " &
+		" 199 (BC_1, *, control, 0), " &
+		" 200 (BC_2, DAI_P19, input, X), " &
+		" 201 (BC_1, DAI_P02, output3, X, 202, 0, Z), " &
+		" 202 (BC_1, *, control, 0), " &
+		" 203 (BC_2, DAI_P02, input, X), " &
+		" 204 (BC_3, *, internal, X), " &
+		" 205 (BC_3, *, internal, X), " &
+		" 206 (BC_3, *, internal, X), " &
+		" 207 (BC_3, *, internal, X), " &
+		" 208 (BC_3, *, internal, X), " &
+		" 209 (BC_3, *, internal, X), " &
+		" 210 (BC_3, *, internal, X), " &
+		" 211 (BC_3, *, internal, X), " &
+		" 212 (BC_3, *, internal, X), " &
+		" 213 (BC_3, *, internal, X), " &
+		" 214 (BC_3, *, internal, X), " &
+		" 215 (BC_3, *, internal, X), " &
+		" 216 (BC_3, *, internal, X), " &
+		" 217 (BC_3, *, internal, X), " &
+		" 218 (BC_3, *, internal, X), " &
+		" 219 (BC_3, *, internal, X), " &
+		" 220 (BC_3, *, internal, X), " &
+		" 221 (BC_3, *, internal, X), " &
+		" 222 (BC_3, *, internal, X), " &
+		" 223 (BC_3, *, internal, X), " &
+		" 224 (BC_3, *, internal, X), " &
+		" 225 (BC_3, *, internal, X), " &
+		" 226 (BC_3, *, internal, X), " &
+		" 227 (BC_3, *, internal, X), " &
+		" 228 (BC_3, *, internal, X), " &
+		" 229 (BC_3, *, internal, X), " &
+		" 230 (BC_3, *, internal, X), " &
+		" 231 (BC_3, *, internal, X), " &
+		" 232 (BC_3, *, internal, X), " &
+		" 233 (BC_3, *, internal, X), " &
+		" 234 (BC_3, *, internal, X), " &
+		" 235 (BC_3, *, internal, X), " &
+		" 236 (BC_3, *, internal, X), " &
+		" 237 (BC_3, *, internal, X), " &
+		" 238 (BC_3, *, internal, X), " &
+		" 239 (BC_3, *, internal, X), " &
+		" 240 (BC_1, DAI_P05, output3, X, 241, 0, Z), " &
+		" 241 (BC_1, *, control, 0), " &
+		" 242 (BC_2, DAI_P05, input, X), " &
+		" 243 (BC_1, DAI_P06, output3, X, 244, 0, Z), " &
+		" 244 (BC_1, *, control, 0), " &
+		" 245 (BC_2, DAI_P06, input, X), " &
+		" 246 (BC_1, DAI_P09, output3, X, 247, 0, Z), " &
+		" 247 (BC_1, *, control, 0), " &
+		" 248 (BC_2, DAI_P09, input, X), " &
+		" 249 (BC_1, DAI_P10, output3, X, 250, 0, Z), " &
+		" 250 (BC_1, *, control, 0), " &
+		" 251 (BC_2, DAI_P10, input, X), " &
+		" 252 (BC_1, DAI_P20, output3, X, 253, 0, Z), " &
+		" 253 (BC_1, *, control, 0), " &
+		" 254 (BC_2, DAI_P20, input, X), " &
+		" 255 (BC_1, DAI_P14, output3, X, 256, 0, Z), " &
+		" 256 (BC_1, *, control, 0), " &
+		" 257 (BC_2, DAI_P14, input, X), " &
+		" 258 (BC_1, DAI_P08, output3, X, 259, 0, Z), " &
+		" 259 (BC_1, *, control, 0), " &
+		" 260 (BC_2, DAI_P08, input, X), " &
+		" 261 (BC_1, DAI_P04, output3, X, 262, 0, Z), " &
+		" 262 (BC_1, *, control, 0), " &
+		" 263 (BC_2, DAI_P04, input, X), " &
+		" 264 (BC_1, DAI_P18, output3, X, 265, 0, Z), " &
+		" 265 (BC_1, *, control, 0), " &
+		" 266 (BC_2, DAI_P18, input, X), " &
+		" 267 (BC_1, DAI_P17, output3, X, 268, 0, Z), " &
+		" 268 (BC_1, *, control, 0), " &
+		" 269 (BC_2, DAI_P17, input, X), " &
+		" 270 (BC_1, DAI_P16, output3, X, 271, 0, Z), " &
+		" 271 (BC_1, *, control, 0), " &
+		" 272 (BC_2, DAI_P16, input, X), " &
+		" 273 (BC_1, DAI_P12, output3, X, 274, 0, Z), " &
+		" 274 (BC_1, *, control, 0), " &
+		" 275 (BC_2, DAI_P12, input, X), " &
+		" 276 (BC_1, DAI_P15, output3, X, 277, 0, Z), " &
+		" 277 (BC_1, *, control, 0), " &
+		" 278 (BC_2, DAI_P15, input, X), " &
+		" 279 (BC_1, DAI_P11, output3, X, 280, 0, Z), " &
+		" 280 (BC_1, *, control, 0), " &
+		" 281 (BC_2, DAI_P11, input, X), " &
+		" 282 (BC_3, *, internal, X), " &
+		" 283 (BC_3, *, internal, X), " &
+		" 284 (BC_2, BOOT_CFG2, input, X), " &
+		" 285 (BC_3, *, internal, X), " &
+		" 286 (BC_3, *, internal, X), " &
+		" 287 (BC_2, AMI_ACK, input, X), " &
+		" 288 (BC_3, *, internal, X), " &
+		" 289 (BC_3, *, internal, X), " &
+		" 290 (BC_3, *, internal, X), " &
+		" 291 (BC_3, *, internal, X), " &
+		" 292 (BC_3, *, internal, X), " &
+		" 293 (BC_3, *, internal, X), " &
+		" 294 (BC_1, ADDR23, output3, X, 295, 0, Z), " &
+		" 295 (BC_1, *, control, 0), " &
+		" 296 (BC_2, ADDR23, input, X), " &
+		" 297 (BC_1, ADDR22, output3, X, 298, 0, Z), " &
+		" 298 (BC_1, *, control, 0), " &
+		" 299 (BC_2, ADDR22, input, X), " &
+		" 300 (BC_1, ADDR21, output3, X, 301, 0, Z), " &
+		" 301 (BC_1, *, control, 0), " &
+		" 302 (BC_2, ADDR21, input, X), " &
+		" 303 (BC_1, ADDR20, output3, X, 304, 0, Z), " &
+		" 304 (BC_1, *, control, 0), " &
+		" 305 (BC_2, ADDR20, input, X), " &
+		" 306 (BC_1, ADDR19, output3, X, 307, 0, Z), " &
+		" 307 (BC_1, *, control, 0), " &
+		" 308 (BC_2, ADDR19, input, X), " &
+		" 309 (BC_1, ADDR16, output3, X, 310, 0, Z), " &
+		" 310 (BC_1, *, control, 0), " &
+		" 311 (BC_2, ADDR16, input, X), " &
+		" 312 (BC_1, ADDR15, output3, X, 313, 0, Z), " &
+		" 313 (BC_1, *, control, 0), " &
+		" 314 (BC_2, ADDR15, input, X), " &
+		" 315 (BC_1, ADDR14, output3, X, 316, 0, Z), " &
+		" 316 (BC_1, *, control, 0), " &
+		" 317 (BC_2, ADDR14, input, X), " &
+		" 318 (BC_1, AMI_WR, output3, X, 319, 0, Z), " &
+		" 319 (BC_1, *, control, 0), " &
+		" 320 (BC_3, *, internal, X), " &
+		" 321 (BC_1, AMI_RD, output3, X, 322, 0, Z), " &
+		" 322 (BC_1, *, control, 0), " &
+		" 323 (BC_3, *, internal, X), " &
+		" 324 (BC_1, FLAG0, output3, X, 325, 0, Z), " &
+		" 325 (BC_1, *, control, 0), " &
+		" 326 (BC_2, FLAG0, input, X), " &
+		" 327 (BC_1, FLAG1, output3, X, 328, 0, Z), " &
+		" 328 (BC_1, *, control, 0), " &
+		" 329 (BC_2, FLAG1, input, X), " &
+		" 330 (BC_1, FLAG2, output3, X, 331, 0, Z), " &
+		" 331 (BC_1, *, control, 0), " &
+		" 332 (BC_2, FLAG2, input, X), " &
+		" 333 (BC_1, FLAG3, output3, X, 334, 0, Z), " &
+		" 334 (BC_1, *, control, 0), " &
+		" 335 (BC_2, FLAG3, input, X), " &
+		" 336 (BC_3, *, internal, X), " &
+		" 337 (BC_3, *, internal, X), " &
+		" 338 (BC_3, *, internal, X), " &
+		" 339 (BC_3, *, internal, X), " &
+		" 340 (BC_3, *, internal, X), " &
+		" 341 (BC_3, *, internal, X), " &
+		" 342 (BC_3, *, internal, X), " &
+		" 343 (BC_3, *, internal, X), " &
+		" 344 (BC_3, *, internal, X), " &
+		" 345 (BC_3, *, internal, X), " &
+		" 346 (BC_3, *, internal, X), " &
+		" 347 (BC_3, *, internal, X), " &
+		" 348 (BC_3, *, internal, X), " &
+		" 349 (BC_3, *, internal, X), " &
+		" 350 (BC_3, *, internal, X), " &
+		" 351 (BC_1, EMU, output3, X, 352, 0, Z), " &
+		" 352 (BC_1, *, control, 0), " &
+		" 353 (BC_3, *, internal, X), " &
+		" 354 (BC_1, DATA0, output3, X, 355, 0, Z), " &
+		" 355 (BC_1, *, control, 0), " &
+		" 356 (BC_2, DATA0, input, X), " &
+		" 357 (BC_1, DATA1, output3, X, 358, 0, Z), " &
+		" 358 (BC_1, *, control, 0), " &
+		" 359 (BC_2, DATA1, input, X), " &
+		" 360 (BC_1, DATA2, output3, X, 361, 0, Z), " &
+		" 361 (BC_1, *, control, 0), " &
+		" 362 (BC_2, DATA2, input, X), " &
+		" 363 (BC_1, DATA3, output3, X, 364, 0, Z), " &
+		" 364 (BC_1, *, control, 0), " &
+		" 365 (BC_2, DATA3, input, X), " &
+		" 366 (BC_1, DATA4, output3, X, 367, 0, Z), " &
+		" 367 (BC_1, *, control, 0), " &
+		" 368 (BC_2, DATA4, input, X), " &
+		" 369 (BC_1, DATA5, output3, X, 370, 0, Z), " &
+		" 370 (BC_1, *, control, 0), " &
+		" 371 (BC_2, DATA5, input, X), " &
+		" 372 (BC_1, DATA6, output3, X, 373, 0, Z), " &
+		" 373 (BC_1, *, control, 0), " &
+		" 374 (BC_2, DATA6, input, X), " &
+		" 375 (BC_1, DATA7, output3, X, 376, 0, Z), " &
+		" 376 (BC_1, *, control, 0), " &
+		" 377 (BC_2, DATA7, input, X), " &
+		" 378 (BC_1, SDCLK, output3, X, 379, 0, Z), " &
+		" 379 (BC_1, *, control, 0), " &
+		" 380 (BC_3, *, internal, X), " &
+		" 381 (BC_1, DATA8, output3, X, 382, 0, Z), " &
+		" 382 (BC_1, *, control, 0), " &
+		" 383 (BC_2, DATA8, input, X), " &
+		" 384 (BC_1, DATA9, output3, X, 385, 0, Z), " &
+		" 385 (BC_1, *, control, 0), " &
+		" 386 (BC_2, DATA9, input, X), " &
+		" 387 (BC_1, DATA10, output3, X, 388, 0, Z), " &
+		" 388 (BC_1, *, control, 0), " &
+		" 389 (BC_2, DATA10, input, X), " &
+		" 390 (BC_1, DATA11, output3, X, 391, 0, Z), " &
+		" 391 (BC_1, *, control, 0), " &
+		" 392 (BC_2, DATA11, input, X), " &
+		" 393 (BC_1, DATA12, output3, X, 394, 0, Z), " &
+		" 394 (BC_1, *, control, 0), " &
+		" 395 (BC_2, DATA12, input, X), " &
+		" 396 (BC_1, DATA13, output3, X, 397, 0, Z), " &
+		" 397 (BC_1, *, control, 0), " &
+		" 398 (BC_2, DATA13, input, X), " &
+		" 399 (BC_1, DATA14, output3, X, 400, 0, Z), " &
+		" 400 (BC_1, *, control, 0), " &
+		" 401 (BC_2, DATA14, input, X), " &
+		" 402 (BC_1, DATA15, output3, X, 403, 0, Z), " &
+		" 403 (BC_1, *, control, 0), " &
+		" 404 (BC_2, DATA15, input, X), " &
+		" 405 (BC_1, SDWE, output3, X, 406, 0, Z), " &
+		" 406 (BC_1, *, control, 0), " &
+		" 407 (BC_3, *, internal, X), " &
+		" 408 (BC_3, *, internal, X), " &
+		" 409 (BC_3, *, internal, X), " &
+		" 410 (BC_2, RESET, input, X), " &
+		" 411 (BC_1, SDRAS, output3, X, 412, 0, Z), " &
+		" 412 (BC_1, *, control, 0), " &
+		" 413 (BC_3, *, internal, X), " &
+		" 414 (BC_1, SDCAS, output3, X, 415, 0, Z), " &
+		" 415 (BC_1, *, control, 0), " &
+		" 416 (BC_3, *, internal, X), " &
+		" 417 (BC_3, *, internal, X)";
+
+end ADSP_21487;

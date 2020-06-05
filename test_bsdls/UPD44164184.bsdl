@@ -1,0 +1,247 @@
+--**************************************************************************
+--*
+--*    File Name:  UPD44164184.BSDL
+--*      Version:  3.0
+--*         Date:  June 12, 2003
+--*        Model:  BSDL
+--*    Simulator:  None
+--*
+--* Dependencies:  None
+--*
+--*      Company:  NEC Electronics Corporation
+--*        Model:  UPD44164184 (1M x 18 DDR SRAM CIO 4-Word Burst)
+--*
+--*  Description:  NEC 1M x 18 DDR SRAM 4-Word Burst CIO BSDL model
+--*
+--*   Disclaimer:  NEC Electronics Corporation does not guarantee functionality or accuracy 
+--*                of this model. NEC Electronics Corporation assumes no responsiblity
+--*                for any problems arising from the use of this model.
+--*
+--*   Limitation:  IEEE 1149.1 Serial Boundary Scan (JTAG)
+--*
+--*                Copyright (C) NEC Electronics Corporation 2002, 2003
+--*                All rights reserved
+--*
+--*************************************************************************/
+
+entity  UPD44164184 is
+
+generic (PHYSICAL_PIN_MAP : string := "FBGA");
+
+port  (
+             A:    in                 bit_vector(0 to 19);
+             K:    in                 bit;
+           K_n:    in                 bit;
+             C:    in                 bit;
+           C_n:    in                 bit;
+            CQ:    buffer             bit;
+          CQ_n:    buffer             bit;
+         R_W_n:    in                 bit;
+          LD_n:    in                 bit;
+         BW0_n:    in                 bit;
+         BW1_n:    in                 bit;
+           DLL:    in                 bit;
+            DQ:    inout              bit_vector (0 to 17);
+           TMS:    in                 bit;
+           TDI:    in                 bit;
+           TCK:    in                 bit;
+           TDO:    out                bit;
+            ZQ:    in                 bit;
+            NC:    linkage bit_vector(0 to 55);
+          VREF:    linkage bit_vector(0 to 1);
+           Vdd:    linkage bit_vector(0 to 9);
+           Vss:    linkage bit_vector(0 to 26);
+          VDDQ:    linkage bit_vector(0 to 15));
+
+                   use STD_1149_1_2001.all;
+
+             attribute COMPONENT_CONFORMANCE of UPD44164184 : entity is
+
+                   "STD_1149_1_1993";
+
+             attribute PIN_MAP of UPD44164184 : entity is PHYSICAL_PIN_MAP;
+
+                   constant FBGA:PIN_MAP_STRING:=
+
+     "       A:   (C6,C7,N6,P7,N7,R7,R8,P8,R9,A9,   " &
+     "             B8,C5,B4,A3,R3,R4,P4,P5,N5,R5),  " & --Address
+     "       K:    B6,  " &                             --In Positive Clock
+     "     K_n:    A6,  " &                             --In Negative Clock
+     "       C:    P6,  " &                             --Out Positive Clock
+     "     C_n:    R6,  " &                             --Out Negitive Clock
+     "      CQ:    A11, " &                             --Pos Echo Clock
+     "    CQ_n:    A1,  " &                             --Neg Echo Clock
+     "    LD_n:    A8,  " &                             --Load
+     "   R_W_n:    A4,  " &                             --Read/Write
+     "   BW0_n:    B7,  " &                             --BYTE WRITE
+     "   BW1_n:    A5,  " &                             --BYTE WRITE
+     "     DLL:    H1,  " &                             --DLL-off pin
+     "      DQ:   (P11,M10,L11,K11,J10,F11,E11,C10,B11,       " &
+     "             B2,D3,E3,F2,G3,K3,L2,N3,P3),               " &
+     "     TMS:    R10, " &              --Test Mode Select
+     "     TDI:    R11, " &              --Test Data-In
+     "     TCK:    R2,  " &              --Test Clock
+     "     TDO:    R1,  " &              --Test Data-Out
+     "      ZQ:    H11, " &              --Input Impedance Match
+     "      NC:   (P10,N10,P9,N11,M9,N9,M11,L9,L10,                " &
+     "             K10,J9,K9,J11,G10,G9,G11,F9,F10,E10,D10,        " &
+     "             E9,D11,C9,D9,C11,B9,B10,A7,B5,                  " &
+     "             B3,C1,B1,C3,D1,C2,D2,E2,E1,F3,                  " &
+     "             G1,F1,G2,J1,J2,J3,K2,K1,L3,M1,L1,               " &
+     "             M3,N1,M2,N2,P2,P1),                             " &
+     "    VREF:   (H2,H10), " &          --HSTL Input Reference Voltage
+     "     VDD:   (F5,F7,G5,G7,H5,H7,J5,J7,K5,K7),                    " &
+     "     VSS:   (A2,A10,C4,C8,D4,D5,D6,D7,D8,E5,E6,E7,F6,G6,        " &
+     "             H6,J6,K6,L5,L6,L7,M4,M5,M6,M7,M8,N4,N8),           " &
+     "    VDDQ:   (E4,E8,F4,F8,G4,G8,H3,H4,H8,H9,J4,J8,K4,K8,L4,L8)   " ;
+
+            attribute TAP_SCAN_IN       of   TDI : signal is true;
+            attribute TAP_SCAN_OUT      of   TDO : signal is true;
+            attribute TAP_SCAN_MODE     of   TMS : signal is true;
+            attribute TAP_SCAN_CLOCK    of   TCK : signal is (10.0e6, BOTH);
+
+            attribute INSTRUCTION_LENGTH of UPD44164184 : entity is 3;
+
+            attribute INSTRUCTION_OPCODE of UPD44164184 : entity is
+
+                      "EXTEST            (000)," &
+                      "IDCODE            (001)," &
+                      "SAMPLEZ           (010)," &
+                      "RESERV1           (011)," & 
+                      "SAMPLE            (100)," &     --Sample/Preload
+                      "RESERV2           (101)," & 
+                      "RESERV3           (110)," & 
+                      "BYPASS            (111) " ;
+
+            attribute INSTRUCTION_CAPTURE of UPD44164184 : entity is "001";
+
+            attribute INSTRUCTION_PRIVATE of UPD44164184 : entity is  
+         
+                      "RESERV1, RESERV2 ,RESERV3" ;         
+
+
+            attribute IDCODE_REGISTER of  UPD44164184 : entity is
+
+                      "0100"              & --Reserved for version number
+                      "0000000000010110"  & --Device ID
+                      "00000010000"       & --NEC Vendor ID
+                      "1"                 ; --ID REGISTER PRESENCE INDICATOR
+
+            attribute REGISTER_ACCESS of UPD44164184 : entity is
+
+                      "BOUNDARY           (EXTEST,SAMPLEZ,SAMPLE), " &
+                      "BYPASS             (BYPASS)                 " ;
+
+            attribute BOUNDARY_LENGTH  of  UPD44164184 : entity is 107;
+
+            attribute BOUNDARY_REGISTER  of  UPD44164184 : entity is
+
+            "0        (BC_4, C_n,        input,    X)," &
+            "1        (BC_4, C,          input,    X)," &
+            "2        (BC_4, A(2),       input,    X)," &
+            "3        (BC_4, A(3),       input,    X)," &
+            "4        (BC_4, A(4),       input,    X)," &
+            "5        (BC_4, A(5),       input,    X)," &
+            "6        (BC_4, A(6),       input,    X)," &
+            "7        (BC_4, A(7),       input,    X)," &
+            "8        (BC_4, A(8),       input,    X)," &
+            "9        (BC_7, DQ(0),      bidir,    X, 47, 0, Z)," &
+            "10       (BC_4, *,          internal, X)," &
+            "11       (BC_4, *,          internal, X)," &
+            "12       (BC_4, *,          internal, X)," &
+            "13       (BC_7, DQ(1),      bidir,    X, 47, 0, Z)," &
+            "14       (BC_4, *,          internal, X)," &
+            "15       (BC_4, *,          internal, X)," &
+            "16       (BC_4, *,          internal, X)," &
+            "17       (BC_7, DQ(2),      bidir,    X, 47, 0, Z)," &
+            "18       (BC_4, *,          internal, X)," &
+            "19       (BC_4, *,          internal, X)," &
+            "20       (BC_4, *,          internal, X)," &
+            "21       (BC_7, DQ(3),      bidir,    X, 47, 0, Z)," &
+            "22       (BC_4, *,          internal, X)," &
+            "23       (BC_4, *,          internal, X)," &
+            "24       (BC_4, *,          internal, X)," &
+            "25       (BC_7, DQ(4),      bidir,    X, 47, 0, Z)," &
+            "26       (BC_4, *,          internal, X)," &
+            "27       (BC_4, ZQ,         input,    X)," &
+            "28       (BC_4, *,          internal, X)," &
+            "29       (BC_4, *,          internal, X)," &
+            "30       (BC_7, DQ(5),      bidir,    X, 47, 0, Z)," &
+            "31       (BC_4, *,          internal, X)," &
+            "32       (BC_4, *,          internal, X)," &
+            "33       (BC_4, *,          internal, X)," &
+            "34       (BC_7, DQ(6),      bidir,    X, 47, 0, Z)," &
+            "35       (BC_4, *,          internal, X)," &
+            "36       (BC_4, *,          internal, X)," &
+            "37       (BC_4, *,          internal, X)," &
+            "38       (BC_7, DQ(7),      bidir,    X, 47, 0, Z)," &
+            "39       (BC_4, *,          internal, X)," &
+            "40       (BC_4, *,          internal, X)," &
+            "41       (BC_4, *,          internal, X)," &
+            "42       (BC_7, DQ(8),      bidir,    X, 47, 0, Z)," &
+            "43       (BC_4, *,          internal, X)," &
+            "44       (BC_4, *,          internal, X)," &
+            "45       (BC_4, *,          internal, X)," &
+            "46       (BC_9, CQ,         output2,  X)," &
+            "47       (BC_2, *,          controlr, 0)," &
+            "48       (BC_4, A(9),       input,    X)," &
+            "49       (BC_4, A(10),      input,    X)," &
+            "50       (BC_4, A(1),       input,    X)," &
+            "51       (BC_4, A(0),       input,    X)," &
+            "52       (BC_4, LD_n,       input,    X)," &
+            "53       (BC_4, *,          internal, X)," &
+            "54       (BC_4, BW0_n,      input,    X)," &
+            "55       (BC_4, K,          input,    X)," &
+            "56       (BC_4, K_n,        input,    X)," &
+            "57       (BC_4, *,          internal, X)," &
+            "58       (BC_4, BW1_n,      input,    X)," &
+            "59       (BC_4, R_W_n,      input,    X)," &
+            "60       (BC_4, A(11),      input,    X)," &
+            "61       (BC_4, A(12),      input,    X)," &
+            "62       (BC_4, A(13),      input,    X)," &
+            "63       (BC_4, DLL,        input,    X)," &
+            "64       (BC_9, CQ_n,       output2,  X)," &
+            "65       (BC_7, DQ(9),      bidir,    X, 47, 0, Z)," &
+            "66       (BC_4, *,          internal, X)," &
+            "67       (BC_4, *,          internal, X)," &
+            "68       (BC_4, *,          internal, X)," &
+            "69       (BC_7, DQ(10),     bidir,    X, 47, 0, Z)," &
+            "70       (BC_4, *,          internal, X)," &
+            "71       (BC_4, *,          internal, X)," &
+            "72       (BC_4, *,          internal, X)," &
+            "73       (BC_7, DQ(11),     bidir,    X, 47, 0, Z)," &
+            "74       (BC_4, *,          internal, X)," &
+            "75       (BC_4, *,          internal, X)," &
+            "76       (BC_4, *,          internal, X)," &
+            "77       (BC_7, DQ(12),     bidir,    X, 47, 0, Z)," &
+            "78       (BC_4, *,          internal, X)," &
+            "79       (BC_4, *,          internal, X)," &
+            "80       (BC_4, *,          internal, X)," &
+            "81       (BC_7, DQ(13),     bidir,    X, 47, 0, Z)," &
+            "82       (BC_4, *,          internal, X)," &
+            "83       (BC_4, *,          internal, X)," &
+            "84       (BC_4, *,          internal, X)," &
+            "85       (BC_7, DQ(14),     bidir,    X, 47, 0, Z)," &
+            "86       (BC_4, *,          internal, X)," &
+            "87       (BC_4, *,          internal, X)," &
+            "88       (BC_4, *,          internal, X)," &
+            "89       (BC_7, DQ(15),     bidir,    X, 47, 0, Z)," &
+            "90       (BC_4, *,          internal, X)," &
+            "91       (BC_4, *,          internal, X)," &
+            "92       (BC_4, *,          internal, X)," &
+            "93       (BC_7, DQ(16),     bidir,    X, 47, 0, Z)," &
+            "94       (BC_4, *,          internal, X)," &
+            "95       (BC_4, *,          internal, X)," &
+            "96       (BC_4, *,          internal, X)," &
+            "97       (BC_7, DQ(17),     bidir,    X, 47, 0, Z)," &
+            "98       (BC_4, *,          internal, X)," &
+            "99       (BC_4, *,          internal, X)," &
+            "100      (BC_4, *,          internal, X)," &
+            "101      (BC_4, A(14),      input,    X)," &
+            "102      (BC_4, A(15),      input,    X)," &
+            "103      (BC_4, A(16),      input,    X)," &
+            "104      (BC_4, A(17),      input,    X)," &
+            "105      (BC_4, A(18),      input,    X)," &
+            "106      (BC_4, A(19),      input,    X) " ;
+
+end UPD44164184;

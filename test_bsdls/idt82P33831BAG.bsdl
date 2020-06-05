@@ -1,0 +1,514 @@
+-- *****************************************************************************
+
+--   BSDL file for design idt82P33831BAG
+
+--   Created by Synopsys Version G-2012.06-SP5 (Jan 18, 2013)
+
+--   Designer: 
+--   Company:  
+
+--   Date: Fri Oct 10 15:30:26 2014
+
+-- *****************************************************************************
+
+
+ entity idt82P33831BAG is
+   
+-- This section identifies the default device package selected.
+   
+   generic (PHYSICAL_PIN_MAP: string:= "PKG_82P33831BAG");
+   
+-- This section declares all the ports in the design.
+   
+   port ( 
+          I2C_AD1            : in       bit;
+          I2C_AD2            : in       bit;
+          I2C_SCL            : in       bit;
+          IC_C8              : in       bit;
+          IC_G3              : in       bit;
+          IN1                : in       bit;
+          IN10               : in       bit;
+          IN11               : in       bit;
+          IN12               : in       bit;
+          IN13               : in       bit;
+          IN14               : in       bit;
+          IN2                : in       bit;
+          IN3_NEG            : in       bit;
+          IN3_POS            : in       bit;
+          IN4_NEG            : in       bit;
+          IN4_POS            : in       bit;
+          IN5_NEG            : in       bit;
+          IN5_POS            : in       bit;
+          IN6_NEG            : in       bit;
+          IN6_POS            : in       bit;
+          IN7_NEG            : in       bit;
+          IN7_POS            : in       bit;
+          IN8_NEG            : in       bit;
+          IN8_POS            : in       bit;
+          IN9                : in       bit;
+          MS_SL              : in       bit;
+          OSCI               : in       bit;
+          RSTB               : in       bit;
+          SONET_SDH_LOS3     : in       bit;
+          TCK                : in       bit;
+          TDI                : in       bit;
+          TMS                : in       bit;
+          TRSTB              : in       bit;
+          XO_FREQ0_LOS0      : in       bit;
+          XO_FREQ1_LOS1      : in       bit;
+          XO_FREQ2_LOS2      : in       bit;
+          I2C_SDA            : inout    bit;
+          MPU_MODE0_I2CM_SDA : inout    bit;
+          MPU_MODE1_I2CM_SCL : inout    bit;
+          INT_REQ            : out      bit;
+          OUT1               : out      bit;
+          OUT10              : out      bit;
+          OUT11_NEG          : out      bit;
+          OUT11_POS          : out      bit;
+          OUT12_NEG          : out      bit;
+          OUT12_POS          : out      bit;
+          OUT2               : out      bit;
+          OUT3_NEG           : out      bit;
+          OUT3_POS           : out      bit;
+          OUT4_NEG           : out      bit;
+          OUT4_POS           : out      bit;
+          OUT5_NEG           : out      bit;
+          OUT5_POS           : out      bit;
+          OUT6_NEG           : out      bit;
+          OUT6_POS           : out      bit;
+          OUT7               : out      bit;
+          OUT8_NEG           : out      bit;
+          OUT8_POS           : out      bit;
+          OUT9               : out      bit;
+          TDO                : out      bit;
+          DPLL1_LOCK         : buffer   bit;
+          DPLL2_LOCK         : buffer   bit;
+          DPLL3_LOCK         : buffer   bit;
+          FRSYNC_8K_1PPS     : buffer   bit;
+          MFRSYNC_2K_1PPS    : buffer   bit;
+          CAP1_C9            : linkage  bit;
+          CAP2_A9            : linkage  bit;
+          CAP3_D8            : linkage  bit;
+          IC_C10             : linkage  bit;
+          IC_E3              : linkage  bit;
+          IC_G7              : linkage  bit;
+          IC_L6              : linkage  bit;
+          VDDAO_A5           : linkage  bit;
+          VDDAO_A7           : linkage  bit;
+          VDDAO_B2           : linkage  bit;
+          VDDAO_B3           : linkage  bit;
+          VDDAO_L4           : linkage  bit;
+          VDDAO_M4           : linkage  bit;
+          VDDA_C1            : linkage  bit;
+          VDDA_C6            : linkage  bit;
+          VDDA_C7            : linkage  bit;
+          VDDA_D2            : linkage  bit;
+          VDDA_F2            : linkage  bit;
+          VDDA_F9            : linkage  bit;
+          VDDA_G2            : linkage  bit;
+          VDDA_H2            : linkage  bit;
+          VDDA_K1            : linkage  bit;
+          VDDA_K2            : linkage  bit;
+          VDDDO_E4           : linkage  bit;
+          VDDDO_E6           : linkage  bit;
+          VDDDO_L7           : linkage  bit;
+          VDDDO_M8           : linkage  bit;
+          VDDD_1_8_H12       : linkage  bit;
+          VDDD_1_8_L10       : linkage  bit;
+          VDDD_D5            : linkage  bit;
+          VDDD_F7            : linkage  bit;
+          VSSAO_B1           : linkage  bit;
+          VSSAO_B4           : linkage  bit;
+          VSSAO_B5           : linkage  bit;
+          VSSAO_B7           : linkage  bit;
+          VSSAO_K4           : linkage  bit;
+          VSSAO_M3           : linkage  bit;
+          VSSA_B9            : linkage  bit;
+          VSSA_C2            : linkage  bit;
+          VSSA_D1            : linkage  bit;
+          VSSA_D6            : linkage  bit;
+          VSSA_D7            : linkage  bit;
+          VSSA_E2            : linkage  bit;
+          VSSA_E8            : linkage  bit;
+          VSSA_F3            : linkage  bit;
+          VSSA_F8            : linkage  bit;
+          VSSA_H3            : linkage  bit;
+          VSSA_L1            : linkage  bit;
+          VSSA_L2            : linkage  bit;
+          VSSCOM             : linkage  bit;
+          VSSDO_E7           : linkage  bit;
+          VSSDO_F4           : linkage  bit;
+          VSSDO_K7           : linkage  bit;
+          VSSDO_M7           : linkage  bit;
+          VSSD_D4            : linkage  bit;
+          VSSD_F6            : linkage  bit;
+          VSSD_H11           : linkage  bit;
+          VSSD_L9            : linkage  bit;
+          VSS_C3             : linkage  bit;
+          VSS_F5             : linkage  bit;
+          VSS_G4             : linkage  bit;
+          VSS_G5             : linkage  bit;
+          VSS_G6             : linkage  bit;
+          VSS_G8             : linkage  bit;
+          VSS_H4             : linkage  bit;
+          VSS_H5             : linkage  bit;
+          VSS_H6             : linkage  bit;
+          VSS_H7             : linkage  bit;
+          VSS_H8             : linkage  bit;
+          VSS_J3             : linkage  bit;
+          VSS_J4             : linkage  bit;
+          VSS_J5             : linkage  bit;
+          VSS_J6             : linkage  bit;
+          VSS_J7             : linkage  bit;
+          VSS_J8             : linkage  bit;
+          XTAL1_IN_A12       : linkage  bit;
+          XTAL1_OUT_B12      : linkage  bit;
+          XTAL2_IN_A10       : linkage  bit;
+          XTAL2_OUT_B10      : linkage  bit
+   );
+   
+   use STD_1149_1_2001.all;
+   
+   attribute COMPONENT_CONFORMANCE of idt82P33831BAG: entity is 
+     "STD_1149_1_2001";
+   
+   attribute PIN_MAP of idt82P33831BAG: entity is PHYSICAL_PIN_MAP;
+   
+-- This section specifies the pin map for each port. This information is 
+-- extracted from the port-to-pin map file that was read in using the 
+-- "read_pin_map" command.
+   
+     constant PKG_82P33831BAG: PIN_MAP_STRING := 
+        "I2C_AD1            : E5," &
+        "I2C_AD2            : D9," &
+        "I2C_SCL            : D10," &
+        "IC_C8              : C8," &
+        "IC_G3              : G3," &
+        "IN1                : K10," &
+        "IN10               : H10," &
+        "IN11               : G10," &
+        "IN12               : F10," &
+        "IN13               : E11," &
+        "IN14               : E10," &
+        "IN2                : K9," &
+        "IN3_NEG            : M11," &
+        "IN3_POS            : M12," &
+        "IN4_NEG            : L11," &
+        "IN4_POS            : L12," &
+        "IN5_NEG            : K11," &
+        "IN5_POS            : K12," &
+        "IN6_NEG            : J11," &
+        "IN6_POS            : J12," &
+        "IN7_NEG            : G11," &
+        "IN7_POS            : G12," &
+        "IN8_NEG            : F11," &
+        "IN8_POS            : F12," &
+        "IN9                : J10," &
+        "MS_SL              : K8," &
+        "OSCI               : E1," &
+        "RSTB               : K6," &
+        "SONET_SDH_LOS3     : A11," &
+        "TCK                : G1," &
+        "TDI                : L3," &
+        "TMS                : F1," &
+        "TRSTB              : K3," &
+        "XO_FREQ0_LOS0      : H1," &
+        "XO_FREQ1_LOS1      : J1," &
+        "XO_FREQ2_LOS2      : J2," &
+        "I2C_SDA            : C5," &
+        "MPU_MODE0_I2CM_SDA : C11," &
+        "MPU_MODE1_I2CM_SCL : B11," &
+        "INT_REQ            : J9," &
+        "OUT1               : L8," &
+        "OUT10              : D11," &
+        "OUT11_NEG          : B8," &
+        "OUT11_POS          : A8," &
+        "OUT12_NEG          : B6," &
+        "OUT12_POS          : A6," &
+        "OUT2               : K5," &
+        "OUT3_NEG           : M6," &
+        "OUT3_POS           : M5," &
+        "OUT4_NEG           : M2," &
+        "OUT4_POS           : M1," &
+        "OUT5_NEG           : A2," &
+        "OUT5_POS           : A1," &
+        "OUT6_NEG           : A4," &
+        "OUT6_POS           : A3," &
+        "OUT7               : C4," &
+        "OUT8_NEG           : M10," &
+        "OUT8_POS           : M9," &
+        "OUT9               : D12," &
+        "TDO                : L5," &
+        "DPLL1_LOCK         : H9," &
+        "DPLL2_LOCK         : G9," &
+        "DPLL3_LOCK         : E9," &
+        "FRSYNC_8K_1PPS     : E12," &
+        "MFRSYNC_2K_1PPS    : C12," &
+        "CAP1_C9            : C9," &
+        "CAP2_A9            : A9," &
+        "CAP3_D8            : D8," &
+        "IC_C10             : C10," &
+        "IC_E3              : E3," &
+        "IC_G7              : G7," &
+        "IC_L6              : L6," &
+        "VDDAO_A5           : A5," &
+        "VDDAO_A7           : A7," &
+        "VDDAO_B2           : B2," &
+        "VDDAO_B3           : B3," &
+        "VDDAO_L4           : L4," &
+        "VDDAO_M4           : M4," &
+        "VDDA_C1            : C1," &
+        "VDDA_C6            : C6," &
+        "VDDA_C7            : C7," &
+        "VDDA_D2            : D2," &
+        "VDDA_F2            : F2," &
+        "VDDA_F9            : F9," &
+        "VDDA_G2            : G2," &
+        "VDDA_H2            : H2," &
+        "VDDA_K1            : K1," &
+        "VDDA_K2            : K2," &
+        "VDDDO_E4           : E4," &
+        "VDDDO_E6           : E6," &
+        "VDDDO_L7           : L7," &
+        "VDDDO_M8           : M8," &
+        "VDDD_1_8_H12       : H12," &
+        "VDDD_1_8_L10       : L10," &
+        "VDDD_D5            : D5," &
+        "VDDD_F7            : F7," &
+        "VSSAO_B1           : B1," &
+        "VSSAO_B4           : B4," &
+        "VSSAO_B5           : B5," &
+        "VSSAO_B7           : B7," &
+        "VSSAO_K4           : K4," &
+        "VSSAO_M3           : M3," &
+        "VSSA_B9            : B9," &
+        "VSSA_C2            : C2," &
+        "VSSA_D1            : D1," &
+        "VSSA_D6            : D6," &
+        "VSSA_D7            : D7," &
+        "VSSA_E2            : E2," &
+        "VSSA_E8            : E8," &
+        "VSSA_F3            : F3," &
+        "VSSA_F8            : F8," &
+        "VSSA_H3            : H3," &
+        "VSSA_L1            : L1," &
+        "VSSA_L2            : L2," &
+        "VSSCOM             : D3," &
+        "VSSDO_E7           : E7," &
+        "VSSDO_F4           : F4," &
+        "VSSDO_K7           : K7," &
+        "VSSDO_M7           : M7," &
+        "VSSD_D4            : D4," &
+        "VSSD_F6            : F6," &
+        "VSSD_H11           : H11," &
+        "VSSD_L9            : L9," &
+        "VSS_C3             : C3," &
+        "VSS_F5             : F5," &
+        "VSS_G4             : G4," &
+        "VSS_G5             : G5," &
+        "VSS_G6             : G6," &
+        "VSS_G8             : G8," &
+        "VSS_H4             : H4," &
+        "VSS_H5             : H5," &
+        "VSS_H6             : H6," &
+        "VSS_H7             : H7," &
+        "VSS_H8             : H8," &
+        "VSS_J3             : J3," &
+        "VSS_J4             : J4," &
+        "VSS_J5             : J5," &
+        "VSS_J6             : J6," &
+        "VSS_J7             : J7," &
+        "VSS_J8             : J8," &
+        "XTAL1_IN_A12       : A12," &
+        "XTAL1_OUT_B12      : B12," &
+        "XTAL2_IN_A10       : A10," &
+        "XTAL2_OUT_B10      : B10";
+   
+-- This section specifies the TAP ports. For the TAP TCK port, the parameters in 
+-- the brackets are:
+--        First Field : Maximum  TCK frequency.
+--        Second Field: Allowable states TCK may be stopped in.
+   
+   attribute TAP_SCAN_CLOCK of TCK  : signal is (10.0e6, BOTH);
+   attribute TAP_SCAN_IN    of TDI  : signal is true;
+   attribute TAP_SCAN_MODE  of TMS  : signal is true;
+   attribute TAP_SCAN_OUT   of TDO  : signal is true;
+   attribute TAP_SCAN_RESET of TRSTB: signal is true;
+   
+-- Specifies the number of bits in the instruction register.
+   
+   attribute INSTRUCTION_LENGTH of idt82P33831BAG: entity is 3;
+   
+-- Specifies the boundary-scan instructions implemented in the design and their 
+-- opcodes.
+   
+   attribute INSTRUCTION_OPCODE of idt82P33831BAG: entity is 
+     "BYPASS  (111)," &
+     "EXTEST  (000)," &
+     "SAMPLE  (010)," &
+     "PRELOAD (010)," &
+     "IDCODE  (001)";
+   
+-- Specifies the bit pattern that is loaded into the instruction register when 
+-- the TAP controller passes through the Capture-IR state. The standard mandates 
+-- that the two LSBs must be "01". The remaining bits are design specific.
+   
+   attribute INSTRUCTION_CAPTURE of idt82P33831BAG: entity is "001";
+   
+-- Specifies the bit pattern that is loaded into the DEVICE_ID register during 
+-- the IDCODE instruction when the TAP controller passes through the Capture-DR 
+-- state.
+   
+   attribute IDCODE_REGISTER of idt82P33831BAG: entity is 
+     "0000" &                  
+ -- 4-bit version number
+     "0000011000010010" &      
+ -- 16-bit part number
+     "00010110011" &           
+ -- 11-bit identity of the manufacturer
+     "1";                      
+ -- Required by IEEE Std 1149.1
+   
+-- This section specifies the test data register placed between TDI and TDO for 
+-- each implemented instruction.
+   
+   attribute REGISTER_ACCESS of idt82P33831BAG: entity is 
+        "BYPASS    (BYPASS)," &
+        "BOUNDARY  (EXTEST, SAMPLE, PRELOAD)," &
+        "DEVICE_ID (IDCODE)";
+   
+-- Specifies the length of the boundary scan register.
+   
+   attribute BOUNDARY_LENGTH of idt82P33831BAG: entity is 53;
+   
+-- The following list specifies the characteristics of each cell in the boundary 
+-- scan register from TDI to TDO. The following is a description of the label 
+-- fields:
+--      num     : Is the cell number.
+--      cell    : Is the cell type as defined by the standard.
+--      port    : Is the design port name. Control cells do not have a port 
+--                name.
+--      function: Is the function of the cell as defined by the standard. Is one 
+--                of input, output2, output3, bidir, control or controlr.
+--      safe    : Specifies the value that the BSR cell should be loaded with 
+--                for safe operation when the software might otherwise choose a 
+--                random value.
+--      ccell   : The control cell number. Specifies the control cell that 
+--                drives the output enable for this port.
+--      disval  : Specifies the value that is loaded into the control cell to 
+--                disable the output enable for the corresponding port.
+--      rslt    : Resulting state. Shows the state of the driver when it is 
+--                disabled.
+   
+   attribute BOUNDARY_REGISTER of idt82P33831BAG: entity is 
+--     
+--    num   cell   port                function      safe  [ccell  disval  rslt]
+--     
+     "52   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "51   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "50   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "49   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "48   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "47   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "46   (BC_3,  SONET_SDH_LOS3,     input,        " &
+     "X),                        " &
+     "45   (BC_3,  MS_SL,              input,        " &
+     "X),                        " &
+     "44   (BC_3,  MS_SL,              input,        " &
+     "X),                        " &
+     "43   (BC_1,  INT_REQ,            output3,      X,    42,     1,      " &
+     "Z),  " &
+     "42   (BC_1,  *,                  control,      " &
+     "1),                        " &
+     "41   (BC_1,  DPLL2_LOCK,         output2,      " &
+     "X),                        " &
+     "40   (BC_1,  DPLL1_LOCK,         output2,      " &
+     "X),                        " &
+     "39   (BC_1,  DPLL3_LOCK,         output2,      " &
+     "X),                        " &
+     "38   (BC_3,  RSTB,               input,        " &
+     "X),                        " &
+     "37   (BC_1,  *,                  control,      " &
+     "1),                        " &
+     "36   (BC_3,  I2C_SCL,            input,        " &
+     "X),                        " &
+     "35   (BC_3,  IC_C8,              input,        " &
+     "X),                        " &
+     "34   (BC_3,  I2C_AD1,            input,        " &
+     "X),                        " &
+     "33   (BC_3,  I2C_AD2,            input,        " &
+     "X),                        " &
+     "32   (BC_7,  I2C_SDA,            bidir,        X,    37,     1,      " &
+     "PULL1)," &
+     "31   (BC_7,  MPU_MODE1_I2CM_SCL, bidir,        X,    30,     1,      " &
+     "PULL1)," &
+     "30   (BC_1,  *,                  control,      " &
+     "1),                        " &
+     "29   (BC_7,  MPU_MODE0_I2CM_SDA, bidir,        X,    28,     1,      " &
+     "PULL1)," &
+     "28   (BC_1,  *,                  control,      " &
+     "1),                        " &
+     "27   (BC_1,  FRSYNC_8K_1PPS,     output2,      " &
+     "X),                        " &
+     "26   (BC_1,  MFRSYNC_2K_1PPS,    output2,      " &
+     "X),                        " &
+     "25   (BC_3,  IN14,               input,        " &
+     "X),                        " &
+     "24   (BC_3,  IN13,               input,        " &
+     "X),                        " &
+     "23   (BC_3,  IN12,               input,        " &
+     "X),                        " &
+     "22   (BC_3,  IN11,               input,        " &
+     "X),                        " &
+     "21   (BC_3,  IN10,               input,        " &
+     "X),                        " &
+     "20   (BC_3,  IN9,                input,        " &
+     "X),                        " &
+     "19   (BC_3,  IN8_POS,            input,        " &
+     "X),                        " &
+     "18   (BC_3,  IN7_POS,            input,        " &
+     "X),                        " &
+     "17   (BC_3,  IN4_POS,            input,        " &
+     "X),                        " &
+     "16   (BC_3,  IN3_POS,            input,        " &
+     "X),                        " &
+     "15   (BC_3,  IN6_POS,            input,        " &
+     "X),                        " &
+     "14   (BC_3,  IN5_POS,            input,        " &
+     "X),                        " &
+     "13   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "12   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "11   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "10   (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "9    (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "8    (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "7    (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "6    (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "5    (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "4    (BC_0,  *,                  internal,     " &
+     "X),                        " &
+     "3    (BC_3,  XO_FREQ2_LOS2,      input,        " &
+     "X),                        " &
+     "2    (BC_3,  XO_FREQ1_LOS1,      input,        " &
+     "X),                        " &
+     "1    (BC_3,  XO_FREQ0_LOS0,      input,        " &
+     "X),                        " &
+     "0    (BC_3,  OSCI,               input,        " &
+     "X)                         ";
+ 
+ end idt82P33831BAG;

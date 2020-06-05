@@ -1,0 +1,790 @@
+ entity RX63NB is 
+   generic(PHYSICAL_PIN_MAP:string:="PTLG0145KA_A");
+   port(P006_AVSS0:linkage bit;
+        P011_P05:inout bit;
+        P013_VREFH:linkage bit;
+        P017_P03:inout bit;
+        P019_VREFL:linkage bit;
+        P027_P02:inout bit;
+        P029_P01:inout bit;
+        P031_P00:inout bit;
+        P033_PF5:inout bit;
+        P034_EMLE:in bit;
+        P035_PJ5:inout bit;
+        P036_VSS:linkage bit;
+        P037_PJ3:inout bit;
+        P038_VCL:linkage bit;
+        P039_VBATT:linkage bit;
+        P040_BSCANP:in bit;
+        P043_MD:linkage bit;
+        P044_XCIN:linkage bit;
+        P046_XCOUT:linkage bit;
+        P048_RESN:in bit;
+        P049_XTAL:linkage bit;
+        P052_VSS:linkage bit;
+        P053_EXTAL:linkage bit;
+        P054_VCC:linkage bit;
+        P056_P35:in bit;
+        P058_P34:in bit;
+        P059_P33:inout bit;
+        P060_P32:inout bit;
+        P064_P31:in bit;
+        P066_P30:in bit;
+        P070_P27:in bit;
+        P071_P26:out bit;
+        P072_P25:inout bit;
+        P076_P24:inout bit;
+        P080_P23:inout bit;
+        P082_P22:inout bit;
+        P083_P21:inout bit;
+        P089_P20:inout bit;
+        P091_P17:inout bit;
+        P093_P87:inout bit;
+        P095_P16:inout bit;
+        P098_P86:inout bit;
+        P099_P15:inout bit;
+        P100_P14:inout bit;
+        P102_P13:inout bit;
+        P104_P12:inout bit;
+        P110_VCC_USB:linkage bit;
+        P112_USB0_DM:linkage bit;
+        P113_USB0_DP:linkage bit;
+        P114_VSS_USB:linkage bit;
+        P118_P56:inout bit;
+        P125_P55:inout bit;
+        P126_P54:inout bit;
+        P127_P53:inout bit;
+        P129_P52:inout bit;
+        P130_P51:inout bit;
+        P131_P50:inout bit;
+        P133_VSS:linkage bit;
+        P134_P83:inout bit;
+        P135_VCC:linkage bit;
+        P138_PC7:inout bit;
+        P139_PC6:inout bit;
+        P140_PC5:inout bit;
+        P141_P82:inout bit;
+        P142_P81:inout bit;
+        P143_P80:inout bit;
+        P144_PC4:inout bit;
+        P145_PC3:inout bit;
+        P146_P77:inout bit;
+        P147_P76:inout bit;
+        P148_PC2:inout bit;
+        P149_P75:inout bit;
+        P150_P74:inout bit;
+        P151_PC1:inout bit;
+        P154_VCC:linkage bit;
+        P155_PC0:inout bit;
+        P157_VSS:linkage bit;
+        P159_P73:inout bit;
+        P160_PB7:inout bit;
+        P161_PB6:inout bit;
+        P162_PB5:inout bit;
+        P163_PB4:inout bit;
+        P164_PB3:inout bit;
+        P165_PB2:inout bit;
+        P166_PB1:inout bit;
+        P167_P72:inout bit;
+        P168_P71:inout bit;
+        P173_PB0:inout bit;
+        P178_PA7:inout bit;
+        P179_PA6:inout bit;
+        P180_PA5:inout bit;
+        P181_VCC:linkage bit;
+        P183_PA4:inout bit;
+        P185_VSS:linkage bit;
+        P186_PA3:inout bit;
+        P188_PA2:inout bit;
+        P190_PA1:inout bit;
+        P198_PA0:inout bit;
+        P200_P67:inout bit;
+        P202_P66:inout bit;
+        P204_P65:inout bit;
+        P205_PE7:inout bit;
+        P208_PE6:inout bit;
+        P211_VCC:linkage bit;
+        P212_P70:inout bit;
+        P213_VSS:linkage bit;
+        P214_PE5:inout bit;
+        P217_PE4:inout bit;
+        P220_PE3:inout bit;
+        P223_PE2:inout bit;
+        P225_PE1:inout bit;
+        P227_PE0:inout bit;
+        P229_P64:inout bit;
+        P230_P63:inout bit;
+        P231_P62:inout bit;
+        P232_P61:inout bit;
+        P234_VSS:linkage bit;
+        P235_P60:inout bit;
+        P236_VCC:linkage bit;
+        P238_PD7:inout bit;
+        P241_PD6:inout bit;
+        P244_PD5:inout bit;
+        P246_PD4:inout bit;
+        P249_PD3:inout bit;
+        P256_PD2:inout bit;
+        P259_PD1:inout bit;
+        P262_PD0:inout bit;
+        P264_P93:inout bit;
+        P266_P92:inout bit;
+        P268_P91:inout bit;
+        P272_VSS:linkage bit;
+        P273_P90:inout bit;
+        P275_VCC:linkage bit;
+        P279_P47:inout bit;
+        P280_P46:inout bit;
+        P281_P45:inout bit;
+        P282_P44:inout bit;
+        P283_P43:inout bit;
+        P284_P42:inout bit;
+        P285_P41:inout bit;
+        P286_VREFL0:linkage bit;
+        P290_P40:inout bit;
+        P291_VREFH0:linkage bit;
+        P295_AVCC0:linkage bit;
+        P299_P07:inout bit);
+   use  STD_1149_1_1994.all;
+   attribute COMPONENT_CONFORMANCE of RX63NB:entity is "STD_1149_1_1993";
+   attribute PIN_MAP of RX63NB:entity is PHYSICAL_PIN_MAP;
+   constant PTLG0145KA_A:PIN_MAP_STRING:=
+            "P006_AVSS0:A1,"&
+            "P011_P05:B3,"&
+            "P013_VREFH:B1,"&
+            "P017_P03:D3,"&
+            "P019_VREFL:C1,"&
+            "P027_P02:C2,"&
+            "P029_P01:D4,"&
+            "P031_P00:D1,"&
+            "P033_PF5:D2,"&
+            "P034_EMLE:E4,"&
+            "P035_PJ5:E3,"&
+            "P036_VSS:E1,"&
+            "P037_PJ3:F3,"&
+            "P038_VCL:E2,"&
+            "P039_VBATT:F4,"&
+            "P040_BSCANP:G4,"&
+            "P043_MD:G3,"&
+            "P044_XCIN:F1,"&
+            "P046_XCOUT:F2,"&
+            "P048_RESN:G2,"&
+            "P049_XTAL:G1,"&
+            "P052_VSS:H3,"&
+            "P053_EXTAL:H1,"&
+            "P054_VCC:H2,"&
+            "P056_P35:H4,"&
+            "P058_P34:J1,"&
+            "P059_P33:J2,"&
+            "P060_P32:J3,"&
+            "P064_P31:K3,"&
+            "P066_P30:J4,"&
+            "P070_P27:K1,"&
+            "P071_P26:K2,"&
+            "P072_P25:L1,"&
+            "P076_P24:L4,"&
+            "P080_P23:L2,"&
+            "P082_P22:M1,"&
+            "P083_P21:N1,"&
+            "P089_P20:N2,"&
+            "P091_P17:M2,"&
+            "P093_P87:N3,"&
+            "P095_P16:L3,"&
+            "P098_P86:M3,"&
+            "P099_P15:K4,"&
+            "P100_P14:N4,"&
+            "P102_P13:L5,"&
+            "P104_P12:M4,"&
+            "P110_VCC_USB:M5,"&
+            "P112_USB0_DM:N5,"&
+            "P113_USB0_DP:N6,"&
+            "P114_VSS_USB:M6,"&
+            "P118_P56:L6,"&
+            "P125_P55:N7,"&
+            "P126_P54:K5,"&
+            "P127_P53:K6,"&
+            "P129_P52:L7,"&
+            "P130_P51:K7,"&
+            "P131_P50:M7,"&
+            "P133_VSS:N8,"&
+            "P134_P83:L8,"&
+            "P135_VCC:K8,"&
+            "P138_PC7:N9,"&
+            "P139_PC6:M8,"&
+            "P140_PC5:L9,"&
+            "P141_P82:N10,"&
+            "P142_P81:M9,"&
+            "P143_P80:K9,"&
+            "P144_PC4:L10,"&
+            "P145_PC3:N11,"&
+            "P146_P77:M10,"&
+            "P147_P76:K10,"&
+            "P148_PC2:L11,"&
+            "P149_P75:N12,"&
+            "P150_P74:N13,"&
+            "P151_PC1:M12,"&
+            "P154_VCC:M13,"&
+            "P155_PC0:M11,"&
+            "P157_VSS:L13,"&
+            "P159_P73:L12,"&
+            "P160_PB7:K11,"&
+            "P161_PB6:K12,"&
+            "P162_PB5:K13,"&
+            "P163_PB4:J11,"&
+            "P164_PB3:J10,"&
+            "P165_PB2:J12,"&
+            "P166_PB1:J13,"&
+            "P167_P72:H10,"&
+            "P168_P71:H11,"&
+            "P173_PB0:H12,"&
+            "P178_PA7:H13,"&
+            "P179_PA6:G11,"&
+            "P180_PA5:G10,"&
+            "P181_VCC:G12,"&
+            "P183_PA4:G13,"&
+            "P185_VSS:F11,"&
+            "P186_PA3:F10,"&
+            "P188_PA2:F13,"&
+            "P190_PA1:F12,"&
+            "P198_PA0:E10,"&
+            "P200_P67:E13,"&
+            "P202_P66:E11,"&
+            "P204_P65:E12,"&
+            "P205_PE7:D10,"&
+            "P208_PE6:D13,"&
+            "P211_VCC:D11,"&
+            "P212_P70:C12,"&
+            "P213_VSS:C13,"&
+            "P214_PE5:D12,"&
+            "P217_PE4:B13,"&
+            "P220_PE3:A13,"&
+            "P223_PE2:B12,"&
+            "P225_PE1:A12,"&
+            "P227_PE0:C11,"&
+            "P229_P64:D9,"&
+            "P230_P63:C10,"&
+            "P231_P62:A11,"&
+            "P232_P61:B11,"&
+            "P234_VSS:A10,"&
+            "P235_P60:D8,"&
+            "P236_VCC:B10,"&
+            "P238_PD7:C9,"&
+            "P241_PD6:A9,"&
+            "P244_PD5:D7,"&
+            "P246_PD4:B9,"&
+            "P249_PD3:C8,"&
+            "P256_PD2:A8,"&
+            "P259_PD1:C7,"&
+            "P262_PD0:B8,"&
+            "P264_P93:D6,"&
+            "P266_P92:A7,"&
+            "P268_P91:B7,"&
+            "P272_VSS:C6,"&
+            "P273_P90:A6,"&
+            "P275_VCC:D5,"&
+            "P279_P47:B6,"&
+            "P280_P46:C5,"&
+            "P281_P45:A5,"&
+            "P282_P44:E5,"&
+            "P283_P43:B5,"&
+            "P284_P42:A4,"&
+            "P285_P41:C4,"&
+            "P286_VREFL0:B4,"&
+            "P290_P40:A3,"&
+            "P291_VREFH0:C3,"&
+            "P295_AVCC0:B2,"&
+            "P299_P07:A2";
+   attribute TAP_SCAN_MODE  of P064_P31:signal is TRUE;
+   attribute TAP_SCAN_RESET of P058_P34:signal is TRUE;
+   attribute TAP_SCAN_CLOCK of P070_P27:signal is (10.0e6,BOTH);
+   attribute TAP_SCAN_IN    of P066_P30:signal is TRUE;
+   attribute TAP_SCAN_OUT   of P071_P26:signal is TRUE;
+   attribute COMPLIANCE_PATTERNS of RX63NB:entity is 
+             "(P034_EMLE, P040_BSCANP, P048_RESN) (011)";
+   attribute INSTRUCTION_LENGTH of RX63NB:entity is 8;
+   attribute INSTRUCTION_OPCODE of RX63NB:entity is 
+             "BYPASS (11111111),"&
+             "EXTEST (00000000),"&
+             "SAMPLE (01000000),"&
+             "IDCODE (01010101),"&
+             "CLAMP (11010000),"&
+             "HIGHZ (10000000),"&
+             "RENESAS_PRIVATE (00001000,"&
+             "                 11000000,"&
+             "                 01010000,"&
+             "                 00010100,"&
+             "                 00010010,"&
+             "                 10010010,"&
+             "                 01010010,"&
+             "                 11010010,"&
+             "                 00110010,"&
+             "                 10110010,"&
+             "                 01110010,"&
+             "                 11110010,"&
+             "                 00000110,"&
+             "                 01000110,"&
+             "                 11000110,"&
+             "                 10100110,"&
+             "                 01100110,"&
+             "                 11100110,"&
+             "                 00010110,"&
+             "                 10010110,"&
+             "                 01010110,"&
+             "                 11010110,"&
+             "                 00001110,"&
+             "                 10001110,"&
+             "                 00000001,"&
+             "                 10000001,"&
+             "                 01000001,"&
+             "                 11000001,"&
+             "                 00100001,"&
+             "                 10100001,"&
+             "                 01100001,"&
+             "                 11100001,"&
+             "                 00010001,"&
+             "                 10010001,"&
+             "                 01010001,"&
+             "                 11010001,"&
+             "                 00110001,"&
+             "                 10110001,"&
+             "                 01110001,"&
+             "                 11110001,"&
+             "                 00000100,"&
+             "                 11000100,"&
+             "                 00101000,"&
+             "                 10101000,"&
+             "                 01101000,"&
+             "                 11101000,"&
+             "                 00011000,"&
+             "                 10011000,"&
+             "                 01011000,"&
+             "                 11011000,"&
+             "                 00111000,"&
+             "                 10111000,"&
+             "                 01111000,"&
+             "                 11111000,"&
+             "                 00110000,"&
+             "                 10110000,"&
+             "                 01110000,"&
+             "                 11110000,"&
+             "                 00100100,"&
+             "                 10100100,"&
+             "                 01100100,"&
+             "                 11100100,"&
+             "                 00011011,"&
+             "                 10011011,"&
+             "                 01011011,"&
+             "                 11011011,"&
+             "                 00001111,"&
+             "                 10001111,"&
+             "                 01001111,"&
+             "                 11001111,"&
+             "                 00101111,"&
+             "                 10101111,"&
+             "                 01101111,"&
+             "                 11101111,"&
+             "                 00011111,"&
+             "                 10011111,"&
+             "                 01011111,"&
+             "                 11011111,"&
+             "                 00010111,"&
+             "                 10010111,"&
+             "                 01010111,"&
+             "                 00001101,"&
+             "                 10001101,"&
+             "                 01001101,"&
+             "                 11001101,"&
+             "                 00101101,"&
+             "                 10101101,"&
+             "                 01101101,"&
+             "                 11101101,"&
+             "                 00011101,"&
+             "                 10011101,"&
+             "                 01011101,"&
+             "                 01000010,"&
+             "                 10000110,"&
+             "                 00100110,"&
+             "                 00001001)";
+   attribute INSTRUCTION_CAPTURE of RX63NB:entity is "01010101";
+   attribute INSTRUCTION_PRIVATE of RX63NB:entity is "RENESAS_PRIVATE";
+   attribute IDCODE_REGISTER of RX63NB:entity is 
+             "0001"&
+             "1000000011000010"&
+             "01000100011"&
+             "1";
+   attribute BOUNDARY_LENGTH of RX63NB:entity is 373;
+   attribute BOUNDARY_REGISTER of RX63NB:entity is 
+     "0 (BC_2,*,INTERNAL,X),"&
+     "1 (BC_1,*,INTERNAL,X),"&
+     "2 (BC_1,*,INTERNAL,X),"&
+     "3 (BC_2,P299_P07,INPUT,X),"&
+     "4 (BC_1,*,CONTROL,0),"&
+     "5 (BC_1,P299_P07,OUTPUT3,X,4,0,Z),"&
+     "6 (BC_2,P290_P40,INPUT,X),"&
+     "7 (BC_1,*,CONTROL,0),"&
+     "8 (BC_1,P290_P40,OUTPUT3,X,7,0,Z),"&
+     "9 (BC_2,P285_P41,INPUT,X),"&
+     "10 (BC_1,*,CONTROL,0),"&
+     "11 (BC_1,P285_P41,OUTPUT3,X,10,0,Z),"&
+     "12 (BC_2,P284_P42,INPUT,X),"&
+     "13 (BC_1,*,CONTROL,0),"&
+     "14 (BC_1,P284_P42,OUTPUT3,X,13,0,Z),"&
+     "15 (BC_2,P283_P43,INPUT,X),"&
+     "16 (BC_1,*,CONTROL,0),"&
+     "17 (BC_1,P283_P43,OUTPUT3,X,16,0,Z),"&
+     "18 (BC_2,P282_P44,INPUT,X),"&
+     "19 (BC_1,*,CONTROL,0),"&
+     "20 (BC_1,P282_P44,OUTPUT3,X,19,0,Z),"&
+     "21 (BC_2,P281_P45,INPUT,X),"&
+     "22 (BC_1,*,CONTROL,0),"&
+     "23 (BC_1,P281_P45,OUTPUT3,X,22,0,Z),"&
+     "24 (BC_2,P280_P46,INPUT,X),"&
+     "25 (BC_1,*,CONTROL,0),"&
+     "26 (BC_1,P280_P46,OUTPUT3,X,25,0,Z),"&
+     "27 (BC_2,P279_P47,INPUT,X),"&
+     "28 (BC_1,*,CONTROL,0),"&
+     "29 (BC_1,P279_P47,OUTPUT3,X,28,0,Z),"&
+     "30 (BC_2,P273_P90,INPUT,X),"&
+     "31 (BC_1,*,CONTROL,0),"&
+     "32 (BC_1,P273_P90,OUTPUT3,X,31,0,Z),"&
+     "33 (BC_2,P268_P91,INPUT,X),"&
+     "34 (BC_1,*,CONTROL,0),"&
+     "35 (BC_1,P268_P91,OUTPUT3,X,34,0,Z),"&
+     "36 (BC_2,P266_P92,INPUT,X),"&
+     "37 (BC_1,*,CONTROL,0),"&
+     "38 (BC_1,P266_P92,OUTPUT3,X,37,0,Z),"&
+     "39 (BC_2,P264_P93,INPUT,X),"&
+     "40 (BC_1,*,CONTROL,0),"&
+     "41 (BC_1,P264_P93,OUTPUT3,X,40,0,Z),"&
+     "42 (BC_2,P262_PD0,INPUT,X),"&
+     "43 (BC_1,*,CONTROL,0),"&
+     "44 (BC_1,P262_PD0,OUTPUT3,X,43,0,Z),"&
+     "45 (BC_2,*,INTERNAL,X),"&
+     "46 (BC_1,*,INTERNAL,X),"&
+     "47 (BC_1,*,INTERNAL,X),"&
+     "48 (BC_2,P259_PD1,INPUT,X),"&
+     "49 (BC_1,*,CONTROL,0),"&
+     "50 (BC_1,P259_PD1,OUTPUT3,X,49,0,Z),"&
+     "51 (BC_2,*,INTERNAL,X),"&
+     "52 (BC_1,*,INTERNAL,X),"&
+     "53 (BC_1,*,INTERNAL,X),"&
+     "54 (BC_2,P256_PD2,INPUT,X),"&
+     "55 (BC_1,*,CONTROL,0),"&
+     "56 (BC_1,P256_PD2,OUTPUT3,X,55,0,Z),"&
+     "57 (BC_2,*,INTERNAL,X),"&
+     "58 (BC_1,*,INTERNAL,X),"&
+     "59 (BC_1,*,INTERNAL,X),"&
+     "60 (BC_2,P249_PD3,INPUT,X),"&
+     "61 (BC_1,*,CONTROL,0),"&
+     "62 (BC_1,P249_PD3,OUTPUT3,X,61,0,Z),"&
+     "63 (BC_2,*,INTERNAL,X),"&
+     "64 (BC_1,*,INTERNAL,X),"&
+     "65 (BC_1,*,INTERNAL,X),"&
+     "66 (BC_2,P246_PD4,INPUT,X),"&
+     "67 (BC_1,*,CONTROL,0),"&
+     "68 (BC_1,P246_PD4,OUTPUT3,X,67,0,Z),"&
+     "69 (BC_2,P244_PD5,INPUT,X),"&
+     "70 (BC_1,*,CONTROL,0),"&
+     "71 (BC_1,P244_PD5,OUTPUT3,X,70,0,Z),"&
+     "72 (BC_2,*,INTERNAL,X),"&
+     "73 (BC_1,*,INTERNAL,X),"&
+     "74 (BC_1,*,INTERNAL,X),"&
+     "75 (BC_2,P241_PD6,INPUT,X),"&
+     "76 (BC_1,*,CONTROL,0),"&
+     "77 (BC_1,P241_PD6,OUTPUT3,X,76,0,Z),"&
+     "78 (BC_2,*,INTERNAL,X),"&
+     "79 (BC_1,*,INTERNAL,X),"&
+     "80 (BC_1,*,INTERNAL,X),"&
+     "81 (BC_2,P238_PD7,INPUT,X),"&
+     "82 (BC_1,*,CONTROL,0),"&
+     "83 (BC_1,P238_PD7,OUTPUT3,X,82,0,Z),"&
+     "84 (BC_2,P235_P60,INPUT,X),"&
+     "85 (BC_1,*,CONTROL,0),"&
+     "86 (BC_1,P235_P60,OUTPUT3,X,85,0,Z),"&
+     "87 (BC_2,P232_P61,INPUT,X),"&
+     "88 (BC_1,*,CONTROL,0),"&
+     "89 (BC_1,P232_P61,OUTPUT3,X,88,0,Z),"&
+     "90 (BC_2,P231_P62,INPUT,X),"&
+     "91 (BC_1,*,CONTROL,0),"&
+     "92 (BC_1,P231_P62,OUTPUT3,X,91,0,Z),"&
+     "93 (BC_2,P230_P63,INPUT,X),"&
+     "94 (BC_1,*,CONTROL,0),"&
+     "95 (BC_1,P230_P63,OUTPUT3,X,94,0,Z),"&
+     "96 (BC_2,P229_P64,INPUT,X),"&
+     "97 (BC_1,*,CONTROL,0),"&
+     "98 (BC_1,P229_P64,OUTPUT3,X,97,0,Z),"&
+     "99 (BC_2,P227_PE0,INPUT,X),"&
+     "100 (BC_1,*,CONTROL,0),"&
+     "101 (BC_1,P227_PE0,OUTPUT3,X,100,0,Z),"&
+     "102 (BC_2,P225_PE1,INPUT,X),"&
+     "103 (BC_1,*,CONTROL,0),"&
+     "104 (BC_1,P225_PE1,OUTPUT3,X,103,0,Z),"&
+     "105 (BC_2,P223_PE2,INPUT,X),"&
+     "106 (BC_1,*,CONTROL,0),"&
+     "107 (BC_1,P223_PE2,OUTPUT3,X,106,0,Z),"&
+     "108 (BC_2,P220_PE3,INPUT,X),"&
+     "109 (BC_1,*,CONTROL,0),"&
+     "110 (BC_1,P220_PE3,OUTPUT3,X,109,0,Z),"&
+     "111 (BC_2,P217_PE4,INPUT,X),"&
+     "112 (BC_1,*,CONTROL,0),"&
+     "113 (BC_1,P217_PE4,OUTPUT3,X,112,0,Z),"&
+     "114 (BC_2,P214_PE5,INPUT,X),"&
+     "115 (BC_1,*,CONTROL,0),"&
+     "116 (BC_1,P214_PE5,OUTPUT3,X,115,0,Z),"&
+     "117 (BC_2,P212_P70,INPUT,X),"&
+     "118 (BC_1,*,CONTROL,0),"&
+     "119 (BC_1,P212_P70,OUTPUT3,X,118,0,Z),"&
+     "120 (BC_2,P208_PE6,INPUT,X),"&
+     "121 (BC_1,*,CONTROL,0),"&
+     "122 (BC_1,P208_PE6,OUTPUT3,X,121,0,Z),"&
+     "123 (BC_2,P205_PE7,INPUT,X),"&
+     "124 (BC_1,*,CONTROL,0),"&
+     "125 (BC_1,P205_PE7,OUTPUT3,X,124,0,Z),"&
+     "126 (BC_2,P204_P65,INPUT,X),"&
+     "127 (BC_1,*,CONTROL,0),"&
+     "128 (BC_1,P204_P65,OUTPUT3,X,127,0,Z),"&
+     "129 (BC_2,*,INTERNAL,X),"&
+     "130 (BC_1,*,INTERNAL,X),"&
+     "131 (BC_1,*,INTERNAL,X),"&
+     "132 (BC_2,P202_P66,INPUT,X),"&
+     "133 (BC_1,*,CONTROL,0),"&
+     "134 (BC_1,P202_P66,OUTPUT3,X,133,0,Z),"&
+     "135 (BC_2,*,INTERNAL,X),"&
+     "136 (BC_1,*,INTERNAL,X),"&
+     "137 (BC_1,*,INTERNAL,X),"&
+     "138 (BC_2,P200_P67,INPUT,X),"&
+     "139 (BC_1,*,CONTROL,0),"&
+     "140 (BC_1,P200_P67,OUTPUT3,X,139,0,Z),"&
+     "141 (BC_2,*,INTERNAL,X),"&
+     "142 (BC_1,*,INTERNAL,X),"&
+     "143 (BC_1,*,INTERNAL,X),"&
+     "144 (BC_2,P198_PA0,INPUT,X),"&
+     "145 (BC_1,*,CONTROL,0),"&
+     "146 (BC_1,P198_PA0,OUTPUT3,X,145,0,Z),"&
+     "147 (BC_2,*,INTERNAL,X),"&
+     "148 (BC_1,*,INTERNAL,X),"&
+     "149 (BC_1,*,INTERNAL,X),"&
+     "150 (BC_2,P190_PA1,INPUT,X),"&
+     "151 (BC_1,*,CONTROL,0),"&
+     "152 (BC_1,P190_PA1,OUTPUT3,X,151,0,Z),"&
+     "153 (BC_2,*,INTERNAL,X),"&
+     "154 (BC_1,*,INTERNAL,X),"&
+     "155 (BC_1,*,INTERNAL,X),"&
+     "156 (BC_2,P188_PA2,INPUT,X),"&
+     "157 (BC_1,*,CONTROL,0),"&
+     "158 (BC_1,P188_PA2,OUTPUT3,X,157,0,Z),"&
+     "159 (BC_2,*,INTERNAL,X),"&
+     "160 (BC_1,*,INTERNAL,X),"&
+     "161 (BC_1,*,INTERNAL,X),"&
+     "162 (BC_2,P186_PA3,INPUT,X),"&
+     "163 (BC_1,*,CONTROL,0),"&
+     "164 (BC_1,P186_PA3,OUTPUT3,X,163,0,Z),"&
+     "165 (BC_2,P183_PA4,INPUT,X),"&
+     "166 (BC_1,*,CONTROL,0),"&
+     "167 (BC_1,P183_PA4,OUTPUT3,X,166,0,Z),"&
+     "168 (BC_2,P180_PA5,INPUT,X),"&
+     "169 (BC_1,*,CONTROL,0),"&
+     "170 (BC_1,P180_PA5,OUTPUT3,X,169,0,Z),"&
+     "171 (BC_2,P179_PA6,INPUT,X),"&
+     "172 (BC_1,*,CONTROL,0),"&
+     "173 (BC_1,P179_PA6,OUTPUT3,X,172,0,Z),"&
+     "174 (BC_2,P178_PA7,INPUT,X),"&
+     "175 (BC_1,*,CONTROL,0),"&
+     "176 (BC_1,P178_PA7,OUTPUT3,X,175,0,Z),"&
+     "177 (BC_2,P173_PB0,INPUT,X),"&
+     "178 (BC_1,*,CONTROL,0),"&
+     "179 (BC_1,P173_PB0,OUTPUT3,X,178,0,Z),"&
+     "180 (BC_2,P168_P71,INPUT,X),"&
+     "181 (BC_1,*,CONTROL,0),"&
+     "182 (BC_1,P168_P71,OUTPUT3,X,181,0,Z),"&
+     "183 (BC_2,P167_P72,INPUT,X),"&
+     "184 (BC_1,*,CONTROL,0),"&
+     "185 (BC_1,P167_P72,OUTPUT3,X,184,0,Z),"&
+     "186 (BC_2,P166_PB1,INPUT,X),"&
+     "187 (BC_1,*,CONTROL,0),"&
+     "188 (BC_1,P166_PB1,OUTPUT3,X,187,0,Z),"&
+     "189 (BC_2,P165_PB2,INPUT,X),"&
+     "190 (BC_1,*,CONTROL,0),"&
+     "191 (BC_1,P165_PB2,OUTPUT3,X,190,0,Z),"&
+     "192 (BC_2,P164_PB3,INPUT,X),"&
+     "193 (BC_1,*,CONTROL,0),"&
+     "194 (BC_1,P164_PB3,OUTPUT3,X,193,0,Z),"&
+     "195 (BC_2,P163_PB4,INPUT,X),"&
+     "196 (BC_1,*,CONTROL,0),"&
+     "197 (BC_1,P163_PB4,OUTPUT3,X,196,0,Z),"&
+     "198 (BC_2,P162_PB5,INPUT,X),"&
+     "199 (BC_1,*,CONTROL,0),"&
+     "200 (BC_1,P162_PB5,OUTPUT3,X,199,0,Z),"&
+     "201 (BC_2,P161_PB6,INPUT,X),"&
+     "202 (BC_1,*,CONTROL,0),"&
+     "203 (BC_1,P161_PB6,OUTPUT3,X,202,0,Z),"&
+     "204 (BC_2,P160_PB7,INPUT,X),"&
+     "205 (BC_1,*,CONTROL,0),"&
+     "206 (BC_1,P160_PB7,OUTPUT3,X,205,0,Z),"&
+     "207 (BC_2,P159_P73,INPUT,X),"&
+     "208 (BC_1,*,CONTROL,0),"&
+     "209 (BC_1,P159_P73,OUTPUT3,X,208,0,Z),"&
+     "210 (BC_2,P155_PC0,INPUT,X),"&
+     "211 (BC_1,*,CONTROL,0),"&
+     "212 (BC_1,P155_PC0,OUTPUT3,X,211,0,Z),"&
+     "213 (BC_2,P151_PC1,INPUT,X),"&
+     "214 (BC_1,*,CONTROL,0),"&
+     "215 (BC_1,P151_PC1,OUTPUT3,X,214,0,Z),"&
+     "216 (BC_2,P150_P74,INPUT,X),"&
+     "217 (BC_1,*,CONTROL,0),"&
+     "218 (BC_1,P150_P74,OUTPUT3,X,217,0,Z),"&
+     "219 (BC_2,P149_P75,INPUT,X),"&
+     "220 (BC_1,*,CONTROL,0),"&
+     "221 (BC_1,P149_P75,OUTPUT3,X,220,0,Z),"&
+     "222 (BC_2,P148_PC2,INPUT,X),"&
+     "223 (BC_1,*,CONTROL,0),"&
+     "224 (BC_1,P148_PC2,OUTPUT3,X,223,0,Z),"&
+     "225 (BC_2,P147_P76,INPUT,X),"&
+     "226 (BC_1,*,CONTROL,0),"&
+     "227 (BC_1,P147_P76,OUTPUT3,X,226,0,Z),"&
+     "228 (BC_2,P146_P77,INPUT,X),"&
+     "229 (BC_1,*,CONTROL,0),"&
+     "230 (BC_1,P146_P77,OUTPUT3,X,229,0,Z),"&
+     "231 (BC_2,P145_PC3,INPUT,X),"&
+     "232 (BC_1,*,CONTROL,0),"&
+     "233 (BC_1,P145_PC3,OUTPUT3,X,232,0,Z),"&
+     "234 (BC_2,P144_PC4,INPUT,X),"&
+     "235 (BC_1,*,CONTROL,0),"&
+     "236 (BC_1,P144_PC4,OUTPUT3,X,235,0,Z),"&
+     "237 (BC_2,P143_P80,INPUT,X),"&
+     "238 (BC_1,*,CONTROL,0),"&
+     "239 (BC_1,P143_P80,OUTPUT3,X,238,0,Z),"&
+     "240 (BC_2,P142_P81,INPUT,X),"&
+     "241 (BC_1,*,CONTROL,0),"&
+     "242 (BC_1,P142_P81,OUTPUT3,X,241,0,Z),"&
+     "243 (BC_2,P141_P82,INPUT,X),"&
+     "244 (BC_1,*,CONTROL,0),"&
+     "245 (BC_1,P141_P82,OUTPUT3,X,244,0,Z),"&
+     "246 (BC_2,P140_PC5,INPUT,X),"&
+     "247 (BC_1,*,CONTROL,0),"&
+     "248 (BC_1,P140_PC5,OUTPUT3,X,247,0,Z),"&
+     "249 (BC_2,P139_PC6,INPUT,X),"&
+     "250 (BC_1,*,CONTROL,0),"&
+     "251 (BC_1,P139_PC6,OUTPUT3,X,250,0,Z),"&
+     "252 (BC_2,P138_PC7,INPUT,X),"&
+     "253 (BC_1,*,CONTROL,0),"&
+     "254 (BC_1,P138_PC7,OUTPUT3,X,253,0,Z),"&
+     "255 (BC_2,P134_P83,INPUT,X),"&
+     "256 (BC_1,*,CONTROL,0),"&
+     "257 (BC_1,P134_P83,OUTPUT3,X,256,0,Z),"&
+     "258 (BC_2,P131_P50,INPUT,X),"&
+     "259 (BC_1,*,CONTROL,0),"&
+     "260 (BC_1,P131_P50,OUTPUT3,X,259,0,Z),"&
+     "261 (BC_2,P130_P51,INPUT,X),"&
+     "262 (BC_1,*,CONTROL,0),"&
+     "263 (BC_1,P130_P51,OUTPUT3,X,262,0,Z),"&
+     "264 (BC_2,P129_P52,INPUT,X),"&
+     "265 (BC_1,*,CONTROL,0),"&
+     "266 (BC_1,P129_P52,OUTPUT3,X,265,0,Z),"&
+     "267 (BC_2,*,INTERNAL,X),"&
+     "268 (BC_1,*,INTERNAL,X),"&
+     "269 (BC_1,*,INTERNAL,X),"&
+     "270 (BC_2,P127_P53,INPUT,X),"&
+     "271 (BC_1,*,CONTROL,0),"&
+     "272 (BC_1,P127_P53,OUTPUT3,X,271,0,Z),"&
+     "273 (BC_2,P126_P54,INPUT,X),"&
+     "274 (BC_1,*,CONTROL,0),"&
+     "275 (BC_1,P126_P54,OUTPUT3,X,274,0,Z),"&
+     "276 (BC_2,P125_P55,INPUT,X),"&
+     "277 (BC_1,*,CONTROL,0),"&
+     "278 (BC_1,P125_P55,OUTPUT3,X,277,0,Z),"&
+     "279 (BC_2,P118_P56,INPUT,X),"&
+     "280 (BC_1,*,CONTROL,0),"&
+     "281 (BC_1,P118_P56,OUTPUT3,X,280,0,Z),"&
+     "282 (BC_2,*,INTERNAL,X),"&
+     "283 (BC_1,*,INTERNAL,X),"&
+     "284 (BC_1,*,INTERNAL,X),"&
+     "285 (BC_2,*,INTERNAL,X),"&
+     "286 (BC_1,*,INTERNAL,X),"&
+     "287 (BC_1,*,INTERNAL,X),"&
+     "288 (BC_2,*,INTERNAL,X),"&
+     "289 (BC_1,*,INTERNAL,X),"&
+     "290 (BC_1,*,INTERNAL,X),"&
+     "291 (BC_2,P104_P12,INPUT,X),"&
+     "292 (BC_1,*,CONTROL,0),"&
+     "293 (BC_1,P104_P12,OUTPUT3,X,292,0,Z),"&
+     "294 (BC_2,P102_P13,INPUT,X),"&
+     "295 (BC_1,*,CONTROL,0),"&
+     "296 (BC_1,P102_P13,OUTPUT3,X,295,0,Z),"&
+     "297 (BC_2,*,INTERNAL,X),"&
+     "298 (BC_1,*,INTERNAL,X),"&
+     "299 (BC_1,*,INTERNAL,X),"&
+     "300 (BC_2,P100_P14,INPUT,X),"&
+     "301 (BC_1,*,CONTROL,0),"&
+     "302 (BC_1,P100_P14,OUTPUT3,X,301,0,Z),"&
+     "303 (BC_2,P099_P15,INPUT,X),"&
+     "304 (BC_1,*,CONTROL,0),"&
+     "305 (BC_1,P099_P15,OUTPUT3,X,304,0,Z),"&
+     "306 (BC_2,P098_P86,INPUT,X),"&
+     "307 (BC_1,*,CONTROL,0),"&
+     "308 (BC_1,P098_P86,OUTPUT3,X,307,0,Z),"&
+     "309 (BC_2,P095_P16,INPUT,X),"&
+     "310 (BC_1,*,CONTROL,0),"&
+     "311 (BC_1,P095_P16,OUTPUT3,X,310,0,Z),"&
+     "312 (BC_2,P093_P87,INPUT,X),"&
+     "313 (BC_1,*,CONTROL,0),"&
+     "314 (BC_1,P093_P87,OUTPUT3,X,313,0,Z),"&
+     "315 (BC_2,P091_P17,INPUT,X),"&
+     "316 (BC_1,*,CONTROL,0),"&
+     "317 (BC_1,P091_P17,OUTPUT3,X,316,0,Z),"&
+     "318 (BC_2,P089_P20,INPUT,X),"&
+     "319 (BC_1,*,CONTROL,0),"&
+     "320 (BC_1,P089_P20,OUTPUT3,X,319,0,Z),"&
+     "321 (BC_2,*,INTERNAL,X),"&
+     "322 (BC_1,*,INTERNAL,X),"&
+     "323 (BC_1,*,INTERNAL,X),"&
+     "324 (BC_2,*,INTERNAL,X),"&
+     "325 (BC_1,*,INTERNAL,X),"&
+     "326 (BC_1,*,INTERNAL,X),"&
+     "327 (BC_2,P083_P21,INPUT,X),"&
+     "328 (BC_1,*,CONTROL,0),"&
+     "329 (BC_1,P083_P21,OUTPUT3,X,328,0,Z),"&
+     "330 (BC_2,P082_P22,INPUT,X),"&
+     "331 (BC_1,*,CONTROL,0),"&
+     "332 (BC_1,P082_P22,OUTPUT3,X,331,0,Z),"&
+     "333 (BC_2,P080_P23,INPUT,X),"&
+     "334 (BC_1,*,CONTROL,0),"&
+     "335 (BC_1,P080_P23,OUTPUT3,X,334,0,Z),"&
+     "336 (BC_2,P076_P24,INPUT,X),"&
+     "337 (BC_1,*,CONTROL,0),"&
+     "338 (BC_1,P076_P24,OUTPUT3,X,337,0,Z),"&
+     "339 (BC_2,P072_P25,INPUT,X),"&
+     "340 (BC_1,*,CONTROL,0),"&
+     "341 (BC_1,P072_P25,OUTPUT3,X,340,0,Z),"&
+     "342 (BC_2,P060_P32,INPUT,X),"&
+     "343 (BC_1,*,CONTROL,0),"&
+     "344 (BC_1,P060_P32,OUTPUT3,X,343,0,Z),"&
+     "345 (BC_2,P059_P33,INPUT,X),"&
+     "346 (BC_1,*,CONTROL,0),"&
+     "347 (BC_1,P059_P33,OUTPUT3,X,346,0,Z),"&
+     "348 (BC_2,P056_P35,INPUT,X),"&
+     "349 (BC_2,P037_PJ3,INPUT,X),"&
+     "350 (BC_1,*,CONTROL,0),"&
+     "351 (BC_1,P037_PJ3,OUTPUT3,X,350,0,Z),"&
+     "352 (BC_2,P035_PJ5,INPUT,X),"&
+     "353 (BC_1,*,CONTROL,0),"&
+     "354 (BC_1,P035_PJ5,OUTPUT3,X,353,0,Z),"&
+     "355 (BC_2,P033_PF5,INPUT,X),"&
+     "356 (BC_1,*,CONTROL,0),"&
+     "357 (BC_1,P033_PF5,OUTPUT3,X,356,0,Z),"&
+     "358 (BC_2,P031_P00,INPUT,X),"&
+     "359 (BC_1,*,CONTROL,0),"&
+     "360 (BC_1,P031_P00,OUTPUT3,X,359,0,Z),"&
+     "361 (BC_2,P029_P01,INPUT,X),"&
+     "362 (BC_1,*,CONTROL,0),"&
+     "363 (BC_1,P029_P01,OUTPUT3,X,362,0,Z),"&
+     "364 (BC_2,P027_P02,INPUT,X),"&
+     "365 (BC_1,*,CONTROL,0),"&
+     "366 (BC_1,P027_P02,OUTPUT3,X,365,0,Z),"&
+     "367 (BC_2,P017_P03,INPUT,X),"&
+     "368 (BC_1,*,CONTROL,0),"&
+     "369 (BC_1,P017_P03,OUTPUT3,X,368,0,Z),"&
+     "370 (BC_2,P011_P05,INPUT,X),"&
+     "371 (BC_1,*,CONTROL,0),"&
+     "372 (BC_1,P011_P05,OUTPUT3,X,371,0,Z)";
+ end    RX63NB;

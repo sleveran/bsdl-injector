@@ -1,0 +1,263 @@
+entity gc4016 is 
+	generic (PHYSICAL_PIN_MAP: string:="PB");
+--	<logical port description>
+	port( 
+	dval, ck, ce, wr, rd: in bit;
+	a: in bit_vector (0 to 4);
+	c: inout bit_vector (0 to 7);
+	p: out bit_vector (0 to 23);
+	ain: in bit_vector (0 to 13);
+	bin: in bit_vector (0 to 13);
+	cin: in bit_vector (0 to 13);
+	din: in bit_vector (0 to 13);
+	sia, sib: in bit;
+	so: out bit;
+	sck, sfs: out bit;
+	rdy: inout bit;
+	tdi, tms, tck: in bit;
+	tdo: out bit;
+	thermalgnd: linkage bit_vector (0 to 3);
+	gnd: linkage bit_vector (0 to 15);
+	vpad: linkage bit_vector (0 to 8);
+	vcore: linkage bit_vector (0 to 6) );
+
+--	<standard use statement>
+	use STD_1149_1_1994.all;
+
+--	{<use statement>} for private VHDL package we probably never use
+
+--	<component comformance statement>
+	attribute COMPONENT_CONFORMANCE of gc4016: entity is "STD_1149_1_1993";
+
+--	<device package pin mappings>
+	attribute PIN_MAP of gc4016: entity is PHYSICAL_PIN_MAP;
+	constant PB:PIN_MAP_STRING:= "ce:B4, " &
+	"ck:P7, " &
+	"dval:P8, " &
+	"rd:A4, " &
+	"rdy:A10, " &
+	"sck:D12, " &
+	"sfs:D13, " &
+	"sia:D3, " &
+	"sib:D1, " &
+	"so:E2, " &
+	"tck:B12, " &
+	"tdi:C13, " &
+	"tdo:C12, " &
+	"tms:C10, " &
+	"wr:C4, " &
+	"a:(C6,B6,A5,C5,B5), " &
+	"c:(B9,A9,C9,B8,C8,A7,B7,A6), " &
+	"p:(B11,C11,A11,B10,D9,C7,D7,D5,D4,F4,H3,H4,J4,K4,M6," &
+	 "M7,N8,N9,N10,L11,K11,J11,F11,E11), " &
+	"ain:(D14,E13,E12,E14,F13,F12,F14,G13,G14,H12,H11,H14,H13,J12), " &
+	"bin:(J14,J13,K12,K14,K13,L14,L12,M11,P11,L10,M10,M9,P9,L8), " &
+	"cin:(N7,L6,P6,N6,N5,L4,M4,N4,L2,L3,L1,K2,K3,K1), " &
+	"din:(J2,J3,J1,H2,H1,G3,G4,G1,G2,F3,F1,F2,E3,E1), " &
+	"thermalgnd:(g7,g8,h7,h8), " &
+	"vpad:(B14,C3,D10,D6,D8,G12,M3,P12,P5), " &
+	"vcore:(C14,D2,L13,L5,M8,P10,P3), " &
+	"gnd:(A12,A3,L7,L9,M1,M5,N11," &
+	     "A13,A8,C1,D11,E4,G11,M14,N3,P4)";
+
+--	<scan port identification>
+	attribute TAP_SCAN_CLOCK of tck: signal is (20.0e6, BOTH);
+	attribute TAP_SCAN_IN of tdi: signal is true;
+	attribute TAP_SCAN_MODE of tms: signal is true;
+	attribute TAP_SCAN_OUT of tdo: signal is true;
+
+--	{<compliance enable description>} NONE
+
+--	<instruction register description>
+	attribute INSTRUCTION_LENGTH of gc4016: entity is 2;
+	attribute INSTRUCTION_OPCODE of gc4016: entity is 
+	    "EXTEST (00), " &
+	    "BYPASS (11), " &
+	    "SAMPLE (10), " &
+	    "IDCODE (01)  ";
+
+	attribute INSTRUCTION_CAPTURE of gc4016: entity is "01";
+
+--	{<optional register description>}
+	attribute IDCODE_REGISTER of gc4016: entity is 
+--	    0x02329119  FROM gc9001
+--	    version 0
+--	    part code 0x2329
+--	    Manufacturer ID = 0x118/2 = 0x8c
+--	    Fixed 1
+	    "0010" &		-- Version 2
+	    "0000111110110000" & -- Part number 4016 = 0x0fb0
+	    "00010001100" &	-- Manufacturer ID 0x8c
+	    "1";		-- mandatory bit.
+
+--	{<register access description>}  NONE
+
+--	<boundary-scan register description>
+        attribute BOUNDARY_LENGTH of gc4016: entity is 155;
+        attribute BOUNDARY_REGISTER of gc4016: entity is
+--num cell    port       function safe ccell disval rslt
+"154  (BC_1, *, control, 0), " &
+"153  (BC_1, p(0), output3, X, 154, 0, Z), " &
+"152  (BC_1, *, control, 0), " &
+"151  (BC_1, p(1), output3, X, 152, 0, Z), " &
+"150  (BC_1, *, control, 0), " &
+"149  (BC_1, p(2), output3, X, 150, 0, Z), " &
+"148  (BC_1, *, control, 0), " &
+"147  (BC_1, p(3), output3, X, 148, 0, Z), " &
+"146  (BC_4, rdy, input, X), " &
+"145  (BC_1, rdy, output3, X, 144, 0, Z), " &
+"144  (BC_1, *, control, 0), " &
+"143  (BC_1, c(0), output3, X, 114, 0, Z), " &
+"142  (BC_4, c(0), input, X), " &
+"141  (BC_1, c(1), output3, X, 114, 0, Z), " &
+"140  (BC_4, c(1), input, X), " &
+"139  (BC_1, c(2), output3, X, 114, 0, Z), " &
+"138  (BC_4, c(2), input, X), " &
+"137  (BC_1, *, control, 0), " &
+"136  (BC_1, p(4), output3, X, 137, 0, Z), " &
+"135  (BC_1, c(3), output3, X, 114, 0, Z), " &
+"134  (BC_4, c(3), input, X), " &
+"133  (BC_1, *, control, 0), " &
+"132  (BC_1, p(5), output3, X, 133, 0, Z), " &
+"131  (BC_1, c(4), output3, X, 114, 0, Z), " &
+"130  (BC_4, c(4), input, X), " &
+"129  (BC_1, c(5), output3, X, 114, 0, Z), " &
+"128  (BC_4, c(5), input, X), " &
+"127  (BC_1, c(6), output3, X, 114, 0, Z), " &
+"126  (BC_4, c(6), input, X), " &
+"125  (BC_1, *, control, 0), " &
+"124  (BC_1, p(6), output3, X, 125, 0, Z), " &
+"123  (BC_1, c(7), output3, X, 114, 0, Z), " &
+"122  (BC_4, c(7), input, X), " &
+"121  (BC_4, a(0), input, X), " &
+"120  (BC_4, a(1), input, X), " &
+"119  (BC_4, a(2), input, X), " &
+"118  (BC_4, a(3), input, X), " &
+"117  (BC_4, a(4), input, X), " &
+"116  (BC_1, *, control, 0), " &
+"115  (BC_1, p(7), output3, X, 116, 0, Z), " &
+"114  (BC_1, *, control, 0), " &
+"113  (BC_4, rd, input, X), " &
+"112  (BC_4, wr, input, X), " &
+"111  (BC_4, ce, input, X), " &
+"110  (BC_4, sia, input, X), " &
+"109  (BC_4, sib, input, X), " &
+"108  (BC_1, *, control, 0), " &
+"107  (BC_1, p(8), output3, X, 108, 0, Z), " &
+"106  (BC_1, *, control, 0), " &
+"105  (BC_1, so, output3, X, 106, 0, Z), " &
+"104  (BC_4, din(13), input, X), " &
+"103  (BC_4, *, internal, X), " &
+"102  (BC_4, din(12), input, X), " &
+"101  (BC_4, din(11), input, X), " &
+"100  (BC_4, *, internal, X), " &
+" 99  (BC_4, din(10), input, X), " &
+" 98  (BC_4, din(9), input, X), " &
+" 97  (BC_1, p(9), output3, X, 108, 0, Z), " &
+" 96  (BC_4, *, internal, X), " &
+" 95  (BC_4, din(8), input, X), " &
+" 94  (BC_4, din(7), input, X), " &
+" 93  (BC_4, *, internal, X), " &
+" 92  (BC_4, din(6), input, X), " &
+" 91  (BC_1, p(10), output3, X, 108, 0, Z), " &
+" 90  (BC_4, din(5), input, X), " &
+" 89  (BC_4, *, internal, X), " &
+" 88  (BC_4, din(4), input, X), " &
+" 87  (BC_4, din(3), input, X), " &
+" 86  (BC_1, p(11), output3, X, 108, 0, Z), " &
+" 85  (BC_4, *, internal, X), " &
+" 84  (BC_4, din(2), input, X), " &
+" 83  (BC_4, din(1), input, X), " &
+" 82  (BC_4, *, internal, X), " &
+" 81  (BC_4, din(0), input, X), " &
+" 80  (BC_1, p(12), output3, X, 108, 0, Z), " &
+" 79  (BC_4, cin(13), input, X), " &
+" 78  (BC_4, *, internal, X), " &
+" 77  (BC_4, cin(12), input, X), " &
+" 76  (BC_4, cin(11), input, X), " &
+" 75  (BC_1, p(13), output3, X, 108, 0, Z), " &
+" 74  (BC_4, *, internal, X), " &
+" 73  (BC_4, cin(10), input, X), " &
+" 72  (BC_4, cin(9), input, X), " &
+" 71  (BC_4, *, internal, X), " &
+" 70  (BC_4, cin(8), input, X), " &
+" 69  (BC_4, cin(7), input, X), " &
+" 68  (BC_4, *, internal, X), " &
+" 67  (BC_4, cin(6), input, X), " &
+" 66  (BC_4, cin(5), input, X), " &
+" 65  (BC_4, *, internal, X), " &
+" 64  (BC_4, cin(4), input, X), " &
+" 63  (BC_4, cin(3), input, X), " &
+" 62  (BC_4, *, internal, X), " &
+" 61  (BC_4, cin(2), input, X), " &
+" 60  (BC_1, p(14), output3, X, 108, 0, Z), " &
+" 59  (BC_4, cin(1), input, X), " &
+" 58  (BC_4, *, internal, X), " &
+" 57  (BC_4, cin(0), input, X), " &
+" 56  (BC_4, ck, input, X), " &
+" 55  (BC_1, p(15), output3, X, 108, 0, Z), " &
+" 54  (BC_4, dval, input, X), " &
+" 53  (BC_1, p(16), output3, X, 108, 0, Z), " &
+" 52  (BC_4, bin(13), input, X), " &
+" 51  (BC_4, *, internal, X), " &
+" 50  (BC_4, bin(12), input, X), " &
+" 49  (BC_4, bin(11), input, X), " &
+" 48  (BC_1, p(17), output3, X, 108, 0, Z), " &
+" 47  (BC_4, *, internal, X), " &
+" 46  (BC_4, bin(10), input, X), " &
+" 45  (BC_1, p(18), output3, X, 108, 0, Z), " &
+" 44  (BC_4, bin(9), input, X), " &
+" 43  (BC_4, *, internal, X), " &
+" 42  (BC_4, bin(8), input, X), " &
+" 41  (BC_4, bin(7), input, X), " &
+" 40  (BC_4, *, internal, X), " &
+" 39  (BC_4, bin(6), input, X), " &
+" 38  (BC_4, bin(5), input, X), " &
+" 37  (BC_1, p(19), output3, X, 108, 0, Z), " &
+" 36  (BC_4, *, internal, X), " &
+" 35  (BC_4, bin(4), input, X), " &
+" 34  (BC_4, bin(3), input, X), " &
+" 33  (BC_4, *, internal, X), " &
+" 32  (BC_4, bin(2), input, X), " &
+" 31  (BC_1, p(20), output3, X, 108, 0, Z), " &
+" 30  (BC_4, bin(1), input, X), " &
+" 29  (BC_4, *, internal, X), " &
+" 28  (BC_4, bin(0), input, X), " &
+" 27  (BC_4, ain(13), input, X), " &
+" 26  (BC_1, p(21), output3, X, 108, 0, Z), " &
+" 25  (BC_4, *, internal, X), " &
+" 24  (BC_4, ain(12), input, X), " &
+" 23  (BC_4, ain(11), input, X), " &
+" 22  (BC_4, *, internal, X), " &
+" 21  (BC_4, ain(10), input, X), " &
+" 20  (BC_4, ain(9), input, X), " &
+" 19  (BC_4, *, internal, X), " &
+" 18  (BC_4, ain(8), input, X), " &
+" 17  (BC_4, ain(7), input, X), " &
+" 16  (BC_4, *, internal, X), " &
+" 15  (BC_4, ain(6), input, X), " &
+" 14  (BC_4, ain(5), input, X), " &
+" 13  (BC_4, *, internal, X), " &
+" 12  (BC_4, ain(4), input, X), " &
+" 11  (BC_1, p(22), output3, X, 108, 0, Z), " &
+" 10  (BC_4, ain(3), input, X), " &
+"  9  (BC_4, *, internal, X), " &
+"  8  (BC_4, ain(2), input, X), " &
+"  7  (BC_4, ain(1), input, X), " &
+"  6  (BC_1, p(23), output3, X, 108, 0, Z), " &
+"  5  (BC_4, *, internal, X), " &
+"  4  (BC_4, ain(0), input, X), " &
+"  3  (BC_1, *, control, 0), " &
+"  2  (BC_1, sck, output3, X, 3, 0, Z), " &
+"  1  (BC_1, *, control, 0), " &
+"  0  (BC_1, sfs, output3, X, 1, 0, Z)";
+--      {<runbist description>} NONE
+--      {<intest description>} NONE
+--      {<BSDL extensions>} NONE
+
+--      {<design warning>}
+        attribute DESIGN_WARNING of gc4016: entity is
+        "Dynamic device, " &
+        "stopping the clock will cause the chip to lose state.";
+
+end gc4016;

@@ -1,0 +1,189 @@
+---------------------------------------------------------------- 
+-- BSDL model for ISSI's IS61LPS/LPD/VPS/VPD/VF/LF25636 Synchronous SRAM 
+-- Author: S.J. JANG 
+-- Revision History: Rev0.0 (9/6/05) 
+-- 
+-- 
+---------------------------------------------------------------- 
+entity IS61LXXVXX25636 is 
+generic (PHYSICAL_PIN_MAP : string := "BGA_11x15"); 
+port ( A : in bit_vector(0 to 17); 
+ADV_b : in bit; 
+ADSP_b : in bit; 
+ADSC_b : in bit; 
+GW_b : in bit; 
+BW_A_b : in bit; 
+BW_B_b : in bit; 
+BW_C_b : in bit; 
+BW_D_b : in bit; 
+CLK : in bit; 
+DP_A : in bit; 
+DP_B : in bit; 
+DP_C : in bit; 
+DP_D : in bit; 
+DQ_A : in bit_vector(0 to 7); 
+DQ_B : in bit_vector(0 to 7); 
+DQ_C : in bit_vector(0 to 7); 
+DQ_D : in bit_vector(0 to 7); 
+CE_b : in bit; 
+CE2 : in bit; 
+CE2_b : in bit; 
+TCK : in bit; 
+TDI : in bit; 
+TDO : out bit; 
+TMS : in bit; 
+MODE : in bit; 
+OE_b : in bit; 
+BWE_b : in bit; 
+NC : linkage bit_vector(0 to 17); 
+Vdd : linkage bit_vector(0 to 17); 
+Vddq : linkage bit_vector(0 to 19); 
+Vss : linkage bit_vector(0 to 34); 
+ZZ : in bit); 
+use STD_1149_1_1994.all; 
+attribute COMPONENT_CONFORMANCE of IS61LXXVXX25636 : entity is 
+"STD_1149_1_1993"; 
+attribute PIN_MAP of IS61LXXVXX25636 : entity is 
+PHYSICAL_PIN_MAP; 
+constant BGA_11x15: PIN_MAP_STRING := 
+" A: (R6, P6, P4, R4, R3, A10, R11, R10, P10, P9, R9, R8, P8," & 
+" P3, A2, P11, B2, B10), " & 
+" ADV_b: A9, " & 
+" ADSP_b: B9, " & 
+" ADSC_b: A8, " & 
+" GW_b: B7, " & 
+" BWE_b: A7, " & 
+" BW_A_b: B5, " & 
+" BW_B_b: A5, " & 
+" BW_C_b: A4, " & 
+" BW_D_b: B4, " & 
+" CLK: B6, " & 
+" DP_A: N11, " & 
+" DP_B: C11, " & 
+" DP_C: C1, " & 
+" DP_D: N1, " & 
+" DQ_A: (J10, K10, L10, M10, J11, K11, L11, M11), " & 
+" DQ_B: (D10, E10, F10, G10, D11, E11, F11, G11), " & 
+" DQ_C: (G2, F2, E2, D2, G1, F1, E1, D1), " & 
+" DQ_D: (M2, L2, K2, J2, M1, L1, K1, J1), " & 
+" CE_b: A3, " & 
+" CE2: B3, " & 
+" CE2_b: A6, " & 
+" TCK: R7, " & 
+" TDI: P5, " & 
+" TDO: P7, " & 
+" TMS: R5, " & 
+" MODE: R1, " & 
+" OE_b: B8, " & 
+" NC: (A1, B1, H1, P1, C2, N2, P2, R2, H3, N5, N6, N7, H9, " & 
+" C10, H10, N10, A11, B11), " & 
+" Vdd: (D4, D8, E4, E8, F4, F8, G4, G8, H4, H8, J4, J8, K4, " & 
+" K8, L4, L8, M4, M8), " & 
+" Vddq: (C3, D3, E3, F3, G3, J3, K3, L3, M3, N3, C9, D9, E9, " & 
+" F9, G9, J9, K9, L9, M9, N9), " & 
+" Vss: (C4, N4, C5, D5, E5, F5, G5, H5, J5, K5, L5, M5, C6, " & 
+" D6, E6, F6, G6, H6, J6, K6, L6, M6, C7, D7, E7, F7, " & 
+" G7, H7, J7, K7, L7, M7, C8, N8, H2), " & 
+" ZZ: H11 " ; 
+attribute TAP_SCAN_IN of TDI : signal is true; 
+attribute TAP_SCAN_OUT of TDO : signal is true; 
+attribute TAP_SCAN_MODE of TMS : signal is true; 
+attribute TAP_SCAN_CLOCK of TCK : signal is (100.0e6, BOTH); 
+attribute INSTRUCTION_LENGTH of IS61LXXVXX25636 : entity is 3; 
+attribute INSTRUCTION_OPCODE of IS61LXXVXX25636 : entity is 
+"EXTEST (000), " & 
+"IDCODE (001), " & 
+"SAMPLEZ (010), " & 
+"SAMPLE (100), " & 
+"BYPASS (111) " ; 
+attribute INSTRUCTION_CAPTURE of IS61LXXVXX25636 : entity is "001"; 
+attribute IDCODE_REGISTER of IS61LXXVXX25636 : entity is 
+"0000" & -- Die Revision Code 
+"0011100100" & -- Defines depth and width 
+"000000" & -- vendor definition 
+"00011010101" & -- ISSI JEDEC ID 
+"1" ; -- Presence Register 
+attribute REGISTER_ACCESS of IS61LXXVXX25636 : entity is 
+"BOUNDARY (EXTEST, SAMPLE, SAMPLEZ), " & 
+"BYPASS (BYPASS) " ; 
+attribute BOUNDARY_LENGTH of IS61LXXVXX25636 : entity is 75; 
+attribute BOUNDARY_REGISTER of IS61LXXVXX25636 : entity is 
+"0 (BC_4, MODE, input, X), " & 
+"1 (BC_4, *, internal, X), " & 
+"2 (BC_4, A(15), input, X), " & 
+"3 (BC_4, A(12), input, X), " & 
+"4 (BC_4, A(11), input, X), " & 
+"5 (BC_4, A(10), input, X), " & 
+"6 (BC_4, A(9), input, X), " & 
+"7 (BC_4, A(8), input, X), " & 
+"8 (BC_4, A(7), input, X), " & 
+"9 (BC_4, A(6), input, X), " & 
+"10 (BC_4, ZZ, input, X), " & 
+"11 (BC_4, DP_A, input, X), " & 
+"12 (BC_4, DQ_A(7), input, X), " & 
+"13 (BC_4, DQ_A(6), input, X), " & 
+"14 (BC_4, DQ_A(5), input, X), " & 
+"15 (BC_4, DQ_A(4), input, X), " & 
+"16 (BC_4, DQ_A(3), input, X), " & 
+"17 (BC_4, DQ_A(2), input, X), " & 
+"18 (BC_4, DQ_A(1), input, X), " & 
+"19 (BC_4, DQ_A(0), input, X), " & 
+"20 (BC_4, DQ_B(7), input, X), " & 
+"21 (BC_4, DQ_B(6), input, X), " & 
+"22 (BC_4, DQ_B(5), input, X), " & 
+"23 (BC_4, DQ_B(4), input, X), " & 
+"24 (BC_4, DQ_B(3), input, X), " & 
+"25 (BC_4, DQ_B(2), input, X), " & 
+"26 (BC_4, DQ_B(1), input, X), " & 
+"27 (BC_4, DQ_B(0), input, X), " & 
+"28 (BC_4, DP_B, input, X), " & 
+"29 (BC_4, *, internal, X), " & 
+"30 (BC_4, A(5), input, X), " & 
+"31 (BC_4, A(17), input, X), " & 
+"32 (BC_4, ADV_b, input, X), " & 
+"33 (BC_4, ADSP_b, input, X), " & 
+"34 (BC_4, ADSC_b, input, X), " & 
+"35 (BC_4, OE_b, input, X), " & 
+"36 (BC_4, BWE_b, input, X), " & 
+"37 (BC_4, GW_b, input, X), " & 
+"38 (BC_4, CLK, input, X), " & 
+"39 (BC_4, *, internal, X), " & 
+"40 (BC_4, *, internal, X), " & 
+"41 (BC_4, CE2_b, input, X), " & 
+"42 (BC_4, BW_A_b, input, X), " & 
+"43 (BC_4, BW_B_b, input, X), " & 
+"44 (BC_4, BW_C_b, input, X), " & 
+"45 (BC_4, BW_D_b, input, X), " & 
+"46 (BC_4, CE2, input, X), " & 
+"47 (BC_4, CE_b, input, X), " & 
+"48 (BC_4, A(14), input, X), " & 
+"49 (BC_4, A(16), input, X), " & 
+"50 (BC_4, *, internal, X), " & 
+"51 (BC_4, DP_C, input, X), " & 
+"52 (BC_4, DQ_C(7), input, X), " & 
+"53 (BC_4, DQ_C(6), input, X), " & 
+"54 (BC_4, DQ_C(5), input, X), " & 
+"55 (BC_4, DQ_C(4), input, X), " & 
+"56 (BC_4, DQ_C(3), input, X), " & 
+"57 (BC_4, DQ_C(2), input, X), " & 
+"58 (BC_4, DQ_C(1), input, X), " & 
+"59 (BC_4, DQ_C(0), input, X), " & 
+"60 (BC_4, DQ_D(7), input, X), " & 
+"61 (BC_4, DQ_D(6), input, X), " & 
+"62 (BC_4, DQ_D(5), input, X), " & 
+"63 (BC_4, DQ_D(4), input, X), " & 
+"64 (BC_4, DQ_D(3), input, X), " & 
+"65 (BC_4, DQ_D(2), input, X), " & 
+"66 (BC_4, DQ_D(1), input, X), " & 
+"67 (BC_4, DQ_D(0), input, X), " & 
+"68 (BC_4, DP_D, input, X), " & 
+"69 (BC_4, A(13), input, X), " & 
+"70 (BC_4, A(4), input, X), " & 
+"71 (BC_4, A(3), input, X), " & 
+"72 (BC_4, A(2), input, X), " & 
+"73 (BC_4, A(1), input, X), " & 
+"74 (BC_4, A(0), input, X) " ; 
+attribute DESIGN_WARNING of IS61LXXVXX25636:entity is 
+"WARNING: THIS DEVICE OPERATES ON A SUBSET OF IEEE STANDARD 1149.1, "& 
+"THE JTAG INSTRUCTIONS EXTEST IS NOT 1149.1 COMPLIANT."; 
+end IS61LXXVXX25636; 

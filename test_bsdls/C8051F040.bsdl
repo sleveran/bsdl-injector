@@ -1,0 +1,447 @@
+-----------------------------------------------------------------------
+--File:	C8051F040.bsd
+--Author:	BD
+--Created:	29 AUG 2006
+--Version:	1.2
+--Copyright 2006 Silicon Laboratories Inc. (All rights reserved)
+--
+--BSDL description for the C8051F040/2/4/6 TQFP-100 package
+--
+--Some port names differ from the pinout to conform to
+--BSDL syntax.  These variations are marked in the comments.
+--
+--The following pins have been defined as "LINKAGE" in order to 
+--conform to BSDL standard:  
+--AIN3-AIN0, MONEN, XTAL2, VREF, VREF0, VREF2, VREFD, DAC0, DAC1,
+--HVCAP, HVREF, HVAIN+, HVAIN-, VDD, DGND, AV+, AGND
+-----------------------------------------------------------------------
+
+
+entity C8051F040 is
+generic(PHYSICAL_PIN_MAP: string := "TQFP_100");
+
+port (
+	AIN0	: LINKAGE BIT;
+	AIN1	: LINKAGE BIT;
+	AIN2	: LINKAGE BIT;
+	AIN3	: LINKAGE BIT;
+	
+	P0_0	: INOUT BIT;
+	P0_1	: INOUT BIT;
+	P0_2	: INOUT BIT;	
+	P0_3	: INOUT BIT;
+	P0_4	: INOUT BIT;
+	P0_5	: INOUT BIT;
+	P0_6	: INOUT BIT;
+	P0_7	: INOUT BIT;
+	
+	P1_0	: INOUT BIT;
+	P1_1	: INOUT BIT;
+	P1_2	: INOUT BIT;
+	P1_3	: INOUT BIT;
+	P1_4	: INOUT BIT;
+	P1_5	: INOUT BIT;
+	P1_6	: INOUT BIT;
+	P1_7	: INOUT BIT;
+	
+	P2_0	: INOUT BIT;
+	P2_1	: INOUT BIT;
+	P2_2	: INOUT BIT;
+	P2_3	: INOUT BIT;
+	P2_4	: INOUT BIT;
+	P2_5	: INOUT BIT;
+	P2_6	: INOUT BIT;
+	P2_7	: INOUT BIT;
+	
+	P3_0	: INOUT BIT;
+	P3_1	: INOUT BIT;
+	P3_2	: INOUT BIT;
+	P3_3	: INOUT BIT;
+	P3_4	: INOUT BIT;
+	P3_5	: INOUT BIT;
+	P3_6	: INOUT BIT;
+	P3_7	: INOUT BIT;
+	
+	P4_0	: INOUT BIT;
+	P4_1	: INOUT BIT;
+	P4_2	: INOUT BIT;
+	P4_3	: INOUT BIT;
+	P4_4	: INOUT BIT;
+	P4_5	: INOUT BIT;
+	P4_6	: INOUT BIT;
+	P4_7	: INOUT BIT;
+	
+	P5_0	: INOUT BIT;
+	P5_1	: INOUT BIT;
+	P5_2	: INOUT BIT;
+	P5_3	: INOUT BIT;
+	P5_4	: INOUT BIT;
+	P5_5	: INOUT BIT;
+	P5_6	: INOUT BIT;
+	P5_7	: INOUT BIT;
+	
+	P6_0	: INOUT BIT;
+	P6_1	: INOUT BIT;
+	P6_2	: INOUT BIT;
+	P6_3	: INOUT BIT;
+	P6_4	: INOUT BIT;
+	P6_5	: INOUT BIT;
+	P6_6	: INOUT BIT;
+	P6_7	: INOUT BIT;
+	
+	P7_0	: INOUT BIT;
+	P7_1	: INOUT BIT;
+	P7_2	: INOUT BIT;
+	P7_3	: INOUT BIT;
+	P7_4	: INOUT BIT;
+	P7_5	: INOUT BIT;
+	P7_6	: INOUT BIT;
+	P7_7	: INOUT BIT;
+
+	TCK	: IN BIT;
+	TMS	: IN BIT;
+	TDI	: IN BIT;
+	TDO	: OUT BIT;
+
+	MONEN   : LINKAGE BIT;
+	XTAL1	: IN BIT;
+	XTAL2	: LINKAGE BIT;
+	RST	: INOUT BIT;		--/RST
+	VREF	: LINKAGE BIT;
+	VREF0	: LINKAGE BIT;
+	VREF2	: LINKAGE BIT;
+	VREFD	: LINKAGE BIT;
+	HVCAP	: LINKAGE BIT;
+	HVREF	: LINKAGE BIT;		
+	HVAINP	: LINKAGE BIT;		--HVAIN+
+	HVAINN	: LINKAGE BIT;		--HVAIN-
+	CANTX	: INOUT BIT;
+	CANRX	: INOUT BIT;
+	DAC0	: LINKAGE BIT;
+	DAC1	: LINKAGE BIT;
+
+	VDD1	: LINKAGE BIT;		--VDD
+	VDD2	: LINKAGE BIT;		--VDD
+	VDD3	: LINKAGE BIT;		--VDD
+	DGND1	: LINKAGE BIT;		--DGND
+	DGND2	: LINKAGE BIT;		--DGND
+	DGND3	: LINKAGE BIT;		--DGND
+	AV1	: LINKAGE BIT;		--AV+
+	AV2	: LINKAGE BIT;		--AV+
+	AV3	: LINKAGE BIT;		--AV+
+	AGND1	: LINKAGE BIT;		--AGND
+	AGND2	: LINKAGE BIT;		--AGND
+	AGND3	: LINKAGE BIT		--AGND
+);
+
+
+use STD_1149_1_2001.all;
+
+attribute COMPONENT_CONFORMANCE of C8051F040 : entity is "STD_1149_1_2001";
+
+attribute PIN_MAP of C8051F040 : entity is PHYSICAL_PIN_MAP;
+
+constant TQFP_100 : PIN_MAP_STRING := 
+	"AIN0	: 18,"&
+	"AIN1	: 19,"&
+	"AIN2	: 20,"&
+	"AIN3	: 21,"&
+	
+	"P0_0	: 62,"&
+	"P0_1	: 61,"&
+	"P0_2	: 60,"&
+	"P0_3	: 59,"&
+	"P0_4	: 58,"&
+	"P0_5	: 57,"&
+	"P0_6	: 56,"&
+	"P0_7	: 55,"&
+	
+	"P1_0	: 36,"&
+	"P1_1	: 35,"&
+	"P1_2	: 34,"&
+	"P1_3	: 33,"&
+	"P1_4	: 32,"&
+	"P1_5	: 31,"&
+	"P1_6	: 30,"&
+	"P1_7	: 29,"&
+	
+	"P2_0	: 46,"&
+	"P2_1	: 45,"&
+	"P2_2	: 44,"&
+	"P2_3	: 43,"&
+	"P2_4	: 42,"&
+	"P2_5	: 41,"&
+	"P2_6	: 40,"&
+	"P2_7	: 39,"&
+	
+	"P3_0	: 54,"&
+	"P3_1	: 53,"&
+	"P3_2	: 52,"&
+	"P3_3	: 51,"&
+	"P3_4	: 50,"&
+	"P3_5	: 49,"&
+	"P3_6	: 48,"&
+	"P3_7	: 47,"&
+	
+	"P4_0	: 98,"&
+	"P4_1	: 97,"&
+	"P4_2	: 96,"&
+	"P4_3	: 95,"&
+	"P4_4	: 94,"&
+	"P4_5	: 93,"&
+	"P4_6	: 92,"&
+	"P4_7	: 91,"&
+	
+	"P5_0	: 88,"&
+	"P5_1	: 87,"&
+	"P5_2	: 86,"&
+	"P5_3	: 85,"&
+	"P5_4	: 84,"&
+	"P5_5	: 83,"&
+	"P5_6	: 82,"&
+	"P5_7	: 81,"&
+	
+	"P6_0	: 80,"&
+	"P6_1	: 79,"&
+	"P6_2	: 78,"&
+	"P6_3	: 77,"&
+	"P6_4	: 76,"&
+	"P6_5	: 75,"&
+	"P6_6	: 74,"&
+	"P6_7	: 73,"&
+	
+	"P7_0	: 72,"&
+	"P7_1	: 71,"&
+	"P7_2	: 70,"&
+	"P7_3	: 69,"&
+	"P7_4	: 68,"&
+	"P7_5	: 67,"&
+	"P7_6	: 66,"&
+	"P7_7	: 65,"&
+
+	"TCK	: 2,"&
+	"TMS	: 1,"&
+	"TDI	: 3,"&
+	"TDO	: 4,"&
+
+	"MONEN  : 28,"&
+	"XTAL1  : 26,"&
+	"XTAL2  : 27,"&
+	"RST	: 5,"&
+	"VREF	: 12,"&
+	"VREF0  : 16,"&
+	"VREF2  : 17,"&
+	"VREFD  : 15,"&
+	"HVCAP	: 22,"&
+	"HVREF	: 23,"&
+	"HVAINP	: 24,"&
+	"HVAINN	: 25,"&
+	"CANTX	: 7,"&
+	"CANRX	: 6,"&
+	"DAC0	: 100,"&
+	"DAC1	: 99,"&
+
+	"VDD1	: 37,"&
+	"VDD2	: 64,"&
+	"VDD3	: 90,"&
+	"DGND1	: 38,"&
+	"DGND2	: 63,"&
+	"DGND3	: 89,"&
+	"AV1	: 8,"&
+	"AV2	: 11,"&
+	"AV3	: 14,"&
+	"AGND1	: 9,"&
+	"AGND2	: 10,"&
+	"AGND3	: 13";
+
+
+attribute TAP_SCAN_IN of TDI : signal is true;
+attribute TAP_SCAN_MODE of TMS : signal is true;
+attribute TAP_SCAN_OUT of TDO : signal is true;
+attribute TAP_SCAN_CLOCK of TCK : signal is (10.00e6,BOTH);
+
+
+attribute INSTRUCTION_LENGTH of C8051F040 : entity is 16;
+
+attribute INSTRUCTION_OPCODE of C8051F040 : entity is 
+"PRELOAD (0000000000000010)," &
+"BYPASS (1111111111111111)," &
+"IDCODE (0000000000000100)," &
+"SAMPLE (0000000000000010)," &
+"EXTEST (0000000000000000)";
+
+attribute INSTRUCTION_CAPTURE of C8051F040 : entity is "0000000000000001";
+
+
+attribute IDCODE_REGISTER of C8051F040 : entity is
+	"XXXX"	&		--version
+	"0000000000000101"  &	--part number
+	"00100100001"	&	--manufacturer ID
+	"1";			--mandatory LSB
+
+attribute REGISTER_ACCESS of C8051F040 : entity is 
+	"BOUNDARY (EXTEST,SAMPLE)," 	&
+	"BYPASS (BYPASS),"		&
+	"DEVICE_ID (IDCODE)";
+	
+
+attribute BOUNDARY_LENGTH of C8051F040 : entity is 138;
+
+
+attribute BOUNDARY_REGISTER of C8051F040 : entity is 
+	"0	(BC_4, *, internal, X),"&
+	"1	(BC_4, *, internal, X),"&
+	"2	(BC_2, *, control, 0),"&
+	"3	(BC_7, RST, bidir, 0, 2, 0, Z),"&
+	"4	(BC_2, *, control, 0),"&
+	"5	(BC_7, CANRX, bidir, 0, 4, 0, Z),"&
+	"6	(BC_2, *, control, 0),"&
+	"7	(BC_7, CANTX, bidir, 0, 6, 0, Z),"&
+	"8	(BC_4, XTAL1, clock, X),"&
+	"9	(BC_4, *, internal, X),"&
+
+	-- Pin 0.x output enables and I/O
+	"10	(BC_2, *, control, 0),"&			--P0_0 OE
+	"11	(BC_7, P0_0, bidir, X, 10, 0, Z),"&		--P0_0 I/0
+	"12	(BC_2, *, control, 0),"&
+	"13	(BC_7, P0_1, bidir, X, 12, 0, Z),"&
+	"14	(BC_2, *, control, 0),"&
+	"15	(BC_7, P0_2, bidir, X, 14, 0, Z),"&
+	"16	(BC_2, *, control, 0),"&
+	"17	(BC_7, P0_3, bidir, X, 16, 0, Z),"&
+	"18	(BC_2, *, control, 0),"&
+	"19	(BC_7, P0_4, bidir, X, 18, 0, Z),"&
+	"20	(BC_2, *, control, 0),"&	
+	"21	(BC_7, P0_5, bidir, X, 20, 0, Z),"&
+	"22	(BC_2, *, control, 0),"&	
+	"23	(BC_7, P0_6, bidir, X, 22, 0, Z),"&
+	"24	(BC_2, *, control, 0),"&	
+	"25	(BC_7, P0_7, bidir, X, 24, 0, Z),"&
+
+	--Pin 1.x output enables and I/O		
+	"26	(BC_2, *, control, 0),"&			--P1_0 OE
+	"27	(BC_7, P1_0, bidir, X, 26, 0, Z),"&		--P1_0 I/0
+	"28	(BC_2, *, control, 0),"&
+	"29	(BC_7, P1_1, bidir, X, 28, 0, Z),"&
+	"30	(BC_2, *, control, 0),"&
+	"31	(BC_7, P1_2, bidir, X, 30, 0, Z),"&
+	"32	(BC_2, *, control, 0),"&
+	"33	(BC_7, P1_3, bidir, X, 32, 0, Z),"&
+	"34	(BC_2, *, control, 0),"&
+	"35	(BC_7, P1_4, bidir, X, 34, 0, Z),"&
+	"36	(BC_2, *, control, 0),"&
+	"37	(BC_7, P1_5, bidir, X, 36, 0, Z),"&
+	"38	(BC_2, *, control, 0),"&
+	"39	(BC_7, P1_6, bidir, X, 38, 0, Z),"&
+	"40	(BC_2, *, control, 0),"&
+	"41	(BC_7, P1_7, bidir, X, 40, 0, Z),"&
+
+	--Pin 2.x output enables and I/O		
+	"42	(BC_2, *, control, 0),"&			--P2_0 OE
+	"43	(BC_7, P2_0, bidir, X, 42, 0, Z),"&		--P2_0 I/0
+	"44	(BC_2, *, control, 0),"&
+	"45	(BC_7, P2_1, bidir, X, 44, 0, Z),"&
+	"46	(BC_2, *, control, 0),"&
+	"47	(BC_7, P2_2, bidir, X, 46, 0, Z),"&
+	"48	(BC_2, *, control, 0),"&
+	"49	(BC_7, P2_3, bidir, X, 48, 0, Z),"&
+	"50	(BC_2, *, control, 0),"&
+	"51	(BC_7, P2_4, bidir, X, 50, 0, Z),"&
+	"52	(BC_2, *, control, 0),"&
+	"53	(BC_7, P2_5, bidir, X, 52, 0, Z),"&
+	"54	(BC_2, *, control, 0),"&
+	"55	(BC_7, P2_6, bidir, X, 54, 0, Z),"&
+	"56	(BC_2, *, control, 0),"&
+	"57	(BC_7, P2_7, bidir, X, 56, 0, Z),"&
+
+	--Pin 3.x output enables and I/O		
+	"58	(BC_2, *, control, 0),"&			--P3_0 OE
+	"59	(BC_7, P3_0, bidir, X, 58, 0, Z),"&		--P3_0 I/0
+	"60	(BC_2, *, control, 0),"&
+	"61	(BC_7, P3_1, bidir, X, 60, 0, Z),"&
+	"62	(BC_2, *, control, 0),"&
+	"63	(BC_7, P3_2, bidir, X, 62, 0, Z),"&
+	"64	(BC_2, *, control, 0),"&
+	"65	(BC_7, P3_3, bidir, X, 64, 0, Z),"&
+	"66	(BC_2, *, control, 0),"&	
+	"67	(BC_7, P3_4, bidir, X, 66, 0, Z),"&
+	"68	(BC_2, *, control, 0),"&
+	"69	(BC_7, P3_5, bidir, X, 68, 0, Z),"&
+	"70	(BC_2, *, control, 0),"&
+	"71	(BC_7, P3_6, bidir, X, 70, 0, Z),"&
+	"72	(BC_2, *, control, 0),"&
+	"73	(BC_7, P3_7, bidir, X, 72, 0, Z),"&
+
+	--Pin 4.x output enables and I/O		
+	"74	(BC_2, *, control, 0),"&			--P4_0 OE
+	"75	(BC_7, P4_0, bidir, X, 74, 0, Z),"&		--P4_0 I/0
+	"76	(BC_2, *, control, 0),"&
+	"77	(BC_7, P4_1, bidir, X, 76, 0, Z),"&
+	"78	(BC_2, *, control, 0),"&
+	"79	(BC_7, P4_2, bidir, X, 78, 0, Z),"&
+	"80	(BC_2, *, control, 0),"&
+	"81	(BC_7, P4_3, bidir, X, 80, 0, Z),"&
+	"82	(BC_2, *, control, 0),"&	
+	"83	(BC_7, P4_4, bidir, X, 82, 0, Z),"&
+	"84	(BC_2, *, control, 0),"&
+	"85	(BC_7, P4_5, bidir, X, 84, 0, Z),"&
+	"86	(BC_2, *, control, 0),"&
+	"87	(BC_7, P4_6, bidir, X, 86, 0, Z),"&
+	"88	(BC_2, *, control, 0),"&
+	"89	(BC_7, P4_7, bidir, X, 88, 0, Z),"&
+
+	--Pin 5.x output enables and I/O		
+	"90	(BC_2, *, control, 0),"&			--P5_0 OE
+	"91	(BC_7, P5_0, bidir, X, 90, 0, Z),"&		--P5_0 I/0
+	"92	(BC_2, *, control, 0),"&
+	"93	(BC_7, P5_1, bidir, X, 92, 0, Z),"&
+	"94	(BC_2, *, control, 0),"&
+	"95	(BC_7, P5_2, bidir, X, 94, 0, Z),"&
+	"96	(BC_2, *, control, 0),"&
+	"97	(BC_7, P5_3, bidir, X, 96, 0, Z),"&
+	"98	(BC_2, *, control, 0),"&	
+	"99	(BC_7, P5_4, bidir, X, 98, 0, Z),"&
+	"100	(BC_2, *, control, 0),"&
+	"101	(BC_7, P5_5, bidir, X, 100, 0, Z),"&
+	"102	(BC_2, *, control, 0),"&
+	"103	(BC_7, P5_6, bidir, X, 102, 0, Z),"&
+	"104	(BC_2, *, control, 0),"&
+	"105	(BC_7, P5_7, bidir, X, 104, 0, Z),"&
+
+	--Pin 6.x output enables and I/O		
+	"106	(BC_2, *, control, 0),"&			--P6_0 OE
+	"107	(BC_7, P6_0, bidir, X, 106, 0, Z),"&		--P6_0 I/0
+	"108	(BC_2, *, control, 0),"&
+	"109	(BC_7, P6_1, bidir, X, 108, 0, Z),"&
+	"110	(BC_2, *, control, 0),"&
+	"111	(BC_7, P6_2, bidir, X, 110, 0, Z),"&
+	"112	(BC_2, *, control, 0),"&
+	"113	(BC_7, P6_3, bidir, X, 112, 0, Z),"&
+	"114	(BC_2, *, control, 0),"&	
+	"115	(BC_7, P6_4, bidir, X, 114, 0, Z),"&
+	"116	(BC_2, *, control, 0),"&
+	"117	(BC_7, P6_5, bidir, X, 116, 0, Z),"&
+	"118	(BC_2, *, control, 0),"&
+	"119	(BC_7, P6_6, bidir, X, 118, 0, Z),"&
+	"120	(BC_2, *, control, 0),"&
+	"121	(BC_7, P6_7, bidir, X, 120, 0, Z),"&
+
+	--Pin 7.x output enables and I/O		
+	"122	(BC_2, *, control, 0),"&			--P7_0 OE
+	"123	(BC_7, P7_0, bidir, X, 122, 0, Z),"&		--P7_0 I/0
+	"124	(BC_2, *, control, 0),"&
+	"125	(BC_7, P7_1, bidir, X, 124, 0, Z),"&
+	"126	(BC_2, *, control, 0),"&
+	"127	(BC_7, P7_2, bidir, X, 126, 0, Z),"&
+	"128	(BC_2, *, control, 0),"&
+	"129	(BC_7, P7_3, bidir, X, 128, 0, Z),"&
+	"130	(BC_2, *, control, 0),"&	
+	"131	(BC_7, P7_4, bidir, X, 130, 0, Z),"&
+	"132	(BC_2, *, control, 0),"&
+	"133	(BC_7, P7_5, bidir, X, 132, 0, Z),"&
+	"134	(BC_2, *, control, 0),"&
+	"135	(BC_7, P7_6, bidir, X, 134, 0, Z),"&
+	"136	(BC_2, *, control, 0),"&
+	"137	(BC_7, P7_7, bidir, X, 136, 0, Z)";
+
+end C8051F040;

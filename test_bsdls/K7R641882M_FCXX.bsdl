@@ -1,0 +1,247 @@
+--**************************************************************************
+--*
+--*    File Name:  K7R641882M_FC_R02.BSL 
+--*     Revision:  0.2
+--*         Date:  AUG. 22, 2006
+--*        Model:  BSDL
+--*    Simulator:  Agilent Technologies
+--*
+--* Dependencies:  None
+--*
+--*       Author:  YUNWOO KIM
+--*        Email:  yoonoo.kim@samsung.com
+--*        Phone:  82-31-208-7485
+--*      Company:  SAMSUNG ELECTRONICS.
+--*        Model:  K7R641882M_FCXX (4 meg x 18 QDR SRAM 2-Word Burst)
+--*
+--*  Description:  Samsung 72 Meg (4 meg X 18) QDR SRAM 2-Word Burst 
+--*                BSDL model
+--*
+--*   Rev  Author          Phone            Date        Changes
+--*   ---  --------------  --------------   ----------  -------------------------------------
+--*   0.1  YUNWOO KIM      (82) 31-208-7725 02/09/2006  Remove ZQ, add INSTRUCTION_OPCODE PRELOAD(100) 
+--*   0.2  YUNWOO KIM      (82) 31-208-7725 08/22/2006  Change the commentary
+--************************************************************************
+
+entity K7R641882M_FCXX is 
+	generic (PHYSICAL_PIN_MAP : string := "FBGA");
+
+	port  ( K    :    in      bit;
+                KB   :    in      bit;
+                C    :    in      bit;
+                CB   :    in      bit;
+                CQ   :    buffer      bit;
+                CQB  :    buffer      bit;
+                DOFFB :    in      bit;
+                SA   :	  in      bit_vector(1 to 21);
+                D    :    in      bit_vector(0 to 17);
+                Q    :    inout   bit_vector(0 to 17);
+		WB   :    in      bit;
+                RB   :    in      bit;
+                BW0B :	  in	  bit;
+                BW1B :	  in	  bit;
+                VREF :    linkage bit_vector(0 to 1) ;
+                --ZQ   :    in      bit;
+	        VDD  :	  linkage bit_vector(0 to 9) ;
+	        VDDQ :	  linkage bit_vector(0 to 15) ;
+	        VSS  :	  linkage bit_vector(0 to 25) ;
+	        TMS  :	  in	  bit;
+	        TDI  :	  in	  bit;
+	        TCK  :	  in	  bit;
+	        TDO  :	  out	  bit;
+	        NC   :	  linkage bit_vector(0 to 35 ));
+
+
+	use STD_1149_1_2001.all;
+
+	attribute COMPONENT_CONFORMANCE of K7R641882M_FCXX:entity is "STD_1149_1_2001";
+	attribute PIN_MAP of K7R641882M_FCXX : entity is PHYSICAL_PIN_MAP;
+
+	constant FBGA : PIN_MAP_STRING :=
+
+	"K    :       B6 ,  " &
+	"KB   :       A6 ,  " &
+	"C    :       P6 ,  " &
+	"CB   :       R6 ,  " &
+	"CQ   :       A11,  " &
+	"CQB  :       A1 ,  " &
+        "SA   :     ( C6 , R5 , N5 , P5 , P4 , R4 , R3 , N6 , P7 , N7 ,  " &
+                   "  R7 , R8 , P8 , R9 , A9 , B8 , c7 , C5 , B4 , A3 , A10),  " &
+	"DOFFB :       H1 ,  " &
+        "D    :     ( P10, N11, M11, K10, J11, G11, E10, D11, C11, B3 ,  " &
+		   "  C3 , D2 , F3 , G2 , J3 , L3 , M3 , N2 )         ,  " &
+	"Q    :     ( P11, M10, L11, K11, J10, F11, E11, C10, B11, B2 ,  " &
+		   "  D3 , E3 , F2 , G3 , K3 , L2 , N3 , P3 )         ,  " &
+	"WB   :       A4 ,  " &
+        "RB   :       A8 ,  " &
+        "BW0B :       B7 ,  " &
+        "BW1B :       A5 ,  " &
+        "VREF :     ( H2 , H10),                                         " &
+	--"ZQ   :       H11,  " &
+        "VDD  :     ( F5 , F7 , G5 , G7 , H5 , H7 , J5 , J7 , K5 , K7),  " &
+	"VDDQ :     ( E4 , E8 , F4 , F8 , G4 , G8 , H3 , H4 , H8 , H9 ,  " &
+                    " J4 , J8 , K4 , K8 , L4 , L8 )                   ,  " &
+	"VSS  :     ( A2 ,      C4 , C8 , D4 , D5 , D6 , D7 , D8 , E5 ,  " & 
+                    " E6 , E7 , F6 , G6 , H6 , J6 , K6 , L5 , L6 , L7 ,  " & 
+                    " M4 , M5 , M6 , M7 , M8 , N4 , N8 )              ,  " &
+	"TMS  :       R10,  " &
+	"TDI  :       R11,  " &
+	"TCK  :       R2 ,  " &
+	"TDO  :       R1 ,  " &
+        "NC   :     ( A7 , B1 , b9 , B10, C1 , C2 ,      C9 , D1 , D9 ,  " &
+                    " D10, E1 , E2 , E9 , F1 , F9 , F10, G1 , G9 , G10,  " &
+                    " J1 , J2 , J9 , K1 , K2 , K9 , L9 , L10, M1 , M2 ,  " &
+                    " M9 , N1 , N9 , N10, P1 , P2 , P9 )                 " ;
+
+	attribute TAP_SCAN_IN    of  TDI : signal is true;
+	attribute TAP_SCAN_OUT   of  TDO : signal is true;
+	attribute TAP_SCAN_MODE  of  TMS : signal is true;
+	attribute TAP_SCAN_CLOCK of  TCK : signal is (50.0e6, BOTH);
+
+	attribute INSTRUCTION_LENGTH of K7R641882M_FCXX : entity is 3;
+
+	attribute INSTRUCTION_OPCODE of K7R641882M_FCXX : entity is
+	   "EXTEST      (000)," &
+           "IDCODE  	(001)," &
+           "SAMPLEZ  	(010)," &
+           "RESERV1	(011)," & 
+	   "SAMPLE  	(100)," &
+           "PRELOAD  	(100)," &
+	   "RESERV2	(101)," &
+           "RESERV3	(110)," &
+	   "BYPASS  	(111) " ;
+
+-- (101) Reserved & Do not Use
+
+	attribute INSTRUCTION_CAPTURE of K7R641882M_FCXX : entity is "001";
+
+	attribute INSTRUCTION_PRIVATE of K7R641882M_FCXX : entity is  
+		"RESERV1, RESERV2 ,RESERV3";    
+
+	attribute IDCODE_REGISTER   of K7R641882M_FCXX : entity is
+	   "000"                  & -- version
+	   "000110100X0100010"    & -- part configuration
+				    -- 19 bit "X" is controlled by DLLOFFB Pin.
+ 	   "00001001110"          & -- manufacturer identity
+	   "1";                     -- 1149.1 requirement
+
+
+	attribute REGISTER_ACCESS of K7R641882M_FCXX : entity is
+	   "BOUNDARY   (EXTEST, SAMPLEZ, SAMPLE)," &
+	   "BYPASS   (BYPASS)";
+
+	attribute BOUNDARY_LENGTH of K7R641882M_FCXX : entity is 109;
+
+	attribute BOUNDARY_REGISTER of K7R641882M_FCXX : entity is
+	-- num     cell   port     function    safe [ccell dis rslt]
+           "0     (BC_4,  CB    ,     input,      X)," &
+	   "1     (BC_4,  C     ,     input,      X)," &
+	   "2     (BC_4,  SA(8),     input,      X)," &
+	   "3     (BC_4,  SA(9),     input,      X)," &
+	   "4     (BC_4,  SA(10),     input,      X)," &
+	   "5     (BC_4,  SA(11),     input,      X)," &
+	   "6     (BC_4,  SA(12),     input,      X)," &
+	   "7     (BC_4,  SA(13),     input,      X)," &
+           "8     (BC_4,  SA(14),     input,      X)," &
+           "9     (BC_7,  Q(0)    ,     bidir,      X, 108, 0, Z)," &
+           "10    (BC_4,  D(0)    ,     input,      X)," &
+           "11    (BC_4,  *     ,     internal,   X)," &
+           "12    (BC_4,  *     ,     internal,   X)," &
+           "13    (BC_7,  Q(1)    ,     bidir,      X, 108, 0, Z)," &
+           "14    (BC_4,  D(1)    ,     input,      X)," &
+           "15    (BC_4,  *     ,     internal,   X)," &
+           "16    (BC_4,  *     ,     internal,   X)," &
+           "17    (BC_7,  Q(2)    ,     bidir,      X, 108, 0, Z)," &
+           "18    (BC_4,  D(2)    ,     input,      X)," &
+           "19    (BC_4,  *     ,     internal,   X)," &
+           "20    (BC_4,  *     ,     internal,   X)," &
+           "21    (BC_7,  Q(3)    ,     bidir,      X, 108, 0, Z)," &
+           "22    (BC_4,  D(3)    ,     input,      X)," &
+           "23    (BC_4,  *     ,     internal,   X)," &
+           "24    (BC_4,  *     ,     internal,   X)," &
+           "25    (BC_7,  Q(4)    ,     bidir,      X, 108, 0, Z)," &
+           "26    (BC_4,  D(4)    ,     input,      X)," &
+           "27    (BC_4,  *    ,     internal,      X)," &
+           "28    (BC_4,  *     ,     internal,   X)," &
+           "29    (BC_4,  *     ,     internal,   X)," &
+           "30    (BC_7,  Q(5)    ,     bidir,      X, 108, 0, Z)," &
+           "31    (BC_4,  D(5)    ,     input,      X)," &
+           "32    (BC_4,  *     ,     internal,   X)," &
+           "33    (BC_4,  *     ,     internal,   X)," &
+           "34    (BC_7,  Q(6)    ,     bidir,      X, 108, 0, Z)," &
+           "35    (BC_4,  D(6)    ,     input,      X)," &
+           "36    (BC_4,  *     ,     internal,   X)," &
+           "37    (BC_4,  *     ,     internal,   X)," &
+           "38    (BC_7,  Q(7)    ,     bidir,      X, 108, 0, Z)," &
+           "39    (BC_4,  D(7)    ,     input,      X)," &
+           "40    (BC_4,  *     ,     internal,   X)," &
+           "41    (BC_4,  *     ,     internal,   X)," &
+           "42    (BC_7,  Q(8)    ,     bidir,      X, 108, 0, Z)," &
+           "43    (BC_4,  D(8)    ,     input,      X)," &
+           "44    (BC_4,  *     ,     internal,   X)," &
+           "45    (BC_4,  *     ,     internal,   X)," &
+           "46    (BC_9,  CQ    ,     output2,   X)," &
+	   "47    (BC_4,  SA(21) ,     input   ,   X)," &
+	   "48    (BC_4,  SA(15) ,     input   ,   X)," &
+	   "49    (BC_4,  SA(16) ,     input   ,   X)," &
+           "50    (BC_4,  SA(17) ,     input   ,   X)," &
+           "51    (BC_4,  SA(1) ,     input   ,   X)," &
+           "52    (BC_4,  RB    ,     input   ,   X)," &
+           "53    (BC_4,  *     ,     internal,   X)," &
+           "54    (BC_4,  BW0B  ,     input   ,   X)," &
+	   "55    (BC_4,  K     ,     input,      X)," &
+           "56    (BC_4,  KB    ,     input,      X)," &
+           "57    (BC_4,  *     ,     internal,   X)," &
+           "58    (BC_4,  BW1B  ,     input   ,   X)," &
+	   "59    (BC_4,  WB    ,     input,      X)," &
+	   "60    (BC_4,  SA(18) ,     input   ,   X)," &
+           "61    (BC_4,  SA(19) ,     input   ,   X)," &
+	   "62    (BC_4,  SA(20) ,     input   ,   X)," &
+	   "63    (BC_4,  *     ,     internal,   X)," &
+           "64    (BC_9,  CQB    ,     output2,   X)," &
+           "65    (BC_7,  Q(9)   ,     bidir   ,   X, 108, 0, Z)," &
+	   "66    (BC_4,  D(9)   ,     input   ,   X)," &
+	   "67    (BC_4,  *     ,     internal,   X)," &
+           "68    (BC_4,  *     ,     internal,   X)," &
+           "69    (BC_7,  Q(10)   ,     bidir   ,   X, 108, 0, Z)," &
+	   "70    (BC_4,  D(10)   ,     input   ,   X)," &
+	   "71    (BC_4,  *     ,     internal,   X)," &
+           "72    (BC_4,  *     ,     internal,   X)," &
+           "73    (BC_7,  Q(11)   ,     bidir,      X, 108, 0, Z)," &
+	   "74    (BC_4,  D(11)   ,     input,      X)," &
+	   "75    (BC_4,  *     ,     internal,   X)," &
+	   "76    (BC_4,  *     ,     internal,   X)," &
+           "77    (BC_7,  Q(12)   ,     bidir,      X, 108, 0, Z)," &
+	   "78    (BC_4,  D(12)   ,     input,      X)," &
+	   "79    (BC_4,  *     ,     internal,   X)," &
+	   "80    (BC_4,  *     ,     internal,   X)," &
+           "81    (BC_7,  Q(13)   ,     bidir,      X, 108, 0, Z)," &
+	   "82    (BC_4,  D(13)   ,     input,      X)," &
+	   "83    (BC_4,  DOFFB     ,  input,   X)," & 
+	   "84    (BC_4,  *     ,     internal,   X)," &
+	   "85    (BC_4,  *     ,     internal,   X)," &
+	   "86    (BC_7,  Q(14)   ,     bidir,      X, 108, 0, Z)," &
+ 	   "87    (BC_4,  D(14)   ,     input,      X)," &
+	   "88    (BC_4,  *     ,     internal,   X)," &
+	   "89    (BC_4,  *     ,     internal,   X)," &
+	   "90    (BC_7,  Q(15)   ,     bidir,      X, 108, 0, Z)," &
+ 	   "91    (BC_4,  D(15)   ,     input,      X)," &
+	   "92    (BC_4,  *     ,     internal,   X)," &
+	   "93    (BC_4,  *     ,     internal,   X)," &
+	   "94    (BC_7,  Q(16)   ,     bidir,      X, 108, 0, Z)," &
+ 	   "95    (BC_4,  D(16)   ,     input,      X)," &
+	   "96    (BC_4,  *     ,     internal,   X)," &
+	   "97    (BC_4,  *     ,     internal,   X)," &
+           "98    (BC_7,  Q(17)   ,     bidir,      X, 108, 0, Z)," &
+ 	   "99    (BC_4,  D(17)   ,     input,      X)," &
+	   "100   (BC_4,  *     ,     internal,   X)," &
+	   "101   (BC_4,  *     ,     internal,   X)," &
+	   "102   (BC_4,  SA(7) ,     input,      X)," &
+	   "103   (BC_4,  SA(6) ,     input,      X)," &
+	   "104   (BC_4,  SA(5) ,     input,      X)," &
+	   "105   (BC_4,  SA(4) ,     input,      X)," &
+	   "106   (BC_4,  SA(3) ,     input,      X)," &
+	   "107   (BC_4,  SA(2) ,     input   ,   X)," &  
+           "108   (BC_2,  *     ,     controlr,   0) " ; 
+
+end K7R641882M_FCXX;

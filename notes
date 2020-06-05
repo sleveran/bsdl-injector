@@ -1,0 +1,34 @@
+# not intending to support this, shouldn't happen.
+- running injector.py on a system that doesn't have bsdl2jtag installed 
+	prompt the user to ask if they are interested in adding the bsdl file even if it can't be tested
+
+# this shouldn't happen, urjtag's ddfs should be correct to begin with.
+- if manufacturer/part exists in ddf but there is no matching folder, even though ddf states otherwise 
+	should automatically create a manufacturer/part folder and proceed running
+
+# Tests:
+	- duplicate files in <src>
+
+	- manufacturer doesn't exist, part doesn't, stepping doesn't 
+	- manufacturer exists, part doesn't, stepping doesn't
+	- manufacturer and part exist, stepping doesn'tested
+	- manufacturer part and stepping exist
+
+	- corrupted bsdl files (bsdl2jtag failure)
+	- run the script itself from another directory (using absolute path or long relative path to injector.py)
+	- <src> and <dst> as long relative paths and as absolute paths
+
+# Manufacturers written in the ddf but have no folder (aka '0' folder) should be scanned and removed.
+	- This should be done by os.listdr() followed by a search of each manufacturer folder in the MANUFACTURERS ddf.
+	- manufacturer folders that can't be found in the manufacturers directory should be removed from the ddf.
+	- Ddf class and Ddf.clean() cothers this
+	
+# Redirect BSDL2JTAG's stderr to notify user of BSDL errors
+# Some parts have no IDCODE decleration in BSDL file
+# Some parts have an IDCODE code decleration with X's in both steppings AND in part number, might need to use generate_part_numbers as well.
+# FileExistsError - Whenever using mkdir, catch this exception to prevent your code from dying
+# manufacturers with '0' as their folder name in the ddf (non-existant folder), should be taken care of.
+# NotADirectoryError exception should be handled. support file paths and not directory paths only.
+# Allow the user to choose manufacturer, part and stepping names manually with cmd argvs.
+
+# first run on a clean urjtag database kinda fails with FileExistsError, not sure why

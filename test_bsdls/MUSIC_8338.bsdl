@@ -1,0 +1,288 @@
+--------------------------------------------------------------------------------
+-- MUSIC Semiconductors MU9C8338 Boundary Scan Description Language           --
+--------------------------------------------------------------------------------
+-- Boundary Scan Description Language (IEEE 1149.1b)                          --
+--                                                                            --
+-- Device        : MUSIC MU9C8338                                             --
+-- File Version  : A                                                          --
+-- File Name     : MU9C8338.BSD.TXT                                           --
+-- File created  : Jul 28,1999                                                --
+-- Package type  : TQFP                                                       --
+-- Voltage Level : 3.3V                                                       --
+--------------------------------------------------------------------------------
+-- Revision History:                                                          --
+-- A - Original version                                                       --
+--                                                                            --
+-- NOTE: For assistance with this file, contact your nearest MUSIC            --
+--       sales office.                                                        --
+--                                                                            --
+--------------------------------------------------------------------------------
+--                                                                            --
+--============================================================================--
+--                             IMPORTANT NOTICE                               --
+--  This information is provided on an AS IS basis and without warranty.      --
+--  IN NO EVENT SHALL MUSIC BE LIABLE FOR INCIDENTAL OR CONSEQUENTIAL         --
+--  DAMAGES ARISING FROM USE OF THIS INFORMATION. THIS DISCLAIMER OF          --
+--  WARRANTY EXTENDS TO THE USER OF THE INFORMATION, AND TO THEIR CUSTOMERS   --
+--  OR USERS OF PRODUCTS  AND IS IN LIEU OF ALL WARRANTIES WHETHER EXPRESS,   --
+--  IMPLIED, OR STATUTORY, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY    --
+--  OR FITNESS FOR PARTICULAR PURPOSE.                                        --
+--                                                                            --
+--  MUSIC does not represent or warrant that the information furnished        --
+--  hereunder is free of infringement of any third party patents,             --
+--  copyrights, trade secrets, or other intellectual property rights.         --
+--  MUSIC does not represent or warrant that the information is free of       --
+--  defect, or that it meets any particular standard, requirements or need    --
+--  of the user of the infomation or their customers.                         --
+--                                                                            --
+--  MUSIC reserves the right to change the information in this file           --
+--  without notice. The latest version of the file is available on the        --
+--  MUSIC Semiconductors web site at www.music-ic.com.                        --
+--                                                                            --
+--============================================================================--
+
+        --**************************************************
+        --*                                                *
+        --*       bsorder (BSDL scan order generator)      *
+        --*              Version: V1.03 Rev01              *
+        --*                                                *
+        --*                Copyright(c) 1994               *
+        --*         Oki Electric Industry Co.,Ltd.         *
+        --**************************************************
+        --* Generated at Jul 28,1999 (Wed)  09:46:50       *
+
+
+-- Description for ENTITY
+entity music_8338 is
+  generic(PHYSICAL_PIN_MAP:string:="DW_PACKAGE");
+  port(test_se_pin,testhold,tst_hld2,rp_nxt,rp_sel,rxd3_a,rxd2_a,rxd1_a,
+       rxd0_a,rx_dv_a,rx_clk_a,rx_er_a,col_a,crs_a,sysclk,ff,mf,a7,a6,a5,
+       a4,a3,a2,a1,a0,write,pcss,pcs,incr,reset : in bit ;
+       rp_dv,rej_a,frx_er_a,tp_sd_a,tp_dv_a,reset_lc,intr : buffer bit ;
+       rp0,rp1,rp2,rp3,rp4,rp5,rp6,rp7,rp8,rp9,rp10,rp11,rp12,rp13,rp14,
+       rp15,ec,cm,e,w,proc_rdy : out bit ;
+       dq15,dq14,dq13,dq12,dq11,dq10,dq9,dq8,dq7,dq6,dq5,dq4,dq3,dq2,dq1,
+       dq0,d15,d14,d13,d12,d11,d10,d9,d8,d7,d6,d5,d4,d3,d2,d1,d0 : inout bit ;
+       vddout : linkage bit_vector(1 to 12);
+       vssout : linkage bit_vector(1 to 17);
+       vddcore : linkage bit_vector(1 to 2);
+       vsscore : linkage bit_vector(1 to 2);
+       trst : in bit;
+       tms, tdi, tck : in bit;
+       tdo : out bit );
+  use STD_1149_1_1990.all ;
+  attribute PIN_MAP of music_8338 : entity is PHYSICAL_PIN_MAP;
+  constant DW_PACKAGE:PIN_MAP_STRING :=
+    "vddout:(1,10,22,59,72,78,89,97,108,119,132,141), rp0:2, rp1:3," &
+    "rp2:4, rp3:5," &
+    "vssout:(6,17,26,32,36,65,67,73,75,82,87,94,100,106,109,126,144)," &
+    "rp4:7, rp5:8, rp6:9, rp7:11, rp8:12, rp9:13, rp10:14, rp11:15," &
+    "rp12:16, rp13:18, rp14:19, rp15:20, rp_dv:21, test_se_pin:24," &
+    "testhold:25, tst_hld2:27, vddcore:(29,37), rp_nxt:30, rp_sel:31," &
+    "rej_a:38, frx_er_a:39, tp_sd_a:40, tp_dv_a:41, vsscore:(42,54)," &
+    "rxd3_a:55, rxd2_a:56, rxd1_a:57, rxd0_a:58, rx_dv_a:60," &
+    "rx_clk_a:61, rx_er_a:62, col_a:63, crs_a:64, tdo:66, tdi:68," &
+    "tms:69, tck:70, trst:71, sysclk:74, dq15:76, dq14:77, dq13:79," &
+    "dq12:80, dq11:81, dq10:83, dq9:84, dq8:85, dq7:86, dq6:88, dq5:90," &
+    "dq4:91, dq3:92, dq2:93, dq1:95, dq0:96, ff:98, mf:99, ec:101," &
+    "cm:102, e:103, w:104, reset_lc:105, d15:107, d14:110, d13:111," &
+    "d12:112, d11:113, d10:114, d9:115, d8:116, d7:117, d6:118, d5:120," &
+    "d4:121, d3:122, d2:123, d1:124, d0:125, a7:127, a6:128, a5:129," &
+    "a4:130, a3:131, a2:133, a1:134, a0:135, write:136, pcss:137," &
+    "pcs:138, proc_rdy:139, intr:140, incr:142, reset:143";
+  attribute TAP_SCAN_RESET of trst : signal is true;
+  attribute TAP_SCAN_MODE of tms : signal is true;
+  attribute TAP_SCAN_IN of tdi : signal is true;
+  attribute TAP_SCAN_OUT of tdo : signal is true;
+  attribute TAP_SCAN_CLOCK of tck : signal is (20.0e6, BOTH);
+  attribute INSTRUCTION_LENGTH of music_8338 : entity is 3;
+  attribute INSTRUCTION_OPCODE of music_8338 : entity is
+    "extest (000)," &
+    "sample (010)," &
+    "bypass (111)," &
+    "idcode (001)" ; 
+  attribute IDCODE_REGISTER of music_8338 : entity is
+    "0010" &                -- 4 bit version
+    "1000001100111000" &    -- 16 bit part number
+    "00000101110" &         -- 11 bit manufacturer number
+    "1" ;                   -- mandatory LSB
+  attribute INSTRUCTION_CAPTURE of music_8338 : entity is "001";
+  attribute BOUNDARY_CELLS of music_8338 : entity is "bc_1,bc_4";
+  attribute BOUNDARY_LENGTH of music_8338 : entity is 175;
+  attribute BOUNDARY_REGISTER of music_8338 : entity is
+    "174( bc_4, sysclk, input, x)," &
+    "173( bc_1, dq15, output3, x, 172, 0, Z)," &
+    "172( bc_1, *, control, 0)," &
+    "171( bc_1, dq15, input, x)," &
+    "170( bc_1, dq14, output3, x, 169, 0, Z)," &
+    "169( bc_1, *, control, 0)," &
+    "168( bc_1, dq14, input, x)," &
+    "167( bc_1, dq13, output3, x, 166, 0, Z)," &
+    "166( bc_1, *, control, 0)," &
+    "165( bc_1, dq13, input, x)," &
+    "164( bc_1, dq12, output3, x, 163, 0, Z)," &
+    "163( bc_1, *, control, 0)," &
+    "162( bc_1, dq12, input, x)," &
+    "161( bc_1, dq11, output3, x, 160, 0, Z)," &
+    "160( bc_1, *, control, 0)," &
+    "159( bc_1, dq11, input, x)," &
+    "158( bc_1, dq10, output3, x, 157, 0, Z)," &
+    "157( bc_1, *, control, 0)," &
+    "156( bc_1, dq10, input, x)," &
+    "155( bc_1, dq9, output3, x, 154, 0, Z)," &
+    "154( bc_1, *, control, 0)," &
+    "153( bc_1, dq9, input, x)," &
+    "152( bc_1, dq8, output3, x, 151, 0, Z)," &
+    "151( bc_1, *, control, 0)," &
+    "150( bc_1, dq8, input, x)," &
+    "149( bc_1, dq7, output3, x, 148, 0, Z)," &
+    "148( bc_1, *, control, 0)," &
+    "147( bc_1, dq7, input, x)," &
+    "146( bc_1, dq6, output3, x, 145, 0, Z)," &
+    "145( bc_1, *, control, 0)," &
+    "144( bc_1, dq6, input, x)," &
+    "143( bc_1, dq5, output3, x, 142, 0, Z)," &
+    "142( bc_1, *, control, 0)," &
+    "141( bc_1, dq5, input, x)," &
+    "140( bc_1, dq4, output3, x, 139, 0, Z)," &
+    "139( bc_1, *, control, 0)," &
+    "138( bc_1, dq4, input, x)," &
+    "137( bc_1, dq3, output3, x, 136, 0, Z)," &
+    "136( bc_1, *, control, 0)," &
+    "135( bc_1, dq3, input, x)," &
+    "134( bc_1, dq2, output3, x, 133, 0, Z)," &
+    "133( bc_1, *, control, 0)," &
+    "132( bc_1, dq2, input, x)," &
+    "131( bc_1, dq1, output3, x, 130, 0, Z)," &
+    "130( bc_1, *, control, 0)," &
+    "129( bc_1, dq1, input, x)," &
+    "128( bc_1, dq0, output3, x, 127, 0, Z)," &
+    "127( bc_1, *, control, 0)," &
+    "126( bc_1, dq0, input, x)," &
+    "125( bc_4, ff, input, x)," &
+    "124( bc_4, mf, input, x)," &
+    "123( bc_1, ec, output3, x, 122, 0, Z)," &
+    "122( bc_1, *, control, 0)," &
+    "121( bc_1, cm, output3, x, 120, 0, Z)," &
+    "120( bc_1, *, control, 0)," &
+    "119( bc_1, e, output3, x, 118, 0, Z)," &
+    "118( bc_1, *, control, 0)," &
+    "117( bc_1, w, output3, x, 116, 0, Z)," &
+    "116( bc_1, *, control, 0)," &
+    "115( bc_1, reset_lc, output2, x)," &
+    "114( bc_1, d15, output3, x, 113, 0, Z)," &
+    "113( bc_1, *, control, 0)," &
+    "112( bc_1, d15, input, x)," &
+    "111( bc_1, d14, output3, x, 110, 0, Z)," &
+    "110( bc_1, *, control, 0)," &
+    "109( bc_1, d14, input, x)," &
+    "108( bc_1, d13, output3, x, 107, 0, Z)," &
+    "107( bc_1, *, control, 0)," &
+    "106( bc_1, d13, input, x)," &
+    "105( bc_1, d12, output3, x, 104, 0, Z)," &
+    "104( bc_1, *, control, 0)," &
+    "103( bc_1, d12, input, x)," &
+    "102( bc_1, d11, output3, x, 101, 0, Z)," &
+    "101( bc_1, *, control, 0)," &
+    "100( bc_1, d11, input, x)," &
+    "99( bc_1, d10, output3, x, 98, 0, Z)," &
+    "98( bc_1, *, control, 0)," &
+    "97( bc_1, d10, input, x)," &
+    "96( bc_1, d9, output3, x, 95, 0, Z)," &
+    "95( bc_1, *, control, 0)," &
+    "94( bc_1, d9, input, x)," &
+    "93( bc_1, d8, output3, x, 92, 0, Z)," &
+    "92( bc_1, *, control, 0)," &
+    "91( bc_1, d8, input, x)," &
+    "90( bc_1, d7, output3, x, 89, 0, Z)," &
+    "89( bc_1, *, control, 0)," &
+    "88( bc_1, d7, input, x)," &
+    "87( bc_1, d6, output3, x, 86, 0, Z)," &
+    "86( bc_1, *, control, 0)," &
+    "85( bc_1, d6, input, x)," &
+    "84( bc_1, d5, output3, x, 83, 0, Z)," &
+    "83( bc_1, *, control, 0)," &
+    "82( bc_1, d5, input, x)," &
+    "81( bc_1, d4, output3, x, 80, 0, Z)," &
+    "80( bc_1, *, control, 0)," &
+    "79( bc_1, d4, input, x)," &
+    "78( bc_1, d3, output3, x, 77, 0, Z)," &
+    "77( bc_1, *, control, 0)," &
+    "76( bc_1, d3, input, x)," &
+    "75( bc_1, d2, output3, x, 74, 0, Z)," &
+    "74( bc_1, *, control, 0)," &
+    "73( bc_1, d2, input, x)," &
+    "72( bc_1, d1, output3, x, 71, 0, Z)," &
+    "71( bc_1, *, control, 0)," &
+    "70( bc_1, d1, input, x)," &
+    "69( bc_1, d0, output3, x, 68, 0, Z)," &
+    "68( bc_1, *, control, 0)," &
+    "67( bc_1, d0, input, x)," &
+    "66( bc_4, a7, input, x)," &
+    "65( bc_4, a6, input, x)," &
+    "64( bc_4, a5, input, x)," &
+    "63( bc_4, a4, input, x)," &
+    "62( bc_4, a3, input, x)," &
+    "61( bc_4, a2, input, x)," &
+    "60( bc_4, a1, input, x)," &
+    "59( bc_4, a0, input, x)," &
+    "58( bc_4, write, input, x)," &
+    "57( bc_4, pcss, input, x)," &
+    "56( bc_4, pcs, input, x)," &
+    "55( bc_1, proc_rdy, output3, x, 54, 0, Z)," &
+    "54( bc_1, *, control, 0)," &
+    "53( bc_1, intr, output2, x)," &
+    "52( bc_4, incr, input, x)," &
+    "51( bc_4, reset, input, x)," &
+    "50( bc_1, rp0, output3, x, 49, 0, Z)," &
+    "49( bc_1, *, control, 0)," &
+    "48( bc_1, rp1, output3, x, 47, 0, Z)," &
+    "47( bc_1, *, control, 0)," &
+    "46( bc_1, rp2, output3, x, 45, 0, Z)," &
+    "45( bc_1, *, control, 0)," &
+    "44( bc_1, rp3, output3, x, 43, 0, Z)," &
+    "43( bc_1, *, control, 0)," &
+    "42( bc_1, rp4, output3, x, 41, 0, Z)," &
+    "41( bc_1, *, control, 0)," &
+    "40( bc_1, rp5, output3, x, 39, 0, Z)," &
+    "39( bc_1, *, control, 0)," &
+    "38( bc_1, rp6, output3, x, 37, 0, Z)," &
+    "37( bc_1, *, control, 0)," &
+    "36( bc_1, rp7, output3, x, 35, 0, Z)," &
+    "35( bc_1, *, control, 0)," &
+    "34( bc_1, rp8, output3, x, 33, 0, Z)," &
+    "33( bc_1, *, control, 0)," &
+    "32( bc_1, rp9, output3, x, 31, 0, Z)," &
+    "31( bc_1, *, control, 0)," &
+    "30( bc_1, rp10, output3, x, 29, 0, Z)," &
+    "29( bc_1, *, control, 0)," &
+    "28( bc_1, rp11, output3, x, 27, 0, Z)," &
+    "27( bc_1, *, control, 0)," &
+    "26( bc_1, rp12, output3, x, 25, 0, Z)," &
+    "25( bc_1, *, control, 0)," &
+    "24( bc_1, rp13, output3, x, 23, 0, Z)," &
+    "23( bc_1, *, control, 0)," &
+    "22( bc_1, rp14, output3, x, 21, 0, Z)," &
+    "21( bc_1, *, control, 0)," &
+    "20( bc_1, rp15, output3, x, 19, 0, Z)," &
+    "19( bc_1, *, control, 0)," &
+    "18( bc_1, rp_dv, output2, x)," &
+    "17( bc_4, test_se_pin, input, x)," &
+    "16( bc_4, testhold, input, x)," &
+    "15( bc_4, tst_hld2, input, x)," &
+    "14( bc_4, rp_nxt, input, x)," &
+    "13( bc_4, rp_sel, input, x)," &
+    "12( bc_1, rej_a, output2, x)," &
+    "11( bc_1, frx_er_a, output2, x)," &
+    "10( bc_1, tp_sd_a, output2, x)," &
+    "9( bc_1, tp_dv_a, output2, x)," &
+    "8( bc_4, rxd3_a, input, x)," &
+    "7( bc_4, rxd2_a, input, x)," &
+    "6( bc_4, rxd1_a, input, x)," &
+    "5( bc_4, rxd0_a, input, x)," &
+    "4( bc_4, rx_dv_a, input, x)," &
+    "3( bc_4, rx_clk_a, input, x)," &
+    "2( bc_4, rx_er_a, input, x)," &
+    "1( bc_4, col_a, input, x)," &
+    "0( bc_4, crs_a, input, x)" ;
+end music_8338 ;

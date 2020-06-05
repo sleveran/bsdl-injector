@@ -1,0 +1,339 @@
+-------------------------------------------------------------------------
+--                                                                     --
+-- Copyright Microchip Technology Inc. 2018.  All rights reserved.     --
+--                                                                     --
+--                                                                     --
+--                         IMPORTANT NOTICE                            --
+--                                                                     --
+--                                                                     --
+-- Software License Agreement                                          --
+--                                                                     --
+-- The software supplied herewith by Microchip Technology Incorporated --
+-- (the Company) for its Ethernet controller is intended and           --
+-- supplied to you, the Company customer, for use solely and           --
+-- exclusively on Microchip Ethernet controller products. The          --
+-- software is owned by the Company and/or its supplier, and is        --
+-- protected under applicable copyright laws. All rights are reserved. --
+-- Any use in violation of the foregoing restrictions may subject the  --
+-- user to criminal sanctions under applicable laws, as well as to     --
+-- civil liability for the breach of the terms and conditions of this  --
+-- license.                                                            --
+--                                                                     --
+-- THIS SOFTWARE IS PROVIDED IN AN AS IS CONDITION. NO WARRANTIES,     --
+-- WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING, BUT NOT LIMITED   --
+-- TO, IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A         --
+-- PARTICULAR PURPOSE APPLY TO THIS SOFTWARE. THE COMPANY SHALL NOT,   --
+-- IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL OR          --
+-- CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.                   --
+-------------------------------------------------------------------------
+
+-- BSDL file
+
+-- File Name:     LAN7431.bsdl
+-- File Revision: Revision: 1.0 
+-- Date created:  Date: Wednesday, October 31, 2018 
+-- Support:       
+
+-- Device:        LAN7431
+--                rev 0000
+-- Package:       72 pin SQFN 
+
+
+-- Notes:
+--      
+--      
+--      
+
+
+entity LAN7431 is 
+    generic (PHYSICAL_PIN_MAP : string := "SQFN72");
+
+    port (
+        -- Port List
+        AVDDH_1              : linkage  bit;
+        AVDDL_1              : linkage  bit;
+        VDDVARIO_B1          : linkage  bit;
+        TXD3                 : inout    bit;
+        TXD2                 : inout    bit;
+        TXD1                 : inout    bit;
+        VDDVARIO_B2          : linkage  bit;
+        TXD0                 : inout    bit;
+        TX_ER                : inout    bit;
+        TX_CTL               : inout    bit;
+        TXC                  : inout    bit;
+        VDDVARIO_B3          : linkage  bit;
+        RXC                  : inout    bit;
+        RX_CTL               : inout    bit;
+        RXD0                 : inout    bit;
+        RXD1                 : inout    bit;
+        RXD2                 : inout    bit;
+        RXD3                 : inout    bit;
+        VDDVARIO_B4          : linkage  bit;
+        CLK125               : inout    bit;
+        REFCLK_25            : inout    bit;
+        COL                  : inout    bit;
+        CRS                  : inout    bit;
+        VDD12CORE_1          : linkage  bit;
+        VP                   : linkage  bit;
+        GD_1                 : linkage  bit;
+        PCIE_RX_P            : linkage  bit;
+        PCIE_RX_M            : linkage  bit;
+        GD_2                 : linkage  bit;
+        PCIE_TX_P            : linkage  bit;
+        VPTX                 : linkage  bit;
+        PCIE_TX_M            : linkage  bit;
+        GD_3                 : linkage  bit;
+        VPH                  : linkage  bit;
+        RESREF               : linkage  bit;
+        PCIE_CLK_P           : linkage  bit;
+        PCIE_CLK_M           : linkage  bit;
+        VDD25_REG_OUT        : linkage  bit;
+        VDD_REG_IN           : linkage  bit;
+        DUPLEX               : inout    bit;
+        PHY_INT_N            : inout    bit;
+        PHY_RESET_N          : inout    bit;
+        VDDVARIO_1           : linkage  bit;
+        RESET_N              : linkage  bit;
+        TEST                 : in       bit;
+        VDD12CORE_2          : linkage  bit;
+        GPIO9                : in       bit;
+        VDDVARIO_2           : linkage  bit;
+        GPIO8                : in       bit;
+        GPIO7                : in       bit;
+        VDD12_SW_OUT         : linkage  bit;
+        VDD_SW_IN            : linkage  bit;
+        VDD12_SW_FB          : linkage  bit;
+        GPIO6                : out      bit;
+        GPIO5                : inout    bit;
+        GPIO4                : inout    bit;
+        VAUX_DET             : linkage  bit;
+        EECLK                : linkage  bit;
+        EEDIO                : linkage  bit;
+        EECS                 : linkage  bit;
+        VDDVARIO_3           : linkage  bit;
+        VDD12CORE_3          : linkage  bit;
+        MDIO                 : inout    bit;
+        MDC                  : inout    bit;
+        VDD_OTP              : linkage  bit;
+        CLKREQ_N             : inout    bit;  -- pkg.v name, DOS uses CLKREQ#
+        WAKE_N               : inout    bit;  -- pkg.v name, DOS uses WAKE#
+        PERST_N              : inout    bit;  -- pkg.v name, DOS uses PERST#
+        AVDD12               : linkage  bit;
+        XO                   : linkage  bit;
+        XI                   : linkage  bit;
+        ISET                 : linkage  bit);
+
+    use STD_1149_1_2001.all;
+
+    attribute COMPONENT_CONFORMANCE of LAN7431: entity is "STD_1149_1_2001";
+
+    --Pin mappings
+
+    attribute PIN_MAP of LAN7431: entity is PHYSICAL_PIN_MAP;
+
+    constant SQFN72: PIN_MAP_STRING := 
+    "AVDDH_1              : 1    , " &
+    "AVDDL_1              : 2    , " &
+    "VDDVARIO_B1          : 3    , " &
+    "TXD3                 : 4    , " &
+    "TXD2                 : 5    , " &
+    "TXD1                 : 6    , " &
+    "VDDVARIO_B2          : 7    , " &
+    "TXD0                 : 8    , " &
+    "TX_ER                : 9    , " &
+    "TX_CTL               : 10   , " &
+    "TXC                  : 11   , " &
+    "VDDVARIO_B3          : 12   , " &
+    "RXC                  : 13   , " &
+    "RX_CTL               : 14   , " &
+    "RXD0                 : 15   , " &
+    "RXD1                 : 16   , " &
+    "RXD2                 : 17   , " &
+    "RXD3                 : 18   , " &
+    "VDDVARIO_B4          : 19   , " &
+    "CLK125               : 20   , " &
+    "REFCLK_25            : 21   , " &
+    "COL                  : 22   , " &
+    "CRS                  : 23   , " &
+    "VDD12CORE_1          : 24   , " &
+    "VP                   : 25   , " &
+    "GD_1                 : 26   , " &
+    "PCIE_RX_P            : 27   , " &
+    "PCIE_RX_M            : 28   , " &
+    "GD_2                 : 29   , " &
+    "PCIE_TX_P            : 30   , " &
+    "VPTX                 : 31   , " &
+    "PCIE_TX_M            : 32   , " &
+    "GD_3                 : 33   , " &
+    "VPH                  : 34   , " &
+    "RESREF               : 35   , " &
+    "PCIE_CLK_P           : 36   , " &
+    "PCIE_CLK_M           : 37   , " &
+    "VDD25_REG_OUT        : 38   , " &
+    "VDD_REG_IN           : 39   , " &
+    "DUPLEX               : 40   , " &
+    "PHY_INT_N            : 41   , " &
+    "PHY_RESET_N          : 42   , " &
+    "VDDVARIO_1           : 43   , " &
+    "RESET_N              : 44   , " &
+    "TEST                 : 45   , " &
+    "VDD12CORE_2          : 46   , " &
+    "GPIO9                : 47   , " &
+    "VDDVARIO_2           : 48   , " &
+    "GPIO8                : 49   , " &
+    "GPIO7                : 50   , " &
+    "VDD12_SW_OUT         : 51   , " &
+    "VDD_SW_IN            : 52   , " &
+    "VDD12_SW_FB          : 53   , " &
+    "GPIO6                : 54   , " &
+    "GPIO5                : 55   , " &
+    "GPIO4                : 56   , " &
+    "VAUX_DET             : 57   , " &
+    "EECLK                : 58   , " &
+    "EEDIO                : 59   , " &
+    "EECS                 : 60   , " &
+    "VDDVARIO_3           : 61   , " &
+    "VDD12CORE_3          : 62   , " &
+    "MDIO                 : 63   , " &
+    "MDC                  : 64   , " &
+    "VDD_OTP              : 65   , " &
+    "CLKREQ_N             : 66   , " &
+    "WAKE_N               : 67   , " &
+    "PERST_N              : 68   , " &
+    "AVDD12               : 69   , " &
+    "XO                   : 70   , " &
+    "XI                   : 71   , " &
+    "ISET                 : 72     " ;
+
+   attribute TAP_SCAN_IN    of GPIO8                        : signal is true;
+   attribute TAP_SCAN_MODE  of GPIO7                        : signal is true;
+   attribute TAP_SCAN_OUT   of GPIO6                        : signal is true;
+   attribute TAP_SCAN_CLOCK of GPIO9                        : signal is (1.0000000000000000000e+07, BOTH);
+
+   attribute COMPLIANCE_PATTERNS of LAN7431 : entity is
+      "(TEST) (1)";
+
+   attribute INSTRUCTION_LENGTH of LAN7431: entity is 28;
+ 
+   attribute INSTRUCTION_OPCODE of LAN7431: entity is
+      "IDCODE       (1111111111111111111111111110)," &
+      "BYPASS       (0000000000000000000000000000, 1111111111111111111111111111)," &
+      "EXTEST       (1111111111111111111111101000)," &
+      "SAMPLE       (1111111111111111111111111000)," &
+      "PRELOAD      (1111111111111111111111111000)," &
+     -- Standard HIGHZ instruction not supported because some output2 pins can't be disabled during HIGHZ
+     -- You can ignore that restriction by renaming the HIGHZ instruction below to HIGHZ.
+      "HIGHZ        (1111111111111111111111001111)," &
+      "CLAMP        (1111111111111111111111101111) " ;
+ 
+   attribute INSTRUCTION_CAPTURE of LAN7431: entity is "XXXXXXXXXXXXXXXXXXXXXXXXXX01";
+ 
+   attribute IDCODE_REGISTER of LAN7431: entity is
+      "0000"             & -- version
+      "0000000111110001" & -- part number
+      "01000100010"      & -- manufacturer's identity
+      "1";                 -- required by 1149.1
+ 
+   attribute REGISTER_ACCESS of LAN7431: entity is
+      "DEVICE_ID    ( IDCODE ), " &
+      "BOUNDARY     ( SAMPLE, PRELOAD, EXTEST )," &
+      "BYPASS       ( HIGHZ, CLAMP, BYPASS ) " ;
+
+
+    --Boundary scan definition
+    attribute BOUNDARY_LENGTH of LAN7431: entity is 90;
+
+    attribute BOUNDARY_REGISTER of LAN7431: entity is 
+    -- num  cell         port               function       safe     [ccell disval  rslt]
+    "  89   (BC_2       , *                , control      , 0   )                          ,"&
+    "  88   (BC_7       , PERST_N          , bidir        , X    ,   89     , 0     , Z   ),"&
+    "  87   (BC_2       , *                , control      , 0   )                          ,"&
+    "  86   (BC_7       , WAKE_N           , bidir        , X    ,   87     , 0     , Z   ),"&
+    "  85   (BC_2       , *                , control      , 0   )                          ,"&
+    "  84   (BC_7       , CLKREQ_N         , bidir        , X    ,   85     , 0     , Z   ),"&
+    "  83   (BC_2       , *                , control      , 0   )                          ,"&
+    "  82   (BC_7       , MDC              , bidir        , X    ,   83     , 0     , Z   ),"&
+    "  81   (BC_2       , *                , control      , 0   )                          ,"&
+    "  80   (BC_7       , MDIO             , bidir        , X    ,   81     , 0     , Z   ),"&
+    "  79   (BC_2       , *                , control      , 0   )                          ,"&
+    "  78   (BC_7       , GPIO4            , bidir        , X    ,   79     , 0     , Z   ),"&
+    "  77   (BC_2       , *                , control      , 0   )                          ,"&
+    "  76   (BC_7       , GPIO5            , bidir        , X    ,   77     , 0     , Z   ),"&
+    "  75   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  74   (BC_0       , *                , internal     , X   )                          ,"&
+    "  73   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  72   (BC_0       , *                , internal     , X   )                          ,"&
+    "  71   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  70   (BC_0       , *                , internal     , X   )                          ,"&
+    "  69   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  68   (BC_0       , *                , internal     , X   )                          ,"&
+    "  67   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  66   (BC_0       , *                , internal     , X   )                          ,"&
+    "  65   (BC_2       , *                , control      , 0   )                          ,"&
+    "  64   (BC_7       , PHY_RESET_N      , bidir        , X    ,   65     , 0     , Z   ),"&
+    "  63   (BC_2       , *                , control      , 0   )                          ,"&
+    "  62   (BC_7       , PHY_INT_N        , bidir        , X    ,   63     , 0     , Z   ),"&
+    "  61   (BC_2       , *                , control      , 0   )                          ,"&
+    "  60   (BC_7       , DUPLEX           , bidir        , X    ,   61     , 0     , Z   ),"&
+    "  59   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  58   (BC_0       , *                , internal     , X   )                          ,"&
+    "  57   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  56   (BC_0       , *                , internal     , X   )                          ,"&
+    "  55   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  54   (BC_0       , *                , internal     , X   )                          ,"&
+    "  53   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  52   (BC_0       , *                , internal     , X   )                          ,"&
+    "  51   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  50   (BC_0       , *                , internal     , X   )                          ,"&
+    "  49   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  48   (BC_0       , *                , internal     , X   )                          ,"&
+    "  47   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  46   (BC_0       , *                , internal     , X   )                          ,"&
+    "  45   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  44   (BC_0       , *                , internal     , X   )                          ,"&
+    "  43   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  42   (BC_0       , *                , internal     , X   )                          ,"&
+    "  41   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  40   (BC_0       , *                , internal     , X   )                          ,"&
+    "  39   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  38   (BC_0       , *                , internal     , X   )                          ,"&
+    "  37   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  36   (BC_0       , *                , internal     , X   )                          ,"&
+    "  35   (BC_2       , *                , control      , 0   )                          ,"&
+    "  34   (BC_7       , CRS              , bidir        , X    ,   35     , 0     , Z   ),"&
+    "  33   (BC_2       , *                , control      , 0   )                          ,"&
+    "  32   (BC_7       , COL              , bidir        , X    ,   33     , 0     , Z   ),"&
+    "  31   (BC_0       , *                , internal     , 0   )                          ,"&
+    "  30   (BC_0       , *                , internal     , X   )                          ,"&
+    "  29   (BC_2       , *                , control      , 0   )                          ,"&
+    "  28   (BC_7       , REFCLK_25        , bidir        , X    ,   29     , 0     , Z   ),"&
+    "  27   (BC_2       , *                , control      , 0   )                          ,"&
+    "  26   (BC_7       , CLK125           , bidir        , X    ,   27     , 0     , Z   ),"&
+    "  25   (BC_2       , *                , control      , 0   )                          ,"&
+    "  24   (BC_7       , RXD3             , bidir        , X    ,   25     , 0     , Z   ),"&
+    "  23   (BC_2       , *                , control      , 0   )                          ,"&
+    "  22   (BC_7       , RXD2             , bidir        , X    ,   23     , 0     , Z   ),"&
+    "  21   (BC_2       , *                , control      , 0   )                          ,"&
+    "  20   (BC_7       , RXD1             , bidir        , X    ,   21     , 0     , Z   ),"&
+    "  19   (BC_2       , *                , control      , 0   )                          ,"&
+    "  18   (BC_7       , RXD0             , bidir        , X    ,   19     , 0     , Z   ),"&
+    "  17   (BC_2       , *                , control      , 0   )                          ,"&
+    "  16   (BC_7       , RX_CTL           , bidir        , X    ,   17     , 0     , Z   ),"&
+    "  15   (BC_2       , *                , control      , 0   )                          ,"&
+    "  14   (BC_7       , RXC              , bidir        , X    ,   15     , 0     , Z   ),"&
+    "  13   (BC_2       , *                , control      , 0   )                          ,"&
+    "  12   (BC_7       , TXC              , bidir        , X    ,   13     , 0     , Z   ),"&
+    "  11   (BC_2       , *                , control      , 0   )                          ,"&
+    "  10   (BC_7       , TX_CTL           , bidir        , X    ,   11     , 0     , Z   ),"&
+    "  9    (BC_2       , *                , control      , 0   )                          ,"&
+    "  8    (BC_7       , TX_ER            , bidir        , X    ,   9      , 0     , Z   ),"&
+    "  7    (BC_2       , *                , control      , 0   )                          ,"&
+    "  6    (BC_7       , TXD0             , bidir        , X    ,   7      , 0     , Z   ),"&
+    "  5    (BC_2       , *                , control      , 0   )                          ,"&
+    "  4    (BC_7       , TXD1             , bidir        , X    ,   5      , 0     , Z   ),"&
+    "  3    (BC_2       , *                , control      , 0   )                          ,"&
+    "  2    (BC_7       , TXD2             , bidir        , X    ,   3      , 0     , Z   ),"&
+    "  1    (BC_2       , *                , control      , 0   )                          ,"&
+    "  0    (BC_7       , TXD3             , bidir        , X    ,   1      , 0     , Z   ) ";
+
+end LAN7431;

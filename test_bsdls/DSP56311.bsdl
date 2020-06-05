@@ -1,0 +1,345 @@
+-- M O T O R O L A   S S D T   J T A G   S O F T W A R E
+-- BSDL File Generated: Wed Nov  4 19:13:44 1998
+--
+-- Revision History:
+--
+
+entity DSP56311 is 
+        generic (PHYSICAL_PIN_MAP : string := "PBGA196");
+
+        port (  DE_N:   inout   bit;
+                SC02:   inout   bit;
+                SC01:   inout   bit;
+                SC00:   inout   bit;
+                STD0:   inout   bit;
+                SCK0:   inout   bit;
+                SRD0:   inout   bit;
+                SRD1:   inout   bit;
+                SCK1:   inout   bit;
+                STD1:   inout   bit;
+                SC10:   inout   bit;
+                SC11:   inout   bit;
+                SC12:   inout   bit;
+                 TXD:   inout   bit;
+                SCLK:   inout   bit;
+                 RXD:   inout   bit;
+                TIO0:   inout   bit;
+                TIO1:   inout   bit;
+                TIO2:   inout   bit;
+                 HAD:   inout   bit_vector(0 to 7);
+                HREQ:   inout   bit;
+                MODD:   in      bit;
+                MODC:   in      bit;
+                MODB:   in      bit;
+                MODA:   in      bit;
+                   D:   inout   bit_vector(0 to 23);
+                   A:   out     bit_vector(0 to 17);
+               EXTAL:   in      bit;
+                XTAL:   linkage bit;
+                RD_N:   out     bit;
+                WR_N:   out     bit;
+                  AA:   out     bit_vector(0 to 3);
+                BR_N:   buffer  bit;
+                BG_N:   in      bit;
+                BB_N:   inout   bit;
+                PCAP:   linkage bit;
+             RESET_N:   in      bit;
+               PINIT:   in      bit;
+                TA_N:   in      bit;
+               CAS_N:   out     bit;
+                BCLK:   out     bit;
+              BCLK_N:   out     bit;
+              CLKOUT:   buffer  bit;
+              TRST_N:   in      bit;
+                 TDO:   out     bit;
+                 TDI:   in      bit;
+                 TCK:   in      bit;
+                 TMS:   in      bit;
+            RESERVED:   linkage bit_vector(0 to 4);
+                SVCC:   linkage bit_vector(0 to 1);
+                HVCC:   linkage bit;
+                DVCC:   linkage bit_vector(0 to 3);
+                AVCC:   linkage bit_vector(0 to 2);
+                HACK:   inout   bit;
+                 HDS:   inout   bit;
+                 HRW:   inout   bit;
+                CVCC:   linkage bit_vector(0 to 1);
+                 HCS:   inout   bit;
+                 HA9:   inout   bit;
+                 HA8:   inout   bit;
+                 HAS:   inout   bit;
+                 GND:   linkage bit_vector(0 to 63);
+               QVCCL:   linkage bit_vector(0 to 3);
+               QVCCH:   linkage bit_vector(0 to 2);
+                PVCC:   linkage bit;
+                PGND:   linkage bit;
+               PGND1:   linkage bit);
+
+        use STD_1149_1_1994.all;
+
+        attribute COMPONENT_CONFORMANCE of DSP56311 : entity is "STD_1149_1_1993";
+
+        attribute PIN_MAP of DSP56311 : entity is PHYSICAL_PIN_MAP;
+
+        constant PBGA196 : PIN_MAP_STRING := 
+                "RESERVED:  (A1, A14, B14, P1, P14), " &
+                "SC11:       A2, " &
+                "TMS:        A3, " &
+                "TDO:        A4, " &
+                "MODB:       A5, " &
+                "D:         (E14, D12, D13, C13, C14, B13, C12, A13, B12, A12, B11, A11, C10, B10, A10, B9,  " &
+                        "A9, B8, C8, A8, B7, B6, C6, A6), " &
+                "DVCC:      (A7, C9, C11, D14), " &
+                "SRD1:       B1, " &
+                "SC12:       B2, " &
+                "TDI:        B3, " &
+                "TRST_N:     B4, " &
+                "MODD:       B5, " &
+                "SC02:       C1, " &
+                "STD1:       C2, " &
+                "TCK:        C3, " &
+                "MODA:       C4, " &
+                "MODC:       C5, " &
+                "QVCCL:     (C7, G13, H2, N9), " &
+                "PINIT:      D1, " &
+                "SC01:       D2, " &
+                "DE_N:       D3, " &
+                "GND:       (E8, E9, E10, E11, F4, F5, F11, G4, G5, G6, G7, G8, G9, G10, G11, H4, H5, H6,  " &
+                        "H7, H8, H9, H10, H11, J4, J5, J6, J7, J8, J9, J10, J11, K4, K5, K6, K7, K8, K9,  " &
+                        "K10, K11, L4, L5, L6, L7, L8, L9, L10, L11, D4, D5, D6, D7, D8, D9, D10, D11, E4,  " &
+                        "E5, E6, E7, F6, F7, F8, F9, F10), " &
+                "STD0:       E1, " &
+                "SVCC:      (E2, K1), " &
+                "SRD0:       E3, " &
+                "A:         (N14, M13, M14, L13, L14, K13, K14, J13, J12, J14, H13, H14, G14, G12, F13, F14,  " &
+                        "E13, E12), " &
+                "RXD:        F1, " &
+                "SC10:       F2, " &
+                "SC00:       F3, " &
+                "QVCCH:     (F12, H1, M7), " &
+                "SCK1:       G1, " &
+                "SCLK:       G2, " &
+                "TXD:        G3, " &
+                "SCK0:       H3, " &
+                "AVCC:      (H12, K12, L12), " &
+                "HACK:       J1, " &
+                "HRW:        J2, " &
+                "HDS:        J3, " &
+                "HREQ:       K2, " &
+                "TIO2:       K3, " &
+                "HCS:        L1, " &
+                "TIO1:       L2, " &
+                "TIO0:       L3, " &
+                "HA8:        M1, " &
+                "HA9:        M2, " &
+                "HAS:        M3, " &
+                "HVCC:       M4, " &
+                "HAD:       (M5, P4, N4, P3, N3, P2, N1, N2), " &
+                "PVCC:       M6, " &
+                "EXTAL:      M8, " &
+                "CLKOUT:     M9, " &
+                "BCLK_N:     M10, " &
+                "WR_N:       M11, " &
+                "RD_N:       M12, " &
+                "RESET_N:    N5, " &
+                "PGND:       N6, " &
+                "AA:        (N13, P12, P7, N7), " &
+                "CAS_N:      N8, " &
+                "BCLK:       N10, " &
+                "BR_N:       N11, " &
+                "CVCC:      (N12, P9), " &
+                "PCAP:       P5, " &
+                "PGND1:      P6, " &
+                "XTAL:       P8, " &
+                "TA_N:       P10, " &
+                "BB_N:       P11, " &
+                "BG_N:       P13 ";
+
+        attribute TAP_SCAN_IN    of     TDI : signal is true;
+        attribute TAP_SCAN_OUT   of     TDO : signal is true;
+        attribute TAP_SCAN_MODE  of     TMS : signal is true;
+        attribute TAP_SCAN_RESET of  TRST_N : signal is true;
+        attribute TAP_SCAN_CLOCK of     TCK : signal is (20.0e6, BOTH);
+
+        attribute INSTRUCTION_LENGTH of DSP56311 : entity is 4;
+
+        attribute INSTRUCTION_OPCODE of DSP56311 : entity is 
+           "EXTEST              (0000)," &
+           "SAMPLE              (0001)," &
+           "IDCODE              (0010)," &
+           "CLAMP               (0101)," &
+           "HIGHZ               (0100)," &
+           "ENABLE_ONCE         (0110)," &
+           "DEBUG_REQUEST       (0111)," &
+           "BYPASS              (1111)";
+
+        attribute INSTRUCTION_CAPTURE of DSP56311 : entity is "0001";
+        attribute IDCODE_REGISTER   of DSP56311 : entity is 
+           "0000"          & -- version
+           "000110"        & -- manufacturer's use
+           "0000001011"    & -- sequence number
+           "00000001110"   & -- manufacturer identity
+           "1";              -- 1149.1 requirement
+
+
+        attribute REGISTER_ACCESS of DSP56311 : entity is 
+           "ONCE[8]   (ENABLE_ONCE,DEBUG_REQUEST)" ;
+
+        attribute BOUNDARY_LENGTH of DSP56311 : entity is 144;
+
+        attribute BOUNDARY_REGISTER of DSP56311 : entity is 
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "0     (BC_1, MODA,      input,         X)," &
+           "1     (BC_1, MODB,      input,         X)," &
+           "2     (BC_1, MODC,      input,         X)," &
+           "3     (BC_1, MODD,      input,         X)," &
+           "4     (BC_6, D(23),     bidir,         X,     13,   1,   Z)," &
+           "5     (BC_6, D(22),     bidir,         X,     13,   1,   Z)," &
+           "6     (BC_6, D(21),     bidir,         X,     13,   1,   Z)," &
+           "7     (BC_6, D(20),     bidir,         X,     13,   1,   Z)," &
+           "8     (BC_6, D(19),     bidir,         X,     13,   1,   Z)," &
+           "9     (BC_6, D(18),     bidir,         X,     13,   1,   Z)," &
+           "10    (BC_6, D(17),     bidir,         X,     13,   1,   Z)," &
+           "11    (BC_6, D(16),     bidir,         X,     13,   1,   Z)," &
+           "12    (BC_6, D(15),     bidir,         X,     13,   1,   Z)," &
+           "13    (BC_1, *,         control,       1)," &
+           "14    (BC_6, D(14),     bidir,         X,     13,   1,   Z)," &
+           "15    (BC_6, D(13),     bidir,         X,     13,   1,   Z)," &
+           "16    (BC_6, D(12),     bidir,         X,     13,   1,   Z)," &
+           "17    (BC_6, D(11),     bidir,         X,     26,   1,   Z)," &
+           "18    (BC_6, D(10),     bidir,         X,     26,   1,   Z)," &
+           "19    (BC_6, D(9),      bidir,         X,     26,   1,   Z)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "20    (BC_6, D(8),      bidir,         X,     26,   1,   Z)," &
+           "21    (BC_6, D(7),      bidir,         X,     26,   1,   Z)," &
+           "22    (BC_6, D(6),      bidir,         X,     26,   1,   Z)," &
+           "23    (BC_6, D(5),      bidir,         X,     26,   1,   Z)," &
+           "24    (BC_6, D(4),      bidir,         X,     26,   1,   Z)," &
+           "25    (BC_6, D(3),      bidir,         X,     26,   1,   Z)," &
+           "26    (BC_1, *,         control,       1)," &
+           "27    (BC_6, D(2),      bidir,         X,     26,   1,   Z)," &
+           "28    (BC_6, D(1),      bidir,         X,     26,   1,   Z)," &
+           "29    (BC_6, D(0),      bidir,         X,     26,   1,   Z)," &
+           "30    (BC_1, A(17),     output3,       X,     33,   1,   Z)," &
+           "31    (BC_1, A(16),     output3,       X,     33,   1,   Z)," &
+           "32    (BC_1, A(15),     output3,       X,     33,   1,   Z)," &
+           "33    (BC_1, *,         control,       1)," &
+           "34    (BC_1, A(14),     output3,       X,     33,   1,   Z)," &
+           "35    (BC_1, A(13),     output3,       X,     33,   1,   Z)," &
+           "36    (BC_1, A(12),     output3,       X,     33,   1,   Z)," &
+           "37    (BC_1, A(11),     output3,       X,     33,   1,   Z)," &
+           "38    (BC_1, A(10),     output3,       X,     33,   1,   Z)," &
+           "39    (BC_1, A(9),      output3,       X,     33,   1,   Z)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "40    (BC_1, A(8),      output3,       X,     43,   1,   Z)," &
+           "41    (BC_1, A(7),      output3,       X,     43,   1,   Z)," &
+           "42    (BC_1, A(6),      output3,       X,     43,   1,   Z)," &
+           "43    (BC_1, *,         control,       1)," &
+           "44    (BC_1, A(5),      output3,       X,     43,   1,   Z)," &
+           "45    (BC_1, A(4),      output3,       X,     43,   1,   Z)," &
+           "46    (BC_1, A(3),      output3,       X,     43,   1,   Z)," &
+           "47    (BC_1, A(2),      output3,       X,     43,   1,   Z)," &
+           "48    (BC_1, A(1),      output3,       X,     43,   1,   Z)," &
+           "49    (BC_1, A(0),      output3,       X,     43,   1,   Z)," &
+           "50    (BC_1, BG_N,      input,         X)," &
+           "51    (BC_1, AA(0),     output3,       X,     55,   1,   Z)," &
+           "52    (BC_1, AA(1),     output3,       X,     56,   1,   Z)," &
+           "53    (BC_1, RD_N,      output3,       X,     64,   1,   Z)," &
+           "54    (BC_1, WR_N,      output3,       X,     64,   1,   Z)," &
+           "55    (BC_1, *,         control,       1)," &
+           "56    (BC_1, *,         control,       1)," &
+           "57    (BC_1, *,         control,       1)," &
+           "58    (BC_6, BB_N,      bidir,         X,     57,   1,   Z)," &
+           "59    (BC_1, BR_N,      output2,       X)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "60    (BC_1, TA_N,      input,         X)," &
+           "61    (BC_1, BCLK_N,    output3,       X,     64,   1,   Z)," &
+           "62    (BC_1, BCLK,      output3,       X,     64,   1,   Z)," &
+           "63    (BC_1, CLKOUT,    output2,       X)," &
+           "64    (BC_1, *,         control,       1)," &
+           "65    (BC_1, *,         control,       1)," &
+           "66    (BC_1, *,         control,       1)," &
+           "67    (BC_1, *,         control,       1)," &
+           "68    (BC_1, EXTAL,     input,         X)," &
+           "69    (BC_1, CAS_N,     output3,       X,     65,   1,   Z)," &
+           "70    (BC_1, AA(2),     output3,       X,     66,   1,   Z)," &
+           "71    (BC_1, AA(3),     output3,       X,     67,   1,   Z)," &
+           "72    (BC_1, RESET_N,   input,         X)," &
+           "73    (BC_1, *,         control,       1)," &
+           "74    (BC_6, HAD(0),    bidir,         X,     73,   1,   Z)," &
+           "75    (BC_1, *,         control,       1)," &
+           "76    (BC_6, HAD(1),    bidir,         X,     75,   1,   Z)," &
+           "77    (BC_1, *,         control,       1)," &
+           "78    (BC_6, HAD(2),    bidir,         X,     77,   1,   Z)," &
+           "79    (BC_1, *,         control,       1)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "80    (BC_6, HAD(3),    bidir,         X,     79,   1,   Z)," &
+           "81    (BC_1, *,         control,       1)," &
+           "82    (BC_6, HAD(4),    bidir,         X,     81,   1,   Z)," &
+           "83    (BC_1, *,         control,       1)," &
+           "84    (BC_6, HAD(5),    bidir,         X,     83,   1,   Z)," &
+           "85    (BC_1, *,         control,       1)," &
+           "86    (BC_6, HAD(6),    bidir,         X,     85,   1,   Z)," &
+           "87    (BC_1, *,         control,       1)," &
+           "88    (BC_6, HAD(7),    bidir,         X,     87,   1,   Z)," &
+           "89    (BC_1, *,         control,       1)," &
+           "90    (BC_6, HAS,       bidir,         X,     89,   1,   Z)," &
+           "91    (BC_1, *,         control,       1)," &
+           "92    (BC_6, HA8,       bidir,         X,     91,   1,   Z)," &
+           "93    (BC_1, *,         control,       1)," &
+           "94    (BC_6, HA9,       bidir,         X,     93,   1,   Z)," &
+           "95    (BC_1, *,         control,       1)," &
+           "96    (BC_6, HCS,       bidir,         X,     95,   1,   Z)," &
+           "97    (BC_1, *,         control,       1)," &
+           "98    (BC_6, TIO0,      bidir,         X,     97,   1,   Z)," &
+           "99    (BC_1, *,         control,       1)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "100   (BC_6, TIO1,      bidir,         X,     99,   1,   Z)," &
+           "101   (BC_1, *,         control,       1)," &
+           "102   (BC_6, TIO2,      bidir,         X,    101,   1,   Z)," &
+           "103   (BC_1, *,         control,       1)," &
+           "104   (BC_6, HREQ,      bidir,         X,    103,   1,   Z)," &
+           "105   (BC_1, *,         control,       1)," &
+           "106   (BC_6, HACK,      bidir,         X,    105,   1,   Z)," &
+           "107   (BC_1, *,         control,       1)," &
+           "108   (BC_6, HRW,       bidir,         X,    107,   1,   Z)," &
+           "109   (BC_1, *,         control,       1)," &
+           "110   (BC_6, HDS,       bidir,         X,    109,   1,   Z)," &
+           "111   (BC_1, *,         control,       1)," &
+           "112   (BC_6, SCK0,      bidir,         X,    111,   1,   Z)," &
+           "113   (BC_1, *,         control,       1)," &
+           "114   (BC_6, SCK1,      bidir,         X,    113,   1,   Z)," &
+           "115   (BC_1, *,         control,       1)," &
+           "116   (BC_6, SCLK,      bidir,         X,    115,   1,   Z)," &
+           "117   (BC_1, *,         control,       1)," &
+           "118   (BC_6, TXD,       bidir,         X,    117,   1,   Z)," &
+           "119   (BC_1, *,         control,       1)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "120   (BC_6, RXD,       bidir,         X,    119,   1,   Z)," &
+           "121   (BC_1, *,         control,       1)," &
+           "122   (BC_6, SC00,      bidir,         X,    121,   1,   Z)," &
+           "123   (BC_1, *,         control,       1)," &
+           "124   (BC_6, SC10,      bidir,         X,    123,   1,   Z)," &
+           "125   (BC_1, *,         control,       1)," &
+           "126   (BC_6, STD0,      bidir,         X,    125,   1,   Z)," &
+           "127   (BC_1, *,         control,       1)," &
+           "128   (BC_6, SRD0,      bidir,         X,    127,   1,   Z)," &
+           "129   (BC_1, PINIT,     input,         X)," &
+           "130   (BC_1, *,         control,       1)," &
+           "131   (BC_6, DE_N,      bidir,         X,    130,   1,   Pull1)," &
+           "132   (BC_1, *,         control,       1)," &
+           "133   (BC_6, SC01,      bidir,         X,    132,   1,   Z)," &
+           "134   (BC_1, *,         control,       1)," &
+           "135   (BC_6, SC02,      bidir,         X,    134,   1,   Z)," &
+           "136   (BC_1, *,         control,       1)," &
+           "137   (BC_6, STD1,      bidir,         X,    136,   1,   Z)," &
+           "138   (BC_1, *,         control,       1)," &
+           "139   (BC_6, SRD1,      bidir,         X,    138,   1,   Z)," &
+        -- num    cell   port   func           safe [ccell  dis  rslt]
+           "140   (BC_1, *,         control,       1)," &
+           "141   (BC_6, SC11,      bidir,         X,    140,   1,   Z)," &
+           "142   (BC_1, *,         control,       1)," &
+           "143   (BC_6, SC12,      bidir,         X,    142,   1,   Z)";
+
+end DSP56311;
+

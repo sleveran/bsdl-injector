@@ -1,0 +1,149 @@
+--  
+--  eZ80F93.bsd 
+-- 
+--  BSDL File for eZ80F93  revision 1    Original Issue
+--                                       Zilog Systems Development SDC
+--                                       May 19, 2003
+--
+-- 
+--    file could be used with F92 or F93 devices. Flash and RAM sizing is
+--      die wire bonding controlled.  Both F92 and F93 BSDL files are
+--      provided for clarity.
+--    file is the same as eZ80L92.bsd except for:
+--      device name and IDCODE contents
+--  
+--  eZ80F93 is 1149.1 compatible not compliant.
+--  This BSDL file is 1149.1 compliant.
+--  eZ90F93 does not have a boundary register. Standard boundary register
+--  defaults to outputting the OCIREV 8-bit code.
+--
+--  See eZ80 Device BSDL File Usage Applications Note.
+--
+
+entity eZ80F93 is
+
+generic (PHYSICAL_PIN_MAP : string := "LQFP100" );
+
+port (Ad: linkage bit_vector (0 to 23);
+CS: linkage bit_vector (0 to 3);
+D: linkage bit_vector ( 0 to 7);
+IORQN: linkage bit;
+MREQN: linkage bit;
+RDN: linkage bit;		
+WRN: linkage bit;		
+INSTRDN: linkage bit;   	
+WAITN: linkage bit;		
+RESETN: linkage bit;		
+NMIN: linkage bit;		
+BUSREQN: linkage bit;   	
+BUSACKN: linkage bit;   	
+HALT_SLPN: linkage bit;
+RTC_XIN: linkage bit;
+RTC_XOUT: linkage bit;
+RTC_VDD: linkage bit;
+TMS: in bit;
+TCK: in bit;
+TRIGOUT: linkage bit;
+TDI: in bit;
+TDO: out bit;
+PD: linkage bit_vector ( 0 to 7);
+PC: linkage bit_vector ( 0 to 7);
+XIN: linkage bit;
+XOUT: linkage bit;
+PB: linkage bit_vector ( 0 to 7);
+SDA: linkage bit;
+SCL: linkage bit;
+PHI: linkage bit;
+VDD: linkage bit_vector ( 1 to 8);
+VSS: linkage bit_vector (1 to 8));	
+
+use STD_1149_1_2001.all;
+
+attribute COMPONENT_CONFORMANCE of eZ80F93 :
+	entity is "STD_1149_1_2001";
+
+attribute PIN_MAP of eZ80F93 : entity is PHYSICAL_PIN_MAP;
+
+constant LQFP100: PIN_MAP_STRING:=
+
+"Ad:(1,2,3,4,5,6,9,10,11,12,13,14,15,16,17,20,21,22,23,24,25,26,27,28),"  &
+"CS:(29,30,31,32),"  &
+"D:(35,36,37,38,39,40,41,42),"  &
+"IORQN:45," &
+"MREQN:46," &
+"RDN:47," &
+"WRN:48," &
+"INSTRDN:49," &
+"WAITN:50," &
+"RESETN:51," &
+"NMIN:52," &
+"BUSREQN:53," &
+"BUSACKN:54," &
+"HALT_SLPN:55," &
+"RTC_XIN:58," &
+"RTC_XOUT:59," &
+"RTC_VDD:60," &
+"TMS:62,"&
+"TCK:63,"&
+"TRIGOUT:64," &
+"TDI:65,"&
+"TDO:66,"&
+"PD:(68,69,70,71,72,73,74,75),"  &
+"PC:(76,77,78,79,80,81,82,83),"  &
+"XIN:85," &
+"XOUT:86," &
+"PB:(88,89,90,91,92,93,94,95),"  &
+"SDA:98," &
+"SCL:99," &
+"PHI:100," &
+"VDD:(7,18,33,43,56,67,87,96)," &
+"VSS:(8,19,34,44,57,61,84,97)";
+
+attribute TAP_SCAN_CLOCK of TCK : signal is (10.0e6, BOTH);
+attribute TAP_SCAN_IN    of TDI : signal is true;
+attribute TAP_SCAN_OUT   of TDO : signal is true;
+attribute TAP_SCAN_MODE  of TMS : signal is true;
+
+-- TCK freq max is defined as half the eZ80F93 20 MHz clock-in freq
+
+attribute INSTRUCTION_LENGTH of eZ80F93 : entity is 8;
+
+attribute INSTRUCTION_OPCODE of eZ80F93 : entity is
+	"BYPASS ( 11111111)," &
+	"EXTEST ( 00000000)," &		-- JTAG required not F93 supported
+	"SAMPLE ( 00000001)," &		-- JTAG required not F93 supported
+	"PRELOAD ( 00000001)," &	-- JTAG required not F93 supported
+	"IDCODE ( 00100010)";
+
+attribute INSTRUCTION_CAPTURE of eZ80F93 : entity is "00000001";
+
+attribute IDCODE_REGISTER of eZ80F93 : entity is
+	"0000" &            -- version
+      "0000000000000100" &  -- 0004h  eZ80F92 Part Number
+      "00000011010" &       -- 01Ah   Zilog Mfg ID
+      "1";                  -- required by JTAG Standard
+
+attribute REGISTER_ACCESS of eZ80F93 : entity is
+	"BYPASS ( BYPASS)," &
+	"BOUNDARY (SAMPLE,EXTEST)," &
+	"DEVICE_ID ( IDCODE)";
+
+-- eZ80F93 does not have a pin boundary scan chain/register
+-- this code section is a placeholder
+-- For boundary register commands eZ0F93 will output 8-bit OCIREV code
+-- on TDO then echo TDI -to- TDO with an eight TCK delay
+
+attribute BOUNDARY_LENGTH of eZ80F93 : entity is 8;
+
+attribute BOUNDARY_REGISTER of eZ80F93 : entity is
+
+"0	(BC_4, *, INTERNAL, X)," &
+"1	(BC_4, *, INTERNAL, X)," &
+"2	(BC_4, *, INTERNAL, X)," &
+"3	(BC_4, *, INTERNAL, X)," &
+"4	(BC_4, *, INTERNAL, X)," &
+"5	(BC_4, *, INTERNAL, X)," &
+"6	(BC_4, *, INTERNAL, X)," &
+"7	(BC_4, *, INTERNAL, X)";
+
+end eZ80F93;

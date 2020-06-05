@@ -1,0 +1,716 @@
+-- *****************************************************************************
+
+--	BSDL file for design AT91M43300
+
+--	Created by Synopsys Version 1999.05-4 (Jun 15, 1999)
+
+--	Designer: Ulf Samuelsson
+--	Company:	ATMEL SWEDEN
+
+--	Date: Wed Nov 17 14:55:47 1999
+
+--      Edited 2001-02-28 by ERA/PN/TP Ville Hassinen. 
+-- *****************************************************************************
+
+	
+ entity AT91M43300 is
+	
+-- This section identifies the default device package selected.
+	
+	generic (PHYSICAL_PIN_MAP: string:= "bga_144");
+	
+-- This section declares all the ports in the design.
+	
+	port (
+-- EBI Signals
+		A_0_X		: out	bit;
+		A_1_X		: out	bit;
+		A_2_X		: out	bit;
+		A_3_X		: out	bit;
+		A_4_X		: out	bit;
+		A_5_X		: out	bit;
+		A_6_X		: out	bit;
+		A_7_X		: out	bit;
+		A_8_X		: out	bit;
+		A_9_X		: out	bit;
+		A_10_X		: out	bit;
+		A_11_X		: out	bit;
+		A_12_X		: out	bit;
+		A_13_X		: out	bit;
+		A_14_X		: out	bit;
+		A_15_X		: out	bit;
+		A_16_X		: out	bit;
+		A_17_X		: out	bit;
+		A_18_X		: out	bit;
+		A_19_X		: out	bit;
+		A20CS7		: out	bit;
+		A21CS6		: out	bit;
+		A22CS5		: out	bit;
+		A23CS4		: out	bit;
+
+		D_0_X		: inout	bit;
+		D_1_X		: inout	bit;
+		D_2_X		: inout	bit;
+		D_3_X		: inout	bit;
+		D_4_X		: inout	bit;
+		D_5_X		: inout	bit;
+		D_6_X		: inout	bit;
+		D_7_X		: inout	bit;
+		D_8_X		: inout	bit;
+		D_9_X		: inout	bit;
+		D_10_X		: inout	bit;
+		D_11_X		: inout	bit;
+		D_12_X		: inout	bit;
+		D_13_X		: inout	bit;
+		D_14_X		: inout	bit;
+		D_15_X		: inout	bit;
+	
+		NCS0	 	: out	bit;
+		NCS1	 	: out	bit;
+		NCS2	 	: out	bit;
+		NCS3	 	: out	bit;
+
+		NWE_NWR0	: out	bit;
+		NUB_NWR1	: out	bit;
+		NOE_NRD		: out	bit;
+		NWAIT		: in	bit;
+		PB18BMS		: inout	bit;
+
+-- AIC Signals
+		PA9IRQ0		: inout	bit;
+		PA10IRQ1	: inout	bit;
+		PA11IRQ2	: inout	bit;
+		PA12IRQ3	: inout	bit;
+		PA13FIQ		: inout	bit;
+-- TIMERs
+		PB19TCLK0	: inout	bit;
+		PB20TIOA0	: inout	bit;
+		PB21TIOB0	: inout	bit;
+
+		PB22TCLK1	: inout	bit;
+		PB23TIOA1	: inout	bit;
+		PB24TIOB1	: inout	bit;
+
+		PB25TCLK2	: inout	bit;
+		PB26TIOA2	: inout	bit;
+		PB27TIOB2	: inout	bit;
+
+		PA0TCLK3	: inout	bit;
+		PA1TIOA3	: inout	bit;
+		PA2TIOB3	: inout	bit;
+
+		PA3TCLK4	: inout	bit;
+		PA4TIOA4	: inout	bit;
+		PA5TIOB4	: inout	bit;
+
+		PA6TCLK5	: inout	bit;
+		PA7TIOA5	: inout	bit;
+		PA8TIOB5	: inout	bit;
+-- USART
+		PA14SCK0	: inout	bit;
+		PA15TXD0	: inout	bit;
+		PA16RXD0	: inout	bit;
+
+		PA17SCK1	: inout	bit;
+		PA18TXD1NTRI	: inout	bit;
+		PA19RXD1	: inout	bit;
+
+		PA20SCK2	: inout	bit;
+		PA21TXD2	: inout	bit;
+		PA22RXD2	: inout	bit;
+-- SPI
+		PA23SPCK	: inout	bit;
+		PA24MISO	: inout	bit;
+		PA25MOSI	: inout	bit;
+		PA26NPCS0NSS	: inout	bit;
+		PA27NPCS1	: inout	bit;
+		PA28NPCS2	: inout	bit;
+		PA29NPCS3	: inout	bit;
+-- WATCHDOG
+		NWDOVF		: out	bit;
+
+-- CLOCK
+		MCKI	 	: in	bit;
+		PB17MCKO	: inout	bit;
+
+-- RESET
+		NRST	 : in	bit;
+
+-- JTAG/ICE Signals
+		JTAGSEL		: in	bit;
+		TMS		: in	bit;
+		TDI		: in	bit;
+		TDO		: out	bit;
+		TCK		: in	bit;
+		NTRST		: in	bit;
+-- PORTS
+		PB10	 	: inout	bit;
+		PB11	 	: inout	bit;
+		PB12	 	: inout	bit;
+		PB13	 	: inout	bit;
+		PB14	 	: inout	bit;
+		PB15	 	: inout	bit;
+		PB16	 	: inout	bit;
+
+		PB0		: inout	bit;
+		PB1		: inout	bit;
+		PB2		: inout	bit;
+		PB3		: inout	bit;
+		PB4		: inout	bit;
+		PB5		: inout	bit;
+		PB6		: inout	bit;
+		PB7		: inout	bit;
+		PB8		: inout	bit;
+		PB9		: inout	bit;
+
+-- PORTS w MPI function
+
+--		PB0MPI_NOE	: inout	bit;
+--		PB1MPI_NLB	: inout	bit;
+--		PB2MPI_NUB	: inout	bit;
+
+-- Multi Processor Interface
+--		MPI_BG		: out	bit;
+--		MPI_D_0_X	: inout	bit;
+--		MPI_D_10_X	: inout	bit;
+--		MPI_D_11_X	: inout	bit;
+--		MPI_D_12_X	: inout	bit;
+--		MPI_D_13_X	: inout	bit;
+--		MPI_D_14_X	: inout	bit;
+--		MPI_D_15_X	: inout	bit;
+--		MPI_D_1_X	: inout	bit;
+--		MPI_D_2_X	: inout	bit;
+--		MPI_D_3_X	: inout	bit;
+--		MPI_D_4_X	: inout	bit;
+--		MPI_D_5_X	: inout	bit;
+--		MPI_D_6_X	: inout	bit;
+--		MPI_D_7_X	: inout	bit;
+--		MPI_D_8_X	: inout	bit;
+--		MPI_D_9_X	: inout	bit;
+--		MPI_A_1_X	: in	bit;
+--		MPI_A_2_X	: in	bit;
+--		MPI_A_3_X	: in	bit;
+--		MPI_A_4_X	: in	bit;
+--		MPI_A_5_X	: in	bit;
+--		MPI_A_6_X	: in	bit;
+--		MPI_A_7_X	: in	bit;
+--		MPI_A_8_X	: in	bit;
+--		MPI_A_9_X	: in	bit;
+--		MPI_BR	: in	bit;
+--		MPI_NCS	: in	bit;
+--		MPI_RNW	: in	bit;
+-- POWER
+		GND		: linkage	bit_vector (1 to 15);
+		VDD		: linkage	bit_vector (1 to 14)
+	);
+	
+	use STD_1149_1_1994.all;
+	
+	attribute COMPONENT_CONFORMANCE of AT91M43300: entity is "STD_1149_1_1993";
+	
+	attribute PIN_MAP of AT91M43300: entity is PHYSICAL_PIN_MAP;
+
+-- This section specifies the pin map for each port. This information
+-- is extracted from the port-to-pin map file that was read in using
+-- the "read_pin_map" command.
+
+	constant bga_144: PIN_MAP_STRING := 
+	"A_0_X		: F6	, "&
+	"A_1_X		: E5	, "&
+	"A_10_X		: E3	, "&
+	"A_11_X		: G6	, "&
+	"A_12_X		: F4	, "&
+	"A_13_X		: G4	, "&
+	"A_14_X		: F2	, "&
+	"A_15_X		: G1	, "&
+	"A_16_X		: G7	, "&
+	"A_17_X		: G5	, "&
+	"A_18_X		: H1	, "&
+	"A_19_X		: J2	, "&
+	"A_2_X		: D2	, "&
+	"A_3_X		: D1	, "&
+	"A_4_X		: E4	, "&
+	"A_5_X		: D5	, "&
+	"A_6_X		: E6	, "&
+	"A_7_X		: F5	, "&
+	"A_8_X		: F3	, "&
+	"A_9_X		: F1	, "&
+	"A20CS7		: J1	, "&
+	"A21CS6		: G3	, "&
+	"A22CS5		: H5	, "&
+	"A23CS4		: H6	, "&
+	"D_0_X		: H2	, "&
+	"D_1_X		: J4	, "&
+	"D_10_X		: K4	, "&
+	"D_11_X		: J5	, "&
+	"D_12_X		: J6	, "&
+	"D_13_X		: H7	, "&
+	"D_14_X		: K5	, "&
+	"D_15_X		: L4	, "&
+	"D_2_X		: H4	, "&
+	"D_3_X		: J3	, "&
+	"D_4_X		: K1	, "&
+	"D_5_X		: L1	, "&
+	"D_6_X		: M1	, "&
+	"D_7_X		: L2	, "&
+	"D_8_X		: M2	, "&
+	"D_9_X		: M3	, "&
+	"NCS0		: B1	, "&
+	"NCS1		: C2	, "&
+	"NCS2		: C1	, "&
+	"NCS3		: C4	, "&
+	"NOE_NRD	: A2	, "&
+	"NUB_NWR1	: A1	, "&
+	"NWAIT		: D4	, "&
+	"NWE_NWR0	: B2	, "&
+	"PB18BMS	: D6	, "&
+	"PA10IRQ1	: L9	, "&
+	"PA11IRQ2	: H10	, "&
+	"PA12IRQ3	: H9	, "&
+	"PA13FIQ	: M10	, "&
+	"PA9IRQ0	: M9	, "&
+	"PA0TCLK3	: L6	, "&
+	"PA1TIOA3	: M6	, "&
+	"PA2TIOB3	: J8	, "&
+	"PA3TCLK4	: J9	, "&
+	"PA4TIOA4	: L7	, "&
+	"PA5TIOB4	: K8	, "&
+	"PA6TCLK5	: M7	, "&
+	"PA7TIOA5	: E8	, "&
+	"PA8TIOB5	: F9	, "&
+	"PB19TCLK0	: F7	, "&
+	"PB20TIOA0	: H8	, "&
+	"PB21TIOB0	: J7	, "&
+	"PB22TCLK1	: M4	, "&
+	"PB23TIOA1	: F8	, "&
+	"PB24TIOB1	: K6	, "&
+	"PB25TCLK2	: G9	, "&
+	"PB26TIOA2	: K7	, "&
+	"PB27TIOB2	: G8	, "&
+	"PA14SCK0	: M11	, "&
+	"PA15TXD0	: M12	, "&
+	"PA16RXD0	: K9	, "&
+	"PA17SCK1	: K10	, "&
+	"PA18TXD1NTRI	: L12	, "&
+	"PA19RXD1	: F10	, "&
+	"PA20SCK2	: J10	, "&
+	"PA21TXD2	: K12	, "&
+	"PA22RXD2	: E11	, "&
+	"PA23SPCK	: G11	, "&
+	"PA24MISO	: J11	, "&
+	"PA25MOSI	: G10	, "&
+	"PA26NPCS0NSS	: J12	, "&
+	"PA27NPCS1	: H11	, "&
+	"PA28NPCS2	: H12	, "&
+	"PA29NPCS3	: G12	, "&
+	"NWDOVF		: E9	, "&
+	"MCKI		: B6	, "&
+	"PB17MCKO	: A6	, "&
+	"NRST		: C6	, "&
+	"JTAGSEL	: E7	, "&
+	"NTRST		: B5	, "&
+	"TCK		: A3	, "&
+	"TDI		: A4	, "&
+	"TDO		: B4	, "&
+	"TMS		: D7	, "&
+	"PB0		: C12	, "&
+	"PB1		: B12	, "&
+	"PB10		: C7	, "&
+	"PB11		: C11	, "&
+	"PB12		: D10	, "&
+	"PB13		: D8	, "&
+	"PB14		: C8	, "&
+	"PB15		: B7	, "&
+	"PB16		: D9	, "&
+	"PB2		: B11	, "&
+	"PB3		: A12	, "&
+	"PB4		: A11	, "&
+	"PB5		: A10	, "&
+	"PB6		: B9	, "&
+	"PB7		: A9	, "&
+	"PB8		: B8	, "&
+	"PB9		: C9	, "&
+	"GND		: (A7,  B10, C5,  D3,  D11,  D12,  E2,  E12,  F11,  F12,  H3,  K11,  L3,  M5,  M8)," &
+	"VDD		: (C3, C10, K3, L11, A5, A8, B3, E1, E10, G2, K2, L5, L8, L10)";
+
+	
+-- This section specifies the TAP ports.
+-- For the TAP TCK port, the parameters in the brackets are:
+--	First Field : Maximum	TCK frequency.
+--	Second Field: Allowable states TCK may be stopped in.
+	
+	attribute TAP_SCAN_CLOCK of TCK	: signal is (10.0e6, BOTH);
+	attribute TAP_SCAN_IN	of TDI	: signal is true;
+	attribute TAP_SCAN_MODE	of TMS	: signal is true;
+	attribute TAP_SCAN_OUT	of TDO	: signal is true;
+	attribute TAP_SCAN_RESET of NTRST: signal is true;
+	
+-- Specifies the compliance enable patterns for the design.
+-- It lists a set of design ports and the values that they
+-- should be set to, in order to enable compliance to IEEE
+-- Std 1149.1
+	
+	attribute COMPLIANCE_PATTERNS of AT91M43300 : entity is 
+	"(JTAGSEL) (1)";
+	
+-- Specifies the number of bits in the instruction register.
+	
+	attribute INSTRUCTION_LENGTH of AT91M43300: entity is 2;
+	
+-- Specifies the boundary-scan instructions implemented in the
+-- design and their opcodes.
+	
+	attribute INSTRUCTION_OPCODE of AT91M43300: entity is 
+	"BYPASS (11)," &
+	"SAMPLE (01)," &
+	"EXTEST (00)";
+	
+-- Specifies the bit pattern that is loaded into the instruction
+-- register when the TAP controller passes through the Capture-IR
+-- state. The standard mandates that the two LSBs must be "01".
+-- The remaining bits are design specific.
+	
+	attribute INSTRUCTION_CAPTURE of AT91M43300: entity is "01";
+	
+-- This section specifies the test data register placed between TDI
+-- and TDO for each implemented instruction.
+	
+	attribute REGISTER_ACCESS of AT91M43300: entity is 
+	"BYPASS	(BYPASS)," &
+	"BOUNDARY (EXTEST, SAMPLE)";
+	
+-- Specifies the length of the boundary scan register.
+	
+	attribute BOUNDARY_LENGTH of AT91M43300: entity is 303;
+	
+-- The following list specifies the characteristics of each cell
+-- in the boundary scan register from TDI to TDO.
+-- The following is a description of the label fields:
+--	num	: Is the cell number.
+--	cell	: Is the cell type as defined by the standard.
+--	port	: Is the design port name. Control cells do not
+--		have a port name.
+--	function: Is the function of the cell as defined by the
+--		standard. Is one of input, output2, output3,
+--		bidir, control or controlr.
+--	safe	: Specifies the value that the BSR cell should be
+--		loaded with for safe operation when the software
+--		might otherwise choose a random value.
+--	ccell	: The control cell number. Specifies the control
+--		cell that drives the output enable for this port.
+--	disval	: Specifies the value that is loaded into the
+--		control cell to disable the output enable for
+--		the corresponding port.
+--	rslt	: Resulting state. Shows the state of the driver
+--		when it is disabled.
+	
+	attribute BOUNDARY_REGISTER of AT91M43300: entity is 
+--	
+--	num	cell	port		function	safe	[ccell	disval	rslt]
+--	
+	"302	(BC_0,	*,		controlr,	1),			" &
+	"301	(BC_0,	*,		internal,	X),			" &
+	"300	(BC_0,	NOE_NRD,	output3,	X,	302,	1,	Z),	" &
+	"299	(BC_0,	*,		internal,	X),			" &
+	"298	(BC_0,	NWE_NWR0,	output3,	X,	302,	1,	Z),	" &
+	"297	(BC_0,	*,		internal,	X),			" &
+	"296	(BC_0,	NUB_NWR1,	output3,	X,	302,	1,	Z),	" &
+	"295	(BC_0,	NCS0,	 output3,	X,	302,	1,	Z),	" &
+	"294	(BC_0,	NCS1,	 output3,	X,	302,	1,	Z),	" &
+	"293	(BC_0,	NCS2,	 output3,	X,	302,	1,	Z),	" &
+	"292	(BC_0,	NCS3,	 output3,	X,	302,	1,	Z),	" &
+	"291	(BC_0,	*,		controlr,	1),			" &
+	"290	(BC_0,	A_0_X,	 output3,	X,	291,	1,	Z),	" &
+	"289	(BC_0,	A_1_X,	 output3,	X,	291,	1,	Z),	" &
+	"288	(BC_0,	A_2_X,	 output3,	X,	291,	1,	Z),	" &
+	"287	(BC_0,	A_3_X,	 output3,	X,	291,	1,	Z),	" &
+	"286	(BC_0,	A_4_X,	 output3,	X,	291,	1,	Z),	" &
+	"285	(BC_0,	A_5_X,	 output3,	X,	291,	1,	Z),	" &
+	"284	(BC_0,	A_6_X,	 output3,	X,	291,	1,	Z),	" &
+	"283	(BC_0,	A_7_X,	 output3,	X,	291,	1,	Z),	" &
+	"282	(BC_0,	*,		controlr,	1),			" &
+	"281	(BC_0,	A_8_X,	 output3,	X,	282,	1,	Z),	" &
+	"280	(BC_0,	A_9_X,	 output3,	X,	282,	1,	Z),	" &
+	"279	(BC_0,	A_10_X,	output3,	X,	282,	1,	Z),	" &
+	"278	(BC_0,	A_11_X,	output3,	X,	282,	1,	Z),	" &
+	"277	(BC_0,	A_12_X,	output3,	X,	282,	1,	Z),	" &
+	"276	(BC_0,	A_13_X,	output3,	X,	282,	1,	Z),	" &
+	"275	(BC_0,	A_14_X,	output3,	X,	282,	1,	Z),	" &
+	"274	(BC_0,	A_15_X,	output3,	X,	282,	1,	Z),	" &
+	"273	(BC_0,	*,		controlr,	1),			" &
+	"272	(BC_0,	A_16_X,	output3,	X,	273,	1,	Z),	" &
+	"271	(BC_0,	A_17_X,	output3,	X,	273,	1,	Z),	" &
+	"270	(BC_0,	A_18_X,	output3,	X,	273,	1,	Z),	" &
+	"269	(BC_0,	A_19_X,	output3,	X,	273,	1,	Z),	" &
+	"268	(BC_0,	*,		controlr,	1),			" &
+	"267	(BC_0,	A20CS7,	output3,	X,	268,	1,	Z),	" &
+	"266	(BC_0,	*,		controlr,	1),			" &
+	"265	(BC_0,	A21CS6,	output3,	X,	266,	1,	Z),	" &
+	"264	(BC_0,	*,		controlr,	1),			" &
+	"263	(BC_0,	A22CS5,	output3,	X,	264,	1,	Z),	" &
+	"262	(BC_0,	*,		controlr,	1),			" &
+	"261	(BC_0,	A23CS4,	output3,	X,	262,	1,	Z),	" &
+	"260	(BC_0,	*,		controlr,	1),			" &
+	"259	(BC_0,	D_0_X,	 output3,	X,	260,	1,	Z),	" &
+	"258	(BC_0,	D_0_X,	 input,	X),			" &
+	"257	(BC_0,	D_1_X,	 output3,	X,	260,	1,	Z),	" &
+	"256	(BC_0,	D_1_X,	 input,	X),			" &
+	"255	(BC_0,	D_2_X,	 output3,	X,	260,	1,	Z),	" &
+	"254	(BC_0,	D_2_X,	 input,	X),			" &
+	"253	(BC_0,	D_3_X,	 output3,	X,	260,	1,	Z),	" &
+	"252	(BC_0,	D_3_X,	 input,	X),			" &
+	"251	(BC_0,	D_4_X,	 output3,	X,	260,	1,	Z),	" &
+	"250	(BC_0,	D_4_X,	 input,	X),			" &
+	"249	(BC_0,	D_5_X,	 output3,	X,	260,	1,	Z),	" &
+	"248	(BC_0,	D_5_X,	 input,	X),			" &
+	"247	(BC_0,	D_6_X,	 output3,	X,	260,	1,	Z),	" &
+	"246	(BC_0,	D_6_X,	 input,	X),			" &
+	"245	(BC_0,	D_7_X,	 output3,	X,	260,	1,	Z),	" &
+	"244	(BC_0,	D_7_X,	 input,	X),			" &
+	"243	(BC_0,	*,		controlr,	1),			" &
+	"242	(BC_0,	D_8_X,	 output3,	X,	243,	1,	Z),	" &
+	"241	(BC_0,	D_8_X,	 input,	X),			" &
+	"240	(BC_0,	D_9_X,	 output3,	X,	243,	1,	Z),	" &
+	"239	(BC_0,	D_9_X,	 input,	X),			" &
+	"238	(BC_0,	D_10_X,	output3,	X,	243,	1,	Z),	" &
+	"237	(BC_0,	D_10_X,	input,	X),			" &
+	"236	(BC_0,	D_11_X,	output3,	X,	243,	1,	Z),	" &
+	"235	(BC_0,	D_11_X,	input,	X),			" &
+	"234	(BC_0,	D_12_X,	output3,	X,	243,	1,	Z),	" &
+	"233	(BC_0,	D_12_X,	input,	X),			" &
+	"232	(BC_0,	D_13_X,	output3,	X,	243,	1,	Z),	" &
+	"231	(BC_0,	D_13_X,	input,	X),			" &
+	"230	(BC_0,	D_14_X,	output3,	X,	243,	1,	Z),	" &
+	"229	(BC_0,	D_14_X,	input,	X),			" &
+	"228	(BC_0,	D_15_X,	output3,	X,	243,	1,	Z),	" &
+	"227	(BC_0,	D_15_X,	input,	X),			" &
+	"226	(BC_0,	*,		controlr,	1),			" &
+	"225	(BC_0,	PB19TCLK0,	input,	X),			" &
+	"224	(BC_0,	PB19TCLK0,	output3,	X,	226,	1,	Z),	" &
+	"223	(BC_0,	*,		controlr,	1),			" &
+	"222	(BC_0,	PB20TIOA0,	input,	X),			" &
+	"221	(BC_0,	PB20TIOA0,	output3,	X,	223,	1,	Z),	" &
+	"220	(BC_0,	*,		controlr,	1),			" &
+	"219	(BC_0,	PB21TIOB0,	input,	X),			" &
+	"218	(BC_0,	PB21TIOB0,	output3,	X,	220,	1,	Z),	" &
+	"217	(BC_0,	*,		controlr,	1),			" &
+	"216	(BC_0,	PB22TCLK1,	input,	X),			" &
+	"215	(BC_0,	PB22TCLK1,	output3,	X,	217,	1,	Z),	" &
+	"214	(BC_0,	*,		controlr,	1),			" &
+	"213	(BC_0,	PB23TIOA1,	input,	X),			" &
+	"212	(BC_0,	PB23TIOA1,	output3,	X,	214,	1,	Z),	" &
+	"211	(BC_0,	*,		controlr,	1),			" &
+	"210	(BC_0,	PB24TIOB1,	input,	X),			" &
+	"209	(BC_0,	PB24TIOB1,	output3,	X,	211,	1,	Z),	" &
+	"208	(BC_0,	*,		controlr,	1),			" &
+	"207	(BC_0,	PB25TCLK2,	input,	X),			" &
+	"206	(BC_0,	PB25TCLK2,	output3,	X,	208,	1,	Z),	" &
+	"205	(BC_0,	*,		controlr,	1),			" &
+	"204	(BC_0,	PB26TIOA2,	input,	X),			" &
+	"203	(BC_0,	PB26TIOA2,	output3,	X,	205,	1,	Z),	" &
+	"202	(BC_0,	*,		controlr,	1),			" &
+	"201	(BC_0,	PB27TIOB2,	input,	X),			" &
+	"200	(BC_0,	PB27TIOB2,	output3,	X,	202,	1,	Z),	" &
+	"199	(BC_0,	*,		controlr,	1),			" &
+	"198	(BC_0,	PA0TCLK3,	input,	X),			" &
+	"197	(BC_0,	PA0TCLK3,	output3,	X,	199,	1,	Z),	" &
+	"196	(BC_0,	*,		controlr,	1),			" &
+	"195	(BC_0,	PA1TIOA3,	input,	X),			" &
+	"194	(BC_0,	PA1TIOA3,	output3,	X,	196,	1,	Z),	" &
+	"193	(BC_0,	*,		controlr,	1),			" &
+	"192	(BC_0,	PA2TIOB3,	input,	X),			" &
+	"191	(BC_0,	PA2TIOB3,	output3,	X,	193,	1,	Z),	" &
+	"190	(BC_0,	*,		controlr,	1),			" &
+	"189	(BC_0,	PA3TCLK4,	input,	X),			" &
+	"188	(BC_0,	PA3TCLK4,	output3,	X,	190,	1,	Z),	" &
+	"187	(BC_0,	*,		controlr,	1),			" &
+	"186	(BC_0,	PA4TIOA4,	input,	X),			" &
+	"185	(BC_0,	PA4TIOA4,	output3,	X,	187,	1,	Z),	" &
+	"184	(BC_0,	*,		controlr,	1),			" &
+	"183	(BC_0,	PA5TIOB4,	input,	X),			" &
+	"182	(BC_0,	PA5TIOB4,	output3,	X,	184,	1,	Z),	" &
+	"181	(BC_0,	*,		controlr,	1),			" &
+	"180	(BC_0,	PA6TCLK5,	input,	X),			" &
+	"179	(BC_0,	PA6TCLK5,	output3,	X,	181,	1,	Z),	" &
+	"178	(BC_0,	*,		controlr,	1),			" &
+	"177	(BC_0,	PA7TIOA5,	input,	X),			" &
+	"176	(BC_0,	PA7TIOA5,	output3,	X,	178,	1,	Z),	" &
+	"175	(BC_0,	*,		controlr,	1),			" &
+	"174	(BC_0,	PA8TIOB5,	input,	X),			" &
+	"173	(BC_0,	PA8TIOB5,	output3,	X,	175,	1,	Z),	" &
+	"172	(BC_0,	*,		controlr,	1),			" &
+	"171	(BC_0,	PA9IRQ0,	input,	X),			" &
+	"170	(BC_0,	PA9IRQ0,	output3,	X,	172,	1,	Z),	" &
+	"169	(BC_0,	*,		controlr,	1),			" &
+	"168	(BC_0,	PA10IRQ1,	input,	X),			" &
+	"167	(BC_0,	PA10IRQ1,	output3,	X,	169,	1,	Z),	" &
+	"166	(BC_0,	*,		controlr,	1),			" &
+	"165	(BC_0,	PA11IRQ2,	input,	X),			" &
+	"164	(BC_0,	PA11IRQ2,	output3,	X,	166,	1,	Z),	" &
+	"163	(BC_0,	*,		controlr,	1),			" &
+	"162	(BC_0,	PA12IRQ3,	input,	X),			" &
+	"161	(BC_0,	PA12IRQ3,	output3,	X,	163,	1,	Z),	" &
+	"160	(BC_0,	*,		controlr,	1),			" &
+	"159	(BC_0,	PA13FIQ,	input,	X),			" &
+	"158	(BC_0,	PA13FIQ,	output3,	X,	160,	1,	Z),	" &
+	"157	(BC_0,	*,		controlr,	1),			" &
+	"156	(BC_0,	PA14SCK0,	input,	X),			" &
+	"155	(BC_0,	PA14SCK0,	output3,	X,	157,	1,	Z),	" &
+	"154	(BC_0,	*,		controlr,	1),			" &
+	"153	(BC_0,	PA15TXD0,	input,	X),			" &
+	"152	(BC_0,	PA15TXD0,	output3,	X,	154,	1,	Z),	" &
+	"151	(BC_0,	*,		controlr,	1),			" &
+	"150	(BC_0,	PA16RXD0,	input,	X),			" &
+	"149	(BC_0,	PA16RXD0,	output3,	X,	151,	1,	Z),	" &
+	"148	(BC_0,	*,		controlr,	1),			" &
+	"147	(BC_0,	PA17SCK1,	input,	X),			" &
+	"146	(BC_0,	PA17SCK1,	output3,	X,	148,	1,	Z),	" &
+	"145	(BC_0,	*,		controlr,	1),			" &
+	"144	(BC_0,	PA18TXD1NTRI, input,	X),			" &
+	"143	(BC_0,	PA18TXD1NTRI, output3,	X,	145,	1,	Z),	" &
+	"142	(BC_0,	*,		controlr,	1),			" &
+	"141	(BC_0,	PA19RXD1,	input,	X),			" &
+	"140	(BC_0,	PA19RXD1,	output3,	X,	142,	1,	Z),	" &
+	"139	(BC_0,	*,		controlr,	1),			" &
+	"138	(BC_0,	PA20SCK2,	input,	X),			" &
+	"137	(BC_0,	PA20SCK2,	output3,	X,	139,	1,	Z),	" &
+	"136	(BC_0,	*,		controlr,	1),			" &
+	"135	(BC_0,	PA21TXD2,	input,	X),			" &
+	"134	(BC_0,	PA21TXD2,	output3,	X,	136,	1,	Z),	" &
+	"133	(BC_0,	*,		controlr,	1),			" &
+	"132	(BC_0,	PA22RXD2,	input,	X),			" &
+	"131	(BC_0,	PA22RXD2,	output3,	X,	133,	1,	Z),	" &
+	"130	(BC_0,	*,		controlr,	1),			" &
+	"129	(BC_0,	PA23SPCK,	input,	X),			" &
+	"128	(BC_0,	PA23SPCK,	output3,	X,	130,	1,	Z),	" &
+	"127	(BC_0,	*,		controlr,	1),			" &
+	"126	(BC_0,	PA24MISO,	input,	X),			" &
+	"125	(BC_0,	PA24MISO,	output3,	X,	127,	1,	Z),	" &
+	"124	(BC_0,	*,		controlr,	1),			" &
+	"123	(BC_0,	PA25MOSI,	input,	X),			" &
+	"122	(BC_0,	PA25MOSI,	output3,	X,	124,	1,	Z),	" &
+	"121	(BC_0,	*,		controlr,	1),			" &
+	"120	(BC_0,	PA26NPCS0NSS, input,	X),			" &
+	"119	(BC_0,	PA26NPCS0NSS, output3,	X,	121,	1,	Z),	" &
+	"118	(BC_0,	*,		controlr,	1),			" &
+	"117	(BC_0,	PA27NPCS1,	input,	X),			" &
+	"116	(BC_0,	PA27NPCS1,	output3,	X,	118,	1,	Z),	" &
+	"115	(BC_0,	*,		controlr,	1),			" &
+	"114	(BC_0,	PA28NPCS2,	input,	X),			" &
+	"113	(BC_0,	PA28NPCS2,	output3,	X,	115,	1,	Z),	" &
+	"112	(BC_0,	*,		controlr,	1),			" &
+	"111	(BC_0,	PA29NPCS3,	input,	X),			" &
+	"110	(BC_0,	PA29NPCS3,	output3,	X,	112,	1,	Z),	" &
+	"109	(BC_0,	*,		internal,	X),			" &
+	"108	(BC_0,	*,		internal,	X),			" &
+	"107	(BC_0,	*,		internal,	X),			" &
+	"106	(BC_0,	*,		internal,	X),			" &
+	"105	(BC_0,	*,		internal,	X),			" &
+	"104	(BC_0,	*,		internal,	X),			" &
+	"103	(BC_0,	*,		internal,	X),			" &
+	"102	(BC_0,	*,		internal,	X),			" &
+	"101	(BC_0,	*,		internal,	X),			" &
+	"100	(BC_0,	*,		internal,	X),			" &
+	"99	(BC_0,	*,		internal,	X),			" &
+	"98	(BC_0,	*,		internal,	X),			" &
+	"97	(BC_0,	*,		controlr,	1),			" &
+	"96	(BC_0,	*,		internal,	X),			" &
+	"95	(BC_0,	*,		controlr,	1),			" &
+	"94	(BC_0,	*,		internal,	X),			" &
+	"93	(BC_0,	*,		internal,	X),			" &
+	"92	(BC_0,	*,		internal,	X),			" &
+	"91	(BC_0,	*,		internal,	X),			" &
+	"90	(BC_0,	*,		internal,	X),			" &
+	"89	(BC_0,	*,		internal,	X),			" &
+	"88	(BC_0,	*,		internal,	X),			" &
+	"87	(BC_0,	*,		internal,	X),			" &
+	"86	(BC_0,	*,		internal,	X),			" &
+	"85	(BC_0,	*,		internal,	X),			" &
+	"84	(BC_0,	*,		internal,	X),			" &
+	"83	(BC_0,	*,		internal,	X),			" &
+	"82	(BC_0,	*,		internal,	X),			" &
+	"81	(BC_0,	*,		internal,	X),			" &
+	"80	(BC_0,	*,		internal,	X),			" &
+	"79	(BC_0,	*,		internal,	X),			" &
+	"78	(BC_0,	*,		controlr,	1),			" &
+	"77	(BC_0,	*,		internal,	X),			" &
+	"76	(BC_0,	*,		internal,	X),			" &
+	"75	(BC_0,	*,		internal,	X),			" &
+	"74	(BC_0,	*,		internal,	X),			" &
+	"73	(BC_0,	*,		internal,	X),			" &
+	"72	(BC_0,	*,		internal,	X),			" &
+	"71	(BC_0,	*,		internal,	X),			" &
+	"70	(BC_0,	*,		internal,	X),			" &
+	"69	(BC_0,	*,		internal,	X),			" &
+	"68	(BC_0,	*,		internal,	X),			" &
+	"67	(BC_0,	*,		internal,	X),			" &
+	"66	(BC_0,	*,		internal,	X),			" &
+	"65	(BC_0,	*,		internal,	X),			" &
+	"64	(BC_0,	*,		internal,	X),			" &
+	"63	(BC_0,	*,		internal,	X),			" &
+	"62	(BC_0,	*,		internal,	X),			" &
+	"61	(BC_0,	*,		controlr,	1),			" &
+	"60	(BC_0,	PB0,		input,	X),			" &
+	"59	(BC_0,	PB0,		output3,	X,	61,	1,	Z),	" &
+	"58	(BC_0,	*,		controlr,	1),			" &
+	"57	(BC_0,	PB1,		input,	X),			" &
+	"56	(BC_0,	PB1,		output3,	X,	58,	1,	Z),	" &
+	"55	(BC_0,	*,		controlr,	1),			" &
+	"54	(BC_0,	PB2,		input,	X),			" &
+	"53	(BC_0,	PB2,		output3,	X,	55,	1,	Z),	" &
+	"52	(BC_0,	*,		controlr,	1),			" &
+	"51	(BC_0,	PB3,		input,	X),			" &
+	"50	(BC_0,	PB3,		output3,	X,	52,	1,	Z),	" &
+	"49	(BC_0,	*,		controlr,	1),			" &
+	"48	(BC_0,	PB4,		input,	X),			" &
+	"47	(BC_0,	PB4,		output3,	X,	49,	1,	Z),	" &
+	"46	(BC_0,	*,		controlr,	1),			" &
+	"45	(BC_0,	PB5,		input,	X),			" &
+	"44	(BC_0,	PB5,		output3,	X,	46,	1,	Z),	" &
+	"43	(BC_0,	*,		controlr,	1),			" &
+	"42	(BC_0,	PB6,		input,	X),			" &
+	"41	(BC_0,	PB6,		output3,	X,	43,	1,	Z),	" &
+	"40	(BC_0,	*,		controlr,	1),			" &
+	"39	(BC_0,	PB7,		input,	X),			" &
+	"38	(BC_0,	PB7,		output3,	X,	40,	1,	Z),	" &
+	"37	(BC_0,	*,		controlr,	1),			" &
+	"36	(BC_0,	PB8,		input,	X),			" &
+	"35	(BC_0,	PB8,		output3,	X,	37,	1,	Z),	" &
+	"34	(BC_0,	*,		controlr,	1),			" &
+	"33	(BC_0,	PB9,		input,	X),			" &
+	"32	(BC_0,	PB9,		output3,	X,	34,	1,	Z),	" &
+	"31	(BC_0,	*,		controlr,	1),			" &
+	"30	(BC_0,	PB10,	 input,	X),			" &
+	"29	(BC_0,	PB10,	 output3,	X,	31,	1,	Z),	" &
+	"28	(BC_0,	*,		controlr,	1),			" &
+	"27	(BC_0,	PB11,	 input,	X),			" &
+	"26	(BC_0,	PB11,	 output3,	X,	28,	1,	Z),	" &
+	"25	(BC_0,	*,		controlr,	1),			" &
+	"24	(BC_0,	PB12,	 input,	X),			" &
+	"23	(BC_0,	PB12,	 output3,	X,	25,	1,	Z),	" &
+	"22	(BC_0,	*,		controlr,	1),			" &
+	"21	(BC_0,	PB13,	 input,	X),			" &
+	"20	(BC_0,	PB13,	 output3,	X,	22,	1,	Z),	" &
+	"19	(BC_0,	*,		controlr,	1),			" &
+	"18	(BC_0,	PB14,	 input,	X),			" &
+	"17	(BC_0,	PB14,	 output3,	X,	19,	1,	Z),	" &
+	"16	(BC_0,	*,		controlr,	1),			" &
+	"15	(BC_0,	PB15,	 input,	X),			" &
+	"14	(BC_0,	PB15,	 output3,	X,	16,	1,	Z),	" &
+	"13	(BC_0,	*,		controlr,	1),			" &
+	"12	(BC_0,	PB16,	 input,	X),			" &
+	"11	(BC_0,	PB16,	 output3,	X,	13,	1,	Z),	" &
+	"10	(BC_0,	*,		controlr,	1),			" &
+	"9	(BC_0,	PB17MCKO,	input,	X),			" &
+	"8	(BC_0,	PB17MCKO,	output3,	X,	10,	1,	Z),	" &
+	"7	(BC_0,	*,		controlr,	1),			" &
+	"6	(BC_0,	NWDOVF,	output3,	X,	7,	1,	Z),	" &
+	"5	(BC_0,	MCKI,	 observe_only, X),			" &
+	"4	(BC_0,	*,		controlr,	1),			" &
+	"3	(BC_0,	PB18BMS,	input,	X),			" &
+	"2	(BC_0,	PB18BMS,	output3,	X,	4,	1,	Z),	" &
+	"1	(BC_0,	NRST,	 input,	X),			" &
+	"0	(BC_0,	NWAIT,	input,	X)			 ";
+ 
+ end AT91M43300;
+

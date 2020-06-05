@@ -1,0 +1,754 @@
+
+--  PMC_Sierra_Cells   VHDL Package and Package Body
+--  for PMC - Sierra
+--
+--  revision     :  1.0
+--
+--  created by : James Lamond (Hewlett Packard Canada Ltd)
+--
+--  date         :  20 December 1995
+
+package PMC_Sierra_Cells is
+
+   use STD_1149_1_1990.all;
+
+   constant cele0 : CELL_INFO;
+
+end PMC_Sierra_Cells;
+
+
+package body PMC_Sierra_Cells is
+
+constant cele0 : CELL_INFO :=
+ ((BIDIR_IN, EXTEST,  PI),  (BIDIR_OUT, EXTEST,  PO),
+  (BIDIR_IN, SAMPLE,  PI),  (BIDIR_OUT, SAMPLE,  PI),
+  (BIDIR_IN, RUNBIST, PI),  (BIDIR_OUT, RUNBIST, PO) );
+
+end PMC_Sierra_Cells;  -- End of PMC_Sierra_Cells Package Body
+
+------------------------------------------------------------------------------
+--
+--
+--  BSDL file for:  PMC-Sierra PM7380 FREEDM(tm)-32P672
+--                  32 Link, 672 Channel Frame Engine and Datalink Manager
+--                  with PCI Bus Interface
+--
+--  Written by: George Runstedler
+--  Verified by: Brent Taylor
+--  Electrical verification was performed against the following device:
+--  Part # PM7380-PI-P
+--  Lot # CD611820B
+--  Date Code: M9948
+--  using HP3070 Software revision B.03.13
+--
+------------------------------------------------------------------------------
+--
+--
+--  PM7380 BSDL Revision: FINAL 1.0
+--  Date: 8 Febuary, 2000
+--  Agilent Technologies Canada Inc
+--
+--  Release Notes:
+--  (1) The SERRB and PCIINTB signals are designed to be open drain outputs,
+--      however, they have I/O cells in the boundary register.  Therefore,
+--      they are described as bidirectional pins with associated control cells
+--      in this BSDL file.
+--  (2) The REQB signal is designed to be a tristate output, however, it has
+--      an I/O cell in the boundary register.  Therefore, it is described as
+--      a bidirectional pin with an associated control cell in this BSDL file.
+--  (3) The following corrections were made to the ALPHA 0.0 version of
+--      this file:
+--   a) IDCODE 4-bit version number is changed to '0001'.
+--   b) Define PCICLKO as an output.  Cell 216 description is changed as
+--      follows:
+--      ALPHA 0.0 - "216 ( cele0, PCICLKO, bidir, X , 215, 1, Z),"
+--      FINAL 1.0 - "216 ( BC_1, PCICLKO, output3, X , 215, 1, Z),"
+--
+----------------------------------------------------------------------------
+
+entity PM7380 is
+
+generic (PHYSICAL_PIN_MAP : string := "PBGA_329");
+
+port (
+        RCLK            : in           bit_vector  (0 to 31);
+        RD_0            : in           bit;
+        RD_1            : in           bit;
+        RD_2            : in           bit;
+        RD_3            : in           bit;
+        RD_4            : in           bit;
+        RD_5            : in           bit;
+        RD_6            : in           bit;
+        RD_7            : in           bit;
+        RD_8            : in           bit;
+        RD_9            : in           bit;
+        RD_10_TA_0      : in           bit;
+        RD_11_TA_1      : in           bit;
+        RD_12_TA_2      : in           bit;
+        RD_13_TA_3      : in           bit;
+        RD_14_TA_4      : in           bit;
+        RD_15_TA_5      : in           bit;
+        RD_16_TA_6      : in           bit;
+        RD_17_TA_7      : in           bit;
+        RD_18_TA_8      : in           bit;
+        RD_19_TA_9      : in           bit;
+        RD_20_TA_10     : in           bit;
+        RD_21_TA_11     : in           bit;
+        RD_22_TRDB      : in           bit;
+        RD_23_TWRB      : in           bit;
+        RD_24_TA_12_TRS : in           bit;
+        RD_25           : in           bit;
+        RD_26           : in           bit;
+        RD_27           : in           bit;
+        RD_28           : in           bit;
+        RD_29           : in           bit;
+        RD_30           : in           bit;
+        RD_31           : in           bit;
+        RMVCK           : in           bit_vector  (0 to 3);
+        RFPB            : in           bit_vector  (0 to 3);
+        RFP8B           : in           bit         ;
+        RMV8FPC         : in           bit         ;
+        RMV8DC          : in           bit         ;
+        RBD             : out          bit         ;
+        RBCLK           : out          bit         ;
+        TCLK            : in           bit_vector  (0 to 31);
+        TD_0            : out          bit         ;
+        TD_1            : out          bit         ;
+        TD_2            : out          bit         ;
+        TD_3            : out          bit         ;
+        TD_4            : out          bit         ;
+        TD_5            : out          bit         ;
+        TD_6            : out          bit         ;
+        TD_7            : out          bit         ;
+        TD_8            : out          bit         ;
+        TD_9            : out          bit         ;
+        TD_10           : out          bit         ;
+        TD_11           : out          bit         ;
+        TD_12           : out          bit         ;
+        TD_13           : out          bit         ;
+        TD_14           : out          bit         ;
+        TD_15           : out          bit         ;
+        TD_16_TDAT_0    : inout        bit         ;
+        TD_17_TDAT_1    : inout        bit         ;
+        TD_18_TDAT_2    : inout        bit         ;
+        TD_19_TDAT_3    : inout        bit         ;
+        TD_20_TDAT_4    : inout        bit         ;
+        TD_21_TDAT_5    : inout        bit         ;
+        TD_22_TDAT_6    : inout        bit         ;
+        TD_23_TDAT_7    : inout        bit         ;
+        TD_24_TDAT_8    : inout        bit         ;
+        TD_25_TDAT_9    : inout        bit         ;
+        TD_26_TDAT_10   : inout        bit         ;
+        TD_27_TDAT_11   : inout        bit         ;
+        TD_28_TDAT_12   : inout        bit         ;
+        TD_29_TDAT_13   : inout        bit         ;
+        TD_30_TDAT_14   : inout        bit         ;
+        TD_31_TDAT_15   : inout        bit         ;
+        TMVCK           : in           bit_vector  (0 to 3);
+        TFPB            : in           bit_vector  (0 to 3);
+        TFP8B           : in           bit         ;
+        TMV8FPC         : in           bit         ;
+        TMV8DC          : in           bit         ;
+        TBD             : in           bit         ;
+        TBCLK           : out          bit         ;
+        PCICLK          : in           bit         ;
+        PCICLKO         : out          bit         ;
+        C_BEB           : inout        bit_vector  (0 to 3);
+        AD              : inout        bit_vector  (0 to 31);
+        PAR             : inout        bit         ;
+        FRAMEB          : inout        bit         ;
+        TRDYB           : inout        bit         ;
+        IRDYB           : inout        bit         ;
+        STOPB           : inout        bit         ;
+        IDSEL           : in           bit         ;
+        DEVSELB         : inout        bit         ;
+        LOCKB           : in           bit         ;
+        REQB            : inout        bit         ;
+        GNTB            : in           bit         ;
+        PCIINTB         : inout        bit         ;
+        PERRB           : inout        bit         ;
+        SERRB           : inout        bit         ;
+        M66EN           : in           bit         ;
+        SYSCLK          : in           bit         ;
+        RSTB            : in           bit         ;
+        PMCTEST         : in           bit         ;
+        TCK             : in           bit         ;
+        TMS             : in           bit         ;
+        TDI             : in           bit         ;
+        TDO             : out          bit         ;
+        TRSTB           : in           bit         ;
+        NC1_50          : linkage      bit_vector  (1 to 50);
+        VDD3V3          : linkage      bit_vector  (1 to 14);
+        VDD2V5          : linkage      bit_vector  (1 to 12);
+        VSS             : linkage      bit_vector  (1 to 39)
+        ) ;
+
+use STD_1149_1_1990.all;
+use PMC_Sierra_Cells.all;
+
+attribute PIN_MAP of PM7380 : entity is PHYSICAL_PIN_MAP ;
+
+constant PBGA_329 : PIN_MAP_STRING :=
+
+       "RCLK         : ( N23, N21, M22, L21, L20, K22, J22, J23, G21, G20, " &
+       "                 F22, F21, E21, D23, D21, C21, B22, A21, C20, A20, " &
+       "                 C19, C18, B18, D17, B16, A15, B15, A14, C14, A13, " &
+       "                 C13, B12 ), " &
+       "RD_0         :   N20, " &
+       "RD_1         :   N22, " &
+       "RD_2         :   M21, " &
+       "RD_3         :   L22, " &
+       "RD_4         :   L23, " &
+       "RD_5         :   K21, " &
+       "RD_6         :   J21, " &
+       "RD_7         :   J20, " &
+       "RD_8         :   H23, " &
+       "RD_9         :   G22, " &
+       "RD_10_TA_0   :   G23, " &
+       "RD_11_TA_1   :   F23, " &
+       "RD_12_TA_2   :   E23, " &
+       "RD_13_TA_3   :   D22, " &
+       "RD_14_TA_4   :   E20, " &
+       "RD_15_TA_5   :   C23, " &
+       "RD_16_TA_6   :   A22, " &
+       "RD_17_TA_7   :   D20, " &
+       "RD_18_TA_8   :   B21, " &
+       "RD_19_TA_9   :   D19, " &
+       "RD_20_TA_10  :   B20, " &
+       "RD_21_TA_11  :   A19, " &
+       "RD_22_TRDB   :   A18, " &
+       "RD_23_TWRB   :   A17, " &
+       "RD_24_TA_12_TRS :  A16, " &
+       "RD_25        :   C16, " &
+       "RD_26        :   D15, " &
+       "RD_27        :   C15, " &
+       "RD_28        :   B14, " &
+       "RD_29        :   D13, " &
+       "RD_30        :   B13, " &
+       "RD_31        :   C12, " &
+       "RMVCK        : ( P21, H22, A23, C17 ), " &
+       "RFPB         : ( P22, H21, B23, B17 ), " &
+       "RFP8B        :   R21, " &
+       "RMV8FPC      :   P23, " &
+       "RMV8DC       :   R22, " &
+       "RBD          :   R23, " &
+       "RBCLK        :   R20, " &
+       "TCLK         : ( W21,Y23,Y21,AA23,AB22,AC23,AA21,AB21,AB20,AC19, " &
+       "                 AC18,AC17,AB17,AC16,AA16,Y15,AB14,Y13,AA13,AB12, "&
+       "                 AA11,AC11,AA10,AC10,AC9,AB8,AA7,Y7,AB6,AA6, " &
+       "                 AA5,AC4 ), " &
+       "TD_0         :   W23, " &
+       "TD_1         :   Y22, " &
+       "TD_2         :   W20, " &
+       "TD_3         :   AA22, " &
+       "TD_4         :   Y20, " &
+       "TD_5         :   AB23, " &
+       "TD_6         :   AC22, " &
+       "TD_7         :   AC21, " &
+       "TD_8         :   AC20, " &
+       "TD_9         :   AA19, " &
+       "TD_10        :   AA18, " &
+       "TD_11        :   AB18, " &
+       "TD_12        :   Y17, " &
+       "TD_13        :   AA17, " &
+       "TD_14        :   AB16, " &
+       "TD_15        :   AC15, " &
+       "TD_16_TDAT_0 :   AC14, " &
+       "TD_17_TDAT_1 :   AA14, " &
+       "TD_18_TDAT_2 :   AC13, " &
+       "TD_19_TDAT_3 :   AB13, " &
+       "TD_20_TDAT_4 :   AA12, " &
+       "TD_21_TDAT_5 :   AB11, " &
+       "TD_22_TDAT_6 :   Y11, " &
+       "TD_23_TDAT_7 :   AB10, " &
+       "TD_24_TDAT_8 :   Y9, " &
+       "TD_25_TDAT_9 :   AA8, " &
+       "TD_26_TDAT_10 :  AC8, " &
+       "TD_27_TDAT_11 :  AB7, " &
+       "TD_28_TDAT_12 :  AC7, " &
+       "TD_29_TDAT_13 :  AC6, " &
+       "TD_30_TDAT_14 :  AC5, " &
+       "TD_31_TDAT_15 :  AB4, " &
+       "TMVCK        : ( V21, Y19, AA15, AB9 ), " &
+       "TFPB         : ( V23, AA20, AB15, AA9 ), " &
+       "TFP8B        :   U23, " &
+       "TMV8FPC      :   V22, " &
+       "TMV8DC       :   U20, " &
+       "TBD          :   Y5, " &
+       "TBCLK        :   AA4, " &
+       "PCICLK       :    G3, " &
+       "PCICLKO      :    G4, " &
+       "C_BEB        : ( Y2, U3, P3, L4 ), " &
+       "AD           : ( AC1,AB1,AA3,AA1,AA2,Y3,W4,Y1,W3,W1, " &
+       "                 V3,V1,V2,U1,U4,U2,N4,N1,N3,N2, "&
+       "                 M2,M3,L3,L2,K3,K2,K1,J3,J2,J4, " &
+       "                 J1,H3 ), " &
+       "PAR          :   T1, " &
+       "FRAMEB       :   P2, " &
+       "TRDYB        :   R3, " &
+       "IRDYB        :   P1, " &
+       "STOPB        :   R4, " &
+       "IDSEL        :   L1, " &
+       "DEVSELB      :   R2, " &
+       "LOCKB        :   R1, " &
+       "REQB         :   H2, " &
+       "GNTB         :   H1, " &
+       "PCIINTB      :   G1, " &
+       "PERRB        :   T3, " &
+       "SERRB        :   T2, " &
+       "M66EN        :   AC2, " &
+       "SYSCLK       :   K23, " &
+       "RSTB         :   C22, " &
+       "PMCTEST      :   AB3, " &
+       "TCK          :   T23, " &
+       "TMS          :   T22, " &
+       "TDI          :   U21, " &
+       "TDO          :   U22, " &
+       "TRSTB        :   T21, " &
+       "NC1_50       : ( A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, " &
+       "                 A11, B1, B2, B4, B6, B7, B8, B9, B10, B11, " &
+       "                 C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, " &
+       "                 C11, D1, D2, D3, D4, D5, D7, D9, D11, E1, " &
+       "                 E3, E4, F1, F2, F3, G2, Y4, AB2, AC3 )," &
+       "VDD3V3       : ( D6,D10,D14,D18,H4,H20,M4,M20,T4,T20, " &
+       "                 Y6,Y10,Y14,Y18 ), "&
+       "VDD2V5       : ( E2,M1,W2,AB5,AC12,AB19,W22,M23,E22,B19, " &
+       "                 A12,B5 ), "&
+       "VSS          : ( D8,D12,D16,F4,F20,K4,K20,P4,P20,V4, " &
+       "                 V20,Y8,Y12,Y16,K10,K11,K12,K13,K14,L10, " &
+       "                 L11,L12,L13,L14,M10,M11,M12,M13,M14,N10, " &
+       "                 N11,N12,N13,N14,P10,P11,P12,P13,P14 )";
+
+attribute TAP_SCAN_IN of TDI : signal is true;
+
+attribute TAP_SCAN_OUT of TDO : signal is true;
+
+attribute TAP_SCAN_MODE of TMS : signal is true;
+
+attribute TAP_SCAN_RESET of TRSTB : signal is true;
+
+attribute TAP_SCAN_CLOCK of TCK : signal is ( 1.0e+06, BOTH );
+
+
+attribute INSTRUCTION_LENGTH of PM7380 : entity is 3;
+
+attribute INSTRUCTION_OPCODE of PM7380 : entity is
+
+        "IDCODE (001)," &
+        "SAMPLE (010)," &
+        "BYPASS (011, 100, 110, 111)," &
+        "EXTEST (000)," &
+        "STCTEST  (101)" ;
+
+attribute INSTRUCTION_CAPTURE of PM7380 : entity is "001";
+
+attribute IDCODE_REGISTER of PM7380 : entity is
+
+--  ID-CODE for PM7380 is 32 bits (173800CDH).
+"0001" &                  -- 4-bit version = 1H
+"0111001110000000" &      -- 16-bit part number = 7380H
+"00001100110" &           -- 12-bit manufacturer's code = 0CDH
+"1" ;                     -- mandatory LSB
+
+attribute REGISTER_ACCESS of PM7380 : entity is
+
+"BOUNDARY (STCTEST)" ;
+
+attribute BOUNDARY_CELLS of PM7380 : entity is "BC_4, BC_1, cele0";
+
+attribute BOUNDARY_LENGTH of PM7380 : entity is 365;
+
+attribute BOUNDARY_REGISTER of PM7380 : entity is
+
+        -- num   cell  port  function safe [ccell disval rslt]
+
+        "0 ( BC_1, *, control, 1 ) ,"  &
+        "1 ( BC_1, RBCLK, output3, X , 0, 1, Z),"  &
+        "2 ( BC_1, *, control, 1 ) ,"  &
+        "3 ( BC_1, RBD, output3, X , 2, 1, Z),"  &
+        "4 ( BC_4, TMV8DC, input, X ) ,"  &
+        "5 ( BC_4, TFP8B, input, X ) ,"  &
+        "6 ( BC_4, TMV8FPC, input, X ) ,"  &
+        "7 ( BC_4, TFPB(0), input, X ) ,"  &
+        "8 ( BC_4, TMVCK(0), input, X ) ,"  &
+        "9 ( BC_1, *, control, 1 ) ,"  &
+        "10 ( BC_1, TD_0, output3, X , 9, 1, Z),"  &
+        "11 ( BC_4, TCLK(0), input, X ) ,"  &
+        "12 ( BC_1, *, control, 1 ) ,"  &
+        "13 ( BC_1, TD_1, output3, X , 12, 1, Z),"  &
+        "14 ( BC_4, TCLK(1), input, X ) ,"  &
+        "15 ( BC_1, *, control, 1 ) ,"  &
+        "16 ( BC_1, TD_2, output3, X , 15, 1, Z),"  &
+        "17 ( BC_4, TCLK(2), input, X ) ,"  &
+        "18 ( BC_1, *, control, 1 ) ,"  &
+        "19 ( BC_1, TD_3, output3, X , 18, 1, Z),"  &
+        "20 ( BC_4, TCLK(3), input, X ) ,"  &
+        "21 ( BC_1, *, control, 1 ) ,"  &
+        "22 ( BC_1, TD_4, output3, X , 21, 1, Z),"  &
+        "23 ( BC_4, TCLK(4), input, X ) ,"  &
+        "24 ( BC_1, *, control, 1 ) ,"  &
+        "25 ( BC_1, TD_5, output3, X , 24, 1, Z),"  &
+        "26 ( BC_4, TCLK(5), input, X ) ,"  &
+        "27 ( BC_1, *, control, 1 ) ,"  &
+        "28 ( BC_1, TD_6, output3, X , 27, 1, Z),"  &
+        "29 ( BC_4, TCLK(6), input, X ) ,"  &
+        "30 ( BC_1, *, control, 1 ) ,"  &
+        "31 ( BC_1, TD_7, output3, X , 30, 1, Z),"  &
+        "32 ( BC_4, TCLK(7), input, X ) ,"  &
+        "33 ( BC_4, TFPB(1), input, X ),"  &
+        "34 ( BC_4, TMVCK(1), input, X ) ,"  &
+        "35 ( BC_1, *, control, 1 ) ,"  &
+        "36 ( BC_1, TD_8, output3, X , 35, 1, Z),"  &
+        "37 ( BC_4, TCLK(8), input, X ) ,"  &
+        "38 ( BC_1, *, control, 1 ) ,"  &
+        "39 ( BC_1, TD_9, output3, X , 38, 1, Z),"  &
+        "40 ( BC_4, TCLK(9), input, X ) ,"  &
+        "41 ( BC_1, *, control, 1 ) ,"  &
+        "42 ( BC_1, TD_10, output3, X , 41, 1, Z),"  &
+        "43 ( BC_4, TCLK(10), input, X ) ,"  &
+        "44 ( BC_1, *, control, 1 ) ,"  &
+        "45 ( BC_1, TD_11, output3, X , 44, 1, Z),"  &
+        "46 ( BC_4, TCLK(11), input, X ) ,"  &
+        "47 ( BC_1, *, control, 1 ) ,"  &
+        "48 ( BC_1, TD_12, output3, X , 47, 1, Z),"  &
+        "49 ( BC_4, TCLK(12), input, X ) ,"  &
+        "50 ( BC_1, *, control, 1 ) ,"  &
+        "51 ( BC_1, TD_13, output3, X , 50, 1, Z),"  &
+        "52 ( BC_4, TCLK(13), input, X ) ,"  &
+        "53 ( BC_1, *, control, 1 ) ,"  &
+        "54 ( BC_1, TD_14, output3, X , 53, 1, Z),"  &
+        "55 ( BC_4, TCLK(14), input, X ) ,"  &
+        "56 ( BC_1, *, control, 1 ) ,"  &
+        "57 ( BC_1, TD_15, output3, X , 56, 1, Z),"  &
+        "58 ( BC_4, TCLK(15), input, X ) ,"  &
+        "59 ( BC_4, TFPB(2), input, X ) ,"  &
+        "60 ( BC_4, TMVCK(2), input, X ) ,"  &
+        "61 ( BC_1, *, control, 1 ) ,"  &
+        "62 ( cele0, TD_16_TDAT_0, bidir, X , 61, 1, Z),"  &
+        "63 ( BC_4, TCLK(16), input, X ) ,"  &
+        "64 ( BC_1, *, control, 1 ) ,"  &
+        "65 ( cele0, TD_17_TDAT_1, bidir, X , 64, 1, Z),"  &
+        "66 ( BC_4, TCLK(17), input, X ) ,"  &
+        "67 ( BC_1, *, control, 1 ) ,"  &
+        "68 ( cele0, TD_18_TDAT_2, bidir, X , 67, 1, Z),"  &
+        "69 ( BC_4, TCLK(18), input, X ) ,"  &
+        "70 ( BC_1, *, control, 1 ) ,"  &
+        "71 ( cele0, TD_19_TDAT_3, bidir, X , 70, 1, Z),"  &
+        "72 ( BC_4, TCLK(19), input, X ) ,"  &
+        "73 ( BC_1, *, control, 1 ) ,"  &
+        "74 ( cele0, TD_20_TDAT_4, bidir, X , 73, 1, Z),"  &
+        "75 ( BC_4, TCLK(20), input, X ) ,"  &
+        "76 ( BC_1, *, control, 1 ) ,"  &
+        "77 ( cele0, TD_21_TDAT_5, bidir, X , 76, 1, Z),"  &
+        "78 ( BC_4, TCLK(21), input, X ) ,"  &
+        "79 ( BC_1, *, control, 1 ) ,"  &
+        "80 ( cele0, TD_22_TDAT_6, bidir, X , 79, 1, Z),"  &
+        "81 ( BC_4, TCLK(22), input, X ) ,"  &
+        "82 ( BC_1, *, control, 1 ) ,"  &
+        "83 ( cele0, TD_23_TDAT_7, bidir, X , 82, 1, Z),"  &
+        "84 ( BC_4, TCLK(23), input, X ) ,"  &
+        "85 ( BC_4, TFPB(3), input, X ) ,"  &
+        "86 ( BC_4, TMVCK(3), input, X ) ,"  &
+        "87 ( BC_1, *, control, 1 ) ,"  &
+        "88 ( cele0, TD_24_TDAT_8, bidir, X , 87, 1, Z),"  &
+        "89 ( BC_4, TCLK(24), input, X ) ,"  &
+        "90 ( BC_1, *, control, 1 ) ,"  &
+        "91 ( cele0, TD_25_TDAT_9, bidir, X , 90, 1, Z),"  &
+        "92 ( BC_4, TCLK(25), input, X ) ,"  &
+        "93 ( BC_1, *, control, 1 ) ,"  &
+        "94 ( cele0, TD_26_TDAT_10, bidir, X , 93, 1, Z),"  &
+        "95 ( BC_4, TCLK(26), input, X ) ,"  &
+        "96 ( BC_1, *, control, 1 ) ,"  &
+        "97 ( cele0, TD_27_TDAT_11, bidir, X , 96, 1, Z),"  &
+        "98 ( BC_4, TCLK(27), input, X ) ,"  &
+        "99 ( BC_1, *, control, 1 ) ,"  &
+        "100 ( cele0, TD_28_TDAT_12, bidir, X , 99, 1, Z),"  &
+        "101 ( BC_4, TCLK(28), input, X ) ,"  &
+        "102 ( BC_1, *, control, 1 ) ,"  &
+        "103 ( cele0, TD_29_TDAT_13, bidir, X , 102, 1, Z),"  &
+        "104 ( BC_4, TCLK(29), input, X ) ,"  &
+        "105 ( BC_1, *, control, 1 ) ,"  &
+        "106 ( cele0, TD_30_TDAT_14, bidir, X , 105, 1, Z),"  &
+        "107 ( BC_4, TCLK(30), input, X ) ,"  &
+        "108 ( BC_1, *, control, 1 ) ,"  &
+        "109 ( cele0, TD_31_TDAT_15, bidir, X , 108, 1, Z),"  &
+        "110 ( BC_4, TCLK(31), input, X ) ,"  &
+        "111 ( BC_4, TBD, input, X ) ,"  &
+        "112 ( BC_1, *, control, 1 ) ,"  &
+        "113 ( BC_1, TBCLK, output3, X , 112, 1, Z),"  &
+        "114 ( BC_4, PMCTEST, input, X ) ,"  &
+        "115 ( BC_4, *, internal, X ) ,"  &
+        "116 ( BC_4, *, internal, X ) ,"  &
+        "117 ( BC_4, *, internal, X ) ,"  &
+        "118 ( BC_4, M66EN, input, X ) ,"  &
+        "119 ( BC_1, *, control, 1 ) ,"  &
+        "120 ( cele0, AD(0), bidir, X , 119, 1, Z),"  &
+        "121 ( BC_1, *, control, 1 ) ,"  &
+        "122 ( cele0, AD(1), bidir, X , 121, 1, Z),"  &
+        "123 ( BC_1, *, control, 1 ) ,"  &
+        "124 ( cele0, AD(2), bidir, X , 123, 1, Z),"  &
+        "125 ( BC_1, *, control, 1 ) ,"  &
+        "126 ( cele0, AD(3), bidir, X , 125, 1, Z),"  &
+        "127 ( BC_1, *, control, 1 ) ,"  &
+        "128 ( cele0, AD(4), bidir, X , 127, 1, Z),"  &
+        "129 ( BC_1, *, control, 1 ) ,"  &
+        "130 ( cele0, AD(5), bidir, X , 129, 1, Z),"  &
+        "131 ( BC_1, *, control, 1 ) ,"  &
+        "132 ( cele0, AD(6), bidir, X , 131, 1, Z),"  &
+        "133 ( BC_1, *, control, 1 ) ,"  &
+        "134 ( cele0, AD(7), bidir, X , 133, 1, Z),"  &
+        "135 ( BC_1, *, control, 1 ) ,"  &
+        "136 ( cele0, C_BEB(0), bidir, X , 135, 1, Z),"  &
+        "137 ( BC_1, *, control, 1 ) ,"  &
+        "138 ( cele0, AD(8), bidir, X , 137, 1, Z),"  &
+        "139 ( BC_1, *, control, 1 ) ,"  &
+        "140 ( cele0, AD(9), bidir, X , 139, 1, Z),"  &
+        "141 ( BC_1, *, control, 1 ) ,"  &
+        "142 ( cele0, AD(10), bidir, X , 141, 1, Z),"  &
+        "143 ( BC_1, *, control, 1 ) ,"  &
+        "144 ( cele0, AD(11), bidir, X , 143, 1, Z),"  &
+        "145 ( BC_1, *, control, 1 ) ,"  &
+        "146 ( cele0, AD(12), bidir, X , 145, 1, Z),"  &
+        "147 ( BC_1, *, control, 1 ) ,"  &
+        "148 ( cele0, AD(13), bidir, X , 147, 1, Z),"  &
+        "149 ( BC_1, *, control, 1 ) ,"  &
+        "150 ( cele0, AD(14), bidir, X , 149, 1, Z),"  &
+        "151 ( BC_1, *, control, 1 ) ,"  &
+        "152 ( cele0, AD(15), bidir, X , 151, 1, Z),"  &
+        "153 ( BC_1, *, control, 1 ) ,"  &
+        "154 ( cele0, C_BEB(1), bidir, X , 153, 1, Z),"  &
+        "155 ( BC_1, *, control, 1 ) ,"  &
+        "156 ( cele0, PAR, bidir, X , 155, 1, Z),"  &
+        "157 ( BC_1, *, control, 1 ) ,"  &
+        "158 ( cele0, SERRB, bidir, X , 157, 1, Z),"  &
+        "159 ( BC_1, *, control, 1 ) ,"  &
+        "160 ( cele0, PERRB, bidir, X , 159, 1, Z),"  &
+        "161 ( BC_4, LOCKB, input, X ) ,"  &
+        "162 ( BC_1, *, control, 1 ) ,"  &
+        "163 ( cele0, STOPB, bidir, X , 162, 1, Z),"  &
+        "164 ( BC_1, *, control, 1 ) ,"  &
+        "165 ( cele0, DEVSELB, bidir, X , 164, 1, Z),"  &
+        "166 ( BC_1, *, control, 1 ) ,"  &
+        "167 ( cele0, TRDYB, bidir, X , 166, 1, Z),"  &
+        "168 ( BC_1, *, control, 1 ) ,"  &
+        "169 ( cele0, IRDYB, bidir, X , 168, 1, Z),"  &
+        "170 ( BC_1, *, control, 1 ) ,"  &
+        "171 ( cele0, FRAMEB, bidir, X , 170, 1, Z),"  &
+        "172 ( BC_1, *, control, 1 ) ,"  &
+        "173 ( cele0, C_BEB(2), bidir, X , 172, 1, Z),"  &
+        "174 ( BC_1, *, control, 1 ) ,"  &
+        "175 ( cele0, AD(16), bidir, X , 174, 1, Z),"  &
+        "176 ( BC_1, *, control, 1 ) ,"  &
+        "177 ( cele0, AD(17), bidir, X , 176, 1, Z),"  &
+        "178 ( BC_1, *, control, 1 ) ,"  &
+        "179 ( cele0, AD(18), bidir, X , 178, 1, Z),"  &
+        "180 ( BC_1, *, control, 1 ) ,"  &
+        "181 ( cele0, AD(19), bidir, X , 180, 1, Z),"  &
+        "182 ( BC_1, *, control, 1 ) ,"  &
+        "183 ( cele0, AD(20), bidir, X , 182, 1, Z),"  &
+        "184 ( BC_1, *, control, 1 ) ,"  &
+        "185 ( cele0, AD(21), bidir, X , 184, 1, Z),"  &
+        "186 ( BC_1, *, control, 1 ) ,"  &
+        "187 ( cele0, AD(22), bidir, X , 186, 1, Z),"  &
+        "188 ( BC_1, *, control, 1 ) ,"  &
+        "189 ( cele0, AD(23), bidir, X , 188, 1, Z),"  &
+        "190 ( BC_4, IDSEL, input, X ) ,"  &
+        "191 ( BC_1, *, control, 1 ) ,"  &
+        "192 ( cele0, C_BEB(3), bidir, X , 191, 1, Z),"  &
+        "193 ( BC_1, *, control, 1 ) ,"  &
+        "194 ( cele0, AD(24), bidir, X , 193, 1, Z),"  &
+        "195 ( BC_1, *, control, 1 ) ,"  &
+        "196 ( cele0, AD(25), bidir, X , 195, 1, Z),"  &
+        "197 ( BC_1, *, control, 1 ) ,"  &
+        "198 ( cele0, AD(26), bidir, X , 197, 1, Z),"  &
+        "199 ( BC_1, *, control, 1 ) ,"  &
+        "200 ( cele0, AD(27), bidir, X , 199, 1, Z),"  &
+        "201 ( BC_1, *, control, 1 ) ,"  &
+        "202 ( cele0, AD(28), bidir, X , 201, 1, Z),"  &
+        "203 ( BC_1, *, control, 1 ) ,"  &
+        "204 ( cele0, AD(29), bidir, X , 203, 1, Z),"  &
+        "205 ( BC_1, *, control, 1 ) ,"  &
+        "206 ( cele0, AD(30), bidir, X , 205, 1, Z),"  &
+        "207 ( BC_1, *, control, 1 ) ,"  &
+        "208 ( cele0, AD(31), bidir, X , 207, 1, Z),"  &
+        "209 ( BC_1, *, control, 1 ) ,"  &
+        "210 ( cele0, REQB, bidir, X , 209, 1, Z),"  &
+        "211 ( BC_4, *, internal, X ) ,"  &
+        "212 ( BC_4, GNTB, input, X ) ,"  &
+        "213 ( BC_4, PCICLK, input, X ) ,"  &
+        "214 ( BC_4, *, internal, X ) ,"  &
+        "215 ( BC_1, *, control, 1 ) ,"  &
+        "216 ( BC_1, PCICLKO, output3, X , 215, 1, Z),"  &
+        "217 ( BC_4, *, internal, X ) ,"  &
+        "218 ( BC_1, *, control, 1 ) ,"  &
+        "219 ( cele0, PCIINTB, bidir, 1 , 218, 1, Z),"  &
+        "220 ( BC_4, *, internal, X ) ,"  &
+        "221 ( BC_4, *, internal, X ) ,"  &
+        "222 ( BC_4, *, internal, X ) ,"  &
+        "223 ( BC_4, *, internal, X ) ,"  &
+        "224 ( BC_4, *, internal, X ) ,"  &
+        "225 ( BC_4, *, internal, X ) ,"  &
+        "226 ( BC_4, *, internal, X ) ,"  &
+        "227 ( BC_4, *, internal, X ) ,"  &
+        "228 ( BC_1, *, internal, X ) ,"  &
+        "229 ( BC_1, *, internal, X ) ,"  &
+        "230 ( BC_1, *, internal, X ) ,"  &
+        "231 ( BC_1, *, internal, X ) ,"  &
+        "232 ( BC_1, *, internal, X ) ,"  &
+        "233 ( BC_1, *, internal, X ) ,"  &
+        "234 ( BC_1, *, internal, X ) ,"  &
+        "235 ( BC_1, *, internal, X ) ,"  &
+        "236 ( BC_1, *, internal, X ) ,"  &
+        "237 ( BC_1, *, internal, X ) ,"  &
+        "238 ( BC_1, *, internal, X ) ,"  &
+        "239 ( BC_1, *, internal, X ) ,"  &
+        "240 ( BC_1, *, internal, X ) ,"  &
+        "241 ( BC_1, *, internal, X ) ,"  &
+        "242 ( BC_1, *, internal, X ) ,"  &
+        "243 ( BC_1, *, internal, X ) ,"  &
+        "244 ( BC_1, *, internal, X ) ,"  &
+        "245 ( BC_1, *, internal, X ) ,"  &
+        "246 ( BC_1, *, internal, X ) ,"  &
+        "247 ( BC_1, *, internal, X ) ,"  &
+        "248 ( BC_1, *, internal, X ) ,"  &
+        "249 ( BC_1, *, internal, X ) ,"  &
+        "250 ( BC_1, *, internal, X ) ,"  &
+        "251 ( BC_1, *, internal, X ) ,"  &
+        "252 ( BC_1, *, internal, X ) ,"  &
+        "253 ( BC_1, *, internal, X ) ,"  &
+        "254 ( BC_1, *, internal, X ) ,"  &
+        "255 ( BC_1, *, internal, X ) ,"  &
+        "256 ( BC_1, *, internal, X ) ,"  &
+        "257 ( BC_1, *, internal, X ) ,"  &
+        "258 ( BC_1, *, internal, X ) ,"  &
+        "259 ( BC_1, *, internal, X ) ,"  &
+        "260 ( BC_1, *, internal, X ) ,"  &
+        "261 ( BC_1, *, internal, X ) ,"  &
+        "262 ( BC_1, *, internal, X ) ,"  &
+        "263 ( BC_1, *, internal, X ) ,"  &
+        "264 ( BC_1, *, internal, X ) ,"  &
+        "265 ( BC_1, *, internal, X ) ,"  &
+        "266 ( BC_1, *, internal, X ) ,"  &
+        "267 ( BC_1, *, internal, X ) ,"  &
+        "268 ( BC_1, *, internal, X ) ,"  &
+        "269 ( BC_1, *, internal, X ) ,"  &
+        "270 ( BC_1, *, internal, X ) ,"  &
+        "271 ( BC_1, *, internal, X ) ,"  &
+        "272 ( BC_4, *, internal, X ) ,"  &
+        "273 ( BC_4, *, internal, X ) ,"  &
+        "274 ( BC_4, *, internal, X ) ,"  &
+        "275 ( BC_4, *, internal, X ) ,"  &
+        "276 ( BC_4, *, internal, X ) ,"  &
+        "277 ( BC_4, *, internal, X ) ,"  &
+        "278 ( BC_1, *, internal, X ) ,"  &
+        "279 ( BC_1, *, internal, X ) ,"  &
+        "280 ( BC_4, *, internal, X ) ,"  &
+        "281 ( BC_4, *, internal, X ) ,"  &
+        "282 ( BC_4, *, internal, X ) ,"  &
+        "283 ( BC_4, *, internal, X ) ,"  &
+        "284 ( BC_4, *, internal, X ) ,"  &
+        "285 ( BC_4, *, internal, X ) ,"  &
+        "286 ( BC_1, *, internal, X ) ,"  &
+        "287 ( BC_1, *, internal, X ) ,"  &
+        "288 ( BC_4, RCLK(31), input, X ) ,"  &
+        "289 ( BC_4, RD_31, input, X ) ,"  &
+        "290 ( BC_4, RCLK(30), input, X ) ,"  &
+        "291 ( BC_4, RD_30, input, X ) ,"  &
+        "292 ( BC_4, RCLK(29), input, X ) ,"  &
+        "293 ( BC_4, RD_29, input, X ) ,"  &
+        "294 ( BC_4, RCLK(28), input, X ) ,"  &
+        "295 ( BC_4, RD_28, input, X ) ,"  &
+        "296 ( BC_4, RCLK(27), input, X ) ,"  &
+        "297 ( BC_4, RD_27, input, X ) ,"  &
+        "298 ( BC_4, RCLK(26), input, X ) ,"  &
+        "299 ( BC_4, RD_26, input, X ) ,"  &
+        "300 ( BC_4, RCLK(25), input, X ) ,"  &
+        "301 ( BC_4, RD_25, input, X ) ,"  &
+        "302 ( BC_4, RCLK(24), input, X ) ,"  &
+        "303 ( BC_4, RD_24_TA_12_TRS, input, X ) ,"  &
+        "304 ( BC_4, RMVCK(3), input, X ) ,"  &
+        "305 ( BC_4, RFPB(3), input, X ) ,"  &
+        "306 ( BC_4, RCLK(23), input, X ) ,"  &
+        "307 ( BC_4, RD_23_TWRB, input, X ) ,"  &
+        "308 ( BC_4, RCLK(22), input, X ) ,"  &
+        "309 ( BC_4, RD_22_TRDB, input, X ) ,"  &
+        "310 ( BC_4, RCLK(21), input, X ) ,"  &
+        "311 ( BC_4, RD_21_TA_11, input, X ) ,"  &
+        "312 ( BC_4, RCLK(20), input, X ) ,"  &
+        "313 ( BC_4, RD_20_TA_10, input, X ) ,"  &
+        "314 ( BC_4, RCLK(19), input, X ) ,"  &
+        "315 ( BC_4, RD_19_TA_9, input, X ) ,"  &
+        "316 ( BC_4, RCLK(18), input, X ) ,"  &
+        "317 ( BC_4, RD_18_TA_8, input, X ) ,"  &
+        "318 ( BC_4, RCLK(17), input, X ) ,"  &
+        "319 ( BC_4, RD_17_TA_7, input, X ) ,"  &
+        "320 ( BC_4, RCLK(16), input, X ) ,"  &
+        "321 ( BC_4, RD_16_TA_6, input, X ) ,"  &
+        "322 ( BC_4, RMVCK(2), input, X ) ,"  &
+        "323 ( BC_4, RFPB(2), input, X ) ,"  &
+        "324 ( BC_4, RCLK(15), input, X ) ,"  &
+        "325 ( BC_4, RD_15_TA_5, input, X ) ,"  &
+        "326 ( BC_4, RSTB, input, X ) ,"  &
+        "327 ( BC_4, RCLK(14), input, X ) ,"  &
+        "328 ( BC_4, RD_14_TA_4, input, X ) ,"  &
+        "329 ( BC_4, RCLK(13), input, X ) ,"  &
+        "330 ( BC_4, RD_13_TA_3, input, X ) ,"  &
+        "331 ( BC_4, RCLK(12), input, X ) ,"  &
+        "332 ( BC_4, RD_12_TA_2, input, X ) ,"  &
+        "333 ( BC_4, RCLK(11), input, X ) ,"  &
+        "334 ( BC_4, RD_11_TA_1, input, X ) ,"  &
+        "335 ( BC_4, RCLK(10), input, X ) ,"  &
+        "336 ( BC_4, RD_10_TA_0, input, X ) ,"  &
+        "337 ( BC_4, RCLK(9), input, X ) ,"  &
+        "338 ( BC_4, RD_9, input, X ) ,"  &
+        "339 ( BC_4, RCLK(8), input, X ) ,"  &
+        "340 ( BC_4, RD_8, input, X ) ,"  &
+        "341 ( BC_4, RMVCK(1), input, X ) ,"  &
+        "342 ( BC_4, RFPB(1), input, X ) ,"  &
+        "343 ( BC_4, RCLK(7), input, X ) ,"  &
+        "344 ( BC_4, RD_7, input, X ) ,"  &
+        "345 ( BC_4, RCLK(6), input, X ) ,"  &
+        "346 ( BC_4, RD_6, input, X ) ,"  &
+        "347 ( BC_4, SYSCLK, input, X ) ,"  &
+        "348 ( BC_4, RCLK(5), input, X ) ,"  &
+        "349 ( BC_4, RD_5, input, X ) ,"  &
+        "350 ( BC_4, RCLK(4), input, X ) ,"  &
+        "351 ( BC_4, RD_4, input, X ) ,"  &
+        "352 ( BC_4, RCLK(3), input, X ) ,"  &
+        "353 ( BC_4, RD_3, input, X ) ,"  &
+        "354 ( BC_4, RCLK(2), input, X ) ,"  &
+        "355 ( BC_4, RD_2, input, X ) ,"  &
+        "356 ( BC_4, RCLK(1), input, X ) ,"  &
+        "357 ( BC_4, RD_1, input, X ) ,"  &
+        "358 ( BC_4, RCLK(0), input, X ) ,"  &
+        "359 ( BC_4, RD_0, input, X ) ,"  &
+        "360 ( BC_4, RMVCK(0), input, X ) ,"  &
+        "361 ( BC_4, RFPB(0), input, X ) ,"  &
+        "362 ( BC_4, RMV8FPC, input, X ) ,"  &
+        "363 ( BC_4, RFP8B, input, X ) ,"  &
+        "364 ( BC_4, RMV8DC, input, X ) ";
+
+end PM7380;
+
+RELEASED
+ 
+PM7380 FREEDM-32P672
+
+
+
+BSDL
+
+PMC-991701, FEBRUARY 2000
+ISSUE 2
+FREEDM-32P672 REV B  BSDL SOURCE CODE
+
+© 1999
+PMC-Sierra, Inc.
+105 - 8555 Baxter Place
+Burnaby  BC  Canada  V5A 4V7
+Phone 604.415.6000   FAX 604.415.6200
+This document is CONFIDENTIAL and PROPRIETARY and is for the use of PMC-Sierra Inc. personnel only, except to the extent that permission is 
+expressly granted elsewhere.
+In any event, no part of this document may be reproduced in any form without the express written consent of PMC-Sierra, Inc.
+PMC-SIERRA, INC. PROPRIETARY AND CONFIDENTIAL	1 of 3
+PMC-SIERRA, INC. PROPRIETARY AND CONFIDENTIAL	16 of 1
